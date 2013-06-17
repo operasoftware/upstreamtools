@@ -2,5 +2,13 @@
 
 {% block content %}
   <h1>Upstreamed commits</h1>
-  <p>Hello {{ name }}
+  <table>
+  {% for c in commits %}
+    <tr>
+      <td>{{ c.author }}
+      <td>{{ c.subject }}
+        <div style=display:none>{{ c.body }}</div>
+      <td>Yep
+  {% endfor %}
+  </table>
 {% endblock %}

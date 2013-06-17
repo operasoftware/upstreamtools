@@ -7,9 +7,13 @@ from Opera.
 Getting started
 ---------------
 
-Install the requirements:
+Install the requirements (possibly inside a virtualenv):
 
     pip install -r requirements.txt
+
+Get the required upstream repositories:
+
+    git clone --mirror https://chromium.googlesource.com/chromium/src.git chromium.src.git
 
 Generate the file:
 
