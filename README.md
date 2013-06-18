@@ -14,6 +14,7 @@ Install the requirements (possibly inside a virtualenv):
 Get the required upstream repositories:
 
     git clone --mirror https://chromium.googlesource.com/chromium/src.git chromium.src.git
+    git clone --mirror https://chromium.googlesource.com/chromium/blink.git chromium.blink.git
 
 Generate the file:
 
