@@ -26,13 +26,13 @@ class Repo(object):
             [self.git, '--git-dir='+self.gitdir] + args, stderr=subprocess.STDOUT)
 
     def commits(self):
-        commit_type = namedtuple("Commit", "sha author date date_relative subject body")
         raw_commits = self.get_log()
         commits = []
         for c in raw_commits:
             parts = c.split('\n', 5)
             if len(parts) == 6:
-                commits.append(commit_type._make(parts))
+                commit = Commit(*parts)
+                commits.append(commit)
         return commits
 
     def get_log(self):
@@ -44,3 +44,12 @@ class Repo(object):
                     '-z',
                     'master']).split('\0')
         return lines
+
+class Commit(object):
+    def __init__(self, sha, author, date, date_relative, subject, body):
+        self.sha = sha
+        self.author = author
+        self.date = date
+        self.date_relative = date_relative
+        self.subject = subject
+        self.body = body

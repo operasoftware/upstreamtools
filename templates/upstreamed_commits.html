@@ -24,7 +24,7 @@ td { vertical-align: top; }
           <td>{{ c.author }}
           <td class=message><strong>{{ c.subject }}</strong>
             <pre class=body style=display:none>{{ c.body }}</pre>
-          <td><time datetime='{{ c.date }}' title='{{ c.date }}'>{{ c.date_relative }}</time>
+          <td><a href='{{ c.viewvc }}'><time datetime='{{ c.date }}' title='{{ c.date }}'>{{ c.date_relative }}</time></a>
       {% endfor %}
       </table>
     </section>
