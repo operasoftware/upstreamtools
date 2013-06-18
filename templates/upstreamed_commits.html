@@ -22,8 +22,8 @@ td { vertical-align: top; }
       {% for c in project.log %}
         <tr>
           <td>{{ c.author }}
-          <td class=message><strong>{{ c.subject }}</strong>
-            <pre class=body style=display:none>{{ c.body }}</pre>
+          <td class=message><strong>{{ c.subject|e }}</strong>
+            <pre class=body style=display:none>{{ c.body|e }}</pre>
           <td><a href='{{ c.viewvc }}'><time datetime='{{ c.date }}' title='{{ c.date }}'>{{ c.date_relative }}</time></a>
       {% endfor %}
       </table>
