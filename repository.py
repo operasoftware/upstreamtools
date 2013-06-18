@@ -1,5 +1,7 @@
 import os
 import subprocess
+import datetime
+import time
 
 from collections import namedtuple
 
@@ -24,19 +26,20 @@ class Repo(object):
             [self.git, '--git-dir='+self.gitdir] + args, stderr=subprocess.STDOUT)
 
     def commits(self):
-        commit_type = namedtuple("Commit", "sha author subject body")
+        commit_type = namedtuple("Commit", "sha author date date_relative subject body")
         raw_commits = self.get_log()
         commits = []
         for c in raw_commits:
-            parts = c.split('\n', 3)
-            if len(parts) == 4:
+            parts = c.split('\n', 5)
+            if len(parts) == 6:
                 commits.append(commit_type._make(parts))
         return commits
 
     def get_log(self):
         lines = self._git([
                     'log',
-                    '--format=%H%n%an%n%B',
+                    '--format=%H%n%an%n%ad%n%ar%n%B',
+                    '--date=short',
                     '--author=opera.com',
                     '-z',
                     'master']).split('\0')
