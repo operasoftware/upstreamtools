@@ -27,6 +27,62 @@ td { vertical-align: top; }
       
         <tr>
           <td>mostynb@opera.com
+          <td class=message><strong>attempt to make the libc urandom override work for non-glibc too</strong>
+            <pre class=body style=display:none>
+This patch attempts to generalise the linux libc urandom override, so
+that it works for non-glibc linux platforms too.
+
+Review URL: https://chromiumcodereview.appspot.com/17066002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@208924 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=208924&view=revision'><time datetime='2013-06-27' title='2013-06-27'>2013-06-27</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>allow unofficial builds with DCHECK and DLOG disabled</strong>
+            <pre class=body style=display:none>
+Previously, it was not possible to produce unofficial builds without
+DCHECKS and DLOGS.
+
+Review URL: https://chromiumcodereview.appspot.com/17165003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@207826 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=207826&view=revision'><time datetime='2013-06-21' title='2013-06-21'>2013-06-21</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>linux: tcmalloc does not depend on glib</strong>
+            <pre class=body style=display:none>
+This seems to have been an old implicit assumption that use_glib==1 meant OS==&#34;linux&#34;.
+
+Review URL: https://chromiumcodereview.appspot.com/17076009
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@207370 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=207370&view=revision'><time datetime='2013-06-20' title='2013-06-20'>2013-06-20</time></a>
+      
+        <tr>
+          <td>mstensho@opera.com
+          <td class=message><strong>Add command line switch to enable region based columns.</strong>
+            <pre class=body style=display:none>
+This needs to be a separate switch - we cannot lump it together with
+--enable-experimental-webkit-features , because we don&#39;t want
+to unconditionally enable region based columns when running LayoutTests
+(there are LayoutTests that compare rendering in the old and new multicol
+implementations, using internals.settings.setRegionBasedColumnsEnabled(true)).
+
+BUG=242905
+
+Review URL: https://chromiumcodereview.appspot.com/17057003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@207005 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=207005&view=revision'><time datetime='2013-06-18' title='2013-06-18'>2013-06-18</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
           <td class=message><strong>don&#39;t override libc code in a glibc-specific way when not using glibc</strong>
             <pre class=body style=display:none>
 We should not attempt to override libc functions using glibc-specific
@@ -37,7 +93,7 @@ Review URL: https://chromiumcodereview.appspot.com/16132015
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@206040 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=206040&view=revision'><time datetime='2013-06-13' title='2013-06-13'>5 days ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=206040&view=revision'><time datetime='2013-06-13' title='2013-06-13'>2013-06-13</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -52,7 +108,7 @@ Review URL: https://chromiumcodereview.appspot.com/15521004
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@206031 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=206031&view=revision'><time datetime='2013-06-13' title='2013-06-13'>5 days ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=206031&view=revision'><time datetime='2013-06-13' title='2013-06-13'>2013-06-13</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -72,7 +128,7 @@ Review URL: https://chromiumcodereview.appspot.com/16096006
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@202661 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=202661&view=revision'><time datetime='2013-05-28' title='2013-05-28'>3 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=202661&view=revision'><time datetime='2013-05-28' title='2013-05-28'>2013-05-28</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -85,7 +141,7 @@ Review URL: https://chromiumcodereview.appspot.com/15102010
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@201892 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=201892&view=revision'><time datetime='2013-05-23' title='2013-05-23'>4 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=201892&view=revision'><time datetime='2013-05-23' title='2013-05-23'>2013-05-23</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -102,7 +158,7 @@ Review URL: https://chromiumcodereview.appspot.com/15405003
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@201761 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=201761&view=revision'><time datetime='2013-05-23' title='2013-05-23'>4 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=201761&view=revision'><time datetime='2013-05-23' title='2013-05-23'>2013-05-23</time></a>
       
         <tr>
           <td>bratell@opera.com
@@ -119,7 +175,7 @@ Review URL: https://chromiumcodereview.appspot.com/15272003
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@201484 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=201484&view=revision'><time datetime='2013-05-22' title='2013-05-22'>4 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=201484&view=revision'><time datetime='2013-05-22' title='2013-05-22'>2013-05-22</time></a>
       
         <tr>
           <td>mstensho@opera.com
@@ -135,7 +191,7 @@ Review URL: https://chromiumcodereview.appspot.com/14496004
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@201315 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=201315&view=revision'><time datetime='2013-05-21' title='2013-05-21'>4 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=201315&view=revision'><time datetime='2013-05-21' title='2013-05-21'>2013-05-21</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -150,7 +206,7 @@ Review URL: https://chromiumcodereview.appspot.com/14794002
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@201204 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=201204&view=revision'><time datetime='2013-05-21' title='2013-05-21'>4 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=201204&view=revision'><time datetime='2013-05-21' title='2013-05-21'>2013-05-21</time></a>
       
         <tr>
           <td>bratell@opera.com
@@ -164,7 +220,7 @@ Review URL: https://chromiumcodereview.appspot.com/15302002
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@201023 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=201023&view=revision'><time datetime='2013-05-20' title='2013-05-20'>4 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=201023&view=revision'><time datetime='2013-05-20' title='2013-05-20'>2013-05-20</time></a>
       
         <tr>
           <td>mstensho@opera.com
@@ -177,7 +233,7 @@ Review URL: https://chromiumcodereview.appspot.com/14389010
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@199988 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=199988&view=revision'><time datetime='2013-05-14' title='2013-05-14'>5 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=199988&view=revision'><time datetime='2013-05-14' title='2013-05-14'>2013-05-14</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -187,7 +243,7 @@ Review URL: https://chromiumcodereview.appspot.com/14109020
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@197614 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=197614&view=revision'><time datetime='2013-05-01' title='2013-05-01'>7 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=197614&view=revision'><time datetime='2013-05-01' title='2013-05-01'>2013-05-01</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -200,7 +256,7 @@ Review URL: https://chromiumcodereview.appspot.com/14544002
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@197103 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=197103&view=revision'><time datetime='2013-04-29' title='2013-04-29'>7 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=197103&view=revision'><time datetime='2013-04-29' title='2013-04-29'>2013-04-29</time></a>
       
         <tr>
           <td>ohrn@opera.com
@@ -219,7 +275,7 @@ Review URL: https://chromiumcodereview.appspot.com/14065005
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@196702 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=196702&view=revision'><time datetime='2013-04-26' title='2013-04-26'>8 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=196702&view=revision'><time datetime='2013-04-26' title='2013-04-26'>2013-04-26</time></a>
       
         <tr>
           <td>msimonides@opera.com
@@ -236,7 +292,7 @@ Review URL: https://chromiumcodereview.appspot.com/14246028
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@195468 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=195468&view=revision'><time datetime='2013-04-22' title='2013-04-22'>8 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=195468&view=revision'><time datetime='2013-04-22' title='2013-04-22'>2013-04-22</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -249,7 +305,7 @@ Review URL: https://chromiumcodereview.appspot.com/14110006
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@194875 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=194875&view=revision'><time datetime='2013-04-18' title='2013-04-18'>9 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=194875&view=revision'><time datetime='2013-04-18' title='2013-04-18'>2013-04-18</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -263,7 +319,7 @@ Review URL: https://chromiumcodereview.appspot.com/13818027
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@194862 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=194862&view=revision'><time datetime='2013-04-18' title='2013-04-18'>9 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=194862&view=revision'><time datetime='2013-04-18' title='2013-04-18'>2013-04-18</time></a>
       
         <tr>
           <td>ohrn@opera.com
@@ -278,7 +334,7 @@ Review URL: https://chromiumcodereview.appspot.com/13820016
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@193948 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=193948&view=revision'><time datetime='2013-04-12' title='2013-04-12'>10 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=193948&view=revision'><time datetime='2013-04-12' title='2013-04-12'>2013-04-12</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -299,7 +355,7 @@ Review URL: https://chromiumcodereview.appspot.com/14019004
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@193872 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=193872&view=revision'><time datetime='2013-04-12' title='2013-04-12'>10 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=193872&view=revision'><time datetime='2013-04-12' title='2013-04-12'>2013-04-12</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -313,7 +369,7 @@ Review URL: https://chromiumcodereview.appspot.com/13772007
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@193737 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=193737&view=revision'><time datetime='2013-04-11' title='2013-04-11'>10 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=193737&view=revision'><time datetime='2013-04-11' title='2013-04-11'>2013-04-11</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -329,7 +385,7 @@ Review URL: https://chromiumcodereview.appspot.com/13597005
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@192944 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=192944&view=revision'><time datetime='2013-04-08' title='2013-04-08'>2 months ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=192944&view=revision'><time datetime='2013-04-08' title='2013-04-08'>2013-04-08</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -341,7 +397,7 @@ Review URL: https://chromiumcodereview.appspot.com/13431003
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@192653 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=192653&view=revision'><time datetime='2013-04-05' title='2013-04-05'>2 months ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=192653&view=revision'><time datetime='2013-04-05' title='2013-04-05'>2013-04-05</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -357,7 +413,7 @@ Review URL: https://chromiumcodereview.appspot.com/13006014
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@190776 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=190776&view=revision'><time datetime='2013-03-26' title='2013-03-26'>3 months ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=190776&view=revision'><time datetime='2013-03-26' title='2013-03-26'>2013-03-26</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -369,7 +425,7 @@ Review URL: https://chromiumcodereview.appspot.com/12387011
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@186251 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=186251&view=revision'><time datetime='2013-03-05' title='2013-03-05'>4 months ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=186251&view=revision'><time datetime='2013-03-05' title='2013-03-05'>2013-03-05</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -387,7 +443,7 @@ Review URL: https://chromiumcodereview.appspot.com/12316049
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@185011 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=185011&view=revision'><time datetime='2013-02-27' title='2013-02-27'>4 months ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=185011&view=revision'><time datetime='2013-02-27' title='2013-02-27'>2013-02-27</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -400,7 +456,7 @@ Review URL: https://chromiumcodereview.appspot.com/12334037
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@184320 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=184320&view=revision'><time datetime='2013-02-23' title='2013-02-23'>4 months ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=184320&view=revision'><time datetime='2013-02-23' title='2013-02-23'>2013-02-23</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -422,7 +478,7 @@ Review URL: https://chromiumcodereview.appspot.com/12340023
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@184184 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=184184&view=revision'><time datetime='2013-02-22' title='2013-02-22'>4 months ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=184184&view=revision'><time datetime='2013-02-22' title='2013-02-22'>2013-02-22</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -441,7 +497,7 @@ Review URL: https://chromiumcodereview.appspot.com/12320047
 
 git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b951-d872f2087c98
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/chrome?revision=183957&view=revision'><time datetime='2013-02-22' title='2013-02-22'>4 months ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=183957&view=revision'><time datetime='2013-02-22' title='2013-02-22'>2013-02-22</time></a>
       
       </table>
     </section>
@@ -453,6 +509,121 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mstensho@opera.com
+          <td class=message><strong>Fix SVG relayout problem that occurs when only the viewport height changes.</strong>
+            <pre class=body style=display:none>
+If the root element is an SVG, its vertical position and height are
+affected by the view height.
+
+BUG=255561
+
+Review URL: https://chromiumcodereview.appspot.com/18180008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@153270 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=153270&view=revision'><time datetime='2013-06-28' title='2013-06-28'>2013-06-28</time></a>
+      
+        <tr>
+          <td>mstensho@opera.com
+          <td class=message><strong>Column balancing support in the region based multicol implementation.</strong>
+            <pre class=body style=display:none>
+Start by setting the column height to the flow thread&#39;s height divided
+by the number of columns. Then stretch the column height until
+contents fits without creating overflowing columns, or until the
+maximum allowed column height is reached, whichever comes first. This
+may require several layout iterations (but normally only a
+couple). For each time we stretch, stretch by the least amount
+required to make a difference to which box goes where.
+
+Also make sure that the columns get tall enough to honor orphans
+and widows settings.
+
+This change takes some tiny steps in preparing for multiple column
+set support.
+
+This patch is ported from WebKit.
+https://bugs.webkit.org/show_bug.cgi?id=116033
+Reviewed in WebKit by David Hyatt.
+
+BUG=252675
+
+Review URL: https://chromiumcodereview.appspot.com/16943008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@153028 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=153028&view=revision'><time datetime='2013-06-25' title='2013-06-25'>2013-06-25</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>Imported latest w3c media queries test suite.</strong>
+            <pre class=body style=display:none>
+Imported from:
+
+http://hg.csswg.org/test/file/c88a96071aac/approved/css3-mediaqueries/src
+
+The only diff to the w3c version is now the paths to testharness and the
+iframe document.
+
+BUG=None
+
+Review URL: https://chromiumcodereview.appspot.com/17570008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@152998 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=152998&view=revision'><time datetime='2013-06-25' title='2013-06-25'>2013-06-25</time></a>
+      
+        <tr>
+          <td>kolczyk@opera.com
+          <td class=message><strong>This patch improves the user experience when using spatial navigation (enabled in https://codereview.chromium.org/13811041 and https://codereview.chromium.org/14110006 ):</strong>
+            <pre class=body style=display:none>
+- Dispatch onClick when pressing ENTER or SPACE on any element (not only input buttons as it was before the patch)
+- Make HTMLElement focusable by spatnav if it has click or key events (before it could only navigate to links and form items). 
+
+The changes are effective only if spatialNavigationEnabled pref is enabled.
+
+
+
+BUG=
+
+Review URL: https://chromiumcodereview.appspot.com/16959002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@152930 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=152930&view=revision'><time datetime='2013-06-23' title='2013-06-23'>2013-06-23</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>Do not consider title from non-css stylesheet for preferred set.</strong>
+            <pre class=body style=display:none>
+Title on a style element can be used to select the preferred stylesheet set.
+If the type attribute of the style element is not text/css, the title should
+never be set as the key for the preferred stylesheet set.
+
+BUG=252215
+
+Review URL: https://chromiumcodereview.appspot.com/17496004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@152797 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=152797&view=revision'><time datetime='2013-06-20' title='2013-06-20'>2013-06-20</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>Auto-closing at unexpected EOF for all entry points.</strong>
+            <pre class=body style=display:none>
+Don&#39;t wrap non-stylesheet (CSSOM rule, selectors, etc) input strings to CSS
+parser in braces as that will break auto-closing of blocks, parentheses, etc
+in the actual input string.
+
+BUG=163354
+
+Review URL: https://chromiumcodereview.appspot.com/17129003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@152717 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=152717&view=revision'><time datetime='2013-06-19' title='2013-06-19'>2013-06-19</time></a>
       
         <tr>
           <td>rune@opera.com
@@ -473,7 +644,7 @@ Review URL: https://chromiumcodereview.appspot.com/16962002
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@152445 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=152445&view=revision'><time datetime='2013-06-14' title='2013-06-14'>4 days ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=152445&view=revision'><time datetime='2013-06-14' title='2013-06-14'>2013-06-14</time></a>
       
         <tr>
           <td>mstensho@opera.com
@@ -489,7 +660,7 @@ Review URL: https://chromiumcodereview.appspot.com/15744005
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@152304 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=152304&view=revision'><time datetime='2013-06-12' title='2013-06-12'>6 days ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=152304&view=revision'><time datetime='2013-06-12' title='2013-06-12'>2013-06-12</time></a>
       
         <tr>
           <td>rune@opera.com
@@ -509,7 +680,7 @@ Review URL: https://chromiumcodereview.appspot.com/16208004
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@152279 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=152279&view=revision'><time datetime='2013-06-12' title='2013-06-12'>6 days ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=152279&view=revision'><time datetime='2013-06-12' title='2013-06-12'>2013-06-12</time></a>
       
         <tr>
           <td>rune@opera.com
@@ -537,7 +708,7 @@ Review URL: https://chromiumcodereview.appspot.com/15679021
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@152218 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=152218&view=revision'><time datetime='2013-06-11' title='2013-06-11'>7 days ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=152218&view=revision'><time datetime='2013-06-11' title='2013-06-11'>2013-06-11</time></a>
       
         <tr>
           <td>rune@opera.com
@@ -555,7 +726,7 @@ Review URL: https://chromiumcodereview.appspot.com/16583003
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@152112 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=152112&view=revision'><time datetime='2013-06-10' title='2013-06-10'>8 days ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=152112&view=revision'><time datetime='2013-06-10' title='2013-06-10'>2013-06-10</time></a>
       
         <tr>
           <td>rune@opera.com
@@ -567,7 +738,7 @@ Review URL: https://chromiumcodereview.appspot.com/15878013
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@151907 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=151907&view=revision'><time datetime='2013-06-06' title='2013-06-06'>12 days ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=151907&view=revision'><time datetime='2013-06-06' title='2013-06-06'>2013-06-06</time></a>
       
         <tr>
           <td>rune@opera.com
@@ -588,7 +759,7 @@ Review URL: https://chromiumcodereview.appspot.com/14620012
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@151842 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=151842&view=revision'><time datetime='2013-06-05' title='2013-06-05'>13 days ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=151842&view=revision'><time datetime='2013-06-05' title='2013-06-05'>2013-06-05</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -601,7 +772,7 @@ Review URL: https://chromiumcodereview.appspot.com/15813017
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@151810 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=151810&view=revision'><time datetime='2013-06-05' title='2013-06-05'>13 days ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=151810&view=revision'><time datetime='2013-06-05' title='2013-06-05'>2013-06-05</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -620,7 +791,7 @@ Review URL: https://chromiumcodereview.appspot.com/16379002
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@151791 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=151791&view=revision'><time datetime='2013-06-05' title='2013-06-05'>13 days ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=151791&view=revision'><time datetime='2013-06-05' title='2013-06-05'>2013-06-05</time></a>
       
         <tr>
           <td>rune@opera.com
@@ -640,7 +811,7 @@ Review URL: https://chromiumcodereview.appspot.com/16103004
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@151751 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=151751&view=revision'><time datetime='2013-06-04' title='2013-06-04'>2 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=151751&view=revision'><time datetime='2013-06-04' title='2013-06-04'>2013-06-04</time></a>
       
         <tr>
           <td>rune@opera.com
@@ -659,7 +830,7 @@ Review URL: https://chromiumcodereview.appspot.com/13896036
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@150487 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=150487&view=revision'><time datetime='2013-05-16' title='2013-05-16'>5 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=150487&view=revision'><time datetime='2013-05-16' title='2013-05-16'>2013-05-16</time></a>
       
         <tr>
           <td>rune@opera.com
@@ -702,7 +873,7 @@ Review URL: https://chromiumcodereview.appspot.com/14581013
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@150417 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=150417&view=revision'><time datetime='2013-05-15' title='2013-05-15'>5 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=150417&view=revision'><time datetime='2013-05-15' title='2013-05-15'>2013-05-15</time></a>
       
         <tr>
           <td>rune@opera.com
@@ -716,7 +887,7 @@ Review URL: https://chromiumcodereview.appspot.com/14203017
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@150415 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=150415&view=revision'><time datetime='2013-05-15' title='2013-05-15'>5 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=150415&view=revision'><time datetime='2013-05-15' title='2013-05-15'>2013-05-15</time></a>
       
         <tr>
           <td>rune@opera.com
@@ -732,7 +903,7 @@ Review URL: https://chromiumcodereview.appspot.com/14980012
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@150410 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=150410&view=revision'><time datetime='2013-05-15' title='2013-05-15'>5 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=150410&view=revision'><time datetime='2013-05-15' title='2013-05-15'>2013-05-15</time></a>
       
         <tr>
           <td>ed@opera.com
@@ -748,7 +919,7 @@ Review URL: https://chromiumcodereview.appspot.com/14108013
 
 git-svn-id: svn://svn.chromium.org/blink/trunk@149844 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
-          <td><a href='http://src.chromium.org/viewvc/blink?revision=149844&view=revision'><time datetime='2013-05-07' title='2013-05-07'>6 weeks ago</time></a>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=149844&view=revision'><time datetime='2013-05-07' title='2013-05-07'>2013-05-07</time></a>
       
       </table>
     </section>
