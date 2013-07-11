@@ -27,6 +27,144 @@ td { vertical-align: top; }
       
         <tr>
           <td>mostynb@opera.com
+          <td class=message><strong>add missing header in webkit/browser/fileapi/file_system_usage_cache.cc</strong>
+            <pre class=body style=display:none>
+webkit/browser/fileapi/file_system_usage_cache.cc uses base::Bind but
+does not include base/bind.h.
+
+BUG=259043
+
+Review URL: https://chromiumcodereview.appspot.com/18421009
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@211098 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=211098&view=revision'><time datetime='2013-07-11' title='2013-07-11'>2013-07-11</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>add missing headers in cc/*</strong>
+            <pre class=body style=display:none>
+cc/resources/worker_pool.cc uses ConditionVariable but doesn&#39;t
+include base/synchronization/condition_variable.h.
+
+And various files in cc/scheduler/ were missing base/logging.h and base/bind.h.
+
+BUG=259043
+
+Review URL: https://chromiumcodereview.appspot.com/18804005
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@211004 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=211004&view=revision'><time datetime='2013-07-11' title='2013-07-11'>2013-07-11</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>add missing includes in gpu/command_buffer/*</strong>
+            <pre class=body style=display:none>
+gpu/command_buffer/service/command_buffer_service.cc uses DCHECK* but
+doesn&#39;t include base/logging.h
+
+Similarly in gpu/command_buffer/service/transfer_buffer_manager.cc, which also lacks scoped_ptr.h.
+
+BUG=259043
+
+Review URL: https://chromiumcodereview.appspot.com/18998002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@210963 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=210963&view=revision'><time datetime='2013-07-10' title='2013-07-10'>2013-07-10</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>render_thread.h: include base/callback.h for Closure typedef</strong>
+            <pre class=body style=display:none>
+content/public/renderer/render_thread.h uses Closure but
+does not directly include the header which provides this typedef.
+
+Review URL: https://chromiumcodereview.appspot.com/18226007
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@210821 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=210821&view=revision'><time datetime='2013-07-10' title='2013-07-10'>2013-07-10</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>make it possible to disable internal tracing in unofficial builds</strong>
+            <pre class=body style=display:none>
+Add a tracing_like_official_build gyp setting, which works similarly to
+the logging_like_official_build setting.
+
+Review URL: https://chromiumcodereview.appspot.com/18333010
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@210650 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=210650&view=revision'><time datetime='2013-07-09' title='2013-07-09'>2013-07-09</time></a>
+      
+        <tr>
+          <td>mpawlowski@opera.com
+          <td class=message><strong>Fixing destruction order in login database unit tests</strong>
+            <pre class=body style=display:none>
+Before, the ScopedTempDir would be destroyed before
+LoginDatabase, which would still be locking the database file
+within the temporary folder. This would cause an error in
+ScopedTempDir&#39;s d-tor, and the temporary folder would stay
+on disk.
+
+Now the order of LoginDatabaseTest&#39;s members is aligned to
+the order of initialization in SetUp and LoginDatabase is
+destroyed before ScopedTempDir. This also makes the tests
+run a lot faster on my Windows machine (&gt;4s to 110ms).
+
+TEST=unit_tests.exe --gtest_filter=&#34;LoginDatabaseTest.*&#34;
+BUG=
+
+Review URL: https://chromiumcodereview.appspot.com/18684002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@210374 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=210374&view=revision'><time datetime='2013-07-08' title='2013-07-08'>2013-07-08</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>silence qcms __force_align_arg_pointer__ warning on mips too</strong>
+            <pre class=body style=display:none>
+Review URL: https://chromiumcodereview.appspot.com/18112005
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@209815 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=209815&view=revision'><time datetime='2013-07-02' title='2013-07-02'>2013-07-02</time></a>
+      
+        <tr>
+          <td>msimonides@opera.com
+          <td class=message><strong>Fix CopyFromBackingStore when there&#39;s no cg_layer_.</strong>
+            <pre class=body style=display:none>
+In CopyFromBackingStore use the cg_bitmap_ as the source in case cg_layer_
+hasn&#39;t been created yet.
+
+BUG=
+
+Review URL: https://chromiumcodereview.appspot.com/18052011
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@209399 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=209399&view=revision'><time datetime='2013-07-01' title='2013-07-01'>2013-07-01</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>linux: make libc urandom override work for non-glibc too</strong>
+            <pre class=body style=display:none>
+This patch attempts to generalise the linux libc urandom override, so that it works for non-glibc linux platforms too.
+
+BUG=255215
+
+Review URL: https://chromiumcodereview.appspot.com/18093002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@209281 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=209281&view=revision'><time datetime='2013-06-29' title='2013-06-29'>2013-06-29</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
           <td class=message><strong>attempt to make the libc urandom override work for non-glibc too</strong>
             <pre class=body style=display:none>
 This patch attempts to generalise the linux libc urandom override, so
@@ -509,6 +647,105 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>@viewport lengths relative to initial font.</strong>
+            <pre class=body style=display:none>
+em/rem/ex Were incorrectly computed relative to the documentElement font.
+
+BUG=257070
+
+Review URL: https://chromiumcodereview.appspot.com/18023018
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@153784 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=153784&view=revision'><time datetime='2013-07-09' title='2013-07-09'>2013-07-09</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>Hovered/active/focused will never share style with siblings/cousins.</strong>
+            <pre class=body style=display:none>
+For any given hovered/active node at a given time, other hovered/active nodes
+are either ancestors or descendants of that node. Since style sharing is
+looking at siblings and cousins, hovered/active nodes will never share style.
+
+Similarly, there&#39;s always a single focused element in a document, hence it
+will never share style with another node.
+
+BUG=255189
+
+Review URL: https://chromiumcodereview.appspot.com/18764003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@153773 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=153773&view=revision'><time datetime='2013-07-09' title='2013-07-09'>2013-07-09</time></a>
+      
+        <tr>
+          <td>philipj@opera.com
+          <td class=message><strong>Add viewport settings for MediaDocument</strong>
+            <pre class=body style=display:none>
+MediaDocument is used when navigating directly to an audio or video resource.
+Use viewport width=device-width so that one doesn&#39;t need to zoom in order to
+use the video controls.
+
+Add viewport settings for ImageDocument
+
+On (mobile) platforms which have a viewport (e.g. Android) it is currently
+necessary to zoom in to see the image at 100% resolution even if it fits on the
+page. The width=device-width setting fixes this, and does not affect (desktop)
+platforms that lack a viewport.
+
+BUG=254978
+
+Review URL: https://chromiumcodereview.appspot.com/18034007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@153704 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=153704&view=revision'><time datetime='2013-07-08' title='2013-07-08'>2013-07-08</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>Hovered/active/focused nodes will never share style with siblings/cousins.</strong>
+            <pre class=body style=display:none>
+For any given hovered/active node at a given time, other hovered/active nodes
+are either ancestors or descendants of that node. Since style sharing is
+looking at siblings and cousins, hovered/active nodes will never share style.
+
+Similarly, there&#39;s always a single focused element in a document, hence it
+will never share style with another node.
+
+This change bails out early for style sharing in those cases.
+
+BUG=255189
+
+Review URL: https://chromiumcodereview.appspot.com/18089009
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@153529 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=153529&view=revision'><time datetime='2013-07-03' title='2013-07-03'>2013-07-03</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>Include disabled stylesheets in document.styleSheets.</strong>
+            <pre class=body style=display:none>
+Stylesheets disabled through LinkStyle.disabled were not included in
+Document.styleSheets, even if they existed as CSSStyleSheet objects.
+
+Fixed LinkStyle::setDisabled so it propagates disabled state to the sheet
+object when present.
+
+According to the HTML5 spec, setting disabled on LinkStyle when the sheet is
+not present should not have any effect and getting it should return false. I
+did not dare to do any changes there in this CL.
+
+BUG=88310
+
+Review URL: https://chromiumcodereview.appspot.com/17827004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@153485 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=153485&view=revision'><time datetime='2013-07-03' title='2013-07-03'>2013-07-03</time></a>
       
         <tr>
           <td>mstensho@opera.com
