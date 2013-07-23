@@ -20,6 +20,24 @@ Generate the file:
 
     python generate_upstream_list.py > upstream.html
 
+Updating the overview
+---------------------
+
+Update the git checkouts.
+
+    git --git-dir=chromium.blink.git fetch; git --git-dir=chromium.src.git fetch
+
+Generate the file, switch branch and checkin there.
+
+    python generate_upstream_list.py > upstream.html
+    git checkout gh-pages
+    mv upstream.html index.html
+    git commit -m"Update upstream overview." index.html
+
+NOTE: It should normally only add new entries. Check if it does something else.
+If you did not clone the upstreames like mirrors, the master branch won't
+always be poining at the newest point in history. You will have to do a `git
+pull` or similar in your working directory.
 
 License
 -------
