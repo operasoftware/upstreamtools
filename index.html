@@ -1,6 +1,6 @@
 <!doctype html>
 <meta charset=utf-8>
-<title>Base</title>
+<title>Upstreamed commits &ndash; Opera</title>
 <style>
 body { font-family: sans-serif; }
 </style>
@@ -16,6 +16,7 @@ td { vertical-align: top; }
 .col-when { width: 130px; }
 </style>
   <h1>Upstreamed commits</h1>
+  <p>Click message to expand
   
     <section class="chromium">
       <h2>Chromium</h2>
@@ -24,6 +25,132 @@ td { vertical-align: top; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>only use gold-specific flags for the target linker</strong>
+            <pre class=body style=display:none>
+The host linker might not be gold if linux_use_gold_binary==0,
+eg where we have a cross toolchain with gold and we want to use
+that instead of third_party/gold/gold64.
+
+Review URL: https://chromiumcodereview.appspot.com/19541006
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@212823 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=212823&view=revision'><time datetime='2013-07-21' title='2013-07-21'>2013-07-21</time></a>
+      
+        <tr>
+          <td>jiangj@opera.com
+          <td class=message><strong>Fix a crash when built with 10.7 SDK running on OS X 10.6</strong>
+            <pre class=body style=display:none>
+NSWindowDidChangeBackingPropertiesNotification is available since 10.7.
+
+Our buildbots use OS X 10.7 SDK to build with minimum target system
+version set to 10.6. For features available only to 10.7 and up, we
+normally have runtime guard to check if the system is 10.6 then we don&#39;t
+use it.
+
+However this one is in chromium content module and it doesn&#39;t have such
+runtime check. We don&#39;t know the exact details of chromium buildbot or
+how do they make release builds, it seems that they are building 10.6
+releases with 10.6 SDK (which will disable the feature in compile time).
+
+BUG=260595
+
+Review URL: https://chromiumcodereview.appspot.com/18674005
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@212060 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=212060&view=revision'><time datetime='2013-07-17' title='2013-07-17'>2013-07-17</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>include missing headers in skia/ext/analysis_canvas.{h,cc}</strong>
+            <pre class=body style=display:none>
+skia/ext/analysis_canvas.h uses the OVERRIDE macro, but does not
+include the header file that defines it.
+
+And analysis_canvas.cc lacks the header for DCHECK.
+
+BUG=259043
+
+Review URL: https://chromiumcodereview.appspot.com/18881003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@212042 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=212042&view=revision'><time datetime='2013-07-17' title='2013-07-17'>2013-07-17</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>add missing headers in ppapi/*</strong>
+            <pre class=body style=display:none>
+Include a few headers that are required but not already included directly.
+
+BUG=259043
+
+Review URL: https://chromiumcodereview.appspot.com/18209022
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@211724 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=211724&view=revision'><time datetime='2013-07-15' title='2013-07-15'>2013-07-15</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>add missing headers in components/tracing/child_trace_message_filter.h and </strong>
+            <pre class=body style=display:none>content/child/child_resource_message_filter.cc
+
+BUG=259043
+
+Review URL: https://chromiumcodereview.appspot.com/18863004
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@211542 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=211542&view=revision'><time datetime='2013-07-13' title='2013-07-13'>2013-07-13</time></a>
+      
+        <tr>
+          <td>msimonides@opera.com
+          <td class=message><strong>Fix the allHistory flag on chrome.history.onVisitRemoved event.</strong>
+            <pre class=body style=display:none>
+Calling chrome.history.deleteAll results in chrome.history.onVisitRemoved
+events to be dispatched with the allHistory flag being false instead of true.
+This fix changes the call to ExpireHistoryBetween so that begin_time and
+end_time are null which results in the history backend using a special path
+to delete all history and dispatch the right event.
+
+BUG=258445
+
+Review URL: https://chromiumcodereview.appspot.com/18755003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@211376 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=211376&view=revision'><time datetime='2013-07-12' title='2013-07-12'>2013-07-12</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>add missing headers in gpu code</strong>
+            <pre class=body style=display:none>
+BUG=259043
+
+Review URL: https://chromiumcodereview.appspot.com/18883003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@211355 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=211355&view=revision'><time datetime='2013-07-12' title='2013-07-12'>2013-07-12</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>add missing header in indexed_db_backing_store.cc</strong>
+            <pre class=body style=display:none>
+This file uses IsStringASCII but didn&#39;t explicitly include the relevant header file.
+
+BUG=259043
+
+Review URL: https://chromiumcodereview.appspot.com/18384006
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@211217 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=211217&view=revision'><time datetime='2013-07-11' title='2013-07-11'>2013-07-11</time></a>
       
         <tr>
           <td>mostynb@opera.com
@@ -647,6 +774,57 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>jiangj@opera.com
+          <td class=message><strong>Use high resolution markers when device scale factor &gt; 1.5f</strong>
+            <pre class=body style=display:none>
+It&#39;s an upstream regression introduced in Blink r151453 when non-compositing
+code path was removed but the setHighResMarkers() was left out.
+
+BUG=261123
+
+Review URL: https://chromiumcodereview.appspot.com/19579003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@154533 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=154533&view=revision'><time datetime='2013-07-18' title='2013-07-18'>2013-07-18</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>[css-device-adapt] Implemented spec changes.</strong>
+            <pre class=body style=display:none>
+Modified implementation to match spec changes:
+
+- Allow zero lengths for initial and actual viewport sizes.
+- auto width and height lengths depending on aspect-ratio, never on zoom.
+
+BUG=None
+
+Review URL: https://chromiumcodereview.appspot.com/16826008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@154237 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=154237&view=revision'><time datetime='2013-07-15' title='2013-07-15'>2013-07-15</time></a>
+      
+        <tr>
+          <td>philipj@opera.com
+          <td class=message><strong>Currently, mediaControls.css is the base CSS, while</strong>
+            <pre class=body style=display:none>mediaControlsChromium(Android).css are applied as extra style via
+RenderTheme::extraMediaControlsStyleSheet().
+
+Merge mediaControlsChromium.css into mediaControls.css and simplify.
+
+With the new base CSS, mediaControlsChromiumAndroid.css can be
+simplified a great deal, improving readability and maintainability.
+
+BUG=255491
+
+Review URL: https://chromiumcodereview.appspot.com/18181010
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@154102 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=154102&view=revision'><time datetime='2013-07-12' title='2013-07-12'>2013-07-12</time></a>
       
         <tr>
           <td>rune@opera.com
