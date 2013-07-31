@@ -27,6 +27,33 @@ td { vertical-align: top; }
       <tr><th>Author <th>Message <th>When
       
         <tr>
+          <td>pstanek@opera.com
+          <td class=message><strong>Notify about reset of the &#34;displayed insecure content&#34; state flag</strong>
+            <pre class=body style=display:none>and take it into when updating the navigation entry.
+BUG=253820
+
+Review URL: https://chromiumcodereview.appspot.com/20986004
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@214650 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=214650&view=revision'><time datetime='2013-07-31' title='2013-07-31'>2013-07-31</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>mesa should not to use X11 headers when use_x11==0</strong>
+            <pre class=body style=display:none>
+Mesa checks if MESA_EGL_NO_X11_HEADERS is defined before trying to
+include X11 headers, we should set this if use_x11==0.
+
+BUG=238755
+
+Review URL: https://chromiumcodereview.appspot.com/20265003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@213918 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=213918&view=revision'><time datetime='2013-07-26' title='2013-07-26'>2013-07-26</time></a>
+      
+        <tr>
           <td>mostynb@opera.com
           <td class=message><strong>only use gold-specific flags for the target linker</strong>
             <pre class=body style=display:none>
@@ -774,6 +801,90 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mstensho@opera.com
+          <td class=message><strong>Parse &#34;-webkit-columns: auto &lt;length&gt;&#34; properly.</strong>
+            <pre class=body style=display:none>
+The two longhands for the &#39;columns&#39; property (&#39;column-count&#39; and
+&#39;column-width&#39;) may both take &#39;auto&#39; as a value. When we encounter
+&#39;auto&#39; during parsing the value list of a declaration, we cannot just
+make a guess at which property/properties that&#39;s meant for. Instead,
+don&#39;t assign anything to &#39;auto&#39; right away, but wait until all values
+have been processed and at that point set the still unassigned
+properties to &#39;auto&#39;. If &#39;auto&#39; isn&#39;t in the value list at all, set
+unassigned properties to &#39;initial&#39; for the &#39;columns&#39; property, just
+like we do for any other property.
+
+R=
+BUG=235415
+
+Review URL: https://chromiumcodereview.appspot.com/14334014
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@155047 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=155047&view=revision'><time datetime='2013-07-27' title='2013-07-27'>2013-07-27</time></a>
+      
+        <tr>
+          <td>mstensho@opera.com
+          <td class=message><strong>Don&#39;t assume so easily that RenderStyle data can be shared.</strong>
+            <pre class=body style=display:none>
+An element can only share RenderStyle data with another element if
+BOTH are cacheable. The element that&#39;s already in the cache is
+obviously cacheable, but we also need to figure out whether the
+element that wants to use data from the cache is cachable.
+
+Additionally, get rid of the Element* argument from
+applyMatchedProperties(), since it&#39;s already part of the state object
+passed to that method.
+
+BUG=236329
+
+Review URL: https://chromiumcodereview.appspot.com/20560008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@154999 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=154999&view=revision'><time datetime='2013-07-26' title='2013-07-26'>2013-07-26</time></a>
+      
+        <tr>
+          <td>mstensho@opera.com
+          <td class=message><strong>Remove test fast/multicol/newmulticol/columns-shorthand-parsing.html</strong>
+            <pre class=body style=display:none>
+This test isn&#39;t very valuable, since there are plenty of balancing tests
+already. This test attempted to compare rendering between the old and the
+new multicol implementations, and for some reason it fails on Mac, albeit
+not visibly to the naked eye.
+
+BUG=254219
+
+Review URL: https://chromiumcodereview.appspot.com/20228003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@154961 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=154961&view=revision'><time datetime='2013-07-26' title='2013-07-26'>2013-07-26</time></a>
+      
+        <tr>
+          <td>mstensho@opera.com
+          <td class=message><strong>Correct overflow propagation in BTT and RTL writing-modes</strong>
+            <pre class=body style=display:none>
+Overflow rectangles are not quite physical, not quite logical. This
+means that we cannot use clientBoxRect() directly to represent a
+rectangle that expresses exactly no overflow. This rectangle is the
+padding box (relative to the border box) in vertical-lr and
+horizontal-tb, but the block-direction borders need to be flipped in
+vertical-rl and horizontal-bt.
+
+fast/multicol/vertical-rl/rules-with-border-before.html now needs a
+rebaseline, because it now renders differently, but correctly.
+
+R=
+BUG=236326
+
+Review URL: https://chromiumcodereview.appspot.com/18720003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@154945 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=154945&view=revision'><time datetime='2013-07-25' title='2013-07-25'>2013-07-25</time></a>
       
         <tr>
           <td>jiangj@opera.com
