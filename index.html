@@ -803,6 +803,56 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <tr><th>Author <th>Message <th>When
       
         <tr>
+          <td>tiger@opera.com
+          <td class=message><strong>Serialize &lt;input type=&#34;image&#34;&gt; images</strong>
+            <pre class=body style=display:none>
+Add support for serializing images specified in an input tag with
+type image. This images is extracted in the PageSerializer and added
+as a SerializedResource.
+
+R=
+BUG=248867
+
+Review URL: https://chromiumcodereview.appspot.com/16520007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@155598 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=155598&view=revision'><time datetime='2013-08-06' title='2013-08-06'>2013-08-06</time></a>
+      
+        <tr>
+          <td>pstanek@opera.com
+          <td class=message><strong>Add/remove spell checking markers in text inputs depending on focus.</strong>
+            <pre class=body style=display:none>
+Inputs are spell checked by default. However since it&#39;s very
+likely user names, cities, addresses and other stuff that
+possibly isn&#39;t in the dictionary will be put into them when
+unfocused misspelling markers are removed from them (so
+they are not all red all the time). However they are
+added again on input re-focusing.
+
+BUG=168029
+
+Review URL: https://chromiumcodereview.appspot.com/21024004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@155420 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=155420&view=revision'><time datetime='2013-08-02' title='2013-08-02'>2013-08-02</time></a>
+      
+        <tr>
+          <td>mathiash@opera.com
+          <td class=message><strong>Mainly changes the behaviour of WebViewImpl::animateZoomAroundPoint to take a rect instead and handling an additional zoom type to zoom in on the specified rect and returning false if it doesn&#39;t zoom. (if it would be a zoom-out)</strong>
+            <pre class=body style=display:none>
+Related review: https://codereview.chromium.org/19256012/
+
+BUG=260644
+
+Review URL: https://chromiumcodereview.appspot.com/19281007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@155243 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=155243&view=revision'><time datetime='2013-07-31' title='2013-07-31'>2013-07-31</time></a>
+      
+        <tr>
           <td>mstensho@opera.com
           <td class=message><strong>Parse &#34;-webkit-columns: auto &lt;length&gt;&#34; properly.</strong>
             <pre class=body style=display:none>
