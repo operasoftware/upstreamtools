@@ -27,6 +27,181 @@ td { vertical-align: top; }
       <tr><th>Author <th>Message <th>When
       
         <tr>
+          <td>mateuszs@opera.com
+          <td class=message><strong>Added 125% DPI option to ui::ScaleFactors.</strong>
+            <pre class=body style=display:none>
+Since Opera is meant to support 125% scale
+factor I&#39;ve added one more option to available
+choices.
+
+Review URL: https://chromiumcodereview.appspot.com/23011044
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@219265 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=219265&view=revision'><time datetime='2013-08-23' title='2013-08-23'>2013-08-23</time></a>
+      
+        <tr>
+          <td>shuais@opera.com
+          <td class=message><strong>Add WebUIDataSourceImpl::DisableReplaceExistingSource</strong>
+            <pre class=body style=display:none>
+Currently when using WebUIDataSource object returned by content::WebUIDataSource::Create,
+there is no way to override ShouldReplaceExistingSource for the URLDataSource object that
+will be created by WebUIDataSource internally. As a result when WebUIDataSource of the same
+type is added repeatedly for different instances of WebUI, the previous pending request on the data
+source will be cancelled, resulting in broken WebUI page.
+The New Tab Page in chromium doesn&#39;t suffer because it doesn&#39;t use WebUIDataSource,
+however it&#39;s convinient and less work to use it for some WebUIs. It&#39;s also possible to work around
+by avoiding adding WebUIDataSource repeatedly in the first place, but that is much more complicated
+as we&#39;ll have to track is a certain WebUIDataSource already added or not for a given profile.
+The proposed fix simply add the api to override ShouldReplaceExistingSource.
+
+BUG=
+
+Review URL: https://chromiumcodereview.appspot.com/22150004
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@218710 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=218710&view=revision'><time datetime='2013-08-21' title='2013-08-21'>2013-08-21</time></a>
+      
+        <tr>
+          <td>pkudla@opera.com
+          <td class=message><strong>CHR-458: Remove DCHECK which prevents from using custom ResourceBundle::Delegate</strong>
+            <pre class=body style=display:none>
+I need to create a Delegate for ResourceBundle. The only purpose of it is to provide our own fonts. Other resources should be handled by ResourceBundle. A method GetImageNamed() should also be handled by ResourceBundle. It works fine in release builds, but triggers an assert in debug builds.
+DCHECK is triggered if a delegate does not create an image. This is wrong since the code can handle such case.
+
+Review URL: https://chromiumcodereview.appspot.com/22418003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@217726 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=217726&view=revision'><time datetime='2013-08-15' title='2013-08-15'>2013-08-15</time></a>
+      
+        <tr>
+          <td>julienp@opera.com
+          <td class=message><strong>Made XmlWriter able to write elements with both attributes and content.</strong>
+            <pre class=body style=display:none>
+This adds a simple method to XmlWriter for appending content to an
+already opened element. The only other way to add content to an element
+was to call WriteElement, which doesn&#39;t allow adding attributes.
+
+TBR=darin@chromium.org
+
+Review URL: https://chromiumcodereview.appspot.com/22337003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@217309 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=217309&view=revision'><time datetime='2013-08-13' title='2013-08-13'>2013-08-13</time></a>
+      
+        <tr>
+          <td>pstanek@opera.com
+          <td class=message><strong>Take the navigation type into account when checking if the navigation is in page.</strong>
+            <pre class=body style=display:none>
+When navigating from ref url to non ref one the navigation type has decisive voice whether the navigation should be treated as in page.
+BUG=253481
+
+Review URL: https://chromiumcodereview.appspot.com/21544005
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@216329 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=216329&view=revision'><time datetime='2013-08-08' title='2013-08-08'>2013-08-08</time></a>
+      
+        <tr>
+          <td>jiangj@opera.com
+          <td class=message><strong>Fix GetNSExecutablePath for running tests with relative path</strong>
+            <pre class=body style=display:none>
+When running tests (zip_unittests.cc for instance) using
+base::DIR_SOURCE_ROOT with ./&lt;test_executable_name&gt; they will get
+incorrect directory names because ./ will be included in the return
+value of GetNSExecutablePath() and it will be consider as one level
+of parent directory by FilePath::DirName(). To avoid this problem we
+should alway convert the value returned by GetNSExecutablePath() into
+absolute path first.
+
+BUG=258846
+TEST=see bug
+
+Review URL: https://chromiumcodereview.appspot.com/18309008
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@215882 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=215882&view=revision'><time datetime='2013-08-06' title='2013-08-06'>2013-08-06</time></a>
+      
+        <tr>
+          <td>mathiash@opera.com
+          <td class=message><strong>Adds strategy for deciding whether to show popup or zoom in when having tapped multiple targets.</strong>
+            <pre class=body style=display:none>
+Related review: https://codereview.chromium.org/19281007/
+
+BUG=260644
+
+Review URL: https://chromiumcodereview.appspot.com/19256012
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@215843 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=215843&view=revision'><time datetime='2013-08-06' title='2013-08-06'>2013-08-06</time></a>
+      
+        <tr>
+          <td>tiger@opera.com
+          <td class=message><strong>The test framework doesn&#39;t really need to load resources and translations. This removes loading and changes the odd test that wasn&#39;t working anymore due to this change.</strong>
+            <pre class=body style=display:none>
+BUG=
+
+Review URL: https://chromiumcodereview.appspot.com/18429012
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@215763 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=215763&view=revision'><time datetime='2013-08-06' title='2013-08-06'>2013-08-06</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>avoid char+&#39;\xHH&#39; as it&#39;s too easy to use values &gt; 127</strong>
+            <pre class=body style=display:none>
+TEST=net_unittests
+
+Review URL: https://chromiumcodereview.appspot.com/21534003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@215124 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=215124&view=revision'><time datetime='2013-08-01' title='2013-08-01'>2013-08-01</time></a>
+      
+        <tr>
+          <td>msimonides@opera.com
+          <td class=message><strong>Don&#39;t create extension actions for disabled extensions.</strong>
+            <pre class=body style=display:none>
+The GetOrCreateOrNull function creates extension actions if needed and
+caches them for later. When an extension is unloaded, the cache is
+cleared.
+Unfortunately it is possible for other listeners of the
+NOTIFICATION_EXTENSION_UNLOADED to call GetOrCreateOrNull and the action
+be recreated and cached for the extension being unloaded. The cached
+action then exists even if the reloaded extension doesn&#39;t have the
+action.
+
+This change prevents recreation of the action object for extensions that
+are already unloaded.
+
+BUG=246919
+
+Review URL: https://chromiumcodereview.appspot.com/20304002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@214767 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=214767&view=revision'><time datetime='2013-07-31' title='2013-07-31'>2013-07-31</time></a>
+      
+        <tr>
+          <td>pstanek@opera.com
+          <td class=message><strong>Improve error handling in bspatch.</strong>
+            <pre class=body style=display:none>BUG=265456
+
+TBR=brettw@chromium.org
+
+Review URL: https://chromiumcodereview.appspot.com/21049006
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@214750 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=214750&view=revision'><time datetime='2013-07-31' title='2013-07-31'>2013-07-31</time></a>
+      
+        <tr>
           <td>pstanek@opera.com
           <td class=message><strong>Notify about reset of the &#34;displayed insecure content&#34; state flag</strong>
             <pre class=body style=display:none>and take it into when updating the navigation entry.
@@ -801,6 +976,274 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>pstanek@opera.com
+          <td class=message><strong>Fix editing/spelling/spellcheck-editable-on-focus.html&#39;s flakiness</strong>
+            <pre class=body style=display:none>
+Due to asynchronous spell checker being on for the test
+misspelling marks may appear after some time. The test checks
+misspellings in different elements this is why it has to wait
+until markers appear in *all* of them before checking
+the pass conditions. However the test was not waiting
+if markers appeared in at least one element.
+
+BUG=None
+
+Review URL: https://chromiumcodereview.appspot.com/23389005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@156650 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=156650&view=revision'><time datetime='2013-08-23' title='2013-08-23'>2013-08-23</time></a>
+      
+        <tr>
+          <td>bratell@opera.com
+          <td class=message><strong>Block &#34;]]&gt;&#34; in createCDataSection</strong>
+            <pre class=body style=display:none>
+It&#39;s not possible to serialize a CData section with ]]&gt; in it
+so disallow that already in xmldoc.createCDataSection.
+
+This is compatible with MSIE and Gecko.
+
+BUG=268762
+
+Review URL: https://chromiumcodereview.appspot.com/22911020
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@156640 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=156640&view=revision'><time datetime='2013-08-23' title='2013-08-23'>2013-08-23</time></a>
+      
+        <tr>
+          <td>pstanek@opera.com
+          <td class=message><strong>Spell check whole content of an editable element when it gets focused.</strong>
+            <pre class=body style=display:none>
+This is how Gecko and Presto behave. Without this patch Blink spell checks
+an editable after moving the caret/unfocusing the editable but the check spans
+only the line the caret was previously at (possibly plus 1-2 lines around).
+Textareas and contenteditables are only spell checked on
+first focus.
+
+BUG=264730
+
+Review URL: https://chromiumcodereview.appspot.com/21694005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@156583 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=156583&view=revision'><time datetime='2013-08-22' title='2013-08-22'>2013-08-22</time></a>
+      
+        <tr>
+          <td>shuais@opera.com
+          <td class=message><strong>Prevent overflow of width/height of layout overflow rectangle which can cause scroll bar to misfunction.</strong>
+            <pre class=body style=display:none>
+When a child element is positioned very far away the width/height of layout overflow rectangle may overflow. The patch detects such cases in RenderOverflow::addLayoutOverflow and shift the top/left edges of the rectangle to avoid overflow. 
+
+BUG=267462
+
+Review URL: https://chromiumcodereview.appspot.com/22799017
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@156567 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=156567&view=revision'><time datetime='2013-08-22' title='2013-08-22'>2013-08-22</time></a>
+      
+        <tr>
+          <td>pstanek@opera.com
+          <td class=message><strong>Trigger spell check/remove markers if spell checker gets enabled/disabled.</strong>
+            <pre class=body style=display:none>
+With this change when spell checker is turned off the misspelling markers
+disappear from the document (which is what a user expects and this currently
+works in chromium because UI code takes care of that - with this change it may
+stop). OTOH if spell checker is turned on again one would expect misspellings
+will appear right away - in the currently focused editable at least. This is how
+Gecko and Presto behave and this is what this patch does. Note it&#39;s not only
+about restoring old markers because content might have changed or language might
+have been switched. This is why new check is requested. This change may also
+come in handy if spell checking language is changed. It would require restarting
+spell checker on UI side on language change, though.
+
+Since there might be an awful lot of text in the focused editable when spell
+checker gets enabled, spell checking is chunked up. If asynchronous spell
+checker is enabled whole text is checked. Otherwise only one chunk is checked
+(the default chunk&#39;s size is set to 16KB but it might also be slightly bigger
+since all chunks are aligned to the sentence boundary).
+
+BUG=264737
+
+This is the second attempt as this patch was integrated but
+reverted due to performance regression found by
+DOM/textarea-edit.html (issue 274569). This patch optimizes
+single chunk case to try to avoid the regression.
+
+Review URL: https://chromiumcodereview.appspot.com/23332004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@156378 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=156378&view=revision'><time datetime='2013-08-20' title='2013-08-20'>2013-08-20</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>Make configurationForViewport match production code</strong>
+            <pre class=body style=display:none>
+While the production code has used initial viewport width and height for
+device-width and device-height, the configurationForViewport API in test builds
+still used separate values for the device size. This CL removes the redundant
+deviceSize in the production code and removes the device parameters from
+configurationForViewport so that the tests give the same results as the
+production code would do.
+
+BUG=273649
+
+Review URL: https://chromiumcodereview.appspot.com/23101004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@156302 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=156302&view=revision'><time datetime='2013-08-19' title='2013-08-19'>2013-08-19</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>setViewportEnabled on InternalSettings</strong>
+            <pre class=body style=display:none>
+Added possibility to --enable-viewport from internals.settings in LayoutTests.
+Currently viewport can only be tested through configurationForViewport which
+makes it impossible to test certain codepaths and more complicated cases. This
+CL is a pre-condition for a test in another CL I am preparing.
+
+BUG=None
+
+Review URL: https://chromiumcodereview.appspot.com/22747002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@156301 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=156301&view=revision'><time datetime='2013-08-19' title='2013-08-19'>2013-08-19</time></a>
+      
+        <tr>
+          <td>pstanek@opera.com
+          <td class=message><strong>Trigger spell check/remove markers if spell checker gets enabled/disabled.</strong>
+            <pre class=body style=display:none>
+With this change when spell checker is turned off the misspelling markers
+disappear from the document (which is what a user expects and this currently
+works in chromium because UI code takes care of that - with this change it may
+stop). OTOH if spell checker is turned on again one would expect misspellings
+will appear right away - in the currently focused editable at least. This is how
+Gecko and Presto behave and this is what this patch does. Note it&#39;s not only
+about restoring old markers because content might have changed or language might
+have been switched. This is why new check is requested. This change may also
+come in handy if spell checking language is changed. It would require restarting
+spell checker on UI side on language change, though.
+
+Since there might be an awful lot of text in the focused editable when spell
+checker gets enabled, spell checking is chunked up. If asynchronous spell
+checker is enabled whole text is checked. Otherwise only one chunk is checked
+(the default chunk&#39;s size is set to 16KB but it might also be slightly bigger
+since all chunks are aligned to the sentence boundary).
+
+BUG=264737
+
+Review URL: https://chromiumcodereview.appspot.com/21130005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@156183 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=156183&view=revision'><time datetime='2013-08-16' title='2013-08-16'>2013-08-16</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>Let page zoom affect resolution and -webkit-device-pixel-ratio MQs.</strong>
+            <pre class=body style=display:none>
+In order to make them consistent with the recent change for
+window.devicePixelRatio (r156040).
+
+BUG=177836
+
+Review URL: https://chromiumcodereview.appspot.com/23192002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@156113 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=156113&view=revision'><time datetime='2013-08-14' title='2013-08-14'>2013-08-14</time></a>
+      
+        <tr>
+          <td>kolczyk@opera.com
+          <td class=message><strong>(spatnav) Space&amp;enter should be entered to box instead of simulating click on it.</strong>
+            <pre class=body style=display:none>
+This fixes the regression after https://codereview.chromium.org/16959002/
+which makes it impossible to enter spaces into edit boxes
+in spatial navigation mode.
+
+Bug is reproducible only with spatial navigation enabled.
+So is this fix.
+
+BUG=
+
+Review URL: https://chromiumcodereview.appspot.com/20560005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@155993 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=155993&view=revision'><time datetime='2013-08-13' title='2013-08-13'>2013-08-13</time></a>
+      
+        <tr>
+          <td>mathiash@opera.com
+          <td class=message><strong>Make sure proper double tap scale gets recorded for next double tap.</strong>
+            <pre class=body style=display:none>
+BUG=260644
+
+Review URL: https://chromiumcodereview.appspot.com/22706009
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@155929 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=155929&view=revision'><time datetime='2013-08-12' title='2013-08-12'>2013-08-12</time></a>
+      
+        <tr>
+          <td>mstensho@opera.com
+          <td class=message><strong>Propagate writing-mode from the first region to the flow thread.</strong>
+            <pre class=body style=display:none>
+Since the flow thread is a direct child of RenderView, it doesn&#39;t inherit
+proper writing-mode automatically. It should be mentioned that if the thread&#39;s
+contents&#39; writing-mode differs from that of the first region, things are
+typically going to look useless (although perhaps that&#39;s how it should be),
+but as long as writing-mode is only specified on a common parent of the
+thread&#39;s contents and the regions, things look fine, and also, we&#39;re now
+following what the spec has to say on the matter:
+
+http://www.w3.org/TR/2013/WD-css3-regions-20130528/#the-flow-into-property
+
+    &#34;The first region defines the principal writing mode for the entire flow.
+     The writing mode on subsequent regions is ignored.&#34;
+
+BUG=257965
+
+Review URL: https://chromiumcodereview.appspot.com/18374008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@155779 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=155779&view=revision'><time datetime='2013-08-08' title='2013-08-08'>2013-08-08</time></a>
+      
+        <tr>
+          <td>pstanek@opera.com
+          <td class=message><strong>Make sure the last selection gets spell checked when focusing different frame.</strong>
+            <pre class=body style=display:none>
+BUG= 264742
+
+Review URL: https://chromiumcodereview.appspot.com/21235009
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@155725 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=155725&view=revision'><time datetime='2013-08-08' title='2013-08-08'>2013-08-08</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>[CSSMQ] Use initial values as base for relative units.</strong>
+            <pre class=body style=display:none>
+Don&#39;t use computed style for root element as base for relative lengths. The
+media queries spec says:
+
+&#34;Relative units in media queries are based on the initial value, which means
+that units are never based on results of declarations.&#34;
+
+BUG=269322
+
+Review URL: https://chromiumcodereview.appspot.com/22258007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@155692 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=155692&view=revision'><time datetime='2013-08-07' title='2013-08-07'>2013-08-07</time></a>
       
         <tr>
           <td>tiger@opera.com
