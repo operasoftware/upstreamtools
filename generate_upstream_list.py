@@ -23,6 +23,7 @@ def get_commit_log(git_repo):
         commit.svn_revision = m2.group(2)
         commit.viewvc = ("http://src.chromium.org/viewvc/{prod}?revision={rev}&"
                 "view=revision".format(prod=commit.product, rev=commit.svn_revision))
+        commit.author_stripped = commit.author.replace('@opera.com', '')
     return log
 
 chr_log = get_commit_log(config.CHROMIUM_GIT)
