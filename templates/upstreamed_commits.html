@@ -4,14 +4,38 @@
 <style>
 table { width: 100%; }
 td { vertical-align: top; }
+th { text-align: left; }
+a { color: #900; transition: 0.4s color; }
+a:visited { color: #755; }
+a:hover { color: #f00; }
 .body { white-space: pre-wrap; }
 .message strong { cursor: default; }
 
-.col-author { width: 230px; }
+main {
+ box-shadow: 0 0 80px -20px rgba(0,0,0,0.5);
+ display: block;
+ margin: 20px auto;
+ max-width: 960px;
+ padding: 20px;
+}
+h1 {
+ margin-top: 0;
+ text-align: center;
+}
+.hint {
+ color: #666;
+ font-size: 0.8em;
+}
+
+.col-author { width: 160px; }
 .col-when { width: 130px; }
 </style>
+<main>
   <h1>Opera Software upstreamed commits</h1>
-  <p>Click message to expand
+  <p>Upstreamed commits in
+    {{ projects[0].name }}: {{ projects[0].log|length }},
+    {{ projects[1].name }}: {{ projects[1].log|length }}.
+  <p class=hint>Click message to expand
   {% for project in projects %}
     <section class="{{ project.name|lower }}">
       <h2>{{ project.name }}</h2>
@@ -30,6 +54,7 @@ td { vertical-align: top; }
       </table>
     </section>
   {% endfor %}
+<main>
 
   <script>
     var messages = document.querySelectorAll('.message');
