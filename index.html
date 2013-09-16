@@ -27,6 +27,180 @@ td { vertical-align: top; }
       <tr><th>Author <th>Message <th>When
       
         <tr>
+          <td>philipj@opera.com
+          <td class=message><strong>Wait for store flush in CookieMonster::Delete*Task</strong>
+            <pre class=body style=display:none>
+BUG=252217
+
+Review URL: https://chromiumcodereview.appspot.com/18032002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@223324 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=223324&view=revision'><time datetime='2013-09-16' title='2013-09-16'>2013-09-16</time></a>
+      
+        <tr>
+          <td>msimonides@opera.com
+          <td class=message><strong>Remove the problematic call to GLSurface::GetBackingFrameBufferObject.</strong>
+            <pre class=body style=display:none>
+GLContextVirtual::IsCurrent doesn&#39;t need to call
+GetBackingFrameBufferObject on a surface, the IsOffScreen check should
+be enough.
+
+The direct reason for this change is that GLContextVirtual::IsCurrent&#39;s
+use of GetBackingFrameBufferObject interferes with the implementation of
+that function in TextureImageTransportSurface.
+TextureImageTransportSurface::GetBackingFrameBufferObject creates an FBO
+if needed. Unfortunately GLContextVirtual::IsCurrent is called early in
+GLContextVirtual&#39;s initialization, too early for
+TextureImageTransportSurface::GetBackingFrameBufferObject to create the
+frame buffer object because it needs a fully initialized context to
+succeed.
+
+BUG=
+
+Review URL: https://chromiumcodereview.appspot.com/23480048
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@222505 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=222505&view=revision'><time datetime='2013-09-11' title='2013-09-11'>2013-09-11</time></a>
+      
+        <tr>
+          <td>tiger@opera.com
+          <td class=message><strong>Properly dismiss the InputDialogs in all cases</strong>
+            <pre class=body style=display:none>
+On newer versions of Android, dismissing a date/time dialog (with hw
+back or touch outside of it) will still set the date or time. This is
+not the case on older Android versions.
+
+This fix adds an OnDismissListener that makes sure the dialog is always
+cancelled unless it already have been cancelled or already have reported
+back a new date.
+
+R=bulach@chromium.org,olilan@chromium.org,keishi@chromium.org
+BUG=
+
+Review URL: https://chromiumcodereview.appspot.com/23533041
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@222027 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=222027&view=revision'><time datetime='2013-09-09' title='2013-09-09'>2013-09-09</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>test IWYU fixups for base</strong>
+            <pre class=body style=display:none>
+These are some of the suggestions from running include-what-you-use[1]
+on the base target.
+
+[1] https://code.google.com/p/include-what-you-use/
+
+BUG=259043
+
+Review URL: https://chromiumcodereview.appspot.com/23540009
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@221067 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=221067&view=revision'><time datetime='2013-09-03' title='2013-09-03'>2013-09-03</time></a>
+      
+        <tr>
+          <td>simonb@opera.com
+          <td class=message><strong>Fix building with Java 7</strong>
+            <pre class=body style=display:none>
+javap includes type parameters in Java 7, causing jni_generator.py to generate invalid C++ code. Fix by stripping away anything after a &#39;&lt;&#39;.
+
+BUG=
+
+Review URL: https://chromiumcodereview.appspot.com/23587011
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@221027 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=221027&view=revision'><time datetime='2013-09-03' title='2013-09-03'>2013-09-03</time></a>
+      
+        <tr>
+          <td>shuais@opera.com
+          <td class=message><strong>Fix comment for WebUIDataSource::DisableReplaceExistingSource</strong>
+            <pre class=body style=display:none>
+Follow-up of review 22150004
+
+Review URL: https://chromiumcodereview.appspot.com/23682003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@220297 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=220297&view=revision'><time datetime='2013-08-29' title='2013-08-29'>2013-08-29</time></a>
+      
+        <tr>
+          <td>bratell@opera.com
+          <td class=message><strong>content_shell: avoid debug crashing for mid-clicks on links.</strong>
+            <pre class=body style=display:none>
+There was a DCHECK in content_shell that we only opened links in the
+current tab. That made middle clicks crash a debug content_shell and
+I need to test middle clicks in Blink so that is no good.
+
+BUG=
+
+Review URL: https://chromiumcodereview.appspot.com/23517003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@220281 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=220281&view=revision'><time datetime='2013-08-29' title='2013-08-29'>2013-08-29</time></a>
+      
+        <tr>
+          <td>wdzierzanowski@opera.com
+          <td class=message><strong>Add content::RenderWidgetHost::MouseEventCallback</strong>
+            <pre class=body style=display:none>
+This adds the possibility to register mouse event callbacks with
+RenderWidgetHost and get notified about all kinds of mouse events.  Any
+callback can &#34;handle&#34; the event, in which case it&#39;s not propagated to the
+renderer.
+
+Opera registers a mouse event callback to feed its mouse gesture recognizer
+with events.  At this point, there is no other implementor of MouseEventCallback.
+
+Review URL: https://chromiumcodereview.appspot.com/23416003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@220260 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=220260&view=revision'><time datetime='2013-08-29' title='2013-08-29'>2013-08-29</time></a>
+      
+        <tr>
+          <td>jiangj@opera.com
+          <td class=message><strong>Call RecordLastRunAppBundlePath in FILE thread</strong>
+            <pre class=body style=display:none>
+RecordLastRunAppBundlePath() uses chrome::GetVersionedDirectory()
+which in turn uses PathProvider for base::DIR_EXE, which will do I/O
+on OS X since it uses base::MakeAbsoluteFilePath() now.
+
+Reorder the sync call a bit so that we don&#39;t have to post another
+FILE thread task to get the preferences synced.
+
+BUG=275988
+TEST=Run Chromium; do (from command line):
+&#34;defaults read org.chromium.Chromium LastRunAppBundlePath&#34;
+-- should get path to Chromium.app; move Chromium.app to another
+location and run it again; do &#34;defaults ...&#34; again -- should get path
+to Chromium.app at new location.
+
+Review URL: https://chromiumcodereview.appspot.com/22966010
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@220168 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=220168&view=revision'><time datetime='2013-08-29' title='2013-08-29'>2013-08-29</time></a>
+      
+        <tr>
+          <td>mostynb@opera.com
+          <td class=message><strong>remove unused headers from sandbox_seccomp_bpf_linux.cc</strong>
+            <pre class=body style=display:none>
+sandbox_seccomp_bpf_linux.cc includes linux/audit.h and linux/filter.h but does not seem to use any of the macros or types defined within.
+
+BUG=279413
+
+Review URL: https://chromiumcodereview.appspot.com/23226004
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@219630 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=219630&view=revision'><time datetime='2013-08-26' title='2013-08-26'>2013-08-26</time></a>
+      
+        <tr>
           <td>mateuszs@opera.com
           <td class=message><strong>Added 125% DPI option to ui::ScaleFactors.</strong>
             <pre class=body style=display:none>
@@ -976,6 +1150,362 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>rchlodnicki@opera.com
+          <td class=message><strong>Fix linking problem on Windows with LEGACY_NOTIFICATIONS support disabled</strong>
+            <pre class=body style=display:none>
+V8NotificationCenter bindings (generated from NotificationCenter.idl) are
+required to link this code. Those are conditional on LEGACY_NOTIFICATIONS
+though so same condition must be applied to this code.
+
+BUG=
+
+Review URL: https://chromiumcodereview.appspot.com/23583043
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157776 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157776&view=revision'><time datetime='2013-09-13' title='2013-09-13'>2013-09-13</time></a>
+      
+        <tr>
+          <td>pstanek@opera.com
+          <td class=message><strong>Chunk up the text to spell check also when the text is pasted.</strong>
+            <pre class=body style=display:none>
+BUG=278119
+
+Review URL: https://chromiumcodereview.appspot.com/22859062
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157747 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157747&view=revision'><time datetime='2013-09-13' title='2013-09-13'>2013-09-13</time></a>
+      
+        <tr>
+          <td>mstensho@opera.com
+          <td class=message><strong>Add support for the object-position CSS property.</strong>
+            <pre class=body style=display:none>
+This is hidden behind an &#34;experimental&#34; runtime flag named
+&#34;ObjectFitPosition&#34;, together with object-fit.
+
+This is an implementation of object-position as described in
+http://www.w3.org/TR/2012/CR-css3-images-20120417/#object-position
+
+Object-position is used to offset replaced content within its content
+box. Painting is always clipped against the content box, regardless of
+the &#34;overflow&#34; property. This property is useful together with
+object-fit (to achieve a difference between content box size and
+replaced content size, so that specifying alignment is interesting),
+but can also be used on its own.
+
+BUG=236333
+
+Review URL: https://chromiumcodereview.appspot.com/22839023
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157745 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157745&view=revision'><time datetime='2013-09-13' title='2013-09-13'>2013-09-13</time></a>
+      
+        <tr>
+          <td>rchl@opera.com
+          <td class=message><strong>Allow tabbing to anchors with explicit tabIndex even when tabsToLinks is disabled</strong>
+            <pre class=body style=display:none>
+With tabsToLinks setting enabled, browser focuses all links on pressing tab.
+With it disabled, it does not focus any. This patch changes behavior when the
+option is disabled so that links with explicit tabIndex are focusable. When
+author has specified tabIndex, he most likely wants the element to be keyboard
+accessible.
+
+This option is by default enabled but only Mac exposes it in the settings so
+it only affects Mac users who have changed default settings.
+
+BUG=240678
+
+Review URL: https://chromiumcodereview.appspot.com/15238002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157684 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157684&view=revision'><time datetime='2013-09-12' title='2013-09-12'>2013-09-12</time></a>
+      
+        <tr>
+          <td>tiger@opera.com
+          <td class=message><strong>Add font support to PageSerializer</strong>
+            <pre class=body style=display:none>
+Previously the PageSerializer (used to serialize pages before saving them
+as e.g. MHTML files) didn&#39;t have support for web fonts.
+
+R=abarth@chromium.org
+BUG=275518
+
+Review URL: https://chromiumcodereview.appspot.com/23202008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157670 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157670&view=revision'><time datetime='2013-09-12' title='2013-09-12'>2013-09-12</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>Use css-device-adapt constraining for legacy viewport tags.</strong>
+            <pre class=body style=display:none>
+This CL is trying to take the part of Kenneth&#39;s CL [1] that is about using
+the constraining procedure from the CSS Device Adaptation spec for legacy
+meta tags, as well as for @viewport descriptors, to better match the
+specification. Descriptors translated from meta tags are not cascaded with
+@viewport rules but are only applied if @viewport from author style is not
+present. See thread [2] on www-style.
+
+ViewportArguments::resolve had different modes for resolving viewport
+descriptors depending on the source. This CL translates legacy meta viewport
+tags into descriptor values as specified by the css-device-adapt spec, but
+they are not cascaded together as currently spec&#39;ed. The prioritization is
+still the same, overwriting descriptors from lower priority sources.
+
+XHTML MP viewport is implemented through UA styles using @viewport.
+
+[1] https://codereview.chromium.org/19555002/
+[2] http://lists.w3.org/Archives/Public/www-style/2012May/0371.html
+
+Review URL: https://chromiumcodereview.appspot.com/23742003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157293 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157293&view=revision'><time datetime='2013-09-05' title='2013-09-05'>2013-09-05</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>Recompute percentage based @viewport on resize.</strong>
+            <pre class=body style=display:none>
+Percentage values were resolved to px lengths at cascade time for @viewport
+widths and heights. This change keeps them as percentage values and recompute
+the actual viewport from the initial viewport and the percentage value when
+the intial viewport changes (window resize). Likewise for viewport relative
+units (vw, vh, vmin, vmax).
+
+This fixes constrain-006 and constrain-007 in the w3c testsuite.
+
+This CL also disallows &#39;initial&#39; and &#39;inherit&#39; as descriptor values and returns &#39;auto&#39; for unknown non-primitive values to avoid crashers and improve on the original CL for the same bug: https://codereview.chromium.org/22549002/
+
+BUG=269132
+
+Review URL: https://chromiumcodereview.appspot.com/23604037
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157225 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157225&view=revision'><time datetime='2013-09-04' title='2013-09-04'>2013-09-04</time></a>
+      
+        <tr>
+          <td>bratell@opera.com
+          <td class=message><strong>Make the mousemove event cancellable</strong>
+            <pre class=body style=display:none>
+The mouse move event used to be non cancellable in the 90s and
+when the specications changes in 2002-2003, not not everyone noticed. 
+
+Specification:
+http://www.w3.org/TR/DOM-Level-3-Events/#event-type-mousemove
+
+Already implemented by MSIE and Opera (Presto). 
+Still an open (and forgotten?) bug in Mozilla: https://bugzilla.mozilla.org/show_bug.cgi?id=704423
+
+BUG=261449
+
+Review URL: https://chromiumcodereview.appspot.com/23463012
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157207 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157207&view=revision'><time datetime='2013-09-04' title='2013-09-04'>2013-09-04</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>Use constrained values for shouldDisableDesktopWorkarounds.</strong>
+            <pre class=body style=display:none>
+shouldDisableDesktopWorkarounds() used parsed ViewportArguments instead of the
+constrained values, which meant auto and percentage sized @viewport would not
+be considered as documents adapted to small screens.
+
+This fix uses the constrained values from PageScaleConstraints instead.
+
+A test for using auto-sizing of @viewport was added.
+
+BUG=280759
+
+Review URL: https://chromiumcodereview.appspot.com/23592015
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157173 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157173&view=revision'><time datetime='2013-09-04' title='2013-09-04'>2013-09-04</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>Recompute percentage based @viewport on resize.</strong>
+            <pre class=body style=display:none>
+Percentage values were resolved to px lengths at cascade time for @viewport
+widths and heights. This change keeps them as percentage values and recomputes
+the actual viewport from the initial viewport and the percentage value when
+the intial viewport changes (window resize). Likewise for viewport relative
+units (vw, vh, vmin, vmax).
+
+This fixes constrain-006 and constrain-007 in the w3c testsuite.
+
+BUG=269132
+
+Review URL: https://chromiumcodereview.appspot.com/22549002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157091 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157091&view=revision'><time datetime='2013-09-02' title='2013-09-02'>2013-09-02</time></a>
+      
+        <tr>
+          <td>mstensho@opera.com
+          <td class=message><strong>Follow-up changes for bug 257965 (writing-mode on first region).</strong>
+            <pre class=body style=display:none>
+Some additional issues were raised and handled during code-review
+on the WebKit side:
+
+Add tests where the first region element is invalid and sets
+writing-mode. It&#39;s invalid because it&#39;s inside the same flow
+thread that it tries to flow from.
+
+Coding-style adjustments.
+
+Call RefPtr::release().
+
+https://bugs.webkit.org/show_bug.cgi?id=119795
+
+BUG=257965
+
+Review URL: https://chromiumcodereview.appspot.com/23064019
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157034 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157034&view=revision'><time datetime='2013-08-31' title='2013-08-31'>2013-08-31</time></a>
+      
+        <tr>
+          <td>mstensho@opera.com
+          <td class=message><strong>Improve multicol preferred/intrinsic width calculation.</strong>
+            <pre class=body style=display:none>
+Using http://dev.w3.org/csswg/css-sizing/#multicol-intrinsic as
+guidance, but implementing that spec 100% is hard, and probably
+unnecessary, since it&#39;s not finished.
+
+While we wait for a perfect intrinsic width calculation spec, all we
+have is CSS 2.1 (&#34;shrink to fit&#34;) and common sense:
+
+The idea with preferred/intrinsic minimum width is to allow content to
+become as narrow as possible without causing overflow (unless it would
+have caused it no matter what width).
+
+The idea with preferred/intrinsic maximum width is to find the
+narrowest width larger than or equal to minimum width where no
+avoidable automatic/soft wrapping occurs.
+
+We were nowhere close to this behavior for multicol. Now we should be.
+
+Note about the LayoutTests/css3/unicode-bidi-isolate-basic.html
+change: The expectation seems to be that the columns should be as many
+as necessary and narrow as possible, and that the multicol container&#39;s
+width should be that of one column. The previous CSS didn&#39;t really ask
+for this, although that&#39;s how it happened to be rendered without this
+fix. Added declarations to make sure this is still happening.
+
+Also turn
+LayoutTests/fast/multicol/positioned-with-constrained-height.html into
+a reftest, rather than requiring a rebaseline, now that rendering has
+changed.
+
+This fix is ported from https://bugs.webkit.org/show_bug.cgi?id=116677
+Reviewed in WebKit by David Hyatt.
+
+BUG=281451
+
+Review URL: https://chromiumcodereview.appspot.com/23763002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157020 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157020&view=revision'><time datetime='2013-08-30' title='2013-08-30'>2013-08-30</time></a>
+      
+        <tr>
+          <td>mathiash@opera.com
+          <td class=message><strong>Scale to legibleScale if double tap would barely zoom in from zoomed out state.</strong>
+            <pre class=body style=display:none>
+The motivation for this is for double tap to zoom in when viewing an image, (no html) which we believe to be more user friendly than just silently doing nothing.
+It could potentially be a slight change in behaviour in other cases as well (text spanning all the way from left edge to right edge) though we haven&#39;t noticed any problems like this in practice.
+
+BUG=280133
+
+Review URL: https://chromiumcodereview.appspot.com/23461009
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@156966 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=156966&view=revision'><time datetime='2013-08-30' title='2013-08-30'>2013-08-30</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>Added viewport tests for missing/empty content attribute.</strong>
+            <pre class=body style=display:none>
+For &lt;meta name=&#34;viewport&#34; ... &gt;:
+
+- content=&#34;&#34; overrides previous meta viewport using the 980px fallback width.
+- content without a value is a no-op.
+- missing content attribute is a no-op.
+
+Added tests to detect future regressions.
+
+BUG=None
+
+Review URL: https://chromiumcodereview.appspot.com/23495008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@156857 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=156857&view=revision'><time datetime='2013-08-28' title='2013-08-28'>2013-08-28</time></a>
+      
+        <tr>
+          <td>rune@opera.com
+          <td class=message><strong>Reset viewport to implicit when @viewport is removed.</strong>
+            <pre class=body style=display:none>
+When m_propertySet was null after cascading @viewport rules (no rules added),
+ViewportStyleResolver::resolve would be a no-op so that removing the last
+@viewport rule through CSSOM would not have an effect. This is fixed by
+re-setting to Implicit when removing the last @viewport rule.
+
+Removed a stray ViewportStyleResolver::resolve call in viewportAsText that was
+a no-op before the rest of this change, but resulted in always resetting the
+viewport arguments with this fix.
+
+BUG=276812
+
+Review URL: https://chromiumcodereview.appspot.com/23185008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@156855 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=156855&view=revision'><time datetime='2013-08-28' title='2013-08-28'>2013-08-28</time></a>
+      
+        <tr>
+          <td>kolczyk@opera.com
+          <td class=message><strong>Fix for crash occuring when spatial navigation is enabled</strong>
+            <pre class=body style=display:none>and user tries to navigate from the element containing shadow DOM
+such as &lt;input type=&#34;date&#34;&gt;.
+
+BUG=234034
+
+Review URL: https://chromiumcodereview.appspot.com/22847002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@156839 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=156839&view=revision'><time datetime='2013-08-28' title='2013-08-28'>2013-08-28</time></a>
+      
+        <tr>
+          <td>tiger@opera.com
+          <td class=message><strong>Add doctype declarations when using PageSerializer</strong>
+            <pre class=body style=display:none>
+Serialized pages were missing their doctypes. This can cause some pages to
+rendered incorrectly.
+
+R=abarth@chromium.org
+BUG=
+
+Review URL: https://chromiumcodereview.appspot.com/22926011
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@156781 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=156781&view=revision'><time datetime='2013-08-27' title='2013-08-27'>2013-08-27</time></a>
       
         <tr>
           <td>pstanek@opera.com
