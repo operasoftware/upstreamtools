@@ -9,14 +9,38 @@ body { font-family: sans-serif; }
 <style>
 table { width: 100%; }
 td { vertical-align: top; }
+th { text-align: left; }
+a { color: #900; transition: 0.4s color; }
+a:visited { color: #755; }
+a:hover { color: #f00; }
 .body { white-space: pre-wrap; }
 .message strong { cursor: default; }
 
-.col-author { width: 230px; }
+main {
+ box-shadow: 0 0 80px -20px rgba(0,0,0,0.5);
+ display: block;
+ margin: 20px auto;
+ max-width: 960px;
+ padding: 20px;
+}
+h1 {
+ margin-top: 0;
+ text-align: center;
+}
+.hint {
+ color: #666;
+ font-size: 0.8em;
+}
+
+.col-author { width: 160px; }
 .col-when { width: 130px; }
 </style>
-  <h1>Upstreamed commits</h1>
-  <p>Click message to expand
+<main>
+  <h1>Opera Software upstreamed commits</h1>
+  <p>Upstreamed commits in
+    Chromium: 71,
+    Blink: 67.
+  <p class=hint>Click message to expand
   
     <section class="chromium">
       <h2>Chromium</h2>
@@ -27,7 +51,7 @@ td { vertical-align: top; }
       <tr><th>Author <th>Message <th>When
       
         <tr>
-          <td>philipj@opera.com
+          <td>philipj
           <td class=message><strong>Wait for store flush in CookieMonster::Delete*Task</strong>
             <pre class=body style=display:none>
 BUG=252217
@@ -39,7 +63,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@223324 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=223324&view=revision'><time datetime='2013-09-16' title='2013-09-16'>2013-09-16</time></a>
       
         <tr>
-          <td>msimonides@opera.com
+          <td>msimonides
           <td class=message><strong>Remove the problematic call to GLSurface::GetBackingFrameBufferObject.</strong>
             <pre class=body style=display:none>
 GLContextVirtual::IsCurrent doesn&#39;t need to call
@@ -65,7 +89,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@222505 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=222505&view=revision'><time datetime='2013-09-11' title='2013-09-11'>2013-09-11</time></a>
       
         <tr>
-          <td>tiger@opera.com
+          <td>tiger
           <td class=message><strong>Properly dismiss the InputDialogs in all cases</strong>
             <pre class=body style=display:none>
 On newer versions of Android, dismissing a date/time dialog (with hw
@@ -86,7 +110,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@222027 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=222027&view=revision'><time datetime='2013-09-09' title='2013-09-09'>2013-09-09</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>test IWYU fixups for base</strong>
             <pre class=body style=display:none>
 These are some of the suggestions from running include-what-you-use[1]
@@ -103,7 +127,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@221067 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=221067&view=revision'><time datetime='2013-09-03' title='2013-09-03'>2013-09-03</time></a>
       
         <tr>
-          <td>simonb@opera.com
+          <td>simonb
           <td class=message><strong>Fix building with Java 7</strong>
             <pre class=body style=display:none>
 javap includes type parameters in Java 7, causing jni_generator.py to generate invalid C++ code. Fix by stripping away anything after a &#39;&lt;&#39;.
@@ -117,7 +141,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@221027 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=221027&view=revision'><time datetime='2013-09-03' title='2013-09-03'>2013-09-03</time></a>
       
         <tr>
-          <td>shuais@opera.com
+          <td>shuais
           <td class=message><strong>Fix comment for WebUIDataSource::DisableReplaceExistingSource</strong>
             <pre class=body style=display:none>
 Follow-up of review 22150004
@@ -129,7 +153,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@220297 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=220297&view=revision'><time datetime='2013-08-29' title='2013-08-29'>2013-08-29</time></a>
       
         <tr>
-          <td>bratell@opera.com
+          <td>bratell
           <td class=message><strong>content_shell: avoid debug crashing for mid-clicks on links.</strong>
             <pre class=body style=display:none>
 There was a DCHECK in content_shell that we only opened links in the
@@ -145,7 +169,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@220281 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=220281&view=revision'><time datetime='2013-08-29' title='2013-08-29'>2013-08-29</time></a>
       
         <tr>
-          <td>wdzierzanowski@opera.com
+          <td>wdzierzanowski
           <td class=message><strong>Add content::RenderWidgetHost::MouseEventCallback</strong>
             <pre class=body style=display:none>
 This adds the possibility to register mouse event callbacks with
@@ -163,7 +187,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@220260 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=220260&view=revision'><time datetime='2013-08-29' title='2013-08-29'>2013-08-29</time></a>
       
         <tr>
-          <td>jiangj@opera.com
+          <td>jiangj
           <td class=message><strong>Call RecordLastRunAppBundlePath in FILE thread</strong>
             <pre class=body style=display:none>
 RecordLastRunAppBundlePath() uses chrome::GetVersionedDirectory()
@@ -187,7 +211,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@220168 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=220168&view=revision'><time datetime='2013-08-29' title='2013-08-29'>2013-08-29</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>remove unused headers from sandbox_seccomp_bpf_linux.cc</strong>
             <pre class=body style=display:none>
 sandbox_seccomp_bpf_linux.cc includes linux/audit.h and linux/filter.h but does not seem to use any of the macros or types defined within.
@@ -201,7 +225,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@219630 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=219630&view=revision'><time datetime='2013-08-26' title='2013-08-26'>2013-08-26</time></a>
       
         <tr>
-          <td>mateuszs@opera.com
+          <td>mateuszs
           <td class=message><strong>Added 125% DPI option to ui::ScaleFactors.</strong>
             <pre class=body style=display:none>
 Since Opera is meant to support 125% scale
@@ -215,7 +239,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@219265 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=219265&view=revision'><time datetime='2013-08-23' title='2013-08-23'>2013-08-23</time></a>
       
         <tr>
-          <td>shuais@opera.com
+          <td>shuais
           <td class=message><strong>Add WebUIDataSourceImpl::DisableReplaceExistingSource</strong>
             <pre class=body style=display:none>
 Currently when using WebUIDataSource object returned by content::WebUIDataSource::Create,
@@ -238,7 +262,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@218710 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=218710&view=revision'><time datetime='2013-08-21' title='2013-08-21'>2013-08-21</time></a>
       
         <tr>
-          <td>pkudla@opera.com
+          <td>pkudla
           <td class=message><strong>CHR-458: Remove DCHECK which prevents from using custom ResourceBundle::Delegate</strong>
             <pre class=body style=display:none>
 I need to create a Delegate for ResourceBundle. The only purpose of it is to provide our own fonts. Other resources should be handled by ResourceBundle. A method GetImageNamed() should also be handled by ResourceBundle. It works fine in release builds, but triggers an assert in debug builds.
@@ -251,7 +275,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@217726 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=217726&view=revision'><time datetime='2013-08-15' title='2013-08-15'>2013-08-15</time></a>
       
         <tr>
-          <td>julienp@opera.com
+          <td>julienp
           <td class=message><strong>Made XmlWriter able to write elements with both attributes and content.</strong>
             <pre class=body style=display:none>
 This adds a simple method to XmlWriter for appending content to an
@@ -267,7 +291,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@217309 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=217309&view=revision'><time datetime='2013-08-13' title='2013-08-13'>2013-08-13</time></a>
       
         <tr>
-          <td>pstanek@opera.com
+          <td>pstanek
           <td class=message><strong>Take the navigation type into account when checking if the navigation is in page.</strong>
             <pre class=body style=display:none>
 When navigating from ref url to non ref one the navigation type has decisive voice whether the navigation should be treated as in page.
@@ -280,7 +304,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@216329 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=216329&view=revision'><time datetime='2013-08-08' title='2013-08-08'>2013-08-08</time></a>
       
         <tr>
-          <td>jiangj@opera.com
+          <td>jiangj
           <td class=message><strong>Fix GetNSExecutablePath for running tests with relative path</strong>
             <pre class=body style=display:none>
 When running tests (zip_unittests.cc for instance) using
@@ -301,7 +325,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@215882 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=215882&view=revision'><time datetime='2013-08-06' title='2013-08-06'>2013-08-06</time></a>
       
         <tr>
-          <td>mathiash@opera.com
+          <td>mathiash
           <td class=message><strong>Adds strategy for deciding whether to show popup or zoom in when having tapped multiple targets.</strong>
             <pre class=body style=display:none>
 Related review: https://codereview.chromium.org/19281007/
@@ -315,7 +339,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@215843 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=215843&view=revision'><time datetime='2013-08-06' title='2013-08-06'>2013-08-06</time></a>
       
         <tr>
-          <td>tiger@opera.com
+          <td>tiger
           <td class=message><strong>The test framework doesn&#39;t really need to load resources and translations. This removes loading and changes the odd test that wasn&#39;t working anymore due to this change.</strong>
             <pre class=body style=display:none>
 BUG=
@@ -327,7 +351,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@215763 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=215763&view=revision'><time datetime='2013-08-06' title='2013-08-06'>2013-08-06</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>avoid char+&#39;\xHH&#39; as it&#39;s too easy to use values &gt; 127</strong>
             <pre class=body style=display:none>
 TEST=net_unittests
@@ -339,7 +363,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@215124 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=215124&view=revision'><time datetime='2013-08-01' title='2013-08-01'>2013-08-01</time></a>
       
         <tr>
-          <td>msimonides@opera.com
+          <td>msimonides
           <td class=message><strong>Don&#39;t create extension actions for disabled extensions.</strong>
             <pre class=body style=display:none>
 The GetOrCreateOrNull function creates extension actions if needed and
@@ -363,7 +387,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@214767 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=214767&view=revision'><time datetime='2013-07-31' title='2013-07-31'>2013-07-31</time></a>
       
         <tr>
-          <td>pstanek@opera.com
+          <td>pstanek
           <td class=message><strong>Improve error handling in bspatch.</strong>
             <pre class=body style=display:none>BUG=265456
 
@@ -376,7 +400,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@214750 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=214750&view=revision'><time datetime='2013-07-31' title='2013-07-31'>2013-07-31</time></a>
       
         <tr>
-          <td>pstanek@opera.com
+          <td>pstanek
           <td class=message><strong>Notify about reset of the &#34;displayed insecure content&#34; state flag</strong>
             <pre class=body style=display:none>and take it into when updating the navigation entry.
 BUG=253820
@@ -388,7 +412,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@214650 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=214650&view=revision'><time datetime='2013-07-31' title='2013-07-31'>2013-07-31</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>mesa should not to use X11 headers when use_x11==0</strong>
             <pre class=body style=display:none>
 Mesa checks if MESA_EGL_NO_X11_HEADERS is defined before trying to
@@ -403,7 +427,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@213918 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=213918&view=revision'><time datetime='2013-07-26' title='2013-07-26'>2013-07-26</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>only use gold-specific flags for the target linker</strong>
             <pre class=body style=display:none>
 The host linker might not be gold if linux_use_gold_binary==0,
@@ -417,7 +441,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@212823 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=212823&view=revision'><time datetime='2013-07-21' title='2013-07-21'>2013-07-21</time></a>
       
         <tr>
-          <td>jiangj@opera.com
+          <td>jiangj
           <td class=message><strong>Fix a crash when built with 10.7 SDK running on OS X 10.6</strong>
             <pre class=body style=display:none>
 NSWindowDidChangeBackingPropertiesNotification is available since 10.7.
@@ -441,7 +465,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@212060 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=212060&view=revision'><time datetime='2013-07-17' title='2013-07-17'>2013-07-17</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>include missing headers in skia/ext/analysis_canvas.{h,cc}</strong>
             <pre class=body style=display:none>
 skia/ext/analysis_canvas.h uses the OVERRIDE macro, but does not
@@ -458,7 +482,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@212042 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=212042&view=revision'><time datetime='2013-07-17' title='2013-07-17'>2013-07-17</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>add missing headers in ppapi/*</strong>
             <pre class=body style=display:none>
 Include a few headers that are required but not already included directly.
@@ -472,7 +496,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@211724 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=211724&view=revision'><time datetime='2013-07-15' title='2013-07-15'>2013-07-15</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>add missing headers in components/tracing/child_trace_message_filter.h and </strong>
             <pre class=body style=display:none>content/child/child_resource_message_filter.cc
 
@@ -485,7 +509,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@211542 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=211542&view=revision'><time datetime='2013-07-13' title='2013-07-13'>2013-07-13</time></a>
       
         <tr>
-          <td>msimonides@opera.com
+          <td>msimonides
           <td class=message><strong>Fix the allHistory flag on chrome.history.onVisitRemoved event.</strong>
             <pre class=body style=display:none>
 Calling chrome.history.deleteAll results in chrome.history.onVisitRemoved
@@ -503,7 +527,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@211376 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=211376&view=revision'><time datetime='2013-07-12' title='2013-07-12'>2013-07-12</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>add missing headers in gpu code</strong>
             <pre class=body style=display:none>
 BUG=259043
@@ -515,7 +539,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@211355 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=211355&view=revision'><time datetime='2013-07-12' title='2013-07-12'>2013-07-12</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>add missing header in indexed_db_backing_store.cc</strong>
             <pre class=body style=display:none>
 This file uses IsStringASCII but didn&#39;t explicitly include the relevant header file.
@@ -529,7 +553,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@211217 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=211217&view=revision'><time datetime='2013-07-11' title='2013-07-11'>2013-07-11</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>add missing header in webkit/browser/fileapi/file_system_usage_cache.cc</strong>
             <pre class=body style=display:none>
 webkit/browser/fileapi/file_system_usage_cache.cc uses base::Bind but
@@ -544,7 +568,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@211098 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=211098&view=revision'><time datetime='2013-07-11' title='2013-07-11'>2013-07-11</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>add missing headers in cc/*</strong>
             <pre class=body style=display:none>
 cc/resources/worker_pool.cc uses ConditionVariable but doesn&#39;t
@@ -561,7 +585,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@211004 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=211004&view=revision'><time datetime='2013-07-11' title='2013-07-11'>2013-07-11</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>add missing includes in gpu/command_buffer/*</strong>
             <pre class=body style=display:none>
 gpu/command_buffer/service/command_buffer_service.cc uses DCHECK* but
@@ -578,7 +602,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@210963 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=210963&view=revision'><time datetime='2013-07-10' title='2013-07-10'>2013-07-10</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>render_thread.h: include base/callback.h for Closure typedef</strong>
             <pre class=body style=display:none>
 content/public/renderer/render_thread.h uses Closure but
@@ -591,7 +615,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@210821 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=210821&view=revision'><time datetime='2013-07-10' title='2013-07-10'>2013-07-10</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>make it possible to disable internal tracing in unofficial builds</strong>
             <pre class=body style=display:none>
 Add a tracing_like_official_build gyp setting, which works similarly to
@@ -604,7 +628,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@210650 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=210650&view=revision'><time datetime='2013-07-09' title='2013-07-09'>2013-07-09</time></a>
       
         <tr>
-          <td>mpawlowski@opera.com
+          <td>mpawlowski
           <td class=message><strong>Fixing destruction order in login database unit tests</strong>
             <pre class=body style=display:none>
 Before, the ScopedTempDir would be destroyed before
@@ -628,7 +652,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@210374 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=210374&view=revision'><time datetime='2013-07-08' title='2013-07-08'>2013-07-08</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>silence qcms __force_align_arg_pointer__ warning on mips too</strong>
             <pre class=body style=display:none>
 Review URL: https://chromiumcodereview.appspot.com/18112005
@@ -638,7 +662,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@209815 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=209815&view=revision'><time datetime='2013-07-02' title='2013-07-02'>2013-07-02</time></a>
       
         <tr>
-          <td>msimonides@opera.com
+          <td>msimonides
           <td class=message><strong>Fix CopyFromBackingStore when there&#39;s no cg_layer_.</strong>
             <pre class=body style=display:none>
 In CopyFromBackingStore use the cg_bitmap_ as the source in case cg_layer_
@@ -653,7 +677,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@209399 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=209399&view=revision'><time datetime='2013-07-01' title='2013-07-01'>2013-07-01</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>linux: make libc urandom override work for non-glibc too</strong>
             <pre class=body style=display:none>
 This patch attempts to generalise the linux libc urandom override, so that it works for non-glibc linux platforms too.
@@ -667,7 +691,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@209281 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=209281&view=revision'><time datetime='2013-06-29' title='2013-06-29'>2013-06-29</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>attempt to make the libc urandom override work for non-glibc too</strong>
             <pre class=body style=display:none>
 This patch attempts to generalise the linux libc urandom override, so
@@ -680,7 +704,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@208924 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=208924&view=revision'><time datetime='2013-06-27' title='2013-06-27'>2013-06-27</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>allow unofficial builds with DCHECK and DLOG disabled</strong>
             <pre class=body style=display:none>
 Previously, it was not possible to produce unofficial builds without
@@ -693,7 +717,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@207826 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=207826&view=revision'><time datetime='2013-06-21' title='2013-06-21'>2013-06-21</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>linux: tcmalloc does not depend on glib</strong>
             <pre class=body style=display:none>
 This seems to have been an old implicit assumption that use_glib==1 meant OS==&#34;linux&#34;.
@@ -705,7 +729,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@207370 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=207370&view=revision'><time datetime='2013-06-20' title='2013-06-20'>2013-06-20</time></a>
       
         <tr>
-          <td>mstensho@opera.com
+          <td>mstensho
           <td class=message><strong>Add command line switch to enable region based columns.</strong>
             <pre class=body style=display:none>
 This needs to be a separate switch - we cannot lump it together with
@@ -723,7 +747,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@207005 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=207005&view=revision'><time datetime='2013-06-18' title='2013-06-18'>2013-06-18</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>don&#39;t override libc code in a glibc-specific way when not using glibc</strong>
             <pre class=body style=display:none>
 We should not attempt to override libc functions using glibc-specific
@@ -737,7 +761,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@206040 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=206040&view=revision'><time datetime='2013-06-13' title='2013-06-13'>2013-06-13</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>add more string -&gt; unsigned number conversion unit tests (attempt 2)</strong>
             <pre class=body style=display:none>
 Add unit tests for the following functions in base:
@@ -752,7 +776,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@206031 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=206031&view=revision'><time datetime='2013-06-13' title='2013-06-13'>2013-06-13</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>Skip argv[0] when processing command line options in symlink.py</strong>
             <pre class=body style=display:none>
 The problem fixed by this patch is that this script always creates a link
@@ -772,7 +796,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@202661 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=202661&view=revision'><time datetime='2013-05-28' title='2013-05-28'>2013-05-28</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>untangle pango usage from use_x11 and OS==linux</strong>
             <pre class=body style=display:none>
 This allows pango to be toggled independently of X11 and linux. It defaults 
@@ -785,7 +809,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@201892 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=201892&view=revision'><time datetime='2013-05-23' title='2013-05-23'>2013-05-23</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>add a macro that really identifies glibc</strong>
             <pre class=body style=display:none>
 uClibc pretends to be glibc, so just checking for __GLIBC__ doesn&#39;t always
@@ -802,7 +826,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@201761 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=201761&view=revision'><time datetime='2013-05-23' title='2013-05-23'>2013-05-23</time></a>
       
         <tr>
-          <td>bratell@opera.com
+          <td>bratell
           <td class=message><strong>Correct link for &#39;ISimpleDOM COM interfaces for accessibility&#39;</strong>
             <pre class=body style=display:none>
 The link in the third party list didn&#39;t work. Replacing
@@ -819,7 +843,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@201484 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=201484&view=revision'><time datetime='2013-05-22' title='2013-05-22'>2013-05-22</time></a>
       
         <tr>
-          <td>mstensho@opera.com
+          <td>mstensho
           <td class=message><strong>Gtk content shell: make the window shrinkable.</strong>
             <pre class=body style=display:none>
 Don&#39;t treat a window resize request by setting the content widget&#39;s
@@ -835,7 +859,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@201315 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=201315&view=revision'><time datetime='2013-05-21' title='2013-05-21'>2013-05-21</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>add more string -&gt; unsigned number conversion unit tests</strong>
             <pre class=body style=display:none>
 Add unit tests for the following functions in base:
@@ -850,7 +874,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@201204 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=201204&view=revision'><time datetime='2013-05-21' title='2013-05-21'>2013-05-21</time></a>
       
         <tr>
-          <td>bratell@opera.com
+          <td>bratell
           <td class=message><strong>Fix link to NVidia Control X Extension Library homepage</strong>
             <pre class=body style=display:none>
 Missing scheme in the link made it not work.
@@ -864,7 +888,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@201023 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=201023&view=revision'><time datetime='2013-05-20' title='2013-05-20'>2013-05-20</time></a>
       
         <tr>
-          <td>mstensho@opera.com
+          <td>mstensho
           <td class=message><strong>Gtk content shell: map key F5 to reload.</strong>
             <pre class=body style=display:none>
 R=
@@ -877,7 +901,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@199988 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=199988&view=revision'><time datetime='2013-05-14' title='2013-05-14'>2013-05-14</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>Feeding negative numbers to the HexStringToUInt64 should fail, with output 0 (the closest value in the datatype&#39;s range).</strong>
             <pre class=body style=display:none>
 Review URL: https://chromiumcodereview.appspot.com/14109020
@@ -887,7 +911,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@197614 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=197614&view=revision'><time datetime='2013-05-01' title='2013-05-01'>2013-05-01</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>fix capslock typo in net/third_party/nss/README.chromium</strong>
             <pre class=body style=display:none>
 &#34;License FILE:&#34; should be &#34;License File:&#34;.  This typo slipped through in this previous review:
@@ -900,7 +924,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@197103 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=197103&view=revision'><time datetime='2013-04-29' title='2013-04-29'>2013-04-29</time></a>
       
         <tr>
-          <td>ohrn@opera.com
+          <td>ohrn
           <td class=message><strong>Introduce arm_version to allow building for armv5, v6 or v7.</strong>
             <pre class=body style=display:none>
 This patch deprecates armv7 and adds arm_version that takes an integer
@@ -919,7 +943,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@196702 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=196702&view=revision'><time datetime='2013-04-26' title='2013-04-26'>2013-04-26</time></a>
       
         <tr>
-          <td>msimonides@opera.com
+          <td>msimonides
           <td class=message><strong>Clear the background_page_ready flag in DisableExtension.</strong>
             <pre class=body style=display:none>
 I&#39;ve used a conservative approach and only clear the background_page_ready
@@ -936,7 +960,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@195468 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=195468&view=revision'><time datetime='2013-04-22' title='2013-04-22'>2013-04-22</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>add --enable-spatial-navigation flag for testing</strong>
             <pre class=body style=display:none>
 This depends on the following blink patch:
@@ -949,7 +973,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@194875 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=194875&view=revision'><time datetime='2013-04-18' title='2013-04-18'>2013-04-18</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>posix: replace nonstandard futimes call with futimens</strong>
             <pre class=body style=display:none>
 Replace a futimes call with futimens which is specified in POSIX.1-2008.
@@ -963,7 +987,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@194862 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=194862&view=revision'><time datetime='2013-04-18' title='2013-04-18'>2013-04-18</time></a>
       
         <tr>
-          <td>ohrn@opera.com
+          <td>ohrn
           <td class=message><strong>Remove zero length composing spans.</strong>
             <pre class=body style=display:none>
 This fixes the following logcat error:
@@ -978,7 +1002,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@193948 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=193948&view=revision'><time datetime='2013-04-12' title='2013-04-12'>2013-04-12</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>fix gcc 4.7 compilation errors in base_unittests</strong>
             <pre class=body style=display:none>
 Compiling base_unittests with gcc 4.7 on linux gives these errors:
@@ -999,7 +1023,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@193872 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=193872&view=revision'><time datetime='2013-04-12' title='2013-04-12'>2013-04-12</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>Android: fix link error for android_full_debug=1</strong>
             <pre class=body style=display:none>
 android_full_debug=1 fails to link with &#34;undefined reference to
@@ -1013,7 +1037,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@193737 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=193737&view=revision'><time datetime='2013-04-11' title='2013-04-11'>2013-04-11</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>Android: improve native debuggability</strong>
             <pre class=body style=display:none>
 When starting with --wait-for-debugger command line option, it&#39;s ending
@@ -1029,7 +1053,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@192944 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=192944&view=revision'><time datetime='2013-04-08' title='2013-04-08'>2013-04-08</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>libflac and libspeex are only used if input_speech==1, so add the dependencies as needed.</strong>
             <pre class=body style=display:none>
 BUG=none
@@ -1041,7 +1065,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@192653 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=192653&view=revision'><time datetime='2013-04-05' title='2013-04-05'>2013-04-05</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>remove redundant DCHECK that a size_t variable &gt;= 0</strong>
             <pre class=body style=display:none>
 SampleVector::GetCountAtIndex has a DCHECK which checks that a size_t
@@ -1057,7 +1081,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@190776 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=190776&view=revision'><time datetime='2013-03-26' title='2013-03-26'>2013-03-26</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>Make it possible to override the default mipsel sysroot.</strong>
             <pre class=body style=display:none>
 Also, update the default mipsel sysroot to match the work in issue 12315003.
@@ -1069,7 +1093,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@186251 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=186251&view=revision'><time datetime='2013-03-05' title='2013-03-05'>2013-03-05</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>add a use_alsa gyp setting</strong>
             <pre class=body style=display:none>
 By adding a gyp setting, we can explicitly disable alsa on various
@@ -1087,7 +1111,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@185011 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=185011&view=revision'><time datetime='2013-02-27' title='2013-02-27'>2013-02-27</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>ffmpeg_unittests should depend on use_ffmpeg==1</strong>
             <pre class=body style=display:none>
 This target currently makes assumptions based on the platform, even though there&#39;s an explicit variable that was previously set for this purpose.
@@ -1100,7 +1124,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@184320 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=184320&view=revision'><time datetime='2013-02-23' title='2013-02-23'>2013-02-23</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>if PKG_CONFIG_PATH is already set, pkg-config-wrapper should use these dirs too</strong>
             <pre class=body style=display:none>
 If PKG_CONFIG_PATH is set, then prepend these paths to those generated
@@ -1122,7 +1146,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@184184 0039d316-1c4b-4281-b9
           <td><a href='http://src.chromium.org/viewvc/chrome?revision=184184&view=revision'><time datetime='2013-02-22' title='2013-02-22'>2013-02-22</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>pkg-config-wrapper shouldn&#39;t clobber PKG_CONFIG_PATH if it is already set</strong>
             <pre class=body style=display:none>
 This allows cross-compilation using sysroots with pkgconfig directories in
@@ -1152,7 +1176,7 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <tr><th>Author <th>Message <th>When
       
         <tr>
-          <td>rchlodnicki@opera.com
+          <td>rchlodnicki
           <td class=message><strong>Fix linking problem on Windows with LEGACY_NOTIFICATIONS support disabled</strong>
             <pre class=body style=display:none>
 V8NotificationCenter bindings (generated from NotificationCenter.idl) are
@@ -1168,7 +1192,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@157776 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=157776&view=revision'><time datetime='2013-09-13' title='2013-09-13'>2013-09-13</time></a>
       
         <tr>
-          <td>pstanek@opera.com
+          <td>pstanek
           <td class=message><strong>Chunk up the text to spell check also when the text is pasted.</strong>
             <pre class=body style=display:none>
 BUG=278119
@@ -1180,7 +1204,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@157747 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=157747&view=revision'><time datetime='2013-09-13' title='2013-09-13'>2013-09-13</time></a>
       
         <tr>
-          <td>mstensho@opera.com
+          <td>mstensho
           <td class=message><strong>Add support for the object-position CSS property.</strong>
             <pre class=body style=display:none>
 This is hidden behind an &#34;experimental&#34; runtime flag named
@@ -1205,7 +1229,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@157745 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=157745&view=revision'><time datetime='2013-09-13' title='2013-09-13'>2013-09-13</time></a>
       
         <tr>
-          <td>rchl@opera.com
+          <td>rchl
           <td class=message><strong>Allow tabbing to anchors with explicit tabIndex even when tabsToLinks is disabled</strong>
             <pre class=body style=display:none>
 With tabsToLinks setting enabled, browser focuses all links on pressing tab.
@@ -1226,7 +1250,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@157684 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=157684&view=revision'><time datetime='2013-09-12' title='2013-09-12'>2013-09-12</time></a>
       
         <tr>
-          <td>tiger@opera.com
+          <td>tiger
           <td class=message><strong>Add font support to PageSerializer</strong>
             <pre class=body style=display:none>
 Previously the PageSerializer (used to serialize pages before saving them
@@ -1242,7 +1266,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@157670 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=157670&view=revision'><time datetime='2013-09-12' title='2013-09-12'>2013-09-12</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Use css-device-adapt constraining for legacy viewport tags.</strong>
             <pre class=body style=display:none>
 This CL is trying to take the part of Kenneth&#39;s CL [1] that is about using
@@ -1270,7 +1294,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@157293 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=157293&view=revision'><time datetime='2013-09-05' title='2013-09-05'>2013-09-05</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Recompute percentage based @viewport on resize.</strong>
             <pre class=body style=display:none>
 Percentage values were resolved to px lengths at cascade time for @viewport
@@ -1292,7 +1316,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@157225 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=157225&view=revision'><time datetime='2013-09-04' title='2013-09-04'>2013-09-04</time></a>
       
         <tr>
-          <td>bratell@opera.com
+          <td>bratell
           <td class=message><strong>Make the mousemove event cancellable</strong>
             <pre class=body style=display:none>
 The mouse move event used to be non cancellable in the 90s and
@@ -1313,7 +1337,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@157207 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=157207&view=revision'><time datetime='2013-09-04' title='2013-09-04'>2013-09-04</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Use constrained values for shouldDisableDesktopWorkarounds.</strong>
             <pre class=body style=display:none>
 shouldDisableDesktopWorkarounds() used parsed ViewportArguments instead of the
@@ -1333,7 +1357,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@157173 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=157173&view=revision'><time datetime='2013-09-04' title='2013-09-04'>2013-09-04</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Recompute percentage based @viewport on resize.</strong>
             <pre class=body style=display:none>
 Percentage values were resolved to px lengths at cascade time for @viewport
@@ -1353,7 +1377,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@157091 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=157091&view=revision'><time datetime='2013-09-02' title='2013-09-02'>2013-09-02</time></a>
       
         <tr>
-          <td>mstensho@opera.com
+          <td>mstensho
           <td class=message><strong>Follow-up changes for bug 257965 (writing-mode on first region).</strong>
             <pre class=body style=display:none>
 Some additional issues were raised and handled during code-review
@@ -1378,7 +1402,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@157034 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=157034&view=revision'><time datetime='2013-08-31' title='2013-08-31'>2013-08-31</time></a>
       
         <tr>
-          <td>mstensho@opera.com
+          <td>mstensho
           <td class=message><strong>Improve multicol preferred/intrinsic width calculation.</strong>
             <pre class=body style=display:none>
 Using http://dev.w3.org/csswg/css-sizing/#multicol-intrinsic as
@@ -1422,7 +1446,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@157020 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=157020&view=revision'><time datetime='2013-08-30' title='2013-08-30'>2013-08-30</time></a>
       
         <tr>
-          <td>mathiash@opera.com
+          <td>mathiash
           <td class=message><strong>Scale to legibleScale if double tap would barely zoom in from zoomed out state.</strong>
             <pre class=body style=display:none>
 The motivation for this is for double tap to zoom in when viewing an image, (no html) which we believe to be more user friendly than just silently doing nothing.
@@ -1437,7 +1461,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@156966 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=156966&view=revision'><time datetime='2013-08-30' title='2013-08-30'>2013-08-30</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Added viewport tests for missing/empty content attribute.</strong>
             <pre class=body style=display:none>
 For &lt;meta name=&#34;viewport&#34; ... &gt;:
@@ -1457,7 +1481,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@156857 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=156857&view=revision'><time datetime='2013-08-28' title='2013-08-28'>2013-08-28</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Reset viewport to implicit when @viewport is removed.</strong>
             <pre class=body style=display:none>
 When m_propertySet was null after cascading @viewport rules (no rules added),
@@ -1478,7 +1502,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@156855 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=156855&view=revision'><time datetime='2013-08-28' title='2013-08-28'>2013-08-28</time></a>
       
         <tr>
-          <td>kolczyk@opera.com
+          <td>kolczyk
           <td class=message><strong>Fix for crash occuring when spatial navigation is enabled</strong>
             <pre class=body style=display:none>and user tries to navigate from the element containing shadow DOM
 such as &lt;input type=&#34;date&#34;&gt;.
@@ -1492,7 +1516,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@156839 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=156839&view=revision'><time datetime='2013-08-28' title='2013-08-28'>2013-08-28</time></a>
       
         <tr>
-          <td>tiger@opera.com
+          <td>tiger
           <td class=message><strong>Add doctype declarations when using PageSerializer</strong>
             <pre class=body style=display:none>
 Serialized pages were missing their doctypes. This can cause some pages to
@@ -1508,7 +1532,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@156781 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=156781&view=revision'><time datetime='2013-08-27' title='2013-08-27'>2013-08-27</time></a>
       
         <tr>
-          <td>pstanek@opera.com
+          <td>pstanek
           <td class=message><strong>Fix editing/spelling/spellcheck-editable-on-focus.html&#39;s flakiness</strong>
             <pre class=body style=display:none>
 Due to asynchronous spell checker being on for the test
@@ -1527,7 +1551,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@156650 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=156650&view=revision'><time datetime='2013-08-23' title='2013-08-23'>2013-08-23</time></a>
       
         <tr>
-          <td>bratell@opera.com
+          <td>bratell
           <td class=message><strong>Block &#34;]]&gt;&#34; in createCDataSection</strong>
             <pre class=body style=display:none>
 It&#39;s not possible to serialize a CData section with ]]&gt; in it
@@ -1544,7 +1568,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@156640 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=156640&view=revision'><time datetime='2013-08-23' title='2013-08-23'>2013-08-23</time></a>
       
         <tr>
-          <td>pstanek@opera.com
+          <td>pstanek
           <td class=message><strong>Spell check whole content of an editable element when it gets focused.</strong>
             <pre class=body style=display:none>
 This is how Gecko and Presto behave. Without this patch Blink spell checks
@@ -1562,7 +1586,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@156583 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=156583&view=revision'><time datetime='2013-08-22' title='2013-08-22'>2013-08-22</time></a>
       
         <tr>
-          <td>shuais@opera.com
+          <td>shuais
           <td class=message><strong>Prevent overflow of width/height of layout overflow rectangle which can cause scroll bar to misfunction.</strong>
             <pre class=body style=display:none>
 When a child element is positioned very far away the width/height of layout overflow rectangle may overflow. The patch detects such cases in RenderOverflow::addLayoutOverflow and shift the top/left edges of the rectangle to avoid overflow. 
@@ -1576,7 +1600,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@156567 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=156567&view=revision'><time datetime='2013-08-22' title='2013-08-22'>2013-08-22</time></a>
       
         <tr>
-          <td>pstanek@opera.com
+          <td>pstanek
           <td class=message><strong>Trigger spell check/remove markers if spell checker gets enabled/disabled.</strong>
             <pre class=body style=display:none>
 With this change when spell checker is turned off the misspelling markers
@@ -1610,7 +1634,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@156378 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=156378&view=revision'><time datetime='2013-08-20' title='2013-08-20'>2013-08-20</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Make configurationForViewport match production code</strong>
             <pre class=body style=display:none>
 While the production code has used initial viewport width and height for
@@ -1629,7 +1653,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@156302 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=156302&view=revision'><time datetime='2013-08-19' title='2013-08-19'>2013-08-19</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>setViewportEnabled on InternalSettings</strong>
             <pre class=body style=display:none>
 Added possibility to --enable-viewport from internals.settings in LayoutTests.
@@ -1646,7 +1670,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@156301 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=156301&view=revision'><time datetime='2013-08-19' title='2013-08-19'>2013-08-19</time></a>
       
         <tr>
-          <td>pstanek@opera.com
+          <td>pstanek
           <td class=message><strong>Trigger spell check/remove markers if spell checker gets enabled/disabled.</strong>
             <pre class=body style=display:none>
 With this change when spell checker is turned off the misspelling markers
@@ -1675,7 +1699,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@156183 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=156183&view=revision'><time datetime='2013-08-16' title='2013-08-16'>2013-08-16</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Let page zoom affect resolution and -webkit-device-pixel-ratio MQs.</strong>
             <pre class=body style=display:none>
 In order to make them consistent with the recent change for
@@ -1690,7 +1714,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@156113 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=156113&view=revision'><time datetime='2013-08-14' title='2013-08-14'>2013-08-14</time></a>
       
         <tr>
-          <td>kolczyk@opera.com
+          <td>kolczyk
           <td class=message><strong>(spatnav) Space&amp;enter should be entered to box instead of simulating click on it.</strong>
             <pre class=body style=display:none>
 This fixes the regression after https://codereview.chromium.org/16959002/
@@ -1709,7 +1733,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@155993 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=155993&view=revision'><time datetime='2013-08-13' title='2013-08-13'>2013-08-13</time></a>
       
         <tr>
-          <td>mathiash@opera.com
+          <td>mathiash
           <td class=message><strong>Make sure proper double tap scale gets recorded for next double tap.</strong>
             <pre class=body style=display:none>
 BUG=260644
@@ -1721,7 +1745,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@155929 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=155929&view=revision'><time datetime='2013-08-12' title='2013-08-12'>2013-08-12</time></a>
       
         <tr>
-          <td>mstensho@opera.com
+          <td>mstensho
           <td class=message><strong>Propagate writing-mode from the first region to the flow thread.</strong>
             <pre class=body style=display:none>
 Since the flow thread is a direct child of RenderView, it doesn&#39;t inherit
@@ -1746,7 +1770,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@155779 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=155779&view=revision'><time datetime='2013-08-08' title='2013-08-08'>2013-08-08</time></a>
       
         <tr>
-          <td>pstanek@opera.com
+          <td>pstanek
           <td class=message><strong>Make sure the last selection gets spell checked when focusing different frame.</strong>
             <pre class=body style=display:none>
 BUG= 264742
@@ -1758,7 +1782,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@155725 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=155725&view=revision'><time datetime='2013-08-08' title='2013-08-08'>2013-08-08</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>[CSSMQ] Use initial values as base for relative units.</strong>
             <pre class=body style=display:none>
 Don&#39;t use computed style for root element as base for relative lengths. The
@@ -1776,7 +1800,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@155692 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=155692&view=revision'><time datetime='2013-08-07' title='2013-08-07'>2013-08-07</time></a>
       
         <tr>
-          <td>tiger@opera.com
+          <td>tiger
           <td class=message><strong>Serialize &lt;input type=&#34;image&#34;&gt; images</strong>
             <pre class=body style=display:none>
 Add support for serializing images specified in an input tag with
@@ -1793,7 +1817,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@155598 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=155598&view=revision'><time datetime='2013-08-06' title='2013-08-06'>2013-08-06</time></a>
       
         <tr>
-          <td>pstanek@opera.com
+          <td>pstanek
           <td class=message><strong>Add/remove spell checking markers in text inputs depending on focus.</strong>
             <pre class=body style=display:none>
 Inputs are spell checked by default. However since it&#39;s very
@@ -1812,7 +1836,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@155420 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=155420&view=revision'><time datetime='2013-08-02' title='2013-08-02'>2013-08-02</time></a>
       
         <tr>
-          <td>mathiash@opera.com
+          <td>mathiash
           <td class=message><strong>Mainly changes the behaviour of WebViewImpl::animateZoomAroundPoint to take a rect instead and handling an additional zoom type to zoom in on the specified rect and returning false if it doesn&#39;t zoom. (if it would be a zoom-out)</strong>
             <pre class=body style=display:none>
 Related review: https://codereview.chromium.org/19256012/
@@ -1826,7 +1850,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@155243 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=155243&view=revision'><time datetime='2013-07-31' title='2013-07-31'>2013-07-31</time></a>
       
         <tr>
-          <td>mstensho@opera.com
+          <td>mstensho
           <td class=message><strong>Parse &#34;-webkit-columns: auto &lt;length&gt;&#34; properly.</strong>
             <pre class=body style=display:none>
 The two longhands for the &#39;columns&#39; property (&#39;column-count&#39; and
@@ -1849,7 +1873,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@155047 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=155047&view=revision'><time datetime='2013-07-27' title='2013-07-27'>2013-07-27</time></a>
       
         <tr>
-          <td>mstensho@opera.com
+          <td>mstensho
           <td class=message><strong>Don&#39;t assume so easily that RenderStyle data can be shared.</strong>
             <pre class=body style=display:none>
 An element can only share RenderStyle data with another element if
@@ -1870,7 +1894,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@154999 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=154999&view=revision'><time datetime='2013-07-26' title='2013-07-26'>2013-07-26</time></a>
       
         <tr>
-          <td>mstensho@opera.com
+          <td>mstensho
           <td class=message><strong>Remove test fast/multicol/newmulticol/columns-shorthand-parsing.html</strong>
             <pre class=body style=display:none>
 This test isn&#39;t very valuable, since there are plenty of balancing tests
@@ -1887,7 +1911,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@154961 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=154961&view=revision'><time datetime='2013-07-26' title='2013-07-26'>2013-07-26</time></a>
       
         <tr>
-          <td>mstensho@opera.com
+          <td>mstensho
           <td class=message><strong>Correct overflow propagation in BTT and RTL writing-modes</strong>
             <pre class=body style=display:none>
 Overflow rectangles are not quite physical, not quite logical. This
@@ -1910,7 +1934,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@154945 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=154945&view=revision'><time datetime='2013-07-25' title='2013-07-25'>2013-07-25</time></a>
       
         <tr>
-          <td>jiangj@opera.com
+          <td>jiangj
           <td class=message><strong>Use high resolution markers when device scale factor &gt; 1.5f</strong>
             <pre class=body style=display:none>
 It&#39;s an upstream regression introduced in Blink r151453 when non-compositing
@@ -1925,7 +1949,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@154533 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=154533&view=revision'><time datetime='2013-07-18' title='2013-07-18'>2013-07-18</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>[css-device-adapt] Implemented spec changes.</strong>
             <pre class=body style=display:none>
 Modified implementation to match spec changes:
@@ -1942,7 +1966,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@154237 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=154237&view=revision'><time datetime='2013-07-15' title='2013-07-15'>2013-07-15</time></a>
       
         <tr>
-          <td>philipj@opera.com
+          <td>philipj
           <td class=message><strong>Currently, mediaControls.css is the base CSS, while</strong>
             <pre class=body style=display:none>mediaControlsChromium(Android).css are applied as extra style via
 RenderTheme::extraMediaControlsStyleSheet().
@@ -1961,7 +1985,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@154102 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=154102&view=revision'><time datetime='2013-07-12' title='2013-07-12'>2013-07-12</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>@viewport lengths relative to initial font.</strong>
             <pre class=body style=display:none>
 em/rem/ex Were incorrectly computed relative to the documentElement font.
@@ -1975,7 +1999,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@153784 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=153784&view=revision'><time datetime='2013-07-09' title='2013-07-09'>2013-07-09</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Hovered/active/focused will never share style with siblings/cousins.</strong>
             <pre class=body style=display:none>
 For any given hovered/active node at a given time, other hovered/active nodes
@@ -1994,7 +2018,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@153773 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=153773&view=revision'><time datetime='2013-07-09' title='2013-07-09'>2013-07-09</time></a>
       
         <tr>
-          <td>philipj@opera.com
+          <td>philipj
           <td class=message><strong>Add viewport settings for MediaDocument</strong>
             <pre class=body style=display:none>
 MediaDocument is used when navigating directly to an audio or video resource.
@@ -2017,7 +2041,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@153704 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=153704&view=revision'><time datetime='2013-07-08' title='2013-07-08'>2013-07-08</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Hovered/active/focused nodes will never share style with siblings/cousins.</strong>
             <pre class=body style=display:none>
 For any given hovered/active node at a given time, other hovered/active nodes
@@ -2038,7 +2062,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@153529 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=153529&view=revision'><time datetime='2013-07-03' title='2013-07-03'>2013-07-03</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Include disabled stylesheets in document.styleSheets.</strong>
             <pre class=body style=display:none>
 Stylesheets disabled through LinkStyle.disabled were not included in
@@ -2060,7 +2084,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@153485 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=153485&view=revision'><time datetime='2013-07-03' title='2013-07-03'>2013-07-03</time></a>
       
         <tr>
-          <td>mstensho@opera.com
+          <td>mstensho
           <td class=message><strong>Fix SVG relayout problem that occurs when only the viewport height changes.</strong>
             <pre class=body style=display:none>
 If the root element is an SVG, its vertical position and height are
@@ -2075,7 +2099,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@153270 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=153270&view=revision'><time datetime='2013-06-28' title='2013-06-28'>2013-06-28</time></a>
       
         <tr>
-          <td>mstensho@opera.com
+          <td>mstensho
           <td class=message><strong>Column balancing support in the region based multicol implementation.</strong>
             <pre class=body style=display:none>
 Start by setting the column height to the flow thread&#39;s height divided
@@ -2105,7 +2129,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@153028 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=153028&view=revision'><time datetime='2013-06-25' title='2013-06-25'>2013-06-25</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Imported latest w3c media queries test suite.</strong>
             <pre class=body style=display:none>
 Imported from:
@@ -2124,7 +2148,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@152998 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=152998&view=revision'><time datetime='2013-06-25' title='2013-06-25'>2013-06-25</time></a>
       
         <tr>
-          <td>kolczyk@opera.com
+          <td>kolczyk
           <td class=message><strong>This patch improves the user experience when using spatial navigation (enabled in https://codereview.chromium.org/13811041 and https://codereview.chromium.org/14110006 ):</strong>
             <pre class=body style=display:none>
 - Dispatch onClick when pressing ENTER or SPACE on any element (not only input buttons as it was before the patch)
@@ -2143,7 +2167,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@152930 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=152930&view=revision'><time datetime='2013-06-23' title='2013-06-23'>2013-06-23</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Do not consider title from non-css stylesheet for preferred set.</strong>
             <pre class=body style=display:none>
 Title on a style element can be used to select the preferred stylesheet set.
@@ -2159,7 +2183,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@152797 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=152797&view=revision'><time datetime='2013-06-20' title='2013-06-20'>2013-06-20</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Auto-closing at unexpected EOF for all entry points.</strong>
             <pre class=body style=display:none>
 Don&#39;t wrap non-stylesheet (CSSOM rule, selectors, etc) input strings to CSS
@@ -2175,7 +2199,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@152717 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=152717&view=revision'><time datetime='2013-06-19' title='2013-06-19'>2013-06-19</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>[css-device-adapt] insertRule tests and ASSERT for device lengths.</strong>
             <pre class=body style=display:none>
 Added tests to make sure @viewport rules are cascaded correctly when rules
@@ -2196,7 +2220,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@152445 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=152445&view=revision'><time datetime='2013-06-14' title='2013-06-14'>2013-06-14</time></a>
       
         <tr>
-          <td>mstensho@opera.com
+          <td>mstensho
           <td class=message><strong>Add a setting for enabling region based columns.</strong>
             <pre class=body style=display:none>
 The intention is to enable this if the --enable-experimental-webkit-features
@@ -2212,7 +2236,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@152304 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=152304&view=revision'><time datetime='2013-06-12' title='2013-06-12'>2013-06-12</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>No need to store invalid media queries.</strong>
             <pre class=body style=display:none>
 Stop creating media query expressions when a media query expression with an
@@ -2232,7 +2256,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@152279 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=152279&view=revision'><time datetime='2013-06-12' title='2013-06-12'>2013-06-12</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Parse media attributes and CSSOM media text as media_query_list.</strong>
             <pre class=body style=display:none>
 This is per HTML5 and CSSOM specifications.
@@ -2260,7 +2284,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@152218 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=152218&view=revision'><time datetime='2013-06-11' title='2013-06-11'>2013-06-11</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Error recovery for valid media query followed by garbage.</strong>
             <pre class=body style=display:none>
 Remaining issue after r151842.
@@ -2278,7 +2302,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@152112 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=152112&view=revision'><time datetime='2013-06-10' title='2013-06-10'>2013-06-10</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Tokenize &#34;and(&#34; as a FUNCTION in media queries.</strong>
             <pre class=body style=display:none>
 BUG=247282
@@ -2290,7 +2314,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@151907 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=151907&view=revision'><time datetime='2013-06-06' title='2013-06-06'>2013-06-06</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Improved parse error handling for CSSMQ.</strong>
             <pre class=body style=display:none>    
 Corrected the grammar for media queries and media query lists.
@@ -2311,7 +2335,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@151842 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=151842&view=revision'><time datetime='2013-06-05' title='2013-06-05'>2013-06-05</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>Fix variable name style violation from r151791</strong>
             <pre class=body style=display:none>
 This change somehow slipped past the style check when landing
@@ -2324,7 +2348,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@151810 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=151810&view=revision'><time datetime='2013-06-05' title='2013-06-05'>2013-06-05</time></a>
       
         <tr>
-          <td>mostynb@opera.com
+          <td>mostynb
           <td class=message><strong>inline WebCore::Node::Node constructor more safely</strong>
             <pre class=body style=display:none>
 Recently, some toolchains started giving link errors due to WebCore::Node::Node
@@ -2343,7 +2367,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@151791 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=151791&view=revision'><time datetime='2013-06-05' title='2013-06-05'>2013-06-05</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>[css-device-adapt] Imported opera tests from hg.csswg.org</strong>
             <pre class=body style=display:none>
 Generated using generate-tests.py with webkit prefix and template.blink.html:
@@ -2363,7 +2387,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@151751 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=151751&view=revision'><time datetime='2013-06-04' title='2013-06-04'>2013-06-04</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>[CSSMQ] Implemented support for the scan media feature.</strong>
             <pre class=body style=display:none>
 The scan media feature is only supported for &#34;tv&#34; as per spec. It is
@@ -2382,7 +2406,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@150487 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=150487&view=revision'><time datetime='2013-05-16' title='2013-05-16'>2013-05-16</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Optimized querySelector(All) when selector contains #id.</strong>
             <pre class=body style=display:none>
 There existed an optimization that did an element lookup for an id if the
@@ -2425,7 +2449,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@150417 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=150417&view=revision'><time datetime='2013-05-15' title='2013-05-15'>2013-05-15</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>[CSSMQ] Allow integer values for monochrome media feature.</strong>
             <pre class=body style=display:none>
 min/max-monochrome already did.
@@ -2439,7 +2463,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@150415 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=150415&view=revision'><time datetime='2013-05-15' title='2013-05-15'>2013-05-15</time></a>
       
         <tr>
-          <td>rune@opera.com
+          <td>rune
           <td class=message><strong>Recognize html whitespaces as separators for attribute selectors.</strong>
             <pre class=body style=display:none>
 Used to only recognize 0x20 as a separator for attribute selector matching
@@ -2455,7 +2479,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@150410 bbb929c8-8fbe-4397-9dbb-9b
           <td><a href='http://src.chromium.org/viewvc/blink?revision=150410&view=revision'><time datetime='2013-05-15' title='2013-05-15'>2013-05-15</time></a>
       
         <tr>
-          <td>ed@opera.com
+          <td>ed
           <td class=message><strong>CSS systemcolors should work in svg properties using &lt;color&gt;.</strong>
             <pre class=body style=display:none>
 This affects the &#39;stop-color&#39;, &#39;flood-color&#39; and &#39;lighting-color&#39;
@@ -2473,6 +2497,7 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@149844 bbb929c8-8fbe-4397-9dbb-9b
       </table>
     </section>
   
+<main>
 
   <script>
     var messages = document.querySelectorAll('.message');
