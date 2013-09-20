@@ -38,8 +38,8 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 71,
-    Blink: 67.
+    Chromium: 74,
+    Blink: 74.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -49,6 +49,71 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mpawlowski
+          <td class=message><strong>Fixing destruction order in password_store_win_unittest.cc</strong>
+            <pre class=body style=display:none>
+The order of declaration now matches the order of initialization in
+SetUp(). Previously, we would attempt to destroy temp_dir while
+profile and login_db were still locking it.
+
+A very similar fix to https://chromiumcodereview.appspot.com/18684002/
+
+TEST=unit_tests.exe --gtest_filter=&#34;PasswordStoreWinTest.*&#34;
+BUG=
+
+Review URL: https://chromiumcodereview.appspot.com/24267003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@224379 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=224379&view=revision'><time datetime='2013-09-20' title='2013-09-20'>2013-09-20</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message><strong>Remove hard dependency on bundled python_26 in tests</strong>
+            <pre class=body style=display:none>
+(solution suggested in https://codereview.chromium.org/16117004/ )
+
+The hardcoded dependency on third_party/python_26 in some unit tests
+makes it necessary to bundle that python with the test binaries. On other
+platforms the system python is used and there is no reason Windows can&#39;t
+do the same if one is available.
+
+This saves us band-width (25 MB per test machine) when distributing tests.
+
+The change is implemented as a removal of the hard coded path in execution and
+instead it&#39;s inserted at the end of the PATH environment variable. That way it
+will still be used if there is no other python available but otherwise a
+system python will be used.
+
+There is a small risk that the system python is unsuitable but that is a risk we
+already take on non-Windows platforms.
+
+Another solution was discussed in https://codereview.chromium.org/16117004/ before
+this solution was suggested.
+
+Review URL: https://chromiumcodereview.appspot.com/21537002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@224096 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=224096&view=revision'><time datetime='2013-09-19' title='2013-09-19'>2013-09-19</time></a>
+      
+        <tr>
+          <td>robertn
+          <td class=message><strong>Disable unittests that depends on OpenSSL when use_openssl==0</strong>
+            <pre class=body style=display:none>
+These unittests include headers that includes openssl/ssl.h
+(sm_connection.h). For platforms that don&#39;t have access to
+OpenSSL this won&#39;t work.
+
+BUG=23724020
+
+Review URL: https://chromiumcodereview.appspot.com/23724020
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@223893 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=223893&view=revision'><time datetime='2013-09-18' title='2013-09-18'>2013-09-18</time></a>
       
         <tr>
           <td>philipj
@@ -1174,6 +1239,141 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>Cap allocation for ImmutableStylePropertySet.</strong>
+            <pre class=body style=display:none>
+The m_arraySize will be capped to MaxArraySize, so it is unnecessary to
+allocate room for more than MaxArraySize properties.
+
+Leftover from https://codereview.chromium.org/22917005/
+
+BUG=None
+
+Review URL: https://chromiumcodereview.appspot.com/23708049
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158093 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158093&view=revision'><time datetime='2013-09-20' title='2013-09-20'>2013-09-20</time></a>
+      
+        <tr>
+          <td>christiank
+          <td class=message><strong>Default to binary encoding when loading MHTML files.</strong>
+            <pre class=body style=display:none>
+Assume binary encoding on MHTML files that doesn&#39;t have an encoding
+specified.
+
+BUG=
+
+Review URL: https://chromiumcodereview.appspot.com/23464015
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158022 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158022&view=revision'><time datetime='2013-09-19' title='2013-09-19'>2013-09-19</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>:-webkit-any pseudo with escaped &#39;(&#39; should not crash.</strong>
+            <pre class=body style=display:none>
+Pseudo classes or elements which had an escaped &#39;(&#39; character were
+recognized as functions after it had been unescaped. That caused for
+instance &#34;:-webkit-any\(&#34; to be correctly tokenized as &#39;:&#39; IDENT, but
+incorrectly recognized as the -webkit-any _function_. Since mandatory
+arguments were not present in the internal representation, the code crashed.
+
+Fixed by making sure IDENTs are recognized as invalid pseudo classes, before
+any token matching is done, if the unescaped IDENT ends with a &#39;(&#39;.
+
+Also, removed workaround code for a similar crasher for :not() now that the
+parsing issue is fixed for :not() as well.
+
+BUG=294023
+
+Review URL: https://chromiumcodereview.appspot.com/23710067
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157980 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157980&view=revision'><time datetime='2013-09-18' title='2013-09-18'>2013-09-18</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>Use correct pseudo type for page selector specificity.</strong>
+            <pre class=body style=display:none>
+Page selector specificity did not work because the specificity calculations
+in CSSSelector::specificityForPage() checked for PseudoClass instead of
+PagePseudoClass.
+
+BUG=294190
+
+Review URL: https://chromiumcodereview.appspot.com/23597051
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157973 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157973&view=revision'><time datetime='2013-09-18' title='2013-09-18'>2013-09-18</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>New parser mode for CSSOM @viewport descriptors.</strong>
+            <pre class=body style=display:none>
+CSSOM value and descriptor parsing for @viewport used parsing rules for normal
+CSS property declarations instead, meaning width and height were not parsed as
+shorthands.
+
+This is an issue for other CSSOM access to other descriptors too, like for
+@font-face.
+
+This fix is minimal for the @viewport case and intended for feedback on the
+general approach. I considered not adding new parser modes, but use a bit in
+StylePropertySet to indicate a CSSParserMode or a descriptor mode and let two
+bits store the mode. With both the current changes and the split, a descriptor
+mode would implicitly be strict.
+
+BUG=272718
+
+Review URL: https://chromiumcodereview.appspot.com/22917005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157955 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157955&view=revision'><time datetime='2013-09-18' title='2013-09-18'>2013-09-18</time></a>
+      
+        <tr>
+          <td>mathiash
+          <td class=message><strong>Expand tap highlight to allow multiple highlights for touch disambiguation.</strong>
+            <pre class=body style=display:none>
+Tap gestures may hit multiple targets, causing a disambiguation window to popup on Android. In addition to this, we would like all of the candidate targets highlighted rather than just the target which was scored highest.
+
+This change allows multiple nodes to be highlighted simultaneously. The touch disambiguation is also tapped into to select nodes for highlighting.
+
+BUG=286244
+
+Review URL: https://chromiumcodereview.appspot.com/15663005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157947 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157947&view=revision'><time datetime='2013-09-18' title='2013-09-18'>2013-09-18</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>Drop CSS cursor quirk for missing fallback cursor.</strong>
+            <pre class=body style=display:none>
+IE used to allow URI cursors without a specified pre-defined cursor value
+fallback. This CL removes the support for that quirk because IE allegedly
+dropped this quirk in IE9, even in the compat modes (see issue 286668).
+
+Made the existing parsing tests run in strict mode and moved test cases for
+quirks mode to a new file.
+
+The &#39;hand&#39; -&gt; &#39;pointer&#39; quirk was not touched.
+
+R=tabatkins@google.com
+BUG=286668
+
+Review URL: https://chromiumcodereview.appspot.com/23816008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@157918 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=157918&view=revision'><time datetime='2013-09-17' title='2013-09-17'>2013-09-17</time></a>
       
         <tr>
           <td>rchlodnicki
