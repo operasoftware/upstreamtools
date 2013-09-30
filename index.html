@@ -38,8 +38,8 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 74,
-    Blink: 74.
+    Chromium: 76,
+    Blink: 85.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -49,6 +49,30 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>ohrn
+          <td class=message><strong>Fix missing SYS_mmap when building Android on x86.</strong>
+            <pre class=body style=display:none>
+Review URL: https://codereview.chromium.org/24560002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@225533 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=225533&view=revision'><time datetime='2013-09-26' title='2013-09-26'>2013-09-26</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add Adreno GPU to deep memory profiler Android policies</strong>
+            <pre class=body style=display:none>
+The Adreno GPU is used on the Samsung Galaxy S4 GT-I9505.
+
+NOTRY=True
+
+Review URL: https://chromiumcodereview.appspot.com/23976012
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@225199 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=225199&view=revision'><time datetime='2013-09-25' title='2013-09-25'>2013-09-25</time></a>
       
         <tr>
           <td>mpawlowski
@@ -1239,6 +1263,222 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>Added missing @viewport to the simple UA stylesheet.</strong>
+            <pre class=body style=display:none>
+@viewport UA rule also required when the simple UA styles should otherwise
+suffice to style the document.
+
+BUG=298477
+
+Review URL: https://chromiumcodereview.appspot.com/25092003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158488 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158488&view=revision'><time datetime='2013-09-28' title='2013-09-28'>2013-09-28</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message><strong>Paint region based columns correctly in non-default writing-modes.</strong>
+            <pre class=body style=display:none>
+The column translation offset was calculated incorrectly.
+The dirty rect intersection check was also wrong.
+
+Added some documentation, to make it clear what&#39;s going on.
+
+This patch is ported from WebKit.
+https://bugs.webkit.org/show_bug.cgi?id=118506
+Reviewed in WebKit by David Hyatt.
+
+BUG=269417
+
+Review URL: https://chromiumcodereview.appspot.com/22576002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158433 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158433&view=revision'><time datetime='2013-09-27' title='2013-09-27'>2013-09-27</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message><strong>Clip region based columns properly.</strong>
+            <pre class=body style=display:none>
+Need to call RenderRegion::overflowRectForFlowThreadPortion() first,
+and THEN clip in the column gaps. overflowRectForFlowThreadPortion()
+expands the logical left and right to the flow thread&#39;s overflow
+rectangle, effectively defeating inline direction clipping completely.
+
+This patch is ported from WebKit.
+https://bugs.webkit.org/show_bug.cgi?id=118499
+Reviewed in WebKit by David Hyatt.
+
+BUG=269441
+
+Review URL: https://chromiumcodereview.appspot.com/22577002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158387 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158387&view=revision'><time datetime='2013-09-26' title='2013-09-26'>2013-09-26</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message><strong>Need to take an element&#39;s scroll offset into account when painting its column rules.</strong>
+            <pre class=body style=display:none>
+R=
+BUG=236315
+
+Review URL: https://chromiumcodereview.appspot.com/14238038
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158386 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158386&view=revision'><time datetime='2013-09-26' title='2013-09-26'>2013-09-26</time></a>
+      
+        <tr>
+          <td>jiangj
+          <td class=message><strong>Fix renderer assert after autofill</strong>
+            <pre class=body style=display:none>
+PasswordAutofillAgent may modify value of newFocusedNode in BlurEvent
+dispatched above, while newFocusedNode-&gt;isFocusable() expects that
+newFocusedNode-&gt;needsLayout() not to be true, updateLayout() here in
+case that happens.
+
+BUG=251163
+
+Review URL: https://chromiumcodereview.appspot.com/21346002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158348 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158348&view=revision'><time datetime='2013-09-26' title='2013-09-26'>2013-09-26</time></a>
+      
+        <tr>
+          <td>jiangj
+          <td class=message><strong>Fix unhandled showGuessPanel editor command</strong>
+            <pre class=body style=display:none>
+The main menu sends a -showGuessPanel: to first responder when
+Edit -&gt; Spelling and Grammar -&gt; Show Spelling and Grammar is called.
+
+showGuessPanel was supposed to be handled by RenderWidgetHostViewMacDelegate,
+it should be forwarded to the delegate from RenderWidgetHostViewMac by
+-forwardingTargetForSelector:. However, since we dynamically added
+implementations for all editing commands, including showGuessPanel, to
+RenderWidgetHostViewMac via RenderWidgetHostViewMacEditCommandHelper,
+RenderWidgetHostViewMacDelegate didn&#39;t get to handle this command at all,
+it&#39;s directly sent to WebFrameImpl::executeCommand(name, &#34;&#34;).
+
+Add missing handling there (previously only WebFrameImpl::executeCommand()
+with command name but not value is handled) so that showGuessPanel is
+correctly handled.
+
+BUG=257627
+
+Review URL: https://chromiumcodereview.appspot.com/18553006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158346 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158346&view=revision'><time datetime='2013-09-26' title='2013-09-26'>2013-09-26</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Sync Android &lt;video controls&gt; with the default controls</strong>
+            <pre class=body style=display:none>
+Add back the rounded border and the bottom 5px padding.
+
+BUGS=251244
+
+Review URL: https://chromiumcodereview.appspot.com/17382003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158344 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158344&view=revision'><time datetime='2013-09-26' title='2013-09-26'>2013-09-26</time></a>
+      
+        <tr>
+          <td>tiger
+          <td class=message><strong>Relax Content-Type parameter parsing</strong>
+            <pre class=body style=display:none>
+Unfortunately Opera 12 (this could possibly be found in files generated by
+other products as well, or by hand) and below does not write out its
+Content-Type parameters according to the standard (start parameter contains
+tspecials without being an unquoted-string) in some MHTML files. This patch
+relaxes the parsing of Content-Type parameters to allow this.
+
+R=tony@chromium.org
+BUG=274407
+
+Review URL: https://chromiumcodereview.appspot.com/23043002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158314 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158314&view=revision'><time datetime='2013-09-25' title='2013-09-25'>2013-09-25</time></a>
+      
+        <tr>
+          <td>pstanek
+          <td class=message><strong>addMarker() optimizations.</strong>
+            <pre class=body style=display:none>
+Essentially, DocumentMarkerController maintained a list
+(WTF::Vector) of markers. And linearly traversed that list
+to coalesce markers. If the marker count is large, that&#39;s
+not optimal.
+To improve things the list has been split into couple by the
+type of a marker and linear traverse has been replaced with
+the binary search (std::lower_bound() &amp; std::upper_bound()).
+Also traversing is not performed if not needed. After this
+PerformanceTests/Interactive/spellcheck-paste-huge-text.html
+shows 7-12% improvement.
+
+BUG=279293
+
+Review URL: https://chromiumcodereview.appspot.com/23728006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158288 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158288&view=revision'><time datetime='2013-09-25' title='2013-09-25'>2013-09-25</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>ContentEditable plaintext-only crash fix.</strong>
+            <pre class=body style=display:none>
+Calling createLink execCommand on a selection that includes both normal
+contentEditable and plaintext-only contentEditable caused a crash when
+applying style in ApplyStyleCommand::applyInlineStyleToNodeRange because the
+EditingStyle::m_mutableStyle is null.
+
+I do not have a well enough understanding of what is going on here to be sure
+this is the correct fix, but trying to move the check for style()-&gt;style
+further up caused various LayoutTests to fail.
+
+BUG=270031
+
+Review URL: https://chromiumcodereview.appspot.com/23600068
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158248 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158248&view=revision'><time datetime='2013-09-24' title='2013-09-24'>2013-09-24</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message><strong>Add support for the object-position CSS property.</strong>
+            <pre class=body style=display:none>
+This is hidden behind an &#34;experimental&#34; runtime flag named
+&#34;ObjectFitPosition&#34;, together with object-fit.
+
+This is an implementation of object-position as described in
+http://www.w3.org/TR/2012/CR-css3-images-20120417/#object-position
+
+Object-position is used to offset replaced content within its content
+box. Painting is always clipped against the content box, regardless of
+the &#34;overflow&#34; property. This property is useful together with
+object-fit (to achieve a difference between content box size and
+replaced content size, so that specifying alignment is interesting),
+but can also be used on its own.
+
+BUG=236333
+
+Review URL: https://chromiumcodereview.appspot.com/24077007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158155 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158155&view=revision'><time datetime='2013-09-21' title='2013-09-21'>2013-09-21</time></a>
       
         <tr>
           <td>rune
