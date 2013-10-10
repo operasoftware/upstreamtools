@@ -38,8 +38,8 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 76,
-    Blink: 85.
+    Chromium: 85,
+    Blink: 104.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -49,6 +49,182 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>ed
+          <td class=message><strong>Non-US OS region generates invalid trace JSON.</strong>
+            <pre class=body style=display:none>
+JSON output from the trace logging has floats formatted
+to the current user locale, which can make opening the
+trace fail.
+
+R=
+BUG=304818
+
+Review URL: https://codereview.chromium.org/26249002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@227730 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=227730&view=revision'><time datetime='2013-10-09' title='2013-10-09'>2013-10-09</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Silence narrowing warning with XRectangle</strong>
+            <pre class=body style=display:none>
+XRectangle is defined as such in &lt;X11/Xlib.h&gt;:
+
+typedef struct {
+    short x, y;
+    unsigned short width, height;
+} XRectangle;
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/25647004
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@227083 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=227083&view=revision'><time datetime='2013-10-04' title='2013-10-04'>2013-10-04</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>Trigger full html.css styles for some printing tests.</strong>
+            <pre class=body style=display:none>
+In Blink, @page UA styles is missing from the simple html stylesheet which
+is used instead of html.css for documents which contains a certain subset
+of html element types. Adding that @page rule to that simplified stylesheet
+will change the actual results for these tests which have expectations
+relying on that bug[1]:
+
+  PrintWebViewHelperPreviewTest.PrintPreviewShrinkToFitPage
+  PrintWebViewHelperPreviewTest.PrintPreviewCenterToFitPage
+
+This CL changes the expected results and adds a &lt;p&gt; element to those tests
+in order to trigger the correct @page rule from html.css without the fix in
+Blink. Then the Blink fix[2] can land and be rolled into chromium without
+affecting the results of the mentioned tests.
+
+After the Blink fix is rolled into chromium, the &lt;p&gt; elements can be safely
+removed again.
+
+[1] https://code.google.com/p/chromium/issues/detail?id=304021
+[2] https://codereview.chromium.org/25856002/
+
+R=vitalybuka@chromium.org
+BUG=304021
+
+Review URL: https://codereview.chromium.org/25446005
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@227076 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=227076&view=revision'><time datetime='2013-10-04' title='2013-10-04'>2013-10-04</time></a>
+      
+        <tr>
+          <td>rchlodnicki
+          <td class=message><strong>Don&#39;t pull in content_switches.cc to whole chrome code base</strong>
+            <pre class=body style=display:none>
+The point of this change is remove compilation of content_switches.cc
+that was done in installer_util target. This is a static library
+that other parts of chrome pull in and that makes the Chrome code that
+references those switches compile even if the switches itself are
+not exported.
+Installer_util doesn&#39;t even seem to uses those switches AFAIK.
+
+Dropped compilation of these files so these problems are actually
+exposed and addressed by the person adding the switch. The main
+offender that referenced those switches was chrome&#39;s about_flags.cc.
+
+BUG=
+
+Review URL: https://codereview.chromium.org/24994002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@226921 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=226921&view=revision'><time datetime='2013-10-04' title='2013-10-04'>2013-10-04</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Wait for store flush in CookieMonster::Delete*Task</strong>
+            <pre class=body style=display:none>
+Second attempt to commit this, after fixing a flaky test:
+http://code.google.com/p/chromium/issues/detail?id=302914
+
+BUG=252217
+
+Review URL: https://codereview.chromium.org/18032002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@226720 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=226720&view=revision'><time datetime='2013-10-03' title='2013-10-03'>2013-10-03</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Don&#39;t crash on invalid URL in GTK ContentShell</strong>
+            <pre class=body style=display:none>
+Entering an invalid URL crashed on the failing DCHECK in GURL::spec().
+
+BUG=
+
+Review URL: https://codereview.chromium.org/25841002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@226715 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=226715&view=revision'><time datetime='2013-10-03' title='2013-10-03'>2013-10-03</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Correct and simplify the cookie events browser test</strong>
+            <pre class=body style=display:none>
+The listeners were being removed in the completion callback to
+chrome.cookies.set instead of in the chrome.cookiesonChanged
+listener. Nothing guaranteed the order of these two, so the test
+begun failing when delete started waiting for flush in
+&lt;https://chromiumcodereview.appspot.com/18032002&gt;.
+
+Simplify the tests by using listenOnce/listenForever.
+
+BUG=302914
+
+Review URL: https://codereview.chromium.org/25677004
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@226456 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=226456&view=revision'><time datetime='2013-10-02' title='2013-10-02'>2013-10-02</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove superfluous &#34;either&#34;</strong>
+            <pre class=body style=display:none>
+Left in by mistake in https://codereview.chromium.org/3129003
+
+NOTRY=True
+BUG=
+
+Review URL: https://codereview.chromium.org/25479002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@226424 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=226424&view=revision'><time datetime='2013-10-02' title='2013-10-02'>2013-10-02</time></a>
+      
+        <tr>
+          <td>msimonides
+          <td class=message><strong>Make SchemaLoader independent of current working directory.</strong>
+            <pre class=body style=display:none>
+The SchemaLoader looks for schema files in the current directory. This
+isn&#39;t very robust and may cause problems for other products than
+Chromium if they run the script from a GYP file in another directory.
+
+The SchemaLoader is supplied two arguments now: the path to API files
+relative to the root path (for use in #includes) and the regular path
+to API files (for file access).
+
+BUG=
+
+Review URL: https://codereview.chromium.org/23534063
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@225977 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=225977&view=revision'><time datetime='2013-09-30' title='2013-09-30'>2013-09-30</time></a>
       
         <tr>
           <td>ohrn
@@ -1263,6 +1439,337 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove HTMLMediaElement.webkitHasClosedCaptions/webkitClosedCaptionsVisible</strong>
+            <pre class=body style=display:none>
+See the bug for why it is (probably) best to remove these.
+
+Move some things in HTMLMediaElement.idl to match the spec order and
+to leave all WebKit extensions in a group at the end.
+
+Drop duplicate TreatNullAs=NullString introduced in r159260.
+
+BUG=305753
+
+Review URL: https://codereview.chromium.org/26759003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159317 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159317&view=revision'><time datetime='2013-10-10' title='2013-10-10'>2013-10-10</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove HTMLMediaElement.webkitPreservesPitch</strong>
+            <pre class=body style=display:none>
+It is not implemented, so remove it until there is a spec, at
+which point it can be implemented without a prefix.
+
+BUG=305554
+
+Review URL: https://codereview.chromium.org/26679002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159246 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159246&view=revision'><time datetime='2013-10-09' title='2013-10-09'>2013-10-09</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message><strong>Add support for the column-fill property.</strong>
+            <pre class=body style=display:none>
+Note: This is only supported in the (new) region based multicol implementation.
+
+With column-fill support, a lot of multicol tests need an update.
+The old implementation behaved as if column-fill were &#39;auto&#39;, but the
+initial value is &#39;balance&#39;, so now we need to be explicit about that.
+For auto-height tests it doesn&#39;t really matter - such multicols are always
+balanced anyway.
+
+Already reviewed in WebKit by David Hyatt.
+See https://bugs.webkit.org/show_bug.cgi?id=117693
+
+BUG=302897
+
+Review URL: https://codereview.chromium.org/25687002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159227 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159227&view=revision'><time datetime='2013-10-09' title='2013-10-09'>2013-10-09</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message><strong>Fix History.{push,replace}State handling of null &#39;url&#39; argument</strong>
+            <pre class=body style=display:none>
+According to the specification[1], if the &#39;url&#39; argument is null, the
+new URL should be the URL of the current entry.  A relative URL should
+be resolved using the document&#39;s base URL.
+
+Adjust History::urlForState() to not treat a null (isNull()) string the
+same as an empty (isEmpty()) string, which it otherwise does since
+isEmpty() returns true for null strings as well.
+
+BUG=279278
+
+[1] http://www.whatwg.org/specs/web-apps/current-work/#dom-history-pushstate
+
+Review URL: https://codereview.chromium.org/26216003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159120 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159120&view=revision'><time datetime='2013-10-08' title='2013-10-08'>2013-10-08</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add LayoutTest for GlobalEventHandlers</strong>
+            <pre class=body style=display:none>
+BUG=305112
+
+Review URL: https://codereview.chromium.org/26467002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159116 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159116&view=revision'><time datetime='2013-10-08' title='2013-10-08'>2013-10-08</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message><strong>Set SVN attribute eol-style on some files.</strong>
+            <pre class=body style=display:none>
+This is an attempt to make the try bots able to modify these files.
+
+Got problems with https://codereview.chromium.org/25687002
+
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159030 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159030&view=revision'><time datetime='2013-10-07' title='2013-10-07'>2013-10-07</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message><strong>Ship object-fit and object-position.</strong>
+            <pre class=body style=display:none>
+Change runtime flag ObjectFitPosition from experimental to stable.
+
+BUG=236331,236333
+
+Review URL: https://codereview.chromium.org/25761005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158982 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158982&view=revision'><time datetime='2013-10-05' title='2013-10-05'>2013-10-05</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>@page rule missing from simpleUserAgentStyleSheet.</strong>
+            <pre class=body style=display:none>
+simpleUserAgentStyleSheet did not have an @page rule like html.css.
+The result was flakiness for the following test depending on whether the full
+UA styles had been triggered by a previous test or not:
+
+LayoutTests/printing/page-format-data.html
+
+This is a reland of http://crrev.com/25856002 after http://crrev.com/25446005
+
+TBR=ojan
+BUG=303324
+
+Review URL: https://codereview.chromium.org/26050002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158969 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158969&view=revision'><time datetime='2013-10-05' title='2013-10-05'>2013-10-05</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>Fix WHITESPACE issues in the CSS grammar.</strong>
+            <pre class=body style=display:none>
+A single WHITESPACE token consumes consecutive spaces, but does not consume
+spaces separated by comments. That means S* and S+ in CSS grammars need to
+accept multiple WHITESPACE tokens. Additionally, white spaces are not
+mandatory to separate an @-symbol and the rest of the prelude.
+
+Use space non-terminal instead of WHITESPACE for S+ in calc expressions.
+
+Use maybe_space non-terminal instead of WHITESPACE for S* after @-webkit-filter
+and @-webkit-region.
+
+BUG=303303
+
+Review URL: https://codereview.chromium.org/25607005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158950 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158950&view=revision'><time datetime='2013-10-04' title='2013-10-04'>2013-10-04</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message><strong>Convert a few more HTML files from using DOS line breaks to UNIX.</strong>
+            <pre class=body style=display:none>
+This makes it possible for the trybots to apply changes here.
+
+TBR=jochen@chromium.org
+BUG=
+
+Review URL: https://codereview.chromium.org/25994003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158926 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158926&view=revision'><time datetime='2013-10-04' title='2013-10-04'>2013-10-04</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message><strong>Convert a couple of HTML files from using DOS line breaks to UNIX.</strong>
+            <pre class=body style=display:none>
+This will hopefully make it possible for the trybots to apply changes here.
+
+TBR=jochen@chromium.org
+BUG=
+
+Review URL: https://codereview.chromium.org/26000003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158924 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158924&view=revision'><time datetime='2013-10-04' title='2013-10-04'>2013-10-04</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>@page rule missing from simpleUserAgentStyleSheet.</strong>
+            <pre class=body style=display:none>
+simpleUserAgentStyleSheet did not have an @page rule like html.css.
+The result was flakiness for the following test depending on whether the full
+UA styles had been triggered by a previous test or not:
+
+LayoutTests/printing/page-format-data.html
+
+R=ojan
+BUG=303324
+
+Review URL: https://codereview.chromium.org/25856002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158866 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158866&view=revision'><time datetime='2013-10-04' title='2013-10-04'>2013-10-04</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>Corrected UA style for a:focus in simpleUserAgentStyleSheet.</strong>
+            <pre class=body style=display:none>
+simpleUserAgentStyleSheet did not have an outline on a:focus like html.css.
+The result was flakiness for the following test depending on whether the full
+UA styles had been triggered by a previous test or not:
+
+LayoutTests/fast/events/reveal-link-when-focused.html
+
+R=ojan@chromium.org
+BUG=303323
+
+Review URL: https://codereview.chromium.org/25722007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158814 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158814&view=revision'><time datetime='2013-10-03' title='2013-10-03'>2013-10-03</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Rename RenderMediaControlsChromium to RenderMediaControls</strong>
+            <pre class=body style=display:none>
+The original RenderMediaControls was removed in a previous commit.
+
+BUG=302500
+
+Review URL: https://codereview.chromium.org/25699002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158724 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158724&view=revision'><time datetime='2013-10-02' title='2013-10-02'>2013-10-02</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>Explicit space required around NOT/ONLY/AND in CSS MQ.</strong>
+            <pre class=body style=display:none>
+The Media Queries errata[1] dated 2013-08-30 changes from S* to S+ around
+NOT, ONLY, and AND tokens. In practice, it means these tokens cannot be
+separated from other tokens using comments alone anymore.
+
+[1] http://www.w3.org/Style/2012/REC-mediaqueries-20120619-errata.html
+
+BUG=288803
+
+Review URL: https://codereview.chromium.org/23542021
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158717 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158717&view=revision'><time datetime='2013-10-02' title='2013-10-02'>2013-10-02</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>Media query malformed when &#39;or&#39; is used as a media type.</strong>
+            <pre class=body style=display:none>
+The Media Queries errata[1] dated 2013-06-27 includes &#39;or&#39; in the list of
+reserved keywords that will result in a malformed media query instead of an
+unknown media type when used as a media type.
+
+[1] http://www.w3.org/Style/2012/REC-mediaqueries-20120619-errata.html
+
+BUG=288213
+
+Review URL: https://codereview.chromium.org/23477048
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158713 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158713&view=revision'><time datetime='2013-10-02' title='2013-10-02'>2013-10-02</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove npr.org quirk in HTMLMediaElement</strong>
+            <pre class=body style=display:none>
+This quirk was added in &lt;http://trac.webkit.org/changeset/58586&gt; with
+reference to &lt;rdar://problem/7902467&gt;. Unfortunately, the details are
+unavailable. It&#39;s likely that npr.org has changed since this was added,
+so try removing the quirk to see if anything breaks.
+
+BUG=302409
+
+Review URL: https://codereview.chromium.org/25516002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158703 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158703&view=revision'><time datetime='2013-10-02' title='2013-10-02'>2013-10-02</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove empty RenderMediaControls</strong>
+            <pre class=body style=display:none>
+BUG=302500
+
+Review URL: https://codereview.chromium.org/25540002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158658 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158658&view=revision'><time datetime='2013-10-01' title='2013-10-01'>2013-10-01</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>Empty @viewport should not override legacy viewport.</strong>
+            <pre class=body style=display:none>
+@viewport styles should not be considered present in author styles if there is
+not a single descriptor present. This is not specified anywhere, though.
+
+Marking the ViewportStyleResolver with author styles present when there were
+no descriptors caused an assert to trigger (see mentioned BUG). This is fixed
+by always require at least one descriptor to be present in order to set the
+flag for author style presence, keeping the assert.
+
+As part of this fix, collectViewportRules was refactored into
+ViewportStyleResolver to resolve a FIXME in the StyleResolver.
+
+BUG=299719
+
+Review URL: https://codereview.chromium.org/25257003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@158625 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=158625&view=revision'><time datetime='2013-10-01' title='2013-10-01'>2013-10-01</time></a>
       
         <tr>
           <td>rune
