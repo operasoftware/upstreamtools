@@ -38,8 +38,8 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 85,
-    Blink: 104.
+    Chromium: 94,
+    Blink: 171.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -49,6 +49,154 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>tmoniuszko
+          <td class=message><strong>ScopedNativeLibrary.Basic test fix</strong>
+            <pre class=body style=display:none>
+IsBadCodePtr() function was returning zero value randomly and the test was
+raising false alarms sometimes. This fix changes the test to use
+GetFunctionPointerFromNativeLibrary() instead.
+
+BUG=
+
+Review URL: https://codereview.chromium.org/32303002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@232192 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=232192&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Disable ActivityLogApiTest.TriggerEvent while waiting for Blink roll</strong>
+            <pre class=body style=display:none>
+Blink will move innerHTML from HTMLElement from Element. Because this
+test relies on the exact placement of the function, disable it during
+the transition.
+
+BUG=311080
+NOTRY=true
+
+Review URL: https://codereview.chromium.org/45733012
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@231961 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=231961&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Fix scoping of raw_bytes in URLRequestFileDirJob::OnListFile</strong>
+            <pre class=body style=display:none>
+data.info.GetName() returns a new FilePath object, and .value() thus
+returns a reference to the string within that FilePath object.
+This means that the FilePath object can vanish before the reference
+to its contents is actually used - meaning whatever happens to be
+on the stack will be accessed.
+Fix by keeping a copy of the FilePath object in scope across call to
+GetDirectoryListingEntry.
+
+Introduced by r205019.
+
+Review URL: https://codereview.chromium.org/48113006
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@231821 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=231821&view=revision'><time datetime='2013-10-30' title='2013-10-30'>2013-10-30</time></a>
+      
+        <tr>
+          <td>rchlodnicki
+          <td class=message><strong>Return matching plug-ins in the sorted order (by version number).</strong>
+            <pre class=body style=display:none>
+In case there are multiple plug-ins in one group (multiple versions
+of Flash plug-in for example), returning sorted list that has highest
+version first makes sure that Chrome won&#39;t try to load outdated
+version and end up blocking it in the end.
+
+BUG=13892
+
+Review URL: https://codereview.chromium.org/26541011
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@231381 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=231381&view=revision'><time datetime='2013-10-28' title='2013-10-28'>2013-10-28</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message><strong>allow overriding default_font_cache_limit</strong>
+            <pre class=body style=display:none>
+Android uses a 1M default skia glyph cache, but all other builds that
+use skia default to 20M.  This patch makes the value configurable so non-android builds can choose an optimal value.
+
+Review URL: https://codereview.chromium.org/41173002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@230999 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=230999&view=revision'><time datetime='2013-10-25' title='2013-10-25'>2013-10-25</time></a>
+      
+        <tr>
+          <td>rchlodnicki
+          <td class=message><strong>Use relative path for scripts loaded in content WebUI&#39;s</strong>
+            <pre class=body style=display:none>
+Specifying relative path works exactly the same as specifying absolute
+path, as long as the script is declared using
+WebUIDataSource::AddResourcePath (which it is in case of changed
+WebUIs). So there is no behavioral change in case of Chromium. The
+reason for this change is it makes the live of embedders of content
+easier when embedder is loading the WebUI from a scheme that is not
+chrome: (it is opera: for us). It allows us to save on on adding
+security policy overrides for each content WebUI.
+
+BUG=
+
+Review URL: https://codereview.chromium.org/26930002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@230401 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=230401&view=revision'><time datetime='2013-10-23' title='2013-10-23'>2013-10-23</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message><strong>remove sandbox/linux/seccomp-legacy references from licenses.py</strong>
+            <pre class=body style=display:none>
+sandbox/linux/seccomp-legacy no longer exists in the tree, so let&#39;s remove
+references to it from the license documentation generation script.
+
+Review URL: https://codereview.chromium.org/27195007
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@228592 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=228592&view=revision'><time datetime='2013-10-15' title='2013-10-15'>2013-10-15</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>Remove temporary &lt;p&gt; elements from printing tests.</strong>
+            <pre class=body style=display:none>
+The &lt;p&gt; elements were introduced temporarily in [1]. The blink bug is rolled
+in, hence the &lt;p&gt; elements can be removed.
+
+[1] https://src.chromium.org/viewvc/chrome?view=rev&amp;revision=227076
+
+R=vitalybuka@chromium.org
+BUG=None
+
+Review URL: https://codereview.chromium.org/26914004
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@228563 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=228563&view=revision'><time datetime='2013-10-14' title='2013-10-14'>2013-10-14</time></a>
+      
+        <tr>
+          <td>mpawlowski
+          <td class=message><strong>Functions that decoded ie7 structures to extract per-URL username and password assumed there will only be one such pair for a URL. Changed to work with URLs for which there are several sets of credentials stored.</strong>
+            <pre class=body style=display:none>
+BUG=305241
+TEST=IE7PasswordTest.*
+
+Review URL: https://codereview.chromium.org/26465006
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@228180 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=228180&view=revision'><time datetime='2013-10-11' title='2013-10-11'>2013-10-11</time></a>
       
         <tr>
           <td>ed
@@ -1439,6 +1587,1218 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Improve the &#39;track&#39; and &#39;media&#39; WATCHLISTS</strong>
+            <pre class=body style=display:none>
+BUG=none
+NOTRY=true
+
+Review URL: https://codereview.chromium.org/55163005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161155 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161155&view=revision'><time datetime='2013-11-01' title='2013-11-01'>2013-11-01</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove trailing .* from patterns in WATCHLISTS</strong>
+            <pre class=body style=display:none>
+As per the IMPORTANT comment at the top of the file.
+
+BUG=none
+NOTRY=true
+
+Review URL: https://codereview.chromium.org/55733002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161154 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161154&view=revision'><time datetime='2013-11-01' title='2013-11-01'>2013-11-01</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Update references to Source/WebKit/chromium/ in WATCHLISTS</strong>
+            <pre class=body style=display:none>
+Source/WebKit/chromium/ was split into public/, Source/web/, and
+possibly other directories over a number of commits, but WATCHLISTS
+were not updated to match. For the updated paths, I&#39;ve verified that
+there are actually matching and reasonable files in Source/web/,
+public/web/ and/or public/platform/.
+
+As per the comment at the top of the file, .* was not added to the
+end of the patterns, even if they had it before.
+
+BUG=none
+NOTRY=true
+
+Review URL: https://codereview.chromium.org/55243009
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161152 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161152&view=revision'><time datetime='2013-11-01' title='2013-11-01'>2013-11-01</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add self to media in WATCHLISTS</strong>
+            <pre class=body style=display:none>
+I&#39;ve subscribed to feature-media-reviews@chromium.org, but the Blink
+changes are drowned in a flood of Chromium reviews, so until there
+is a separate list for Blink changes, just watch it directly.
+
+BUG=none
+NOTRY=true
+
+Review URL: https://codereview.chromium.org/54773004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161151 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161151&view=revision'><time datetime='2013-11-01' title='2013-11-01'>2013-11-01</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Decouple tokenizer/tree builder state from WebVTTParser</strong>
+            <pre class=body style=display:none>
+The WebVTTTokenizer owned by the WebVTTParser (m_tokenizer) is only
+used by the WebVTTParser::createDocumentFragmentFromCueText method
+on WebVTTParser.
+The same is true for other state like the current token (m_token),
+the current (subtree root) node (m_currentNode) and the stack of
+language tags (m_languageStack).
+Transplant this state together with it&#39;s mutator method -
+constructTreeFromToken - onto a new helper class, WebVTTTreeBuilder,
+and then use that in WebVTTParser::createDocumentFragmentFromCueText.
+
+With the above in place, WebVTTParser::createDocumentFragmentFromCueText
+can be made static, avoiding the contorted (and unnecessary) allocation
+in TextTrackCue::createWebVTTNodeTree.
+
+BUG=305317
+
+Review URL: https://codereview.chromium.org/52713005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161073 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161073&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add OVERRIDE where possible in HTMLMediaElement and children</strong>
+            <pre class=body style=display:none>
+Some of the places where it wasn&#39;t added are in order, but some of
+them simply shouldn&#39;t be virtual and will be dealt with later.
+
+BUG=313702
+
+Review URL: https://codereview.chromium.org/51763009
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161068 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161068&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Indent comments in HTMLMediaElement.h</strong>
+            <pre class=body style=display:none>
+Drop the &#34;DOM API&#34; comment because not everything below that point
+is part of the DOM API anyway.
+
+BUG=none
+NOTRY=true
+
+Review URL: https://codereview.chromium.org/54673003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161062 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161062&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Make WebVTTParser::collectTimeStamp static</strong>
+            <pre class=body style=display:none>
+This function is independent of internal WebVTTParser state, while
+being used outside of the actual parser.
+
+BUG=305317
+
+Review URL: https://codereview.chromium.org/54463002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161059 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161059&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message><strong>Make http LayoutTests work in Debian with Apache 2.4.</strong>
+            <pre class=body style=display:none>
+This patch is migrated from https://bugs.webkit.org/show_bug.cgi?id=120352
+Original patch in WebKit by Allan Sandfeld Jensen &lt;allan.jensen@digia.com&gt;
+Reviewed in WebKit by Andreas Kling.
+
+Debian testing (jessie) and newer use Apache 2.4.
+
+Select httpd.conf file for debian based on version, matching Fedora behavior.
+Added an apache 2.4 configuration file adapted from Fedora&#39;s,
+and renamed the 2.2 file to have consistent naming.
+
+BUG=313632
+
+Review URL: https://codereview.chromium.org/47023017
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161058 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161058&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove outdated comment about CSP for &lt;track&gt;</strong>
+            <pre class=body style=display:none>
+The spec now explictly calls out associated text tracks:
+https://dvcs.w3.org/hg/content-security-policy/raw-file/tip/csp-specification.dev.html#media-src
+
+BUG=none
+NOTRY=true
+
+Review URL: https://codereview.chromium.org/54683002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161057 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161057&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Use TextTrackMode and TextTrackKind enums in TextTrack IDL</strong>
+            <pre class=body style=display:none>
+The generated code (modeAttributeSetter in V8TextTrack.cpp) now
+checks that the string is one of the three allowed values, so we
+can just assert it internally.
+
+Also fiddle a bit with the IDL to make it match the spec order.
+
+BUG=313602
+
+Review URL: https://codereview.chromium.org/52593009
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161055 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161055&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Use TextResourceDecoder for the WebVTTParser</strong>
+            <pre class=body style=display:none>
+Simplifies BOM handling, signature detection and fixes handling
+of &#34;short&#34; (&lt; 9 bytes) inputs.
+
+Also fixes the signature checker to allow a formfeed character to
+follow the signature itself.
+
+BUG=231460
+
+Review URL: https://codereview.chromium.org/54203003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161049 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161049&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TextTrackLoaderClient::shouldLoadCues and ::cueLoadingStarted</strong>
+            <pre class=body style=display:none>
+Their only implementations (in TextTrackLoader) do nothing useful,
+so just remove them until needed.
+
+Also sprinkle some OVERRIDE in the neighborhood.
+
+BUG=313287
+
+Review URL: https://codereview.chromium.org/53533003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161048 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161048&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Correct use of virtual and OVERRIDE in HTMLTrackElement</strong>
+            <pre class=body style=display:none>
+canLoadUrl was virtual for no reason, and the TextTrackClient
+implementation was missing OVERRIDE.
+
+BUG=313287
+
+Review URL: https://codereview.chromium.org/52443006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161047 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161047&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Sync the logging in HTMLMediaElement::scheduleDelayedAction with reality</strong>
+            <pre class=body style=display:none>
+The method was renamed in r145322, but not the log message.
+
+BUG=none
+NOTRY=true
+
+Review URL: https://codereview.chromium.org/52593010
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161045 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161045&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Handle resource fetch failure in TextTrackLoader::load</strong>
+            <pre class=body style=display:none>
+It&#39;s not clear when this can happen, even after looking at
+ResourceFetcher::requestResource I was unable to produce a test
+case which would hit this code path. However, given that we are
+null-checking already, we might as well handle it correctly.
+
+BUG=313287
+
+Review URL: https://codereview.chromium.org/53213002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161040 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161040&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove LoadableTextTrackClient</strong>
+            <pre class=body style=display:none>
+It is completely unused.
+
+BUG=313287
+
+Review URL: https://codereview.chromium.org/53413003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160993 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160993&view=revision'><time datetime='2013-10-31' title='2013-10-31'>2013-10-31</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Move innerHTML and outerHTML to Element</strong>
+            <pre class=body style=display:none>
+Per the DOM Parsing specification, innerHTML and outerHTML should be
+available on Element, not HTMLElement. Since HTMLElement and SVGElement
+are the only interfaces that inherit from Element, the only Web visible
+difference should be that innerHTML and outerHTML are now available for
+SVG elements.
+
+For &lt;svg&gt;.innerHTML = &#34;&lt;!-- svg elements here --&gt;&#34; to insert elements
+with correct namespace URI, one adjustment has to be made to the tree
+builder step of the html parsing algorithm. The changes are described in
+the spec change &lt;http://html5.org/r/7768&gt;. The new concept of
+&#39;adjustedCurrentNode&#39; is used when processing and when deciding to
+process foreign content and makes sure that parsed elements go into the
+correct namespace.
+
+Some layout tests that (perhaps accidentally) use innerHTML and
+outerHTML on SVG elements are adjusted slightly.
+
+This is a re-land of 160869 https://codereview.chromium.org/44333002/
+
+BUG=311080
+
+Review URL: https://codereview.chromium.org/52443003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160981 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160981&view=revision'><time datetime='2013-10-30' title='2013-10-30'>2013-10-30</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TextTrackResource</strong>
+            <pre class=body style=display:none>
+It&#39;s now just a RawResource, so use that instead.
+
+BUG=312756
+
+Review URL: https://codereview.chromium.org/52563002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160974 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160974&view=revision'><time datetime='2013-10-30' title='2013-10-30'>2013-10-30</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Simplify HTMLTrackElement::didCompleteLoad</strong>
+            <pre class=body style=display:none>
+It doesn&#39;t need to be virtual and didn&#39;t use the first argument.
+
+BUG=313287
+
+Review URL: https://codereview.chromium.org/51883010
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160971 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160971&view=revision'><time datetime='2013-10-30' title='2013-10-30'>2013-10-30</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Use a TextTrackLoaderClient reference (not pointer)</strong>
+            <pre class=body style=display:none>
+It&#39;s never null, so remove all doubt for future readers of the code.
+
+BUG=313287
+
+Review URL: https://codereview.chromium.org/48113029
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160970 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160970&view=revision'><time datetime='2013-10-30' title='2013-10-30'>2013-10-30</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Refactor TextTrackLoader to properly use the dataReceived callback</strong>
+            <pre class=body style=display:none>
+We get the data and length in the callback, so just use it directly.
+
+This accidentally fixes a parsing test, by changing the segmentation
+of the input received by the WebVTT parser. A separate bug was filed
+to fix the problem: http://crbug.com/313222
+
+BUG=312756
+
+Review URL: https://codereview.chromium.org/52533003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160965 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160965&view=revision'><time datetime='2013-10-30' title='2013-10-30'>2013-10-30</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Rename TextTrackLoader::m_cachedCueData to m_resource</strong>
+            <pre class=body style=display:none>
+It&#39;s only used to add and remove a client and the code doesn&#39;t know
+or care whether it&#39;s cached or not, just call it m_resource like
+in DocumentThreadableLoader.
+
+BUG=312756
+
+Review URL: https://codereview.chromium.org/52463002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160953 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160953&view=revision'><time datetime='2013-10-30' title='2013-10-30'>2013-10-30</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Add UseCounters for certain properties on CSSStyleDeclaration</strong>
+            <pre class=body style=display:none>
+Blink/WebKit/IE supports properties on CSSStyleDeclaration that are
+the literal names of the CSS properties, for instance
+style[&#39;font-face&#39;]. This is not supported in Gecko/Presto.
+
+To measure usage on the Web, introduce two counters: one for the
+dashed properties and one for the non-&#39;css&#39;-prefixed &#39;float&#39; property
+which hasn&#39;t been part of the specification.
+
+BUG=290055
+
+Review URL: https://codereview.chromium.org/47923015
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160934 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160934&view=revision'><time datetime='2013-10-30' title='2013-10-30'>2013-10-30</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Move innerHTML and outerHTML to Element</strong>
+            <pre class=body style=display:none>
+Per the DOM Parsing specification, innerHTML and outerHTML should be
+available on Element, not HTMLElement. Since HTMLElement and SVGElement
+are the only interfaces that inherit from Element, the only Web visible
+difference should be that innerHTML and outerHTML are now available for
+SVG elements.
+
+For &lt;svg&gt;.innerHTML = &#34;&lt;!-- svg elements here --&gt;&#34; to insert elements
+with correct namespace URI, one adjustment has to be made to the tree
+builder step of the html parsing algorithm. The changes are described in
+the spec change &lt;http://html5.org/r/7768&gt;. The new concept of
+&#39;adjustedCurrentNode&#39; is used when processing and when deciding to
+process foreign content and makes sure that parsed elements go into the
+correct namespace.
+
+Some layout tests that (perhaps accidentally) use innerHTML and
+outerHTML on SVG elements are adjusted slightly.
+
+BUG=311080
+
+Review URL: https://codereview.chromium.org/44333002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160869 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160869&view=revision'><time datetime='2013-10-29' title='2013-10-29'>2013-10-29</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Let TextTrackResource be a RawResource</strong>
+            <pre class=body style=display:none>
+This allows deprecatedDidReceiveResource to be removed completely, by
+using the exising appendData callback instead.
+
+The removed FIXME was a little bit confused, in that it didn&#39;t seem to
+realize that incremental parsing is needed for WebVTT.
+
+Also add OVERRIDE where possible.
+
+BUG=312756
+
+Review URL: https://codereview.chromium.org/50123006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160848 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160848&view=revision'><time datetime='2013-10-29' title='2013-10-29'>2013-10-29</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Implement WindowEventHandlers</strong>
+            <pre class=body style=display:none>
+Spec: http://whatwg.org/html#windoweventhandlers
+
+This is mostly refactoring, but there are Web-facing changes for
+onmessage, onpageshow and onpagehide, which were not correctly handled.
+
+Drop the &#34;Not implemented yet&#34; blocks. onafterprint and onbeforeprint
+are listed in WindowEventHandlers.idl, while onredo and onundo are
+not in the spec.
+
+BUG=305112
+
+Review URL: https://codereview.chromium.org/48603002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160816 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160816&view=revision'><time datetime='2013-10-29' title='2013-10-29'>2013-10-29</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Let MediaError.MEDIA_ERR_ENCRYPTED depend on EncryptedMediaAnyVersion</strong>
+            <pre class=body style=display:none>
+Also fix the indentation.
+
+BUG=310641
+
+Review URL: https://codereview.chromium.org/48573004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160808 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160808&view=revision'><time datetime='2013-10-29' title='2013-10-29'>2013-10-29</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Handle the onerror content attribute for &lt;body&gt; and &lt;frameset&gt;</strong>
+            <pre class=body style=display:none>
+Firefox also passes the test. Presto fails on &#34;Convert to function&#34;
+everywhere, and IE11 was not tested.
+
+BUG=310630
+
+Review URL: https://codereview.chromium.org/48303003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160708 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160708&view=revision'><time datetime='2013-10-28' title='2013-10-28'>2013-10-28</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add UseCounter for TextTrackCue constructor</strong>
+            <pre class=body style=display:none>
+The plan in issue 270340 is to leave the TextTrackCue constructor until
+it is known to be safe to deprecate and remove. Add a UseCounter so that
+we can get stats from M32 stable, to be branched Nov 4th, 2013.
+
+BUG=270340
+
+Review URL: https://codereview.chromium.org/47453002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160707 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160707&view=revision'><time datetime='2013-10-28' title='2013-10-28'>2013-10-28</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>Explicit GC of strings to avoid test timeout.</strong>
+            <pre class=body style=display:none>
+The test file visited-link-hang.html creates millions of strings with length
+1-1000000. That caused the giant-stylesheet-crash.html test to time out if
+the strings were still not garbage collected. Added explicit garbage
+collection to clean up after the visited-link-hang strings. Likewise, added
+explicit GC calls as a safety measure in the test that timed out.
+
+R=ojan@chromium.org
+BUG=305037
+
+Review URL: https://codereview.chromium.org/38293002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160683 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160683&view=revision'><time datetime='2013-10-27' title='2013-10-27'>2013-10-27</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Have XHR.getResponseHeader() return null in initial ready states.</strong>
+            <pre class=body style=display:none>
+Follow the XMLHttpRequest specification for getResponseHeader() and
+return null if the object is in ready states {UNSENT, OPENED}.
+
+Similarly for getAllResponseHeaders() and returning &#34;&#34; (the empty
+string) when in these initial two ready states.
+
+This replaces the older spec behavior of throwing InvalidStateError,
+something that no other engines currently do, hence cross-browser
+compatibility risk is low.
+
+When reconciling the relevant tests, reworked these to use
+js-test-{pre,post}.js instead.
+
+R=tyoshino@chromium.org
+BUG=311274
+
+Review URL: https://codereview.chromium.org/46913002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160679 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160679&view=revision'><time datetime='2013-10-27' title='2013-10-27'>2013-10-27</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Unify the GlobalEventHandlers list on the C++ side</strong>
+            <pre class=body style=display:none>
+Several changes need to be made in sync to achieve this.
+
+Teach the IDL compiler to generate static calls for EventTarget,
+allowing GlobalEventHandlers.h to be the single list of the event
+attributes on the C++ side.
+
+The handling of the 5 special event handler attributes on body and
+frameset was very strange, with both virtual getters/setters in C++
+and overrides at the IDL level. Remove the former mechanism, and fix
+up the later to fill the job it was clearly added to do.
+
+Also fix some style issues in EventTarget.h to please presubmit.tributes on the C++ side.
+
+BUG=305112
+
+Review URL: https://codereview.chromium.org/37263002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160676 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160676&view=revision'><time datetime='2013-10-27' title='2013-10-27'>2013-10-27</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>CRLF -&gt; LF in giant-stylesheet-crash.html</strong>
+            <pre class=body style=display:none>
+Not able to apply another patch from rietveld due to CRLF issues.
+
+TBR=ojan@chromium.org
+BUG=None
+
+Review URL: https://codereview.chromium.org/46063006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160658 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160658&view=revision'><time datetime='2013-10-26' title='2013-10-26'>2013-10-26</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove dead code for reflected attributes on &lt;audio&gt;, &lt;video&gt; and &lt;track&gt;</strong>
+            <pre class=body style=display:none>
+Where [Reflect] is used in the IDL, the getters and setters in C++ are
+only for internal convenience, and these were unused.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/41343003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160637 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160637&view=revision'><time datetime='2013-10-25' title='2013-10-25'>2013-10-25</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Improve TypeError messages from failed array conversions.</strong>
+            <pre class=body style=display:none>
+Should the conversion of a value into a native array fail due to it
+not having a sequence type, throw the expected TypeError but with a
+message that better explains what failed.
+
+Address this by extending the two v8 bindings helpers
+WebCore::toNativeArray() and WebCore::toRefPtrNativeArray() with an
+extra argument to indicate either the property name that&#39;s being
+converted to an array, or its argument index position (1-indexed.)
+(Or 0, if it is a setter with an array/sequence type.) In the case of
+toRefPtrNativeArray(), either a property name or an argument index
+might supplied; toNativeArray() only needs to support the argument
+indexed form.
+
+The code generator has been extended to supply the extra argument when
+calling upon these two array conversion helpers.
+
+So, if the array conversion fails due to the value not being array (or
+array-like), the TypeError&#39;s message is now generated by a pair of
+ExceptionMessages helper methods:
+
+ static String notASequenceTypeArgumentOrValue(int argumentIndexOrValue);
+ static String notASequenceTypeProperty(const String&amp; propertyName);
+
+which handles the argument/setter value and property case,
+respectively. The output will be of the form
+
+ {X} is not an array, nor does it have indexed properties.
+
+where X is one of
+
+   &#34;&#39;{ThePropertyName}&#39; property&#34;
+   &#34;Value&#34;
+   &#34;Argument {First,Second,Third,&lt;N&gt;th}&#34;
+
+R=
+BUG=308730
+
+Review URL: https://codereview.chromium.org/38063003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160593 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160593&view=revision'><time datetime='2013-10-25' title='2013-10-25'>2013-10-25</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Drop NotEnumerable for the on* event handler IDL attributes (again)</strong>
+            <pre class=body style=display:none>
+The previous commit (r159721) intended to remove all of the
+NotEnumerable attributes, but missed these.
+
+BUG=305112
+
+Review URL: https://codereview.chromium.org/37283002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160536 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160536&view=revision'><time datetime='2013-10-25' title='2013-10-25'>2013-10-25</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove &lt;video&gt; width and height attributes from intrisic size logic</strong>
+            <pre class=body style=display:none>
+The width/height content attributes already influence specified style
+via HTMLVideoElement::collectStyleForPresentationAttribute, to also
+influence the intrinsic size has never been part of the spec:
+http://whatwg.org/html#the-video-element
+
+The test case passes in Firefox Nightly and IE11 Release Preview,
+but fails in Opera Presto, which has no default intrinsic size.
+Opera is actually correct per spec, but fixing Blink can be done
+in a separate bug.
+
+BUG=310122
+
+Review URL: https://codereview.chromium.org/38313002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160491 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160491&view=revision'><time datetime='2013-10-24' title='2013-10-24'>2013-10-24</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove dead code for webkitvisibilitychange in Document</strong>
+            <pre class=body style=display:none>
+There&#39;s no attribute EventHandler onwebkitvisibilitychange in the IDL,
+so the DEFINE_ATTRIBUTE_EVENT_LISTENER would just output dead code.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/35693008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160346 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160346&view=revision'><time datetime='2013-10-23' title='2013-10-23'>2013-10-23</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove redundant scheduleDelayedAction in Audio constructor</strong>
+            <pre class=body style=display:none>
+Setting the src attribute will trigger HTMLMediaElement::parseAttribute,
+which already calls scheduleDelayedAction when src is modified.
+
+This is already tested by LayoutTests/media/audio-constructor-src.html
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/36863002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160333 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160333&view=revision'><time datetime='2013-10-23' title='2013-10-23'>2013-10-23</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add UseCounters for Element.webkitRequestFullscreen/webkitRequestFullScreen</strong>
+            <pre class=body style=display:none>
+Spawned from &#34;Is there a plan for shipping unprefixed fullscreen API?&#34;
+
+https://groups.google.com/a/chromium.org/d/msg/blink-dev/iElkfxDU7d4/gV0HS8guXscJ
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/36573003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160329 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160329&view=revision'><time datetime='2013-10-23' title='2013-10-23'>2013-10-23</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add self to watchlist for &lt;track&gt;</strong>
+            <pre class=body style=display:none>
+BUG=none
+
+Review URL: https://codereview.chromium.org/36673002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160326 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160326&view=revision'><time datetime='2013-10-23' title='2013-10-23'>2013-10-23</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>More informative error messages for non-Transferables.</strong>
+            <pre class=body style=display:none>
+Elaborate the TypeError exception reported if the various
+postMessage()s (on window, at the dedicated Worker global scope, or
+over MessagePorts) are ill-typed transferable arguments, supplying an
+error message indicating that the transferable argument isn&#39;t a
+sequence type.
+
+R=
+BUG=308730
+
+Review URL: https://codereview.chromium.org/30673002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160323 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160323&view=revision'><time datetime='2013-10-23' title='2013-10-23'>2013-10-23</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for media interfaces</strong>
+            <pre class=body style=display:none>
+The spec doesn&#39;t have special null handling here:
+http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html
+
+The updated test was run in Firefox Nightly (with media.webvtt.enabled),
+IE11 Release Preview and Opera 12.16 (Presto 2.12.388). Everything
+passes, with these exceptions:
+
+No other browser supports the mediaGroup property.
+
+The preload default value is &#34;metadata&#34; in IE11 and Presto, and &#34;&#34; in
+Firefox. The spec suggests &#34;metadata&#34;. Bugs filed:
+https://code.google.com/p/chromium/issues/detail?id=310450
+https://bugzilla.mozilla.org/show_bug.cgi?id=929890
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/35803004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160318 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160318&view=revision'><time datetime='2013-10-23' title='2013-10-23'>2013-10-23</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Unstick background position origins</strong>
+            <pre class=body style=display:none>
+In the FillLayer class, reset the {x,y} origins each time {x,y}
+position is set and require the caller to later call
+setBackground{X,Y}Origin to override the default value. This fits
+better with the way &#39;initial&#39; values are set from the StyleBuilder and
+avoids the problem of origins lingering in the FillLayer when setting
+the 2-value versions of background-position.
+
+Furthermore, split the flag m_backgroundOriginSet into one for each
+property so that something like &#39;background-position-x:initial&#39; won&#39;t
+reset the position origin for both properties.
+
+Also, remove code for handling &#39;initial&#39; for {x,y} position, &#39;initial&#39;
+is already handled in the StyleBuilder further up the call chain.
+
+BUG=304721
+
+Review URL: https://codereview.chromium.org/35303002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160243 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160243&view=revision'><time datetime='2013-10-22' title='2013-10-22'>2013-10-22</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove HTMLMediaElement.initialTime</strong>
+            <pre class=body style=display:none>
+It was dropped from spec in April 2012:
+http://html5.org/r/7046
+
+BUG=309474
+
+Review URL: https://codereview.chromium.org/35033002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160209 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160209&view=revision'><time datetime='2013-10-22' title='2013-10-22'>2013-10-22</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Test setting string properties to null on &lt;audio&gt;, &lt;video&gt;, &lt;source&gt; and &lt;track&gt;</strong>
+            <pre class=body style=display:none>
+http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html
+
+The spec doesn&#39;t have [TreatNullAs=NullString] for any of these
+properties, so the added tests are actually wrong for mediaGroup,
+poster and src. The implementation will be fixed in future commits.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/30693003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160195 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160195&view=revision'><time datetime='2013-10-22' title='2013-10-22'>2013-10-22</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add UseCounter for HTMLSourceElement.media</strong>
+            <pre class=body style=display:none>
+https://www.w3.org/Bugs/Public/show_bug.cgi?id=19619
+
+By counting the number of candidate &lt;source&gt; elements and the number
+of non-matching media attributes, we can determine what the impact of
+removing the attribute from spec and implementation would be.
+
+BUG=310006
+
+Review URL: https://codereview.chromium.org/32583007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160190 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160190&view=revision'><time datetime='2013-10-22' title='2013-10-22'>2013-10-22</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove HTMLMediaElement.startTime</strong>
+            <pre class=body style=display:none>
+It was replaced with initialTime in August 2010:
+http://html5.org/r/5310
+
+BUG=309473
+
+Review URL: https://codereview.chromium.org/32583003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160174 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160174&view=revision'><time datetime='2013-10-22' title='2013-10-22'>2013-10-22</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Use MeasureAs and ImplementedAs in media IDL</strong>
+            <pre class=body style=display:none>
+This leaves the C++ code a little bit cleaner.
+
+Also indent HTMLMediaElement.idl for consistency.
+
+BUG=309364
+
+Review URL: https://codereview.chromium.org/32103002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160119 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160119&view=revision'><time datetime='2013-10-22' title='2013-10-22'>2013-10-22</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Normalize indentation in Element.idl</strong>
+            <pre class=body style=display:none>
+The DOM Level 2 Core block was very weird, so re-indent things
+to have some kind of consistency in indentation and line length.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/31373003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160088 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160088&view=revision'><time datetime='2013-10-21' title='2013-10-21'>2013-10-21</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove the old WebKit watchlist</strong>
+            <pre class=body style=display:none>
+It has not been edited since April and shows no signs of being in use,
+WATCHLISTS in the root is where the action is. Remove to save others
+the trouble of figuring that out.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/31223002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160035 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160035&view=revision'><time datetime='2013-10-21' title='2013-10-21'>2013-10-21</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add UseCounters for prefixed HTMLVideoElement APIs</strong>
+            <pre class=body style=display:none>
+Count the *Fullscreen and *FullScreen calls separately, since it&#39;s likely
+that the later are less common and could potentially be dropped first.
+
+BUG=309364
+
+Review URL: https://codereview.chromium.org/31203002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160031 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160031&view=revision'><time datetime='2013-10-20' title='2013-10-20'>2013-10-20</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add UseCounters for webkitAudioDecodedByteCount/webkitVideoDecodedByteCount</strong>
+            <pre class=body style=display:none>
+BUG=309364
+
+Review URL: https://codereview.chromium.org/28903009
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@160023 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=160023&view=revision'><time datetime='2013-10-19' title='2013-10-19'>2013-10-19</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Count beforeload separately for isolated worlds</strong>
+            <pre class=body style=display:none>
+BUG=308218
+
+Review URL: https://codereview.chromium.org/26828003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159909 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159909&view=revision'><time datetime='2013-10-17' title='2013-10-17'>2013-10-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add shared GlobalEventHandlers IDL</strong>
+            <pre class=body style=display:none>
+The GlobalEventHandlers.h is empty because the code generator
+includes it, but empty until the C++ bits are also shared.
+
+BUG=305112
+
+Review URL: https://codereview.chromium.org/27133002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159859 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159859&view=revision'><time datetime='2013-10-17' title='2013-10-17'>2013-10-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Forward onscroll on body and frameset to window</strong>
+            <pre class=body style=display:none>
+The spec lists 5 such attributes, this is the missing one.
+Ad-hoc testing shows that Firefox already supports this.
+
+BUG=305112
+
+Review URL: https://codereview.chromium.org/27511002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159844 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159844&view=revision'><time datetime='2013-10-17' title='2013-10-17'>2013-10-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove redundant attribute-to-event mappings in HTMLMediaElement</strong>
+            <pre class=body style=display:none>
+See bug for why beforeload was left in.
+
+BUG=308047
+
+Review URL: https://codereview.chromium.org/27154004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159813 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159813&view=revision'><time datetime='2013-10-17' title='2013-10-17'>2013-10-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add missing event handler attributes</strong>
+            <pre class=body style=display:none>
+Document, Element and Window now have almost all the on* attributes
+from GlobalEventHandlers and are in sync with each other, except:
+
+ * The dragexit event is part of the drag-and-drop processing model,
+   but is never fired in Blink.
+ * The sort event is part of the table sorting algorithm, which has
+   not been implemented yet.
+
+Also alphabetize the lists in Document.h and Element.h.
+
+BUG=305112
+
+Review URL: https://codereview.chromium.org/27132002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159781 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159781&view=revision'><time datetime='2013-10-16' title='2013-10-16'>2013-10-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Drop NotEnumerable for the on* event handler IDL attributes</strong>
+            <pre class=body style=display:none>
+BUG=305112
+
+Review URL: https://codereview.chromium.org/26117003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159721 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159721&view=revision'><time datetime='2013-10-16' title='2013-10-16'>2013-10-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Enable the SVG GlobalEventHandlers test</strong>
+            <pre class=body style=display:none>
+I forgot this in a previous commit. It turns out that SVGSVGElement
+forwards some of these properties to window, which broke the tests,
+so use a SVGRectElement for testing instead.
+
+BUG=305112
+
+Review URL: https://codereview.chromium.org/26599003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159689 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159689&view=revision'><time datetime='2013-10-15' title='2013-10-15'>2013-10-15</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>Removed fullscreen test timeouts to prevent flakiness.</strong>
+            <pre class=body style=display:none>
+Some fullscreen tests had an internal timeout of 50-100ms that would cause
+the tests to fail if it the browser was not able to trigger the
+fullscreenchange event in time. The idea is that this caused the flakiness of
+the tests removed from TestExpectations in this CL. At least, when reducing
+the timeout in the test, I was able to reproduce the failure with a debug run
+of the fullscreen tests.
+
+BUG=100798
+
+Review URL: https://codereview.chromium.org/27021003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159564 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159564&view=revision'><time datetime='2013-10-14' title='2013-10-14'>2013-10-14</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Drop PerWorldBindings for the on* event handler IDL attributes</strong>
+            <pre class=body style=display:none>
+PerWorldBindings is applied inconsistently for these attributes,
+so simply drop it to reduce the differences in preparation for
+GlobalEventHandlers.
+
+BUG=305112
+
+Review URL: https://codereview.chromium.org/26535005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159511 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159511&view=revision'><time datetime='2013-10-12' title='2013-10-12'>2013-10-12</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Refine the GlobalEventHandlers test</strong>
+            <pre class=body style=display:none>
+http://lists.whatwg.org/htdig.cgi/whatwg-whatwg.org/2013-October/thread.html#40980
+
+The conclusion of the WHATWG &#34;Should onfoo event handler properties be
+on Element or HTMLElement?&#34; thread was that not letting Element have
+these properties is more sane, because reflecting the corresponding
+content attributes for Element would be odd.
+
+Update the test to assert that Element does not have the properties,
+but that HTMLElement and SVGElement do.
+
+Also split the enumerate tests so that individual results can be seen.
+
+BUG=305112
+
+Review URL: https://codereview.chromium.org/26478004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159478 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159478&view=revision'><time datetime='2013-10-11' title='2013-10-11'>2013-10-11</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Remove ImageSource::bytesDecodedToDetermineProperties() and fallout</strong>
+            <pre class=body style=display:none>
+Since the WebKit split, it always returns zero. Removing it enables us
+also to remove the not always up-to-date m_decodedSize and avoid a
+quite common assertion failure on GIF animations. No functional
+changes expected.
+
+BUG=288879
+
+Review URL: https://codereview.chromium.org/25976002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159433 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159433&view=revision'><time datetime='2013-10-11' title='2013-10-11'>2013-10-11</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message><strong>Make units-000.htm from ietestcenter pass.</strong>
+            <pre class=body style=display:none>
+In order to do this I had to:
+
+- Change the incorrect unit vm to vmin which was already done on the IE test
+  center site.
+
+- Modify the test to use a font-size of 20px instead of 16px for the Ahem
+  font to work around a font rendering issue in Blink.
+
+- Better support for viewport relative lengths for border.
+
+  Viewport relative lengths for the border-width properties translated from
+  the number value of the viewport relative units to a pixel length without
+  taking the viewport size into account. The code now converts to a px length
+  through conversion of a Length object using the RenderView.
+
+BUG=webkit.org/b/85308
+
+Review URL: https://codereview.chromium.org/26802003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159363 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159363&view=revision'><time datetime='2013-10-10' title='2013-10-10'>2013-10-10</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove excessive indentation in HTMLElement.idl</strong>
+            <pre class=body style=display:none>
+It&#39;s been like this for a long time for no apparent reason, and
+is harder to read (and fit on screen) than it needs to be.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/26473003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@159328 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=159328&view=revision'><time datetime='2013-10-10' title='2013-10-10'>2013-10-10</time></a>
       
         <tr>
           <td>philipj
