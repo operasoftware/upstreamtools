@@ -38,8 +38,8 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 94,
-    Blink: 171.
+    Chromium: 98,
+    Blink: 187.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -49,6 +49,66 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Valgrind: retire suppression for bug 291240.</strong>
+            <pre class=body style=display:none>
+With underlying leak cause addressed, the suppression
+is no longer needed.
+
+R=thestig@chromium.org
+BUG=291240
+NOTRY=true
+
+Review URL: https://codereview.chromium.org/56983002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@233195 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=233195&view=revision'><time datetime='2013-11-06' title='2013-11-06'>2013-11-06</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message><strong>add a LinuxSandbox::HasOpenDirectories() sanity check</strong>
+            <pre class=body style=display:none>
+BUG=269806
+
+Review URL: https://codereview.chromium.org/24055003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@233100 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=233100&view=revision'><time datetime='2013-11-05' title='2013-11-05'>2013-11-05</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Adjust placement of innerHTML</strong>
+            <pre class=body style=display:none>
+In Blink rev 160981, innerHTML was moved from HTMLElement to Element.
+Adjust UmaPolicy to match the new placement.
+
+BUG=311080
+
+Review URL: https://codereview.chromium.org/54953002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@232388 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=232388&view=revision'><time datetime='2013-11-01' title='2013-11-01'>2013-11-01</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Enable ActivityLogApiTest.TriggerEvent and update test</strong>
+            <pre class=body style=display:none>
+Blink rev has been rolled to r161048, which includes the innerHTML
+move from HTMLElement to Element. Update and enable the test that had
+to be disabled during the transition.
+
+BUG=311080
+
+Review URL: https://codereview.chromium.org/54933002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@232385 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=232385&view=revision'><time datetime='2013-11-01' title='2013-11-01'>2013-11-01</time></a>
       
         <tr>
           <td>tmoniuszko
@@ -1587,6 +1647,336 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Never create HTMLTrackElement when VideoTrack is not enabled</strong>
+            <pre class=body style=display:none>
+Generalize wrapperOnlyIfMediaIsAvailable into runtimeEnabled to
+let audio/video/source depend on Media and track on VideoTrack.
+
+Let VideoTrack depend on Media, since it would otherwise become
+possible to create an HTMLTrackElement with Media disabled.
+
+The mediaEnabled setting is set to false by InspectorOverlay and
+SVGImage, in both cases presumably to prevent any media
+playback. Accomplish this instead by blocking the media load.
+
+BUG=315207
+
+Review URL: https://codereview.chromium.org/60763002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161402 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161402&view=revision'><time datetime='2013-11-06' title='2013-11-06'>2013-11-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove unused TextTrack virtual functions</strong>
+            <pre class=body style=display:none>
+isClosedCaptions(), containsOnlyForcedSubtitles(),
+isMainProgramContent() and isEasyToRead() are unused.
+
+WebInbandTextTrack::isClosedCaptions() is implemented in
+Chromium (WebInbandTextTrackImpl) by switching on kind. Since it
+doesn&#39;t use OVERRIDE, it will still compile and can be removed
+after a Blink roll.
+
+BUG=315257
+
+Review URL: https://codereview.chromium.org/59913005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161398 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161398&view=revision'><time datetime='2013-11-06' title='2013-11-06'>2013-11-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove WebInbandTextTrack::isDefault()</strong>
+            <pre class=body style=display:none>
+The spec only mentions the default attribute on track elements
+(out-of-band text tracks), in-band tracks don&#39;t have this
+concept.
+
+Also, because InbandTextTrack doesn&#39;t actually implement
+isDefault(), this is all dead code.
+
+The Chromium implementation (WebInbandTextTrackImpl) always
+returns false and can be removed after a Blink roll.
+
+Also remove HTMLTrackElement::isDefault() and setIsDefault(),
+which are dead code because [Reflect] is used in the IDL.
+
+BUG=315270
+
+Review URL: https://codereview.chromium.org/60633004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161396 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161396&view=revision'><time datetime='2013-11-05' title='2013-11-05'>2013-11-05</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Fix memory leak on serializing neutered ArrayBuffer.</strong>
+            <pre class=body style=display:none>
+If the serialization of an ArrayBufferView&#39;s ArrayBuffer fails, unwind
+the state stack completely before reporting an error to avoid leaking
+a serializer state object.
+
+To accommodate, split out the state stack overflow checking from the
+dispatching on value types which was both performed by the main
+serialization method. Now handled by
+
+    Serializer::doSerialize()
+    Serializer::doSerializeImpl()
+
+respectively, with the former calling upon the latter if the stack
+check passes.
+
+R=dslomov@chromium.org
+BUG=291240
+
+Review URL: https://codereview.chromium.org/56973002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161343 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161343&view=revision'><time datetime='2013-11-05' title='2013-11-05'>2013-11-05</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for HTMLAreaElement</strong>
+            <pre class=body style=display:none>
+http://whatwg.org/html#htmlareaelement
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+Firefox reflects ping as a URL property, which is not per spec. 
+
+IE11 reflects coords as &#39;0,0,0,0&#39; and shape as &#39;rect&#39;, while it doesn&#39;t
+support ping.
+
+Presto doesn&#39;t support ping.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/59383002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161340 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161340&view=revision'><time datetime='2013-11-05' title='2013-11-05'>2013-11-05</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for HTMLAnchorElement</strong>
+            <pre class=body style=display:none>
+http://whatwg.org/html#htmlanchorelement
+http://whatwg.org/html#HTMLAnchorElement-partial
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+Firefox reflects ping as a URL property, which is not per spec. 
+
+IE11 reflects coords as &#39;0,0,0,0&#39; and shape as &#39;rect&#39;, while it doesn&#39;t
+support ping/download.
+
+Presto doesn&#39;t support ping/download.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/58493002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161336 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161336&view=revision'><time datetime='2013-11-05' title='2013-11-05'>2013-11-05</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message><strong>&lt;animate&gt; not working on SVG Polygons.</strong>
+            <pre class=body style=display:none>
+The animation is taking place, but the rendering side didn&#39;t use the
+computed values.
+
+R=
+BUG=196435
+
+Review URL: https://codereview.chromium.org/55893002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161329 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161329&view=revision'><time datetime='2013-11-05' title='2013-11-05'>2013-11-05</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Restore ActivityLogging=SetterForIsolatedWorlds for mouse and keyboard events</strong>
+            <pre class=body style=display:none>
+This was first added in r154552.
+
+In r159511 [PerWorldBindings, ActivityLogging=SetterForIsolatedWorlds]
+was replaced with [ActivityLogging=Setter] on the assumption that
+PerWorldBindings wasn&#39;t there for any particular reason and that
+SetterForIsolatedWorlds wouldn&#39;t make sense without it.
+
+This was wrong, because activity logging now happens for all worlds,
+where it previously only happened for isolated worlds.
+
+Make it so again.
+
+BUG=305112
+
+Review URL: https://codereview.chromium.org/57443002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161265 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161265&view=revision'><time datetime='2013-11-04' title='2013-11-04'>2013-11-04</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Hide the CC button for &lt;audio&gt; with &lt;track&gt;s</strong>
+            <pre class=body style=display:none>
+It is per spec that the DOM API should work the same for &lt;audio&gt;
+and &lt;video&gt;, but it doesn&#39;t make any sense to have the UI bits for
+&lt;audio&gt; since there&#39;s nowhere to actually render the cues.
+
+BUG=314027
+
+Review URL: https://codereview.chromium.org/54713007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161246 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161246&view=revision'><time datetime='2013-11-04' title='2013-11-04'>2013-11-04</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove HTMLMediaElement::m_sendProgressEvents</strong>
+            <pre class=body style=display:none>
+It is always true, and it appears to have been that way since it was
+added in 2009 (r40857).
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/57473002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161245 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161245&view=revision'><time datetime='2013-11-04' title='2013-11-04'>2013-11-04</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Let WebVTTRegions depends_on=VideoTrack and simplify IDL</strong>
+            <pre class=body style=display:none>
+BUG=313604
+
+Review URL: https://codereview.chromium.org/54903008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161218 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161218&view=revision'><time datetime='2013-11-02' title='2013-11-02'>2013-11-02</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Rename TextTrackRegion/TextTrackRegionList to VTTRegion/VTTRegionList</strong>
+            <pre class=body style=display:none>
+http://dev.w3.org/html5/webvtt/#vttregion-interface
+http://dev.w3.org/html5/webvtt/#vttregionlist-interface
+
+This is a completely mechanical rename, except for added instanceof
+tests and removing NoInterfaceObject (not per spec) from VTTRegionList
+to make them pass.
+
+Silvia (the spec editor) says in the bug that the spec hasn&#39;t changed
+since the implementation, so together with the fact that this is
+RuntimeEnabled, it should be safe despite being Web facing.
+
+BUG=313604
+
+Review URL: https://codereview.chromium.org/55653003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161209 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161209&view=revision'><time datetime='2013-11-01' title='2013-11-01'>2013-11-01</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Make LoadableTextTrack::clearClient not virtual</strong>
+            <pre class=body style=display:none>
+When TextTrack::clearClient and LoadableTextTrack::clearClient were
+added in r99984, both had the virtual keyword and nothing seemed odd.
+
+In r135410 the virtual keyword was dropped from TextTrack::clearClient
+because &#34;it is unnecessary&#34;, but LoadableTextTrack::clearClient was left
+virtual even though it now shadowed (instead of overriding) TextTrack.
+
+The HTMLTrackElement destructor calls LoadableTextTrack::clearClient, so
+there&#39;s no risk of LoadableTextTrack::m_trackElement becoming stale.
+
+It would be nice to sort this out even more, perhaps by refactoring
+LoadableTextTrack into a TextTrackCueProvider or something that doesn&#39;t
+inherit from TextTrack, but until then add a comment to calm the reader.
+
+BUG=313287
+
+Review URL: https://codereview.chromium.org/54963004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161197 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161197&view=revision'><time datetime='2013-11-01' title='2013-11-01'>2013-11-01</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Handle empty lines in the &#39;TimingsAndSettings&#39; state in the WebVTTParser</strong>
+            <pre class=body style=display:none>
+As per the WebVTT parsing specification, step 27 (&#34;If line is the empty
+string, then discard cue and jump to the step labeled cue loop.&#34;), the
+cue should be discarded and the cue loop restarted if an &#34;identifier&#34;
+line is followed by an empty line. Transitioning to the &#39;BadCue&#39; state
+will lose the transition, so we need to transition explicitly from the
+&#39;TimingsAndSettings&#39; state (to the &#39;Id&#39; state.)
+
+BUG=314056
+
+Review URL: https://codereview.chromium.org/55853002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161184 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161184&view=revision'><time datetime='2013-11-01' title='2013-11-01'>2013-11-01</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove virtual where not needed in TextTrackCue</strong>
+            <pre class=body style=display:none>
+Remove TextTrackCue::cueType() since it always returned CueType::WebVTT
+and was never overriden. CueType::Generic was for TextTrackCueGeneric
+which was removed in r158977.
+
+Remove TextTrackCue::videoSizeDidChange(...) since it did nothing and
+was never overridden. This looks like unfinished logic for moving cues
+when the controls are shown and hidden, and could be revived in
+&lt;http://crbug.com/314066&gt;.
+
+BUG=313287
+
+Review URL: https://codereview.chromium.org/50903009
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161172 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161172&view=revision'><time datetime='2013-11-01' title='2013-11-01'>2013-11-01</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove virtual where not needed in HTMLMediaElement/HTMLVideoElement</strong>
+            <pre class=body style=display:none>
+These functions were neither overrides or overridden anywhere, so
+the virtual keywords were likely copypasta or unrealized plans.
+
+BUG=313702
+
+Review URL: https://codereview.chromium.org/53453004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161166 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161166&view=revision'><time datetime='2013-11-01' title='2013-11-01'>2013-11-01</time></a>
       
         <tr>
           <td>philipj
