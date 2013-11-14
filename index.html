@@ -38,8 +38,8 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 98,
-    Blink: 187.
+    Chromium: 102,
+    Blink: 233.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -49,6 +49,79 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Rewrite include paths for Blink public/ headers that have moved</strong>
+            <pre class=body style=display:none>
+This is a prerequisite for removing the old (redirected) headers.
+
+In a few DEPS and in webview_plugin.cc the include was redundant and
+just removed instead.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/68683009
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@235116 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=235116&view=revision'><time datetime='2013-11-14' title='2013-11-14'>2013-11-14</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove unused implementations in WebInbandTextTrackImpl</strong>
+            <pre class=body style=display:none>
+These functions have been removed from WebInbandTextTrack.
+
+BUG=315257, 315270, 315476
+
+Review URL: https://codereview.chromium.org/63963002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@233835 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=233835&view=revision'><time datetime='2013-11-08' title='2013-11-08'>2013-11-08</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Enable ActivityLogApiTest.TriggerEvent and update test</strong>
+            <pre class=body style=display:none>
+Blink rev has been rolled to r161048, which includes the innerHTML
+move from HTMLElement to Element. Update and enable the test that had
+to be disabled during the transition.
+
+BUG=311080
+
+Committed: https://src.chromium.org/viewvc/chrome?view=rev&amp;revision=232385
+
+Review URL: https://codereview.chromium.org/54933002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@233586 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=233586&view=revision'><time datetime='2013-11-07' title='2013-11-07'>2013-11-07</time></a>
+      
+        <tr>
+          <td>jadahl
+          <td class=message><strong>cc: Keep track of busy resources in ResourcePool</strong>
+            <pre class=body style=display:none>
+Instead of assuming every released resource could be potentially
+reusable, manage a list of busy resources and a list of immediately
+reusable resources. A busy resource is one which can not be locked for
+write.
+    
+Recheck busy resources before the tile manager is to schedule new tasks,
+in AssignGpuMemoryToTiles().
+    
+If this operation becomes too expensive, the CheckBusyResources()
+function should only be called if some resource(s) are returned from the
+parent compositor or when ResourcePool releases some resource.
+
+BUG=
+
+Review URL: https://codereview.chromium.org/43753002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@233374 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=233374&view=revision'><time datetime='2013-11-06' title='2013-11-06'>2013-11-06</time></a>
       
         <tr>
           <td>sigbjornf
@@ -1647,6 +1720,893 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Update TextTrackCue tests to use VTTCue where appropriate</strong>
+            <pre class=body style=display:none>
+The Opera tests were fixed upstream and re-imported:
+https://github.com/w3c/web-platform-tests/commit/8c08468d5494c9026c2a857f366c631651c413fd
+https://github.com/w3c/web-platform-tests/commit/da34397c2c16170da60e5c7638e00c0edadcf0be
+
+A new test in cues.html requres a more recent testharness.js
+than we have and was disabled.
+
+BUG=270340
+
+Review URL: https://codereview.chromium.org/72543003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162026 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162026&view=revision'><time datetime='2013-11-14' title='2013-11-14'>2013-11-14</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove a WebVTT newlines test that doesn&#39;t do what it says</strong>
+            <pre class=body style=display:none>
+tc003-newlines.vtt had CR line endings, not mixed as the test claimed.
+
+Mixed line endings are sufficiently covered by
+media/track/opera/track/webvtt/parsing/support/newlines.vtt
+
+BUG=318734
+
+Review URL: https://codereview.chromium.org/65493006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162024 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162024&view=revision'><time datetime='2013-11-14' title='2013-11-14'>2013-11-14</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for HTMLFieldSetElement</strong>
+            <pre class=body style=display:none>
+http://www.whatwg.org/specs/web-apps/current-work/multipage/the-button-element.html#htmlfieldsetelement
+
+The test passes only in Firefox Nightly, since neither IE11 Release
+Preview nor Opera 12.16 supports the property at all, verified by
+document.createElement(&#39;fieldset&#39;).name == undefined.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/70103011
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162023 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162023&view=revision'><time datetime='2013-11-14' title='2013-11-14'>2013-11-14</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for HTMLFontElement</strong>
+            <pre class=body style=display:none>
+http://www.whatwg.org/specs/web-apps/current-work/multipage/obsolete.html#htmlfontelement
+
+color has [TreatNullAs=EmptyString] in the spec, but face/size do not.
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+IE11 reflects size as the empty string.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/61643028
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162020 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162020&view=revision'><time datetime='2013-11-14' title='2013-11-14'>2013-11-14</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Split VTTCue from TextTrackCue</strong>
+            <pre class=body style=display:none>
+VTTCue has been split from TextTrackCue in the specs:
+http://whatwg.org/html#texttrackcue
+http://dev.w3.org/html5/webvtt/#vttcue-interface
+
+The TextTrackCue constructor is left for legacy compat until it is
+deemed safe to remove. To verify that it actually works, the tests still
+use the TextTrackCue constructor, but will be updated to use VTTCue in a
+later commit.
+
+Internal refactoring has been kept to a minimum, future commits should
+move more code from TextTrackCue to VTTCue.
+
+Thanks to Glenn Adams for starting this work and providing feedback!
+
+BUG=270340
+
+Review URL: https://codereview.chromium.org/63173020
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162015 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162015&view=revision'><time datetime='2013-11-14' title='2013-11-14'>2013-11-14</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove a WebVTT newlines test that doesn&#39;t do what it says</strong>
+            <pre class=body style=display:none>
+tc003-newlines.vtt had CR line endings, not mixed as the test claimed.
+
+tc003-no-newline-at-eof.vtt was converted from CR to LF, since testing
+a missing newline at eof doesn&#39;t require anything fancy before it.
+
+Mixed line endings are sufficiently covered by
+media/track/opera/track/webvtt/parsing/support/newlines.vtt
+
+BUG=318734
+R=jochen@chromium.org
+
+Review URL: https://codereview.chromium.org/65493006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162014 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162014&view=revision'><time datetime='2013-11-14' title='2013-11-14'>2013-11-14</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for HTMLEmbedElement</strong>
+            <pre class=body style=display:none>
+http://www.whatwg.org/specs/web-apps/current-work/multipage/the-iframe-element.html#htmlembedelement
+http://www.whatwg.org/specs/web-apps/current-work/multipage/obsolete.html#HTMLEmbedElement-partial
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+IE11 reflects align/type as null, and width/height as the empty string.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/72583002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162013 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162013&view=revision'><time datetime='2013-11-14' title='2013-11-14'>2013-11-14</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Create DOM exceptions in the correct context.</strong>
+            <pre class=body style=display:none>
+If access to a cross-origin property or method is allowed, but it ends
+up throwing a DOM exception, arrange for the exception to be created
+in the context of the target property/method, not that of the
+caller/accessing context.
+
+Addressed by having ExceptionState keep a creation context, which is
+then passed along when creating the wrapper for the exception object.
+
+R=haraken@chromium.org
+BUG=235223
+
+Review URL: https://codereview.chromium.org/68563003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162010 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162010&view=revision'><time datetime='2013-11-14' title='2013-11-14'>2013-11-14</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Re-enable the newlines.vtt WebVTT parsing test</strong>
+            <pre class=body style=display:none>
+With the correct newlines.vtt, the test simply passes.
+
+BUG=318734
+
+Review URL: https://codereview.chromium.org/71593002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161957 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161957&view=revision'><time datetime='2013-11-13' title='2013-11-13'>2013-11-13</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Re-import newlines.vtt with the correct (mixed) line endings</strong>
+            <pre class=body style=display:none>
+Done using svn propset svn:mime-type application/octet-stream
+and re-importing from
+https://github.com/w3c/web-platform-tests/blob/c846444243f5a24224d63750253b7a4aed6f9408/old-tests/submission/Opera/media/track/webvtt/parsing/support/newlines.vtt
+
+BUG=318734
+
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161941 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161941&view=revision'><time datetime='2013-11-13' title='2013-11-13'>2013-11-13</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Disable the newlines.vtt WebVTT parsing test</strong>
+            <pre class=body style=display:none>
+To be enabled after re-importing with the correct (mixed) line endings.
+
+BUG=318734
+
+Review URL: https://codereview.chromium.org/61793012
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161932 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161932&view=revision'><time datetime='2013-11-13' title='2013-11-13'>2013-11-13</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Minor adjustment to WebVTT tests</strong>
+            <pre class=body style=display:none>
+Do a trivial adjustment to the tc029-timings-whitespace test to make
+it robust against the spec. change that disallows --&gt; in cue text.
+
+Fix test opera/interfaces/TextTrackCue/vertical.html to it possible
+to pass it (the expected result is still FAIL), by adding a linebreak.
+
+BUG=305317
+
+Review URL: https://codereview.chromium.org/59153008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161931 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161931&view=revision'><time datetime='2013-11-13' title='2013-11-13'>2013-11-13</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>The WebVTT parsing algorithm allows empty cue text</strong>
+            <pre class=body style=display:none>
+Adjust tests:
+  tc027-empty-cue - PASS -&gt; FAIL, because opposite assumptions
+  opera/track/webvtt/parsing:newlines.vtt - one more cue (empty) observed
+  opera/interfaces/TextTrackCue/text.html - FAIL -&gt; PASS
+
+(The newlines.vtt file is truncated compared to the
+original/upstream version, so chose to update the
+expected result rather than modifying the test. Aim to
+update the testfile at a later point.)
+
+BUG=305317
+
+Review URL: https://codereview.chromium.org/62833005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161924 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161924&view=revision'><time datetime='2013-11-13' title='2013-11-13'>2013-11-13</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Enable XHR upload progress events for Workers.</strong>
+            <pre class=body style=display:none>
+The request flag recording progress event reporting wasn&#39;t been copied
+out of the worker when creating the loader on the main thread. Do so
+to have upload progress events be reported over XMLHttpRequest inside
+a Worker.
+
+R=
+BUG=173658
+
+Review URL: https://codereview.chromium.org/71433002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161923 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161923&view=revision'><time datetime='2013-11-13' title='2013-11-13'>2013-11-13</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Make metadata state local in the WebVTT parser</strong>
+            <pre class=body style=display:none>
+The members m_currentHeaderName and m_currentHeaderValue are only used
+within the scope of WebVTTParser::collectMetadataHeader, so there&#39;s no
+need to keep them in instance scope. Make them local to said method,
+and pass the value explicitly to its users.
+
+BUG=305317
+
+Review URL: https://codereview.chromium.org/65343003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161922 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161922&view=revision'><time datetime='2013-11-13' title='2013-11-13'>2013-11-13</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove executable bit from files which aren&#39;t executable</strong>
+            <pre class=body style=display:none>
+This has already been done for web-platform-tests, so we shouldn&#39;t
+get the executable bits back on future imports for those tests:
+https://github.com/w3c/web-platform-tests/commit/35c13df5fedbd68dbec5dbb5717cb2f2b2011041
+
+Done using svn propdel svn:executable and commited manually.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/68773002/
+
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161916 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161916&view=revision'><time datetime='2013-11-13' title='2013-11-13'>2013-11-13</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove executable bit from a file which isn&#39;t executable</strong>
+            <pre class=body style=display:none>
+Done using svn propdel svn:executable and commited manually.
+
+Fixing a single file first to verify that it will work.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/68773002/
+
+
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161906 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161906&view=revision'><time datetime='2013-11-13' title='2013-11-13'>2013-11-13</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Handle (numeric) indexed access of DOMStringMap.</strong>
+            <pre class=body style=display:none>
+As the set of supported property names over DOMStringMap reflects the
+attributes of an Element prefixed with &#39;data-&#39;, these naturally also
+include numeric indexes.
+
+To allow such index values to be used over DOMStringMap, extend its
+IDL definition with indexed accessors.
+
+Also address an infelicity in comparing attribute names to property
+names if the property name uses a &#34;-&#34; but isn&#39;t followed by an ASCII
+uppercase letter (e.g. &#34;a-1&#34;.)
+
+Extended test coverage to check for these variations also.
+
+R=tkent@chromium.org
+BUG=171175
+
+Review URL: https://codereview.chromium.org/63223002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161864 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161864&view=revision'><time datetime='2013-11-13' title='2013-11-13'>2013-11-13</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove MediaSourcePrivate/SourceBufferPrivate</strong>
+            <pre class=body style=display:none>
+These layers are just proxies for the Web* variants.
+
+BUG=317353
+
+Review URL: https://codereview.chromium.org/61603006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161859 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161859&view=revision'><time datetime='2013-11-12' title='2013-11-12'>2013-11-12</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Improve Blob constructor error messages.</strong>
+            <pre class=body style=display:none>
+Follow current practice of supplying the name of the constructor in
+the error message string, along with normalizing formatting and
+wording used.
+
+Also took the opportunity of simplifying how toV8Sequence() reports a
+type error: a non-sequence argument is now indicated by returning
+v8Undefined().
+
+R=ch.dumez@samsung.com
+BUG=270033
+
+Review URL: https://codereview.chromium.org/68533014
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161849 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161849&view=revision'><time datetime='2013-11-12' title='2013-11-12'>2013-11-12</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Avoid reusing XMLHttpRequest resources during document load.</strong>
+            <pre class=body style=display:none>
+The determineRevalidationPolicy() predicate decides how an existing
+cached resource can be (re)utilized upon another fetch to the same
+resource. It will allow reuse of already loaded (and loading)
+resources while a document is being loaded.
+
+Such resource reuse isn&#39;t safe to do for raw resources requested
+through XHR, as there&#39;s too much state and header information that an
+XHR request can be furnished with. Hence, we exempt raw resources and
+delegate to the standard cache control policy to decide on reuse. Like
+it would do once the document has loaded.
+
+R=japhet@chromium.org
+BUG=314433
+
+Review URL: https://codereview.chromium.org/59043006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161846 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161846&view=revision'><time datetime='2013-11-12' title='2013-11-12'>2013-11-12</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Support the &#39;lrm&#39;, &#39;rlm&#39; and &#39;nbsp&#39; entities in the WebVTTTokenizer</strong>
+            <pre class=body style=display:none>
+TEST=media/track/track-webvtt-tc022-entities.html
+BUG=314028
+
+Review URL: https://codereview.chromium.org/66503013
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161822 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161822&view=revision'><time datetime='2013-11-12' title='2013-11-12'>2013-11-12</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Length type Relative is now unused. Remove it.</strong>
+            <pre class=body style=display:none>
+BUG=259107
+
+Review URL: https://codereview.chromium.org/55843002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161809 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161809&view=revision'><time datetime='2013-11-12' title='2013-11-12'>2013-11-12</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Lift integer restriction on border-image-width and border-image-outset</strong>
+            <pre class=body style=display:none>
+border-image-{width,outset} should accept percentages, lengths,
+numbers, and auto. A number represents a multiple of the computed
+border-width, and should not be restricted to integral values.
+
+BUG=304000
+
+Review URL: https://codereview.chromium.org/54383006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161807 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161807&view=revision'><time datetime='2013-11-12' title='2013-11-12'>2013-11-12</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Rewrite BorderImageLength to not use the Relative length type</strong>
+            <pre class=body style=display:none>
+Remove the last remaining Relative length and instead store a Length
+_and_ a double value along with a type tag, a pattern also used by
+GridLength in the Flexbox code. While it increases memory usage
+slightly, getting rid of the Relative length type is deemed more
+important.
+
+BUG=259107
+
+Review URL: https://codereview.chromium.org/55833002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161802 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161802&view=revision'><time datetime='2013-11-12' title='2013-11-12'>2013-11-12</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Move WebMediaPlayer and friends to public/platform/</strong>
+            <pre class=body style=display:none>
+This is a prerequisite for eliminating the
+MediaPlayer/MediaPlayerClient layer.
+
+Minor style changes were needed to pass presubmit.
+
+BUG=310466
+
+Review URL: https://codereview.chromium.org/67083003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161792 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161792&view=revision'><time datetime='2013-11-12' title='2013-11-12'>2013-11-12</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove HTMLMediaElement::minTimeSeekable()/maxTimeSeekable()</strong>
+            <pre class=body style=display:none>
+minTimeSeekable() is completely unused, and maxTimeSeekable()
+was only used in a single place, so just inline it there.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/68183003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161785 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161785&view=revision'><time datetime='2013-11-12' title='2013-11-12'>2013-11-12</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Convert animation and renderer code to know about BorderImageLength</strong>
+            <pre class=body style=display:none>
+This propagates BorderImageLengthBox further out in the code, but
+actually converts it to an actual number or length as soon as possible
+in the animation code, and animates it as the individual type.
+
+Now we can also remove the compatibility conversion methods between
+BorderImageLengthBox and LengthBox.
+
+Also, update a couple of &#34;Weird number of spaces at line-start&#34;
+indentations in CSSPropertyAnimation.cpp to not make the new code
+inconsistent with the old wrt. indentation.
+
+BUG=259107
+
+Review URL: https://codereview.chromium.org/55813002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161715 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161715&view=revision'><time datetime='2013-11-11' title='2013-11-11'>2013-11-11</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Protect contextElement during insertAdjacentHTML call</strong>
+            <pre class=body style=display:none>
+JS event handlers may cause element to lose its last ref during
+parsing.
+
+BUG=315842
+
+Review URL: https://codereview.chromium.org/67813002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161697 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161697&view=revision'><time datetime='2013-11-10' title='2013-11-10'>2013-11-10</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove WebInbandTextTrack::Mode</strong>
+            <pre class=body style=display:none>
+It is no longer used in Chromium.
+
+BUG=315476
+
+Review URL: https://codereview.chromium.org/62333011
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161689 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161689&view=revision'><time datetime='2013-11-09' title='2013-11-09'>2013-11-09</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Replace redundant &lt;track&gt; runtime checks with asserts</strong>
+            <pre class=body style=display:none>
+The IDL as RuntimeEnabled=VideoTrack for these two cases.
+
+BUG=313287
+
+Review URL: https://codereview.chromium.org/61763017
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161661 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161661&view=revision'><time datetime='2013-11-09' title='2013-11-09'>2013-11-09</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove unneeded namespace prefix in HTMLMediaElement</strong>
+            <pre class=body style=display:none>
+This file is &#34;using namespace HTMLNames&#34;, and no other fooAttr
+specifies the namespace.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/62103009
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161650 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161650&view=revision'><time datetime='2013-11-08' title='2013-11-08'>2013-11-08</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove InbandTextTrackPrivate/InbandTextTrackPrivateClient</strong>
+            <pre class=body style=display:none>
+These interfaces were virtually identical to the Web* variants, so
+just use those directly.
+
+BUG=316172
+
+Review URL: https://codereview.chromium.org/60083011
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161632 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161632&view=revision'><time datetime='2013-11-08' title='2013-11-08'>2013-11-08</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Move WebInbandTextTrack/WebInbandTextTrackClient to public/platform/</strong>
+            <pre class=body style=display:none>
+This is to allow InbandTextTrackPrivate/InbandTextTrackPrivateClient
+to be removed, by using the Web* variants directly, and for that to
+be allowed they must reside in public/platform/.
+
+Some style changes were required to please presubmit.
+
+BUG=316172
+
+Review URL: https://codereview.chromium.org/61763010
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161626 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161626&view=revision'><time datetime='2013-11-08' title='2013-11-08'>2013-11-08</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Handle buffer boundaries in the WebVTT parser</strong>
+            <pre class=body style=display:none>
+Replace the somewhat ad-hoc collectNextLine method with a new helper
+class - BufferedLineReader - that takes care of buffering the input
+data across buffer boundaries.
+
+While redoing the line collection, also fix the handling of NULs in the
+input stream to match the spec (transform to U+FFFD).
+
+TEST=unittest:BufferedLineReader.*
+TEST=http/tests/media/track/track-webvtt-slow-loading-2.html
+BUG=231460
+
+Review URL: https://codereview.chromium.org/64303004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161624 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161624&view=revision'><time datetime='2013-11-08' title='2013-11-08'>2013-11-08</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Align HTMLAppletElement IDL with spec</strong>
+            <pre class=body style=display:none>
+http://whatwg.org/html#htmlappletelement
+
+In addition to removing TreatNullAs=NullString, align with the spec by
+making hspace/vspace unsigned long, and codebase/object URLs.
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+IE11 returns &#34;&#34; after setting width/height to null and fails all of
+the vspace/hspace reflection tests in ways not per spec.
+
+Presto doesn&#39;t reflect object as a URL, but the framework didn&#39;t
+notice that before the minor fix in nullTestElementAttribute.
+Presto also fails the vspace/hspace set tests in ways not per spec.
+
+BUG=316129, 310298
+
+Review URL: https://codereview.chromium.org/64173002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161545 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161545&view=revision'><time datetime='2013-11-07' title='2013-11-07'>2013-11-07</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for miscellaneous HTML elements</strong>
+            <pre class=body style=display:none>
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+IE11 throws an exception for all except HTMLQuoteElement.cite.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/62083003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161535 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161535&view=revision'><time datetime='2013-11-07' title='2013-11-07'>2013-11-07</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Restore old behavior where &#34;Sans&#34; was used as fallback font</strong>
+            <pre class=body style=display:none>
+https://codereview.chromium.org/31923005 changed the fallback font logic,
+it was probably not intended since it merely moved code around.
+This restores the logic so that &#34;Sans&#34; is always tried when looking for
+a fallback family.
+
+SkFontConfigInterface_direct.cpp looks for fallbacks among all
+available fonts iff &#34;Sans&#34;, &#34;Serif&#34;, &#34;Monospace&#34; or &#34;&#34; is requested.
+So it&#39;s important that at least one of those is tried.
+
+This avoids crashing the renderer process if &#34;Arial&#34; is missing on
+the system.
+
+BUG=309714
+AUTHOR=rogerj@opera.com
+TBR=eae@chromium.org
+
+Review URL: https://codereview.chromium.org/64243002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161534 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161534&view=revision'><time datetime='2013-11-07' title='2013-11-07'>2013-11-07</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Introduce BorderImageLength and BorderImageLengthBox</strong>
+            <pre class=body style=display:none>
+Getting rid of the Relative length type has been a goal for a while
+and this is step one for getting rid of it for the remaining user:
+border-image.
+
+Specifically, the &#39;border-image-width&#39; and &#39;border-image-outset&#39;
+longhand properties are the remaining users of the Relative length
+type. Relative is used to indicate that the Length doesn&#39;t contain a
+length at all, but a plain number (in this case a multiple of the
+respective computed border width).
+
+Wrap this usage within a BorderImageLength for now, to prepare for
+BorderImageLength conditionally acting as a number itself and thus making
+it possible to remove the Relative length type.
+
+To limit scope, not all use of Length as a BorderImageLength is wrapped.
+Notably parts of RenderStyle and the related animation code haven&#39;t
+been converted. For this to work there is compatibility code that goes
+from LengthBox to BorderImageLengthBox and back.
+
+No functional changes expected. To a large part covered by existing
+tests in LayoutTests/fast/borders/border-image-*.
+
+BUG=259107
+
+Review URL: https://codereview.chromium.org/55783002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161527 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161527&view=revision'><time datetime='2013-11-07' title='2013-11-07'>2013-11-07</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Add a flushing mechanism for the WebVTTParser</strong>
+            <pre class=body style=display:none>
+In the WebVTT parser there&#39;s an ad-hoc &#34;end-of-stream&#34; check for when
+a pending cue should be flushed from the parser. The condition used
+however is not reliable given multiple buffers.
+
+To rectify this, add a flush() method to WebVTTParser, and call it
+from TextTrackLoader::notifyFinished. Then let this new flush() method
+take care of flushing any pending cue from the parser.
+
+BUG=231460
+
+Review URL: https://codereview.chromium.org/59453002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161519 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161519&view=revision'><time datetime='2013-11-07' title='2013-11-07'>2013-11-07</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>XHR.abort(): no event dispatching in completed/non-started states.</strong>
+            <pre class=body style=display:none>
+Follow the spec and other implementations and only transition to an
+UNSENT state if abort() is called on request that either hasn&#39;t been
+sent or has completed. That is, no dispatching of progress events will
+be done.
+
+R=
+BUG=315470
+
+Review URL: https://codereview.chromium.org/60203010
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161515 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161515&view=revision'><time datetime='2013-11-07' title='2013-11-07'>2013-11-07</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Simplify LoadableTextTrack construction</strong>
+            <pre class=body style=display:none>
+HTMLTrackElement::parseAttribute() already sets kind, label and
+language when the corresponding attributes change, so we can create a
+TextTrack with the default values, leaving all of the logic for
+parsing kind in TextTrack::setKind().
+
+This leaves HTMLTrackElement::srclang() and label() unused, so just
+use [Reflect] in the IDL for these attributes.
+
+BUG=315510
+TEST=media/track/opera/interfaces/TextTrack/kind.html,
+     media/track/opera/interfaces/TextTrack/label.html,
+     media/track/opera/interfaces/TextTrack/language.html,
+     media/track/track-kind.html
+
+Review URL: https://codereview.chromium.org/60423008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161457 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161457&view=revision'><time datetime='2013-11-06' title='2013-11-06'>2013-11-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove the mode getter/setter for in-band text tracks</strong>
+            <pre class=body style=display:none>
+TextTrack::setMode() is virtual and overridden by InbandTextTrack to
+forward all the way down to Chromium&#39;s WebInbandTextTrackImpl, where
+it is simply stored. However, the getter is not virtual and does not
+ever retrieve the value, so all of this is elaborate dead code.
+
+Because InbandTextTrack::setMode() first called TextTrack::setMode(),
+this assymetry between getting and setting for in-band tracks didn&#39;t
+actually break anything, and the relevant tests still pass.
+
+In addition, in-band tracks should not need to know about the mode,
+they simply provide cues for Blink, whether or not they are rendered
+can be left an internal matter.
+
+The Chromium side can be removed after a Blink roll, after which
+WebInbandTextTrack::Mode can finally be removed as well.
+
+BUG=315476
+TEST=LayoutTests/media/track/opera/interfaces/TextTrack/mode.html
+
+Review URL: https://codereview.chromium.org/60203008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161456 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161456&view=revision'><time datetime='2013-11-06' title='2013-11-06'>2013-11-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for HTMLButtonElement</strong>
+            <pre class=body style=display:none>
+http://whatwg.org/html#htmlbuttonelement 
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+IE11 returns an empty string for HTMLButtonElement.type.
+
+Leave setCustomValidity until later, since it appears on several interfaces.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/59903003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161455 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161455&view=revision'><time datetime='2013-11-06' title='2013-11-06'>2013-11-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for &lt;base&gt;, &lt;body&gt; and &lt;br&gt;</strong>
+            <pre class=body style=display:none>
+http://whatwg.org/html#htmlbaseelement
+http://whatwg.org/html#HTMLBodyElement-partial
+http://whatwg.org/html#HTMLBRElement-partial
+
+Note that the spec has [TreatNullAs=EmptyString] for all HTMLBodyElement
+attributes except background.
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+IE11 throws an exception when setting HTMLBRElement.clear,
+which the spec does not allow for.
+
+Presto resolves HTMLBodyElement.background as a URL.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/60153008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161451 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161451&view=revision'><time datetime='2013-11-06' title='2013-11-06'>2013-11-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove HTMLBaseFontElement IDL and implementation</strong>
+            <pre class=body style=display:none>
+This is dead code because it doesn&#39;t appear in the GYP files and
+HTMLTagNames.in already says &#34;basefont interfaceName=HTMLElement&#34;.
+
+BUG=315480
+
+Review URL: https://codereview.chromium.org/61673002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@161449 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=161449&view=revision'><time datetime='2013-11-06' title='2013-11-06'>2013-11-06</time></a>
       
         <tr>
           <td>philipj
