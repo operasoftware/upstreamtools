@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 102,
-    Blink: 233.
+    Blink: 234.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1720,6 +1720,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for HTMLFormElement</strong>
+            <pre class=body style=display:none>
+http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#htmlformelement
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+Firefox reflects autocomplete as &#39;on&#39;, which is per spec since
+autocomplete is an enumerated attribute, but this will not be fixed in
+Blink as part of this change.
+
+IE11 throws an exception for enctype, encoding and method.
+
+Opera doesn&#39;t support autocomplete and reflects encoding as &#39;null&#39;.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/60733023
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162029 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162029&view=revision'><time datetime='2013-11-14' title='2013-11-14'>2013-11-14</time></a>
       
         <tr>
           <td>philipj
