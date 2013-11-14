@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 102,
-    Blink: 235.
+    Blink: 236.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1720,6 +1720,23 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Allocate stack item for fragment context elements once</strong>
+            <pre class=body style=display:none>
+Instead of allocating stack items for fragment context elements on
+demand, do it once when creating the fragment context and re-use the
+stack item during parsing. This avoids excessive calls to malloc when
+parsing for innerHTML.
+
+BUG=318711
+
+Review URL: https://codereview.chromium.org/68893014
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162047 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162047&view=revision'><time datetime='2013-11-14' title='2013-11-14'>2013-11-14</time></a>
       
         <tr>
           <td>philipj
