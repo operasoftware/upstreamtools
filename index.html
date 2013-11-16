@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 102,
-    Blink: 239.
+    Blink: 241.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1720,6 +1720,58 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Remove unused V8ThrowException::createDOMException() helper.</strong>
+            <pre class=body style=display:none>
+Followup minor issue from crrev.com/68563003 and remove an unused helper
+that also supplies an empty creation context.
+
+R=ch.dumez
+BUG=
+
+Review URL: https://codereview.chromium.org/70103024
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162148 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162148&view=revision'><time datetime='2013-11-16' title='2013-11-16'>2013-11-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for &lt;frame&gt;, &lt;frameset&gt; and &lt;iframe&gt;</strong>
+            <pre class=body style=display:none>
+http://www.whatwg.org/specs/web-apps/current-work/multipage/obsolete.html#htmlframeelement
+http://www.whatwg.org/specs/web-apps/current-work/multipage/obsolete.html#htmlframesetelement
+http://www.whatwg.org/specs/web-apps/current-work/multipage/the-iframe-element.html#htmliframeelement
+http://www.whatwg.org/specs/web-apps/current-work/multipage/obsolete.html#HTMLIFrameElement-partial
+
+Per spec the longDesc attribute on HTMLFrameElement and
+HTMLIFrameElement should be reflected as a URL, so make it so.
+
+HTMLIFrameElement.sandbox is readonly DOMSettableTokenList in the spec,
+so leave it with [TreatNullAs=NullString] until that is fixed.
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+IE11 throws exceptions for HTMLFrameElement.scrolling,
+HTMLIFrameElement.align and HTMLIFrameElement.scrolling, reflects
+HTMLIFrameElement.width/height as the empty string and does not support
+HTMLIFrameElement.srcdoc.
+
+Opera does not support HTMLIFrameElement.srcdoc.
+
+Note that no other browser supports the location attribute, but that has
+not been touched here.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/68503013
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162147 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162147&view=revision'><time datetime='2013-11-16' title='2013-11-16'>2013-11-16</time></a>
       
         <tr>
           <td>fs
