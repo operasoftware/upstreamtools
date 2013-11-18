@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 102,
-    Blink: 246.
+    Blink: 247.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1720,6 +1720,36 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Handle recovery on &#34;timestamp-looking&#34; lines in the WebVTT parser</strong>
+            <pre class=body style=display:none>
+When a line with a &#34;--&gt;&#34; is encountered as part of cue-text, in the
+header part or after a previous error (i.e. during &#34;bad cue&#34; processing).
+The parser is supposed to break out of the current state and try to parse
+the &#34;--&gt;&#34; line as being the start of a new cue.
+
+Updated testcases:
+
+PASS -&gt; FAIL
+tc006, tc007 and tc011 (Tested the old behavior where &#34;--&gt;&#34; was
+allowed/ignored, and blank lines were required to start a new cue.)
+
+FAIL -&gt; PASS
+opera/track/webvtt/parsing subtests nulls, header-timings, header-space,
+header-tab and arrows
+opera/interfaces/TextTrackCue/vertical.html
+
+TEST=media/track/track-webvtt-tc031-cue-recovery.html
+TEST=media/track/track-webvtt-tc032-degenerate-cues.html
+BUG=305317
+
+Review URL: https://codereview.chromium.org/75273002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162210 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162210&view=revision'><time datetime='2013-11-18' title='2013-11-18'>2013-11-18</time></a>
       
         <tr>
           <td>fs
