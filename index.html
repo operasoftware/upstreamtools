@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 102,
-    Blink: 244.
+    Blink: 246.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1720,6 +1720,39 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Don&#39;t find(&#39;:&#39;) twice in WebVTTParser::collectMetadataHeader</strong>
+            <pre class=body style=display:none>
+Since contains(&#39;:&#39;) is the equivalent of a find(&#39;:&#39;) - except it throws
+away the result - and the result might be of interest later on, just
+call find(&#39;:&#39;) once instead, and remove the call to contains(...)
+(essentially open-coding it.)
+
+BUG=305317
+
+Review URL: https://codereview.chromium.org/75233002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162202 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162202&view=revision'><time datetime='2013-11-18' title='2013-11-18'>2013-11-18</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Support the crossOrigin IDL attribute over HTMLMediaElement.</strong>
+            <pre class=body style=display:none>
+Add missing declaration of this IDL attribute + update expected test
+outcomes.
+
+R=
+BUG=173727
+
+Review URL: https://codereview.chromium.org/75083002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162200 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162200&view=revision'><time datetime='2013-11-18' title='2013-11-18'>2013-11-18</time></a>
       
         <tr>
           <td>fs
