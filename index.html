@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 102,
-    Blink: 242.
+    Blink: 244.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1720,6 +1720,60 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Simplify state handling in WebVTTTokenizer::nextToken</strong>
+            <pre class=body style=display:none>
+When the WebVTT tokenizer returns a new token, it always returns to the
+&#39;Data&#39; state - except for when encountering an opening &#39;&lt;&#39; while in the
+&#39;Data&#39; state, and having collected a non-empty text-node. In that
+particular case though, we can avoid the transition to the &#39;Tag&#39; state
+by not advancing the input, and simply return indicating a new token.
+
+With the above change, and the change to always set the FSM state to
+&#39;Data&#39;, the &#39;state&#39; argument to emitAndResumeIn() becomes redundant -
+so it can be removed. With the argument gone, rename the method to
+advanceAndEmitToken (since it no longer needs to set a state to resume
+in). Also add a new method emitToken which only returns true, and
+is currently only used as a marker.
+
+Add a (currently unused) argument to the various emitter methods in
+WebVTTTokenizer. Use this new argument to indicate what type of token
+each return statement should produce.
+
+With the annotations in place it becomes clear that - after adding
+additional &#34;ensurance&#34; to one of the instances - that the emitEndOfFile
+emitter is redundant (always emits &#34;Character&#34; tokens and always has a
+token &#34;buffered&#34; - i.e. haveBufferedCharacterToken() will return true),
+and can be replaced by a call to emitToken instead. This also means that
+WebVTTToken::makeEndOfFile and the corresponding state can be removed.
+
+BUG=319391
+
+Review URL: https://codereview.chromium.org/73813002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162198 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162198&view=revision'><time datetime='2013-11-18' title='2013-11-18'>2013-11-18</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Fix Decimal.floor() + Decimal.ceiling() for many non-integral values.</strong>
+            <pre class=body style=display:none>
+Extend the check for an integral value to consider all the digits
+being truncated, and not just the rightmost/most-significant one, when
+rounding the result towards positive and negative infinity for floor()
+and ceiling(), respectively.
+
+R=yosin,mkwst
+BUG=234323
+
+Review URL: https://codereview.chromium.org/59603006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162197 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162197&view=revision'><time datetime='2013-11-18' title='2013-11-18'>2013-11-18</time></a>
       
         <tr>
           <td>tiger
