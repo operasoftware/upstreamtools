@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 102,
-    Blink: 249.
+    Blink: 250.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1720,6 +1720,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove the logic for de-duplicating in-band text track cues</strong>
+            <pre class=body style=display:none>
+To de-duplicate cues by comparing their properties cannot work, since
+scripts can modify cues in small or big ways at any time. For example,
+the de-duplication will fail if the id has changed or if the timings
+have been slightly shifted.
+
+It must be the demuxer&#39;s responsibility to do this, e.g. by keeping
+track of the offsets for which cues have already been sourced. This need
+not consume a lot of memory, since it could record ranges of offsets.
+
+BUG=270340
+
+Review URL: https://codereview.chromium.org/74623002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162245 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162245&view=revision'><time datetime='2013-11-18' title='2013-11-18'>2013-11-18</time></a>
       
         <tr>
           <td>sigbjornf
