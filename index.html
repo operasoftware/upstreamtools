@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 102,
-    Blink: 247.
+    Blink: 248.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1720,6 +1720,22 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Move media (as in audio/video) tests to media/</strong>
+            <pre class=body style=display:none>
+fast/media/ contains media queries tests, with the exception of two
+tests, one if which was added by me. Let them live with the other
+audio/video tests and remove fast/media/ from the media watchlist.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/74783002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162216 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162216&view=revision'><time datetime='2013-11-18' title='2013-11-18'>2013-11-18</time></a>
       
         <tr>
           <td>fs
