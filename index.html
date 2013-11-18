@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 102,
-    Blink: 248.
+    Blink: 249.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1720,6 +1720,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Support full range of PreflightPolicy over WebURLLoaderOptions</strong>
+            <pre class=body style=display:none>
+Allow users of WebURLLoader to state the preflight behavior to follow
+for the request. This is done so that the user/caller can explicitly
+control when its author header set
+(http://www.w3.org/TR/cors/#author-request-headers) is empty, then no
+preflight must be performed.
+
+This puts the responsibility on the caller to adhere to CORS and not
+disable preflighting when the author set is non-empty or the request
+is over non-simple methods (http://www.w3.org/TR/cors/#simple-method )
+
+The WebURLLoaderOptions default is ConsiderPreflight.
+
+R=jochen
+BUG=173727
+
+Review URL: https://codereview.chromium.org/68173029
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162225 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162225&view=revision'><time datetime='2013-11-18' title='2013-11-18'>2013-11-18</time></a>
       
         <tr>
           <td>philipj
