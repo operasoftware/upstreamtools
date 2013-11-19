@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 102,
-    Blink: 250.
+    Blink: 252.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1720,6 +1720,43 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Move delivery of upload &#39;progress&#39; events to XMLHttpRequestUpload.</strong>
+            <pre class=body style=display:none>
+Have the XMLHttpRequestUpload object handle dispatching of its
+&#39;progress&#39; events, and at the same time keep track of the last
+progress data reported.
+
+While the latter state isn&#39;t directly made use of here, follow-on
+changes to handle &#39;progress&#39; events during XHR request errors will
+depend on having it available.
+
+R=
+BUG=315488
+
+Review URL: https://codereview.chromium.org/63033008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162254 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162254&view=revision'><time datetime='2013-11-19' title='2013-11-19'>2013-11-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Factor out delivery of throttled progress event.</strong>
+            <pre class=body style=display:none>
+To prepare for follow-on changes to progress event handling, split out
+the delivery of single XHR progress events into a separate method.
+
+R=
+BUG=315488
+
+Review URL: https://codereview.chromium.org/75103006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162253 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162253&view=revision'><time datetime='2013-11-19' title='2013-11-19'>2013-11-19</time></a>
       
         <tr>
           <td>philipj
