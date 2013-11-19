@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 102,
-    Blink: 252.
+    Blink: 253.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1720,6 +1720,35 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>XHR: separate delayed progress event flushing from dispatching of new.</strong>
+            <pre class=body style=display:none>
+The throttled delivery of progress events may defer progress event
+delivery so as to pace their dispatching down to the frequency that
+the spec suggests. When dispatching a later &#39;readystatechange&#39; event,
+if no deferred progress event was present, a new one would be created
+and dispatched. Achieving the same event sequence despite the
+lazy/deferred delivery of &#39;progress&#39; events.
+
+There are two steps involved here: the potential expedition of the
+deferred progress event and the creation &amp; delivery of a new one.
+Tease these two notions apart here by allowing only flushing of
+a deferred progress event to happen.
+
+This weaker form of flushing is needed by follow-on changes, which
+alters how these &#39;progress&#39; progress events are dispatched wrt the
+&#39;readystatechange&#39; XHR event when handling request errors and aborts.
+
+R=
+BUG=315488
+
+Review URL: https://codereview.chromium.org/62193004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162270 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162270&view=revision'><time datetime='2013-11-19' title='2013-11-19'>2013-11-19</time></a>
       
         <tr>
           <td>sigbjornf
