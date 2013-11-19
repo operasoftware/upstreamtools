@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 103,
-    Blink: 256.
+    Blink: 257.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1738,6 +1738,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Fix and enable media/track/opera/track/webvtt/parsing-cue-data/* tests</strong>
+            <pre class=body style=display:none>
+Fix up the tests in above directory - mainly by disabling the
+&#34;pretty-printed&#34; diff (which makes for very verbose *-expected files
+anyway - and can be enabled reasonably easy during debugging if needed.)
+
+The &#39;entities&#39; test is not enabled at this time because it (at least one
+of the subtests) trigger an assert.
+
+BUG=305317, 319391
+
+Review URL: https://codereview.chromium.org/61213005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162308 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162308&view=revision'><time datetime='2013-11-19' title='2013-11-19'>2013-11-19</time></a>
       
         <tr>
           <td>fs
