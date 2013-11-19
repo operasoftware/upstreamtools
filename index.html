@@ -38,7 +38,7 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 102,
+    Chromium: 103,
     Blink: 253.
   <p class=hint>Click message to expand
   
@@ -49,6 +49,24 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Do not issue preflight for crossorigin media resource loads.</strong>
+            <pre class=body style=display:none>
+Turn off preflighting when issuing requests that are CORS enabled
+fetches. The requests do not have any author headers, hence should go
+ahead without a preflighting step. CORS-enabled servers sometimes
+depend on this.
+
+R=jochen
+BUG=173727
+
+Review URL: https://codereview.chromium.org/69813010
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@235958 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=235958&view=revision'><time datetime='2013-11-19' title='2013-11-19'>2013-11-19</time></a>
       
         <tr>
           <td>philipj
