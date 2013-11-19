@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 103,
-    Blink: 255.
+    Blink: 256.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1738,6 +1738,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Replace character vectors with StringBuilders in the WebVTT tokenizer</strong>
+            <pre class=body style=display:none>
+With a goal of simplifying the state management of the
+WebVTTTokenizer/WebVTTToken pair, turn all character vectors into
+StringBuilders.
+Since the tokenizer in general deals with strings, this makes for a
+better fit in general (and at least two of the three eliminated FIXMEs
+should be able to attest to that).
+
+Also remove the local variable tagName in
+WebVTTTreeBuilder::constructTreeFromToken, which appear unused.
+
+BUG=319391
+
+Review URL: https://codereview.chromium.org/75243004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162307 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162307&view=revision'><time datetime='2013-11-19' title='2013-11-19'>2013-11-19</time></a>
       
         <tr>
           <td>tiger
