@@ -38,8 +38,8 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 103,
-    Blink: 258.
+    Chromium: 104,
+    Blink: 259.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -49,6 +49,22 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mostynb
+          <td class=message><strong>Make it possible to disable udev in the content API on linux</strong>
+            <pre class=body style=display:none>
+This is useful for embedded linux setups, which often don&#39;t include udev support.
+
+TEST=Build content_shell on linux with use_udev=0 then run ldd on output binaries to verify libudev is not listed (and is listed if built with use_udev=1 or unspecified)
+
+BUG=318315,318413
+
+Review URL: https://codereview.chromium.org/12374068
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@236204 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=236204&view=revision'><time datetime='2013-11-20' title='2013-11-20'>2013-11-20</time></a>
       
         <tr>
           <td>sigbjornf
@@ -1738,6 +1754,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>XHR: reset error flag on aborting request that restarts.</strong>
+            <pre class=body style=display:none>
+Close a small window in internal abort logic that takes care of
+repeated uses of the XHR object upon cancellation.
+
+The possibility existed that such a repeated use might reset the error
+flag, so that upon return to the outer request (the one that is
+aborting), it was left as &#39;false&#39;. Spot this and (re) set the error
+flag to &#39;true&#39;.
+
+Not a common use of XHR; added test coverage.
+
+R=
+BUG=315488
+
+Review URL: https://codereview.chromium.org/76133002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162346 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162346&view=revision'><time datetime='2013-11-20' title='2013-11-20'>2013-11-20</time></a>
       
         <tr>
           <td>sigbjornf
