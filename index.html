@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 103,
-    Blink: 257.
+    Blink: 258.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1738,6 +1738,55 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>XHR: compliant event sequencing on request errors and aborts.</strong>
+            <pre class=body style=display:none>
+Implement the event sequencing that the XHR spec now mandates for
+request errors and abort()s. For request errors over async requests,
+the following steps and sequence of events should now be dispatched:
+
+  - readyState transitions to state DONE, dispatching a
+    readystatechange event.
+
+  - The ordered event triple (progress, &lt;event type&gt;, loadend) is
+    dispatched to the upload event listeners, if any.
+
+  - The ordered event triple (progress, &lt;event type&gt;, loadend) is
+    dispatched to the regular/download event listeners.
+
+  - readyState transitions to UNSENT.
+
+where &lt;event type&gt; is one of {&#39;error&#39;, &#39;timeout&#39;, &#39;abort&#39;}.
+
+Same steps for abort(), for both sync and async requests.
+
+The required dispatching of &#39;progress&#39; here is a relatively new
+addition to the specification, late 2012.
+
+A behavioral implementation change is the fourth step of transitioning
+to UNSENT. This was previously done as step two (after dispatching
+readystatechange), an out-of-spec and incorrect quirk.
+
+For the above sequence, to allow for the delivery of
+&#39;readystatechange&#39; on transitioning to DONE, but delay the delivery of
+the final &#39;progress&#39;, we carefully only flush any deferred &#39;progress&#39;
+event before that &#39;readystatechange&#39; event, but do not issue new. That
+dispatch happens after the upload progress events have been dealt
+with.
+
+To make the correspondence clearer to the underlying spec text, the
+request error steps have been factored out into a separate method.
+
+R=tyoshino,abarth
+BUG=315488
+
+Review URL: https://codereview.chromium.org/66323004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162340 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162340&view=revision'><time datetime='2013-11-20' title='2013-11-20'>2013-11-20</time></a>
       
         <tr>
           <td>fs
