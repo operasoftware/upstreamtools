@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 104,
-    Blink: 260.
+    Blink: 261.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1754,6 +1754,51 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Defer setting type in the WebVTT tokenizer until emitting the token</strong>
+            <pre class=body style=display:none>
+Remove setting of the token type from begin* (and analog) methods
+in VTTToken, and add a new setType. Call setType from the
+token-emitting methods in VTTTokenizer. Remove ASSERTs that no
+longer apply.
+
+Because of this change, VTTTokenizer::haveBufferedCharacterToken
+can no longer return a value based on the type of token - make it return
+false always (there should never be a buffered character token - a token
+should be emitted after each and every call to nextToken that returns
+true). This also means that &#34;EOF&#34; (read: end-of-string) handling needs to
+be improved. Adopt the method from the HTML parser, that appends a segment
+with an EOF marker (a NUL) to the input, and adjust EOF handling to match
+(make sure to consume the EOF, and exit early and return false if
+encountering a EOF mark at the start of the FSM). While doing this,
+also hide the &#34;implementation detail&#34; that SegmentedString is used, by
+just passing a String to the tokenizer via the constructor.
+
+After doing the above, it becomes apparent that the EndTagOpenState is
+redundant with the EndTagState, so they can be merged. (The former state
+does not appear in the spec text.)
+
+A number of end-of-input cases are fixed:
+
+tags.html - &#34;&lt;c.&#34; now parses correctly.
+timestamp.html - &#34;&lt;00:00:00.500&#34; now parses correctly.
+
+New tests:
+
+entities.html - (A number of FAIL -&gt; PASS transitions here compared to
+               previously - due to actually setting the correct token-
+               type for content with only an entity (or something looking
+               like an entity. Also no longer triggers an assert in Debug.)
+
+BUG=319391
+
+Review URL: https://codereview.chromium.org/77553004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162373 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162373&view=revision'><time datetime='2013-11-20' title='2013-11-20'>2013-11-20</time></a>
       
         <tr>
           <td>landell
