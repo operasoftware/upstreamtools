@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 104,
-    Blink: 263.
+    Blink: 264.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1754,6 +1754,33 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Remove state-specific appendTo*/begin* methods from VTTToken</strong>
+            <pre class=body style=display:none>
+VTTToken has a number of methods that&#39;s only intended for use in
+specific states (and for specific token-types). The naming pattern is
+appendTo*. After earlier changes, most of these are simple oneliner
+wrappers that simply append to the VTTToken::m_data buffer.
+Moving towards an implementation that more closely follow (and resemble)
+the spec wording, these methods present a problem (and contribute to
+making the code unnecessarily complex).
+
+Replace all appendTo*(...) with appendToData(...), and hoist any ASSERTs
+into the calling code and simplify them where possible/reasonable.
+
+For appendTo{Class,Annotation}, doing this it becomes apparent that
+VTTToken::m_currentBuffer is redundant with m_buffer, so remove the
+former in favor of the latter.
+
+BUG=319391
+
+Review URL: https://codereview.chromium.org/78833002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162477 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162477&view=revision'><time datetime='2013-11-21' title='2013-11-21'>2013-11-21</time></a>
       
         <tr>
           <td>sigbjornf
