@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 104,
-    Blink: 261.
+    Blink: 262.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1754,6 +1754,65 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Block execution of failed &#39;crossorigin&#39; &lt;script&gt;s.</strong>
+            <pre class=body style=display:none>
+The HTML spec tells us that if a script element has a &#39;crossorigin&#39;
+attribute, a potentially CORS enabled fetch of its source URL must be
+performed:
+
+ http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html#dfnReturnLink-39
+ http://www.whatwg.org/specs/web-apps/current-work/multipage/fetching-resources.html#potentially-cors-enabled-fetch
+
+If the CORS cross-origin request status of that fetch is not a success
+due to a failed CORS resource sharing check, the implementation must
+act as if no script resource has been obtained.
+
+No such CORS check was in place for parser inserted elements, allowing
+a cross-origin CORS resource that either didn&#39;t permit the script
+access or the resource wasn&#39;t CORS enabled, to load in the presence of
+&#39;crossorigin&#39;.
+
+Address this here by interposing a CORS check prior to starting script
+execution. This (tries) to mirror how the operations are sequenced in
+the underlying spec.
+
+Specifically,
+
+  ScriptLoader::executePotentiallyCrossOriginScript()
+
+now performs the needed access check for fetched scripts _if_ the
+fetch was initiated as potentially CORS-enabled. That is, if the
+script was fetched from same-origin or the CORS check passes in the
+cross-origin case, then script execution can go ahead. If not and a
+cross-origin script, a console error message is added and an error
+event is dispatched. Script execution does not go ahead.
+
+To support the above, the ResourceFetcher::canAccess() predicate over
+resources now needs to be informed if the resource fetch was initiated
+in a potentially CORS enabled manner. If it was, the required CORS
+resource sharing check will be performed.
+
+By making the &#34;CORS enabled&#34; property of a fetch something that a
+loader keeps separate from the (potentially cached) resource, we can
+simplify the underlying structure a bit, removing the
+RequestOriginPolicy portion from the resource options.
+
+As a result, FetchRequest now instead keeps track of any origin
+restrictions of the fetch resource + the canAccess() predicate must be
+supplied with the &#34;CORS enabled&#34; setting to use when checking access
+to the actual resource.
+
+R=mkwst,abarth
+BUG=286684
+
+Review URL: https://codereview.chromium.org/47923008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162417 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162417&view=revision'><time datetime='2013-11-20' title='2013-11-20'>2013-11-20</time></a>
       
         <tr>
           <td>fs
