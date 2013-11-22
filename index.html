@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 106,
-    Blink: 267.
+    Blink: 268.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1779,6 +1779,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Have the HTMLSelectElement setter throw TypeError.</strong>
+            <pre class=body style=display:none>
+If an argument that fails to convert to &#39;HTMLOptionElement?&#39; is passed
+to the option setter/remover on HTMLSelectElement, throw TypeError.
+
+This follows WebIDL and Gecko. Other implementations don&#39;t throw, but
+ignore such operations.
+
+R=
+BUG=270033
+
+Review URL: https://codereview.chromium.org/83743002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162559 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162559&view=revision'><time datetime='2013-11-22' title='2013-11-22'>2013-11-22</time></a>
       
         <tr>
           <td>fs
