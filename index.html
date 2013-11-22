@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 105,
-    Blink: 266.
+    Blink: 267.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1767,6 +1767,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Turn VTTToken into an immutable object</strong>
+            <pre class=body style=display:none>
+With the data-handling in VTTTokenizer::nextToken simplified to use
+fewer entrypoints on VTTToken, it becomes easier to simply remove
+intermediate buffers/StringBuilders from the token type, and instead
+store them on the stack of nextToken().
+
+Remove appendToData() from VTTToken, and replace it with append()s
+on a local StringBuilder instead. Treat addNew{Class,Annotation}
+similarly. The &#34;new&#34; StringBuilders are named as the corresponding
+&#34;strings&#34; in the spec text.
+
+This means that VTTToken can be turned into a &#34;data blob&#34; that is
+created by the tokenizer and passed back to the caller.
+
+BUG=319391
+
+Review URL: https://codereview.chromium.org/81113003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162548 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162548&view=revision'><time datetime='2013-11-22' title='2013-11-22'>2013-11-22</time></a>
       
         <tr>
           <td>davve
