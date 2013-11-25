@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 106,
-    Blink: 268.
+    Blink: 269.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1779,6 +1779,33 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Correctly resolve empty script URLs in Worker constructors.</strong>
+            <pre class=body style=display:none>
+When creating workers via thei constructors, the spec permits empty
+strings to be given to the URL resolution step,
+
+  http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicated-workers-and-the-worker-interface
+  (or http://dev.w3.org/html5/workers/#dedicated-workers-and-the-worker-interface .)
+  [ The shared worker case just below has the same resolution step. ]
+
+Resolving such an URL should result in the base URL being
+returned. Align with this, and drop restriction on the string having
+to be non-empty. This mirrors how Gecko, Trident and Presto behaves.
+
+It also aligns with how importScripts() behaves when resolving its
+arguments.
+
+R=
+BUG=301575
+
+Review URL: https://codereview.chromium.org/84423002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162624 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162624&view=revision'><time datetime='2013-11-25' title='2013-11-25'>2013-11-25</time></a>
       
         <tr>
           <td>sigbjornf
