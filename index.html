@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 106,
-    Blink: 271.
+    Blink: 272.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1779,6 +1779,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Improve fidelity of XHR progress events.</strong>
+            <pre class=body style=display:none>
+When dispatching XMLHttpRequest progress events, for upload as well as
+normal/download, supply the required &#39;loaded&#39; and &#39;total&#39; properties
+on the events, if available, for better reporting to scripts.
+
+Previously just left as 0. The new behavior mirrors what other
+implementations are doing.
+
+R=tyoshino,abarth
+BUG=318727
+
+Review URL: https://codereview.chromium.org/79953004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162689 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162689&view=revision'><time datetime='2013-11-26' title='2013-11-26'>2013-11-26</time></a>
       
         <tr>
           <td>davve
