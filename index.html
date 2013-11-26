@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 106,
-    Blink: 270.
+    Blink: 271.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1779,6 +1779,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Factor out common BorderImageLength code in CSSToStyleMap</strong>
+            <pre class=body style=display:none>
+CSSToStyleMap::mapNinePieceImageQuad had a lot of repetitive code for
+BorderImageLength. Factor it out to a static function.
+
+Afterwards, the default constructor for BorderImageLengthBox gets used
+less so make the code more explicit by removing the default
+constructor entirely. Instead add a constructor that initializes the
+members to a specific value.
+
+Since this revealed one error in a code comment (the initial value for
+-webkit-mask-box-image-width is &#39;auto&#39; not zero) fix that as well.
+
+BUG=322014
+
+Review URL: https://codereview.chromium.org/81123002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162646 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162646&view=revision'><time datetime='2013-11-26' title='2013-11-26'>2013-11-26</time></a>
       
         <tr>
           <td>davve
