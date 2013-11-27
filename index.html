@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 106,
-    Blink: 272.
+    Blink: 273.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1779,6 +1779,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Derive the step base for an input element as (now) specified.</strong>
+            <pre class=body style=display:none>
+Determine the step base for an input element per spec,
+
+  http://www.whatwg.org/specs/web-apps/current-work/#concept-input-min-zero
+
+That is, consult the &#39;value&#39; attribute if &#39;min&#39; is not present, and
+then fallback to the default step base for the input type if that
+isn&#39;t present either. Previously, &#39;value&#39; was not considered.
+
+R=
+BUG=257369
+
+Review URL: https://codereview.chromium.org/83413002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162733 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162733&view=revision'><time datetime='2013-11-27' title='2013-11-27'>2013-11-27</time></a>
       
         <tr>
           <td>sigbjornf
