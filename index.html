@@ -38,7 +38,7 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 106,
+    Chromium: 107,
     Blink: 273.
   <p class=hint>Click message to expand
   
@@ -49,6 +49,25 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mostynb
+          <td class=message><strong>DPCHECK known conditions when we guess false in CurrentProcessHasOpenDirectories</strong>
+            <pre class=body style=display:none>
+openat(AT_FDCWD, &#34;/proc/self/fd&#34;, ...) can fail if we have been chrooted
+(eg into /proc/self/fdinfo) without directory listing permissions on the
+new root dir (hence EACCES).  And even if we did have this permission,
+/proc wouldn&#39;t exist (hence ENOENT).
+
+TEST=Make a debug build or a release build with dcheck_always_on=1 and verify that this DPCHECK does not fail.
+
+BUG=314985
+
+Review URL: https://codereview.chromium.org/59763014
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@237766 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=237766&view=revision'><time datetime='2013-11-28' title='2013-11-28'>2013-11-28</time></a>
       
         <tr>
           <td>mostynb
