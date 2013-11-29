@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 107,
-    Blink: 280.
+    Blink: 281.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1798,6 +1798,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Fix BiDi paragraph embedding level resolution for VTTCue</strong>
+            <pre class=body style=display:none>
+Iterate over code points rather than (UTF-16) code units.
+Make determineTextDirection side-effect free and local to the compilation
+unit.
+Re-uses the BidiResolver to do the actual work, and removes the
+concatenation of the textnodes.
+
+BUG=322051
+
+Review URL: https://codereview.chromium.org/81133002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162920 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162920&view=revision'><time datetime='2013-11-29' title='2013-11-29'>2013-11-29</time></a>
       
         <tr>
           <td>fs
