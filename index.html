@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 107,
-    Blink: 276.
+    Blink: 277.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1798,6 +1798,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Switch custom XMLHttpRequest bindings over to new-style ExceptionState.</strong>
+            <pre class=body style=display:none>
+Configure incoming ExceptionState with the calling context instead of
+detailing at the point where the exception is raised.
+
+To support throwing context-sensitive TypeErrors, extend
+ExceptionState::throwTypeError() to also embellish its incoming
+messages.
+
+R=mkwst
+BUG=270033
+
+Review URL: https://codereview.chromium.org/96793002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162909 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162909&view=revision'><time datetime='2013-11-29' title='2013-11-29'>2013-11-29</time></a>
       
         <tr>
           <td>sigbjornf
