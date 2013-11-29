@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 107,
-    Blink: 274.
+    Blink: 276.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1798,6 +1798,37 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Switch HTMLCanvasElement over to new-style ExceptionState.</strong>
+            <pre class=body style=display:none>
+Set up the calling context on toDataURL()&#39;s incoming ExceptionState
+instead, for tidier generation of a possible SecurityError exception.
+
+To support throwing context-sensitive SecurityErrors, extend
+throwSecurityError() to also embellish its incoming messages.
+
+R=
+BUG=270033
+
+Review URL: https://codereview.chromium.org/96203003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162887 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162887&view=revision'><time datetime='2013-11-29' title='2013-11-29'>2013-11-29</time></a>
+      
+        <tr>
+          <td>sigbjorn
+          <td class=message><strong>Avoid silly crash in ContextFeatures::urlDidChange</strong>
+            <pre class=body style=display:none>
+BUG=294180
+
+Review URL: https://codereview.chromium.org/75383002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162884 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162884&view=revision'><time datetime='2013-11-29' title='2013-11-29'>2013-11-29</time></a>
       
         <tr>
           <td>sigbjornf
