@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 107,
-    Blink: 277.
+    Blink: 280.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1798,6 +1798,55 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Fix corner-cases for WebVTT tokenizer escape handling</strong>
+            <pre class=body style=display:none>
+Handle cases such as &#34;&amp;&lt;&#34;, &#34;&amp;&amp;&#34;, &#34;&amp;&#34; followed by non-alphanumeric
+characters (and similar variations).
+
+Fix test tc022 which assumed that a single &#34;&amp;&#34; would be ignored.
+
+TEST=media/track/opera/track/webvtt/parsing-cue-data/tests/entities.html
+BUG=321139
+
+Review URL: https://codereview.chromium.org/97103002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162918 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162918&view=revision'><time datetime='2013-11-29' title='2013-11-29'>2013-11-29</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Fix tag closing issues in the WebVTT tree builder</strong>
+            <pre class=body style=display:none>
+An end tag &lt;/foo&gt; that does not match the currently open element should
+be dropped.
+
+An exception to the above however, is the &lt;/ruby&gt; end tag which also
+closes any currently open &lt;rt&gt;.
+
+BUG=321038
+
+Review URL: https://codereview.chromium.org/96933004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162917 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162917&view=revision'><time datetime='2013-11-29' title='2013-11-29'>2013-11-29</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Handle surrogates in BidiResolver::determineParagraphDirectionality</strong>
+            <pre class=body style=display:none>
+TEST=unittest:BidiResolver.ParagraphDirectionSurrogates
+BUG=322051
+
+Review URL: https://codereview.chromium.org/83443002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162915 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162915&view=revision'><time datetime='2013-11-29' title='2013-11-29'>2013-11-29</time></a>
       
         <tr>
           <td>sigbjornf
