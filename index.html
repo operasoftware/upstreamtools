@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 107,
-    Blink: 285.
+    Blink: 288.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1798,6 +1798,78 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for HTMLImageElement</strong>
+            <pre class=body style=display:none>
+http://whatwg.org/html#htmlimageelement
+http://whatwg.org/html#HTMLImageElement-partial
+
+Take the opportunity to move standardized attributes into the main
+block and sort it.
+
+The border attribute has [TreatNullAs=EmptyString] in the spec.
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+Firefox and Opera do not reflect lowsrc as a URL, and do not support
+srcset.
+
+IE throws an exception for align and does not support srcset.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/98833002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162990 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162990&view=revision'><time datetime='2013-12-02' title='2013-12-02'>2013-12-02</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for HTMLHRElement</strong>
+            <pre class=body style=display:none>
+http://whatwg.org/html#HTMLHRElement-partial
+
+Also add the missing color attribute.
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+IE throws an exception for align and reflects color/size/width as
+the empty string.
+
+Opera does not support the color attribute.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/98723003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162989 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162989&view=revision'><time datetime='2013-12-02' title='2013-12-02'>2013-12-02</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Make HTMLOptionsCollection report TypeErrors.</strong>
+            <pre class=body style=display:none>
+Switch exceptions to throw TypeError instead of TypeMismatchError when
+handling incorrectly typed values over HTMLOptionsCollection methods
+and accessors. This aligns behavior with WebIDL, Gecko and Trident.
+
+(Change also includes a drive-by fix to the TextTrackCue constructor
+error message.)
+
+R=mkwst
+BUG=270033
+
+Review URL: https://codereview.chromium.org/98783003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162988 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162988&view=revision'><time datetime='2013-12-02' title='2013-12-02'>2013-12-02</time></a>
       
         <tr>
           <td>fs
