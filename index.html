@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 107,
-    Blink: 284.
+    Blink: 285.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1798,6 +1798,23 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>WebVTT only allows &lt;rt&gt; if the currently innermost node is &lt;ruby&gt;</strong>
+            <pre class=body style=display:none>
+If &lt;rt&gt; is encountered and the current node isn&#39;t &lt;ruby&gt;, then drop the
+&lt;rt&gt;.
+
+Fixes tc023 to not expect an &lt;rt&gt;.
+
+BUG=321038
+
+Review URL: https://codereview.chromium.org/98783005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162985 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162985&view=revision'><time datetime='2013-12-02' title='2013-12-02'>2013-12-02</time></a>
       
         <tr>
           <td>davve
