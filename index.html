@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 107,
-    Blink: 294.
+    Blink: 297.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1798,6 +1798,61 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for various HTML elements</strong>
+            <pre class=body style=display:none>
+http://whatwg.org/html#htmllabelelement
+http://whatwg.org/html#HTMLLegendElement-partial
+http://whatwg.org/html#htmlmapelement
+http://whatwg.org/html#htmloptgroupelement
+http://whatwg.org/html#htmlstyleelement
+http://whatwg.org/html#htmltitleelement
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+IE throws an exception for HTMLLegendElement.align.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/99103002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@163009 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=163009&view=revision'><time datetime='2013-12-02' title='2013-12-02'>2013-12-02</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for HTMLParamElement</strong>
+            <pre class=body style=display:none>
+http://whatwg.org/html#htmlparamelement
+http://whatwg.org/html#HTMLParamElement-partial
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/99353002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@163007 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=163007&view=revision'><time datetime='2013-12-02' title='2013-12-02'>2013-12-02</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message><strong>Add UseCounter for SVGLocatable.{nearest,farthest}ViewportElement</strong>
+            <pre class=body style=display:none>
+BUG=
+R=pdr,schenney
+
+Review URL: https://codereview.chromium.org/98573003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@163005 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=163005&view=revision'><time datetime='2013-12-02' title='2013-12-02'>2013-12-02</time></a>
       
         <tr>
           <td>philipj
