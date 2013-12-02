@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 107,
-    Blink: 288.
+    Blink: 291.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1798,6 +1798,71 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for HTMLLinkElement</strong>
+            <pre class=body style=display:none>
+http://whatwg.org/html#htmllinkelement
+http://whatwg.org/html#HTMLLinkElement-partial
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/98313003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162996 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162996&view=revision'><time datetime='2013-12-02' title='2013-12-02'>2013-12-02</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for HTMLKeygenElement</strong>
+            <pre class=body style=display:none>
+http://whatwg.org/html#htmlkeygenelement
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+Firefox and IE support none of the attributes and thus fail all tests.
+
+Opera reflects keytype as the empty string.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/98543003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162995 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162995&view=revision'><time datetime='2013-12-02' title='2013-12-02'>2013-12-02</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Cleanups for VTTTokenizer</strong>
+            <pre class=body style=display:none>
+Get rid of VTTTokenizer::m_token, and hence remove the need to play
+games with pointers to the resulting token, since the token is now
+produced at the end of VTTTokenizer::nextToken. This renders the reset()
+method empty (and it wasn&#39;t previously used outside of VTTTokenizer), so
+remove it.
+
+Make a local, tailored, version of the ADVANCE_TO macro to get rid of the
+redundant check of advance(). This in turn allows removing the (now
+useless) part of the scaffolding which is haveBufferedCharacterToken(),
+as well as turning VTTTokenizer::m_state into the local &#39;state&#39; and
+moving the definition of the state enumeration into the cpp-file.
+This also means the state defintions can be moved from the header-file,
+so do that as well.
+
+BUG=319391
+
+Review URL: https://codereview.chromium.org/98763004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162994 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162994&view=revision'><time datetime='2013-12-02' title='2013-12-02'>2013-12-02</time></a>
       
         <tr>
           <td>philipj
