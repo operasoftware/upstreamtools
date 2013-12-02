@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 107,
-    Blink: 281.
+    Blink: 282.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1798,6 +1798,38 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Remove structured cloning restriction over accessor properties.</strong>
+            <pre class=body style=display:none>
+The structured cloning algorithm,
+
+ http://www.whatwg.org/specs/web-apps/current-work/#safe-passing-of-structured-data
+
+treats accessor and non-accessor properties the same on an object
+being cloned. For a short two month period, the spec&#39;ed algorithm
+imposed a stringent restriction on the cloning of accessor properties
+-- no accessor property value could appear within/inside the value of
+another accessor property. If any did, their values were mapped to
+&#39;null&#39;; see
+
+ https://www.w3.org/Bugs/Public/show_bug.cgi?id=12101
+
+The structured cloning implementation provided this; a change that was
+subsequently reverted and generalized to allow accessor properties to
+be cloned without any side conditions on how they are nested. Follow
+up on that spec change here and do the same. Other depth controls on
+nested object structures are still effective.
+
+R=mkwst
+BUG=278883
+
+Review URL: https://codereview.chromium.org/97883002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162969 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162969&view=revision'><time datetime='2013-12-02' title='2013-12-02'>2013-12-02</time></a>
       
         <tr>
           <td>fs
