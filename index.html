@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 107,
-    Blink: 282.
+    Blink: 284.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1798,6 +1798,41 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Get rid of extra NULL check when indexing CSSStyleDeclaration</strong>
+            <pre class=body style=display:none>
+In order to minimize the performance impact of added UseCounters in
+https://codereview.chromium.org/47923015, remove one superfluous NULL
+check. We always NULL check propInfo before use anyway.
+
+BUG=313864
+
+Review URL: https://codereview.chromium.org/98793002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162983 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162983&view=revision'><time datetime='2013-12-02' title='2013-12-02'>2013-12-02</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Avoid using non-standard property names in test</strong>
+            <pre class=body style=display:none>
+For bug 290055, two use counters was added for how CSSStyleDeclaration
+is indexed. One is using non-standard literal names for the CSS
+properties, i.e using elt.style[&#39;font-size&#39;] instead of
+elt.style[&#39;fontSize&#39;]. The other one is using &#39;float&#39; instead of
+&#39;cssFloat&#39;. Avoid measuring the use counter code in performance tests
+by using the standard names instead.
+
+BUG=313864
+
+Review URL: https://codereview.chromium.org/98733002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@162981 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=162981&view=revision'><time datetime='2013-12-02' title='2013-12-02'>2013-12-02</time></a>
       
         <tr>
           <td>sigbjornf
