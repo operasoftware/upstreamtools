@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 110,
-    Blink: 314.
+    Blink: 315.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1846,6 +1846,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add a UseCounter for HTMLHtmlElement.manifest</strong>
+            <pre class=body style=display:none>
+http://whatwg.org/html#attr-html-manifest
+
+The spec says &#34;The manifest attribute only has an effect during the
+early stages of document load. Changing the attribute dynamically thus
+has no effect (and thus, no DOM API is provided for this attribute).&#34;
+
+Added in &lt;http://trac.webkit.org/changeset/66327&gt; and confirmed by
+Darin Adler to be unintentional.
+
+BUG=325420
+
+Review URL: https://codereview.chromium.org/100953004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@163170 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=163170&view=revision'><time datetime='2013-12-04' title='2013-12-04'>2013-12-04</time></a>
       
         <tr>
           <td>ed
