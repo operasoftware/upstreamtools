@@ -38,7 +38,7 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 112,
+    Chromium: 114,
     Blink: 331.
   <p class=hint>Click message to expand
   
@@ -49,6 +49,37 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>joaoe
+          <td class=message><strong>Zip utf-8 file names with encoding bit set.</strong>
+            <pre class=body style=display:none>
+This commit sets the &#39;locale&#39; bit in global directory of a zip which
+means that the file name was written in UTF-8. Chromium always writes
+and reads zips as UTF-8 so it is not a problem per se but other, more
+zip compliant, programs see packed files with wrong paths if this bit
+is not set.
+
+BUG=325737
+
+Review URL: https://codereview.chromium.org/94093003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@239216 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=239216&view=revision'><time datetime='2013-12-06' title='2013-12-06'>2013-12-06</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message><strong>OpenMAX requires armv7 or greater</strong>
+            <pre class=body style=display:none>
+BUG=234135
+NOTRY=true
+
+Review URL: https://codereview.chromium.org/106443003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@239214 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=239214&view=revision'><time datetime='2013-12-06' title='2013-12-06'>2013-12-06</time></a>
       
         <tr>
           <td>tmoniuszko
