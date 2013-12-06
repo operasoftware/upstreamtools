@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 114,
-    Blink: 331.
+    Blink: 332.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1907,6 +1907,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Make arguments to Node methods non-optional</strong>
+            <pre class=body style=display:none>
+http://dom.spec.whatwg.org/#interface-node
+
+Only touch methods defined by the above spec.
+
+The added missing-arguments test passes in Firefox Nightly, IE11
+Release Preview and Opera 12.16, so there ought to be fairly little
+Web content depending on the old behavior.
+
+BUG=325922
+
+Review URL: https://codereview.chromium.org/103613005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@163349 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=163349&view=revision'><time datetime='2013-12-06' title='2013-12-06'>2013-12-06</time></a>
       
         <tr>
           <td>philipj
