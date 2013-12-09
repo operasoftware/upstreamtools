@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 115,
-    Blink: 336.
+    Blink: 337.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1920,6 +1920,22 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>ed
+          <td class=message><strong>Add beginEvent/endEvent listeners via the onbegin/onend attributes.</strong>
+            <pre class=body style=display:none>
+SVG2 spec: https://svgwg.org/svg2-draft/single-page.html#script-OnBeginEventAttribute
+SVG 1.1 spec: http://www.w3.org/TR/SVG11/script.html#OnBeginEventAttribute
+
+R=pdr@chromium.org, schenney@chromium.org, dschulze@chromium.org, fmalita@chromium.org
+BUG=116595
+
+Review URL: https://codereview.chromium.org/106053007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@163419 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=163419&view=revision'><time datetime='2013-12-09' title='2013-12-09'>2013-12-09</time></a>
       
         <tr>
           <td>sigbjornf
