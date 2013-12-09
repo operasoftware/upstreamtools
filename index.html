@@ -38,7 +38,7 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 114,
+    Chromium: 115,
     Blink: 335.
   <p class=hint>Click message to expand
   
@@ -49,6 +49,19 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>joaoe
+          <td class=message><strong>Remove IO allowed assert in GetTempDir()</strong>
+            <pre class=body style=display:none>
+GetTempDir() does not do file IO, therefore it can be used from other threads
+to create file paths. No other platform implementation has that assert.
+
+Review URL: https://codereview.chromium.org/76633002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@239428 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=239428&view=revision'><time datetime='2013-12-09' title='2013-12-09'>2013-12-09</time></a>
       
         <tr>
           <td>joaoe
