@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 115,
-    Blink: 337.
+    Blink: 338.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1920,6 +1920,42 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for CSS*Rule</strong>
+            <pre class=body style=display:none>
+http://dev.w3.org/csswg/cssom/#csscharsetrule
+http://dev.w3.org/csswg/css-animations/#csskeyframesrule
+http://dev.w3.org/csswg/cssom/#csspagerule
+http://dev.w3.org/csswg/cssom/#cssrule
+http://dev.w3.org/csswg/cssom/#cssstylerule
+
+The tests for the updated properties pass in Firefox Nightly, IE11
+Release Preview and Opera 12.16, with these exceptions:
+
+Firefox reflects CSSCharsetRule.encoding, CSSKeyframesRule.name, and
+CSSPageRule.selectorText as null, and ignores setting
+CSSStyleRule.selectorText.
+
+IE doesn&#39;t support CSSCharsetRule, throws an exception when setting
+CSSPageRule.selectorText and ignores setting
+CSSStyleRule.selectorText.
+
+Opera throws an exception when setting CSSRule.cssText, ignores
+setting CSSCharsetRule.encoding and throws an exception when setting
+CSSPageRule.selectorText.
+
+This is not very impressive, but since there is no attribute for which
+all the other browsers agree, just going with the spec seems sound.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/107313004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@163424 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=163424&view=revision'><time datetime='2013-12-09' title='2013-12-09'>2013-12-09</time></a>
       
         <tr>
           <td>ed
