@@ -38,8 +38,8 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 115,
-    Blink: 338.
+    Chromium: 116,
+    Blink: 339.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -49,6 +49,22 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>joaoe
+          <td class=message><strong>Followup for bug when zipping a folder with non-ascii chars in its name.</strong>
+            <pre class=body style=display:none>
+The commit adds a unit test and replaces the substr with the more
+stylistically adequate FilePath::AppendRelativePath.
+
+BUG=248115
+TEST=ZipTest.ZipNonASCIIDir
+
+Review URL: https://codereview.chromium.org/106663006
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@239474 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=239474&view=revision'><time datetime='2013-12-09' title='2013-12-09'>2013-12-09</time></a>
       
         <tr>
           <td>joaoe
@@ -1920,6 +1936,41 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>ed
+          <td class=message><strong>Add pointer-events=&#34;bounding-box&#34; for svg content.</strong>
+            <pre class=body style=display:none>
+The &#39;bounding-box&#39; keyword in &#39;pointer-events&#39; enables
+svg authors to leave out certain invisible &#39;hit-area&#39;
+elements, and instead get them generated based on the
+bounding box. This is convenient for example if one wants
+multiline text in svg to respond to mouse events over the
+entire region it covers. Another common use-case is
+groups, which are container elements. These elements
+currently are not possible to target directly, since
+they only get events through bubbling from their
+children.
+
+This patch makes container elements targetable if one
+specifies &#39;pointer-events: bounding-box&#39; on them (either
+as an svg presentation attribute or in css).
+
+The &#39;bounding-box&#39; keyword is specified in SVG2, 
+https://svgwg.org/svg2-draft/interact.html#PointerEventsProp. 
+
+Note: The keyword was called &#39;boundingbox&#39; in SVG Tiny 1.2,
+http://www.w3.org/TR/SVGTiny12/interact.html#PointerEventsProperty,
+but it was renamed to be more in sync with CSS syntax in general.
+
+R=pdr
+BUG=
+
+Review URL: https://codereview.chromium.org/45733010
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@163425 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=163425&view=revision'><time datetime='2013-12-09' title='2013-12-09'>2013-12-09</time></a>
       
         <tr>
           <td>philipj
