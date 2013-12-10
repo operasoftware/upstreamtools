@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 117,
-    Blink: 345.
+    Blink: 346.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1956,6 +1956,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Generate a bit less code to handle failed arity checks.</strong>
+            <pre class=body style=display:none>
+If a failed argument count check is in the context of an &#39;extended&#39;
+ExceptionState object, then throw the required TypeError using it
+instead. This saves having to duplicate the information it already
+contains, generating a bit less code overall.
+
+R=mkwst@chromium.org
+BUG=270033
+
+Review URL: https://codereview.chromium.org/105693002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@163527 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=163527&view=revision'><time datetime='2013-12-10' title='2013-12-10'>2013-12-10</time></a>
       
         <tr>
           <td>sigbjornf
