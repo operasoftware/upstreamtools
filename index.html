@@ -38,7 +38,7 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 117,
+    Chromium: 118,
     Blink: 350.
   <p class=hint>Click message to expand
   
@@ -49,6 +49,21 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add missing argument to Element.setAttribute() calls</strong>
+            <pre class=body style=display:none>
+&#34;Make arguments to Element methods non-optional&#34; was
+reverted in Blink because these tests began failing.
+
+BUG=325922
+
+Review URL: https://codereview.chromium.org/111833002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@239999 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=239999&view=revision'><time datetime='2013-12-11' title='2013-12-11'>2013-12-11</time></a>
       
         <tr>
           <td>mostynb
