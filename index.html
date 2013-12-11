@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 117,
-    Blink: 349.
+    Blink: 350.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1956,6 +1956,23 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Factor out common StepRange construction code.</strong>
+            <pre class=body style=display:none>
+Provide an InputType helper method for creating a StepRange given the
+default values to use. Use it for all InputTypes that have a step
+range bar Range.
+
+R=
+BUG=257369
+
+Review URL: https://codereview.chromium.org/108513007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@163656 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=163656&view=revision'><time datetime='2013-12-11' title='2013-12-11'>2013-12-11</time></a>
       
         <tr>
           <td>philipj
