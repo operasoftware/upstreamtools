@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 119,
-    Blink: 358.
+    Blink: 359.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -1983,6 +1983,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Add missing FileReader argument typechecking.</strong>
+            <pre class=body style=display:none>
+If the supplied argument to the readAs*() methods is not a Blob, throw
+the required TypeError.
+
+Also, improve the error message used when signalling attempts to
+concurrently read from the same FileReader object.
+
+R=
+BUG=223762
+TEST=fast/files/file-reader-methods-illegal-arguments
+
+Review URL: https://codereview.chromium.org/114953006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@163944 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=163944&view=revision'><time datetime='2013-12-16' title='2013-12-16'>2013-12-16</time></a>
       
         <tr>
           <td>sigbjornf
