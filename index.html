@@ -38,7 +38,7 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 120,
+    Chromium: 121,
     Blink: 360.
   <p class=hint>Click message to expand
   
@@ -49,6 +49,27 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>joaoe
+          <td class=message><strong>Preserve modification timestamp when zipping files.</strong>
+            <pre class=body style=display:none>
+Files packaged in a zip archive now have their last modification date
+and time set. When unzipping the files, the output file&#39;s last
+modification time is also set (if the time in the zip file is not valid,
+the output&#39;s file time is not set to prevent the original bug causing
+files to have dates set to 1980).
+
+Also fixed some cpplint issues.
+
+BUG=326988
+TEST=ZipTest.ZipTimeStamp
+
+Review URL: https://codereview.chromium.org/99333019
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@241278 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=241278&view=revision'><time datetime='2013-12-17' title='2013-12-17'>2013-12-17</time></a>
       
         <tr>
           <td>mostynb
