@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 121,
-    Blink: 360.
+    Blink: 361.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2019,6 +2019,23 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Compute source/destination rectangles in FEComponentTransfer::applySkia</strong>
+            <pre class=body style=display:none>
+When applying the filtering operation, care must be taken to use the
+proper rectangle from the input efffect/primitive to adjust for a
+potential difference in the filter primitive subregion.
+
+TEST=svg/filters/feComponentTransfer-subregion.svg
+BUG=327693
+
+Review URL: https://codereview.chromium.org/112053007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164019 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164019&view=revision'><time datetime='2013-12-17' title='2013-12-17'>2013-12-17</time></a>
       
         <tr>
           <td>sigbjornf
