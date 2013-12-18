@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 122,
-    Blink: 362.
+    Blink: 365.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2036,6 +2036,86 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Add UseCounter for initMessageEvent (including prefixed version.)</strong>
+            <pre class=body style=display:none>
+Compile some data on whether these init*Event() methods can indeed be
+retired.
+
+R=
+BUG=311332
+
+Review URL: https://codereview.chromium.org/112583005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164098 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164098&view=revision'><time datetime='2013-12-18' title='2013-12-18'>2013-12-18</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Split out common parsing code for Position/Size VTT cue settings</strong>
+            <pre class=body style=display:none>
+While in the vicinity, also reposition the braces for the cases in
+the switch.
+
+BUG=305317
+
+Review URL: https://codereview.chromium.org/118263002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164095 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164095&view=revision'><time datetime='2013-12-18' title='2013-12-18'>2013-12-18</time></a>
+      
+        <tr>
+          <td>tiger
+          <td class=message><strong>This review merges the two existing page serializers, WebPageSerializerImpl and</strong>
+            <pre class=body style=display:none>PageSerializer, into one, PageSerializer. In addition to this it moves all
+the old tests from WebPageNewSerializerTest and WebPageSerializerTest to the
+PageSerializerTest structure and splits out one test for MHTML into a new
+MHTMLTest file.
+
+Saving as &#39;Webpage, Complete&#39;, &#39;Webpage, HTML Only&#39; and as MHTML when the
+&#39;Save Page as MHTML&#39; flag is enabled now uses the same code, and should thus
+have the same feature set. Meaning that both modes now should be a bit better.
+
+Detailed list of changes:
+
+- PageSerializerTest: Prepare for more DTD test
+- PageSerializerTest: Remove now unneccesary input image test
+- PageSerializerTest: Remove unused WebPageSerializer/Impl code
+- PageSerializerTest: Move data URI morph test
+- PageSerializerTest: Move data URI test
+- PageSerializerTest: Move namespace test
+- PageSerializerTest: Move SVG Image test
+- MHTMLTest: Move MHTML specific test to own test file
+- PageSerializerTest: Delete duplicate XML header test
+- PageSerializerTest: Move blank frame test
+- PageSerializerTest: Move CSS test
+- PageSerializerTest: Add frameset/frame test
+- PageSerializerTest: Move old iframe test
+- PageSerializerTest: Move old elements test
+- Use PageSerizer for saving web pages
+- PageSerializerTest: Test for rewriting links
+- PageSerializer: Add rewrite link accumulator
+- PageSerializer: Serialize images in iframes/frames src
+- PageSerializer: XHTML fix for meta tags
+- PageSerializer: Add presentation CSS
+- PageSerializer: Rename out parameter
+
+BUG=328354
+R=abarth@chromium.org
+
+Committed: https://src.chromium.org/viewvc/blink?view=rev&amp;revision=162155
+
+Committed: https://src.chromium.org/viewvc/blink?view=rev&amp;revision=162294
+
+Review URL: https://codereview.chromium.org/68613003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164094 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164094&view=revision'><time datetime='2013-12-18' title='2013-12-18'>2013-12-18</time></a>
       
         <tr>
           <td>sigbjornf
