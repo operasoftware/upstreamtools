@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 122,
-    Blink: 367.
+    Blink: 368.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2036,6 +2036,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Cancel load event on a failed image resource fetch.</strong>
+            <pre class=body style=display:none>
+If the image loader is notified of a resource that finished loading
+with an error, make sure the pending load event is cancelled and an
+error event is dispatched in its stead.
+
+R=
+BUG=324417
+TEST=http/tests/misc/image-onerror-no-load-event
+
+Review URL: https://codereview.chromium.org/113633005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164111 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164111&view=revision'><time datetime='2013-12-18' title='2013-12-18'>2013-12-18</time></a>
       
         <tr>
           <td>sigbjornf
