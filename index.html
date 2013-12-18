@@ -38,7 +38,7 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 121,
+    Chromium: 122,
     Blink: 362.
   <p class=hint>Click message to expand
   
@@ -49,6 +49,23 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>tiger
+          <td class=message><strong>Disable three DomSerializerTests in preperation of page serializer merge</strong>
+            <pre class=body style=display:none>
+This CL fixes my mistake in https://codereview.chromium.org/115163002/ where
+I prepended the tests with &#39;DISABLE_&#39; instead of &#39;DISABLED_&#39;. It also disables
+one additional test that will not work due to the merge.
+
+R=jochen
+BUG=328354
+
+Review URL: https://codereview.chromium.org/106023004
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@241545 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=241545&view=revision'><time datetime='2013-12-18' title='2013-12-18'>2013-12-18</time></a>
       
         <tr>
           <td>joaoe
