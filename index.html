@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 122,
-    Blink: 366.
+    Blink: 367.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2036,6 +2036,51 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Structured cloning: improve DataCloneError reporting.</strong>
+            <pre class=body style=display:none>
+The spec tells us that cloning of neutered objects should throw
+DataCloneError:
+
+   http://www.whatwg.org/specs/web-apps/current-work/#safe-passing-of-structured-data
+
+And if an attempt, like in the above, to re-transfer a neutered object
+is made, DataCloneError should also be thrown:
+
+  http://www.whatwg.org/specs/web-apps/current-work/#dom-window-postmessage
+  http://www.whatwg.org/specs/web-apps/current-work/#dom-messageport-postmessage
+
+The implementation used InvalidStateError instead.
+
+Switch to throwing DataCloneError in SerializedScriptValue, both
+during the handling of transferables and the actual cloning step. Hand
+in hand with that switch away from the older InvalidStateError,
+improve the quality of the error messages that go with the failed
+cloning operations. i.e.,
+
+ * SerializedScriptValue::create() now takes an ExceptionState for
+   reporting exceptions. This allows context (e.g., what postMessage()
+   that is attempting to clone) to be included in the error message.
+
+   (As a result, removed the old method for signalling errors via a
+   bool reference.)
+
+ * Rephrase the unmarshalling/extraction of transferable arrays to
+   also be reported over an incoming ExceptionState.
+
+ * Make the error messages emitted by MessagePort.postMessage() a
+   little bit more consistent.
+
+R=mkwst@chromium.org,dslomov@chromium.org
+BUG=327994
+
+Review URL: https://codereview.chromium.org/114363002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164106 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164106&view=revision'><time datetime='2013-12-18' title='2013-12-18'>2013-12-18</time></a>
       
         <tr>
           <td>fs
