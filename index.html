@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 124,
-    Blink: 371.
+    Blink: 372.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2065,6 +2065,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Handle &#34;url(...) none&#34; and &#34;url(...) currentColor&#34; SVG paint specs</strong>
+            <pre class=body style=display:none>
+Consider all paint types with a URI in paintingResourceFromSVGPaint -
+URI_NONE, URI_CURRENTCOLOR and URI_RGBCOLOR_ICCCOLOR were previously
+not considered. (The last one, URI_RGBCOLOR_ICCCOLOR, will never appear
+out of the parser.)
+Add parsing support for the URI_CURRENTCOLOR type, since it&#39;s trivial.
+
+TEST=svg/custom/fill-fallback-{none,currentcolor-{1,2}}.svg
+BUG=162547
+
+Review URL: https://codereview.chromium.org/108303009
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164200 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164200&view=revision'><time datetime='2013-12-19' title='2013-12-19'>2013-12-19</time></a>
       
         <tr>
           <td>sigbjornf
