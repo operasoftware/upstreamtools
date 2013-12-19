@@ -38,7 +38,7 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 122,
+    Chromium: 123,
     Blink: 368.
   <p class=hint>Click message to expand
   
@@ -49,6 +49,23 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>johannesa
+          <td class=message><strong>Fixes duplicate listing of third party libraries in credits</strong>
+            <pre class=body style=display:none>
+The party license generator can return duplicate paths when a path is both
+defined in ADDITIONAL_PATHS and found through the recursive scan. This patch
+makes sure an additional path is not reported multiple times if it has
+already been found.
+
+BUG=329448
+
+Review URL: https://codereview.chromium.org/114723009
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@241834 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=241834&view=revision'><time datetime='2013-12-19' title='2013-12-19'>2013-12-19</time></a>
       
         <tr>
           <td>tiger
