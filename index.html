@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 125,
-    Blink: 373.
+    Blink: 374.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2084,6 +2084,33 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Remove children of title node before updating</strong>
+            <pre class=body style=display:none>
+http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document.title
+
+Extra care must be taken because of mutation events, which may cause
+just about anything to happen including m_titleElement to be removed
+itself when removing its children (see
+
+LayoutTests/fast/dom/document-set-title-mutation-crash.html
+
+for a good example). So make sure to again check m_titleElement before
+actually setting the new title text.
+
+Also update a related code comment that had rotted a bit.
+
+Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=28864
+
+BUG=330140
+
+Review URL: https://codereview.chromium.org/107513013
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164228 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164228&view=revision'><time datetime='2013-12-20' title='2013-12-20'>2013-12-20</time></a>
       
         <tr>
           <td>sigbjornf
