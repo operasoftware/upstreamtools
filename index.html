@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 125,
-    Blink: 372.
+    Blink: 373.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2084,6 +2084,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Support for json media types as (non-image) mime types.</strong>
+            <pre class=body style=display:none>
+Consider mime types with a JSON media type (*) just like
+&#34;application/json&#34; is; i.e., rendered as text content. Similarly for
+devtools, have such mime types be equally previewable. Also addressed
+a smaller bug which made non-XHR loaded resources with text mime types
+(but no charset supplied in the response) to not be previewable.
+
+Added inspector tests to verify that such mime types are indeed
+previewed using the JSON viewer.
+
+* - &#34;application/&lt;something&gt;+json&#34;, http://tools.ietf.org/html/rfc6839#section-3.1
+
+R=tyoshino@chromium.org,pfeldman@chromium.org,vsevik@chromium.org
+BUG=278568
+
+Review URL: https://codereview.chromium.org/94893003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164220 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164220&view=revision'><time datetime='2013-12-20' title='2013-12-20'>2013-12-20</time></a>
       
         <tr>
           <td>fs
