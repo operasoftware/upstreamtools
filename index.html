@@ -38,7 +38,7 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 124,
+    Chromium: 125,
     Blink: 372.
   <p class=hint>Click message to expand
   
@@ -49,6 +49,25 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Recognize json media types as (non-image) mime types.</strong>
+            <pre class=body style=display:none>
+Extend the IsSupportedNonImageMimeType() predicate to also
+recognize the JSON media types (&#34;application/&lt;something&gt;+json&#34;)
+( http://tools.ietf.org/html/rfc6839#section-3.1 )
+
+Note that the 6839 RFC text allows the use of any toplevel type, not just &#34;application/&#34;. No known uses outside of application/  however, hence we limit ourselves for now.
+
+R=
+BUG=278568
+
+Review URL: https://codereview.chromium.org/97913002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@242008 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=242008&view=revision'><time datetime='2013-12-20' title='2013-12-20'>2013-12-20</time></a>
       
         <tr>
           <td>tmoniuszko
