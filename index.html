@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 127,
-    Blink: 375.
+    Blink: 376.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2111,6 +2111,22 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Add ExceptionState checks in Document::createElement*() methods.</strong>
+            <pre class=body style=display:none>
+Check if nested createElement() / createElementNS() calls have
+reported exceptions and return early if so. Missing in two cases.
+
+R=
+BUG=
+
+Review URL: https://codereview.chromium.org/112353004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164239 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164239&view=revision'><time datetime='2013-12-20' title='2013-12-20'>2013-12-20</time></a>
       
         <tr>
           <td>sigbjornf
