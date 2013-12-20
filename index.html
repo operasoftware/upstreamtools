@@ -38,8 +38,8 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 126,
-    Blink: 374.
+    Chromium: 127,
+    Blink: 375.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -49,6 +49,18 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mostynb
+          <td class=message><strong>skip neon code in libwebp when neon is explicitly unavailable</strong>
+            <pre class=body style=display:none>
+This patch makes it possible to build libwebp without runtime neon detection/usage.
+
+Review URL: https://codereview.chromium.org/95873002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@242079 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=242079&view=revision'><time datetime='2013-12-20' title='2013-12-20'>2013-12-20</time></a>
       
         <tr>
           <td>tmoniuszko
@@ -2099,6 +2111,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Have HTMLFormElement&#39;s named getter return a RadioNodeList.</strong>
+            <pre class=body style=display:none>
+The getter for HTMLFormElement is now required to return a
+RadioNodeList if multiple form elements match,
+
+ http://www.whatwg.org/specs/web-apps/current-work/#dom-form-nameditem
+
+Provide this, with the extra wrinkle of having to support a live
+RadioNodeList over only &lt;img&gt; elements if no &#39;listed elements&#39; match
+the given ID/name.
+
+R=esprehn@chromium.org,tkent@chromium.org
+BUG=315851
+TEST=fast/forms/form-radio-node-list
+TEST=fast/forms/form-radio-img-node-list
+
+Review URL: https://codereview.chromium.org/119063002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164232 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164232&view=revision'><time datetime='2013-12-20' title='2013-12-20'>2013-12-20</time></a>
       
         <tr>
           <td>davve
