@@ -38,8 +38,8 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 128,
-    Blink: 377.
+    Chromium: 129,
+    Blink: 378.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -49,6 +49,21 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mostynb
+          <td class=message><strong>wrap stray switches::kDisableWebRtcHWEncoding in ifdefs</strong>
+            <pre class=body style=display:none>
+Followup from https://codereview.chromium.org/74563002
+
+TEST=Build with enable_webrtc=0
+BUG=313115
+
+Review URL: https://codereview.chromium.org/115063004
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@242794 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=242794&view=revision'><time datetime='2014-01-02' title='2014-01-02'>2014-01-02</time></a>
       
         <tr>
           <td>mostynb
@@ -2123,6 +2138,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mostynb
+          <td class=message><strong>depend on fontconfig for linux rather than x11</strong>
+            <pre class=body style=display:none>
+https://codereview.chromium.org/99103006 moved WebFontInfo.cpp from
+core to platform.  In core fontconfig is enabled if OS==&#34;linux&#34;,
+but in platform it is enabled if use_x11==1.  In most setups this
+works because the headers are in the same base directory, but if
+that&#39;s not the case the build will fail.
+
+To fix this, I think platform should just depend on fontconfig if
+OS==&#34;linux&#34;.
+
+BUG=303332
+
+Review URL: https://codereview.chromium.org/122653004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164428 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164428&view=revision'><time datetime='2014-01-02' title='2014-01-02'>2014-01-02</time></a>
       
         <tr>
           <td>davve
