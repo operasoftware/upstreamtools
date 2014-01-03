@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 129,
-    Blink: 378.
+    Blink: 379.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2138,6 +2138,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>MIME type predicates and case-insensitive matching.</strong>
+            <pre class=body style=display:none>
+The registered type portion of a MIME type must be compared
+case-insensitively for equality. Make all Blink-side predicates (e.g.,
+is*MIMEType()) do such equality testing.
+
+If the equality testing delegates to external platform predicates,
+then ensure that the MIME type is first translated to lower case.
+(This is due to the net/base/ MIME type predicates assuming
+lower-cased input.)
+
+The downstream benefit of this is that we can let go of various
+explicit lower case conversions before invoking these predicates.
+
+R=jochen
+BUG=
+
+Review URL: https://codereview.chromium.org/122743002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164453 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164453&view=revision'><time datetime='2014-01-03' title='2014-01-03'>2014-01-03</time></a>
       
         <tr>
           <td>mostynb
