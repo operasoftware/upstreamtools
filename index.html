@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 129,
-    Blink: 379.
+    Blink: 380.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2138,6 +2138,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Support IDL attributes limited to only known values.</strong>
+            <pre class=body style=display:none>
+Provide the required binding layer support for IDL attributes that
+reflect an enumerated content attribute that is limited to a set of
+known values:
+
+ http://www.whatwg.org/specs/web-apps/current-work/#limited-to-only-known-values
+
+That is, have the getter for such attributes check with respect to the
+known value set and perform the required filtering + canonicalization
+of the value returned.
+
+R=haraken
+BUG=331695
+
+Review URL: https://codereview.chromium.org/124763002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164509 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164509&view=revision'><time datetime='2014-01-06' title='2014-01-06'>2014-01-06</time></a>
       
         <tr>
           <td>sigbjornf
