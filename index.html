@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 129,
-    Blink: 384.
+    Blink: 385.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2138,6 +2138,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Reset SVGAnimationElement values animation state on attribute changes</strong>
+            <pre class=body style=display:none>
+If the animation element is moved in the DOM, and it is a &#39;values&#39;
+animation, then m_lastValuesAnimation{From,To} would not be reset, which
+could mean that if the current from/to values matched those prior to the
+move (reinsertion), calculateFromAndtoValues would not be called, and
+the SVGAnimateElement::m_{from,to}Type values would not be initialized,
+and hence cause a crash when trying to compute the animated value.
+
+BUG=329822
+
+Review URL: https://codereview.chromium.org/107083007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164599 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164599&view=revision'><time datetime='2014-01-07' title='2014-01-07'>2014-01-07</time></a>
       
         <tr>
           <td>davve
