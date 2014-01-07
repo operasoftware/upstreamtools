@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 129,
-    Blink: 380.
+    Blink: 381.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2138,6 +2138,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Add the SharedWorker.workerStart property for high resolution timers.</strong>
+            <pre class=body style=display:none>
+Update the Worker implementation of the high resolution timer spec
+(v2), supporting the workerStart attribute which provides the
+difference between the time origins of a shared worker and the
+document it is accessed from
+
+ https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/HighResolutionTime2/Overview.html#sec-worker-start
+
+R=tonyg,abarth
+BUG=169318
+
+Review URL: https://codereview.chromium.org/111743007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164535 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164535&view=revision'><time datetime='2014-01-07' title='2014-01-07'>2014-01-07</time></a>
       
         <tr>
           <td>sigbjornf
