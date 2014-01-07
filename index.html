@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 129,
-    Blink: 383.
+    Blink: 384.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2138,6 +2138,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Don&#39;t set document.title when there is no &lt;head&gt;</strong>
+            <pre class=body style=display:none>
+Align setting document.title with
+
+http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document.title
+
+a bit closer by refusing to update the document title when there is no
+head element.
+
+BUG=330165
+
+Review URL: https://codereview.chromium.org/98373012
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164582 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164582&view=revision'><time datetime='2014-01-07' title='2014-01-07'>2014-01-07</time></a>
       
         <tr>
           <td>sigbjornf
