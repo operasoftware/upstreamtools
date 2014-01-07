@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 129,
-    Blink: 381.
+    Blink: 383.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2138,6 +2138,57 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Support missing and invalid defaults for reflected attributes.</strong>
+            <pre class=body style=display:none>
+Some enumerated attributes have a designated state if the underlying
+attribute value is either missing or in an invalid state. That state
+should be observable for reflected IDL attributes on getting, hence
+add support for controlling what values to use for these attribute
+states:
+
+  [ReflectMissing=missingValue]
+  [ReflectInvalid=invalidValue]
+
+The attributes only have an interpretation for limited DOMString
+attributes that use [ReflectOnly=&lt;list&gt;]. The missing/invalid value
+defaults must appear in the ReflectOnly list.
+
+R=
+BUG=331694
+
+Review URL: https://codereview.chromium.org/98033003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164579 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164579&view=revision'><time datetime='2014-01-07' title='2014-01-07'>2014-01-07</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Improve handling of failed integer type conversions.</strong>
+            <pre class=body style=display:none>
+Change over the V8Binding methods for converting to integer types
+(to*Int*()) to take an ExceptionState argument instead of using a
+bool reference argument to indicate success/failure.
+
+Improve the exception messages from failed type conversion as a
+result; adjust the binding code generator to emit compatible calls and
+exception propagation.
+
+Reworked some of the error reporting in the WebGL custom binding code
+while switching over; more informative exception messages will now
+flow.
+
+R=jsbell,nbarth,haraken
+BUG=
+
+Review URL: https://codereview.chromium.org/121113004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164568 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164568&view=revision'><time datetime='2014-01-07' title='2014-01-07'>2014-01-07</time></a>
       
         <tr>
           <td>sigbjornf
