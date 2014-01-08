@@ -38,7 +38,7 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 129,
+    Chromium: 130,
     Blink: 386.
   <p class=hint>Click message to expand
   
@@ -49,6 +49,19 @@ h1 {
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>joaoe
+          <td class=message><strong>Added a new overload of gfx::Image::CreateFrom1xPNGBytes</strong>
+            <pre class=body style=display:none>
+... that accepts a RefCountedMemory. This saves some buffer copying in
+many places, specially welcome with big images.
+
+Review URL: https://codereview.chromium.org/78903003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@243492 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=243492&view=revision'><time datetime='2014-01-08' title='2014-01-08'>2014-01-08</time></a>
       
         <tr>
           <td>mostynb
