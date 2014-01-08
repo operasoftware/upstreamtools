@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 131,
-    Blink: 387.
+    Blink: 388.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2166,6 +2166,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>ed
+          <td class=message><strong>Remove support for the externalResourcesRequired attribute.</strong>
+            <pre class=body style=display:none>
+Intent: https://groups.google.com/a/chromium.org/forum/#!searchin/blink-dev/intent$20to$20remove/blink-dev/cyBqba-FxQU/fL208UQx3sEJ
+
+Changes in behavior:
+
+1. Load events should only be dispatched to elements that have some actual external content to load and to the outermost svg element.
+2. Scripts should be killed/not executed if the svg is not xml wellformed.
+3. Load events on elements that have external resources to fetch will not be dispatched until that resource is ready for use, similar to how externalResourcesRequired=&#34;true&#34; used to work.
+
+BUG=332066
+
+Review URL: https://codereview.chromium.org/62083002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164692 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164692&view=revision'><time datetime='2014-01-08' title='2014-01-08'>2014-01-08</time></a>
       
         <tr>
           <td>fs
