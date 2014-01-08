@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 129,
-    Blink: 385.
+    Blink: 386.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2138,6 +2138,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Gracefully handle &lt;meta http-equiv name content&gt; elements.</strong>
+            <pre class=body style=display:none>
+If presented with a &lt;meta&gt; element having both a &#39;name&#39; and
+&#39;http-equiv&#39; attribute, try interpreting the &#39;name&#39; attribute first
+before _also_ considering &#39;http-equiv&#39;. The specification requires
+that at most one of these attributes to be used, but authors don&#39;t
+always keep their side of the bargain.
+
+This simply reinstates previous behavior, something that regressed in
+https://codereview.chromium.org/25728006/ (it ignores &#39;http-equiv&#39; if
+&#39;name&#39; is supplied, even if the latter is set to some unknown value.)
+
+R=
+BUG=332090
+
+Review URL: https://codereview.chromium.org/126313002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164642 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164642&view=revision'><time datetime='2014-01-08' title='2014-01-08'>2014-01-08</time></a>
       
         <tr>
           <td>fs
