@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 131,
-    Blink: 388.
+    Blink: 390.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2166,6 +2166,78 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Empty reflected attributes and string literals in extended attributes.</strong>
+            <pre class=body style=display:none>
+Encoding the CORS setting attribute
+
+  http://www.whatwg.org/specs/web-apps/current-work/#cors-settings-attribute
+
+as a reflected attribute exposed a missing piece in our reflected
+attribute handling: attributes that are empty (no value) can
+separately be mapped to an attribute state. Upon reflection via its
+IDL attribute, that state must then be mapped to its canonical
+value/keyword.
+
+Support the expression of this through the setting of
+[ReflectEmpty=&#34;value&#34;].
+
+Separately, but also induced by CORS attributes, an attribute value
+may contain non-identifier characters (as defined by WebIDL), which
+makes identifiers not a perfect fit for specifying these reflected
+attribute values (the use of &#34;-&#34; being the direct problem for CORS
+attribute values.)
+
+To address, extended attributes can now take string literals on their
+right hand sides (e.g., [Attr=&#34;B&#34;|&#34;C&#34;|&#34;D&#34;].) Attribute value lists
+provided with [ReflectOnly=&lt;list&gt;] can then contain the wider range of
+characters.
+
+To go with that, the [ReflectEmpty], [ReflectMissing] and
+[ReflectInvalid] attributes can also be given string literals on their
+right hand side, e.g.,
+
+  [ReflectEmpty=&#34;Value1&#34;, ReflectInvalid=&#34;Value2&#34;]
+
+The string literal must match one of the values in the [ReflectOnly]
+list.
+
+R=haraken,nbarth
+BUG=331694
+
+Review URL: https://codereview.chromium.org/127903002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164776 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164776&view=revision'><time datetime='2014-01-09' title='2014-01-09'>2014-01-09</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Introduce VTTScanner - a parser helper for various VTT parsing needs</strong>
+            <pre class=body style=display:none>
+Add a new helper class - VTTScanner - with the aim of performing less
+explicit splitting/reallocation of strings (best case, none at all) and
+have less explicit index boundary checks.
+
+To allow this new scheme to interact and work side-by-side with the
+old &lt;String, position&gt; scheme, also add a wrapper VTTLegacyScanner
+which allows state to be imported and exported based on scope.
+
+Start converting code to the new scheme by modifying
+VTTParser::collectTimingsAndSettings and VTTParser::collectTimeStamp to
+use this helper.
+
+TEST=unittests:VTTScanner.*
+TEST=Existing VTT cue settings parsing tests (various in media/track/*)
+BUG=305317
+
+Review URL: https://codereview.chromium.org/119143002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164775 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164775&view=revision'><time datetime='2014-01-09' title='2014-01-09'>2014-01-09</time></a>
       
         <tr>
           <td>ed
