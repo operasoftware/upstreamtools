@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 131,
-    Blink: 390.
+    Blink: 391.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2166,6 +2166,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Inhibit title updates when removing children before setting new value</strong>
+            <pre class=body style=display:none>
+In &lt;https://codereview.chromium.org/107513013&gt; children to &lt;title&gt;
+were removed before setting the new title child. This caused one extra
+title change notification to the empty string before the new value was
+set.
+
+Avoid the extra notification by ignoring title updates when children
+of HTMLTitleElement change until the final appendChild with the new
+text node.
+
+Also make sure to add a child list mutation scope for the update so
+that both the removal and addition ends up in the same mutation. Add
+test for this.
+
+BUG=331351
+
+Review URL: https://codereview.chromium.org/128603002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164789 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164789&view=revision'><time datetime='2014-01-09' title='2014-01-09'>2014-01-09</time></a>
       
         <tr>
           <td>sigbjornf
