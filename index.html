@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 131,
-    Blink: 392.
+    Blink: 393.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2166,6 +2166,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Schedule GC of document resources when loading data URLs</strong>
+            <pre class=body style=display:none>
+If a page loads a large number of data URLs, without any intervening loads
+of other resources, ResourceFetcher::m_documentResources will hold
+references to the data URL Resources, without attempting to remove (&#34;GC&#34;)
+them.
+Scheduling a GC of Resources after having created a data URI Resource to
+prevent accumulation.
+
+BUG=309543
+
+Review URL: https://codereview.chromium.org/133013006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164879 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164879&view=revision'><time datetime='2014-01-10' title='2014-01-10'>2014-01-10</time></a>
       
         <tr>
           <td>davve
