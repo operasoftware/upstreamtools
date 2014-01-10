@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 131,
-    Blink: 391.
+    Blink: 392.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2166,6 +2166,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Teach mapFill{X,Y}Position about initial values to individual background layers</strong>
+            <pre class=body style=display:none>
+In &lt;https://codereview.chromium.org/35303002&gt;, it was falsely assumed
+that the initial values for background-position-{x,y} only came from
+the property as a whole, ignoring that the initial value must be taken
+into account *for each layer* too. Otherwise we will leak background
+positions from one layer to the next, causing the positioning bug the
+reporter found.
+
+This is a partial revert of r160243 along with an added js test.
+
+BUG=327307
+
+Review URL: https://codereview.chromium.org/128203003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164877 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164877&view=revision'><time datetime='2014-01-10' title='2014-01-10'>2014-01-10</time></a>
       
         <tr>
           <td>davve
