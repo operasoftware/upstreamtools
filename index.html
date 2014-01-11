@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 131,
-    Blink: 394.
+    Blink: 395.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2166,6 +2166,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Align SameSizeAsFillLayer with FillLayer</strong>
+            <pre class=body style=display:none>
+After http://crrev.com/35303002/ added a bit in FillLayer, it was
+discovered that SameSizeAsFillLayer was slightly out-of-date (by 11
+bits). Remove ambition to track the number of used bits in each bit
+field since it easily goes out-of-date and doesn&#39;t serve a useful
+purpose.
+
+BUG=304721
+
+Review URL: https://codereview.chromium.org/37223002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164932 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164932&view=revision'><time datetime='2014-01-11' title='2014-01-11'>2014-01-11</time></a>
       
         <tr>
           <td>fs
