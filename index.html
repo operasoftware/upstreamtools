@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 132,
-    Blink: 396.
+    Blink: 398.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2178,6 +2178,44 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Make arguments to Element methods non-optional (except setAttribute)</strong>
+            <pre class=body style=display:none>
+This partially re-lands &lt;https://codereview.chromium.org/105883012/&gt;,
+which was reverted in &lt;https://codereview.chromium.org/120373003&gt; because
+making the second argument to setAttribute broke Twitter.
+
+The second argument to setAttribute is left optional, making it
+non-optional will be attempted again separately.
+
+BUG=325922
+
+Review URL: https://codereview.chromium.org/133683004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164971 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164971&view=revision'><time datetime='2014-01-13' title='2014-01-13'>2014-01-13</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Revert &#34;Revert &#34;Implement Element.matches(selectors)&#34;&#34;</strong>
+            <pre class=body style=display:none>
+This re-lands &lt;https://codereview.chromium.org/106983004&gt;, which was
+reverted in &lt;https://codereview.chromium.org/103303005&gt;.
+
+The root bug causing the revert was fixed in Polymer in
+&lt;https://github.com/Polymer/ShadowDOM/pull/332&gt; and reached Chromium in
+&lt;https://codereview.chromium.org/98583008&gt;.
+
+BUG=326652
+
+Review URL: https://codereview.chromium.org/133643006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164970 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164970&view=revision'><time datetime='2014-01-13' title='2014-01-13'>2014-01-13</time></a>
       
         <tr>
           <td>fs
