@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 131,
-    Blink: 395.
+    Blink: 396.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2166,6 +2166,21 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Use VTTScanner for VTT cue settings parsing</strong>
+            <pre class=body style=display:none>
+Transcribe VTTCue::parseSettings (and helpers) into using VTTScanner
+to perform the parsing of cue settings.
+
+BUG=305317
+
+Review URL: https://codereview.chromium.org/134153002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@164955 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=164955&view=revision'><time datetime='2014-01-13' title='2014-01-13'>2014-01-13</time></a>
       
         <tr>
           <td>davve
