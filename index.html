@@ -39,7 +39,7 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     Chromium: 132,
-    Blink: 402.
+    Blink: 403.
   <p class=hint>Click message to expand
   
     <section class="chromium">
@@ -2178,6 +2178,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Move onresize from just Window to Window and elements</strong>
+            <pre class=body style=display:none>
+The resize event was added to HTMLMediaElement in http://crbug.com/328140
+
+Add a trailing newline to some files to work around http://crbug.com/307023
+
+Also sync with the list of properties in the latest spec revision.
+
+BUG=330953
+
+Review URL: https://codereview.chromium.org/136593002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165057 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165057&view=revision'><time datetime='2014-01-14' title='2014-01-14'>2014-01-14</time></a>
       
         <tr>
           <td>sigbjornf
