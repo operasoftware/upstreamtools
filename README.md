@@ -7,6 +7,11 @@ upstreamed code to the Chromium project from Opera.
 Getting started
 ---------------
 
+Get the source:
+
+    git clone https://github.com/operasoftware/upstreamtools
+    cd upstreamtools
+
 Install the requirements (possibly inside a virtualenv):
 
     pip install -r requirements.txt
