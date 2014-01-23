@@ -1,45 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<style>
-table { width: 100%; }
-td { vertical-align: top; }
-th { text-align: left; }
-a { color: #900; transition: 0.4s color; }
-a:visited { color: #755; }
-a:hover { color: #f00; }
-.body { white-space: pre-wrap; }
-.message strong { cursor: default; }
-
-main {
- box-shadow: 0 0 80px -20px rgba(0,0,0,0.5);
- display: block;
- margin: 20px auto;
- max-width: 960px;
- padding: 20px;
-}
-h1 {
- margin-top: 0;
- text-align: center;
-}
-.hint {
- color: #666;
- font-size: 0.8em;
-}
-
-.col-author { width: 160px; }
-.col-when { width: 130px; }
-</style>
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    {{ projects[0].name }}: {{ projects[0].log|length }},
-    {{ projects[1].name }}: {{ projects[1].log|length }},
-    {{ projects[2].name }}: {{ projects[2].log|length }}.
+    <a href="#{{ projects[0].name|lower|e }}">{{ projects[0].name }}</a>: {{ projects[0].log|length }},
+    <a href="#{{ projects[1].name|lower|e }}">{{ projects[1].name }}</a>: {{ projects[1].log|length }},
+    <a href="#{{ projects[2].name|lower|e }}">{{ projects[2].name }}</a>: {{ projects[2].log|length }}.
   <p class=hint>Click message to expand
   {% for project in projects %}
-    <section id="{{ project.name|lower }}" class="{{ project.name|lower }}">
-      <h2>{{ project.name }}</h2>
+    <section id="{{ project.name|lower|e }}" class="{{ project.name|lower|e }}">
+      <h2>{{ project.name|e }}</h2>
       <table>
       <colgroup class=col-author>
       <colgroup class=col-message>
@@ -47,28 +18,16 @@ h1 {
       <tr><th>Author <th>Message <th>When
       {% for c in project.log %}
         <tr>
-          <td>{{ c.author_stripped }}
-          <td class=message><strong>{{ c.subject|e }}</strong>
-            <pre class=body style=display:none>{{ c.body|e }}</pre>
-          <td><a href='{{ c.viewvc }}'><time datetime='{{ c.date }}' title='{{ c.date }}'>{{ c.date }}</time></a>
+          <td>{{ c.author_stripped|e }}
+          <td class=message>
+            <details>
+              <summary>{{ c.subject|e }}</summary>
+              <pre class=body>{{ c.body|e }}</pre>
+            </details>
+          <td><a href="{{ c.viewvc|e }}"><time datetime="{{ c.date|e }}">{{ c.date|e }}</time></a>
       {% endfor %}
       </table>
     </section>
   {% endfor %}
-<main>
-
-  <script>
-    var messages = document.querySelectorAll('.message');
-    for (var i=0; i<messages.length; i++)
-    {
-      messages[i].addEventListener('click', function()
-      {
-        body = this.querySelector('.body');
-        if (body.style.display == 'none')
-            body.style.display = 'block';
-        else
-            body.style.display = 'none';
-      });
-    }
-  </script>
+</main>
 {% endblock %}
