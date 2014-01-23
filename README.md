@@ -29,7 +29,7 @@ Generate the file:
 Updating the overview
 ---------------------
 
-Update the git checkouts.
+Update the Git checkouts.
 
     for p in chromium.blink chromium.src v8; do git --git-dir=$p.git fetch; done
 
