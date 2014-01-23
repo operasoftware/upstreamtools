@@ -38,17 +38,105 @@ h1 {
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    Chromium: 132,
-    Blink: 403.
+    Chromium: 137,
+    Blink: 450,
+    v8: 11.
   <p class=hint>Click message to expand
   
-    <section class="chromium">
+    <section id="chromium" class="chromium">
       <h2>Chromium</h2>
       <table>
       <colgroup class=col-author>
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>tmoniuszko
+          <td class=message><strong>Missing comma in event_utils_win.cc</strong>
+            <pre class=body style=display:none>
+BUG=
+
+Review URL: https://codereview.chromium.org/143003003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@246323 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=246323&view=revision'><time datetime='2014-01-22' title='2014-01-22'>2014-01-22</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message><strong>Support relative file paths in FilePathToFileURL().</strong>
+            <pre class=body style=display:none>
+This makes it possible for content_shell to resolve relative file paths
+on the command line and turn them into proper startup URLs.
+
+BUG=336416
+
+Review URL: https://codereview.chromium.org/137233006
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@246278 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=246278&view=revision'><time datetime='2014-01-22' title='2014-01-22'>2014-01-22</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove implementations of WebMediaPlayer::supportsFullscreen()</strong>
+            <pre class=body style=display:none>
+WebMediaPlayer::supportsFullscreen() was removed in Blink r165243.
+
+BUG=334985
+
+Review URL: https://codereview.chromium.org/142273002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@246127 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=246127&view=revision'><time datetime='2014-01-21' title='2014-01-21'>2014-01-21</time></a>
+      
+        <tr>
+          <td>mpawlowski
+          <td class=message><strong>Fixing Firefox 21+ password import</strong>
+            <pre class=body style=display:none>
+Firefox 21 changed the directory layout within Firefox.app.
+Some libs and content were moved from Firefox.app/Content/MacOS to
+Firefox.app/Content/MacOS/browser, and this new location was
+read as app_path_ by the importer. However, libnss3.dylib is still
+in Firefox.app/Content/MacOS.
+
+Changing utils to set app_path_ based on compatibility.ini&#39;s
+LastPlatformDir (which always has Firefox.app/Content/MacOS)
+instead of LastAppDir (which was changed to
+Firefox.app/Content/MacOS/browser).
+
+&#39;searchplugins&#39; subdir was moved into the new &#39;browser&#39; subdir
+so search engine importing code has to be adjusted.
+
+Enabling Firefox importer browser tests on Mac. They didn&#39;t
+work because they attempted to use Windows nss libraries. 
+They should have been using Mac-specific libraries which are 
+already available for Mac unit tests.
+
+BUG=321112, 48007
+
+Review URL: https://codereview.chromium.org/117123002
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@245198 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=245198&view=revision'><time datetime='2014-01-16' title='2014-01-16'>2014-01-16</time></a>
+      
+        <tr>
+          <td>tmoniuszko
+          <td class=message><strong>Flash video doesn&#39;t play if opened in background tab</strong>
+            <pre class=body style=display:none>
+This is a regression introduced by 9702820616f52aff8d22dc15e6f25cb86dcc90b2 (bug 299224).
+
+BUG= 
+TEST=Go to youtube.com or dailymotion.com. Start playing Flash video. Middle-click one of suggested link to videos to open new tab in background. Activate the tab you&#39;ve just opened. Expected: Flash video should be playing in active tab. Current: Flash video is not playing until you scroll the page.
+
+Review URL: https://codereview.chromium.org/137883003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@245127 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/chrome?revision=245127&view=revision'><time datetime='2014-01-16' title='2014-01-16'>2014-01-16</time></a>
       
         <tr>
           <td>mmaliszkiewicz
@@ -2171,13 +2259,874 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       </table>
     </section>
   
-    <section class="blink">
+    <section id="blink" class="blink">
       <h2>Blink</h2>
       <table>
       <colgroup class=col-author>
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add Eric Carlson to &#39;track&#39; and &#39;media&#39; WATCHLISTS</strong>
+            <pre class=body style=display:none>
+This is on request from Eric, &lt;video&gt; implementor at Apple.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/144593002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165612 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165612&view=revision'><time datetime='2014-01-23' title='2014-01-23'>2014-01-23</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Allow determining if an SVG value has been specified</strong>
+            <pre class=body style=display:none>
+When checking for the &#34;presence&#34; of a value (if a value has been
+specified - either via an attribute or via an animation), using
+hasAttribute is not sufficient since if misses if the value is being
+animated.
+
+Extend the property interfaces to allow providing an answer to this query.
+
+R=kouhei@chromium.org
+TEST=svg/animations/no-attr-*.svg
+BUG=330191
+
+Review URL: https://codereview.chromium.org/141793002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165537 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165537&view=revision'><time datetime='2014-01-22' title='2014-01-22'>2014-01-22</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Pass a VTTScanner to VTTRegion::parseSettingValue</strong>
+            <pre class=body style=display:none>
+Complete the transition to using VTTScanner for VTTRegion, by pushing
+a VTTScanner-reference down into VTTRegion::parseSettingValue, and make
+the different &#34;subparsers&#34; use it instead of a locally declared one.
+
+BUG=305317
+
+Review URL: https://codereview.chromium.org/144893002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165526 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165526&view=revision'><time datetime='2014-01-22' title='2014-01-22'>2014-01-22</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Rework end-of-value field handling in VTTRegion::parseSettingValue</strong>
+            <pre class=body style=display:none>
+Hoist the end-of-input/value check in
+VTTParser::parseFloatPercentageValuePair, and pass a Scanner directly
+to it.
+
+Open-code VTTParser::collectDigitsToInt in VTTRegion::parseSettingValue,
+and then remove the former. This leaves VTTLegacyScanner without any
+users, so remove it too.
+
+BUG=305317
+
+Review URL: https://codereview.chromium.org/143983002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165456 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165456&view=revision'><time datetime='2014-01-21' title='2014-01-21'>2014-01-21</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Don&#39;t create an empty text node when setting document.title to the empty string</strong>
+            <pre class=body style=display:none>
+http://www.whatwg.org/specs/web-apps/current-work/#document.title
+http://www.whatwg.org/specs/web-apps/current-work/#the-title-element
+
+now both refer to:
+
+http://dom.spec.whatwg.org/#dom-node-textcontent
+
+for how the empty string should handled: empty string -&gt; no child
+element. Note that the act of updating the document&#39;s copy of the
+title then falls on the removeChildren() call.
+
+Since FF and IE10 already follows the spec, web compatibility risk
+should be small.
+
+BUG=336154
+
+Review URL: https://codereview.chromium.org/143363002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165453 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165453&view=revision'><time datetime='2014-01-21' title='2014-01-21'>2014-01-21</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Apply flood-opacity for feDropShadow</strong>
+            <pre class=body style=display:none>
+FEDropShadow::m_shadowOpacity was set but never used.
+
+Also fix a typo nearby in FEDropShadow::createImageFilter (stdY should
+be scaled with the vertical scale factor - as in
+FEDropShadow::applySoftware.)
+
+TEST=svg/filters/feDropShadow-flood-opacity-*.svg
+BUG=336222
+
+Review URL: https://codereview.chromium.org/143463002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165445 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165445&view=revision'><time datetime='2014-01-21' title='2014-01-21'>2014-01-21</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Make Window.alert/confirm/prompt default values the empty string</strong>
+            <pre class=body style=display:none>
+http://whatwg.org/html#the-window-object
+
+Ad-hoc testing in Firefox Nightly and Opera 12.16 (Presto) reveal that
+these browsers already treat missing arguments as the empty string.
+
+Since this is not Web-exposed behavior, the risk is low.
+
+The test case description no longer made sense, so rather than writing
+new instructions for manual testing, just let -expected.txt say it.
+
+BUG=335855
+
+Review URL: https://codereview.chromium.org/142263002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165443 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165443&view=revision'><time datetime='2014-01-21' title='2014-01-21'>2014-01-21</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Rework float value/percentage scanning for VTTRegion</strong>
+            <pre class=body style=display:none>
+Next step in the transition to VTTScanner for VTTRegion parsing.
+Add a new method scanFloat(...) to VTTScanner (basing the implementation
+on VTTParser::parseFloatPercentageValue).
+
+Use this new method scanFloat in VTTParser::parseFloatPercentageValue,
+and change (remove) the end-of-input/value requirement (hoisting it into
+the callers).
+
+Let the above propagate into VTTParser::parseFloatPercentageValuePair,
+and make it use VTTScanner internally.
+
+BUG=305317
+
+Review URL: https://codereview.chromium.org/139343006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165442 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165442&view=revision'><time datetime='2014-01-21' title='2014-01-21'>2014-01-21</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Test non-crashing updating of worker scope event handlers.</strong>
+            <pre class=body style=display:none>
+Add a pair of tests to verify that repeatedly updating attribute event
+handlers on a worker global scope doesn&#39;t fall over.
+
+R=jochen@chromium.org,dslomov@chromium.org
+BUG=239669
+
+Review URL: https://codereview.chromium.org/140723002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165439 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165439&view=revision'><time datetime='2014-01-21' title='2014-01-21'>2014-01-21</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message><strong>Add ed to svg, css WATCHLISTS.</strong>
+            <pre class=body style=display:none>
+TBR=abarth@chromium.org
+NOTRY=true
+BUG=
+
+Review URL: https://codereview.chromium.org/136793013
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165414 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165414&view=revision'><time datetime='2014-01-20' title='2014-01-20'>2014-01-20</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message><strong>Followup fixes for bug 332066.</strong>
+            <pre class=body style=display:none>
+* &lt;use&gt; elements only dispatch load if there&#39;s an external resource,
+  adjust tests accordingly.
+* &lt;use&gt; incorrectly reported that it wasn&#39;t done if there was no
+  xlink:href attribute.
+* don&#39;t dispatch &#39;load&#39; to svg documents that are not xml-wellformed.
+
+BUG=333242
+R=pdr@chromium.org, schenney@chromium.org
+
+Review URL: https://codereview.chromium.org/134263003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165413 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165413&view=revision'><time datetime='2014-01-20' title='2014-01-20'>2014-01-20</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Make VTTRegion::setRegionSettings use VTTScanner</strong>
+            <pre class=body style=display:none>
+Next step in the transition of VTTRegion parsing code to VTTScanner.
+Convert VTTRegion::setRegionSettings, and fold VTTRegion::parseSetting
+into it.
+
+BUG=305317
+
+Review URL: https://codereview.chromium.org/140503004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165399 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165399&view=revision'><time datetime='2014-01-20' title='2014-01-20'>2014-01-20</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Add self to svg and track watchlists</strong>
+            <pre class=body style=display:none>
+TBR=schenney@chromium.org
+NOTRY=true
+BUG=
+
+Review URL: https://codereview.chromium.org/137973003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165386 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165386&view=revision'><time datetime='2014-01-20' title='2014-01-20'>2014-01-20</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for SVGScriptElement.type</strong>
+            <pre class=body style=display:none>
+http://www.w3.org/TR/SVG/script.html#InterfaceSVGScriptElement
+
+The test passes in Firefox Nightly and IE11 Release Preview, but fails
+in Opera 12.16.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/130503013
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165366 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165366&view=revision'><time datetime='2014-01-19' title='2014-01-19'>2014-01-19</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add UseCounters for prefixed media features</strong>
+            <pre class=body style=display:none>
+These are the remaining seven prefixed media features:
+-webkit-device-pixel-ratio
+-webkit-max-device-pixel-ratio
+-webkit-min-device-pixel-ratio
+-webkit-transform-2d
+-webkit-transform-3d
+-webkit-animation
+-webkit-view-mode
+
+BUG=335842
+
+Review URL: https://codereview.chromium.org/141163011
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165360 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165360&view=revision'><time datetime='2014-01-18' title='2014-01-18'>2014-01-18</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message><strong>Don&#39;t support mixed dashed/camel-cased CSS property names</strong>
+            <pre class=body style=display:none>
+CSSStyleDeclaration&#39;s custom getter and setter support property names that
+are either dashed (&#34;border-top-width&#34;) or camel-cased (&#34;borderTopWidth&#34;)
+but shouldn&#39;t support names that are both (such as &#34;border-topWidth&#34;.)
+
+BUG=334562
+
+Review URL: https://codereview.chromium.org/141693002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165331 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165331&view=revision'><time datetime='2014-01-17' title='2014-01-17'>2014-01-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Add a UseCounter for the HTMLMediaElement.canPlayType keySystem argument</strong>
+            <pre class=body style=display:none>
+This has been replaced in the spec by MediaKeys.isTypeSupported:
+
+https://dvcs.w3.org/hg/html-media/raw-file/tip/encrypted-media/encrypted-media.html#extensions
+
+Add a counter now so that we have the data needed for removal when the
+new spec has been implemented.
+
+BUG=334941
+
+Review URL: https://codereview.chromium.org/135003003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165312 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165312&view=revision'><time datetime='2014-01-17' title='2014-01-17'>2014-01-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove the -webkit-transition media feature (PrefixedTransitionMediaFeature)</strong>
+            <pre class=body style=display:none>
+Intent to Remove:
+https://groups.google.com/a/chromium.org/d/msg/blink-dev/RO9K26CeuhI/ZWIx0Tb1LHgJ
+
+BUG=335470
+
+Review URL: https://codereview.chromium.org/135903006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165310 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165310&view=revision'><time datetime='2014-01-17' title='2014-01-17'>2014-01-17</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Remove children of title element before setting new title</strong>
+            <pre class=body style=display:none>
+http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document.title
+
+When setting the document title through the document.title or
+&lt;title&gt;.text there was an optimization that reused a child text node
+in the cases it could. But according to the specification, all
+children must be removed and re-created with the new value.
+
+Removing the optimization has a performance impact and makes setting
+document.title (or &lt;title&gt;.text) up to ten times slower. This has been
+deemed acceptable since the change should only be visible in
+specialized micro-benchmarks. It is more important to align with other
+browsers and the spec that don&#39;t do this optimization.
+
+blink-dev thread about the performance regression:
+
+https://groups.google.com/a/chromium.org/d/msg/blink-dev/ONBQQ5uhBik/fEiTrzQeYlkJ
+
+This is a reland of:
+
+https://codereview.chromium.org/128603002
+https://codereview.chromium.org/107513013
+
+The original WebKit bug:
+
+https://bugs.webkit.org/show_bug.cgi?id=28864
+
+BUG=330140,331076
+
+Review URL: https://codereview.chromium.org/139313009
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165309 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165309&view=revision'><time datetime='2014-01-17' title='2014-01-17'>2014-01-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Count DOMImplementation.hasFeature usage and cases where it returns false</strong>
+            <pre class=body style=display:none>
+This is in order to support the spec discussion:
+http://lists.w3.org/Archives/Public/www-dom/2014JanMar/0031.html
+http://lists.w3.org/Archives/Public/www-svg/2014Jan/0042.html
+
+BUG=335301
+
+Review URL: https://codereview.chromium.org/141363002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165299 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165299&view=revision'><time datetime='2014-01-17' title='2014-01-17'>2014-01-17</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Updating &lt;object&gt; upon changing &#34;data&#34;, &#34;classid&#34;, &#34;type&#34; attributes.</strong>
+            <pre class=body style=display:none>
+If an HTMLObjectElement&#39;s &#34;type&#34;, &#34;data&#34;, or &#34;classid&#34; attributes are
+dynamically modified, trigger a refresh of the element. Following the
+rules given in
+
+  http://www.whatwg.org/specs/web-apps/current-work/#dom-object-data
+
+(cf. &#34;Whenever one of the following conditions occur:&#34;)
+
+R=abarth,eseidel,esprehn
+BUG=123536
+TEST=fast/dom/HTMLObjectElement/update-data
+
+Review URL: https://codereview.chromium.org/135103003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165298 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165298&view=revision'><time datetime='2014-01-17' title='2014-01-17'>2014-01-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove window.performance.webkit* (PrefixedUserTiming)</strong>
+            <pre class=body style=display:none>
+Intent to Remove:
+https://groups.google.com/a/chromium.org/d/msg/blink-dev/wVPFvUwq4cc/0SKFo56fIg0J
+
+BUG=335459
+
+Review URL: https://codereview.chromium.org/130213008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165295 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165295&view=revision'><time datetime='2014-01-17' title='2014-01-17'>2014-01-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Measure usage of the prefixed encrypted media APIs</strong>
+            <pre class=body style=display:none>
+The unprefixed replacements for these aren&#39;t implemented yet, but it&#39;s
+just as well to start collecting data early.
+
+PrefixedMediaGenerateKeyRequest and PrefixedMediaAddKey were already in
+UseCounter.h, but unused. Add the missing PrefixedMediaCancelKeyRequest
+and put them all to use.
+
+Remove the deprecation message for PrefixedMediaGenerateKeyRequest,
+which was left behind in r150962. Otherwise, the ASSERTs in
+UseCounter::count would start failing.
+
+BUG=334983
+
+Review URL: https://codereview.chromium.org/140663002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165290 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165290&view=revision'><time datetime='2014-01-17' title='2014-01-17'>2014-01-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Deprecate HTMLVideoElement-specific prefixed fullscreen API</strong>
+            <pre class=body style=display:none>
+Intent to Deprecate:
+https://groups.google.com/a/chromium.org/d/msg/blink-dev/DULRMEUkeJw/9HXn55X1gj4J
+
+Unfortunately Blink doesn&#39;t support the unprefixed fullscreen API yet,
+so advise authors to use both the unprefixed and prefixed APIs.
+
+webkitSupportsFullscreen was found to be needlessly complicated for what
+it does, so a bug to simplify it was filed: http://crbug.com/334985
+
+BUG=334987
+
+Review URL: https://codereview.chromium.org/139313007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165288 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165288&view=revision'><time datetime='2014-01-17' title='2014-01-17'>2014-01-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Rename bindingFoo to fooForBindings</strong>
+            <pre class=body style=display:none>
+Switch to the majority convention so that no one needs to investigate
+which to use, as in https://codereview.chromium.org/141363002/
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/141013010
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165287 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165287&view=revision'><time datetime='2014-01-17' title='2014-01-17'>2014-01-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Move from UnusedSlotXX to REMOVEDOldFeature in UseCounter.h</strong>
+            <pre class=body style=display:none>
+The previous system would end up with either out-of-order slots, which
+makes it hard to find the next free slot, or would require frequent
+re-ordering, which makes patches harder to write and review.
+
+Some digging was done to find the original names for each slot.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/132983005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165277 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165277&view=revision'><time datetime='2014-01-17' title='2014-01-17'>2014-01-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove AudioBufferSourceNode.looping</strong>
+            <pre class=body style=display:none>
+Intent to Remove:
+https://groups.google.com/a/chromium.org/d/msg/blink-dev/v1KTqntSFKU/UWoupLnxPawJ
+
+BUG=335126
+
+Review URL: https://codereview.chromium.org/140973002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165267 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165267&view=revision'><time datetime='2014-01-17' title='2014-01-17'>2014-01-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove WebMediaPlayer::supportsFullscreen()</strong>
+            <pre class=body style=display:none>
+All the implementations on the Chromium side simply return true, so
+simplify things as much as possible. Leave only traces of this in
+HTMLVideoElement to preserve the old behavior, to be removed together
+with the rest of that prefixed fullscreen API.
+
+BUG=334985
+
+Review URL: https://codereview.chromium.org/139943006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165243 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165243&view=revision'><time datetime='2014-01-16' title='2014-01-16'>2014-01-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove unused url argument to HTMLMediaElement::canPlayType</strong>
+            <pre class=body style=display:none>
+BUG=none
+
+Review URL: https://codereview.chromium.org/139763004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165242 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165242&view=revision'><time datetime='2014-01-16' title='2014-01-16'>2014-01-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove Node.isSupported</strong>
+            <pre class=body style=display:none>
+Intent to Deprecate and Remove:
+https://groups.google.com/a/chromium.org/d/msg/blink-dev/MUEjC37jFNg/hf1AHFl-4jsJ
+
+There were many old W3C tests for isSupported, which were all removed.
+These indirectly tested DOMImplementation.hasFeature, but there are many
+direct tests for that which should suffice.
+
+BUG=334970
+
+Review URL: https://codereview.chromium.org/133703014
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165237 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165237&view=revision'><time datetime='2014-01-16' title='2014-01-16'>2014-01-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Split TextTrackCue exceptions test into TextTrackCue+VTTCue</strong>
+            <pre class=body style=display:none>
+This does not change anything, it is for purity reasons only.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/140573002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165235 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165235&view=revision'><time datetime='2014-01-16' title='2014-01-16'>2014-01-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Deprecate the TextTrackCue constructor</strong>
+            <pre class=body style=display:none>
+Intent to deprecate thread:
+https://groups.google.com/a/chromium.org/d/msg/blink-dev/YJ4SY6WHxso/SJ_f8ZCsExwJ
+
+BUG=334942
+
+Review URL: https://codereview.chromium.org/139303007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165234 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165234&view=revision'><time datetime='2014-01-16' title='2014-01-16'>2014-01-16</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Check for duplicate ArrayBuffer transferables.</strong>
+            <pre class=body style=display:none>
+Attempts to pass duplicate transferable object should be caught by
+postMessage(),
+
+  http://www.whatwg.org/specs/web-apps/current-work/#dom-window-postmessage
+  http://www.whatwg.org/specs/web-apps/current-work/#dom-messageport-postmessage
+
+Add the required case for ArrayBuffer.
+
+R=mkwst,dslomov
+BUG=334397
+
+Review URL: https://codereview.chromium.org/138273013
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165224 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165224&view=revision'><time datetime='2014-01-16' title='2014-01-16'>2014-01-16</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message><strong>Don&#39;t fire popstate event on initial document load</strong>
+            <pre class=body style=display:none>
+According to the specification [1], a popstate event should only be fired
+when the document has a &#34;last entry&#34; and the entry being navigated to isn&#39;t
+it.  A document is created without a &#34;last entry&#34; and gets one just after
+this check when it is first navigated to, so a popstate should be fired any
+time a document is navigated to except for the first time after it has been
+created.
+
+[1] http://www.whatwg.org/specs/web-apps/current-work/multipage/history.html#traverse-the-history (step 12-14 in particular)
+
+BUG=63040
+
+Review URL: https://codereview.chromium.org/136463002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165221 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165221&view=revision'><time datetime='2014-01-16' title='2014-01-16'>2014-01-16</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message><strong>Stop infinite recursion when generating anonymous table boxes</strong>
+            <pre class=body style=display:none>
+Update the list of box types to expect directly inside (anonymous) table
+boxes to include &#39;table-column&#39; (in addition to &#39;table-column-group&#39;
+and &#39;table-caption&#39;.)  This fixes the code that looks for an existing
+anonymous table section to add a child to so that it doesn&#39;t accidentally
+try to add the child to the same table box again recursively.
+
+Also drop a couple of lines of code that had no effect in practice.
+
+BUG=330651
+
+Review URL: https://codereview.chromium.org/131993002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165216 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165216&view=revision'><time datetime='2014-01-16' title='2014-01-16'>2014-01-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Use the VTTCue constructor instead of TextTrackCue in test</strong>
+            <pre class=body style=display:none>
+The TextTrackCue constructor is being deprecated.
+
+BUG=334942
+
+Review URL: https://codereview.chromium.org/140563002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165199 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165199&view=revision'><time datetime='2014-01-16' title='2014-01-16'>2014-01-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove an extra &#39; in the KeyboardEventKeyLocation deprecation message</strong>
+            <pre class=body style=display:none>
+BUG=none
+
+Review URL: https://codereview.chromium.org/140523002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165195 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165195&view=revision'><time datetime='2014-01-16' title='2014-01-16'>2014-01-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Improve test coverage of TreatNullAs=NullString and TreatUndefinedAs=NullString</strong>
+            <pre class=body style=display:none>
+BUG=334519
+
+Review URL: https://codereview.chromium.org/138483004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165178 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165178&view=revision'><time datetime='2014-01-16' title='2014-01-16'>2014-01-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Make the type argument to HTMLMediaElement.canPlayType non-optional</strong>
+            <pre class=body style=display:none>
+http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#htmlmediaelement
+
+Ad-hoc testing shows that it is also non-optional in Firefox Nightly,
+IE11 and Opera 12.16.
+
+BUG=334660
+
+Review URL: https://codereview.chromium.org/138063006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165153 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165153&view=revision'><time datetime='2014-01-15' title='2014-01-15'>2014-01-15</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Use VTTScanner for VTT region settings parsing</strong>
+            <pre class=body style=display:none>
+Start transitioning the VTTRegion settings parsing code to use
+VTTScanner, by modifying VTTRegion::parseSetting (the &#34;name=value pair&#34;-
+part of the parsing) to use VTTScanner.
+
+Remove VTTParser::collectWord since it becomes unused.
+
+BUG=305317
+
+Review URL: https://codereview.chromium.org/137033002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165149 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165149&view=revision'><time datetime='2014-01-15' title='2014-01-15'>2014-01-15</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Allow frames to be free&#39;d even for static images</strong>
+            <pre class=body style=display:none>
+r151702 added limit for pruning in ImageDecoded::clearCacheExceptFrame,
+which would disallow pruning single-frame/static images altogether.
+
+Allow such images to be pruned in their entirety by dropping the
+condition for &lt;= 1 frames - the for-loop will handle the kNotFound case.
+
+(Also related is r156651, which re-added the destroyAll flag.)
+
+Modify the ImageFrameGeneratorTest.frameHasAlpha unittest to use frame 0
+instead of frame 1, to avoid clearing frame 1 (MockImageDecoder
+maps all indices to frame 0.)
+
+R=hclam@chromium.org,pkasting@chromium.org,senorblanco@chromium.org
+BUG=302851
+
+Review URL: https://codereview.chromium.org/136503002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165127 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165127&view=revision'><time datetime='2014-01-15' title='2014-01-15'>2014-01-15</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message><strong>Revert &#34;Remove children of title node before updating&#34;</strong>
+            <pre class=body style=display:none>
+It causes performance problems. See
+https://code.google.com/p/chromium/issues/detail?id=331076
+
+Micro-benchmarks like http://jsperf.com/setting-document-title regress
+about one magnitude.
+
+We need to figure out whether the spec should change or if the CL
+could be written in a less performance-intrusive way, or if it&#39;s a
+performance penalty we accept. So revert for now.
+
+The follow-up &#34;Inhibit title updates when removing children before
+setting new value&#34; is reverted too since it has no value without the
+first patch.
+
+Reverted CLs:
+
+https://codereview.chromium.org/128603002
+https://codereview.chromium.org/107513013
+
+BUG=331076
+
+Review URL: https://codereview.chromium.org/138213005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165117 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165117&view=revision'><time datetime='2014-01-15' title='2014-01-15'>2014-01-15</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message><strong>Remove TreatNullAs=NullString for SVGElement.xmlbase</strong>
+            <pre class=body style=display:none>
+http://www.w3.org/TR/SVG11/types.html#InterfaceSVGElement
+
+The test passes in Firefox Nightly, IE11 Release Preview and Opera 12.16.
+
+BUG=310298
+
+Review URL: https://codereview.chromium.org/138433003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165083 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165083&view=revision'><time datetime='2014-01-14' title='2014-01-14'>2014-01-14</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message><strong>Fix crash when popstate handler detaches frame during history navigation</strong>
+            <pre class=body style=display:none>
+Protect FrameLoader::m_frame in FrameLoader::loadHistoryItem() to
+keep it from being destroyed if a popstate event handler, dispatched
+via FrameLoader::loadInSameDocument(), removes the frame from the
+parent document.
+
+BUG=334239
+
+Review URL: https://codereview.chromium.org/138213002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165081 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165081&view=revision'><time datetime='2014-01-14' title='2014-01-14'>2014-01-14</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Minor optimization of SVG &lt;textPath&gt; layout</strong>
+            <pre class=body style=display:none>
+Path::pointAtLength and Path::normalAngleAtLength both call
+Path::pointAndNormalAtLength to do the work.
+SVGTextLayoutEngine::layoutTextOnLineOrPath call the two former, which
+means it&#39;ll setup and process the path twice.
+
+Change the two calls into one call to pointAndNormalAtLength to reduce
+the work required.
+
+BUG=135310
+
+Review URL: https://codereview.chromium.org/135853005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165078 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165078&view=revision'><time datetime='2014-01-14' title='2014-01-14'>2014-01-14</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message><strong>Remove support for &lt;animateColor&gt;.</strong>
+            <pre class=body style=display:none>
+Makes SVGAnimateColorElement an unknown DOM interface, but preserves HTML5 parsing rules (e.g ANIMATECOLOR -&gt; animateColor).
+
+BUG=332839
+
+Review URL: https://codereview.chromium.org/137443006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165071 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165071&view=revision'><time datetime='2014-01-14' title='2014-01-14'>2014-01-14</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>Ensure ElementData exists before modifying when animating class attribute</strong>
+            <pre class=body style=display:none>
+This is a merge of http://trac.webkit.org/changeset/153835
+by Rob Buis &lt;rwlbuis@webkit.org&gt;.
+
+BUG=334194
+
+Review URL: https://codereview.chromium.org/138173002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165068 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+          <td><a href='http://src.chromium.org/viewvc/blink?revision=165068&view=revision'><time datetime='2014-01-14' title='2014-01-14'>2014-01-14</time></a>
       
         <tr>
           <td>philipj
@@ -10315,6 +11264,264 @@ Review URL: https://chromiumcodereview.appspot.com/14108013
 git-svn-id: svn://svn.chromium.org/blink/trunk@149844 bbb929c8-8fbe-4397-9dbb-9b2b20218538
 </pre>
           <td><a href='http://src.chromium.org/viewvc/blink?revision=149844&view=revision'><time datetime='2013-05-07' title='2013-05-07'>2013-05-07</time></a>
+      
+      </table>
+    </section>
+  
+    <section id="v8" class="v8">
+      <h2>v8</h2>
+      <table>
+      <colgroup class=col-author>
+      <colgroup class=col-message>
+      <colgroup class=col-when>
+      <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mathiasb
+          <td class=message><strong>Fix compilation on x64 architectures</strong>
+            <pre class=body style=display:none>
+Contributed by Mathias Bynens &lt;mathiasb@opera.com&gt;.
+
+BUG=v8:3110
+LOG=Y
+R=bmeurer@chromium.org, jarin@chromium.org
+
+Review URL: https://codereview.chromium.org/143003007
+
+Patch from Mathias Bynens &lt;mathiasb@opera.com&gt;.
+
+git-svn-id: https://v8.googlecode.com/svn/branches/bleeding_edge@18760 ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+          <td><a href='https://code.google.com/p/v8/source/detail?r=18760'><time datetime='2014-01-23' title='2014-01-23'>2014-01-23</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message><strong>DoubleToIStub can&#39;t use ip on armv6, because the ubfx impl will clobber it</strong>
+            <pre class=body style=display:none>
+This previous change broke DoubleToIStub on armv6:
+https://code.google.com/p/v8/source/detail?r=16322
+
+The problem is that DoubleToIStub::Generate assumed that it could safely use the ip register, but on armv6 the ubfx implementation will clobber any previous value stored there.  So instead, pick another register.
+
+Test case:
+for (var i=0; i&lt;2; i++) {
+	v = 4294967295;
+	v &amp;= -2;
+	print(v)
+	}
+
+This should print -2 twice, but on armv6 without this patch, it prints -2 followed by 2046.
+
+This problem causes sunspider&#39;s bitops-nsieve-bit, crypto-md5 and crypto-sha1 tests to generate incorrect results (but the results are not checked for validity in sunspider-1.0 as available in chromium, but are checked and reported as incorrect in sunspider-1.0.2).
+
+Thanks to Tomasz Kilarski for helping out with this.
+
+R=bmeurer@chromium.org, rmcilroy@chromium.org
+
+Review URL: https://codereview.chromium.org/131823004
+
+Patch from Mostyn Bramley-Moore &lt;mostynb@opera.com&gt;.
+
+git-svn-id: https://v8.googlecode.com/svn/branches/bleeding_edge@18688 ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+          <td><a href='https://code.google.com/p/v8/source/detail?r=18688'><time datetime='2014-01-20' title='2014-01-20'>2014-01-20</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Fix stub-invoked setter callback handling.</strong>
+            <pre class=body style=display:none>
+When invoking a setter callback for a property using
+JSObject::SetPropertyWithCallback(),the callback arguments includes
+a correct pair of receiver and holder objects.
+
+Such a pair of _possibly different_ arguments (receiver, holder) must
+also be supplied when invoking the same setter callback from JITed
+code, when the setter is invoked through the StoreCallbackProperty
+stub.
+
+An example where this matters are the accessor properties kept on the
+global scope of Worker (i.e., properties kept on the global object
+itself, and not on its prototype.) Conflating the receiver with the
+holder leads to general confusion when attempting to fetch out the
+wrapper object.
+
+LOG=N
+R=dcarney@chromium.org, dcarney
+BUG=239669
+
+Review URL: https://codereview.chromium.org/139263008
+
+Patch from Sigbjorn Finne &lt;sigbjornf@opera.com&gt;.
+
+git-svn-id: https://v8.googlecode.com/svn/branches/bleeding_edge@18658 ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+          <td><a href='https://code.google.com/p/v8/source/detail?r=18658'><time datetime='2014-01-17' title='2014-01-17'>2014-01-17</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Upgrade Number constructor to ES6.</strong>
+            <pre class=body style=display:none>
+Add missing constants, predicates and functions to the Number
+constructor to have it offer what ES6 now specifies.
+
+That is, extend it with:
+
+ * isInteger(), isSafeInteger()
+ * parseInt(), parseFloat()
+ * EPSILON, MIN_SAFE_INTEGER, MAX_SAFE_INTEGER
+
+LOG=N
+R=mstarzinger@chromium.org
+BUG=v8:3082
+
+Review URL: https://codereview.chromium.org/124573002
+
+Patch from Sigbjorn Finne &lt;sigbjornf@opera.com&gt;.
+
+git-svn-id: https://v8.googlecode.com/svn/branches/bleeding_edge@18480 ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+          <td><a href='https://code.google.com/p/v8/source/detail?r=18480'><time datetime='2014-01-08' title='2014-01-08'>2014-01-08</time></a>
+      
+        <tr>
+          <td>sof
+          <td class=message><strong>Avoid duplication of a hidden &amp; inherited prototype&#39;s properties.</strong>
+            <pre class=body style=display:none>
+In Runtime_GetLocalPropertyNames(), the hidden prototypes of an object
+are also consulted when deriving the property name set. However, if
+given a function object and its template was inherited from the
+template of one of its hidden prototypes, that hidden prototype&#39;s
+property accessors will be present on the object already. Unwanted
+duplicates will therefore appear.
+
+Hence, go through the property names that the hidden prototypes
+contribute and remove any already occurring ones.
+
+Assumed to be a rare constellation, so the cost of this extra pass is
+considered acceptable.
+
+LOG=N
+R=dcarney@chromium.org, jochen@chromium.org, rossberg@chromium.org
+BUG=269562
+
+Review URL: https://codereview.chromium.org/116533003
+
+Patch from Sigbjorn Finne &lt;sof@opera.com&gt;.
+
+git-svn-id: https://v8.googlecode.com/svn/branches/bleeding_edge@18448 ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+          <td><a href='https://code.google.com/p/v8/source/detail?r=18448'><time datetime='2014-01-03' title='2014-01-03'>2014-01-03</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message><strong>Make a strict function&#39;s &#34;name&#34; property non-writable.</strong>
+            <pre class=body style=display:none>
+Set [[Writable]] to false for the &#34;name&#34; property of strict
+functions as well, mirroring what non-strict functions have
+it as.
+
+LOG=N
+R=rossberg@chromium.org
+TEST=mjsunit/regress/regress-270142
+BUG=270142
+
+Review URL: https://codereview.chromium.org/99203006
+
+Patch from Sigbjorn Finne &lt;sigbjornf@opera.com&gt;.
+
+git-svn-id: https://v8.googlecode.com/svn/branches/bleeding_edge@18387 ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+          <td><a href='https://code.google.com/p/v8/source/detail?r=18387'><time datetime='2013-12-20' title='2013-12-20'>2013-12-20</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message><strong>Switch armv7 setting to arm_version==7 in v8 gyp files</strong>
+            <pre class=body style=display:none>
+BUG=chromium:234135
+LOG=Y
+R=jkummerow@chromium.org
+
+Review URL: https://codereview.chromium.org/98543008
+
+Patch from Mostyn Bramley-Moore &lt;mostynb@opera.com&gt;.
+
+git-svn-id: https://v8.googlecode.com/svn/branches/bleeding_edge@18297 ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+          <td><a href='https://code.google.com/p/v8/source/detail?r=18297'><time datetime='2013-12-11' title='2013-12-11'>2013-12-11</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message><strong>MIPS: Fix return-value from Array.push stub when pushing non-SMI value</strong>
+            <pre class=body style=display:none>
+Load and update the arrays length in v0 to make sure the length gets
+returned correctly when leaving the function.
+
+Add new testcase.
+
+TEST=mjsunit/array-push-non-smi-value
+
+BUG=130022
+R=jkummerow@chromium.org, plind44@gmail.com
+
+Review URL: https://codereview.chromium.org/23589002
+
+Patch from fs &lt;fs@opera.com&gt;.
+
+git-svn-id: https://v8.googlecode.com/svn/branches/bleeding_edge@16377 ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+          <td><a href='https://code.google.com/p/v8/source/detail?r=16377'><time datetime='2013-08-28' title='2013-08-28'>2013-08-28</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message><strong>Fix so that you can run presubmit.py in Windows.</strong>
+            <pre class=body style=display:none>presubmit.py tried to execute cpplint.py directly, but in Windows it&#39;s the shell that connects that to the python binary so the execution (subprocess.Popen) needs to be told how to find python. An alternative would be to call subprocess.Popen with shell=True but this is less dangerous.
+
+Review URL: https://chromiumcodereview.appspot.com/13849008
+
+Patch from Daniel Bratell &lt;bratell@opera.com&gt;.
+
+git-svn-id: https://v8.googlecode.com/svn/branches/bleeding_edge@14263 ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+          <td><a href='https://code.google.com/p/v8/source/detail?r=14263'><time datetime='2013-04-15' title='2013-04-15'>2013-04-15</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message><strong>Fix detection of indexed properties in Object.defineProperty()</strong>
+            <pre class=body style=display:none>
+When defining an indexed property on an Array object, the object&#39;s
+length property should (perhaps) be updated.  This was done for any
+property for which
+
+  ToUInt32(name) == ToNumber(name)
+
+was true, meaning any property name that, when converted to a number,
+was an integer in the range [0, 2^32).  The detection should be more
+strict; an indexed property is one for which
+
+  ToString(ToUInt32(name)) == name
+
+is true only.
+
+Review URL: https://codereview.chromium.org/13914003
+
+Patch from Jens Lindström &lt;jl@opera.com&gt;.
+
+git-svn-id: https://v8.googlecode.com/svn/branches/bleeding_edge@14242 ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+          <td><a href='https://code.google.com/p/v8/source/detail?r=14242'><time datetime='2013-04-12' title='2013-04-12'>2013-04-12</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message><strong>linux: fix uClibc ifdeffery</strong>
+            <pre class=body style=display:none>
+Remove duplicate inclusion of execinfo.h and make OS::DumpBacktrace
+a NOOP on uclibc.
+
+Review URL: https://codereview.chromium.org/13071007
+Patch from Mostyn Bramley-Moore &lt;mostynb@opera.com&gt;.
+
+git-svn-id: https://v8.googlecode.com/svn/branches/bleeding_edge@14172 ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+          <td><a href='https://code.google.com/p/v8/source/detail?r=14172'><time datetime='2013-04-09' title='2013-04-09'>2013-04-09</time></a>
       
       </table>
     </section>
