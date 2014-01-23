@@ -20,6 +20,7 @@ Get the required upstream repositories:
 
     git clone --mirror https://chromium.googlesource.com/chromium/src.git chromium.src.git
     git clone --mirror https://chromium.googlesource.com/chromium/blink.git chromium.blink.git
+    git clone --mirror https://github.com/v8/v8.git v8.git
 
 Generate the file:
 
@@ -30,14 +31,14 @@ Updating the overview
 
 Update the git checkouts.
 
-    git --git-dir=chromium.blink.git fetch; git --git-dir=chromium.src.git fetch
+    for p in chromium.blink chromium.src v8; do git --git-dir=$p.git fetch; done
 
-Generate the file, switch branch and checkin there.
+Generate the file, switch branch and check in there.
 
     python generate_upstream_list.py > upstream.html
     git checkout gh-pages
     mv upstream.html index.html
-    git commit -m"Update upstream overview." index.html
+    git commit -m "Update upstream overview." index.html
 
 NOTE: It should normally only add new entries. Check if it does something else.
 If you did not clone the upstreames like mirrors, the master branch won't
@@ -47,7 +48,7 @@ pull` or similar in your working directory.
 License
 -------
 
-Copyright 2013 Opera Software
+Copyright 2014 Opera Software
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

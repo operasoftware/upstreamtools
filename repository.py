@@ -5,7 +5,6 @@ import time
 
 from collections import namedtuple
 
-
 class InvalidStateError(Exception): pass
 
 class Repo(object):
@@ -25,8 +24,8 @@ class Repo(object):
         return subprocess.call(
             [self.git, '--git-dir='+self.gitdir] + args, stderr=subprocess.STDOUT)
 
-    def commits(self):
-        raw_commits = self.get_log()
+    def commits(self, use_grep):
+        raw_commits = self.get_log(use_grep)
         commits = []
         for c in raw_commits:
             parts = c.split('\n', 5)
@@ -35,12 +34,12 @@ class Repo(object):
                 commits.append(commit)
         return commits
 
-    def get_log(self):
+    def get_log(self, use_grep):
         lines = self._git([
                     'log',
                     '--format=%H%n%an%n%ad%n%ar%n%B',
                     '--date=short',
-                    '--author=opera.com',
+                    '--grep=opera.com' if use_grep else '--author=opera.com',
                     '-z',
                     'master']).split('\0')
         return lines

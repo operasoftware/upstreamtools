@@ -34,10 +34,11 @@ h1 {
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     {{ projects[0].name }}: {{ projects[0].log|length }},
-    {{ projects[1].name }}: {{ projects[1].log|length }}.
+    {{ projects[1].name }}: {{ projects[1].log|length }},
+    {{ projects[2].name }}: {{ projects[2].log|length }}.
   <p class=hint>Click message to expand
   {% for project in projects %}
-    <section class="{{ project.name|lower }}">
+    <section id="{{ project.name|lower }}" class="{{ project.name|lower }}">
       <h2>{{ project.name }}</h2>
       <table>
       <colgroup class=col-author>
