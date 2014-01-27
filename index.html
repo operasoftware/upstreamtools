@@ -22,8 +22,8 @@ h1 { margin-top: 0; text-align: center; }
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    <a href="#chromium">Chromium</a>: 137,
-    <a href="#blink">Blink</a>: 451,
+    <a href="#chromium">Chromium</a>: 139,
+    <a href="#blink">Blink</a>: 460,
     <a href="#v8">v8</a>: 11.
   <p class=hint>Click message to expand
   
@@ -34,6 +34,43 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Disable HTTP authentication dialog for XHR with credentials</summary>
+              <pre class=body>
+According to the XHR[1] and Fetch[2] specifications, a request made with
+URL credentials should not trigger the browser&#39;s authentication dialog
+upon authentication failure, but rather return the 401 response.
+
+[1] http://xhr.spec.whatwg.org/
+[2] http://fetch.spec.whatwg.org/
+
+BUG=31582
+
+Review URL: https://codereview.chromium.org/143903003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@247117 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=247117&amp;view=revision"><time datetime="2014-01-25">2014-01-25</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Add F5 (reload), back and forward key accelerators to the Aura-based content shell.</summary>
+              <pre class=body>
+BUG=none
+
+Review URL: https://codereview.chromium.org/143983015
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@246963 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=246963&amp;view=revision"><time datetime="2014-01-24">2014-01-24</time></a>
       
         <tr>
           <td>tmoniuszko
@@ -2661,6 +2698,187 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add support for converting Colors to linear RGB; Fix relevant filters</summary>
+              <pre class=body>
+Moves get{Linear,Device}RgbLUT out of ImageBuffer.cpp and into the (new)
+ColorSpace.cpp and a (new) namespace ColorSpaceUtilities.
+Implement ColorSpaceUtilities::convertColor and getConversionLUT, and use them in a
+new FilterEffect::adaptColorToOperatingColorSpace method, that derived
+classes can use.
+
+With the above infrastructure in place, use it in FEDropShadow to make
+sure the result of the (conceptual) flood operation is in correct color
+space (== the operating colorspace of the FEDropShadow).
+Also use it to transform the lighting-color of the lighting primitives.
+
+BUG=336440
+
+Review URL: https://codereview.chromium.org/134733016
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165767 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=165767&amp;view=revision"><time datetime="2014-01-24">2014-01-24</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Convert SVG &lt;text&gt; and descendants to use RenderObject::isChildAllowed</summary>
+              <pre class=body>
+BUG=337607
+
+Review URL: https://codereview.chromium.org/143263011
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165765 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=165765&amp;view=revision"><time datetime="2014-01-24">2014-01-24</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Convert SVG &lt;filter&gt; and &lt;fe*&gt; to RenderObject::isChildAllowed</summary>
+              <pre class=body>
+BUG=337607
+
+Review URL: https://codereview.chromium.org/143983016
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165764 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=165764&amp;view=revision"><time datetime="2014-01-24">2014-01-24</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Convert SVG &lt;foreignObject&gt; to use RenderObject::isChildAllowed</summary>
+              <pre class=body>
+BUG=337607
+
+Review URL: https://codereview.chromium.org/133873003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165763 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=165763&amp;view=revision"><time datetime="2014-01-24">2014-01-24</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Allow counter-reset/increment: none.</summary>
+              <pre class=body>
+When applying counter-reset/increment with value=none, we did not clear
+the CounterDirectives values because the value was not a ValueList.
+
+Fixed by performing the value-clearing before the isValueList-check.
+
+BUG=319812
+TEST=automated
+
+Review URL: https://codereview.chromium.org/141763003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165753 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=165753&amp;view=revision"><time datetime="2014-01-24">2014-01-24</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Eliminate large chunks of nearly duplicated code for table-row-group border calculation.</summary>
+              <pre class=body>
+calcOuterBorderBefore() and calcOuterBorderAfter() were almost identical.
+So were calcOuterBorderStart() and calcOuterBorderEnd().
+
+Merge them into calcBlockDirectionOuterBorder() and calcInlineDirectionOuterBorder().
+
+This is just code cleanup; no behavior changes intended.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/145603002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165746 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=165746&amp;view=revision"><time datetime="2014-01-24">2014-01-24</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Add UseCounter for case-insensitive attribute value selector matching</summary>
+              <pre class=body>
+More specifically, count the cases where the result would be different
+if a currently (automatically) case-insensitive attribute value match
+was made case-sensitive instead, as is the current status of the spec.
+
+BUG=327060
+
+Review URL: https://codereview.chromium.org/140323003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165740 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=165740&amp;view=revision"><time datetime="2014-01-24">2014-01-24</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Don&#39;t propagate Inherit ad infinitum.</summary>
+              <pre class=body>
+In recalcStyle, when the StyleRecalcChange became Inherit it was effectively
+a Force causing a full subtree recalc even for the parts of the subtree that
+didn&#39;t need to propagate inherited properties further. For instance, setting
+document.body.style.color would always cause a full document recalc.
+
+This change effectively reverts https://codereview.chromium.org/119693002
+which relied on Inherit being a Force for SubtreeStyleChange.
+
+R=esprehn@chromium.org
+
+BUG=336908
+
+Review URL: https://codereview.chromium.org/139743017
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165739 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=165739&amp;view=revision"><time datetime="2014-01-24">2014-01-24</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Keep frames to navigate alive in HistoryController::goToEntry()</summary>
+              <pre class=body>
+Otherwise, if a script executed during the navigation of one frame (for
+instance a popstate event handler) removes other frames from the document,
+the calls to navigate those frames later on are given pointers to dead
+objects.
+
+This patch makes the more localized fix committed as r165081 redundant,
+and thus reverts it from FrameLoader::loadHistoryItem().
+
+BUG=337120
+
+Review URL: https://codereview.chromium.org/145493005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165724 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=165724&amp;view=revision"><time datetime="2014-01-24">2014-01-24</time></a>
       
         <tr>
           <td>sigbjornf
