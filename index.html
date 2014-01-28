@@ -22,9 +22,9 @@ h1 { margin-top: 0; text-align: center; }
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    <a href="#chromium">Chromium</a>: 139,
-    <a href="#blink">Blink</a>: 460,
-    <a href="#v8">v8</a>: 11.
+    <a href="#chromium">Chromium</a>: 140,
+    <a href="#blink">Blink</a>: 464,
+    <a href="#v8">v8</a>: 12.
   <p class=hint>Click message to expand
   
     <section id="chromium" class="chromium">
@@ -34,6 +34,23 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Aura content shell: make the window shrinkable.</summary>
+              <pre class=body>
+Don&#39;t let the initial size (800x600) serve as minimum size.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/134223005
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@247306 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=247306&amp;view=revision"><time datetime="2014-01-27">2014-01-27</time></a>
       
         <tr>
           <td>jl
@@ -2698,6 +2715,96 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add CORS support for &lt;link&gt; elements.</summary>
+              <pre class=body>
+The HTMLLinkElement object supports CORS-enabled fetches,
+
+  http://www.whatwg.org/specs/web-apps/current-work/#htmllinkelement
+
+by using the &#39;crossorigin&#39; attribute. Extend HTMLLinkElement loading
+to support this over its link types, in particular / of note,
+&#34;stylesheet&#34; and &#34;subresource&#34; / &#34;prefetch&#34;.
+
+R=abarth@chromium.org
+BUG=178787
+
+Review URL: https://codereview.chromium.org/135723008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165923 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=165923&amp;view=revision"><time datetime="2014-01-28">2014-01-28</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>(Re)organize handling of CORS access control during resource loading.</summary>
+              <pre class=body>
+Common up and simplify the various pieces of code that handles CORS
+access control, avoiding per resource type handling.
+
+That is, a ResourceLoader&#39;s host will now be called upon by the loader
+when it receives the initial response. The host deciding if a response
+should be allowed loaded or not:
+
+  bool ResourceLoaderHost::canAccessResource(Resource*, const KURL&amp;);
+
+If not, the loader cancels the loading of the resource and signals an
+error. The loader host is responsible for emitting a suitable console
+error message.
+
+Switch over the &#39;loader&#39; resource clients to rely on that, avoiding
+custom CORS checks (and error reporting) for scripts, imports, images,
+text tracks.
+
+As the resource loader now needs to know if a load operation is CORS
+enabled or not, this is now/again recorded by ResourceLoaderOptions.
+
+R=abarth@chromium.org,japhet@chromium.org
+BUG=178787
+
+Review URL: https://codereview.chromium.org/137983010
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165877 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=165877&amp;view=revision"><time datetime="2014-01-27">2014-01-27</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Tighten up the allowable-child criteria in RenderSVGInline</summary>
+              <pre class=body>
+BUG=337607,338109
+
+Review URL: https://codereview.chromium.org/148343003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165876 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=165876&amp;view=revision"><time datetime="2014-01-27">2014-01-27</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Convert remaining RenderSVG* nodes to RenderObject::isChildAllowed</summary>
+              <pre class=body>
+BUG=337607
+
+Review URL: https://codereview.chromium.org/146833003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165851 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=165851&amp;view=revision"><time datetime="2014-01-27">2014-01-27</time></a>
       
         <tr>
           <td>fs
@@ -13261,6 +13368,28 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@149844 bbb929c8-8fbe-4397-9dbb-9b
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mathiasb
+          <td class=message>
+            <details>
+              <summary>Make `String.prototype.{starts,ends}With` throw when passing a regular expression</summary>
+              <pre class=body>
+Contributed by Mathias Bynens &lt;mathiasb@opera.com&gt;.
+
+TEST=mjsunit/harmony
+BUG=v8:3070
+LOG=Y
+R=arv@chromium.org, ishell@chromium.org
+
+Review URL: https://codereview.chromium.org/120683002
+
+Patch from Mathias Bynens &lt;mathiasb@opera.com&gt;.
+
+git-svn-id: https://v8.googlecode.com/svn/branches/bleeding_edge@18870 ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+            </details>
+          <td><a href="https://code.google.com/p/v8/source/detail?r=18870"><time datetime="2014-01-28">2014-01-28</time></a>
       
         <tr>
           <td>mathiasb
