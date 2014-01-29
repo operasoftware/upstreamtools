@@ -23,7 +23,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     <a href="#chromium">Chromium</a>: 140,
-    <a href="#blink">Blink</a>: 467,
+    <a href="#blink">Blink</a>: 468,
     <a href="#v8">v8</a>: 12.
   <p class=hint>Click message to expand
   
@@ -2715,6 +2715,46 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Make pseudo element update work with LocalStyleChange.</summary>
+              <pre class=body>
+The missing pseudo element update on LocalStyleChange did not cause any bugs
+at the moment since LocalStyleChange is not used when pseudo element selector
+matching changes, but necessary to fix in preparation for optimizing :hover,
+:active, and :focus updates using LocalStyleChange. If pseudo elements are
+updated for LocalStyleChange, style updates for mentioned pseudo classes can
+use LocalStyleChange in many cases where SubtreeStyleChange is currently used.
+
+LocalStyleChange recalc style for the given element and descendants which
+inherit any of the changes from that element. In addition, there is code
+to make sure pseudo element children were being updated when the styles for
+the element itself did not change, but matching of its pseudo elements did.
+
+That code (shouldRecalcStyle() check on the actual element before calling
+updatePseudoElement() in recalcChildStyle) was introduced in [1], but changed
+behavior in [2] because needsRecalcStyle was cleared before recalcChildStyle.
+
+UpdatePseudoElements is added as a new StyleRecalcChange which causes an
+update of the pseudo element children, but not other children in the case
+where the styles for the actual element were recalculated, but resulted in
+NoChange or NoInherit, and any of the pseudo element bits were set on
+RenderStyle.
+
+[1] https://src.chromium.org/viewvc/blink?revision=147696&amp;view=revision
+[2] https://src.chromium.org/viewvc/blink?revision=161568&amp;view=revision
+
+BUG=337983
+
+Review URL: https://codereview.chromium.org/144963002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@165981 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=165981&amp;view=revision"><time datetime="2014-01-29">2014-01-29</time></a>
       
         <tr>
           <td>sigbjornf
