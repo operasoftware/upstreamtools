@@ -23,7 +23,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     <a href="#chromium">Chromium</a>: 141,
-    <a href="#blink">Blink</a>: 472,
+    <a href="#blink">Blink</a>: 474,
     <a href="#v8">v8</a>: 12.
   <p class=hint>Click message to expand
   
@@ -2733,6 +2733,60 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Synchronize is-valid flag upon programmatic clearing of file.value</summary>
+              <pre class=body>
+If a type=file input element is cleared of its current contents by
+setting the &#34;value&#34; property to the empty string, make sure the &#39;is
+valid&#39; flag kept on the input element is synchronized.
+
+Failure to do so could incorrectly make the element pass follow-on
+validation -- if it additionally has &#39;required&#39; set.
+
+R=tkent@chromium.org
+BUG=336818
+
+Review URL: https://codereview.chromium.org/132233059
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166115 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166115&amp;view=revision"><time datetime="2014-01-30">2014-01-30</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>HTMLInputElement.valueAsNumber compliance (NaN handling.)</summary>
+              <pre class=body>
+Change the valueAsNumber setter to follow the spec more closely:
+
+ http://www.whatwg.org/specs/web-apps/current-work/#dom-input-valueasnumber
+
+ - throw TypeError instead of NotSupportedError if the new value is
+   infinite.
+ - if the input element type supports &#39;valueAsNumber&#39;, then no longer
+   throw for NaN values, but consider this as setting the empty
+   string.
+ - better InvalidStateError error message when attempting to update
+   &#39;valueAsNumber&#39;.
+
+This aligns with the spec as well as Gecko. And Trident (IE11) with
+respect to NaN handling.
+
+R=mkwst@chromium.org
+BUG=
+
+Review URL: https://codereview.chromium.org/149413004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166112 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166112&amp;view=revision"><time datetime="2014-01-30">2014-01-30</time></a>
       
         <tr>
           <td>ed
