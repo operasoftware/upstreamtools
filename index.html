@@ -22,7 +22,7 @@ h1 { margin-top: 0; text-align: center; }
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    <a href="#chromium">Chromium</a>: 141,
+    <a href="#chromium">Chromium</a>: 142,
     <a href="#blink">Blink</a>: 474,
     <a href="#v8">v8</a>: 12.
   <p class=hint>Click message to expand
@@ -34,6 +34,24 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>ohrn
+          <td class=message>
+            <details>
+              <summary>Fix fullscreen video race condition.</summary>
+              <pre class=body>
+A newly initialized media player must enter fullscreen if there is a
+pending request sent by a previous media player.
+
+BUG=338670
+
+Review URL: https://codereview.chromium.org/136113015
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@247941 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=247941&amp;view=revision"><time datetime="2014-01-30">2014-01-30</time></a>
       
         <tr>
           <td>jl
