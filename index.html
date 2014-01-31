@@ -23,7 +23,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     <a href="#chromium">Chromium</a>: 142,
-    <a href="#blink">Blink</a>: 474,
+    <a href="#blink">Blink</a>: 475,
     <a href="#v8">v8</a>: 12.
   <p class=hint>Click message to expand
   
@@ -2751,6 +2751,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Correctly handle CORS access checks over cache-validating responses.</summary>
+              <pre class=body>
+If a CORS-enabled load of a resource is also done conditionally, the
+response may be a 304 (Not Modified.) That 304 response is not
+required (nor expected) to have any CORS headers included, so arrange
+for the required CORS access control check to be performed over the
+cached resource having been (successfully) validated.
+
+R=
+BUG=339058
+TEST=http/tests/security/script-crossorigin-fails-cross-origin-conditional
+
+Review URL: https://codereview.chromium.org/146853003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166188 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166188&amp;view=revision"><time datetime="2014-01-31">2014-01-31</time></a>
       
         <tr>
           <td>sigbjornf
