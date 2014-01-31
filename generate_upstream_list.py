@@ -21,8 +21,11 @@ def get_commit_log(git_repo):
         if is_v8:
             # e.g. https://v8.googlecode.com/svn/branches/bleeding_edge@18761
             m2 = re.match(r'https://v8.googlecode.com/svn/([^/]+)/[^@]*@(\d+)', id)
-            m3 = re.search('Patch from [^<]*<([^@]+)@opera\.com>', commit.body)
-            author = m3.group(1)
+            m3 = re.search('(Contributed|Patch) (from|by) [^<]*<(?P<name>[^@]+)@opera\.com>',
+                           commit.body)
+            if not m3:
+                raise Exception("Didn't find opera employee in commit msg ({})".format(commit.body))
+            author = m3.group('name')
         else:
             # e.g. svn://svn.chromium.org/blink/trunk@165617
             m2 = re.match(r'svn://svn.chromium.org/([^/]+)/[^@]*@(\d+)', id)
