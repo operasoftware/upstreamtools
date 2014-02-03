@@ -22,8 +22,8 @@ h1 { margin-top: 0; text-align: center; }
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    <a href="#chromium">Chromium</a>: 142,
-    <a href="#blink">Blink</a>: 477,
+    <a href="#chromium">Chromium</a>: 143,
+    <a href="#blink">Blink</a>: 478,
     <a href="#v8">v8</a>: 14.
   <p class=hint>Click message to expand
   
@@ -34,6 +34,29 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Make dmprof handle long runs better</summary>
+              <pre class=body>
+Read the dump files one by one as they are processed instead of reading
+them all into memory at the start of the program, to reduce peak memory
+consumption.  This makes it possible to process larger data sets.
+
+Also restructure a few sub-command implementations to avoid iterating
+over the list of dumps more than once and to avoid accessing any given
+dump (typically the first) more than once.
+
+BUG=
+
+Review URL: https://codereview.chromium.org/141563014
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@248458 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=248458&amp;view=revision"><time datetime="2014-02-03">2014-02-03</time></a>
       
         <tr>
           <td>ohrn
@@ -2751,6 +2774,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert egov.uscis.gov site quirk.</summary>
+              <pre class=body>
+Site has changed, hence the &#39;required=no&#39; workaround no longer needed.
+
+R=
+BUG=154611
+
+Review URL: https://codereview.chromium.org/141713006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166275 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166275&amp;view=revision"><time datetime="2014-02-03">2014-02-03</time></a>
       
         <tr>
           <td>fs
