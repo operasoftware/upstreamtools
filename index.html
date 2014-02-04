@@ -23,7 +23,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     <a href="#chromium">Chromium</a>: 143,
-    <a href="#blink">Blink</a>: 478,
+    <a href="#blink">Blink</a>: 488,
     <a href="#v8">v8</a>: 14.
   <p class=hint>Click message to expand
   
@@ -2774,6 +2774,230 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Deprecate the HTMLSourceElement.media IDL attribute</summary>
+              <pre class=body>
+Intent to Deprecate:
+https://groups.google.com/a/chromium.org/d/msg/blink-dev/L5h6KP5nmbE/CGlSWugrFl0J
+
+BUG=338197
+
+Review URL: https://codereview.chromium.org/153613002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166421 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166421&amp;view=revision"><time datetime="2014-02-04">2014-02-04</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Avoid double lookup of crossorigin attribute.</summary>
+              <pre class=body>
+Minor code tidying.
+
+R=
+BUG=
+
+Review URL: https://codereview.chromium.org/153823002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166416 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166416&amp;view=revision"><time datetime="2014-02-04">2014-02-04</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Don&#39;t use cached inherited props for distributed nodes.</summary>
+              <pre class=body>
+The -webkit-user-modify, which is inherited, does not follow normal inheritance
+for distributed nodes in a shadow dom tree. Distributed nodes will have
+-webkit-user-modify propagated from the shadow host overriding any inheritance
+from non-distributed shadow dom nodes.
+
+This propagation, which happens in StyleResolver::styleForElement will not be
+caught will not be caught when computing the cacheHash in
+StyleResolver::applyMatchedProperties and the inherited properties might
+incorrectly be shared, effectively cancelling out the -webkit-user-modify
+propagation.
+
+R=esprehn
+BUG=339463
+
+Review URL: https://codereview.chromium.org/144853004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166414 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166414&amp;view=revision"><time datetime="2014-02-04">2014-02-04</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add use counters for EventSource.URL, WebSocket.URL.</summary>
+              <pre class=body>
+These two properties (in their uppercased form) are an accident of
+spec history. Add use counters to gauge if the process of retirement
+can be started.
+
+R=jochen@chromium.org
+BUG=249727
+
+Review URL: https://codereview.chromium.org/149773004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166400 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166400&amp;view=revision"><time datetime="2014-02-04">2014-02-04</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Revert of Convert remaining RenderSVG* nodes to RenderObject::isChildAllowed</summary>
+              <pre class=body>
+Revert r165851 and r166238 because of performance regressions (issue 339470).
+
+BUG=339470
+TBR=pdr,schenney
+
+Review URL: https://codereview.chromium.org/147213004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166392 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166392&amp;view=revision"><time datetime="2014-02-04">2014-02-04</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use LocalStyleChange for :hover/:active not affected by descendants.</summary>
+              <pre class=body>
+Before this change, an element that changes its hover/active state would have
+its subtree recalculated even if none of its descendants were affected by that
+change in hover/active state.
+
+childrenAffectedByHover/Active will still cause a subtree recalc. The reason
+is that elements with that flags set will have selectors of type:
+
+  div:hover span { ... }
+
+where a change in the hover state of a div will affect an unknown number of
+span elements in its subtree. Elements with affectedByHover/Active and no
+childrenAffectedByHover/Active will only match selectors where the :hover or
+:active pseudo class is in the rightmost sub-selector. Those can use
+LocalStyleChange recalcs since none of the descendants will match affected
+selectors.
+
+This CL depends on https://codereview.chromium.org/144963002/
+
+R=esprehn
+BUG=337983
+
+Review URL: https://codereview.chromium.org/148243004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166387 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166387&amp;view=revision"><time datetime="2014-02-04">2014-02-04</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Update input[type=range]&#39;s step base handling to match spec.</summary>
+              <pre class=body>
+The HTML spec recently shifted to using &#39;value&#39; as the first fallback
+option for an input element&#39;s &#34;step base&#34; (if no &#39;min&#39; attribute),
+
+ http://www.whatwg.org/specs/web-apps/current-work/#concept-input-min-zero
+
+Also bring type=range elements into line with that, including using
+that step base when clamping values to the supported range.
+
+R=
+BUG=339194
+
+Review URL: https://codereview.chromium.org/152753002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166367 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166367&amp;view=revision"><time datetime="2014-02-04">2014-02-04</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Clarify what code handles &#39;An end tag whose tag name is &#34;script&#34;&#39;</summary>
+              <pre class=body>
+The &#34;running a script&#34; algorithm was renamed to &#34;prepare a script&#34; in
+2011 &lt;http://html5.org/r/5855&gt;, but HTMLScriptRunner::runScript
+doesn&#39;t actually correspond to that algorithm, so remove the comment.
+
+BUG=none
+NOTRY=true
+
+Review URL: https://codereview.chromium.org/152903004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166345 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166345&amp;view=revision"><time datetime="2014-02-04">2014-02-04</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Make StyleChange parameter explicit in setNeedsStyleRecalc.</summary>
+              <pre class=body>
+The SubtreeStyleChange is a very expensive change, yet the default parameter
+used for changeType in setNeedsStyleRecalc. It is made non-default here in
+order to enforce a more conscious choice when adding calls to
+setNeedsStyleRecalc.
+
+BUG=None
+
+Review URL: https://codereview.chromium.org/152623002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166335 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166335&amp;view=revision"><time datetime="2014-02-03">2014-02-03</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Clean up and deflake history navigation test</summary>
+              <pre class=body>
+When returning from having navigated to navigate-back.html, both
+runSecondStageOfTest() and the popstate event handler would set a
+timeout that called history.back().  The first navigation would
+trigger the hashchange event handler that signaled a pass, the
+second ought to have had no effect.
+
+In practice, the test occasionally timed out or crashed instead,
+for unknown reasons.  Removing the extra history.back() timeout
+apparently avoids this.
+
+BUG=339265
+
+Review URL: https://codereview.chromium.org/148453014
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166325 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166325&amp;view=revision"><time datetime="2014-02-03">2014-02-03</time></a>
       
         <tr>
           <td>sigbjornf
