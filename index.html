@@ -22,8 +22,8 @@ h1 { margin-top: 0; text-align: center; }
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    <a href="#chromium">Chromium</a>: 143,
-    <a href="#blink">Blink</a>: 488,
+    <a href="#chromium">Chromium</a>: 144,
+    <a href="#blink">Blink</a>: 501,
     <a href="#v8">v8</a>: 14.
   <p class=hint>Click message to expand
   
@@ -34,6 +34,26 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Better grouping of data in Deep Memory Profiler</summary>
+              <pre class=body>
+In the linux browser profile, put string data under their
+own sections, and teach the system about style and css memory.
+
+R=
+
+BUG=
+
+Review URL: https://codereview.chromium.org/148133003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@248996 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=248996&amp;view=revision"><time datetime="2014-02-05">2014-02-05</time></a>
       
         <tr>
           <td>jl
@@ -2774,6 +2794,317 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Upgrade stepUp()/stepDown() implementation to match spec.</summary>
+              <pre class=body>
+The spec for stepUp()/stepDown()
+
+  http://www.whatwg.org/specs/web-apps/current-work/#dom-input-stepdown
+
+requires that out-of-step values snap to step, just like the UI
+implementation will do. Hence, bring the required clamping/snapping
+handling into scope.
+
+Also, stepUp()/stepDown() shouldn&#39;t throw if the current value is not
+a number, nor if the resulting stepped-to value is too far out of
+range. Snapping to range (modulo step base) is what&#39;s supposed to
+happen now.
+
+R=yosin@chromium.org,keishi1@chromium.org,tkent@chromium.org
+BUG=339194
+
+Review URL: https://codereview.chromium.org/136783006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166525 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166525&amp;view=revision"><time datetime="2014-02-05">2014-02-05</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Coalesce writes in SVGPathByteStreamBuilder</summary>
+              <pre class=body>
+Add a helper class CoalescingBuffer, that collects the data for a segment
+into a local (stack) buffer, and then writes the entire stack buffer in
+one go to the SVGPathByteStream.
+
+This reduces codesize (on GCC 4.8) by roughly 50% (closePath being the
+only method that grows).
+
+Review URL: https://codereview.chromium.org/149913004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166523 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166523&amp;view=revision"><time datetime="2014-02-05">2014-02-05</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Avoid unnecessary style recalc for subtree of focused element.</summary>
+              <pre class=body>
+Updating the styles for an element that changes its focus state only needs to
+force a recalc of the subtree if the subtree contains an element that could
+match a selector which contains a :focus pseudo class left of a child or
+descendant combinator. At the same time, that :focus pseudo must match the
+element we are updating focus state for. This is indicated by the return value
+of Element::childrenAffectedByFocus.
+
+This change does a LocalStyleChange when updating the focus state of an
+element which returns false for childrenAffectedByFocus, and
+SubtreeStyleChange otherwise.
+
+BUG=315923
+
+Review URL: https://codereview.chromium.org/135183002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166517 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166517&amp;view=revision"><time datetime="2014-02-05">2014-02-05</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use memcpy in SVGPathByteStreamSource::readType</summary>
+              <pre class=body>
+This avoids having the compiler beating around the bush trying to
+recognize the memcpy, and results in smaller code (roughly 50% smaller
+measured for GCC 4.8). All at the affordable price of upsetting a few
+language purists.
+
+Review URL: https://codereview.chromium.org/133163007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166516 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166516&amp;view=revision"><time datetime="2014-02-05">2014-02-05</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Update breakpad to refer to libtest_netscape_plugin.so</summary>
+              <pre class=body>
+libTestNetscapePlugIn.so has been renamed to libtest_netscape_plugin.so, sync.
+
+R=jochen@chromium.org
+BUG=341016
+
+Review URL: https://codereview.chromium.org/146913007
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166515 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166515&amp;view=revision"><time datetime="2014-02-05">2014-02-05</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Added myself to &#39;css&#39; watchlist.</summary>
+              <pre class=body>
+TBR=eseidel
+NOTRY=true
+BUG=None
+
+Review URL: https://codereview.chromium.org/150663008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166510 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166510&amp;view=revision"><time datetime="2014-02-05">2014-02-05</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Improve handling of CORS redirects for some resource loads.</summary>
+              <pre class=body>
+To align with what CORS requires for redirects, have CORS-enabled
+resource loading perform access control checks on redirects.
+
+The ResourceLoader delegates the access control check to its host&#39;s
+canAccessRedirect() implementation:
+
+ bool ResourceLoaderHost::canAccessRedirect(Resource*, ResourceRequest&amp;, const ResourceResponse&amp;, ResourceLoaderOptions&amp;);
+
+which is passed the redirect request + response along with other
+arguments needed to make a yes/no decision on following the redirect.
+
+To correctly handle redirects to another origin, the
+canAccessRedirect() predicate is also responsible for updating the
+&#39;source origin&#39; as the redirect is followed. This and other redirect
+steps are taken care of by the helper method
+
+  CrossOriginAccessControl::handleRedirect()
+
+The included tests cover redirects over &lt;img&gt; and &lt;script&gt;, for the
+various redirect responses possible (wrt CORS.) Rely on existing
+redirect tests for HTML imports.
+
+Notice that the redirect handling added here does not apply to
+resource types and loaders that implement their special (and extended)
+handling of CORS + redirects -- e.g., XMLHttpRequest fetches.
+
+R=abarth@chromium.org
+BUG=274843
+
+Review URL: https://codereview.chromium.org/149643003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166508 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166508&amp;view=revision"><time datetime="2014-02-05">2014-02-05</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>&lt;br&gt; nodes should not be allowed within SVG text</summary>
+              <pre class=body>
+Add new method isRenderableTextNode to SVGRenderSupport to filter out any
+RenderObjects that return true for isText(), but is not recognized by the
+SVG text rendering codepath.
+
+BUG=339993, 337607
+
+Review URL: https://codereview.chromium.org/145493012
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166505 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166505&amp;view=revision"><time datetime="2014-02-05">2014-02-05</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Make the timer in SMILTimeContainer more of an implementation detail</summary>
+              <pre class=body>
+Add a few new methods to represent the different actions required:
+
+ scheduleAnimationFrame(SMILTime fireTime)
+ immediateAnimationFrame()
+ cancelAnimationFrame()
+
+and replace uses of m_timer.foo() and startTimer with the appropriate
+method.
+
+BUG=231576
+
+Review URL: https://codereview.chromium.org/143403005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166497 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166497&amp;view=revision"><time datetime="2014-02-05">2014-02-05</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Get rid of the *Byte types used for (de)serializing to SVGPathByteStream</summary>
+              <pre class=body>
+Use a single ByteType&lt;T&gt; instead.
+
+Additionally clean up SVGPathByteStream a bit by delegating two more
+methods {isEmpty(), append(SVGPathByteStream*)} to the wrapped WTF::Vector.
+
+Review URL: https://codereview.chromium.org/130563014
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166481 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166481&amp;view=revision"><time datetime="2014-02-05">2014-02-05</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Count consecutive direct adjacent selectors.</summary>
+              <pre class=body>
+The maxDirectAdjacentSelectors counter in RuleFeatureSet should only count
+the maximum number of consecutive direct adjacent combinators. The number is
+used to invalidate style for sibling trees.
+
+For instance a selector like &#34;div+div div+div&#34; only needs to invalidate a
+single sibling tree.
+
+When a different combinator is encountered, store the number of consecutive
+direct adjacent combinators seen and reset the counter; instead of counting
+all direct adjacent combinators in the selector.
+
+R=ojan
+BUG=340866
+
+Review URL: https://codereview.chromium.org/155283002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166468 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166468&amp;view=revision"><time datetime="2014-02-05">2014-02-05</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Perform a microtask checkpoint for document.write(&#39;&lt;script&gt;&lt;\/script&gt;&#39;)</summary>
+              <pre class=body>
+http://whatwg.org/html#scriptEndTag
+
+The spec does &#39;Perform a microtask checkpoint&#39; unconditionally for &#39;An
+end tag whose tag name is &#34;script&#34;&#39;, which means that document.write
+can trigger it while a script is running.
+
+A spec bug was filed for the similar situation with &#39;Provide a stable
+state&#39; on the assumption that this was a mistake, but it was not:
+https://www.w3.org/Bugs/Public/show_bug.cgi?id=24361
+
+Unless performing a microtask checkpoint here will lead to other
+complications, it&#39;s simpler to just align with the spec.
+
+BUG=340322
+
+Review URL: https://codereview.chromium.org/130983011
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166445 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166445&amp;view=revision"><time datetime="2014-02-05">2014-02-05</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Move HighResolutionTimeInWorkers to stable.</summary>
+              <pre class=body>
+This moves the &#34;High Resolution Time Level 2&#34; mini feature to stable,
+extending high resolution timing support to also cover Web Workers,
+
+ https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/HighResolutionTime2/Overview.html
+
+Relevant &#34;Intent to Ship&#34; thread,
+
+ https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/R3OiFdzqm1w
+
+R=jochen@chromium.org
+BUG=169318
+
+Review URL: https://codereview.chromium.org/153543004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166435 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166435&amp;view=revision"><time datetime="2014-02-05">2014-02-05</time></a>
       
         <tr>
           <td>philipj
