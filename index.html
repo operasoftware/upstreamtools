@@ -23,7 +23,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     <a href="#chromium">Chromium</a>: 144,
-    <a href="#blink">Blink</a>: 501,
+    <a href="#blink">Blink</a>: 506,
     <a href="#v8">v8</a>: 14.
   <p class=hint>Click message to expand
   
@@ -2794,6 +2794,117 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove HTMLMediaElement::percentLoaded()</summary>
+              <pre class=body>
+It is not used anywhere.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/156183003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166638 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166638&amp;view=revision"><time datetime="2014-02-06">2014-02-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Use isFinishedParsingChildren() in HTMLSelectElement</summary>
+              <pre class=body>
+Remove HTMLSelectElement::m_isParsingInProgress and
+HTMLSelectElement::isParsingInProgress().
+
+There is no runtime change, as isFinishedParsingChildren() is true per
+default, even for script-created elements, and only returns false
+between the beginParsingChildren() and finishParsingChildren().
+
+BUG=341414
+
+Review URL: https://codereview.chromium.org/146973006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166637 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166637&amp;view=revision"><time datetime="2014-02-06">2014-02-06</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Make sure begin and end events are dispatched for back-to-back intervals</summary>
+              <pre class=body>
+When the end time of the previous interval is the same as the
+begin time of the new/current interval, the active state won&#39;t 
+visibly transition Inactive -&gt; Active (for &#39;begin&#39; - the other
+way around for &#39;end&#39;) if the interval can be resolved up
+front (i.e. isn&#39;t event-base).
+
+Fix by having SVGSMILElement::checkRestart return a bool indicating
+whether an interval ended up being restarted, and then use this bool to
+extend the predicates looking for Inactive&lt;-&gt;Active transitions.
+
+BUG=337724
+
+Review URL: https://codereview.chromium.org/141013017
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166625 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166625&amp;view=revision"><time datetime="2014-02-06">2014-02-06</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Reduce scope (and running time) of sync-repeated-and-caching test.</summary>
+              <pre class=body>
+Synchronous XMLHttpRequest fetches are slow end-to-end when running
+LayoutTests, particularly on Windows. The range of requests issued by
+xmlhttprequest/sync-repeated-and-caching really doesn&#39;t have to be
+that extensive to catch regressions. Hence, reduce scope somewhat.
+
+R=tyoshino@chromium.org
+BUG=327877
+
+Review URL: https://codereview.chromium.org/150103005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166615 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166615&amp;view=revision"><time datetime="2014-02-06">2014-02-06</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove input.type = &#34;&#34;; quirk.</summary>
+              <pre class=body>
+Do not treat setting input.type to the empty string as a special case
+(i.e., as removing the attribute), just update the underlying
+attribute as for any other value.
+
+This aligns behavior with Gecko and Presto (and spec); Trident treats
+such as a no-op, which in any case was incompatible with the previous
+behavior here of removing the attribute. i.e., the test added passes
+for all but Trident.
+
+R=tkent@chromium.org
+BUG=
+TEST=fast/forms/input-type-change3
+
+Review URL: https://codereview.chromium.org/141703028
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166593 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166593&amp;view=revision"><time datetime="2014-02-06">2014-02-06</time></a>
       
         <tr>
           <td>sigbjornf
