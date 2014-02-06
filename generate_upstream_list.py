@@ -24,7 +24,7 @@ def get_commit_log(git_repo):
             m3 = re.search('(Contributed|Patch) (from|by) [^<]*<(?P<name>[^@]+)@opera\.com>',
                            commit.body)
             if not m3:
-                raise Exception("Didn't find opera employee in commit msg ({})".format(commit.body))
+                raise Exception("Didn't find Opera employee in commit msg ({})".format(commit.body))
             author = m3.group('name')
         else:
             # e.g. svn://svn.chromium.org/blink/trunk@165617
@@ -58,7 +58,7 @@ v8_log = get_commit_log(config.V8_GIT)
 log = [
     { 'name': 'Chromium', 'log': chr_log },
     { 'name': 'Blink', 'log': blink_log },
-    { 'name': 'v8', 'log': v8_log },
+    { 'name': 'V8', 'log': v8_log },
 ]
 
 env = Environment(loader=FileSystemLoader('templates'))
