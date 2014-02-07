@@ -22,8 +22,8 @@ h1 { margin-top: 0; text-align: center; }
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    <a href="#chromium">Chromium</a>: 144,
-    <a href="#blink">Blink</a>: 506,
+    <a href="#chromium">Chromium</a>: 145,
+    <a href="#blink">Blink</a>: 511,
     <a href="#v8">v8</a>: 14.
   <p class=hint>Click message to expand
   
@@ -34,6 +34,24 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mharanczyk
+          <td class=message>
+            <details>
+              <summary>Skip root dir when iterating over path in reparse points search.</summary>
+              <pre class=body>
+It turns out that ::GetFileAttributes(...) Windows API for paths in form of &#34;&lt;drive&gt;:&#34; returns attribute of binary file work dir instead of &#34;&lt;drive&gt;:\&#34;
+dir.
+
+BUG=340625
+
+Review URL: https://codereview.chromium.org/150093006
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@249667 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=249667&amp;view=revision"><time datetime="2014-02-07">2014-02-07</time></a>
       
         <tr>
           <td>bratell
@@ -2794,6 +2812,104 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Convert remaining RenderSVG* nodes to RenderObject::isChildAllowed</summary>
+              <pre class=body>
+Reland of:
+r165851 (https://codereview.chromium.org/146833003) and
+r166238 (https://codereview.chromium.org/136963005)
+
+Performance issues should have been adressed by the latter.
+
+BUG=337607
+
+Review URL: https://codereview.chromium.org/145333003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166705 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166705&amp;view=revision"><time datetime="2014-02-07">2014-02-07</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>New watchlists for tables and fragment layout. Add myself to them.</summary>
+              <pre class=body>
+git-svn-id: svn://svn.chromium.org/blink/trunk@166655 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166655&amp;view=revision"><time datetime="2014-02-06">2014-02-06</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Fix repaint on :hover for empty elements with a border.</summary>
+              <pre class=body>
+If the color changes on :hover, then the border of the element may need to
+be repainted. Currently, we only repaint if an immediate child has a
+border, but not if the element itself has a border. This causes a missing
+repaint in some cases for bordered elements with whitespace-only contents.
+
+Fixed by repainting when the element itself has a border.
+
+BUG=275044
+TEST=automated
+
+Review URL: https://codereview.chromium.org/140673006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166654 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166654&amp;view=revision"><time datetime="2014-02-06">2014-02-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a UseCounter for HTMLMediaElement.controller</summary>
+              <pre class=body>
+MediaController isn&#39;t getting the attention it needs right now. Count
+usage to help decide whether or not removal is feasible. Feasible does
+not imply desirable, but the data can inform the decision.
+
+Count a non-null controller without distinguishing how it was set
+(markup or script) to measure the usage that affects behavior.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/156493002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166651 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166651&amp;view=revision"><time datetime="2014-02-06">2014-02-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Use isFinishedParsingChildren() in HTMLMediaElement</summary>
+              <pre class=body>
+Remove HTMLMediaElement::m_parsingInProgress.
+
+There is no runtime change, as isFinishedParsingChildren() is true per
+default, even for script-created elements, and only returns false
+between the beginParsingChildren() and finishParsingChildren().
+
+BUG=341414
+
+Review URL: https://codereview.chromium.org/142413014
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166645 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166645&amp;view=revision"><time datetime="2014-02-06">2014-02-06</time></a>
       
         <tr>
           <td>philipj
