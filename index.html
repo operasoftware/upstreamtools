@@ -22,8 +22,8 @@ h1 { margin-top: 0; text-align: center; }
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    <a href="#chromium">Chromium</a>: 145,
-    <a href="#blink">Blink</a>: 511,
+    <a href="#chromium">Chromium</a>: 146,
+    <a href="#blink">Blink</a>: 519,
     <a href="#v8">v8</a>: 14.
   <p class=hint>Click message to expand
   
@@ -34,6 +34,23 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>jadahl
+          <td class=message>
+            <details>
+              <summary>base: Don&#39;t generate unused BoundFunctorTraits typedef</summary>
+              <pre class=body>
+Having it there causes a warning or error (unused-local-typedefs).
+
+BUG=
+
+Review URL: https://codereview.chromium.org/133553003
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@249808 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=249808&amp;view=revision"><time datetime="2014-02-07">2014-02-07</time></a>
       
         <tr>
           <td>mharanczyk
@@ -2812,6 +2829,167 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Clean up MediaControlElement virtual and unused functions</summary>
+              <pre class=body>
+This class was a bit confusing:
+
+isShowing() was never used.
+
+The state of MediaControlElement::shadowPseudoId() was odd. The same
+virtual function exists on Element, and the MediaControl*Element
+classes inherit both Element and MediaControlElement. When they
+override shadowPseudoId() they override both of their base classes.
+However, MediaControlElement::shadowPseudoId() wasn&#39;t ever used...
+
+The remaining functions don&#39;t need to be virtual since they&#39;re never
+overridden.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/145503008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166767 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166767&amp;view=revision"><time datetime="2014-02-08">2014-02-08</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove unused parts of MediaControllerInterface</summary>
+              <pre class=body>
+Remove the parts of MediaControllerInterface that aren&#39;t actually used
+by the MediaControls code, which is the only place where this abstract
+interface is used as opposed to HTMLMediaElement or MediaController.
+
+hasCurrentSrc() wasn&#39;t used anywhere, so remove it.
+
+BUG=341852
+
+Review URL: https://codereview.chromium.org/156173003
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166766 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166766&amp;view=revision"><time datetime="2014-02-08">2014-02-08</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Move ReadyState enum from MediaControllerInterface to HTMLMediaElement</summary>
+              <pre class=body>
+The spec for MediaController.readyState says &#34;uses
+HTMLMediaElement.readyState&#39;s values&#34;, so make it so in the
+implementation as well.
+
+This is a first step in reducing the size of MediaControllerInterface.
+
+BUG=341852
+
+Review URL: https://codereview.chromium.org/154283004
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166764 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166764&amp;view=revision"><time datetime="2014-02-08">2014-02-08</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove MediaController::m_mediaGroup</summary>
+              <pre class=body>
+It is unused.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/150423006
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166759 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166759&amp;view=revision"><time datetime="2014-02-08">2014-02-08</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove HTMLMediaElement::togglePlayState()</summary>
+              <pre class=body>
+It is unused.
+
+BUG=none
+
+Review URL: https://codereview.chromium.org/139233008
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166758 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166758&amp;view=revision"><time datetime="2014-02-08">2014-02-08</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Merge MediaControlsChromium into MediaControls</summary>
+              <pre class=body>
+To the largest extent possible, code was copied from
+MediaControlsChromium.* to MediaControls.* without modification. Where
+MediaControlsChromium virtual functions called the MediaControls base
+functions, the order was preserved to avoid changing behavior.
+
+BUG=341813
+
+Review URL: https://codereview.chromium.org/157403002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166753 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166753&amp;view=revision"><time datetime="2014-02-08">2014-02-08</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use LocalStyleChange for updating :-webkit-drag.</summary>
+              <pre class=body>
+If you don&#39;t have childrenAffectedByDrag, use LocalStyleChange instead of
+SubtreeStyleChange to avoid unnecessary recalc of the whole subtree.
+
+R=ojan
+BUG=341831
+
+Review URL: https://codereview.chromium.org/140053005
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166746 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166746&amp;view=revision"><time datetime="2014-02-07">2014-02-07</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove SVGElement::childShouldCreateRenderer</summary>
+              <pre class=body>
+All implementation now return true, and the RenderObject::isChildAllowed
+mechanism is used instead.
+
+BUG=337607
+
+Review URL: https://codereview.chromium.org/157663002
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166733 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166733&amp;view=revision"><time datetime="2014-02-07">2014-02-07</time></a>
       
         <tr>
           <td>fs
