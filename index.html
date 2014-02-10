@@ -23,7 +23,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     <a href="#chromium">Chromium</a>: 146,
-    <a href="#blink">Blink</a>: 523,
+    <a href="#blink">Blink</a>: 526,
     <a href="#v8">V8</a>: 14.
   <p class=hint>Click message to expand
   
@@ -2829,6 +2829,81 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Move quota module to oilpan</summary>
+              <pre class=body>
+This moves the storage quota interfaces to oilpan, using transition
+types.
+
+Mostly regular, apart from one one interface (DeprecatedStorageQuota)
+being used from both a main world and worker context, requiring thread
+affinity defaults to be overridden for its class.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=166819">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=166819</a>
+
+Review URL: <a href="https://codereview.chromium.org/158133003">https://codereview.chromium.org/158133003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166849 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166849&amp;view=revision"><time datetime="2014-02-10">2014-02-10</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add ScriptPromiseResolver RawPtr overloads.</summary>
+              <pre class=body>
+In an Oilpan setting, promises may now be passed RawPtr&lt;&gt; values
+instead of RefPtr&lt;&gt;s. Accommodate such use by adding the needed
+reject() + resolve() overloads.
+
+(This change has been extricated from
+
+  <a href="https://codereview.chromium.org/153083006">https://codereview.chromium.org/153083006</a>
+
+which we&#39;re holding off on in its entirety for the time being.)
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/148513008">https://codereview.chromium.org/148513008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166840 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166840&amp;view=revision"><time datetime="2014-02-10">2014-02-10</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Limit beforeunload returnValue propagation to event handlers.</summary>
+              <pre class=body>
+The required extra handling of the return value from an
+&#39;onbeforeunload&#39; event handler,
+
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/#the-event-handler-processing-algorithm">http://www.whatwg.org/specs/web-apps/current-work/#the-event-handler-processing-algorithm</a>
+  (step 4)
+
+should not apply to event listeners.
+
+R=
+BUG=341476
+
+Review URL: <a href="https://codereview.chromium.org/158783002">https://codereview.chromium.org/158783002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166828 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166828&amp;view=revision"><time datetime="2014-02-10">2014-02-10</time></a>
       
         <tr>
           <td>sigbjornf
