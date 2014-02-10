@@ -22,7 +22,7 @@
           <td class=message>
             <details>
               <summary>{{ c.subject|e }}</summary>
-              <pre class=body>{{ c.body|e }}</pre>
+              <pre class=body>{{ c.body|e|urlize }}</pre>
             </details>
           <td><a href="{{ c.viewvc|e }}"><time datetime="{{ c.date|e }}">{{ c.date|e }}</time></a>
       {% endfor %}
