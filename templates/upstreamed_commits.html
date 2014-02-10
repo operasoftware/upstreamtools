@@ -30,4 +30,23 @@
     </section>
   {% endfor %}
 </main>
+<script>
+  /* Fallback for Presto */
+  if (!('open' in document.createElement('details'))) {
+    var messages = document.querySelectorAll('.message');
+    for (var i=0; i<messages.length; i++)
+    {
+      messages[i].querySelector('.body').style.display = 'none';
+      /* Yes, creating lots of event listeners ... No delegation here! :P */
+      messages[i].addEventListener('click', function()
+      {
+        var body = this.querySelector('.body');
+        if (body.style.display == 'none')
+            body.style.display = 'block';
+        else
+            body.style.display = 'none';
+      });
+    }
+  }
+</script>
 {% endblock %}
