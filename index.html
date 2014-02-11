@@ -23,7 +23,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     <a href="#chromium">Chromium</a>: 146,
-    <a href="#blink">Blink</a>: 526,
+    <a href="#blink">Blink</a>: 535,
     <a href="#v8">V8</a>: 14.
   <p class=hint>Click message to expand
   
@@ -2829,6 +2829,236 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove the Pagination struct, clean up viewport scroll policy propagation.</summary>
+              <pre class=body>
+The Pagination struct no longer served a purpose, now that the
+internal setPagination() API is gone. Without any purpose in its own,
+all it did was complicate the code (some unnecessary translations back
+and forth involving writing mode, text direction and column
+progression direction).
+
+Added a bunch of tests for paged overflow, to test every combination
+of writing mode, text direction, overflow direction, and whether it&#39;s
+set on the viewport or on a regular DIV. DIV tests for paged-y are
+omitted, since there&#39;s no vertical scrollbar then (which is an old bug
+that could be fixed separately).
+
+Also added tests for dynamically switching between paged and
+non-paged.
+
+Since this work required some changes regarding how overflow from BODY
+or root is propagated to the viewport, I cleaned up this a bit. There
+used to be 2 places with duplicated logic (picking the right element
+for propagation; root or BODY). With my changes that would easily
+become 3. Reduced it to 1 instead. :)
+
+Added some tests for overflow policy propagation as well.
+
+No behavioral changes are intended with this patch, except: it is now
+possible to make the BODY renderer itself paginated - if it is the
+root element that got its overflow properties propagated to the
+viewport
+(e.g. &lt;html style=&#34;overflow:hidden;&#34;&gt;&lt;body style=&#34;overflow:-webkit-paged-x;&#34;&gt;...)
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/157553002">https://codereview.chromium.org/157553002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166923 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166923&amp;view=revision"><time datetime="2014-02-11">2014-02-11</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Tweak the public/protected/private sections of MediaControls</summary>
+              <pre class=body>
+After the merge this looked rather strange, so keep as public that
+which is used by HTMLMediaElement or MediaControlElements, make
+protected that which is used/overridden by MediaControlsAndroid, and
+make everything else private.
+
+BUG=341813
+
+Review URL: <a href="https://codereview.chromium.org/143703007">https://codereview.chromium.org/143703007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166911 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166911&amp;view=revision"><time datetime="2014-02-11">2014-02-11</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make MediaControls minimally virtual</summary>
+              <pre class=body>
+Only the functions which are overridden in MediaControlsAndroid need
+be virtual.
+
+updateStatusDisplay() didn&#39;t do anything, so it was removed.
+
+BUG=341813
+
+Review URL: <a href="https://codereview.chromium.org/141323005">https://codereview.chromium.org/141323005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166907 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166907&amp;view=revision"><time datetime="2014-02-11">2014-02-11</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Rename MediaControlsChromiumAndroid to MediaControlsAndroid</summary>
+              <pre class=body>
+BUG=341813
+
+Review URL: <a href="https://codereview.chromium.org/157423002">https://codereview.chromium.org/157423002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166901 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166901&amp;view=revision"><time datetime="2014-02-11">2014-02-11</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove HTMLMediaElement::pageConsentRequiredForLoad()</summary>
+              <pre class=body>
+It is unused.
+
+BUG=342339
+
+Review URL: <a href="https://codereview.chromium.org/137883009">https://codereview.chromium.org/137883009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166899 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166899&amp;view=revision"><time datetime="2014-02-11">2014-02-11</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the user gesture restriction for HTMLMediaElement::load()</summary>
+              <pre class=body>
+load() resets some state and invokes resource selection. Preventing
+resource selection is not useful, since there are several other
+unguarded ways to trigger it using plain markup or scripts.
+
+m_loadInitiatedByUserGesture has been unused outside of load() since the
+<a href="http://npr.org">npr.org</a> quirk was removed in r158703.
+
+If a similar feature is needed in the future, forcing preload=&#34;none&#34;
+internally would be an alternative.
+
+BUG=342339
+
+Review URL: <a href="https://codereview.chromium.org/144663006">https://codereview.chromium.org/144663006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166895 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166895&amp;view=revision"><time datetime="2014-02-11">2014-02-11</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Merge MediaControlsChromium into MediaControls (2nd try)</summary>
+              <pre class=body>
+To the largest extent possible, code was copied from
+MediaControlsChromium.* to MediaControls.* without modification. Where
+MediaControlsChromium virtual functions called the MediaControls base
+functions, the order was preserved to avoid changing behavior.
+
+The 1st try broke Android: <a href="https://codereview.chromium.org/144083003/">https://codereview.chromium.org/144083003/</a>
+
+The problem was that MediaControlsChromiumAndroid::createControls()
+was merged into the Android MediaControls::create(), but obviously
+that doesn&#39;t have access to the private members it needs.
+
+Simplify things by having only a single implementation of create() and
+make initializeControls() virtual instead. The ifdefery is thus
+reduced to a single line in MediaControls::create().
+
+BUG=341813
+
+Review URL: <a href="https://codereview.chromium.org/158333002">https://codereview.chromium.org/158333002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166893 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166893&amp;view=revision"><time datetime="2014-02-11">2014-02-11</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the user gesture restriction for HTMLMediaElement::pause()</summary>
+              <pre class=body>
+This is very nearly dead code, because when the setting is enabled, the
+only way to play a video is using play(), which removes all restrictions
+if it succeeds. Therefore, the only observable behavior from the pause
+restriction is that if pause() is called from an input event handler
+when networkState is NETWORK_EMPTY, LoadMediaResource is scheduled.
+
+Further, it hardly seems like a useful restriction even if it worked.
+Web sites that pause a video against the will of the user seem rather
+improbable. Possibly the restriction was originally added to guard the
+scheduling of LoadMediaResource.
+
+Preventing LoadMediaResource is not useful, since there are several
+other ways to trigger a load, e.g. just &lt;video src=&#34;foo&#34;&gt; in markup.
+
+Note that there was no test for this restriction, but there are tests
+for load(), play() and autoplay.
+
+BUG=342339
+
+Review URL: <a href="https://codereview.chromium.org/130813006">https://codereview.chromium.org/130813006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166888 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166888&amp;view=revision"><time datetime="2014-02-11">2014-02-11</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Region based multicol: support explicit column breaks</summary>
+              <pre class=body>
+Merely supporting insertion of explicit (forced) column breaks in
+the region based multicol implementation is really simple: just
+hook up with what the CSS regions code is already doing.
+
+However, there is one complication: column balancing. In order to
+balance columns as nicely as possible when there are explicit
+breaks, we need to figure out between which explicit breaks the
+implicit breaks will occur (if there&#39;s room for any at all).
+
+This is a merge of <a href="https://bugs.webkit.org/show_bug.cgi?id=123993">https://bugs.webkit.org/show_bug.cgi?id=123993</a>
+Reviewed in WebKit by David Hyatt.
+
+BUG=336192
+
+Review URL: <a href="https://codereview.chromium.org/143383002">https://codereview.chromium.org/143383002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166859 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166859&amp;view=revision"><time datetime="2014-02-10">2014-02-10</time></a>
       
         <tr>
           <td>sigbjornf
