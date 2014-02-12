@@ -23,7 +23,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     <a href="#chromium">Chromium</a>: 146,
-    <a href="#blink">Blink</a>: 535,
+    <a href="#blink">Blink</a>: 543,
     <a href="#v8">V8</a>: 14.
   <p class=hint>Click message to expand
   
@@ -2829,6 +2829,211 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove SVGExternalResourcesRequired.h</summary>
+              <pre class=body>
+r164692 removed SVGExternalResourcesRequired.cpp and .idl, but left the
+header file. Remove it.
+
+<a href="mailto:R=pdr@chromium.org,schenney@chromium.org,fmalita@chromium.org">R=pdr@chromium.org,schenney@chromium.org,fmalita@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/159893011">https://codereview.chromium.org/159893011</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167020 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167020&amp;view=revision"><time datetime="2014-02-12">2014-02-12</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fixup SVGSVGElement.createSVGTransformFromMatrix IDL definition</summary>
+              <pre class=body>
+The optional SVGMatrix with a default of undefined is nonsensical, and
+is not in line with the spec (where the argument is not optional).
+
+Remove the &#39;optional&#39; qualifier and the default value. This aligns
+behavior with Gecko. (The exception thrown now is about arity, and not
+about type mismatch as previously.)
+
+As a result, the move of the [StrictTypeChecking] attribute to the
+interface can be completed.
+
+Review URL: <a href="https://codereview.chromium.org/149603007">https://codereview.chromium.org/149603007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167014 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167014&amp;view=revision"><time datetime="2014-02-12">2014-02-12</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add [StrictTypeChecking] to the SVGGeometryElement interface</summary>
+              <pre class=body>
+Apply strict type checking to the SVGGeometryElement interface.
+
+Fix an issue with the [StrictTypeChecking] attribute, where &#39;undefined&#39;
+would be accepted when it shouldn&#39;t have been. This made the explicit
+checking in SVGTransformListPropertyTearOff unnecessary, so remove (and
+update test with the new expected result.)
+
+BUG=341810
+BUG=342741
+BUG=341379
+BUG=341620
+BUG=341030
+BUG=341776
+
+Review URL: <a href="https://codereview.chromium.org/144463014">https://codereview.chromium.org/144463014</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167003 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167003&amp;view=revision"><time datetime="2014-02-12">2014-02-12</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Fix incorrect animation for some values of background-position.</summary>
+              <pre class=body>
+There is a bug which causes incorrect animation for background-position
+values with right/bottom edge origin. This is because we interpolate
+the offset value itself, but do not take into account that the offset
+value represents different positions based on the edge origin of the
+offset.
+
+Example: If we want to animate from &#34;left 10px&#34; to &#34;right 20px&#34;, we
+interpolate 10px to 20px, but &#34;forget&#34; the edge affinitiy of the second
+value, and end up with a value offset from the left.
+
+Fixed by emitting calculated lengths for bottom/right edge origins during
+animation, such that &#34;right N&#34; or &#34;bottom N&#34; becomes &#34;calc(100% - N)&#34;.
+
+BUG=341440
+TEST=automated
+
+Review URL: <a href="https://codereview.chromium.org/157523002">https://codereview.chromium.org/157523002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166997 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166997&amp;view=revision"><time datetime="2014-02-12">2014-02-12</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New multicol] Avoid 1px tall multicol if percent height is unresolvable.</summary>
+              <pre class=body>
+If a box has a percentage height, but the computed height of its
+containing block is auto, the computed height of the box also becomes
+auto. computeContentLogicalHeight() returns -1 if the height isn&#39;t
+resolvable, and we need to make sure that such a value doesn&#39;t
+constrain the height of the multicol container.
+
+This is a merge of <a href="https://bugs.webkit.org/show_bug.cgi?id=122826">https://bugs.webkit.org/show_bug.cgi?id=122826</a>
+Reviewed in WebKit by David Hyatt.
+
+BUG=342779
+
+Review URL: <a href="https://codereview.chromium.org/144463015">https://codereview.chromium.org/144463015</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166974 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166974&amp;view=revision"><time datetime="2014-02-12">2014-02-12</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Verify that appendChild(script) does not perform a microtask checkpoint</summary>
+              <pre class=body>
+This potential bug was raised in the review for the previous patch:
+<a href="https://codereview.chromium.org/130983011/">https://codereview.chromium.org/130983011/</a>
+
+BUG=340322
+
+Review URL: <a href="https://codereview.chromium.org/146043008">https://codereview.chromium.org/146043008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166962 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166962&amp;view=revision"><time datetime="2014-02-12">2014-02-12</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Make arguments to insertAdjacent{Text,Element} non-optional</summary>
+              <pre class=body>
+In <a href="https://codereview.chromium.org/109273003/">https://codereview.chromium.org/109273003/</a> the arguments to
+insertAdjacentHTML were made non-optional. Even though
+insertAdjacent{Text,Element} is not in any spec yet, it&#39;s reasonable
+that they should behave similarly, if ever spec&#39;ed.
+
+Since there&#39;s already (still necessary) error reporting at lower
+levels, the only real functional difference by this change is that:
+
+  element.insertAdjacentText(&#39;beforeEnd&#39;)
+
+will now throw TypeError instead of appending the string &#39;undefined&#39;
+to the element&#39;s text content. The other cases will just get more
+descriptive error messages, like:
+
+  &#34;2 arguments required, but only 0 present.&#34;
+
+instead of:
+
+  &#34;The node provided is null.&#34;
+
+when both arguments are missing.
+
+Also align the insertAdjacent{HTML,Element,Text}.html tests to look
+and behave similarly.
+
+IE10 passes all three with slightly different error message output.
+
+<a href="mailto:R=ojan@chromium.org">R=ojan@chromium.org</a>
+BUG=342754
+
+Review URL: <a href="https://codereview.chromium.org/146313006">https://codereview.chromium.org/146313006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166941 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166941&amp;view=revision"><time datetime="2014-02-11">2014-02-11</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Let V8 know about the external memory owned by large StaticNodeList</summary>
+              <pre class=body>
+If a script allocates many large but short-lived StaticNodeList objects,
+for instance by using querySelectorAll() in an inefficient way, memory
+usage will balloon since V8&#39;s garbage collector won&#39;t realize that much
+memory owned by it is being allocated, and thus doesn&#39;t run its GC.
+
+Reporting external allocated memory to V8 is unnecessary overhead for
+small objects, so only do it for objects larger than a limit.
+
+BUG=342752
+
+Review URL: <a href="https://codereview.chromium.org/154263007">https://codereview.chromium.org/154263007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@166937 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=166937&amp;view=revision"><time datetime="2014-02-11">2014-02-11</time></a>
       
         <tr>
           <td>mstensho
