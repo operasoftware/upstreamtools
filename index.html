@@ -22,8 +22,8 @@ h1 { margin-top: 0; text-align: center; }
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    <a href="#chromium">Chromium</a>: 146,
-    <a href="#blink">Blink</a>: 543,
+    <a href="#chromium">Chromium</a>: 148,
+    <a href="#blink">Blink</a>: 547,
     <a href="#v8">V8</a>: 14.
   <p class=hint>Click message to expand
   
@@ -34,6 +34,51 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mpawlowski
+          <td class=message>
+            <details>
+              <summary>Autofilling passwords imported from IE more conservative</summary>
+              <pre class=body>
+The trick is to leave action, username_element and password_element
+fields of the form empty, this will stop the browser from autofilling
+every form on the page with the credentials and will require user
+interaction.
+The user will have to click on the input box, select his login from
+the drop down and click &#39;submit&#39;. When this happens, Login Data will
+be updated with the action url of the particular form.
+
+Basically, since we don&#39;t know which form on the page is the one we 
+have imported credentials for, we don&#39;t autofill anything until the 
+user tells us. We&#39;ll remember his choice afterwards.
+
+BUG=52513
+
+Review URL: <a href="https://codereview.chromium.org/153043005">https://codereview.chromium.org/153043005</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@251035 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=251035&amp;view=revision"><time datetime="2014-02-13">2014-02-13</time></a>
+      
+        <tr>
+          <td>joaoe
+          <td class=message>
+            <details>
+              <summary>Changed RefCountedStaticMemory() to accept a void pointer.</summary>
+              <pre class=body>
+Using a void pointer saves lots of redundant casting.
+
+Also added RefCountedMemory front_as&lt;type&gt; which saves typing by not having to
+wrap each call with a reinterpret_cast&lt;&gt;.
+
+Review URL: <a href="https://codereview.chromium.org/126103003">https://codereview.chromium.org/126103003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@250808 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=250808&amp;view=revision"><time datetime="2014-02-12">2014-02-12</time></a>
       
         <tr>
           <td>jadahl
@@ -2829,6 +2874,86 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Require the entire document-tree to be single-origin for SVGImage</summary>
+              <pre class=body>
+SVGImage::currentFrameHasSingleSecurityOrigin only checks the
+first occurance of an &lt;svg:image&gt; or and &lt;svg:feImage&gt;, which
+meant that if the first such element had a benign reference,
+any later elements would be ignored.
+
+Also, since |node| can only ever match one of the tagnames, use a
+cascading &#39;if&#39; where appropriate.
+
+Review URL: <a href="https://codereview.chromium.org/163573003">https://codereview.chromium.org/163573003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167097 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167097&amp;view=revision"><time datetime="2014-02-13">2014-02-13</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Move speech module over to Oilpan.</summary>
+              <pre class=body>
+This moves the speech/ interfaces over to using Oilpan transition
+types. With the exception of the event objects, which will wait until
+the base classes have been moved over.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>, <a href="mailto:zerny@chromium.org">zerny@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/139803012">https://codereview.chromium.org/139803012</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167088 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167088&amp;view=revision"><time datetime="2014-02-13">2014-02-13</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Clean the SVGSVGElement interface IDL</summary>
+              <pre class=body>
+Remove some weird looking uses of [Default=Undefined] on suspendRedraw,
+unsuspendRedraw and getElementById.
+This means that TypeErrors will be thrown for the 0 arguments case. This
+is consistent with Gecko.
+
+Since the *Redraw* methods are deprecated (except forceRedraw), remove
+the comment about (WebKit) bug# (11275, dupe of 10408) and move the
+implementation stubs to the header file.
+
+Review URL: <a href="https://codereview.chromium.org/131473011">https://codereview.chromium.org/131473011</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167078 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167078&amp;view=revision"><time datetime="2014-02-13">2014-02-13</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove everything region-specific from LayoutTests.</summary>
+              <pre class=body>
+The CSS regions feature is being removed (in an upcoming CL).
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/159933010">https://codereview.chromium.org/159933010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167048 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167048&amp;view=revision"><time datetime="2014-02-12">2014-02-12</time></a>
       
         <tr>
           <td>fs
