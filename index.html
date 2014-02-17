@@ -23,7 +23,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
     <a href="#chromium">Chromium</a>: 148,
-    <a href="#blink">Blink</a>: 552,
+    <a href="#blink">Blink</a>: 555,
     <a href="#v8">V8</a>: 14.
   <p class=hint>Click message to expand
   
@@ -2874,6 +2874,74 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove CSS regions support, keeping a bare minimum to support &#34;region-based&#34; multicol.</summary>
+              <pre class=body>
+Remove everything strictly specific to CSS regions, but keep the parts that
+&#34;region-based&#34; multicol needs. So the render flow thread framework is still around,
+albeit heavily trimmed down. RenderRegion has also been kept, but is now obviously
+a misnomer (to be fixed later). It serves as a base class for what css3-break refers
+to as a &#34;fragmentainer&#34; (e.g. column, page or region). Not sure if it should really
+be a renderer type, seeing that these need to be created during layout (which should
+be avoided for renderers). A fragmentainer is more akin to what a line box represents
+than to what a renderer does.
+
+Additional removal and cleanup is possible, but let&#39;s start with this.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/134473008">https://codereview.chromium.org/134473008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167275 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167275&amp;view=revision"><time datetime="2014-02-17">2014-02-17</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add a second-order Dictionary::convert() function template.</summary>
+              <pre class=body>
+Avoid source code duplication of convert() method bodies for the
+parameterized pointer types.
+
+R=
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/168483002">https://codereview.chromium.org/168483002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167271 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167271&amp;view=revision"><time datetime="2014-02-17">2014-02-17</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: reduce visibility of Visitor::trace(const RawPtr&lt;T&gt;&amp;).</summary>
+              <pre class=body>
+With Oilpan enabled, fail earlier and make it a compile-time error to
+attempt to trace a RawPtr&lt;&gt;. (Previously it would only trigger an
+assert at run-time.)
+
+With Oilpan disabled, the method is needed to compile tracing methods
+over RawPtr-using transition types.
+
+R=
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/167443003">https://codereview.chromium.org/167443003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167267 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167267&amp;view=revision"><time datetime="2014-02-17">2014-02-17</time></a>
       
         <tr>
           <td>sigbjornf
