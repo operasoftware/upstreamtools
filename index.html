@@ -22,8 +22,8 @@ h1 { margin-top: 0; text-align: center; }
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    <a href="#chromium">Chromium</a>: 148,
-    <a href="#blink">Blink</a>: 555,
+    <a href="#chromium">Chromium</a>: 149,
+    <a href="#blink">Blink</a>: 557,
     <a href="#v8">V8</a>: 14.
   <p class=hint>Click message to expand
   
@@ -34,6 +34,25 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>ckulakowski
+          <td class=message>
+            <details>
+              <summary>Removing unnecessary creation of RenderViewHostDestructionObserver for all WebContents</summary>
+              <pre class=body>
+ProcessManager creates RenderViewHostDestructionObserver for all WebContents.
+It&#39;s not necessary as ProcessManager keeps information about WebContents
+only related to extensions (extension&#39;s background page, extension&#39;s popup).
+
+BUG=344297
+
+Review URL: <a href="https://codereview.chromium.org/169413002">https://codereview.chromium.org/169413002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@251765 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=251765&amp;view=revision"><time datetime="2014-02-18">2014-02-18</time></a>
       
         <tr>
           <td>mpawlowski
@@ -2874,6 +2893,42 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove sync-repeated-and-caching test expectation.</summary>
+              <pre class=body>
+Test no longer flaky on Windows, remove expectation.
+
+<a href="mailto:R=jochen@chromium.org">R=jochen@chromium.org</a>
+BUG=327877
+
+Review URL: <a href="https://codereview.chromium.org/170393003">https://codereview.chromium.org/170393003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167335 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167335&amp;view=revision"><time datetime="2014-02-18">2014-02-18</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Don&#39;t perform a microtask checkpoint for document.write(&#39;&lt;script&gt;&lt;\/script&gt;&#39;)</summary>
+              <pre class=body>
+This is a willful violation of the spec, expecting that it will change:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=24361">https://www.w3.org/Bugs/Public/show_bug.cgi?id=24361</a>
+
+BUG=340322
+
+Review URL: <a href="https://codereview.chromium.org/169093004">https://codereview.chromium.org/169093004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167302 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167302&amp;view=revision"><time datetime="2014-02-18">2014-02-18</time></a>
       
         <tr>
           <td>mstensho
