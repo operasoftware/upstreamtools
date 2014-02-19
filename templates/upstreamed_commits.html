@@ -4,9 +4,9 @@
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    <a href="#{{ projects[0].name|lower|e }}">{{ projects[0].name }}</a>: {{ projects[0].log|length }},
-    <a href="#{{ projects[1].name|lower|e }}">{{ projects[1].name }}</a>: {{ projects[1].log|length }},
-    <a href="#{{ projects[2].name|lower|e }}">{{ projects[2].name }}</a>: {{ projects[2].log|length }}.
+  {% for project in projects %}
+    <a href="#{{ project.name|lower|e }}">{{ project.name|e }}</a>: {{ project.log|length }}{% if project != projects[-1] %}, {% else %}.{% endif %}
+  {% endfor %}
   <p class=hint>Click message to expand
   {% for project in projects %}
     <section id="{{ project.name|lower|e }}" class="{{ project.name|lower|e }}">
