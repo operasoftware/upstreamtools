@@ -22,9 +22,13 @@ h1 { margin-top: 0; text-align: center; }
 <main>
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
-    <a href="#chromium">Chromium</a>: 149,
-    <a href="#blink">Blink</a>: 557,
-    <a href="#v8">V8</a>: 14.
+  
+    <a href="#chromium">Chromium</a>: 149, 
+  
+    <a href="#blink">Blink</a>: 561, 
+  
+    <a href="#v8">V8</a>: 15.
+  
   <p class=hint>Click message to expand
   
     <section id="chromium" class="chromium">
@@ -2893,6 +2897,86 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Recalc OPTION and OPTGROUP from recalcOwnStyle.</summary>
+              <pre class=body>
+When recalc was done from willRecalcStyle, the StyleRecalcChange state for
+OPTGROUP would always be NoChange for recalcOwnStyle and inherited properties
+not propagated to OPTION children for LocalStyleChange in OPTGROUP.
+
+R=esprehn
+BUG=343536
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/165433002">https://codereview.chromium.org/165433002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167414 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167414&amp;view=revision"><time datetime="2014-02-19">2014-02-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Make WebPrivatePtr capable of wrapping garbage collected objects.</summary>
+              <pre class=body>
+Extend WebPrivatePtr to let it safely hold on to garbage collected
+objects, via a strong, persistent object reference.
+
+As an example of use, adopt it for the Speech API platform layer
+objects.
+
+The implementation of WebPrivatPtr is courtesy of Vyacheslav Egorov &lt;<a href="mailto:vegorov@chromium.org">vegorov@chromium.org</a>&gt;
+
+<a href="mailto:R=haraken@chromium.org,ager@chromium.org,jochen@chromium.org,tkent@chromium.org">R=haraken@chromium.org,ager@chromium.org,jochen@chromium.org,tkent@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/168963003">https://codereview.chromium.org/168963003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167391 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167391&amp;view=revision"><time datetime="2014-02-19">2014-02-19</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Regression test for class removal.</summary>
+              <pre class=body>
+Added test to avoid future regressions in class removal.
+
+R=ojan
+BUG=344376
+
+Review URL: <a href="https://codereview.chromium.org/165723006">https://codereview.chromium.org/165723006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167364 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167364&amp;view=revision"><time datetime="2014-02-18">2014-02-18</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>fix may be used uninitialized warning on older compilers</summary>
+              <pre class=body>
+Some older compilers give a warning that m_block may be used
+uninitialized, since it&#39;s not always initialised in the LayoutScope
+constructor.
+
+Review URL: <a href="https://codereview.chromium.org/170233006">https://codereview.chromium.org/170233006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167358 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167358&amp;view=revision"><time datetime="2014-02-18">2014-02-18</time></a>
       
         <tr>
           <td>sigbjornf
@@ -15678,6 +15762,56 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@149844 bbb929c8-8fbe-4397-9dbb-9b
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Upgrade Symbol implementation to match current ES6 behavior.</summary>
+              <pre class=body>
+Refresh the implementation of Symbols to catch up with what the
+specification now mandates:
+
+* The global Symbol() function manufactures new Symbol values,
+  optionally with a string description attached.
+
+* Invoking Symbol() as a constructor will now throw.
+
+* ToString() over Symbol values still throws, and
+  Object.prototype.toString() stringifies like before.
+
+* A Symbol value is wrapped in a Symbol object either implicitly if
+  it is the receiver, or explicitly done via Object(symbolValue) or
+  (new Object(symbolValue).)
+
+* The Symbol.prototype.toString() method no longer throws on Symbol
+  wrapper objects (nor Symbol values.) Ditto for Symbol.prototype.valueOf().
+
+* Symbol.prototype.toString() stringifies as &#34;Symbol(&#34;&lt;description&gt;&#34;),
+  valueOf() returns the wrapper&#39;s Symbol value.
+
+* ToPrimitive() over Symbol wrapper objects now throws.
+
+Overall, this provides a stricter separation between Symbol values and
+wrapper objects than before, and the explicit fetching out of the
+description (nee name) via the &#34;name&#34; property is no longer supported
+(by the spec nor the implementation.)
+
+Adjusted existing Symbol test files to fit current, adding some extra
+tests for new/changed behavior.
+
+LOG=N
+<a href="mailto:R=arv@chromium.org">R=arv@chromium.org</a>, <a href="mailto:rossberg@chromium.org">rossberg@chromium.org</a>, arv, rossberg
+BUG=v8:3053
+
+Review URL: <a href="https://codereview.chromium.org/118553003">https://codereview.chromium.org/118553003</a>
+
+Patch from Sigbjorn Finne &lt;<a href="mailto:sigbjornf@opera.com">sigbjornf@opera.com</a>&gt;.
+
+git-svn-id: <a href="https://v8.googlecode.com/svn/branches/bleeding_edge@19490">https://v8.googlecode.com/svn/branches/bleeding_edge@19490</a> ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+            </details>
+          <td><a href="https://code.google.com/p/v8/source/detail?r=19490"><time datetime="2014-02-19">2014-02-19</time></a>
       
         <tr>
           <td>mathiasb
