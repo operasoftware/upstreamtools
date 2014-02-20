@@ -23,9 +23,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 149, 
+    <a href="#chromium">Chromium</a>: 150, 
   
-    <a href="#blink">Blink</a>: 561, 
+    <a href="#blink">Blink</a>: 565, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -38,6 +38,21 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>Followup from https://codereview.chromium.org/147513003/</summary>
+              <pre class=body>
+Since linux builds now depend on macros defined in linux/magic.h let&#39;s make sure that some of the newer values are set.
+
+Review URL: <a href="https://codereview.chromium.org/170823002">https://codereview.chromium.org/170823002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@252279 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=252279&amp;view=revision"><time datetime="2014-02-20">2014-02-20</time></a>
       
         <tr>
           <td>ckulakowski
@@ -2897,6 +2912,92 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Removed O(n!) traversal of selectors for selectorList.</summary>
+              <pre class=body>
+When collectFeaturesFromSelector got a for-loop for tagHistory in [1], the
+for-loop for tagHistory was kept in collectFeaturesFromSelectorList which
+means we did n! visits of n sub-selectors in selectors like
+:-webkit-any(.a.b.c).
+
+[1] <a href="https://codereview.chromium.org/143653010">https://codereview.chromium.org/143653010</a>
+
+R=esprehn,chrishtr
+BUG=335247
+
+Review URL: <a href="https://codereview.chromium.org/172993002">https://codereview.chromium.org/172993002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167475 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167475&amp;view=revision"><time datetime="2014-02-20">2014-02-20</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Support invalidation sets for simple class selectors.</summary>
+              <pre class=body>
+Invalidation sets were supported for selectors like &#39;.a .b&#39; with an empty
+invalidation set for &#39;b&#39; and a LocalStyleChange for elements for which &#39;b&#39;
+was added or removed. However, not for simple class selectors like &#39;.b&#39; for
+which an empty invalidation set would be added, but also marked with
+wholeSubtreeInvalid yielding a SubtreeStyleChange instead.
+
+Now, start using invalidation sets for class selectors in the rightmost
+compound selector even when there are no other class selectors present.
+
+<a href="mailto:R=chrishtr@chromium.org,ojan@chromium.org">R=chrishtr@chromium.org,ojan@chromium.org</a>
+BUG=335247
+
+Review URL: <a href="https://codereview.chromium.org/171513006">https://codereview.chromium.org/171513006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167470 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167470&amp;view=revision"><time datetime="2014-02-20">2014-02-20</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Use data driven code when registering Element constructors.</summary>
+              <pre class=body>
+For more compact initialization code. Because I want to.
+
+<a href="mailto:R=adamk@chromium.org">R=adamk@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/170793003">https://codereview.chromium.org/170793003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167443 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167443&amp;view=revision"><time datetime="2014-02-19">2014-02-19</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Fire canplaythrough after play and playing when autoplaying</summary>
+              <pre class=body>
+The new test case is copied (with style adjustments) from
+<a href="https://github.com/w3c/web-platform-tests/pull/636">https://github.com/w3c/web-platform-tests/pull/636</a>
+
+Once it is imported under LayoutTests/w3c/web-platform-tests/ it should
+be removed from LayoutTests/media/W3C/.
+
+BUG=344531
+
+Review URL: <a href="https://codereview.chromium.org/169223003">https://codereview.chromium.org/169223003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167438 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167438&amp;view=revision"><time datetime="2014-02-19">2014-02-19</time></a>
       
         <tr>
           <td>rune
