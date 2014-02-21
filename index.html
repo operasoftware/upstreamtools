@@ -25,7 +25,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 150, 
   
-    <a href="#blink">Blink</a>: 565, 
+    <a href="#blink">Blink</a>: 571, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -2912,6 +2912,144 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Avoid unnecessary style recalc for subtree of focused element.</summary>
+              <pre class=body>
+*** Relanding <a href="https://codereview.chromium.org/135183002/">https://codereview.chromium.org/135183002/</a>
+
+Updating the styles for an element that changes its focus state only needs to
+force a recalc of the subtree if the subtree contains an element that could
+match a selector which contains a :focus pseudo class left of child or
+descendant combinator. At the same time, that :focus pseudo must match the
+element we are updating focus state for. This is indicated by the return value
+of Element::childrenAffectedByFocus.
+
+This change does a LocalStyleChange when updating the focus state of an
+element which returns false for childrenAffectedByFocus, and
+SubtreeStyleChange otherwise.
+
+TBR=eseidel
+BUG=315923
+
+Review URL: <a href="https://codereview.chromium.org/169643003">https://codereview.chromium.org/169643003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167598 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167598&amp;view=revision"><time datetime="2014-02-21">2014-02-21</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Add partitionAllocGetSize() for determining actual size of allocation</summary>
+              <pre class=body>
+Since PartitionAlloc allocates from buckets of quantized sizes, it will
+sometimes allocate a significantly larger block than requested.  Add the
+utility function partitionAllocGetSize() for retrieving the actual size
+of an allocation, useful if the client can make use of the extra size.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/169523004">https://codereview.chromium.org/169523004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167582 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167582&amp;view=revision"><time datetime="2014-02-21">2014-02-21</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the mediaEnabled setting</summary>
+              <pre class=body>
+This setting only prevented HTMLMediaElement::load() from running, which
+very rarely makes any difference, since scripts modifying the DOM will
+almost always implicitly invoke resource selection. The exceptions are
+adding source elements when networkState is not NETWORK_EMPTY, removing
+the src attribute, and removing source elements.
+
+Since the callers to setMediaEnabled(false) seems to have survived
+without actually disabling media, just remove the setting for now.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/169363004">https://codereview.chromium.org/169363004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167575 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167575&amp;view=revision"><time datetime="2014-02-21">2014-02-21</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use LocalStyleChange when changing TD presentation attributes.</summary>
+              <pre class=body>
+Border and cellpadding attributes on TABLE affects computed styles of TD
+elements, but LocalStyleChange on the TD elements should be sufficient to
+have changes applied.
+
+The setNeedsStyleRecalc call on the TABLE element is removed since that is
+handled via HTMLTableElement::isPresentationAttribute called from
+Element::attributeChanged.
+
+Unwind the recursion looking for TD elements using ElementTraversal.
+
+BUG=341987
+
+Review URL: <a href="https://codereview.chromium.org/157383004">https://codereview.chromium.org/157383004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167568 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167568&amp;view=revision"><time datetime="2014-02-21">2014-02-21</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Make selector list pseudos work with class invalidation sets.</summary>
+              <pre class=body>
+Selectors like :not and :-webkit-any have selector lists. Classes, ids and
+tag names in those lists were not taken into account when building class
+invalidation sets.
+
+Re-introduce a white-list for supported pseudos and disallow :not and
+:-webkit-any for now.
+
+<a href="mailto:R=esprehn@chromium.org,chrishtr@chromium.org">R=esprehn@chromium.org,chrishtr@chromium.org</a>
+BUG=344893
+
+Review URL: <a href="https://codereview.chromium.org/174013010">https://codereview.chromium.org/174013010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167560 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167560&amp;view=revision"><time datetime="2014-02-21">2014-02-21</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove NodeIsSupported from UseCounter.h</summary>
+              <pre class=body>
+I forgot this in r165237: <a href="https://codereview.chromium.org/133703014">https://codereview.chromium.org/133703014</a>
+
+BUG=334970
+
+Review URL: <a href="https://codereview.chromium.org/173813003">https://codereview.chromium.org/173813003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167558 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167558&amp;view=revision"><time datetime="2014-02-21">2014-02-21</time></a>
       
         <tr>
           <td>rune
