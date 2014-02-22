@@ -25,7 +25,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 150, 
   
-    <a href="#blink">Blink</a>: 571, 
+    <a href="#blink">Blink</a>: 574, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -2912,6 +2912,117 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove unused UseCounter features</summary>
+              <pre class=body>
+These are the bugs/reviews in which the enum values became unused:
+
+MultipartMainResource:
+<a href="https://code.google.com/p/chromium/issues/detail?id=249132">https://code.google.com/p/chromium/issues/detail?id=249132</a>
+
+InputTypeDateTime:
+<a href="https://code.google.com/p/chromium/issues/detail?id=239210">https://code.google.com/p/chromium/issues/detail?id=239210</a>
+
+HTMLShadowElementOlderShadowRoot:
+<a href="https://code.google.com/p/chromium/issues/detail?id=339025">https://code.google.com/p/chromium/issues/detail?id=339025</a>
+
+ShadowDOMPrefixedPseudo:
+<a href="https://code.google.com/p/chromium/issues/detail?id=321953">https://code.google.com/p/chromium/issues/detail?id=321953</a>
+
+CSSDisplayRunIn:
+<a href="https://codereview.chromium.org/53373003">https://codereview.chromium.org/53373003</a>
+
+CSSDisplayCompact:
+<a href="https://codereview.chromium.org/52713012">https://codereview.chromium.org/52713012</a>
+
+DocumentTypeEntities:
+<a href="https://code.google.com/p/chromium/issues/detail?id=342302">https://code.google.com/p/chromium/issues/detail?id=342302</a>
+
+DocumentTypeNotations:
+<a href="https://code.google.com/p/chromium/issues/detail?id=342286">https://code.google.com/p/chromium/issues/detail?id=342286</a>
+
+ScrollTopBodyNotQuirksMode, ScrollLeftBodyNotQuirksMode:
+<a href="https://code.google.com/p/chromium/issues/detail?id=314700">https://code.google.com/p/chromium/issues/detail?id=314700</a>
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/173023004">https://codereview.chromium.org/173023004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167631 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167631&amp;view=revision"><time datetime="2014-02-22">2014-02-22</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Improve support for :read-only and :read-write pseudoclasses.</summary>
+              <pre class=body>
+This change fixes these two issues:
+
+ 1) The :read-write pseudoclass should apply to all elements which are
+    editable, not just form elements.
+ 2) The :read-only pseudoclass should match all elements which is not
+    matched by the :read-write class, not just form elements which are
+    non-editable.
+
+Case (1) is problematic because of the -webkit-user-modify property.
+When we try to match :read-write to an element, we may not yet have applied
+other rules which contain -webkit-user-modify and hence modify the
+editability of the element. So, we can not check the computed style for
+an element for a match against :read-write. Instead, I suggest checking
+the conteteditable attribute on the element. If this attribute is set, and
+contains an absolute value, then we have our answer. If the value is
+&#34;inherit&#34;, then we check the computed style of parent elements (via
+rendererIsEditable()).
+
+Note that this fix only works for elements which specify &#34;contenteditable&#34;,
+not for elements with -webkit-user-modify properties in their style.
+However, the CSS property was removed from the spec, and it doesn&#39;t
+appear to work in Firefox anymore either. It should probably be removed
+from Blink.
+
+The test-case fast/forms/select-live-pseudo-selectors.html failed with this
+change, because it incorrectly and probably accidentally depended on
+:read-only not being applied to &lt;select&gt; elements. Fixed by not applying
+:read-only to &lt;select&gt; elements.
+
+TEST=automated
+BUG=338309
+
+Review URL: <a href="https://codereview.chromium.org/148223004">https://codereview.chromium.org/148223004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167629 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167629&amp;view=revision"><time datetime="2014-02-22">2014-02-22</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove unused WebPrivatePtr::operator=(std::nullptr_t).</summary>
+              <pre class=body>
+With std::nullptr_t constructors in place for the various Ptr types,
+this method is no longer needed.
+
+Also revert some reset() uses that were introduced while waiting for
+the same nullptr change to land.
+
+<a href="mailto:R=abarth@chromium.org">R=abarth@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/173713008">https://codereview.chromium.org/173713008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167612 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167612&amp;view=revision"><time datetime="2014-02-21">2014-02-21</time></a>
       
         <tr>
           <td>rune
