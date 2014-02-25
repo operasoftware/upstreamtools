@@ -25,7 +25,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 150, 
   
-    <a href="#blink">Blink</a>: 583, 
+    <a href="#blink">Blink</a>: 588, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -2912,6 +2912,137 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Make font-weight animatable.</summary>
+              <pre class=body>
+We currently don&#39;t animate font-weight, even though (1) the spec calls for it, and (2) other
+browsers (IE+FF) do.
+
+The interpolator converts the font weights to equivalent real numbers, and performs
+the interpolation on these values. The font weight is rounded to the nearest 100 when
+the animated style is built.
+
+BUG=289734
+TEST=automated
+
+Review URL: <a href="https://codereview.chromium.org/173953002">https://codereview.chromium.org/173953002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167784 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167784&amp;view=revision"><time datetime="2014-02-25">2014-02-25</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fix serialization of (xlink:)href attributes in document fragments</summary>
+              <pre class=body>
+If the namespace of an attribute has a &#34;well-known&#34; prefix, then make
+sure that prefix is used during serialization instead of the prefix
+from the attribute (which could be empty.)
+
+BUG=345132
+
+Review URL: <a href="https://codereview.chromium.org/177763002">https://codereview.chromium.org/177763002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167779 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167779&amp;view=revision"><time datetime="2014-02-25">2014-02-25</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Only swap positions if both characters actually are absolute positioned</summary>
+              <pre class=body>
+When re-ordering inline boxes within a &#34;line&#34;, character-based absolute
+positioning attributes are re-ordered to match. However, when attempting
+to re-order/swap a inline box that does have a absolute positioning
+attribute (and is of length 1) with one that doesn&#39;t, the positioning
+attribute is copied rather than swapped - leading to additional chunks
+being created and consequently additional adjustments being performed.
+However, swapping is not needed/required in this case, since the attribute
+is already in the correct (logical) position.
+To mitigate this, only perform the attribute swap if both characters
+(and consequently inline boxes) have attributes in the first place.
+
+BUG=343486
+
+Review URL: <a href="https://codereview.chromium.org/177263003">https://codereview.chromium.org/177263003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167777 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167777&amp;view=revision"><time datetime="2014-02-25">2014-02-25</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Free HashSets on setWholeSubtreeInvalid.</summary>
+              <pre class=body>
+In order to keep memory use as low as possible, free any HashSets which are
+allocated in DescendantInvalidationSets when setWholeSubtreeInvalid is
+called. Also ensure that none of the HashSets are re-created in a
+DescendantInvalidationSet when wholeSubtreeInvalid is already true.
+
+Additionally fixed some constness and removed non-existing method from header
+file.
+
+<a href="mailto:R=esprehn@chromium.org">R=esprehn@chromium.org</a>, <a href="mailto:chrishtr@chromium.org">chrishtr@chromium.org</a>
+BUG=335247
+
+Review URL: <a href="https://codereview.chromium.org/177653003">https://codereview.chromium.org/177653003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167709 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167709&amp;view=revision"><time datetime="2014-02-24">2014-02-24</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Finalize a throttled FileReader in stages.</summary>
+              <pre class=body>
+File read operations are throttled, a controller keeping track of a
+set of running readers, and those waiting for a turn. In the case of a
+running FileReader just completing its operation and an onload* event
+listener issuing a new read operation over the same reader, the
+throttling controller must correctly handle the renewal of that
+FileReader as a running (or now-pending) reader.
+
+This includes signalling that there&#39;s pending activity starting (and
+later on, completing) on the FileReader itself, something that wasn&#39;t
+correctly in this nested case.
+
+To address, a FileReader will now remove itself from its throttling
+controller in two stages:
+
+  - once the readyState transitions from LOADING, the FileReader is
+    removed as a running reader.
+
+  - once the FileReader has dispatched all the required events, the
+    FileReader itself signals that the pending activity has completed.
+
+In combination, this balances the reference counting on the underlying
+object.
+
+<a href="mailto:R=kinuko@chromium.org">R=kinuko@chromium.org</a>
+BUG=345608
+
+Review URL: <a href="https://codereview.chromium.org/174963002">https://codereview.chromium.org/174963002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167706 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167706&amp;view=revision"><time datetime="2014-02-24">2014-02-24</time></a>
       
         <tr>
           <td>sigbjornf
