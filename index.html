@@ -25,7 +25,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 150, 
   
-    <a href="#blink">Blink</a>: 588, 
+    <a href="#blink">Blink</a>: 598, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -2912,6 +2912,241 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>SVG2: Ship &#39;paint-order&#39; property.</summary>
+              <pre class=body>
+Intent-to-ship thread: <a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/ccVN9-oSwe8">https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/ccVN9-oSwe8</a>
+
+BUG=343496
+
+Review URL: <a href="https://codereview.chromium.org/181233003">https://codereview.chromium.org/181233003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167915 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167915&amp;view=revision"><time datetime="2014-02-26">2014-02-26</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New multicol] Eliminate the need for RenderMultiColumnBlock.</summary>
+              <pre class=body>
+Having a distinct renderer for multicol is problematic, both
+table cells and list items may become multicol containers. Also,
+if we want to use the new multicol implementation to do
+pagination, we need RenderView to be able to do multicol as well.
+
+Moved most of the logic over to RenderMultiColumnFlowThread, but some
+hooks are needed in RenderBlockFlow as well.
+
+This is based on work by <a href="mailto:hyatt@apple.com">hyatt@apple.com</a> in WebKit. Original patches:
+<a href="https://bugs.webkit.org/show_bug.cgi?id=127365">https://bugs.webkit.org/show_bug.cgi?id=127365</a>
+<a href="https://bugs.webkit.org/show_bug.cgi?id=127565">https://bugs.webkit.org/show_bug.cgi?id=127565</a>
+
+Added Layout tests for multicol list-item and table-cell.
+
+Also added tests for turning a regular block into multicol, and back into a
+regular block (passed before, passes now).
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/179993006">https://codereview.chromium.org/179993006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167891 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167891&amp;view=revision"><time datetime="2014-02-26">2014-02-26</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New multicol] Make -webkit-column-break-inside:avoid work.</summary>
+              <pre class=body>
+adjustForUnsplittableChild() simply forgot to check whether we
+were inside flow thread based multicol, which kept it from even
+considering what -webkit-column-break-inside was set to in such cases.
+
+BUG=346661
+
+Review URL: <a href="https://codereview.chromium.org/179763003">https://codereview.chromium.org/179763003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167882 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167882&amp;view=revision"><time datetime="2014-02-26">2014-02-26</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Implement Blob.close().</summary>
+              <pre class=body>
+This adds support for the close() methods to Blobs,
+
+ <a href="http://dev.w3.org/2006/webapi/FileAPI/#close-method">http://dev.w3.org/2006/webapi/FileAPI/#close-method</a>
+
+providing a way to explicitly release the underlying data of a Blob.
+
+Subsequent uses of a closed Blob is required/assumed to have the
+following behavior:
+
+  - the size of a closed Blob should be zero.
+  - Consumers of such a Blob should treat it as having
+    size 0 (e.g., FormData.append(), XHR.send()), and not throw.
+  - FileReader read operations that are underway on a Blob
+    being close()d should not be impacted.
+  - Subsequent FileReader read operations on a closed Blob
+    should fail with InvalidStateError.
+  - Slices of a closed Blob should still be usable.
+  - Dereferencing a blob URL that has been closed should
+    cause a network error, like a revoke.
+
+In other words, closing a shared object is not a straightforward
+matter.
+
+<a href="mailto:R=kinuko@chromium.org,michaeln@chromium.org">R=kinuko@chromium.org,michaeln@chromium.org</a>, <a href="mailto:jochen@chromium.org">jochen@chromium.org</a>
+BUG=157794
+
+Review URL: <a href="https://codereview.chromium.org/157363003">https://codereview.chromium.org/157363003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167874 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167874&amp;view=revision"><time datetime="2014-02-26">2014-02-26</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Simplify DefaultAllocator::Quantizer using partitionAllocActualSize()</summary>
+              <pre class=body>
+Drop QuantizedAllocation completely, and replace with a much simpler
+implementation that lets PartitionAlloc just round the allocation size
+upwards to fit the nearest bucket.
+
+<a href="mailto:R=cevans@chromium.org">R=cevans@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/177213007">https://codereview.chromium.org/177213007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167870 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167870&amp;view=revision"><time datetime="2014-02-26">2014-02-26</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Reduce HTMLMediaElement BehaviorRestrictions to a single state bit</summary>
+              <pre class=body>
+There&#39;s only a single restriction left, so make it more obvious.
+
+Although not the main purpose, this reduces sizeof(HTMLMediaElement) by
+4 bytes, from 584 to 580 on Mac Debug.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/177123006">https://codereview.chromium.org/177123006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167864 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167864&amp;view=revision"><time datetime="2014-02-26">2014-02-26</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Made setWholeSubtreeInvalid non-inline.</summary>
+              <pre class=body>
+Fix for review issue in <a href="https://codereview.chromium.org/177653003/">https://codereview.chromium.org/177653003/</a> raised
+after it landed.
+
+R=ojan
+BUG=335247
+
+Review URL: <a href="https://codereview.chromium.org/179483002">https://codereview.chromium.org/179483002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167827 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167827&amp;view=revision"><time datetime="2014-02-25">2014-02-25</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Make clearing the animated type at the end of an interval more robust</summary>
+              <pre class=body>
+When an interval of a timed element ends, and said timed element will no
+longer contribute to the target element, the animator of the timed element
+needs to stopped, and it&#39;s state cleared (so that another timed element
+may assume that role).
+With &#34;linked&#34; syncbases involved, the end of one interval would trigger a
+new interval, which in turn allowed resolving yet another interval - which
+end up signaling a restart.
+
+Fix by tightening the condition when maybeRestartInterval() returns by
+checking if the newly resolved interval is active. Also attempt to make
+the condition for when to clear the animator more robust by checking if
+the timed element is no longer contributing to the target using
+|animationIsContributing|, rather trying to re-deduce it from
+the active-state transition + restart (which would observe
+&#39;active&#39; -&gt; &#39;in-active&#39; + restart in this case.)
+(Either one of these fix the issue.)
+
+BUG=344408
+
+Review URL: <a href="https://codereview.chromium.org/173523003">https://codereview.chromium.org/173523003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167822 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167822&amp;view=revision"><time datetime="2014-02-25">2014-02-25</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add missing USED_FROM_MULTIPLE_THREADS(EventSource) declaration.</summary>
+              <pre class=body>
+EventSource is available to Web Workers; declare its ThreadingTrait
+accordingly.
+
+R=
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/178913003">https://codereview.chromium.org/178913003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167818 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167818&amp;view=revision"><time datetime="2014-02-25">2014-02-25</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the HTMLVideoElement-specific prefixed fullscreen API</summary>
+              <pre class=body>
+Intent to Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/Bxe7DnDVRZ0/5K61HQPrNK4J">https://groups.google.com/a/chromium.org/d/msg/blink-dev/Bxe7DnDVRZ0/5K61HQPrNK4J</a>
+
+BUG=346236
+
+Review URL: <a href="https://codereview.chromium.org/178003008">https://codereview.chromium.org/178003008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167815 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167815&amp;view=revision"><time datetime="2014-02-25">2014-02-25</time></a>
       
         <tr>
           <td>andersr
