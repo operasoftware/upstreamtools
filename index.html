@@ -23,9 +23,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 150, 
+    <a href="#chromium">Chromium</a>: 151, 
   
-    <a href="#blink">Blink</a>: 598, 
+    <a href="#blink">Blink</a>: 603, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -38,6 +38,26 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mpawlowski
+          <td class=message>
+            <details>
+              <summary>Update incomplete credentials in Login Database</summary>
+              <pre class=body>
+Incomplete credentials (missing username_element, password_element
+or submit_element) that might get added to the database via importing
+from other browsers should now be updated correctly when they&#39;re
+entered into the right form.
+
+BUG=344337
+
+Review URL: <a href="https://codereview.chromium.org/169173005">https://codereview.chromium.org/169173005</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@253791 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=253791&amp;view=revision"><time datetime="2014-02-27">2014-02-27</time></a>
       
         <tr>
           <td>mostynb
@@ -2912,6 +2932,99 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use glyph-ids for lookups of SVG font kerning-pairs</summary>
+              <pre class=body>
+This CL eliminates the SVGTextMetrics::Glyph class in favor
+of a simple Glyph (glyph-id). This shrinks SVGTextMetrics
+objects by two pointers, and avoids the allocation of tiny
+(often single-character/code-unit) strings.
+
+It achieves this by replacing the linear kerning-pair lookup
+with a table (HashMap) indexed by a key made up of the glyph id&#39;s of the two glyphs.
+
+Review URL: <a href="https://codereview.chromium.org/181443002">https://codereview.chromium.org/181443002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168007 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168007&amp;view=revision"><time datetime="2014-02-27">2014-02-27</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Eliminate recursion in SVGTextMetricsBuilder::walkTree</summary>
+              <pre class=body>
+This tree-traveral can be trivially rewritten as a pre-order traversal
+using RenderObject::nextInPreOrderAfterChildren.
+
+Also fold the branches in the RenderSVGInlineText case to reduce the
+number of callsites to measureTextRenderer.
+
+Review URL: <a href="https://codereview.chromium.org/175323002">https://codereview.chromium.org/175323002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168005 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168005&amp;view=revision"><time datetime="2014-02-27">2014-02-27</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Simplify partitionReallocGeneric() implementation</summary>
+              <pre class=body>
+Using the new partitionAllocActualSize() and partitionAllocGetSize()
+the implementation of partitionReallocGeneric() can be made quite a
+bit simpler and more high-level.
+
+<a href="mailto:R=cevans@chromium.org">R=cevans@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/180293003">https://codereview.chromium.org/180293003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167997 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167997&amp;view=revision"><time datetime="2014-02-27">2014-02-27</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the TextTrackCue constructor</summary>
+              <pre class=body>
+Intent to Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/R34xpMQGtXU/XwXsi85Y7acJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/R34xpMQGtXU/XwXsi85Y7acJ</a>
+
+BUG=346235
+
+Review URL: <a href="https://codereview.chromium.org/177613005">https://codereview.chromium.org/177613005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167972 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167972&amp;view=revision"><time datetime="2014-02-27">2014-02-27</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Apply .globalAlpha to SVG-images painted using &lt;canvas&gt; drawImage()</summary>
+              <pre class=body>
+BUG=261177
+
+Review URL: <a href="https://codereview.chromium.org/181633002">https://codereview.chromium.org/181633002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@167970 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=167970&amp;view=revision"><time datetime="2014-02-27">2014-02-27</time></a>
       
         <tr>
           <td>ed
