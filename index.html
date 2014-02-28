@@ -23,9 +23,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 151, 
+    <a href="#chromium">Chromium</a>: 152, 
   
-    <a href="#blink">Blink</a>: 603, 
+    <a href="#blink">Blink</a>: 608, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -38,6 +38,23 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mpawlowski
+          <td class=message>
+            <details>
+              <summary>Fix memory leak in components_unittests</summary>
+              <pre class=body>
+This is a trivial fix for a leak that fires on the bots
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/183273003">https://codereview.chromium.org/183273003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@253998 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=253998&amp;view=revision"><time datetime="2014-02-28">2014-02-28</time></a>
       
         <tr>
           <td>mpawlowski
@@ -2932,6 +2949,106 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove SVGAnimatedType</summary>
+              <pre class=body>
+With the transition to the new SVGProperty hierarchy complete,
+SVGAnimatedType is nothing but a wrapper holding a reference to
+a NewSVGPropertyBase.
+By unwrapping this reference in SVGAnimateElement, and modifying
+the SVGAnimatedTypeAnimator interface to pass NewSVGPropertyBase
+references instead it becomes possible to remove SVGAnimatedType
+without much hassle.
+
+The SVGAnimatedTypeAnimator interfaces are to a large degree left
+unchanged, with the exceptions being:
+
+ * addAnimatedTypes is folded in favor just using the add() method
+   on NewSVGPropertyBase.
+
+ * resetAnimValToBaseVal returns the value instead of setting it
+   through an out-parameter.
+
+Review URL: <a href="https://codereview.chromium.org/183143002">https://codereview.chromium.org/183143002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168150 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168150&amp;view=revision"><time datetime="2014-02-28">2014-02-28</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Also use transition types when constructing Events that raise exceptions.</summary>
+              <pre class=body>
+Follow up the switch to making Events be garbage collected in
+<a href="http://codereview.chromium.org/182763002">http://codereview.chromium.org/182763002</a> and also use a transition
+type for the result if the event constructor raises exceptions.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/183973007">https://codereview.chromium.org/183973007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168149 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168149&amp;view=revision"><time datetime="2014-02-28">2014-02-28</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Add a UseCounter for SVGElement.className.</summary>
+              <pre class=body>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/181783002">https://codereview.chromium.org/181783002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168147 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168147&amp;view=revision"><time datetime="2014-02-28">2014-02-28</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add missing Event-related USED_FROM_MULTIPLE_THREADS() decls.</summary>
+              <pre class=body>
+ErrorEvent and ProgressEvent are available in Worker contexts.
+
+<a href="mailto:R=wibling@chromium.org">R=wibling@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/184413003">https://codereview.chromium.org/184413003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168141 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168141&amp;view=revision"><time datetime="2014-02-28">2014-02-28</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Replace use of GC::alpha() in SVGImage::draw() with GC::getNormalizedAlpha()</summary>
+              <pre class=body>
+As requested in <a href="https://codereview.chromium.org/181633002/">https://codereview.chromium.org/181633002/</a>
+
+BUG=261177
+
+Review URL: <a href="https://codereview.chromium.org/182853002">https://codereview.chromium.org/182853002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168049 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168049&amp;view=revision"><time datetime="2014-02-27">2014-02-27</time></a>
       
         <tr>
           <td>fs
