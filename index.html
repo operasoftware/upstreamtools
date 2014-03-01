@@ -25,7 +25,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 152, 
   
-    <a href="#blink">Blink</a>: 608, 
+    <a href="#blink">Blink</a>: 610, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -2949,6 +2949,42 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add missing USED_FROM_MULTIPLE_THREADS(IDBVersionChangeEvent) decl.</summary>
+              <pre class=body>
+indexeddb is available in Worker contexts, including this event.
+
+R=
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/185323003">https://codereview.chromium.org/185323003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168246 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168246&amp;view=revision"><time datetime="2014-03-01">2014-03-01</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add more Event-related USED_FROM_MULTIPLE_THREADS() decls.</summary>
+              <pre class=body>
+CloseEvent and XMLHttpRequestProgressEvent are also exposed inside Workers.
+
+R=
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/178193014">https://codereview.chromium.org/178193014</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168240 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168240&amp;view=revision"><time datetime="2014-03-01">2014-03-01</time></a>
       
         <tr>
           <td>fs
