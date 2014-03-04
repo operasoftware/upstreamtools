@@ -23,9 +23,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 154, 
+    <a href="#chromium">Chromium</a>: 155, 
   
-    <a href="#blink">Blink</a>: 611, 
+    <a href="#blink">Blink</a>: 612, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -38,6 +38,23 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>only do linux pvalloc OutOfMemoryDeathTest on non-tcmalloc glibc builds</summary>
+              <pre class=body>
+We only override libc&#39;s pvalloc if when using glibc and not tcmalloc
+(in base/process/memory_linux.cc), and pvalloc is not always available
+on uclibc, so let&#39;s use the same ifdef in the unit test.
+
+Review URL: <a href="https://codereview.chromium.org/184313002">https://codereview.chromium.org/184313002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@254659 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=254659&amp;view=revision"><time datetime="2014-03-04">2014-03-04</time></a>
       
         <tr>
           <td>ed
@@ -2986,6 +3003,41 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Reduce state kept in MeasureTextData by SVGTextMetricsBuilder</summary>
+              <pre class=body>
+MeasureTextData::processRenderer is only used within
+SVGTextMetricsBuilder::measureTextRenderer, and is always set before a
+call to that method. This makes a good candidate for removal from the
+traversal state struct (MeasureTextData) and being passed as an argument
+to measureTextRenderer instead.
+
+There&#39;s no need to track both the last character and whether there was
+a previous character. It&#39;s sufficient to track if the the last character
+was a whitespace or not. (The initial case which previously had
+hasLastCharacter == false can be represented as having a been a whitespace
+character.) This allows replacing the two fields hasLastCharacter and
+lastCharacter with a single field lastCharacterWasWhiteSpace.
+
+MeasureTextData::skippedCharacters is reset to zero (0) at the end of
+SVGTextMetricsBuilder::measureTextRenderer, and is only read or written
+if MeasureTextData::allCharactersMap is non-null.
+This means it can be kept on the stack of measureTextRenderer instead.
+
+Also change the type of surrogatePairCharacters from int to unsigned,
+since it&#39;s a simple counter, that should never be negative (and is used
+in arithmetic with unsigned typed variables.)
+
+Review URL: <a href="https://codereview.chromium.org/183203003">https://codereview.chromium.org/183203003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168342 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168342&amp;view=revision"><time datetime="2014-03-03">2014-03-03</time></a>
       
         <tr>
           <td>sigbjornf
