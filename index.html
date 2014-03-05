@@ -25,7 +25,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 155, 
   
-    <a href="#blink">Blink</a>: 612, 
+    <a href="#blink">Blink</a>: 620, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -3003,6 +3003,191 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>When the ::first-letter pseudo element is added or removed, it causes a</summary>
+              <pre class=body>Reattach which means everything will work fine for ::first-letter changes.
+
+However, if there is a change in ::first-letter style, but the element had
+::first-letter style both before and after the change, we would not try to
+recalc any ::first-letter pseudo for LocalStyleChange.
+
+The introduction of LocalStyleChange for :hover/:active/:focus caused a
+regression for the combination of ::first-letter and e.g. :hover.
+
+This fix does a SubtreeStyleChange for :hover/:active/:focus updates when
+the existing renderStyle is marked as having ::first-letter pseudo.
+
+::first-line is working fine. Added a layout test to make sure it will
+continue to do so.
+
+R=esprehn
+BUG=344322
+
+Review URL: <a href="https://codereview.chromium.org/169643002">https://codereview.chromium.org/169643002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168509 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168509&amp;view=revision"><time datetime="2014-03-05">2014-03-05</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Always reset the animated property for CSS-type SVG animation</summary>
+              <pre class=body>
+When resetting the animated property value for animations that is applied
+as a CSS property always create a new property, or additive animations
+will accumulate incorrectly to the underlying value.
+
+BUG=349052
+
+Review URL: <a href="https://codereview.chromium.org/183973023">https://codereview.chromium.org/183973023</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168475 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168475&amp;view=revision"><time datetime="2014-03-05">2014-03-05</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove unfailable null checks in MediaControls</summary>
+              <pre class=body>
+MediaControls::create returns null if any of these would be null.
+
+BUG=341813
+<a href="mailto:R=acolwell@chromium.org">R=acolwell@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/182383006">https://codereview.chromium.org/182383006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168474 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168474&amp;view=revision"><time datetime="2014-03-05">2014-03-05</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Refactor away SVGTextMetricsBuilder::advance</summary>
+              <pre class=body>
+This method has two logical parts: Advancing the text position and
+checking for termination, and computing the metrics for the current
+character.
+Split this method to better show this. The latter part is put into a
+new method, computeMetricsForCurrentCharacter, while the former part is
+open-coded in SVGTextMetricsBuilder::measureTextRenderer.
+The advance{Simple,Complex}Text methods are renamed to
+computeMetricsForCurrentCharacter{Simple,Complex}.
+
+With this change, it becomes easier to see that
+SVGTextMetricsBuilder::m_currentMetrics can be trivially removed in favor
+of returning it from computeMetricsForCurrentCharacter, and storing it on
+the stack in SVGTextMetricsBuilder::measureTextRenderer.
+The same is true for SVGTextMetricsBuilder::m_complexStartToCurrentMetrics,
+which can be made local to computeMetricsForCurrentCharacterComplex.
+
+Review URL: <a href="https://codereview.chromium.org/184103024">https://codereview.chromium.org/184103024</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168461 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168461&amp;view=revision"><time datetime="2014-03-05">2014-03-05</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move core/fileapi to oilpan&#39;s heap.</summary>
+              <pre class=body>
+This moves the File API and its objects to Oilpan using transition
+types.
+
+<a href="mailto:R=haraken@chromium.org,tkent@chromium.org">R=haraken@chromium.org,tkent@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/176853004">https://codereview.chromium.org/176853004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168460 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168460&amp;view=revision"><time datetime="2014-03-05">2014-03-05</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove MediaControls::showVolumeSlider()</summary>
+              <pre class=body>
+This is a remnant from WebKit when there was a volume slider container
+that could be shown and hidden. What remains is essentially dead code,
+because at most it shows the slider when m_mediaController-&gt;hasAudio(),
+but MediaControls::reset() already does that.
+
+BUG=341813
+
+Review URL: <a href="https://codereview.chromium.org/176883020">https://codereview.chromium.org/176883020</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168452 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168452&amp;view=revision"><time datetime="2014-03-05">2014-03-05</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Count how often a Media Fragments URI is applied in HTMLMediaElement</summary>
+              <pre class=body>
+<a href="http://lists.w3.org/Archives/Public/public-media-fragment/2014Feb/0000.html">http://lists.w3.org/Archives/Public/public-media-fragment/2014Feb/0000.html</a>
+<a href="http://lists.w3.org/Archives/Public/public-media-fragment/2014Feb/0002.html">http://lists.w3.org/Archives/Public/public-media-fragment/2014Feb/0002.html</a>
+
+In this thread about looping over media fragments it became clear that
+no spec actually says how media fragment end times integrate in
+HTMLMediaElement. (The start time is mapped to the &#34;initial playback
+position&#34;, which almost matches what Blink does.)
+
+Blink/WebKit pauses at the fragment end time once. Firefox Nightly does
+the same, while IE11 appears to not support MF URIs at all.
+
+The counter data will tell us whether or not breaking changes can be
+made and the relative usage could help inform the spec discussion.
+
+BUG=none
+<a href="mailto:R=acolwell@chromium.org">R=acolwell@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/185363002">https://codereview.chromium.org/185363002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168441 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168441&amp;view=revision"><time datetime="2014-03-05">2014-03-05</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove MediaControlVolumeSliderElement::m_clearMutedOnUserInteraction</summary>
+              <pre class=body>
+It is always set to true.
+
+Also drop the volume change check, since HTMLMediaElement::setVolume()
+and MediaController::setVolume() already do that.
+
+BUG=341813
+
+Review URL: <a href="https://codereview.chromium.org/177423011">https://codereview.chromium.org/177423011</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168438 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168438&amp;view=revision"><time datetime="2014-03-05">2014-03-05</time></a>
       
         <tr>
           <td>fs
