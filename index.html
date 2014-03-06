@@ -25,7 +25,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 155, 
   
-    <a href="#blink">Blink</a>: 620, 
+    <a href="#blink">Blink</a>: 627, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -3003,6 +3003,175 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>PartitionAlloc: support in-place resize of directly mapped allocation</summary>
+              <pre class=body>
+In partitionReallocGeneric(), if both the current size and the new size
+are in the direct mapped range, attempt to resize the allocation in place.
+When downsizing, this is done by decommitting pages and making them
+inaccessible.  When upsizing a previously downsized allocation to a size
+not larger than its original size, we make the pages accessible again.
+
+<a href="mailto:R=cevans@chromium.org">R=cevans@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/183113003">https://codereview.chromium.org/183113003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168633 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168633&amp;view=revision"><time datetime="2014-03-06">2014-03-06</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Drive SVG Animations via requestAnimationFrame</summary>
+              <pre class=body>
+Start using FrameView::scheduleAnimation instead of a Timer for driving
+the animations in a SMILTimeContainer.
+The timer however remains to use when the next animation event is further
+into the future than within the (~) next frame interval. Hence
+SMILTimeContainer::m_timer is renamed to m_wakeupTimer.
+
+The animation time from the compositor is plumbed through the layers, but
+is not yet used as the &#34;global&#34; clock. That will have to wait for a later
+CL.
+
+For the SVG-in-&lt;img&gt; (and similar) case(s),
+SVGImageChromeClient::scheduleAnimation is modified to use a fixed frame
+interval.
+In SVGImage, the initialization of m_page is moved later, to disable any
+methods that depend on accessing the SVG root element (prompted by the
+need to query if the image has any animations) until the actual document
+is loaded/being loaded.
+
+BUG=231576
+
+Review URL: <a href="https://codereview.chromium.org/179293004">https://codereview.chromium.org/179293004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168631 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168631&amp;view=revision"><time datetime="2014-03-06">2014-03-06</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Keep text position locally in SVGTextMetricsBuilder::measureTextRenderer</summary>
+              <pre class=body>
+Passing m_textPosition as an argument to the various helper methods
+allows it to be removed from SVGTextMetricsBuilder and stored on the
+stack of measureTextRenderer.
+
+Review URL: <a href="https://codereview.chromium.org/182733010">https://codereview.chromium.org/182733010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168618 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168618&amp;view=revision"><time datetime="2014-03-06">2014-03-06</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move Touch related objects to the oilpan heap.</summary>
+              <pre class=body>
+In order to do so, make the IDL compiler able to emit code that uses
+heap vectors if the types involved are of the garbage collected kind.
+(For the most part done by adopting the changes from
+ <a href="https://codereview.chromium.org/173363002">https://codereview.chromium.org/173363002</a> )
+
+R=
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/185413023">https://codereview.chromium.org/185413023</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168607 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168607&amp;view=revision"><time datetime="2014-03-06">2014-03-06</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Support deprecation + use counters for constructor attributes.</summary>
+              <pre class=body>
+If a constructor attribute is annotated with either [MeasureAs=..] or
+[DeprecateAs=..], then emit a needed callback wrapper that performs
+the required reporting before looking up the constructor.
+
+Use it to correctly handle use counters for the &#34;webkitURL&#34; properties
+that both Window and WorkerGlobalScope currently provide; use counters
+also added for these here.
+
+(The above change also happens to fix use counter reporting
+for the window.WebKitShadowRoot constructor.)
+
+<a href="mailto:R=nbarth@chromium.org,haraken@chromium.org">R=nbarth@chromium.org,haraken@chromium.org</a>
+BUG=348985
+
+Review URL: <a href="https://codereview.chromium.org/186673002">https://codereview.chromium.org/186673002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168576 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168576&amp;view=revision"><time datetime="2014-03-06">2014-03-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Merge/rename two MediaControlElements into their parent classes</summary>
+              <pre class=body>
+MediaControlPanelMuteButtonElement/MediaControlPanelVolumeSliderElement
+were the only classes that inherited
+MediaControlMuteButtonElement/MediaControlVolumeSliderElement.
+
+Remove the m_panelMuteButton-&gt;show() in MediaControls::reset(), because
+there is nothing that ever hides the button in the first place.
+
+BUG=341813
+
+Review URL: <a href="https://codereview.chromium.org/185363011">https://codereview.chromium.org/185363011</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168572 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168572&amp;view=revision"><time datetime="2014-03-06">2014-03-06</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Sync Blob.close() behavior wrt updated spec.</summary>
+              <pre class=body>
+The File API now defines Blobs as having a readability state of
+opened/closed, <a href="http://dev.w3.org/2006/webapi/FileAPI/#readabilityState">http://dev.w3.org/2006/webapi/FileAPI/#readabilityState</a>
+With close() naturally making the Blob enter the &#39;closed&#39; state,
+
+  <a href="http://dev.w3.org/2006/webapi/FileAPI/#close-method">http://dev.w3.org/2006/webapi/FileAPI/#close-method</a>
+
+Like the FileReader operations, Blob methods will now throw
+InvalidStateError when passed a Blob in such a &#39;closed&#39; state.
+
+Update the implementation to follow the spec.
+
+<a href="mailto:R=kinuko@chromium.org">R=kinuko@chromium.org</a>
+BUG=344820
+
+Review URL: <a href="https://codereview.chromium.org/184473002">https://codereview.chromium.org/184473002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168567 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168567&amp;view=revision"><time datetime="2014-03-06">2014-03-06</time></a>
       
         <tr>
           <td>rune
