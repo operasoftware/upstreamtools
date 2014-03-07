@@ -23,9 +23,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 155, 
+    <a href="#chromium">Chromium</a>: 156, 
   
-    <a href="#blink">Blink</a>: 627, 
+    <a href="#blink">Blink</a>: 636, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -38,6 +38,28 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add UseCounter values for Prefixed{Window,Worker}URL.</summary>
+              <pre class=body>
+Also add missing entries for HTMLAppletElement,
+HTMLMediaElementSeekToFragmentStart, and
+HTMLMediaElementSeekToFragmentEnd.
+
+Corresponds to <a href="https://codereview.chromium.org/186673002/">https://codereview.chromium.org/186673002/</a>.
+
+<a href="mailto:R=asvitkine@chromium.org">R=asvitkine@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/180743029">https://codereview.chromium.org/180743029</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@255604 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=255604&amp;view=revision"><time datetime="2014-03-07">2014-03-07</time></a>
       
         <tr>
           <td>mostynb
@@ -3003,6 +3025,180 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Throw DataCloneError on cloning closed Blobs/Files.</summary>
+              <pre class=body>
+Follow the structured cloning spec and disallow cloning of closed Blobs,
+
+ <a href="http://www.whatwg.org/specs/web-apps/current-work/#structured-clone">http://www.whatwg.org/specs/web-apps/current-work/#structured-clone</a>
+
+<a href="mailto:R=mkwst@chromium.org">R=mkwst@chromium.org</a>
+BUG=344820
+
+Review URL: <a href="https://codereview.chromium.org/189623014">https://codereview.chromium.org/189623014</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168746 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168746&amp;view=revision"><time datetime="2014-03-07">2014-03-07</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Pass the correct GlyphPage to glyphDataAndPageForNonCJKCharacterWithGlyphOrientation</summary>
+              <pre class=body>
+|fallbackPage| may be null, and |page| is what is manipulated.
+
+BUG=349840
+
+Review URL: <a href="https://codereview.chromium.org/184963008">https://codereview.chromium.org/184963008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168744 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168744&amp;view=revision"><time datetime="2014-03-07">2014-03-07</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Draw a single underline for text-decoration-style: [dashed, dotted].</summary>
+              <pre class=body>
+There is a bug in the new text-decoration styles where the dashed and dotted
+underlines would be drawn twice. This appears to be because we are stroking
+a SkRect of height zero.
+
+Fixed by drawing a line rather than stroking a rect.
+
+BUG=348518
+TEST=Covered by existing tests
+
+Review URL: <a href="https://codereview.chromium.org/185683003">https://codereview.chromium.org/185683003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168743 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168743&amp;view=revision"><time datetime="2014-03-07">2014-03-07</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove MediaControls::bufferingProgressed()</summary>
+              <pre class=body>
+The implementation just updates the position on the timeline, which
+playbackProgressed() already does. This callback would make sense if
+buffering progress were actually shown, but until someone implements
+that it&#39;s cleaner to not have it.
+
+BUG=341813
+
+Review URL: <a href="https://codereview.chromium.org/188853002">https://codereview.chromium.org/188853002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168708 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168708&amp;view=revision"><time datetime="2014-03-07">2014-03-07</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove unused MediaControls* in MediaControlToggleClosedCaptionsButtonElement</summary>
+              <pre class=body>
+BUG=341813
+
+Review URL: <a href="https://codereview.chromium.org/187423004">https://codereview.chromium.org/187423004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168705 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168705&amp;view=revision"><time datetime="2014-03-07">2014-03-07</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Pre-bind the &#39;xml&#39; prefix for serialization of XML fragments</summary>
+              <pre class=body>
+The Namespaces in XML spec states:
+
+&#34;The prefix xml is by definition bound to the namespace name
+<a href="http://www.w3.org/XML/1998/namespace.&#34;">http://www.w3.org/XML/1998/namespace.&#34;</a>
+
+BUG=340794
+
+Review URL: <a href="https://codereview.chromium.org/183663033">https://codereview.chromium.org/183663033</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168673 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168673&amp;view=revision"><time datetime="2014-03-06">2014-03-06</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t emit a default namespace declaration if it&#39;s already the default</summary>
+              <pre class=body>
+If an element declares a new default namespace (has an xmlns=&#34;...&#34;
+attribute) make sure said namespace is used to update the namespace-table.
+This avoids having to emit a default namespace declaration for descendants
+of said element.
+
+BUG=340794
+
+Review URL: <a href="https://codereview.chromium.org/184633007">https://codereview.chromium.org/184633007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168672 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168672&amp;view=revision"><time datetime="2014-03-06">2014-03-06</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Avoid reattachWhitespaceSiblings when renderer does not change.</summary>
+              <pre class=body>
+If the renderer is null before and after the style recalc, there is no need
+to reattach whitespace siblings. It is necessary to check for needsAttach()
+since the old renderer might have been detached by lazyReattachIfAttached(),
+for instance.
+
+BUG=340213
+
+Review URL: <a href="https://codereview.chromium.org/188543002">https://codereview.chromium.org/188543002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168668 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168668&amp;view=revision"><time datetime="2014-03-06">2014-03-06</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move SVGTextMetricsBuilder metrics computation state to a local helper class</summary>
+              <pre class=body>
+Move all transient state, and methods operating on it, from
+SVGTextMetricsBuilder to a locally defined helper class
+(SVGTextMetricsCalculator).
+This leads to a structure that better represents the life-time of the
+state, as well as reduce the size of SVGTextLayoutAttributesBuilder (and
+hence indirectly RenderSVGText.)
+
+Review URL: <a href="https://codereview.chromium.org/186733005">https://codereview.chromium.org/186733005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168663 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168663&amp;view=revision"><time datetime="2014-03-06">2014-03-06</time></a>
       
         <tr>
           <td>jl
