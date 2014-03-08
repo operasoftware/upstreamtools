@@ -25,7 +25,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 156, 
   
-    <a href="#blink">Blink</a>: 636, 
+    <a href="#blink">Blink</a>: 640, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -3025,6 +3025,102 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Fix &#34;insrtedInto&#34; typo</summary>
+              <pre class=body>
+BUG=none
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/191293007">https://codereview.chromium.org/191293007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168782 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168782&amp;view=revision"><time datetime="2014-03-08">2014-03-08</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Reset media controls when load() is called</summary>
+              <pre class=body>
+Calling reset() in configureMediaControls() is a slightly bigger hammer
+than should be needed, but it isn&#39;t called very often so it shouldn&#39;t
+matter in practice. Ideally MediaControls should be hooked to the same
+fine-grained events as scripts see, but that&#39;s for the future.
+
+BUG=350310
+
+Review URL: <a href="https://codereview.chromium.org/190333002">https://codereview.chromium.org/190333002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168776 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168776&amp;view=revision"><time datetime="2014-03-08">2014-03-08</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Turn SVGTextMetricsBuilder into a namespace</summary>
+              <pre class=body>
+Said class does not carry any state, so turn it into a namespace, marking
+previous methods static as appropriate and modify callers.
+
+Review URL: <a href="https://codereview.chromium.org/191053002">https://codereview.chromium.org/191053002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168769 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168769&amp;view=revision"><time datetime="2014-03-08">2014-03-08</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Drive SVG Animations via requestAnimationFrame</summary>
+              <pre class=body>
+Start using FrameView::scheduleAnimation instead of a Timer for driving
+the animations in a SMILTimeContainer.
+The timer however remains to use when the next animation event is further
+into the future than within the (~) next frame interval. Hence
+SMILTimeContainer::m_timer is renamed to m_wakeupTimer.
+
+An AnimationClock is added to SMILTimeContainer to prepare for switching
+to the Document AnimationClock. The animation time from the compositor is
+plumbed through the layers, and used to update said clock.
+
+updateAnimations() is refactored to not perform frame scheduling itself,
+but leave that to the caller. This is used to make any frame triggered by
+the start of the timeline be scheduled using the wake-up timer instead
+of the frame &#34;tick&#34;. This is a workaround to reduce the risk of races for
+simple pixel-tests (that want to sample the animation state at time 0.)
+
+Frame scheduling is managed by a simple 3-state FSM, where one state is
+used for &#34;continuous updates&#34; (frame driven), one is for &#34;immediate
+updates&#34; due to timeline/interval changes. The third state is the &#39;Idle&#39;
+state which indicates that no frame/animation update is scheduled.
+
+For the SVG-in-&lt;img&gt; (and similar) case(s),
+SVGImageChromeClient::scheduleAnimation is modified to use a fixed frame
+interval.
+In SVGImage, the initialization of m_page is moved later, to disable any
+methods that depend on accessing the SVG root element (prompted by the
+need to query if the image has any animations) until the actual document
+is loaded/being loaded.
+
+BUG=231576
+
+Review URL: <a href="https://codereview.chromium.org/190963003">https://codereview.chromium.org/190963003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168748 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168748&amp;view=revision"><time datetime="2014-03-07">2014-03-07</time></a>
       
         <tr>
           <td>sigbjornf
