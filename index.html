@@ -23,9 +23,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 156, 
+    <a href="#chromium">Chromium</a>: 157, 
   
-    <a href="#blink">Blink</a>: 642, 
+    <a href="#blink">Blink</a>: 647, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -38,6 +38,27 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Rewriting loop in accessibility code to silence analyzer.</summary>
+              <pre class=body>
+The VS static analyzer thought the code was a mistake by the author
+(starting value less than that limit in a decreasing loop)
+and judging by the comment, humans also find the loop non-trvial.
+
+So make it more normal.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/190033006">https://codereview.chromium.org/190033006</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@256086 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=256086&amp;view=revision"><time datetime="2014-03-11">2014-03-11</time></a>
       
         <tr>
           <td>sigbjornf
@@ -3025,6 +3046,114 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Drop UseCounters for certain properties on CSSStyleDeclaration</summary>
+              <pre class=body>
+Blink/WebKit/IE supports properties on CSSStyleDeclaration that are
+the literal names of the CSS properties, for instance
+style[&#39;font-face&#39;]. We have two related counters for measuring how
+often this capability is used.
+
+The consensus on bug 290055 is that we can&#39;t drop the corresponding
+functionality because of high usage both on the counters and in
+libraries. Instead drop the counters since they have played their
+part.
+
+R=ojan
+BUG=290055
+
+Review URL: <a href="https://codereview.chromium.org/190663013">https://codereview.chromium.org/190663013</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168930 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168930&amp;view=revision"><time datetime="2014-03-11">2014-03-11</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Undeprecate Event.returnValue and Attr.specified</summary>
+              <pre class=body>
+The usage of these is so high that complaining about them is likely to
+make developers ignore console warnings:
+<a href="http://www.chromestatus.com/metrics/feature/timeline/popularity/137">http://www.chromestatus.com/metrics/feature/timeline/popularity/137</a>
+<a href="http://www.chromestatus.com/metrics/feature/timeline/popularity/162">http://www.chromestatus.com/metrics/feature/timeline/popularity/162</a>
+
+Spec bugs filed to maybe make them standard instead:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=25001">https://www.w3.org/Bugs/Public/show_bug.cgi?id=25001</a>
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=25002">https://www.w3.org/Bugs/Public/show_bug.cgi?id=25002</a>
+
+Discussion on blink-dev:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/eplNSf8oDfw/0kB2gD0lQHgJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/eplNSf8oDfw/0kB2gD0lQHgJ</a>
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/194173002">https://codereview.chromium.org/194173002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168918 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168918&amp;view=revision"><time datetime="2014-03-11">2014-03-11</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move WorkerThreadStartupData to the oilpan heap.</summary>
+              <pre class=body>
+<a href="mailto:R=vegorov@chromium.org,tkent@chromium.org">R=vegorov@chromium.org,tkent@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/191003010">https://codereview.chromium.org/191003010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168903 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168903&amp;view=revision"><time datetime="2014-03-11">2014-03-11</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add transition types to FileSystem APIs.</summary>
+              <pre class=body>
+R=
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/188503002">https://codereview.chromium.org/188503002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168897 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168897&amp;view=revision"><time datetime="2014-03-11">2014-03-11</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove document().page() null checks in MediaControls</summary>
+              <pre class=body>
+These were needed in WebKit when the render theme was accessed via the
+page, but that is no longer the case, these null checks are the only
+bits in MediaControls that access document().page() at all.
+
+It&#39;s possible that some code deeper down assumes that the page is not
+null and will now begin to crash, but a quick scan of Source/core/
+didn&#39;t reveal anything obvious.
+
+BUG=341813
+
+Review URL: <a href="https://codereview.chromium.org/190463002">https://codereview.chromium.org/190463002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168855 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168855&amp;view=revision"><time datetime="2014-03-10">2014-03-10</time></a>
       
         <tr>
           <td>sigbjornf
