@@ -25,7 +25,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 157, 
   
-    <a href="#blink">Blink</a>: 647, 
+    <a href="#blink">Blink</a>: 654, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -3046,6 +3046,167 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Fix dashed/dotted regression caused by multi-style text decoration patch.</summary>
+              <pre class=body>
+If you fall through from TextDecorationStyle[Dotted, Dashed] to
+TextDecorationStyleDouble, then obviously double lines will be drawn.
+
+Also, change code to reuse as much code as possible rather than duplicate
+approximately the same thing three times.
+
+There should be no functional changes other than the regression fix.
+
+BUG=351282
+TEST=Covered by existing tests
+
+Review URL: <a href="https://codereview.chromium.org/197633002">https://codereview.chromium.org/197633002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169039 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169039&amp;view=revision"><time datetime="2014-03-12">2014-03-12</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Pause the timeline on load in the SVGAnimationTestCase.js framework</summary>
+              <pre class=body>
+Most tests using this framework drive the &#34;clock&#34; / currentTime &#34;manually&#34;
+by setCurrentTime(t), and add the instance time of a click event to it.
+This means that there&#39;s a risk of rounding errors creeping in and causing
+the actual elapsed time to be off by a fraction - large enough to cause
+failures - at least for discrete animations.
+(Example: svglengthlist-animation-3.html)
+By pausing the timeline at &#39;load&#39;, the instance time for the click event
+will be &#39;0&#39;, which should eliminate the risk of rounding issues.
+For the cases where the test actually need time to pass the timeline can
+be unpaused explicitly. (Currently only one testcase seemed to require
+that treatment.)
+
+BUG=350827
+
+Review URL: <a href="https://codereview.chromium.org/194943002">https://codereview.chromium.org/194943002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169033 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169033&amp;view=revision"><time datetime="2014-03-12">2014-03-12</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use correct container width as base for percentage margins.</summary>
+              <pre class=body>
+Blocks establishing a new BFC need to avoid floats in its parent BFC. Also,
+computing used values for auto margins for such blocks is affected by the
+available line width constrained by these floats. However, percentage sized
+margins must be calculated based on the full containing block width, not the
+available line width.
+
+<a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+BUG=348927
+
+Review URL: <a href="https://codereview.chromium.org/185723005">https://codereview.chromium.org/185723005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169030 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169030&amp;view=revision"><time datetime="2014-03-12">2014-03-12</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Let MediaControls use the parent HTMLMediaElement</summary>
+              <pre class=body>
+Likewise, let MediaControlElements use the parent MediaControls.
+
+The goal is that all instances of mediaControllerInterface() should be
+replaced by either the media element or its controller. For example,
+text tracks and fullscreen will just use the media element, while e.g.
+seeking must be done via the MediaController if it is present.
+
+No observable changes are intended in this commit.
+
+BUG=341813
+
+Review URL: <a href="https://codereview.chromium.org/195473002">https://codereview.chromium.org/195473002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169014 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169014&amp;view=revision"><time datetime="2014-03-12">2014-03-12</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>Fix possible use of garbage value in acquirePaintingResource</summary>
+              <pre class=body>
+If ASSERT_NOT_REACHED is compiled out (like in release builds), then
+hasFallback can be used uninitialized below.
+
+Review URL: <a href="https://codereview.chromium.org/196113002">https://codereview.chromium.org/196113002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169000 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169000&amp;view=revision"><time datetime="2014-03-12">2014-03-12</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Merge MediaControlsAndroid into MediaControls</summary>
+              <pre class=body>
+The additional functionality in MediaControlsAndroid is so small that
+merging it was trivial. Just use CSS to hide the overlay enclosure.
+
+One unsightly ifdef remains in MediaControls::shouldHideControls(),
+hopefully this can eventually be removed by using a setting or perhaps
+checking the device capabilities.
+
+MediaControls::createTextTrackDisplay() was made simpler.
+
+BUG=341813
+
+Review URL: <a href="https://codereview.chromium.org/192453005">https://codereview.chromium.org/192453005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168967 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168967&amp;view=revision"><time datetime="2014-03-12">2014-03-12</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Support multiple text decoration styles.</summary>
+              <pre class=body>
+Currently, we draw only the last seen text decoration style during
+decoration painting, even when multiple decorations
+(e.g. underline + overline) are applied. Hence, we potentially draw
+the wrong decoration style for one or more of the applied decorations.
+
+Fixed by fetching the matching style for each decoration, similar
+to how the matching text-decoration-color is fetched.
+
+BUG=351282
+TEST=text-decoration-style-multiple.html
+
+Review URL: <a href="https://codereview.chromium.org/195093002">https://codereview.chromium.org/195093002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@168946 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=168946&amp;view=revision"><time datetime="2014-03-11">2014-03-11</time></a>
       
         <tr>
           <td>davve
