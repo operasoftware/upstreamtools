@@ -25,7 +25,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 157, 
   
-    <a href="#blink">Blink</a>: 654, 
+    <a href="#blink">Blink</a>: 661, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -3046,6 +3046,151 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move Worker objects to the oilpan heap.</summary>
+              <pre class=body>
+R=
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/180743028">https://codereview.chromium.org/180743028</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169116 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169116&amp;view=revision"><time datetime="2014-03-13">2014-03-13</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>[MemUsage][BinarySize] More perfect hashes for CSS strings.</summary>
+              <pre class=body>
+gperf generates some &#34;perfect&#34; hashes for CSS properties and CSS
+values. Those are not very compact but can be more compact if gperf
+is asked to try harder. This will cost 1 s build time and reduce binary
+size by about 12 KB.
+
+The flags changed are:
+
+&#39;-m 50&#39; - Try 50 times more initial values to the search algorithm. This
+will make the call 50 times slower but for the current input size that is
+no problem.
+
+Removal of ‘-s 2’ - -s 2 told gperf to generate a twice as large data table
+to make it easier (faster) to find a solution.
+
+Also &#39;-D&#39; moved around but was there both before and after so no addition
+or removal.
+
+In the longer run we should move away from gperf to a better algorithm (they
+exist at the research level but not as easily installed programs)
+
+BUG=351774
+
+Review URL: <a href="https://codereview.chromium.org/196413006">https://codereview.chromium.org/196413006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169111 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169111&amp;view=revision"><time datetime="2014-03-13">2014-03-13</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Stop using toParentMediaElement internally in MediaControlElements</summary>
+              <pre class=body>
+Just use mediaElement()
+
+BUG=341813
+<a href="mailto:R=adamk@chromium.org">R=adamk@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/196143005">https://codereview.chromium.org/196143005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169107 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169107&amp;view=revision"><time datetime="2014-03-13">2014-03-13</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>skip unused value in CSSPropertyParser::parse2ValuesFillPosition</summary>
+              <pre class=body>
+Spotted a warning due to this unused value while testing some static
+analyzer tools.
+
+Review URL: <a href="https://codereview.chromium.org/196533005">https://codereview.chromium.org/196533005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169071 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169071&amp;view=revision"><time datetime="2014-03-13">2014-03-13</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Undeprecate DocumentClear, CaptureEvents and ReleaseEvents</summary>
+              <pre class=body>
+These are all specified for Document:
+<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/obsolete.html#obsolete">http://www.whatwg.org/specs/web-apps/current-work/multipage/obsolete.html#obsolete</a>
+
+There&#39;s no spec for Window, so split the CaptureEvents and ReleaseEvents counters.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/193443004">https://codereview.chromium.org/193443004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169054 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169054&amp;view=revision"><time datetime="2014-03-12">2014-03-12</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Consider intrinsic size for SVG as list-style-image</summary>
+              <pre class=body>
+When using an SVG as list marker image, don&#39;t unconditionally set the
+dimensions to a square with the dimensions of ascent / 2, but rather
+determine a suitable size using intrinsic dimensions (and ratio).
+
+This aligns behavior with Gecko and IE.
+
+BUG=350734
+
+Review URL: <a href="https://codereview.chromium.org/197203003">https://codereview.chromium.org/197203003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169053 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169053&amp;view=revision"><time datetime="2014-03-12">2014-03-12</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Handle percent height children of multicol containers correctly.</summary>
+              <pre class=body>
+The render flow thread block that&#39;s reparented between the multicol container
+and its actual children is just an implementation detail, invisible to DOM and CSS.
+Its height will always be auto, and we need to bypass it.
+
+BUG=351657
+
+Review URL: <a href="https://codereview.chromium.org/197113002">https://codereview.chromium.org/197113002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169050 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169050&amp;view=revision"><time datetime="2014-03-12">2014-03-12</time></a>
       
         <tr>
           <td>andersr
