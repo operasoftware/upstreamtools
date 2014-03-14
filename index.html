@@ -23,9 +23,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 157, 
+    <a href="#chromium">Chromium</a>: 160, 
   
-    <a href="#blink">Blink</a>: 661, 
+    <a href="#blink">Blink</a>: 671, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -38,6 +38,56 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>joaoe
+          <td class=message>
+            <details>
+              <summary>Make LogMessage() handle strings with null bytes</summary>
+              <pre class=body>
+&#39;LOG(...) &lt;&lt; std::string(&#34;a\0a&#34;, 3);&#39; would cause the line to be
+truncated, and no newline output.
+
+Committed: <a href="https://src.chromium.org/viewvc/chrome?view=rev&amp;revision=257093">https://src.chromium.org/viewvc/chrome?view=rev&amp;revision=257093</a>
+
+Review URL: <a href="https://codereview.chromium.org/198103008">https://codereview.chromium.org/198103008</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@257135 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=257135&amp;view=revision"><time datetime="2014-03-14">2014-03-14</time></a>
+      
+        <tr>
+          <td>joaoe
+          <td class=message>
+            <details>
+              <summary>Make LogMessage() handle strings with null bytes</summary>
+              <pre class=body>
+&#39;LOG(...) &lt;&lt; std::string(&#34;a\0a&#34;, 3);&#39; would cause the line to be
+truncated, and no newline output.
+
+Review URL: <a href="https://codereview.chromium.org/198103008">https://codereview.chromium.org/198103008</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@257093 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=257093&amp;view=revision"><time datetime="2014-03-14">2014-03-14</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>Minor documentation fixup, followup from https://codereview.chromium.org/184903003</summary>
+              <pre class=body>
+BUG=308843
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/195893015">https://codereview.chromium.org/195893015</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@257053 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=257053&amp;view=revision"><time datetime="2014-03-14">2014-03-14</time></a>
       
         <tr>
           <td>bratell
@@ -3046,6 +3096,212 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Tweaks and fixes to the SMILTimeContainer frame scheduling logic</summary>
+              <pre class=body>
+Restore the old frame delay as |initialFrameDelay| and use that in
+begin(). (There&#39;s a 15ms difference from DocumentTimeline::s_minimumDelay,
+in case that matters to some layout test.)
+
+Use a separate state (FutureAnimationFrame) for the cases where an
+animation frame is requested later than the next frame interval. This
+avoids unnecessary work in the frame callback (which is gated on the
+state being AnimationFrame).
+
+Fix an issue where an animation frame could end up being scheduled,
+although a synchronization had been triggered already (via
+updateAnimations() and a syncbase dependency for instance). Similarly also
+avoid increasing the timer in begin() for similar cases.
+
+BUG=231576
+
+Review URL: <a href="https://codereview.chromium.org/193053002">https://codereview.chromium.org/193053002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169259 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169259&amp;view=revision"><time datetime="2014-03-14">2014-03-14</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use LocalStyleChange for classes in rightmost compound selector.</summary>
+              <pre class=body>
+If we resort to not using invalidation sets, we can still use
+LocalStyleChange instead of SubtreeStyleChange for classes in the rightmost
+compound selector if the invalidation set approach was not dropped due to a
+feature in the rightmost compound selector. For classes in other compound
+selectors, still use SubtreeStyleChange.
+
+Examples:
+
+&#34;.a + .b&#34; -&gt; LocalStyleChange for &#34;b&#34;, SubtreeStyleChange for &#34;a&#34;
+&#34;.a .b::first-letter&#34; -&gt; SubtreeStyleChange for both &#34;a&#34; and &#34;b&#34;.
+
+<a href="mailto:R=esprehn@chromium.org,chrishtr@chromium.org">R=esprehn@chromium.org,chrishtr@chromium.org</a>
+BUG=335247
+
+Review URL: <a href="https://codereview.chromium.org/199373003">https://codereview.chromium.org/199373003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169255 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169255&amp;view=revision"><time datetime="2014-03-14">2014-03-14</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move Screen and its supplement to the oilpan heap.</summary>
+              <pre class=body>
+R=
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/196023016">https://codereview.chromium.org/196023016</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169246 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169246&amp;view=revision"><time datetime="2014-03-14">2014-03-14</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Prevent destruction of self in SMILTimeContainer with &#39;discard&#39;</summary>
+              <pre class=body>
+If discarding the &lt;svg&gt; root an animation update could end up destroying
+the SVGSVGElement owning the SMILTimeContainer, leading to use-after-free.
+Make sure to keep an additional reference to the owning SVGSVGElement
+across affected callsites.
+
+BUG=351316
+
+Review URL: <a href="https://codereview.chromium.org/195233003">https://codereview.chromium.org/195233003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169239 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169239&amp;view=revision"><time datetime="2014-03-14">2014-03-14</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Fix broken transition for text-decoration-color.</summary>
+              <pre class=body>
+CSSPropertyEquality::propertiesEqual was not implemented for
+text-decoration-color.
+
+Note: The test has a high tolerance, because we really only need to test
+that the current value is somewhere between the start value and end value.
+
+BUG=351675
+TEST=test-decoration-color-transition.html
+
+Review URL: <a href="https://codereview.chromium.org/197223002">https://codereview.chromium.org/197223002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169215 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169215&amp;view=revision"><time datetime="2014-03-14">2014-03-14</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Compute the keyTimes index correctly for discrete (values) animations</summary>
+              <pre class=body>
+The last value is allowed to be non-one for discrete mode animations (but
+not for linear and spline mode animations).
+
+TEST=svg/animations/animate-elem-{14,18}-t-drt.html
+BUG=350318
+
+Review URL: <a href="https://codereview.chromium.org/197283002">https://codereview.chromium.org/197283002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169211 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169211&amp;view=revision"><time datetime="2014-03-14">2014-03-14</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Testcase for crbug.com/350907</summary>
+              <pre class=body>
+Also replace the FIXME with an attempt at explaining why/when m_image
+can be 0.
+
+BUG=350907
+
+Review URL: <a href="https://codereview.chromium.org/198943004">https://codereview.chromium.org/198943004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169210 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169210&amp;view=revision"><time datetime="2014-03-14">2014-03-14</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Replace big code block to build CSS pseudo name table with a loop.</summary>
+              <pre class=body>
+Save 8 KB binary size by replacing code that expanded badly with
+a loop. As a bonus, the code is much more maintainable now.
+
+BUG=352113
+
+<a href="mailto:R=ojan@chromium.org">R=ojan@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/196983005">https://codereview.chromium.org/196983005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169175 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169175&amp;view=revision"><time datetime="2014-03-13">2014-03-13</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move ImageBitmap to the oilpan heap.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org,erik.corry@gmail.com">R=haraken@chromium.org,erik.corry@gmail.com</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/190183003">https://codereview.chromium.org/190183003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169153 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169153&amp;view=revision"><time datetime="2014-03-13">2014-03-13</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Make sure table cells are laid out again when fragmentainer height changes.</summary>
+              <pre class=body>
+We may have to update pagination struts then, which requires a deeper layout.
+
+BUG=348064
+
+Note that this doesn&#39;t really fix the bug mentioned, but it does contribute to more correct rendering of the test case there.
+
+Review URL: <a href="https://codereview.chromium.org/194713009">https://codereview.chromium.org/194713009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169144 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169144&amp;view=revision"><time datetime="2014-03-13">2014-03-13</time></a>
       
         <tr>
           <td>sigbjornf
