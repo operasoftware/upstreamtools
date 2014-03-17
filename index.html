@@ -23,9 +23,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 160, 
+    <a href="#chromium">Chromium</a>: 161, 
   
-    <a href="#blink">Blink</a>: 673, 
+    <a href="#blink">Blink</a>: 681, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -38,6 +38,38 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>haavardm
+          <td class=message>
+            <details>
+              <summary>Make OpenSSL UpdateServerCert() OS independent.</summary>
+              <pre class=body>
+UpdateServerCert currently creates the server cert chain
+directly from the openssl struct X509. This works since
+OSCertHandle currently is an OpenSSL X509 struct when
+OpenSSL is used on Android and Linux.
+
+This patch makes the UpdateServerCert() OS independent by creating
+the X509Certificate from DER data instead of OSCertHandle to make
+it compile on the other platforms when USE_OPENSSL is off.
+
+Keep the USE_OPENSSL code to avoid converting back and forth
+between X509 and DER twice and OsCertHandle is X509.
+
+I see that there is a DER cache in x509_certificate_openssl.cc
+which could have simplified the patch a bit. However, if I understand
+a comment correctly,  it shouldn&#39;t be mixed with certificates that comes
+from network, which is the case here. Also, that API is not exposed.
+
+Also remove some unused NSS code from x509_certificate_mac.cc.
+
+Review URL: <a href="https://codereview.chromium.org/173853014">https://codereview.chromium.org/173853014</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@257449 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=257449&amp;view=revision"><time datetime="2014-03-17">2014-03-17</time></a>
       
         <tr>
           <td>joaoe
@@ -3096,6 +3128,195 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Removed invalidation set FIXME for pseudo elements.</summary>
+              <pre class=body>
+This FIXME is no longer valid since the recalcChildStyle for pseudo elements
+has been fixed and ::before, ::after, ::backdrop are now supported for class
+invalidation sets.
+
+<a href="mailto:R=esprehn@chromium.org,chrishtr@chromium.org">R=esprehn@chromium.org,chrishtr@chromium.org</a>
+BUG=335247
+
+Review URL: <a href="https://codereview.chromium.org/201833002">https://codereview.chromium.org/201833002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169360 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169360&amp;view=revision"><time datetime="2014-03-17">2014-03-17</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Compute the keyTimes index correctly for discrete (values) animations</summary>
+              <pre class=body>
+The last value is allowed to be non-one for discrete mode animations (but
+not for linear and spline mode animations).
+
+TEST=svg/animations/animate-elem-{14,18}-t-drt.html
+BUG=350318
+
+Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=169211">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=169211</a>
+
+Review URL: <a href="https://codereview.chromium.org/197283002">https://codereview.chromium.org/197283002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169351 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169351&amp;view=revision"><time datetime="2014-03-17">2014-03-17</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Revert of Allow frames to be free&#39;d even for static images (https://codereview.chromium.org/136503002/)</summary>
+              <pre class=body>
+Reason for revert:
+May have caused issue 350653.
+
+Original issue&#39;s description:
+&gt; Allow frames to be free&#39;d even for static images
+&gt; 
+&gt; r151702 added limit for pruning in ImageDecoded::clearCacheExceptFrame,
+&gt; which would disallow pruning single-frame/static images altogether.
+&gt; 
+&gt; Allow such images to be pruned in their entirety by dropping the
+&gt; condition for &lt;= 1 frames - the for-loop will handle the kNotFound case.
+&gt; 
+&gt; (Also related is r156651, which re-added the destroyAll flag.)
+&gt; 
+&gt; Modify the ImageFrameGeneratorTest.frameHasAlpha unittest to use frame 0
+&gt; instead of frame 1, to avoid clearing frame 1 (MockImageDecoder
+&gt; maps all indices to frame 0.)
+&gt; 
+&gt; <a href="mailto:R=hclam@chromium.org,pkasting@chromium.org,senorblanco@chromium.org">R=hclam@chromium.org,pkasting@chromium.org,senorblanco@chromium.org</a>
+&gt; BUG=302851
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=165127">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=165127</a>
+
+<a href="mailto:TBR=hclam@chromium.org,pkasting@chromium.org,senorblanco@chromium.org,jochen@chromium.org">TBR=hclam@chromium.org,pkasting@chromium.org,senorblanco@chromium.org,jochen@chromium.org</a>
+NOTREECHECKS=true
+NOTRY=true
+BUG=302851
+
+Review URL: <a href="https://codereview.chromium.org/201793002">https://codereview.chromium.org/201793002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169347 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169347&amp;view=revision"><time datetime="2014-03-17">2014-03-17</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fix running of CSS Animations in SVG-in-&lt;img&gt;/background-image/etc.</summary>
+              <pre class=body>
+Align SVGImageChromeClient with the WebViewImpl/PageWidgetDelegate/...-
+cluster and call updateLayoutAndStyleForPainting on FrameView instead of
+updateLayoutAndStyleIfNeededRecursive to make pending animations start
+etc.
+
+Also add a new method to DocumentTimeline to use when scheduling the
+animation-timer in SVGImageChromeClient (to avoid &#39;0&#39; timeouts when
+there&#39;s pending animations updates.)
+
+BUG=278189
+
+Review URL: <a href="https://codereview.chromium.org/196223014">https://codereview.chromium.org/196223014</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169340 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169340&amp;view=revision"><time datetime="2014-03-17">2014-03-17</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG2] Add getters and setters to SVG*List interfaces.</summary>
+              <pre class=body>
+Implement the &#39;length&#39; attribute and make &#39;numberOfItems&#39; an alias
+of that.
+
+Spec:
+<a href="https://svgwg.org/svg2-draft/types.html#InterfaceSVGStringList">https://svgwg.org/svg2-draft/types.html#InterfaceSVGStringList</a>
+<a href="https://svgwg.org/svg2-draft/types.html#InterfaceSVGNumberList">https://svgwg.org/svg2-draft/types.html#InterfaceSVGNumberList</a>
+<a href="https://svgwg.org/svg2-draft/types.html#InterfaceSVGLengthList">https://svgwg.org/svg2-draft/types.html#InterfaceSVGLengthList</a>
+<a href="https://svgwg.org/svg2-draft/coords.html#InterfaceSVGTransformList">https://svgwg.org/svg2-draft/coords.html#InterfaceSVGTransformList</a>
+<a href="https://svgwg.org/svg2-draft/coords.html#InterfaceSVGPointList">https://svgwg.org/svg2-draft/coords.html#InterfaceSVGPointList</a>
+
+BUG=336748
+
+Review URL: <a href="https://codereview.chromium.org/195313003">https://codereview.chromium.org/195313003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169332 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169332&amp;view=revision"><time datetime="2014-03-17">2014-03-17</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Make supported-xml-content-types.html tests faster.</summary>
+              <pre class=body>
+To try to address Windows test slowness, switch this test over to
+async XHR requests + split it up into chunks.
+
+<a href="mailto:R=mkwst@chromium.org">R=mkwst@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/198893002">https://codereview.chromium.org/198893002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169317 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169317&amp;view=revision"><time datetime="2014-03-16">2014-03-16</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Expose CrossThreadPersistent assignment operators.</summary>
+              <pre class=body>
+Allow the base class Persistent assignment operators to be used over
+CrossThreadPersistent also.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=347902
+
+Review URL: <a href="https://codereview.chromium.org/196383024">https://codereview.chromium.org/196383024</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169315 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169315&amp;view=revision"><time datetime="2014-03-16">2014-03-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Improve media-related exception messages</summary>
+              <pre class=body>
+The two in HTMLMediaElement were just wrong.
+
+Add a video-currentTime-set-with-controller.html test as that code path
+was apparently untested before.
+
+BUG=270033
+
+Review URL: <a href="https://codereview.chromium.org/197213012">https://codereview.chromium.org/197213012</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169314 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169314&amp;view=revision"><time datetime="2014-03-16">2014-03-16</time></a>
       
         <tr>
           <td>rune
