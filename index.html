@@ -23,9 +23,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 161, 
+    <a href="#chromium">Chromium</a>: 164, 
   
-    <a href="#blink">Blink</a>: 681, 
+    <a href="#blink">Blink</a>: 690, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -38,6 +38,76 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Put histogram code in disk_cache on a diet.</summary>
+              <pre class=body>
+The CACHE_UMA macro expanded wildly and with all the static variables
+in all blocks it was impossible for the compiler to shrink it. This
+removes the static variables (for a minor performance hit) to save 75%
+of the size of BackendImpl::ReportStats() and other changes elsewhere.
+
+Examples (sorry, don&#39;t have data for symbols smaller than 6 KB so not exact):
+disk_cache::BackendImpl::ReportStats()  55423 bytes -&gt; 9788 bytes
+disk_cache::BackendImpl::FirstEviction() 21361 bytes -&gt; &lt; 6 KB
+disk_cache::BackendImpl::OpenEntryImpl: 16381 bytes -&gt; &lt; 6 KB
+disk_cache::EntryImpl::ReportIOTime: 14626 bytes -&gt; &lt; 6 KB
+disk_cache::Eviction::ReportListStats: 10099 bytes -&gt; &lt; 6 KB
+disk_cache::Eviction::TrimCacheV2: 7820 bytes -&gt; &lt; 6 KB
+disk_cache::Eviction::TrimCache: 7095 bytes -&gt; &lt; 6 KB
+
+In total my stripped Linux x64 Release content_shell binary shrinks by 132 KB with this change (0.25%).
+
+BUG=352555
+
+<a href="mailto:R=gavinp@chromium.org">R=gavinp@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/196383016">https://codereview.chromium.org/196383016</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@257637 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=257637&amp;view=revision"><time datetime="2014-03-18">2014-03-18</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>ensure that UnixDomainSocket::RecvMsgWithFlags doesn&#39;t memcpy from 0</summary>
+              <pre class=body>
+If wire_fds is never updated after being initialized to 0, then we should not memcpy from it.
+
+Review URL: <a href="https://codereview.chromium.org/196353002">https://codereview.chromium.org/196353002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@257504 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=257504&amp;view=revision"><time datetime="2014-03-17">2014-03-17</time></a>
+      
+        <tr>
+          <td>wdzierzanowski
+          <td class=message>
+            <details>
+              <summary>Make SyncStartupTracker::Observer destructor virtual</summary>
+              <pre class=body>
+Instances of SyncStartupTracker::Observer subclasses are likely to be
+deleted through a SyncStartupTracker::Observer pointer.
+
+While we are here, also put the include of sync_startup_tracker.h first
+in sync_startup_tracker.cc for reasons stated in the style guide.
+
+<a href="mailto:R=atwilson@chromium.org">R=atwilson@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/197243002">https://codereview.chromium.org/197243002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@257502 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=257502&amp;view=revision"><time datetime="2014-03-17">2014-03-17</time></a>
       
         <tr>
           <td>haavardm
@@ -3128,6 +3198,288 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert of Explicit notification and removal of lifecycle observers. (https://codereview.chromium.org/194923007/)</summary>
+              <pre class=body>
+Reason for revert:
+<a href="http://test-results.appspot.com/dashboards/flakiness_dashboard.html#group=%40ToT%20Blink&amp;tests=fast/workers/storage/interrupt-database.html,http/tests/w3c/webperf/submission/Google/resource-timing/html/test_resource_dedicated_worker.html,http/tests/xmlhttprequest/workers/referer.html,http/tests/xmlhttprequest/workers/xmlhttprequest-response-type-blob.html">http://test-results.appspot.com/dashboards/flakiness_dashboard.html#group=%40ToT%20Blink&amp;tests=fast/workers/storage/interrupt-database.html,http/tests/w3c/webperf/submission/Google/resource-timing/html/test_resource_dedicated_worker.html,http/tests/xmlhttprequest/workers/referer.html,http/tests/xmlhttprequest/workers/xmlhttprequest-response-type-blob.html</a>
+
+Original issue&#39;s description:
+&gt; Explicit notification and removal of lifecycle observers.
+&gt; 
+&gt; To help make disposing of execution contexts cleaner in a setting
+&gt; where both a context and its lifetime observers are being finalized
+&gt; by a garbage collector, add support for explicitly clearing out
+&gt; all lifecycle observers:
+&gt; 
+&gt; protected:
+&gt;   void LifecycleNotifier&lt;T&gt;::removeAndNotifyAllObservers()
+&gt; 
+&gt; Notifying them that the context has been destroyed while doing so.
+&gt; An operation that was previously (only) done by the LifecycleNotifier
+&gt; destructor.
+&gt; 
+&gt; Also provide a convenience method over ExecutionContext for clearing
+&gt; out its observers:
+&gt; 
+&gt;   void ExecutionContext::removeAllLifecycleObservers()
+&gt; 
+&gt; The operation is used here when shutting down and finalizing a worker
+&gt; thread and its global scope -- explicitly severing the connection
+&gt; of all observers to its execution context before performing the
+&gt; final garbage collection.
+&gt; 
+&gt; Doing so ensures that all observer objects being finalized during that
+&gt; garbage collection will not have access to its execution context object.
+&gt; A heap object that may or may not have been finalized by the garbage
+&gt; collector already.
+&gt; 
+&gt; <a href="mailto:R=haraken@chromium.org,ager@chromium.org,abarth@chromium.org">R=haraken@chromium.org,ager@chromium.org,abarth@chromium.org</a>
+&gt; BUG=340522
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=169435">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=169435</a>
+
+<a href="mailto:TBR=oilpan-reviews@chromium.org,abarth@chromium.org,haraken@chromium.org,ager@chromium.org,eseidel@chromium.org,tkent@chromium.org">TBR=oilpan-reviews@chromium.org,abarth@chromium.org,haraken@chromium.org,ager@chromium.org,eseidel@chromium.org,tkent@chromium.org</a>
+NOTREECHECKS=true
+NOTRY=true
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/203393002">https://codereview.chromium.org/203393002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169444 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169444&amp;view=revision"><time datetime="2014-03-18">2014-03-18</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>The entity table contained pointers which both makes it big and prevents</summary>
+              <pre class=body>it from being reused as-is from the binary. This changes it to make
+the storage more compact by replacing pointers with offsets into a
+shared string. Also switching to more compact data types.
+
+The new database will look like:
+
+static const LChar staticEntityStringStorage[] = {
+&#39;A&#39;, &#39;E&#39;, &#39;l&#39;, &#39;i&#39;, &#39;g&#39;,
+&#39;;&#39;,
+&#39;A&#39;, &#39;M&#39;, &#39;P&#39;,
+&#39;;&#39;,
+&#39;A&#39;, &#39;a&#39;, &#39;c&#39;, &#39;u&#39;, &#39;t&#39;, &#39;e&#39;,
+&#39;;&#39;,
+...
+
+static const HTMLEntityTableEntry staticEntityTable[2231] = {
+    { 0x000C6, 0, 0, 5 }, // &amp;AElig
+    { 0x000C6, 0, 0, 6 }, // &amp;AElig;
+    { 0x00026, 0, 6, 3 }, // &amp;AMP
+    { 0x00026, 0, 6, 4 }, // &amp;AMP;
+    { 0x000C1, 0, 10, 6 }, // &amp;Aacute
+...
+
+The binary will shrink by about 20-35 KB (depending on architecture),
+the memory usage should shrink by similar numbers for every
+renderer (since the memory now can be shared between renderers) and
+there will be a tiny startup time improvement due to
+fewer relocation blocks and less to read from disk.
+
+It accomplishes the savings by avoiding pointers in the data (resolving pointers
+during startup is expensive), using one string instead of 2000+, not storing the
+trailing NUL byte, ordering the members for minimum padding, using minimal size
+data types and reusing the same string space for things like &#34;amp;&#34; and &#34;amp&#34;.
+
+BUG=352141
+
+R=
+
+Review URL: <a href="https://codereview.chromium.org/199103002">https://codereview.chromium.org/199103002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169438 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169438&amp;view=revision"><time datetime="2014-03-18">2014-03-18</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Explicit notification and removal of lifecycle observers.</summary>
+              <pre class=body>
+To help make disposing of execution contexts cleaner in a setting
+where both a context and its lifetime observers are being finalized
+by a garbage collector, add support for explicitly clearing out
+all lifecycle observers:
+
+protected:
+  void LifecycleNotifier&lt;T&gt;::removeAndNotifyAllObservers()
+
+Notifying them that the context has been destroyed while doing so.
+An operation that was previously (only) done by the LifecycleNotifier
+destructor.
+
+Also provide a convenience method over ExecutionContext for clearing
+out its observers:
+
+  void ExecutionContext::removeAllLifecycleObservers()
+
+The operation is used here when shutting down and finalizing a worker
+thread and its global scope -- explicitly severing the connection
+of all observers to its execution context before performing the
+final garbage collection.
+
+Doing so ensures that all observer objects being finalized during that
+garbage collection will not have access to its execution context object.
+A heap object that may or may not have been finalized by the garbage
+collector already.
+
+<a href="mailto:R=haraken@chromium.org,ager@chromium.org,abarth@chromium.org">R=haraken@chromium.org,ager@chromium.org,abarth@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/194923007">https://codereview.chromium.org/194923007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169435 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169435&amp;view=revision"><time datetime="2014-03-18">2014-03-18</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Ignore MediaController in the video fullscreen button logic</summary>
+              <pre class=body>
+There were three problems:
+
+ 1. When fullScreenEnabled() was false, HTMLMediaElement&#39;s
+    enterFullscreen() was used as a fallback, but that function checks
+    the setting and does nothing. This has been the case since cleanup
+    from April 2013, r149489: <a href="https://codereview.chromium.org/14670004">https://codereview.chromium.org/14670004</a>
+
+ 2. MediaController&#39;s hasVideo() returned true if any of the slave
+    elements had video, which could show the button for a video element
+    with no video.
+
+ 3. The fullscreen button didn&#39;t do anything for slaved media elements.
+
+The added tests verify that (1) no fullscreen button is shown when the
+fullscreen feature is disabled or (2) when there is no video track, and
+(3) that clicking the fullscreen button actually enters fullscreen.
+
+BUG=351661
+
+Review URL: <a href="https://codereview.chromium.org/196793021">https://codereview.chromium.org/196793021</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169429 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169429&amp;view=revision"><time datetime="2014-03-18">2014-03-18</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Include HTMLMediaElement.h only where needed</summary>
+              <pre class=body>
+Now slightly fewer files are recompiled when touching the header.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/196353003">https://codereview.chromium.org/196353003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169411 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169411&amp;view=revision"><time datetime="2014-03-18">2014-03-18</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Replace HTMLMediaElement::isVideo() with isHTMLVideoElement</summary>
+              <pre class=body>
+One type testing mechanism to rule them all.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/200713004">https://codereview.chromium.org/200713004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169407 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169407&amp;view=revision"><time datetime="2014-03-18">2014-03-18</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Ignore MediaController in the closed captions button logic</summary>
+              <pre class=body>
+Involving the media controller plainly does not make sense.
+
+There was no test coverage for the CC button with a media controller
+present, and adding a negative test for it does not seem useful.
+
+Note that what remains is still not great since it doesn&#39;t allow you to
+pick between multiple tracks, but that will be fixed at a later time.
+
+BUG=341813
+TEST=LayoutTests/media/audio-controls-captions.html
+     LayoutTests/media/video-controls-captions.html
+
+Review URL: <a href="https://codereview.chromium.org/201123004">https://codereview.chromium.org/201123004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169405 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169405&amp;view=revision"><time datetime="2014-03-18">2014-03-18</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Re-set referrer on issuing a validation request for a cached resource.</summary>
+              <pre class=body>
+If a cached resource needs to be revalidated, then supply the referrer
+of the document making the request.
+
+<a href="mailto:R=japhet@chromium.org">R=japhet@chromium.org</a>
+BUG=344335
+
+Review URL: <a href="https://codereview.chromium.org/201973002">https://codereview.chromium.org/201973002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169392 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169392&amp;view=revision"><time datetime="2014-03-17">2014-03-17</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Update image data upon changing the img.crossorigin attribute.</summary>
+              <pre class=body>
+The spec tells us that setting the crossorigin attribute on an img
+element should cause the &#34;update the image data&#34; steps to be invoked,
+
+ <a href="http://www.whatwg.org/specs/web-apps/current-work/#update-the-image-data">http://www.whatwg.org/specs/web-apps/current-work/#update-the-image-data</a>
+
+Do so here, along with updating the underlying test&#39;s expectation.
+
+R=
+BUG=341047
+
+Review URL: <a href="https://codereview.chromium.org/201143002">https://codereview.chromium.org/201143002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169382 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169382&amp;view=revision"><time datetime="2014-03-17">2014-03-17</time></a>
       
         <tr>
           <td>rune
