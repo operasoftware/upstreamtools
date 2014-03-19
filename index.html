@@ -23,9 +23,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 164, 
+    <a href="#chromium">Chromium</a>: 165, 
   
-    <a href="#blink">Blink</a>: 690, 
+    <a href="#blink">Blink</a>: 698, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -38,6 +38,27 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Fix for undefined base::FilePath in chrome_extensions_api_client.cc</summary>
+              <pre class=body>
+There was a compilation error when ENABLE_CONFIGURATION_POLICY was not defined.
+
+If ENABLE_CONFIGURATION_POLICY was defined then base/files/file_path.h was
+included from
+chrome/browser/extensions/api/storage/managed_value_store_cache.h
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/204523002">https://codereview.chromium.org/204523002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@258037 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=258037&amp;view=revision"><time datetime="2014-03-19">2014-03-19</time></a>
       
         <tr>
           <td>bratell
@@ -3198,6 +3219,172 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add UseCounters for the Attr.value getter and setter</summary>
+              <pre class=body>
+This is to determine if it could be made readonly. The getter is
+measured to learn the relative usage, and is most likely above any
+threshold for removal.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/203193010">https://codereview.chromium.org/203193010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169541 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169541&amp;view=revision"><time datetime="2014-03-19">2014-03-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move History to the oilpan heap.</summary>
+              <pre class=body>
+<a href="mailto:R=ager@chromium.org,haraken@chromium.org">R=ager@chromium.org,haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/201083004">https://codereview.chromium.org/201083004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169540 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169540&amp;view=revision"><time datetime="2014-03-19">2014-03-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move Location to the oilpan heap.</summary>
+              <pre class=body>
+Also add missing transition type handling for [PutForwards] over
+garbage collected interface types.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/196133029">https://codereview.chromium.org/196133029</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169538 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169538&amp;view=revision"><time datetime="2014-03-19">2014-03-19</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Added rune to rendering watchlist.</summary>
+              <pre class=body>
+NOTRY=true
+TBR=abarth
+BUG=None
+
+Review URL: <a href="https://codereview.chromium.org/203593010">https://codereview.chromium.org/203593010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169533 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169533&amp;view=revision"><time datetime="2014-03-19">2014-03-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: have WebPerformance use transition types.</summary>
+              <pre class=body>
+Also have DOMWindow keep a persistent reference to its Performance object.
+
+R=
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/197283036">https://codereview.chromium.org/197283036</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169532 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169532&amp;view=revision"><time datetime="2014-03-19">2014-03-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add transition types to Navigator and its supplements.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/204063002">https://codereview.chromium.org/204063002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169529 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169529&amp;view=revision"><time datetime="2014-03-19">2014-03-19</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Reset SelectorCheckingContext.elementStyle for :ancestor matching.</summary>
+              <pre class=body>
+SelectorCheckingContext.elementStyle is used to store the RenderStyle for
+the element we are currently computing styles for. It is among other things
+used for setting flags on the RenderStyle if we may match :hover,
+:first-child, or some other pseudo classes. When we go past a combinator
+during matching, we set the elementStyle to null to tell we are not
+currently looking at the target element for the selector matching.
+
+The :ancestor pseudo is a special case in the sense that it will select
+styles for the shadow host element, but its sub-selectors may actually match
+ancestor elements of the host element, behaving as if we had a descendant
+combinator. This CL resets elementStyle to 0 when matching ancestors of a
+shadow host for the :ancestor pseudo class in order to set flags for :hover,
+:first-child, etc on the correct RenderStyle objects.
+
+<a href="mailto:R=dglazkov@chromium.org">R=dglazkov@chromium.org</a>
+BUG=353503
+
+Review URL: <a href="https://codereview.chromium.org/201573003">https://codereview.chromium.org/201573003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169491 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169491&amp;view=revision"><time datetime="2014-03-18">2014-03-18</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Recalc sibling styles for forward positional rules on mutations only.</summary>
+              <pre class=body>
+Forward positional rules only affect selector matching of siblings when
+nodes are added to or removed from the DOM. However, selectors with indirect
+adjacent combinators may affect sibling evaluation without node addition or
+removal. For instance if a class selector left of an indirect adjacent
+combinator is set on an element.
+
+Since the indirect adjacent combinator was considered as a forward
+positional rule, we were recalculating sibling styles in the presence of an
+nth-selector. We now split indirect adjacent selector matching as a separate
+flag to be able to optimize recalc in the presence if nth-selectors and
+skip sibling recalc for forward positional rules if no mutations happened.
+
+ElementRareData and ShadowRootRareData do not increase in size since they
+were already padded in the relevant parts.
+
+R=ojan
+BUG=160212
+
+Review URL: <a href="https://codereview.chromium.org/198783003">https://codereview.chromium.org/198783003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169471 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169471&amp;view=revision"><time datetime="2014-03-18">2014-03-18</time></a>
       
         <tr>
           <td>sigbjornf
