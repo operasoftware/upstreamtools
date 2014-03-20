@@ -23,9 +23,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 165, 
+    <a href="#chromium">Chromium</a>: 167, 
   
-    <a href="#blink">Blink</a>: 698, 
+    <a href="#blink">Blink</a>: 705, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -38,6 +38,42 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>haavardm
+          <td class=message>
+            <details>
+              <summary>Do not assume OSCertHandle is OpenSSL&#39;s X509 structure.</summary>
+              <pre class=body>
+Instead create a X509Certificate instance from the OpenSSL 
+chain via PeerCertificateChain, and compare with the existing
+X509Certificate.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/203323004">https://codereview.chromium.org/203323004</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@258337 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=258337&amp;view=revision"><time datetime="2014-03-20">2014-03-20</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Remove &#34;bashism&#34; from plain shell script</summary>
+              <pre class=body>
+<a href="https://codereview.chromium.org/196413021">https://codereview.chromium.org/196413021</a> uses [[ which isn&#39;t present
+in all shells, particularly not dash which Debian uses as /bin/sh.
+Instead use two simple [ conditions.
+
+Review URL: <a href="https://codereview.chromium.org/203463010">https://codereview.chromium.org/203463010</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@258321 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=258321&amp;view=revision"><time datetime="2014-03-20">2014-03-20</time></a>
       
         <tr>
           <td>tmoniuszko
@@ -3219,6 +3255,140 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move Console objects to the oilpan heap.</summary>
+              <pre class=body>
+Turn the ConsoleBase object into a garbage collected object if Oilpan
+is enabled, avoiding its ref forwarding to either Console or WorkerConsole.
+
+<a href="mailto:R=haraken@chromium.org,ager@chromium.org">R=haraken@chromium.org,ager@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/206093005">https://codereview.chromium.org/206093005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169670 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169670&amp;view=revision"><time datetime="2014-03-20">2014-03-20</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG] Transform animation leaves traces of text behind.</summary>
+              <pre class=body>
+AffineTransform.inverse() unexpectedly returned an identity matrix when
+the matrix was not invertible. This caused invalid rendering for e.g
+scale(0) matrices in svg.
+
+BUG=352603
+
+Review URL: <a href="https://codereview.chromium.org/200053005">https://codereview.chromium.org/200053005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169666 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169666&amp;view=revision"><time datetime="2014-03-20">2014-03-20</time></a>
+      
+        <tr>
+          <td>rchlodnicki
+          <td class=message>
+            <details>
+              <summary>Do not trigger new history entry if iframe URL doesn&#39;t change</summary>
+              <pre class=body>
+When URL of an iframe changes from &#34;unset&#34; to &#34;set&#34;, we don&#39;t want to
+create new history entry. This worked for URLs without fragment
+identifier but failed with it present.
+
+This change takes the idea from the old code, before it was rewritten
+in <a href="https://codereview.chromium.org/126453005">https://codereview.chromium.org/126453005</a>
+
+BUG=353096
+
+Review URL: <a href="https://codereview.chromium.org/201773002">https://codereview.chromium.org/201773002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169665 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169665&amp;view=revision"><time datetime="2014-03-20">2014-03-20</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use monotonic time for SVGImage&#39;s serviceScriptedAnimations()</summary>
+              <pre class=body>
+Breakage from r168748 which used the wrong time-source.
+
+BUG=231576
+
+Review URL: <a href="https://codereview.chromium.org/204673004">https://codereview.chromium.org/204673004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169645 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169645&amp;view=revision"><time datetime="2014-03-20">2014-03-20</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Move element flags from ElementRareData to NodeRareData</summary>
+              <pre class=body>
+By doing this, they can be packed together with the existing bit-field
+member NodeRareData::m_connectedFrameCount, and save some space.
+
+Impact according to sizeof(ElementRareData), on 64-bit Linux (GCC and
+Clang alike,) is a modest 8 byte saving, from 144 bytes to 136 bytes.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/201153006">https://codereview.chromium.org/201153006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169644 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169644&amp;view=revision"><time datetime="2014-03-20">2014-03-20</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Fix relative paths in flaky EME tests</summary>
+              <pre class=body>
+BUG=354146
+
+Review URL: <a href="https://codereview.chromium.org/206023003">https://codereview.chromium.org/206023003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169634 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169634&amp;view=revision"><time datetime="2014-03-20">2014-03-20</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove dead code for dragging MediaControlPanelElement</summary>
+              <pre class=body>
+Because setCanBeDragged(true) is never called, all the rest of the
+dragging code becomes unreachable. The feature as such looks useful, but
+it would require fixing and above all testing to interact well with text
+track rendering.
+
+BUG=341813
+TEST=LayoutTests/media/ still passes, i.e. there were none!
+
+Review URL: <a href="https://codereview.chromium.org/196533020">https://codereview.chromium.org/196533020</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169606 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169606&amp;view=revision"><time datetime="2014-03-20">2014-03-20</time></a>
       
         <tr>
           <td>philipj
