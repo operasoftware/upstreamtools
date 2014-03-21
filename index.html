@@ -23,9 +23,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 167, 
+    <a href="#chromium">Chromium</a>: 168, 
   
-    <a href="#blink">Blink</a>: 705, 
+    <a href="#blink">Blink</a>: 714, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -38,6 +38,26 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Fix for VS2010 compiler warning.</summary>
+              <pre class=body>
+Including the enum type name between scope and enum is a new invention
+and older compilers warn about it being a non standard extension.
+
+It&#39;s not needed so let us just drop it.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/206573002">https://codereview.chromium.org/206573002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@258531 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=258531&amp;view=revision"><time datetime="2014-03-21">2014-03-21</time></a>
       
         <tr>
           <td>haavardm
@@ -3255,6 +3275,176 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Cache all the results in SVGSMILElement::repeatCount()</summary>
+              <pre class=body>
+The null-attribute and &#39;indefinite&#39; cases were not cached, which made
+this method do some unnecessary work for each animation update.
+
+BUG=354520
+
+Review URL: <a href="https://codereview.chromium.org/206013003">https://codereview.chromium.org/206013003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169755 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169755&amp;view=revision"><time datetime="2014-03-21">2014-03-21</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Reduce rootElement access boilerplate in SVGImage</summary>
+              <pre class=body>
+Add a helper function &#39;svgRootElement&#39; and use that where appropriate.
+
+Review URL: <a href="https://codereview.chromium.org/208503002">https://codereview.chromium.org/208503002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169751 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169751&amp;view=revision"><time datetime="2014-03-21">2014-03-21</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move ApplicationCache to the oilpan heap.</summary>
+              <pre class=body>
+Make this EventTarget-derived object a garbage collected object.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/208083003">https://codereview.chromium.org/208083003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169744 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169744&amp;view=revision"><time datetime="2014-03-21">2014-03-21</time></a>
+      
+        <tr>
+          <td>rchlodnicki
+          <td class=message>
+            <details>
+              <summary>Do not trigger new history entry if iframe URL doesn&#39;t change</summary>
+              <pre class=body>
+When URL of an iframe changes from &#34;unset&#34; to &#34;set&#34;, we don&#39;t want to
+create new history entry. This worked for URLs without fragment
+identifier but failed with it present.
+
+This change takes the idea from the old code, before it was rewritten
+in <a href="https://codereview.chromium.org/126453005">https://codereview.chromium.org/126453005</a>
+
+BUG=353096
+
+Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=169665">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=169665</a>
+
+Review URL: <a href="https://codereview.chromium.org/201773002">https://codereview.chromium.org/201773002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169736 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169736&amp;view=revision"><time datetime="2014-03-21">2014-03-21</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: make DataObject and SharedWorker heap Supplementables.</summary>
+              <pre class=body>
+With heap supplement{able}s support now in place, follow up and turn
+the supplements of these two into garbage allocated objects also.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/200373003">https://codereview.chromium.org/200373003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169733 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169733&amp;view=revision"><time datetime="2014-03-21">2014-03-21</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make w3cwrapper.js&#39;s done() match the semantics in testharness.js</summary>
+              <pre class=body>
+This should fix any tests where done() can be called multiple times.
+
+BUG=333880
+
+Review URL: <a href="https://codereview.chromium.org/205893003">https://codereview.chromium.org/205893003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169720 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169720&amp;view=revision"><time datetime="2014-03-21">2014-03-21</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Support invalidation sets for shadow combinators.</summary>
+              <pre class=body>
+We bailed out of invalidation set support for selectors containing /shadow/
+or /shadow-deep/. For invalidation sets they now work like descendant/child
+combinators do.
+
+<a href="mailto:R=esprehn@chromium.org">R=esprehn@chromium.org</a>, <a href="mailto:chrishtr@chromium.org">chrishtr@chromium.org</a>
+BUG=335247
+
+Review URL: <a href="https://codereview.chromium.org/206513004">https://codereview.chromium.org/206513004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169706 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169706&amp;view=revision"><time datetime="2014-03-20">2014-03-20</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Rewind the timeline for SVG-in-&lt;img&gt; when resetAnimation() is called</summary>
+              <pre class=body>
+Attempt to mimic the behavior of animated raster images (BitmapImage)
+more closely wrt when the timeline is started and reset/rewound.
+
+BUG=177277
+
+Review URL: <a href="https://codereview.chromium.org/206033005">https://codereview.chromium.org/206033005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169694 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169694&amp;view=revision"><time datetime="2014-03-20">2014-03-20</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Clip the start position when performing SVG text queries</summary>
+              <pre class=body>
+If a text query straddles multiple line boxes, only the first would be
+considered, because |startPosition| would end up being negative.
+Instead clip the character range to [0) (the following functions will
+clip against the end position) and only reject ranges that are empty i.e.
+that appear before the current fragment (logically.)
+
+BUG=353462
+
+Review URL: <a href="https://codereview.chromium.org/206663003">https://codereview.chromium.org/206663003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169682 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169682&amp;view=revision"><time datetime="2014-03-20">2014-03-20</time></a>
       
         <tr>
           <td>sigbjornf
