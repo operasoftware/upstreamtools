@@ -25,7 +25,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 168, 
   
-    <a href="#blink">Blink</a>: 714, 
+    <a href="#blink">Blink</a>: 715, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -3275,6 +3275,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use the Document AnimationClock in SMILTimeContainer</summary>
+              <pre class=body>
+It&#39;s trivial to replace the local AnimationClock in SMILTimeContainer
+with the one from Document after making the observation that the only
+current manipulations (updateTime/unfreeze) are already performed by
+PageAnimator (DocumentAnimations::updateAnimationTimingForAnimationFrame)
+and RenderLayerCompositor (DocumentAnimations::startPendingAnimations).
+
+With this change it become possible to push the DiscardScope into
+updateAnimationsAndScheduleFrameIfNeeded - so do that to simplify the
+code (by reducing the number of places that instantiate a DiscardScope.)
+
+BUG=231576
+
+Review URL: <a href="https://codereview.chromium.org/198723005">https://codereview.chromium.org/198723005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169761 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169761&amp;view=revision"><time datetime="2014-03-21">2014-03-21</time></a>
       
         <tr>
           <td>fs
