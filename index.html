@@ -25,7 +25,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 168, 
   
-    <a href="#blink">Blink</a>: 715, 
+    <a href="#blink">Blink</a>: 716, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -3275,6 +3275,40 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Implement the activation behavior of media elements (click to play/pause)</summary>
+              <pre class=body>
+<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#user-interface">http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#user-interface</a>
+
+Added to the spec in <a href="http://html5.org/r/8315">http://html5.org/r/8315</a> after a long discussion:
+<a href="http://lists.whatwg.org/htdig.cgi/whatwg-whatwg.org/2013-November/041662.html">http://lists.whatwg.org/htdig.cgi/whatwg-whatwg.org/2013-November/041662.html</a>
+
+Firefox already implements click to play/pause when controls are
+visible, but that implementation predates the spec so accesskey does not
+work.
+
+HTMLMediaElement::togglePlayState() is made public so that it can be
+used to implement play/pause in MediaControls also.
+
+The video-click-dblckick-standalone.html test has been expected to fail
+since April 2013, r148246, so remove it now since the the results would
+change. The new tests provide sufficient coverage.
+
+BUG=354746
+TEST=LayoutTests/media/activation-behavior.html
+     LayoutTests/media/activation-behavior-accesskey.html
+     LayoutTests/media/activation-behavior-shadow.html
+
+Review URL: <a href="https://codereview.chromium.org/208483002">https://codereview.chromium.org/208483002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169812 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169812&amp;view=revision"><time datetime="2014-03-23">2014-03-23</time></a>
       
         <tr>
           <td>fs
