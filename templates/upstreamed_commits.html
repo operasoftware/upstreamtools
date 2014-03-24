@@ -15,7 +15,8 @@
       <colgroup class=col-author>
       <colgroup class=col-message>
       <colgroup class=col-when>
-      <tr><th>Author <th>Message <th>When
+      <thead><tr><th>Author <th>Message <th>When
+      <tbody>
       {% for c in project.log %}
         <tr>
           <td>{{ c.author_stripped|e }}
