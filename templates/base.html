@@ -3,9 +3,12 @@
 <title>Upstreamed commits &ndash; Opera</title>
 <style>
 body { font-family: sans-serif; }
-table { width: 100%; }
+table { border-collapse: collapse; border-spacing: 0; width: 100%; }
+tbody tr:hover { background: #f5f5f5; }
 td { vertical-align: top; }
+td, th { padding: 7px; }
 th { text-align: left; }
+tr { border-bottom: 1px dashed #aaa; }
 a { color: #900; transition: 0.4s color; }
 a:visited { color: #755; }
 a:hover { color: #f00; }
@@ -16,6 +19,7 @@ h1 { margin-top: 0; text-align: center; }
 .hint { color: #666; font-size: 0.8em; }
 .col-author { width: 160px; }
 .col-when { width: 130px; }
+.message { cursor: pointer; }
 </style>
 
 {% block content %}
