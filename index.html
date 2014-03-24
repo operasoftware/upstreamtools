@@ -23,9 +23,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 168, 
+    <a href="#chromium">Chromium</a>: 169, 
   
-    <a href="#blink">Blink</a>: 716, 
+    <a href="#blink">Blink</a>: 721, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -38,6 +38,24 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>always use -Wno-deprecated-declarations when building sdch</summary>
+              <pre class=body>
+This is also needed for c++11 mode in gcc 4.8, not just clang.
+
+BUG=324299
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/205963004">https://codereview.chromium.org/205963004</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@258918 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=258918&amp;view=revision"><time datetime="2014-03-24">2014-03-24</time></a>
       
         <tr>
           <td>bratell
@@ -3275,6 +3293,125 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG2] Add onbegin, onend and onrepeat EventHandlers on SVGAnimationElement</summary>
+              <pre class=body>
+These map to the eventnames &#39;beginEvent&#39;, &#39;endEvent&#39; and &#39;repeatEvent&#39;
+respectively.
+
+Spec:
+<a href="https://svgwg.org/svg2-draft/animate.html#InterfaceSVGAnimationElement">https://svgwg.org/svg2-draft/animate.html#InterfaceSVGAnimationElement</a>
+
+BUG=338288
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/201673003">https://codereview.chromium.org/201673003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169871 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169871&amp;view=revision"><time datetime="2014-03-24">2014-03-24</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a UseCounter for the Attr.value setter with associated Element</summary>
+              <pre class=body>
+This will distinguish between setting the value on a newly created Attr
+object from Document.createAttribute() and setting the value on an Attr
+object already attached to an Element, e.g. one from Element.attributes.
+
+If the first case is common but the second is rare it won&#39;t be possible
+to make value readonly, but it could still be possible to drop the
+Element association, which is the point of making it readonly.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/208333014">https://codereview.chromium.org/208333014</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169844 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169844&amp;view=revision"><time datetime="2014-03-24">2014-03-24</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove custom FormData.append() bindings code.</summary>
+              <pre class=body>
+The overload resolution needed for the two FormData.append() methods can
+be handled directly by generated code, so drop the custom code we had
+in place for this API.
+
+Along with it, handle the conversion of append()&#39;s DOMString arguments
+per WebIDL (as it is now), removing the special treatment of null and
+undefined arguments. This also aligns with how others (Gecko, Trident)
+handle these arguments.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/209933002">https://codereview.chromium.org/209933002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169841 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169841&amp;view=revision"><time datetime="2014-03-24">2014-03-24</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Custom wrap constructor overloads.</summary>
+              <pre class=body>
+Follow up on crrev.com/206793006 and also call wrap() in the code generated
+for a particular constructor overloading when [Custom=Wrap] is in effect
+for one or more constructors.
+
+<a href="mailto:R=nbarth@chromium.org,haraken@chromium.org">R=nbarth@chromium.org,haraken@chromium.org</a>
+BUG=338804
+
+Review URL: <a href="https://codereview.chromium.org/209893002">https://codereview.chromium.org/209893002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169839 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169839&amp;view=revision"><time datetime="2014-03-24">2014-03-24</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make scrubbing a MediaControls-internal concept</summary>
+              <pre class=body>
+HTMLMediaElement::beginScrubbing() would setPausedInternal(true), a mode
+of pausing that is invisible to scripts. If a media controller was
+detached while scrubbing, HTMLMediaElement::endScrubbing() would never
+be called and the element would be stuck in this mode.
+
+Since a user can already pause, scrub and then continue playing, making
+MediaControls do the same should work just fine. Simply keep track of
+the state before scrubbing and avoid updating the play button(s) as long
+as we&#39;re scrubbing.
+
+Note that the special handling of ended() is not needed, since reaching
+the end of the resource pauses. This wasn&#39;t the case at the time the
+code was originally written.
+
+BUG=341813
+
+Review URL: <a href="https://codereview.chromium.org/204803002">https://codereview.chromium.org/204803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169814 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169814&amp;view=revision"><time datetime="2014-03-23">2014-03-23</time></a>
       
         <tr>
           <td>philipj
