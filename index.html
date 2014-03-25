@@ -23,9 +23,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 169, 
+    <a href="#chromium">Chromium</a>: 171, 
   
-    <a href="#blink">Blink</a>: 721, 
+    <a href="#blink">Blink</a>: 729, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -38,6 +38,40 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>tsniatowski
+          <td class=message>
+            <details>
+              <summary>Improve logging of NSS errors that do not map to network errors.</summary>
+              <pre class=body>
+BUG=
+<a href="mailto:R=jar@chromium.org">R=jar@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/207583003">https://codereview.chromium.org/207583003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@259205 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=259205&amp;view=revision"><time datetime="2014-03-25">2014-03-25</time></a>
+      
+        <tr>
+          <td>mmaliszkiewicz
+          <td class=message>
+            <details>
+              <summary>[Win] alt + space opens system menu at wrong position in RTL ui.</summary>
+              <pre class=body>
+When window is not maximized system menu opens on the left hand side and its
+contents is partialy outside window bounds. After this fix when system menu
+is opened using alt + space with RTL locale we draw it on the right hand side
+and whole menu is inside browser window.
+
+Review URL: <a href="https://codereview.chromium.org/134553002">https://codereview.chromium.org/134553002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@259037 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=259037&amp;view=revision"><time datetime="2014-03-24">2014-03-24</time></a>
       
         <tr>
           <td>mostynb
@@ -3293,6 +3327,185 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-message>
       <colgroup class=col-when>
       <tr><th>Author <th>Message <th>When
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add UseCounters for NamedNodeMap functions</summary>
+              <pre class=body>
+This is in order to help determine which of these need to be kept in the
+DOM spec, since it looks like some of them will be needed:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=21986">https://www.w3.org/Bugs/Public/show_bug.cgi?id=21986</a>
+
+BUG=none
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/211363003">https://codereview.chromium.org/211363003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169969 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169969&amp;view=revision"><time datetime="2014-03-25">2014-03-25</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Restore attribute array length in RecursionCheckPoint.</summary>
+              <pre class=body>
+Missing restore caused unnecessary invalidations in subsequent subtrees.
+
+Also renamed a misnamed parameter in RuleFeature.h
+
+R=esprehn
+BUG=356196
+
+Review URL: <a href="https://codereview.chromium.org/211333003">https://codereview.chromium.org/211333003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169958 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169958&amp;view=revision"><time datetime="2014-03-25">2014-03-25</time></a>
+      
+        <tr>
+          <td>mboc
+          <td class=message>
+            <details>
+              <summary>CHR-1706: Context menu with Shift+F10 shows out of Opera when web contents scrolled. In case we are opening a context menu on an element, the menu should be shown as currently, since the element has most probably a correct transform available. Since the &lt;body&gt; element possibly has contents of great height, the context menu should be shown on the upper edge of the displayed part of the element.</summary>
+              <pre class=body>
+BUG=Context menu with Shift+F10 shows out of Opera when web contents scrolled.
+The menu&#39;s position should not be translated by scroll position in case of
+opening a menu for the &lt;body&gt; element.
+
+Review URL: <a href="https://codereview.chromium.org/110533004">https://codereview.chromium.org/110533004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169956 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169956&amp;view=revision"><time datetime="2014-03-25">2014-03-25</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Support invalidation sets for :host pseudo.</summary>
+              <pre class=body>
+Traverse the selectorList() for :host pseudo, extract features, and create
+class invalidation sets like we do for features and classes on the top level.
+
+R=esprehn,ojan
+BUG=335247,339729
+
+Review URL: <a href="https://codereview.chromium.org/209333005">https://codereview.chromium.org/209333005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169927 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169927&amp;view=revision"><time datetime="2014-03-25">2014-03-25</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Deprecate webkitRequestAnimationFrame and friends as vendor-specific</summary>
+              <pre class=body>
+Intent to Deprecate:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/nNsZDn_utUc/dUtD3ulsFMkJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/nNsZDn_utUc/dUtD3ulsFMkJ</a>
+
+BUG=354921
+
+Review URL: <a href="https://codereview.chromium.org/208263005">https://codereview.chromium.org/208263005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169924 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169924&amp;view=revision"><time datetime="2014-03-25">2014-03-25</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Use requestAnimationFrame (without prefix) in calendar picker</summary>
+              <pre class=body>
+This is a prerequisite for deprecating the prefixed function, because
+otherwise the forms tests get a deprecation message. This internal use
+of webkitRequestAnimationFrame may also have inflated the use counter
+data for it.
+
+BUG=354921
+<a href="mailto:R=abarth@chromium.org">R=abarth@chromium.org</a>, <a href="mailto:keishi@chromium.org">keishi@chromium.org</a>, <a href="mailto:tkent@chromium.org">tkent@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/209003012">https://codereview.chromium.org/209003012</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169918 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169918&amp;view=revision"><time datetime="2014-03-25">2014-03-25</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert of Update image data upon changing the img.crossorigin attribute. (https://codereview.chromium.org/201143002/)</summary>
+              <pre class=body>
+Reason for revert:
+The re-issuing of another image load upon setting &#39;crossorigin&#39; has been reported to cause a site problem (a Google internal site/service.)
+
+Until diagnosed and understood fully, let&#39;s back this one out.
+
+Original issue&#39;s description:
+&gt; Update image data upon changing the img.crossorigin attribute.
+&gt; 
+&gt; The spec tells us that setting the crossorigin attribute on an img
+&gt; element should cause the &#34;update the image data&#34; steps to be invoked,
+&gt; 
+&gt;  <a href="http://www.whatwg.org/specs/web-apps/current-work/#update-the-image-data">http://www.whatwg.org/specs/web-apps/current-work/#update-the-image-data</a>
+&gt; 
+&gt; Do so here, along with updating the underlying test&#39;s expectation.
+&gt; 
+&gt; R=
+&gt; BUG=341047
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=169382">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=169382</a>
+
+<a href="mailto:TBR=adamk@chromium.org,abarth@chromium.org">TBR=adamk@chromium.org,abarth@chromium.org</a>
+NOTREECHECKS=true
+NOTRY=true
+BUG=341047
+
+Review URL: <a href="https://codereview.chromium.org/210403002">https://codereview.chromium.org/210403002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169874 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169874&amp;view=revision"><time datetime="2014-03-24">2014-03-24</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Remove optional type=&#34;JavaScript&#34; from script tags</summary>
+              <pre class=body>
+<a href="http://www.whatwg.org/specs/web-apps/current-work/#attr-script-type">http://www.whatwg.org/specs/web-apps/current-work/#attr-script-type</a>
+
+  The type attribute gives the language of the script or format of the
+  data. If the attribute is present, its value must be a valid MIME
+  type. The charset parameter must not be specified. The default,
+  which is used if the attribute is absent, is &#34;text/javascript&#34;.&#34;
+
+Blink is less strict than other browsers. Removing the optional type
+attribute enables tests to be run in other browsers, notably Firefox.
+
+BUG=308992
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/209333007">https://codereview.chromium.org/209333007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@169872 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=169872&amp;view=revision"><time datetime="2014-03-24">2014-03-24</time></a>
       
         <tr>
           <td>ed
