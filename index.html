@@ -3,9 +3,12 @@
 <title>Upstreamed commits &ndash; Opera</title>
 <style>
 body { font-family: sans-serif; }
-table { width: 100%; }
+table { border-collapse: collapse; border-spacing: 0; width: 100%; }
+tbody tr:hover { background: #f5f5f5; }
 td { vertical-align: top; }
+td, th { padding: 7px; }
 th { text-align: left; }
+tr { border-bottom: 1px dashed #aaa; }
 a { color: #900; transition: 0.4s color; }
 a:visited { color: #755; }
 a:hover { color: #f00; }
@@ -16,6 +19,7 @@ h1 { margin-top: 0; text-align: center; }
 .hint { color: #666; font-size: 0.8em; }
 .col-author { width: 160px; }
 .col-when { width: 130px; }
+.message { cursor: pointer; }
 </style>
 
 
@@ -23,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 171, 
+    <a href="#chromium">Chromium</a>: 174, 
   
-    <a href="#blink">Blink</a>: 729, 
+    <a href="#blink">Blink</a>: 734, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -37,7 +41,66 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-author>
       <colgroup class=col-message>
       <colgroup class=col-when>
-      <tr><th>Author <th>Message <th>When
+      <thead><tr><th>Author <th>Message <th>When
+      <tbody>
+      
+        <tr>
+          <td>haavardm
+          <td class=message>
+            <details>
+              <summary>Add missing calls to TestRootCerts::Clear() after usage.</summary>
+              <pre class=body>
+The next unit test that uses TestRootCerts may fail if
+TestRootCerts instance is not empty. So every unit test
+that uses TestRootCerts needs to clear it at the end.
+
+BUG=none
+Test=none
+
+Review URL: <a href="https://codereview.chromium.org/207063003">https://codereview.chromium.org/207063003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@259558 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=259558&amp;view=revision"><time datetime="2014-03-26">2014-03-26</time></a>
+      
+        <tr>
+          <td>jadahl
+          <td class=message>
+            <details>
+              <summary>cc: Reduce size of cc::ResourceProvider::Resource class</summary>
+              <pre class=body>
+The compositor will at times keep several hundreds instances of this
+class when a tab is visible. This patch reduces the size of every
+instance by 20 bytes (from 300 bytes to 280 bytes) on 32 bit ARM
+compiled with GCC 4.6.
+
+Also adds missing initializers for a field added in
+<a href="https://codereview.chromium.org/197223003">https://codereview.chromium.org/197223003</a>
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/207943002">https://codereview.chromium.org/207943002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@259319 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=259319&amp;view=revision"><time datetime="2014-03-25">2014-03-25</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>update VIDEO_HOLE block wrt recent cc changes</summary>
+              <pre class=body>
+BUG=344962
+
+Review URL: <a href="https://codereview.chromium.org/211293003">https://codereview.chromium.org/211293003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@259275 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=259275&amp;view=revision"><time datetime="2014-03-25">2014-03-25</time></a>
       
         <tr>
           <td>tsniatowski
@@ -3326,7 +3389,119 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-author>
       <colgroup class=col-message>
       <colgroup class=col-when>
-      <tr><th>Author <th>Message <th>When
+      <thead><tr><th>Author <th>Message <th>When
+      <tbody>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove -webkit-column-progression and -webkit-column-axis properties.</summary>
+              <pre class=body>
+Only needed by Apple&#39;s setPagination API, which doesn&#39;t exist in Blink anymore.
+
+Link to &#34;intent to remove&#34; post:
+<a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/7n-oLhmTkuM">https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/7n-oLhmTkuM</a>
+
+Review URL: <a href="https://codereview.chromium.org/201573009">https://codereview.chromium.org/201573009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170043 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170043&amp;view=revision"><time datetime="2014-03-26">2014-03-26</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Convert line breaks from DOS to UNIX style.</summary>
+              <pre class=body>
+git-svn-id: svn://svn.chromium.org/blink/trunk@170039 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170039&amp;view=revision"><time datetime="2014-03-26">2014-03-26</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Pack StyleColor members in StyleRareInheritedData tighter to save memory</summary>
+              <pre class=body>
+Since StyleColor stores the color value (32-bit RGBA) plus a single flag,
+it is a bit inefficient.  In particular when multiple StyleColor objects
+are members of another object, there will be a lot of unnecessary padding.
+
+This padding can be avoided by storing the color value and the flag as
+separate members of the containing structure, which allows the flags to
+be packed into a bitfield.
+
+The actual saving from this change, measured in a 64-bit Linux build, is
+20 bytes per StyleRareInheritedData object.
+
+BUG=356124
+
+Review URL: <a href="https://codereview.chromium.org/196103013">https://codereview.chromium.org/196103013</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170038 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170038&amp;view=revision"><time datetime="2014-03-26">2014-03-26</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Tidy up error reporting for calling-constructor-as-function.</summary>
+              <pre class=body>
+Introduce an ExceptionMessage helper for emitting the desired error
+message when calling a constructor as a function &amp; have the IDL compiler
+generate calls to it.
+
+At the same time, make &#39;detail&#39; a required argument to all &#39;failedToXX&#39;
+methods on ExceptionMessage -- better if the caller is required to
+supply meaningful info.
+
+<a href="mailto:R=nbarth@chromium.org,haraken@chromium.org">R=nbarth@chromium.org,haraken@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/211333004">https://codereview.chromium.org/211333004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170037 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170037&amp;view=revision"><time datetime="2014-03-26">2014-03-26</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove special case for HTMLMediaElement in determineDispatchBehavior</summary>
+              <pre class=body>
+This was added in WebKit r87692 in order to fix &#34;Scrubbing a Vimeo movie
+when in fullscreen stops playback; no way to make it start again&#34;:
+<a href="https://bugs.webkit.org/show_bug.cgi?id=61717">https://bugs.webkit.org/show_bug.cgi?id=61717</a>
+
+The commit message and bug comments makes it clear that this special
+case is no longer needed:
+
+ 1. The media controls fullscreen button now uses largely the same code
+    path as Element::webkitRequestFullscreen. &#34;Video-only full screen is
+    a mode where we use the shadow DOM as an implementation detail that
+    should not be detectable by the web content&#34; is no longer true at
+    all, since Web content can observe the events fired, etc.
+
+ 2. Scrubbing no longer uses HTMLMediaElement::setPausedInternal(),
+    which looks like the cause of &#34;no way to make it start again&#34;.
+
+BUG=none
+TEST=None originally added with the code, but existing tests pass.
+
+Review URL: <a href="https://codereview.chromium.org/210763004">https://codereview.chromium.org/210763004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170017 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170017&amp;view=revision"><time datetime="2014-03-26">2014-03-26</time></a>
       
         <tr>
           <td>philipj
@@ -19976,7 +20151,8 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@149844 bbb929c8-8fbe-4397-9dbb-9b
       <colgroup class=col-author>
       <colgroup class=col-message>
       <colgroup class=col-when>
-      <tr><th>Author <th>Message <th>When
+      <thead><tr><th>Author <th>Message <th>When
+      <tbody>
       
         <tr>
           <td>sigbjornf
