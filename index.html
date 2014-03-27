@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 174, 
+    <a href="#chromium">Chromium</a>: 176, 
   
-    <a href="#blink">Blink</a>: 737, 
+    <a href="#blink">Blink</a>: 748, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -43,6 +43,45 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Remove failing CHECK(!delegate_) from SpdyStream::OnDataReceived()</summary>
+              <pre class=body>
+There is a race between SetDelegate() and the PushedStreamReplay() call
+it posts a task for, and OnDataReceived() called as more data is
+received over the network.  Specifically, if the latter is called after
+SetDelegate() is called but before the task it posted has been executed,
+the CHECK() fails.
+
+BUG=356110
+
+Review URL: <a href="https://codereview.chromium.org/210733006">https://codereview.chromium.org/210733006</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@259800 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=259800&amp;view=revision"><time datetime="2014-03-27">2014-03-27</time></a>
+      
+        <tr>
+          <td>joleksy
+          <td class=message>
+            <details>
+              <summary>SSLPolicy::UpdateEntry is returning when it encounters first error.</summary>
+              <pre class=body>Because of this, SSLStatus::DISPLAYED_INSECURE_CONTENT should be set before other errors are examined.
+
+This handles the case when not all flags are set if there are some problems with the certificate on the page *and* insecure content is loaded.
+
+BUG=348560
+
+Review URL: <a href="https://codereview.chromium.org/184483002">https://codereview.chromium.org/184483002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@259743 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=259743&amp;view=revision"><time datetime="2014-03-26">2014-03-26</time></a>
       
         <tr>
           <td>haavardm
@@ -3391,6 +3430,222 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>ingemara
+          <td class=message>
+            <details>
+              <summary>Remove DocumentLoader::clearArchiveResources</summary>
+              <pre class=body>
+It is possible for the DocumentLoader to lose it&#39;s ArchiveResourceCollection
+without it&#39;s MHTMLArchive being deallocated as well, as is observed when a
+navigation, which may be aborted, is initiated. By not clearing the
+ArchiveResourceCollection in such cases, the DocumentLoader is left in a
+still valid state.
+
+BUG=348977
+
+Review URL: <a href="https://codereview.chromium.org/183763030">https://codereview.chromium.org/183763030</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170148 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170148&amp;view=revision"><time datetime="2014-03-27">2014-03-27</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: turn DOMWindow into a heap supplementable.</summary>
+              <pre class=body>
+With DOMWindow now a garbage collected object, follow up and also turn
+it into a heap-residing Supplementable, along with its Supplements.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/212933005">https://codereview.chromium.org/212933005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170146 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170146&amp;view=revision"><time datetime="2014-03-27">2014-03-27</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a missing null check in SliderThumbElement::stopDragging()</summary>
+              <pre class=body>
+hostInput() is null checked in several other SliderThumbElement
+functions and clearly can return null, so just handle it.
+
+Add GCController.collect() to the test case to make the crash trigger
+reliably, which was necessary in order to debug it.
+
+BUG=356148
+
+Review URL: <a href="https://codereview.chromium.org/211403003">https://codereview.chromium.org/211403003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170139 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170139&amp;view=revision"><time datetime="2014-03-27">2014-03-27</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make the default testharness.js timeout longer than the LayoutTests timeout</summary>
+              <pre class=body>
+With the previous defaults, tests could timeout before the LayoutTests
+timeout, which would be reported as a failure. Making the timeout very
+long should fix tests that are flaky with the 2 second timeout and will
+make the SlowTests mechanism work for testharness.js tests, should the
+need arise.
+
+BUG=355489
+
+Review URL: <a href="https://codereview.chromium.org/213283002">https://codereview.chromium.org/213283002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170136 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170136&amp;view=revision"><time datetime="2014-03-27">2014-03-27</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a UseCounter for the webkitallowfullscreen attribute</summary>
+              <pre class=body>
+We support the unprefixed allowfullscreen attribute, so it would be nice
+to also reflect it in HTMLIFrameElement.allowFullscreen. However, that&#39;s
+tricky while there are two backing attributes, so first measure if the
+prefixed attribute can be removed yet.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/212433004">https://codereview.chromium.org/212433004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170124 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170124&amp;view=revision"><time datetime="2014-03-27">2014-03-27</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove traces of beforeload in HTMLMediaElement</summary>
+              <pre class=body>
+There now remain no places in HTMLMediaElement where events are
+dispatched synchronously, so there&#39;s no need to protect(this). For the
+same reason, the ASSERT is irrelevant, even if it holds true.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/213343002">https://codereview.chromium.org/213343002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170123 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170123&amp;view=revision"><time datetime="2014-03-27">2014-03-27</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the UseCounter entries for beforeload events</summary>
+              <pre class=body>
+BUG=333318
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/212883002">https://codereview.chromium.org/212883002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170122 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170122&amp;view=revision"><time datetime="2014-03-27">2014-03-27</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Convert LayoutTests/http/tests/resources/testharness.js from CRLF to LF</summary>
+              <pre class=body>
+It&#39;s not possible to land patches using CQ for CRLF files:
+<a href="https://codereview.chromium.org/213283002/">https://codereview.chromium.org/213283002/</a>
+
+Also convert testharnessreport.js while in the area.
+
+BUG=355489
+<a href="mailto:TBR=dpranke@chromium.org">TBR=dpranke@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/214133003">https://codereview.chromium.org/214133003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170121 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170121&amp;view=revision"><time datetime="2014-03-27">2014-03-27</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>RuleFeatures argument list cleanup.</summary>
+              <pre class=body>
+Got rid of extensive argument lists for invalidation set features by
+introducing a struct for them.
+
+<a href="mailto:R=esprehn@chromium.org,chrishtr@chromium.org">R=esprehn@chromium.org,chrishtr@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/212603002">https://codereview.chromium.org/212603002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170101 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170101&amp;view=revision"><time datetime="2014-03-26">2014-03-26</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Have SourceBuffer throw TypeError for non-finite doubles.</summary>
+              <pre class=body>
+Switch to throwing TypeError instead of TypeMismatchError when encountering
+non-finite doubles, following what WebIDL requires
+
+ <a href="http://heycam.github.io/webidl/#es-double">http://heycam.github.io/webidl/#es-double</a>
+
+<a href="mailto:R=acolwell@chromium.org">R=acolwell@chromium.org</a>
+BUG=353245
+
+Review URL: <a href="https://codereview.chromium.org/212953004">https://codereview.chromium.org/212953004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170098 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170098&amp;view=revision"><time datetime="2014-03-26">2014-03-26</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>:host-context should support functional notation only.</summary>
+              <pre class=body>
+Blink supported :host-context without a functional notation as an equivalent
+to :host. That is not allowed according to the CSS Scoping spec.
+
+BUG=356582
+
+Review URL: <a href="https://codereview.chromium.org/212513002">https://codereview.chromium.org/212513002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170093 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170093&amp;view=revision"><time datetime="2014-03-26">2014-03-26</time></a>
       
         <tr>
           <td>rune
