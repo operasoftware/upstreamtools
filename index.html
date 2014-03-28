@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 176, 
   
-    <a href="#blink">Blink</a>: 748, 
+    <a href="#blink">Blink</a>: 757, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -3430,6 +3430,197 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Implement ImageData constructors.</summary>
+              <pre class=body>
+The spec now defines a pair of ImageData constructors,
+
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/#imagedata">http://www.whatwg.org/specs/web-apps/current-work/#imagedata</a>
+
+Provide an implementation of both here.
+
+R=
+BUG=338804
+
+Review URL: <a href="https://codereview.chromium.org/196343032">https://codereview.chromium.org/196343032</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170325 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170325&amp;view=revision"><time datetime="2014-03-28">2014-03-28</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove flaky expectations for event_order_loadstart_progress.html</summary>
+              <pre class=body>
+No new failures since the speculative fix was committed.
+
+BUG=333880
+
+Review URL: <a href="https://codereview.chromium.org/212763007">https://codereview.chromium.org/212763007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170321 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170321&amp;view=revision"><time datetime="2014-03-28">2014-03-28</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Reduce type-impedance for ExceptionMessages::failedTo* functions</summary>
+              <pre class=body>
+These functions are always called with string literals, so having the
+functions accept Strings means all callers have to perform implicit
+conversions.
+By modifying the signatures to use &#39;const char*&#39; for these cases, these
+conversion can be avoided (in the callers) and only be performed in the
+functions themselves.
+This reduces code size by ~70kB (Linux, x86-64, gcc-4.8.2).
+
+Review URL: <a href="https://codereview.chromium.org/216633002">https://codereview.chromium.org/216633002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170304 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170304&amp;view=revision"><time datetime="2014-03-28">2014-03-28</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Restore the HTMLVideoElement-specific prefixed fullscreen API behind a flag</summary>
+              <pre class=body>
+The removal has caused more trouble than expected on Android, because
+usage is higher there and the UseCounter data from Windows was used in
+the &#34;Intent to Remove&#34; thread.
+
+Restore the API behind a flag so that it can more easily be turned on
+and off. It&#39;s off by default, but likely it will have to be enabled on
+at least the upcoming M35 branch.
+
+BUG=346236
+
+Review URL: <a href="https://codereview.chromium.org/213193010">https://codereview.chromium.org/213193010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170303 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170303&amp;view=revision"><time datetime="2014-03-28">2014-03-28</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Use HTMLMediaElement::togglePlayState() where appropriate</summary>
+              <pre class=body>
+togglePlayState() handles the MediaController case correctly, which the
+updated code paths did not.
+
+Introduce togglePlayStateWillPlay() to replace canPlay() and paused() in
+certain contexts. The readyState &lt; HAVE_METADATA in canPlay() condition
+is not replicated because the hasSource() checks in paintMediaPlayButton
+and paintMediaOverlayPlayButton disables the buttons so that they can&#39;t
+be pressed at all. Some corner case seems likely to exist, but was not
+found in ad-hoc testing.
+
+Drop the ASSERT(controls()) in tooglePlayState() since it is now used in
+contexts not directly tied to MediaControls. The ASSERT doesn&#39;t fail
+yet, but the same ASSERT in togglePlayStateWillPlay() would, since
+MediaControlPlayButtonElement::updateDisplayType() is called when the
+controls are created for text track rendering but are not shown.
+
+These changes made it possible to reduce the size of
+MediaControllerInterface a little bit more.
+
+BUG=341813
+TEST=none, no observable changes intended
+
+Review URL: <a href="https://codereview.chromium.org/214793005">https://codereview.chromium.org/214793005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170296 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170296&amp;view=revision"><time datetime="2014-03-28">2014-03-28</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add UseCounter features for Document prefixed fullscreen APIs</summary>
+              <pre class=body>
+Since the unprefixed API isn&#39;t event implemented yet removal is nowhere
+in sight, but it&#39;s still interesting to track these features over time.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/214873002">https://codereview.chromium.org/214873002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170270 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170270&amp;view=revision"><time datetime="2014-03-28">2014-03-28</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Support invalidation sets for :-webkit-any selectors.</summary>
+              <pre class=body>
+Traverse the selectorList() like we do for :host to find features for
+invalidation sets. Relevance for 351613 is that we need to support this in
+order to implement efficient invalidation sets for :hover with
+childrenAffectedByHover due to UA stylesheet rules.
+
+R=esprehn
+BUG=356125,351613
+
+Review URL: <a href="https://codereview.chromium.org/210973004">https://codereview.chromium.org/210973004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170212 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170212&amp;view=revision"><time datetime="2014-03-27">2014-03-27</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move WebKitPoint to the oilpan heap.</summary>
+              <pre class=body>
+<a href="mailto:R=wibling@chromium.org,haraken@chromium.org">R=wibling@chromium.org,haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/214563004">https://codereview.chromium.org/214563004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170199 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170199&amp;view=revision"><time datetime="2014-03-27">2014-03-27</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add use counters for XMLHttpRequestProgressEvent properties.</summary>
+              <pre class=body>
+Gauge if removing these compatibility properties is feasible.
+
+<a href="mailto:R=jochen@chromium.org">R=jochen@chromium.org</a>
+BUG=357112
+
+Review URL: <a href="https://codereview.chromium.org/214563002">https://codereview.chromium.org/214563002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170198 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170198&amp;view=revision"><time datetime="2014-03-27">2014-03-27</time></a>
       
         <tr>
           <td>ingemara
