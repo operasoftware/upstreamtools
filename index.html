@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 176, 
+    <a href="#chromium">Chromium</a>: 180, 
   
-    <a href="#blink">Blink</a>: 757, 
+    <a href="#blink">Blink</a>: 763, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -43,6 +43,103 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Stop using the mediaFullscreenRequiresUserGesture setting</summary>
+              <pre class=body>
+&#34;Make mediaPlayerRequestFullscreen() user gesture bypass explicit&#34;
+(Blink r170080) makes the setting redundant.
+
+BUG=355439
+
+Review URL: <a href="https://codereview.chromium.org/212133003">https://codereview.chromium.org/212133003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@260363 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=260363&amp;view=revision"><time datetime="2014-03-29">2014-03-29</time></a>
+      
+        <tr>
+          <td>sigbjorn
+          <td class=message>
+            <details>
+              <summary>Give localserver time to shut down</summary>
+              <pre class=body>
+On machines with slow I/O, the localserver might not shut down immediately,
+wait for it if necessary.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/145873004">https://codereview.chromium.org/145873004</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@260201 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=260201&amp;view=revision"><time datetime="2014-03-28">2014-03-28</time></a>
+      
+        <tr>
+          <td>jadahl
+          <td class=message>
+            <details>
+              <summary>By keeping track of transfer buffer usage (both sync and async), it is</summary>
+              <pre class=body>possible to reuse an existing transfer buffer earlier than it is today.
+
+For synchronous uploads, this is done by inserting tokens marking a
+buffer&#39;s last usage. If such a token has passed, the buffer can be
+reused.
+
+For asynchronous uploads, this is done by adding an internal async
+upload token to the GLES2Implementation and GLES2CmdDecoderImpl that
+enumerates all asynchronous uploads. When an upload is completed, the
+token is synchronized with the client which then can free the memory
+associated with the async token.
+
+The fenced allocator and mapped memory manager gets a callback that is
+used to allow fenced allocator to make the user, in this case
+GLES2Implementation, poll the current async upload token and free any
+associated memory.
+
+BUG=328808
+
+Review URL: <a href="https://codereview.chromium.org/116863003">https://codereview.chromium.org/116863003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@260177 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=260177&amp;view=revision"><time datetime="2014-03-28">2014-03-28</time></a>
+      
+        <tr>
+          <td>haavardm
+          <td class=message>
+            <details>
+              <summary>Introduce USE_OPENSSL_CERTS for certificate handling.</summary>
+              <pre class=body>
+See discussion at chromium issue 338885.
+
+When USE_OPENSSL_CERTS is defined, X509::OSCertHandle is now
+typedef&#39;ed to struct X509*. 
+ 
+When USE_OPENSSL is defined, USE_OPENSSL_CERTS will now be
+defined for linux and Android, while being off for Mac and 
+Windows. This allows OpenSSL to be used while leaving
+certificate handling to the OS.
+ 
+OpenSSL cert verifying code will only be used on Linux.
+
+This patch does not change any default behavior.
+
+Bug=none
+Test=none
+
+Review URL: <a href="https://codereview.chromium.org/206453002">https://codereview.chromium.org/206453002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@260152 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=260152&amp;view=revision"><time datetime="2014-03-28">2014-03-28</time></a>
       
         <tr>
           <td>jl
@@ -3430,6 +3527,132 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Ignore MediaController in the muted/volume controls logic</summary>
+              <pre class=body>
+Using MediaControllerInterface for volume/muted was a half-finished job,
+since RenderMediaControls only considered HTMLMediaElement, so the
+controls didn&#39;t really work with a media controller present.
+
+The new test revealed a bug caused by MediaControls::changedVolume() not
+considering the muted state. Consolidate the muted/volume handling to an
+updateVolume() function to fix the bug and make the test pass.
+
+The unconditional updateVolume() in reset() means that the volume will
+always be set when the controls are first created. This revealed that
+the media-volume-slider-hit-test test was broken: clickSliderMiddle() is
+called when the volume slider isn&#39;t visible, and the clicked coordinates
+are actually (0, 0). The test still passed because the default value for
+a range input element is apparently the midpoint. Rewrite the test to
+verify that clicking the volume slider actually updates the volume.
+
+BUG=357236
+TEST=LayoutTests/media/controls-mute-with-controller.html
+     LayoutTests/media/controls-volume-slider.html
+
+Review URL: <a href="https://codereview.chromium.org/217103004">https://codereview.chromium.org/217103004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170414 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170414&amp;view=revision"><time datetime="2014-03-29">2014-03-29</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make media element sources unique to investigate flaky test</summary>
+              <pre class=body>
+BUG=355489
+
+Review URL: <a href="https://codereview.chromium.org/216233003">https://codereview.chromium.org/216233003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170412 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170412&amp;view=revision"><time datetime="2014-03-29">2014-03-29</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: Build fix after r170389</summary>
+              <pre class=body>
+r170389 broke oilpan&#39;s build (Event related.) This CL rights the ship.
+
+<a href="mailto:TBR=haraken@chromium.org,ager@chromium.org">TBR=haraken@chromium.org,ager@chromium.org</a>
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/216233013">https://codereview.chromium.org/216233013</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170411 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170411&amp;view=revision"><time datetime="2014-03-29">2014-03-29</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Use [StrictTypeChecking] for HTMLMediaElement.setMediaKeys</summary>
+              <pre class=body>
+The mediaKeys argument should be nullable, but passing in some other
+type of object should throw an exception.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/212643002">https://codereview.chromium.org/212643002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170354 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170354&amp;view=revision"><time datetime="2014-03-28">2014-03-28</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the fullScreenEnabled setting</summary>
+              <pre class=body>
+Chromium always calls setFullScreenEnabled(true).
+
+BUG=344002
+
+Review URL: <a href="https://codereview.chromium.org/217163004">https://codereview.chromium.org/217163004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170351 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170351&amp;view=revision"><time datetime="2014-03-28">2014-03-28</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] balancer confused by content with top margins.</summary>
+              <pre class=body>
+We need to set zero page logical height in LayoutState when column
+height is unknown (when the columns haven&#39;t yet been
+balanced). There&#39;s code that assumes that non-zero page height means
+that page height is known. Lying about this makes the pagination code
+believe that every top margin is adjacent to a column break, which
+makes it eat and ignore all top margins.
+
+This should be cleaned up, but it&#39;s easier to wait until the old
+multicol code has been removed.
+
+BUG=353587
+
+Review URL: <a href="https://codereview.chromium.org/209863003">https://codereview.chromium.org/209863003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170335 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170335&amp;view=revision"><time datetime="2014-03-28">2014-03-28</time></a>
       
         <tr>
           <td>sigbjornf
