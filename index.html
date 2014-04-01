@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 183, 
+    <a href="#chromium">Chromium</a>: 184, 
   
-    <a href="#blink">Blink</a>: 765, 
+    <a href="#blink">Blink</a>: 782, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -43,6 +43,26 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Move Preload() code to MappedFile</summary>
+              <pre class=body>
+To heat up the file system caches we load the disk cache index 
+into RAM when starting the browser. To make it more obvious
+what we&#39;re doing, move that to a method named Preload().
+
+BUG=None
+<a href="mailto:R=rvargas@chromium.org">R=rvargas@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/206453003">https://codereview.chromium.org/206453003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@260844 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=260844&amp;view=revision"><time datetime="2014-04-01">2014-04-01</time></a>
       
         <tr>
           <td>philipj
@@ -3596,6 +3616,364 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove HTMLFrameElement.location</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/aLpDg8pviU0/dUbUt7jsvT4J">https://groups.google.com/a/chromium.org/d/msg/blink-dev/aLpDg8pviU0/dUbUt7jsvT4J</a>
+
+javascriptURL-execution-context-frame-location-htmldom.html was
+identical to javascriptURL-execution-context-frame-src-htmldom.html
+apart from the attribute set, so remove it.
+
+javascriptURL-execution-context-frame-location-htmldom-uncaught.html
+tests code that was removed in V8HTMLFrameElementCustom.cpp and does not
+have a counterpart for the src attribute, so remove it too.
+
+BUG=358505
+
+Review URL: <a href="https://codereview.chromium.org/220563002">https://codereview.chromium.org/220563002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170563 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170563&amp;view=revision"><time datetime="2014-04-01">2014-04-01</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Add UseCounter entry for SVGForeignObjectElement</summary>
+              <pre class=body>
+There have been discussions about removing foreignObject and instead
+allow an html element with position and dimensions inside svg. Knowing
+how popular foreignObject is may be useful in such discussions.
+
+Review URL: <a href="https://codereview.chromium.org/220713003">https://codereview.chromium.org/220713003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170561 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170561&amp;view=revision"><time datetime="2014-04-01">2014-04-01</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Replace NativeImageSkia usage with SkBitmap in ImageFrame</summary>
+              <pre class=body>
+Make ImageFrame store an SkBitmap directly instead of indirectly via
+NativeImageSkia.
+The direct effect is less indirections in ImageFrame, but this allows
+making NativeImageSkia more immutable-looking since the SkBitmap&amp;
+accessor and setDataComplete() method can be removed.
+
+Review URL: <a href="https://codereview.chromium.org/170463002">https://codereview.chromium.org/170463002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170553 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170553&amp;view=revision"><time datetime="2014-04-01">2014-04-01</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Custom pseudo element types as an invalidation set feature.</summary>
+              <pre class=body>
+Instead of falling back to full subtree recalcs for invalidation sets
+affected by custom pseudo elements, use a flag in the invalidation set
+saying that custom pseudo elements need to be invalidated. Can be extended
+to invalidate specific custom pseudo element types, but it will probably not
+be necessary.
+
+The reason for optimizing this in the first place is to make it possible to
+use invalidation sets for :hover/:active/:focus changes where descendants
+are affected by changes to those states. The UA stylesheet contains
+selectors for :hover/:active/:focus where such state changes affect
+descendants and the rightmost compound selector has a custom pseudo element
+as its only sub-selector.
+
+<a href="mailto:R=esprehn@chromium.org">R=esprehn@chromium.org</a>
+BUG=351613
+
+Review URL: <a href="https://codereview.chromium.org/219193004">https://codereview.chromium.org/219193004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170538 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170538&amp;view=revision"><time datetime="2014-04-01">2014-04-01</time></a>
+      
+        <tr>
+          <td>tsniatowski
+          <td class=message>
+            <details>
+              <summary>Use %pure-parser in grammar files to make Bison 3 happy.</summary>
+              <pre class=body>
+This avoids a &#34;deprecated directive, use ‘%pure-parser’ [-Wdeprecated]&#34;
+warning in css/CSSGrammar.y and xml/XPathGrammar.y when building with
+Bison 3.
+
+Review URL: <a href="https://codereview.chromium.org/217423011">https://codereview.chromium.org/217423011</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170525 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170525&amp;view=revision"><time datetime="2014-04-01">2014-04-01</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>De-bloat SVGPathStringBuilder</summary>
+              <pre class=body>
+For a class this meager, it was a bit of a heavy-weight:
+
+SVGPathStringBuilder::arcTo() clocked in at a whopping 7891 bytes
+(Linux, x86-64, gcc-4.8.2), but even the much simpler lineToVertical()
+used &gt; .5k of text-space.
+Sacrifice the StringOperators-based pattern and use a cascade of functions
+instead.
+Besides reducing footprint, this also eliminates some of the copying that
+would occur between various temporary String objects.
+With the change in place, arcTo() dropped to 640 bytes (and lineToVertical
+got cut in half.)
+
+Review URL: <a href="https://codereview.chromium.org/212603003">https://codereview.chromium.org/212603003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170523 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170523&amp;view=revision"><time datetime="2014-04-01">2014-04-01</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: have RepeatEvent::trace() delegate to Event::trace()</summary>
+              <pre class=body>
+For consistency, have RepeatEvent &#39;upcall&#39; to Event when tracing.
+
+R=
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/219283007">https://codereview.chromium.org/219283007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170516 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170516&amp;view=revision"><time datetime="2014-04-01">2014-04-01</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove what remains of MediaControllerInterface</summary>
+              <pre class=body>
+The currentTime() and duration() should simply use the media element, as
+that is what paintMediaSlider() in RenderMediaControls uses, so the
+existing code would not work if the media element and its controller had
+different durations.
+
+setCurrentTime() does require taking the controller into account, so add
+some tests and expand that final instance of mediaControllerInterface().
+
+BUG=341813, 341852
+TEST=LayoutTests/media/controls-timeline.html
+     LayoutTests/media/controls-timeline-with-controller.html
+
+Review URL: <a href="https://codereview.chromium.org/219283004">https://codereview.chromium.org/219283004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170512 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170512&amp;view=revision"><time datetime="2014-04-01">2014-04-01</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Let MediaController.currentTime return the position previously set</summary>
+              <pre class=body>
+BUG=358226
+
+Review URL: <a href="https://codereview.chromium.org/219523004">https://codereview.chromium.org/219523004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170504 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170504&amp;view=revision"><time datetime="2014-04-01">2014-04-01</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Documents with many lines overallocated pagination info.</summary>
+              <pre class=body>
+There is an object LineFragmentationData that is used for pagination
+that is created on demand. That object was created for normal documents
+and cost roughly 32 bytes per line, adding up to 3-5 MB on a big text
+document (5% of all memory usage).
+
+Testcase: <a href="http://norvig.com/big.txt">http://norvig.com/big.txt</a> - 3-10 MB RAM savings.
+
+I don&#39;t know what I&#39;m doing but this patch prevents the allocation and
+saves the memory.
+
+BUG=353993
+
+Review URL: <a href="https://codereview.chromium.org/200053007">https://codereview.chromium.org/200053007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170497 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170497&amp;view=revision"><time datetime="2014-04-01">2014-04-01</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Optimize named property access on CSSStyleDeclaration objects</summary>
+              <pre class=body>
+When reading property on a CSSStyleDeclaration object, the property name
+is transformed into a possible CSS property name and looked up as such.
+This transformation involves copying the property name to a StringBuilder
+while converting from camelCase to dash-separated.
+
+Positive matches are cached in a local static hash map, but negative
+matches were not.  A script reading properties like &#34;getPropertyValue&#34;
+would trigger the conversion to &#34;get-property-value&#34; and CSS property
+lookup every time.
+
+Optimize by caching negative matches as well as positive ones.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/219153002">https://codereview.chromium.org/219153002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170490 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170490&amp;view=revision"><time datetime="2014-04-01">2014-04-01</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: Build fix after r170454</summary>
+              <pre class=body>
+r170454 was almost Oilpan-ready, add missing bits.
+
+<a href="mailto:R=mvanouwerkerk@chromium.org">R=mvanouwerkerk@chromium.org</a>
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/219753004">https://codereview.chromium.org/219753004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170475 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170475&amp;view=revision"><time datetime="2014-03-31">2014-03-31</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Simplify ExceptionState::throwException()</summary>
+              <pre class=body>
+Drop the case in which m_code has been set without also setting
+m_exception.
+
+Followup to <a href="https://codereview.chromium.org/219263002/">https://codereview.chromium.org/219263002/</a>.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/219373005">https://codereview.chromium.org/219373005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170457 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170457&amp;view=revision"><time datetime="2014-03-31">2014-03-31</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Smaller CSSParser UTF16 buffers for escaped strings.</summary>
+              <pre class=body>
+If an ASCII stylesheet contains escaped characters those need to be
+unescaped and stored somewhere. The code used to allocate a buffer the
+size of the whole CSS file * sizeof(UChar). That meant 700 KB on
+<a href="http://arstechnica.com">arstechnica.com</a> to store a single character. Instead store the
+supposedly rare characters in special buffers of appropriate sizes.
+
+BUG=352544
+
+Review URL: <a href="https://codereview.chromium.org/196353018">https://codereview.chromium.org/196353018</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170451 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170451&amp;view=revision"><time datetime="2014-03-31">2014-03-31</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Improve chances for inlining of ExceptionState::throwIfNeeded()</summary>
+              <pre class=body>
+Since throwIfNeeded() is called quite often in generated bindings code
+(and should generally return false), attempt to make is smaller by moving
+the exception setup/throwing to a new method, and leave throwIfNeeded()
+as a predicate guarding a call to that method.
+This seems to get rid of a large number of direct calls to throwIfNeeded().
+It also shrinks the binary by a non-negligible amount (~15k).
+(Linux, x86-64, gcc-4.8.2)
+
+Review URL: <a href="https://codereview.chromium.org/219263002">https://codereview.chromium.org/219263002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170447 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170447&amp;view=revision"><time datetime="2014-03-31">2014-03-31</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove WebSetting::setFullScreenEnabled</summary>
+              <pre class=body>
+It is no longer called from Chromium:
+<a href="https://codereview.chromium.org/216233008/">https://codereview.chromium.org/216233008/</a>
+
+BUG=344002
+
+Review URL: <a href="https://codereview.chromium.org/217293002">https://codereview.chromium.org/217293002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170446 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170446&amp;view=revision"><time datetime="2014-03-31">2014-03-31</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move ImageData to the oilpan heap.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/214153006">https://codereview.chromium.org/214153006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170445 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170445&amp;view=revision"><time datetime="2014-03-31">2014-03-31</time></a>
       
         <tr>
           <td>ed
