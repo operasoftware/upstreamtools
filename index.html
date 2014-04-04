@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 184, 
   
-    <a href="#blink">Blink</a>: 788, 
+    <a href="#blink">Blink</a>: 797, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -3616,6 +3616,187 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: build fix followup to r170842.</summary>
+              <pre class=body>
+R=
+BUG=340522
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/225783002">https://codereview.chromium.org/225783002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170857 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170857&amp;view=revision"><time datetime="2014-04-04">2014-04-04</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move Range object to the oilpan heap.</summary>
+              <pre class=body>
+<a href="mailto:R=tkent@chromium.org,haraken@chromium.org,yutak@chromium.org,ager@chromium.org">R=tkent@chromium.org,haraken@chromium.org,yutak@chromium.org,ager@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/224113002">https://codereview.chromium.org/224113002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170845 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170845&amp;view=revision"><time datetime="2014-04-04">2014-04-04</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Fix for CSS escaped identifier assert</summary>
+              <pre class=body>
+Escaped identifiers are stored as 16-bit string so using the 8-bit
+string storage for them causes unexpected errors in tokenToLowerCase(). 
+In debug there was an ASSERT that crashed the browser. In release
+any non-ascii chars in the string would have been partly garbled.
+
+This also removes the &#34;const&#34; from an argument because the function
+does mutate the argument so calling it const was not very honest.
+
+BUG=358750
+R=eseidel
+
+Review URL: <a href="https://codereview.chromium.org/213743018">https://codereview.chromium.org/213743018</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170841 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170841&amp;view=revision"><time datetime="2014-04-04">2014-04-04</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Add some missing semi-colons in embedded JavaScript.</summary>
+              <pre class=body>
+Some embedded JavaScript depended on ecmascript&#39;s automatic
+magic semi-colon insertion. That is bad since that means that whitespace
+becomes significant in the program and prevents stripping of new-lines.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/223973002">https://codereview.chromium.org/223973002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170824 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170824&amp;view=revision"><time datetime="2014-04-04">2014-04-04</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Support tag names as invalidation set features.</summary>
+              <pre class=body>
+We collected the tag names into the invalidation sets, but we never used them
+for anything. This makes selectors like this use invalidation sets:
+
+.class span {}
+
+<a href="mailto:R=esprehn@chromium.org,chrishtr@chromium.org">R=esprehn@chromium.org,chrishtr@chromium.org</a>
+BUG=335247
+
+Review URL: <a href="https://codereview.chromium.org/222643002">https://codereview.chromium.org/222643002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170807 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170807&amp;view=revision"><time datetime="2014-04-04">2014-04-04</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Avoid freeze if column count is 1 and there&#39;s a forced break.</summary>
+              <pre class=body>
+If we don&#39;t have more columns available than the number of forced
+breaks, we&#39;re going to have to allow overflowing columns. No matter
+how tall we try to make the column set, there will be overflowing
+columns, so just give up. This used to work as long as column count
+was 2 or greater, but there was an unnecessary check that prevented it
+from working if column count was 1. This was especially bad since we
+actually stop counting forced breaks when we reach the number of
+columns available.
+
+BUG=359536
+
+Review URL: <a href="https://codereview.chromium.org/223743002">https://codereview.chromium.org/223743002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170795 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170795&amp;view=revision"><time datetime="2014-04-03">2014-04-03</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add explicit Persistent&lt;T&gt;(T&amp;) and Member&lt;T&gt;(T&amp;) constructors.</summary>
+              <pre class=body>
+Synchronize with RefPtr&lt;T&gt;(T&amp;)&#39;s constructor offering and provide same,
+explicit constructors taking a reference.
+
+Make use of it in PostMessageTimer and WorkerThreadableWebSocketChannel.
+
+<a href="mailto:R=haraken@chromium.org,ager@chromium.org">R=haraken@chromium.org,ager@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/221823002">https://codereview.chromium.org/221823002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170792 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170792&amp;view=revision"><time datetime="2014-04-03">2014-04-03</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Let the overlay playback button fall back to the activation behavior</summary>
+              <pre class=body>
+Since the button is only visible when togglePlayStateWillPlay(), just
+doing nothing and falling back to the default activation behavior will
+do the right thing.
+
+BUG=354746
+TEST=LayoutTests/media/activation-behavior-shadow.html
+
+Review URL: <a href="https://codereview.chromium.org/215323003">https://codereview.chromium.org/215323003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170789 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170789&amp;view=revision"><time datetime="2014-04-03">2014-04-03</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Improve computation of ctmScale{X,Y} in NativeImageSkia::drawPattern</summary>
+              <pre class=body>
+Simply using &#34;scale x&#34; and &#34;scale y&#34; will not give the intended results
+for for instance mirroring transformations.
+Instead compute the length of the column vectors for the 2x2 submatrix.
+
+BUG=160443
+
+Review URL: <a href="https://codereview.chromium.org/223673003">https://codereview.chromium.org/223673003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170782 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170782&amp;view=revision"><time datetime="2014-04-03">2014-04-03</time></a>
       
         <tr>
           <td>philipj
