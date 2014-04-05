@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 184, 
+    <a href="#chromium">Chromium</a>: 185, 
   
-    <a href="#blink">Blink</a>: 797, 
+    <a href="#blink">Blink</a>: 800, 
   
     <a href="#v8">V8</a>: 15.
   
@@ -43,6 +43,19 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>joaoe
+          <td class=message>
+            <details>
+              <summary>Remove unused header zip.h</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/222133002">https://codereview.chromium.org/222133002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@261949 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=261949&amp;view=revision"><time datetime="2014-04-05">2014-04-05</time></a>
       
         <tr>
           <td>bratell
@@ -3616,6 +3629,85 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Lay out flow thread again when multicol container height changes.</summary>
+              <pre class=body>
+The column height may have to be adjusted when the multicol
+container&#39;s height changes, so we need to descend into the
+RenderMultiColumnFlow thread child of the RenderBlockFlow multicol
+container when this happens.
+
+BUG=359944
+
+Review URL: <a href="https://codereview.chromium.org/225463002">https://codereview.chromium.org/225463002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170896 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170896&amp;view=revision"><time datetime="2014-04-04">2014-04-04</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Compute correct repaint rect for decorated RenderSVGRoots</summary>
+              <pre class=body>
+The current implementation of clippedOverflowRectForRepaint() uses the
+generic repaint-rect calculations in SVGRenderSupport. Those in turn make
+use of repaintRectInLocalCoordinates(), which for RenderSVGRoot is the
+union of the painted children (w/ some expansion). If there&#39;re no children,
+or they do not fill the entire content box, then a repaint would not
+repaint the correct parts.
+Fix by calculating the union of the border-box and the SVG content
+when the SVG root is decorated (has background/border/etc.)
+
+BUG=354305
+
+Review URL: <a href="https://codereview.chromium.org/211193002">https://codereview.chromium.org/211193002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170890 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170890&amp;view=revision"><time datetime="2014-04-04">2014-04-04</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use invalidation sets when selector contains adjacent combinators.</summary>
+              <pre class=body>
+When we found a direct or indirect adjacent combinator, we fell back on
+using a subtree recalc for all features in the selector in question. That
+is not necessary as we can resume the process of adding separate features
+to the invalidation sets once we encounter a non-adjacent combinator going
+leftwards.
+
+Example:
+
+  .a .b + .c { }
+
+We have an empty invalidation set for &#39;c&#39;, &#39;b&#39; currently needs to do a sub-
+tree recalc to recalculate the &#39;c&#39; class element when &#39;b&#39; is added or
+removed. However, once we see the descendant combinator left of &#39;.b&#39; we can
+get away with adding &#39;c&#39; to the invalidation set for &#39;a&#39; since &#39;c&#39; will
+have to be in &#39;a&#39;s sub-tree.
+
+Eventually, I think we could merge collectFeaturesFromSelector with
+updateInvalidationSet to get rid of a pass through the selector.
+
+<a href="mailto:R=esprehn@chromium.org">R=esprehn@chromium.org</a>
+BUG=351613,335247
+
+Review URL: <a href="https://codereview.chromium.org/224593002">https://codereview.chromium.org/224593002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@170881 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=170881&amp;view=revision"><time datetime="2014-04-04">2014-04-04</time></a>
       
         <tr>
           <td>sigbjornf
