@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 185, 
+    <a href="#chromium">Chromium</a>: 187, 
   
-    <a href="#blink">Blink</a>: 805, 
+    <a href="#blink">Blink</a>: 807, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,38 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>don&#39;t use glibc-specific execinfo.h on uclibc builds</summary>
+              <pre class=body>
+The execinfo.h header is glibc-specific, as is the backtrace function.
+Let&#39;s skip them for uclibc builds.
+
+Review URL: <a href="https://codereview.chromium.org/226623008">https://codereview.chromium.org/226623008</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@262344 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=262344&amp;view=revision"><time datetime="2014-04-08">2014-04-08</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>define LIBC_GLIBC as 1 for consistency</summary>
+              <pre class=body>
+Most of the other defines in build/build_config.h are set to 1, let&#39;s
+define LIBC_GLIBC as 1 for consistency.
+
+Review URL: <a href="https://codereview.chromium.org/227153008">https://codereview.chromium.org/227153008</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@262255 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=262255&amp;view=revision"><time datetime="2014-04-07">2014-04-07</time></a>
       
         <tr>
           <td>joaoe
@@ -3629,6 +3661,45 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>don&#39;t use abi::__cxa_demangle in uclibc builds</summary>
+              <pre class=body>
+abi::__cxa_demangle is glibc specific, it can&#39;t be used in uclibc builds.
+
+Review URL: <a href="https://codereview.chromium.org/227753002">https://codereview.chromium.org/227753002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171045 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171045&amp;view=revision"><time datetime="2014-04-08">2014-04-08</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fix StrictTypeChecking on interface type attributes</summary>
+              <pre class=body>
+&#39;undefined&#39;/&#39;null&#39; would be allowed even though they shouldn&#39;t (unless
+the attribute is marked as nullable.)
+
+Also attempts to simplify the signature required for implementing the
+nullable version of a interface type attribute.
+
+Adjust CanvasRenderingContext2D.currentTransform,
+HTMLMediaElement.controller and AudioBufferSourceNode.buffer slightly.
+
+BUG=249598
+
+Review URL: <a href="https://codereview.chromium.org/226073003">https://codereview.chromium.org/226073003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171043 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171043&amp;view=revision"><time datetime="2014-04-08">2014-04-08</time></a>
       
         <tr>
           <td>fs
