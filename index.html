@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 189, 
+    <a href="#chromium">Chromium</a>: 192, 
   
-    <a href="#blink">Blink</a>: 814, 
+    <a href="#blink">Blink</a>: 817, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,72 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Fix creating platform font on Windows</summary>
+              <pre class=body>
+fdwCharSet param changed from 0 to DEFAULT_CHARSET (which is defined to
+1). ScriptShape fails to generate glyphs on Windows XP for some complex
+scripts (Hindi text for instance) if font is created with fdwCharSet=0.
+
+Other paramaters are unchanged because they still expand to 0.
+
+BUG=361994
+
+TEST=On Windows XP, go to Control Panel and Regional and
+Language Options. Under Languages tab check Install files
+for Complex Script and right-to-left languages (including
+Thai) and Install files for East Asian languages. Click
+Details and install Hindi language. Launch Chromium. Go to
+advanced settings and go to Languages. Add Hindi language
+and click Display Chromium in this language button. Restart
+Chromium. Expected result: Hindi font glyphs should be
+properly generated for all UI elements (tabs, menus,
+notification panels).
+
+Review URL: <a href="https://codereview.chromium.org/230793003">https://codereview.chromium.org/230793003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@263001 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=263001&amp;view=revision"><time datetime="2014-04-10">2014-04-10</time></a>
+      
+        <tr>
+          <td>pdamek
+          <td class=message>
+            <details>
+              <summary>Added HTTP response code field to ResourceRequestDetails.</summary>
+              <pre class=body>
+BUG=361585
+
+Review URL: <a href="https://codereview.chromium.org/226183015">https://codereview.chromium.org/226183015</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@262987 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=262987&amp;view=revision"><time datetime="2014-04-10">2014-04-10</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>disable stack trace unittests for uClibc builds</summary>
+              <pre class=body>
+Since we disabled StackTrace::OutputToStream and StackTrace::Print
+for uClibc builds, we should disable the related unittests for uClibc
+too.
+
+BUG=361130
+
+Review URL: <a href="https://codereview.chromium.org/227503009">https://codereview.chromium.org/227503009</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@262984 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=262984&amp;view=revision"><time datetime="2014-04-10">2014-04-10</time></a>
       
         <tr>
           <td>mostynb
@@ -3701,6 +3767,90 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Map width/height to style for foreignObject</summary>
+              <pre class=body>
+As we move towards using the style system to resolve percentages for
+svg, start small by promoting width and height for foreignObject to
+presentation attributes.
+
+This is a preparation for issue 308992 where we plan to make
+height=&#34;100%&#34; for svg elements behave as style=&#34;height:100%&#34;. Unless
+height is mapped to style for foreignObject, percentage style values
+for svg inside foreignObject cannot be resolved.
+
+This has been resolved in the SVG WG, see minutes
+<a href="http://www.w3.org/2014/04/08-svg-minutes.html#item04">http://www.w3.org/2014/04/08-svg-minutes.html#item04</a>
+
+BUG=308992,358206
+
+Review URL: <a href="https://codereview.chromium.org/218403009">https://codereview.chromium.org/218403009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171306 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171306&amp;view=revision"><time datetime="2014-04-10">2014-04-10</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Support FormData on WorkerGlobalScope.</summary>
+              <pre class=body>
+The spec defines FormData as being provided in worker contexts,
+
+  <a href="http://www.w3.org/TR/XMLHttpRequest/#interface-formdata">http://www.w3.org/TR/XMLHttpRequest/#interface-formdata</a>
+  <a href="http://xhr.spec.whatwg.org/#interface-formdata">http://xhr.spec.whatwg.org/#interface-formdata</a>
+
+Follow suit and provide an argument-less FormData constructor and the
+interface object on WorkerGlobalScope.
+
+<a href="mailto:R=arv@chromium.org,nbarth@chromium.org">R=arv@chromium.org,nbarth@chromium.org</a>
+BUG=360546
+
+Review URL: <a href="https://codereview.chromium.org/227483008">https://codereview.chromium.org/227483008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171294 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171294&amp;view=revision"><time datetime="2014-04-10">2014-04-10</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fix application of OBB paint-servers when device scale != 1</summary>
+              <pre class=body>
+The additional text transform would be applied after the &#34;regular&#34;
+userspace transform, which in the object bounding box case meant that
+any possible translation would not be applied correctly (wouldn&#39;t be
+subject to the additional scaling.) The code was also sensitive to whether
+or not any text-decorations needed to be painted with the paint-server,
+since that could end up clobbering the userspace transform.
+
+Fix by applying the additional text transform in the correct order, and
+always re-compute the &#34;resource space&#34; transform in the relevant
+applyResource(...) methods.
+Give the additional transform for the non-scaling stroke case the same
+treatment, since it could end up clobbering the userspace transform when
+the same paint-server was used for both the stroke and the fill of an
+object.
+The code used for computing the &#34;resource space&#34; transform is split out of
+RenderSVGResource{Gradient,Pattern} and moved to the super-class
+(RenderSVGResourceContainer.)
+
+BUG=360571
+
+Review URL: <a href="https://codereview.chromium.org/230443003">https://codereview.chromium.org/230443003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171287 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171287&amp;view=revision"><time datetime="2014-04-10">2014-04-10</time></a>
       
         <tr>
           <td>sigbjornf
