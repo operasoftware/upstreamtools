@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 192, 
+    <a href="#chromium">Chromium</a>: 194, 
   
-    <a href="#blink">Blink</a>: 817, 
+    <a href="#blink">Blink</a>: 818, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,40 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>Chromeos and non-X11 unix builds should not hit NOTREACHED when pasting.</summary>
+              <pre class=body>
+BUG=361341
+TEST=ClickModifierTest.WindowOpenShiftMiddleClickTest
+
+Review URL: <a href="https://codereview.chromium.org/224843013">https://codereview.chromium.org/224843013</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@263420 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=263420&amp;view=revision"><time datetime="2014-04-12">2014-04-12</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>make it possible to set use_system_harfbuzz from outside</summary>
+              <pre class=body>
+harfbuzz.gyp overrides any user-specified value for use_system_harfbuzz.
+Ideally, it should only override this value for official builds.
+
+BUG=353127
+
+Review URL: <a href="https://codereview.chromium.org/233263002">https://codereview.chromium.org/233263002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@263399 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=263399&amp;view=revision"><time datetime="2014-04-11">2014-04-11</time></a>
       
         <tr>
           <td>tmoniuszko
@@ -3767,6 +3801,21 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Test the media element activation behavior in fullscreen</summary>
+              <pre class=body>
+BUG=358675
+
+Review URL: <a href="https://codereview.chromium.org/227593006">https://codereview.chromium.org/227593006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171372 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171372&amp;view=revision"><time datetime="2014-04-11">2014-04-11</time></a>
       
         <tr>
           <td>davve
