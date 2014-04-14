@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 194, 
+    <a href="#chromium">Chromium</a>: 195, 
   
-    <a href="#blink">Blink</a>: 818, 
+    <a href="#blink">Blink</a>: 819, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,22 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>elisabets
+          <td class=message>
+            <details>
+              <summary>Add a call to hide the popup when the render process dies.</summary>
+              <pre class=body>
+Prevent persistent popups after the render process has died, also resetting
+scroll accounting and gesture detection.
+
+Review URL: <a href="https://codereview.chromium.org/233103002">https://codereview.chromium.org/233103002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@263613 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=263613&amp;view=revision"><time datetime="2014-04-14">2014-04-14</time></a>
       
         <tr>
           <td>mostynb
@@ -3801,6 +3817,23 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Simplify CRC2D winding rule handling</summary>
+              <pre class=body>
+Since the bindings already check the enumeration, there&#39;s no need to
+check that the value passed is valid. Make the parseWinding helper function
+just return the translated value instead of a status boolean.
+
+Review URL: <a href="https://codereview.chromium.org/226733004">https://codereview.chromium.org/226733004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171438 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171438&amp;view=revision"><time datetime="2014-04-14">2014-04-14</time></a>
       
         <tr>
           <td>philipj
