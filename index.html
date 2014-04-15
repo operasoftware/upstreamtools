@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 195, 
   
-    <a href="#blink">Blink</a>: 819, 
+    <a href="#blink">Blink</a>: 827, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -3817,6 +3817,187 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Fix off-by-one error in RasterShape of CSS shapes</summary>
+              <pre class=body>
+Be consistent about using end-point exclusive intervals. Before this
+patch we created an end-point _inclusive_ interval when scanning to
+then end of the line, but an end-point _exclusive_ when ending an
+interval somewhere along the scan-line because of a triggered alpha
+channel threshold.
+
+Examples:
+
+ 01234..
+[XXXXXXXXXXXXXXXXXXXX] (X means above alpha channel threshold)
+
+would create the interval 0-19. Since we haven&#39;t triggered the alpha
+channel threshold, and x points at the last index (19) the end point
+is included in the interval and we&#39;re supposedly creating an end-point
+inclusive interval.
+
+But in the other case:
+
+ 01234..
+[XXXXXXXXXX..........]
+
+would create the interval 0-10, because when we notice that the alpha
+channel threshold doesn&#39;t hold, we&#39;re already outside the interval,
+and x is excluded from the interval meaning we supposedly want to
+create a end-point exclusive interval.
+
+To make up for the end-point inclusive intervals,
+RasterShape::getExcludedIntervals added an increment to get end-point
+exclusive intervals, since that is what the caller of
+getExcludedIntervals expects. This obviously broke the other case. We
+did have a test for the other case, but the off-by-one error was
+accounted for in the test.
+
+After this patch, Shape::createRasterShape always creates end-point
+exclusive intervals so we can remove the increment and fix the test.
+
+BUG=363126
+
+Review URL: <a href="https://codereview.chromium.org/237123002">https://codereview.chromium.org/237123002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171569 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171569&amp;view=revision"><time datetime="2014-04-15">2014-04-15</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Re-land &#34;Improve support for :read-only and :read-write pseudoclasses&#34;.</summary>
+              <pre class=body>
+The fix was reverted because it appeared to cause a security issue.
+(It didn&#39;t).
+
+Previous review: <a href="https://codereview.chromium.org/148223004">https://codereview.chromium.org/148223004</a>
+
+BUG=338309,353143
+TEST=fast/css/readwrite-contenteditable.html
+     fast/css/readwrite-contenteditable-recalc.html
+
+Review URL: <a href="https://codereview.chromium.org/236753004">https://codereview.chromium.org/236753004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171564 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171564&amp;view=revision"><time datetime="2014-04-15">2014-04-15</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Deprecate HTMLHtmlElement.manifest</summary>
+              <pre class=body>
+Intent to Deprecate:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/DZecJyapzjM/zv25Xu1t5_oJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/DZecJyapzjM/zv25Xu1t5_oJ</a>
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/236813004">https://codereview.chromium.org/236813004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171503 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171503&amp;view=revision"><time datetime="2014-04-14">2014-04-14</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Iron out some kinks in SVG IDL files</summary>
+              <pre class=body>
+This drops a few &#34;[Default=Undefined] optional&#34; from method arguments to
+match the expected arity checking behavior.
+Matches Gecko and the spec where applicable.
+
+For SVGAnimationElement.{begin,end}ElementAt, block all non-finite values
+as per the WebIDL &#39;float&#39; type.
+
+BUG=311246
+
+Review URL: <a href="https://codereview.chromium.org/231143002">https://codereview.chromium.org/231143002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171485 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171485&amp;view=revision"><time datetime="2014-04-14">2014-04-14</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add StrictTypeChecking to CRC2D ImageData APIs</summary>
+              <pre class=body>
+This moves the null-check out into generated bindings code.
+The test canvas/philip/tests/2d.imageData.create1.zero.html is (minimally)
+adjusted to match the revised upstream WPT test.
+
+Review URL: <a href="https://codereview.chromium.org/237063003">https://codereview.chromium.org/237063003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171484 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171484&amp;view=revision"><time datetime="2014-04-14">2014-04-14</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add StrictTypeChecking to CRC2D.{drawImage,createPattern}</summary>
+              <pre class=body>
+This moves the null-check out into generated bindings code.
+The non-standard method drawImageFromRect(...) keeps the null-check,
+and has its first argument marked nullable because of that.
+
+Review URL: <a href="https://codereview.chromium.org/232313004">https://codereview.chromium.org/232313004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171477 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171477&amp;view=revision"><time datetime="2014-04-14">2014-04-14</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add StrictTypeChecking to CRC2D.{drawFocusIfNeeded,drawCustomFocusRing}</summary>
+              <pre class=body>
+&#39;null&#39; should not be allowed per current spec. so modify tests accordingly.
+
+BUG=363148
+
+Review URL: <a href="https://codereview.chromium.org/237063002">https://codereview.chromium.org/237063002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171474 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171474&amp;view=revision"><time datetime="2014-04-14">2014-04-14</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use StrictTypeChecking for methods on CRC2D that accepts Path2D</summary>
+              <pre class=body>
+This moves the null-check out into generated bindings code. Since there&#39;s
+no longer a need to throw (explicitly) the ExceptionState argument can be
+dropped from the signatures.
+
+Review URL: <a href="https://codereview.chromium.org/232913004">https://codereview.chromium.org/232913004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171471 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171471&amp;view=revision"><time datetime="2014-04-14">2014-04-14</time></a>
       
         <tr>
           <td>fs
