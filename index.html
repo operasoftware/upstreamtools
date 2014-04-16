@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 195, 
   
-    <a href="#blink">Blink</a>: 827, 
+    <a href="#blink">Blink</a>: 832, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -3817,6 +3817,96 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r171701</summary>
+              <pre class=body>
+NOTRY=true
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/239603006">https://codereview.chromium.org/239603006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171724 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171724&amp;view=revision"><time datetime="2014-04-16">2014-04-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Use the media controls play button internal state for painting</summary>
+              <pre class=body>
+MediaControlElement::displayType() is not actually used for rendering,
+the logic is instead duplicated in RenderMediaControls, sometimes with
+minor differences. When scrubbing was made internal to the controls in
+r169814, I neglected to update the corresponding rendering code.
+
+BUG=359522
+
+Review URL: <a href="https://codereview.chromium.org/239113003">https://codereview.chromium.org/239113003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171706 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171706&amp;view=revision"><time datetime="2014-04-15">2014-04-15</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Stay out of the old multicol machinery for column-span:all.</summary>
+              <pre class=body>
+Note that column-span:all isn&#39;t supported in the new implementation yet,
+but while we wait for that to happen, the least thing we can do is to stay alive.
+We&#39;re not going to use this code in the new implementation anyway, when we get there.
+
+BUG=344360
+
+Review URL: <a href="https://codereview.chromium.org/237673006">https://codereview.chromium.org/237673006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171688 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171688&amp;view=revision"><time datetime="2014-04-15">2014-04-15</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Temporarily changing height is scary and can easily be avoided.</summary>
+              <pre class=body>
+Storing the height and setting it to zero afterwards, just to be able to
+calculate desired column height, and to determine if it&#39;s auto or not, may
+have undesired side-effects, and is easily avoidable.
+
+Review URL: <a href="https://codereview.chromium.org/239003003">https://codereview.chromium.org/239003003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171687 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171687&amp;view=revision"><time datetime="2014-04-15">2014-04-15</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove RenderBlock::pushToNextPageWithMinimumLogicalHeight().</summary>
+              <pre class=body>
+It is currently never called, because we always have &#34;uniform page
+height&#34;. If we would ever get non-uniform page height in the future,
+though, that method would do the wrong thing anyway, and prevent us
+from inserting breaks. So just get rid of it for now.
+
+Review URL: <a href="https://codereview.chromium.org/239243002">https://codereview.chromium.org/239243002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171686 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171686&amp;view=revision"><time datetime="2014-04-15">2014-04-15</time></a>
       
         <tr>
           <td>davve
