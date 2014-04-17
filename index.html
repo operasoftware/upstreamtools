@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 195, 
+    <a href="#chromium">Chromium</a>: 198, 
   
-    <a href="#blink">Blink</a>: 832, 
+    <a href="#blink">Blink</a>: 836, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,61 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jadahl
+          <td class=message>
+            <details>
+              <summary>gpu: Remove left-over empty class declaration</summary>
+              <pre class=body>
+ScopedSafeSharedMemory was removed in &#34;GPU: Remove memory duplication in
+async uploads.&#34; so lets remove this empty declaration as well.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/237673016">https://codereview.chromium.org/237673016</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@264469 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=264469&amp;view=revision"><time datetime="2014-04-17">2014-04-17</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>gyp performance: don&#39;t invoke python to check dir existance</summary>
+              <pre class=body>
+We spend a few tenths of a second every gyp invocation starting
+the dir_exists.py program. Seems a bit unnecessary.
+
+BUG=362075
+<a href="mailto:R=scottmg@chromium.org">R=scottmg@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/234963003">https://codereview.chromium.org/234963003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@264316 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=264316&amp;view=revision"><time datetime="2014-04-16">2014-04-16</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>gyp performance: Add a DoMain version of build/compiler_version</summary>
+              <pre class=body>
+No need to start a full python interpreter for compiler_version.py. This saves about 0.6 CPU seconds.
+
+BUG=362075
+<a href="mailto:R=scottmg@chromium.org">R=scottmg@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/235083003">https://codereview.chromium.org/235083003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@264303 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=264303&amp;view=revision"><time datetime="2014-04-16">2014-04-16</time></a>
       
         <tr>
           <td>elisabets
@@ -3817,6 +3872,82 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r171843.</summary>
+              <pre class=body>
+R=
+BUG=357586
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/240503006">https://codereview.chromium.org/240503006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171845 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171845&amp;view=revision"><time datetime="2014-04-17">2014-04-17</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t parse colors for &lt;canvas&gt; in quirks mode</summary>
+              <pre class=body>
+Use &#39;strict&#39; mode when parsing colors, to disallow hex-color
+specifications without a leading &#39;#&#39;.
+
+BUG=364008
+
+Review URL: <a href="https://codereview.chromium.org/237743009">https://codereview.chromium.org/237743009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171791 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171791&amp;view=revision"><time datetime="2014-04-16">2014-04-16</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use StrictTypeChecking for ImageBitmap</summary>
+              <pre class=body>
+Add [StrictTypeChecking] to the &#39;ImageBitmapFactories&#39; interface and
+the &#39;Window&#39; partial interface. This doesn&#39;t change behavior in practice,
+but signals that it has been considered.
+Drop the unnecessary null-checks in the implementation.
+
+Review URL: <a href="https://codereview.chromium.org/240103002">https://codereview.chromium.org/240103002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171790 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171790&amp;view=revision"><time datetime="2014-04-16">2014-04-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove DOMImplementation.createCSSStyleSheet()</summary>
+              <pre class=body>
+Intent to Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/uDjkuGA9gQs/zytnzJ6WryYJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/uDjkuGA9gQs/zytnzJ6WryYJ</a>
+
+Without createCSSStyleSheet() it becomes a bit more difficult to create
+a CSSStyleSheet which is not reachable from elsewhere, but it&#39;s still
+possible. Note that the updated tests still do fail, the reason being
+explained in ~CSSStyleSheet().
+
+BUG=363561
+
+Review URL: <a href="https://codereview.chromium.org/238303004">https://codereview.chromium.org/238303004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171766 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171766&amp;view=revision"><time datetime="2014-04-16">2014-04-16</time></a>
       
         <tr>
           <td>sigbjornf
