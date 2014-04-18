@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 198, 
+    <a href="#chromium">Chromium</a>: 199, 
   
-    <a href="#blink">Blink</a>: 836, 
+    <a href="#blink">Blink</a>: 837, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,26 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mharanczyk
+          <td class=message>
+            <details>
+              <summary>Limit extension autoupdates timer maximum scheduled delay.</summary>
+              <pre class=body>
+Extension autoupdate will be triggered at maximum delay of
+update frequency from startup. Stored next update check will
+be used only if it is reasonably far into future. This will prevent
+users from virtually disabling extensions autoupdate by changing system time.
+
+BUG=364445
+
+Review URL: <a href="https://codereview.chromium.org/240333010">https://codereview.chromium.org/240333010</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@264771 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=264771&amp;view=revision"><time datetime="2014-04-18">2014-04-18</time></a>
       
         <tr>
           <td>jadahl
@@ -3872,6 +3892,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Handle the DOMString case of CRC2D.fillStyle/strokeStyle correctly</summary>
+              <pre class=body>
+Non-CanvasGradient/CanvasPattern objects would not be ToString(v)&#39;d and
+have the result assigned/parsed as a color-string.
+Implement this by checking for CanvasGradient/CanvasPattern first,
+and then invole ToString() on the value.
+
+BUG=364008
+
+Review URL: <a href="https://codereview.chromium.org/237743007">https://codereview.chromium.org/237743007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171852 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171852&amp;view=revision"><time datetime="2014-04-17">2014-04-17</time></a>
       
         <tr>
           <td>sigbjornf
