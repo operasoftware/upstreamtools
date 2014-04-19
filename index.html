@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 199, 
+    <a href="#chromium">Chromium</a>: 200, 
   
-    <a href="#blink">Blink</a>: 837, 
+    <a href="#blink">Blink</a>: 840, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,24 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>disable more stacktrace usage in debug uclibc builds</summary>
+              <pre class=body>
+Here are a couple more instances of OutputToStream / Print that are
+no longer available in uClibc builds.
+
+BUG=361130
+
+Review URL: <a href="https://codereview.chromium.org/234803002">https://codereview.chromium.org/234803002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@264887 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=264887&amp;view=revision"><time datetime="2014-04-18">2014-04-18</time></a>
       
         <tr>
           <td>mharanczyk
@@ -3892,6 +3910,75 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Make floats affect heights correctly.</summary>
+              <pre class=body>
+Don&#39;t let overhanging floats bleed into sibling column sets or into the parent block flow.
+
+Let RenderFlowThread establish a new block formatting context, so that its
+height encompasses all descendant floats.
+
+BUG=361551
+
+Review URL: <a href="https://codereview.chromium.org/242203003">https://codereview.chromium.org/242203003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171996 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171996&amp;view=revision"><time datetime="2014-04-19">2014-04-19</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the HTMLSourceElement.media IDL attribute</summary>
+              <pre class=body>
+Intent to Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/QuoobqOUCR0/3tNH-_gX6LwJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/QuoobqOUCR0/3tNH-_gX6LwJ</a>
+
+BUG=338197
+
+Review URL: <a href="https://codereview.chromium.org/240153003">https://codereview.chromium.org/240153003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171970 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171970&amp;view=revision"><time datetime="2014-04-18">2014-04-18</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Rework SVG sizing</summary>
+              <pre class=body>
+The basis of this change is to map explicit width and height
+attributes to CSS properties, essentially promoting them to
+presentation attributes. Note that implicit &#34;100%&#34; width and height
+are not mapped.
+
+This enables us to remove the concept of &#34;percentage intrinsic size&#34;
+and rely on normal CSS rules to resolve percentage values.
+
+The change has been approved by the SVG WG and the spec is being
+updated. Minutes here:
+
+<a href="http://www.w3.org/2014/04/07-svg-minutes.html#item03">http://www.w3.org/2014/04/07-svg-minutes.html#item03</a>
+
+Many of the -expected updates are caused by SVG size changes in turn
+affecting where line breaks are inserted.
+
+BUG=308992
+
+Review URL: <a href="https://codereview.chromium.org/26390004">https://codereview.chromium.org/26390004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@171958 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=171958&amp;view=revision"><time datetime="2014-04-18">2014-04-18</time></a>
       
         <tr>
           <td>fs
