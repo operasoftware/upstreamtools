@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 200, 
   
-    <a href="#blink">Blink</a>: 840, 
+    <a href="#blink">Blink</a>: 844, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -3910,6 +3910,95 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>SVG does not respect overflow:visible.</summary>
+              <pre class=body>
+For standalone svg documents, always clip to the viewport (&#39;auto&#39; acts as &#39;hidden&#39;).
+
+For &#39;overflow: hidden | scroll&#39; on any svg element: clip.
+For &#39;overflow: auto | visible&#39; on any svg element: don&#39;t clip.
+
+New behaviours for stand-alone svg documents:
+* overflow-x and overflow-y for controlling each scrollbar independently is now supported.
+* overflow:scroll will display scrollbars regardless of the svg overflowing or not (as required by CSS).
+* overflow:hidden will cause overflow to be clipped away and scrollbars to be hidden.
+
+BUG=231577
+
+Review URL: <a href="https://codereview.chromium.org/220853002">https://codereview.chromium.org/220853002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172126 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172126&amp;view=revision"><time datetime="2014-04-22">2014-04-22</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>In generated interface header files, #include Handle.h from its new home.</summary>
+              <pre class=body>
+It has moved to platform/heap/Handle.h.
+
+R=haraken, nbarth
+
+Review URL: <a href="https://codereview.chromium.org/245783002">https://codereview.chromium.org/245783002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172117 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172117&amp;view=revision"><time datetime="2014-04-22">2014-04-22</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Make text track and cue wrapper objects dependent on their media element.</summary>
+              <pre class=body>
+If a TextTrack or VTTCue (TextTrackCue) object is added to a media
+element, indirectly by way of addCue() or addTextTrack(), arrange for
+their wrapper objects to be registered as dependents  of the media
+element&#39;s wrapper so as to keep these wrapper objects alive.
+
+This is done so that when we later need to return back a wrapper
+for the underlying track/cue object, the same wrapper object is returned.
+
+<a href="mailto:R=acolwell@chromium.org">R=acolwell@chromium.org</a>
+BUG=358109
+
+Review URL: <a href="https://codereview.chromium.org/242113012">https://codereview.chromium.org/242113012</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172065 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172065&amp;view=revision"><time datetime="2014-04-21">2014-04-21</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Destroy line box tree when evacuating the flowthread for multicol.</summary>
+              <pre class=body>
+The life of (in)line boxes is mysterious. They are allowed to
+temporarily point to dead inline children or line box parents. It&#39;s
+also allowed for InlineTextBox objects to be unrooted temporarily,
+apparently. All this should be cleaned up, but for now, just do the
+same in the new multicol code as everywhere else: manually take care
+of deleting the line box tree before destroying the box you&#39;re
+emptying.
+
+BUG=362865
+
+Review URL: <a href="https://codereview.chromium.org/236913002">https://codereview.chromium.org/236913002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172054 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172054&amp;view=revision"><time datetime="2014-04-21">2014-04-21</time></a>
       
         <tr>
           <td>mstensho
