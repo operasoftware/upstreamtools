@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 200, 
+    <a href="#chromium">Chromium</a>: 203, 
   
-    <a href="#blink">Blink</a>: 844, 
+    <a href="#blink">Blink</a>: 850, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,94 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>msimonides
+          <td class=message>
+            <details>
+              <summary>Create CrxInstaller directly in WebstoreInstaller</summary>
+              <pre class=body>
+The WebstoreInstaller needs a way to keep track of extensions being
+downloaded and installed. The installation is handled by CrxInstaller
+but when it used to be created automatically by the
+ChromeDownloadManagerDelegate, the WebstoreInstaller had little control
+over it and needed the CrxInstaller to keep the original_download_url as
+sort of an identifier.
+
+With this change the WebstoreInstaller creates the CrxInstaller itself
+and keeps a pointer to it so there is no more need for
+CrxInstaller::original_download_url().
+
+This is also more robust because URLs are not unique identifiers (there
+could be two installations run simultaneously for one download URL which
+would have led to a crash in the old code).
+
+BUG=360487
+
+Review URL: <a href="https://codereview.chromium.org/226023003">https://codereview.chromium.org/226023003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@265615 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=265615&amp;view=revision"><time datetime="2014-04-23">2014-04-23</time></a>
+      
+        <tr>
+          <td>haavardm
+          <td class=message>
+            <details>
+              <summary>Fix link error when compiling with OpenSSL while using OS certs.</summary>
+              <pre class=body>
+Turn off OpenSSL client auth tests when use_openssl_certs==0.
+
+OS client certifiates other than OpenSSL&#39;s struct x509 are not
+yet supported for the OpenSSL integration.
+
+
+BUG=None
+TEST=None
+
+Review URL: <a href="https://codereview.chromium.org/233133002">https://codereview.chromium.org/233133002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@265610 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=265610&amp;view=revision"><time datetime="2014-04-23">2014-04-23</time></a>
+      
+        <tr>
+          <td>tsniatowski
+          <td class=message>
+            <details>
+              <summary>Fix client certificate regressions on Android &lt; 4.2</summary>
+              <pre class=body>
+<a href="https://codereview.chromium.org/166143002">https://codereview.chromium.org/166143002</a> refactored the code to use the
+AndroidPrivateKey wrapper class rather than Java&#39;s PrivateKey directly,
+but this one line of code was not updated.  As a result, the test will
+always fail and client certificates won&#39;t work on Android versions prior
+to 4.2 (this is a compatibility code path, which is probably why it
+wasn&#39;t caught in testing or review).
+
+In addition, while <a href="https://codereview.chromium.org/182933002">https://codereview.chromium.org/182933002</a> updated the
+code to to fix 64-bit compilation issues, it missed the point that this
+is compatibility code meant to run only on earlier versions of Android
+that aren&#39;t 64-bit safe to begin with. As a result, a method called via
+reflection will return an unexpected integer instead of a long, causing
+the code to fail (even in 32-bit mode).
+
+Fix by conservatively casting the return value through Number instead,
+which will work with both int and long. (The earlier Android versions
+that this code is targeting are still not 64-bit safe, but the
+compatibility code should not cause any compile issues.)
+
+Investigation credit goes out to <a href="mailto:kimn@opera.com">kimn@opera.com</a>.
+
+BUG=360406
+
+Review URL: <a href="https://codereview.chromium.org/246423004">https://codereview.chromium.org/246423004</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@265531 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=265531&amp;view=revision"><time datetime="2014-04-23">2014-04-23</time></a>
       
         <tr>
           <td>mostynb
@@ -3910,6 +3998,135 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add transition types to track interface objects.</summary>
+              <pre class=body>
+With Oilpan enabled, make TextTrack, TextTrackCue, VTTCue, TextTrackList,
+TextTrackCueList, VTTRegion, VTTRegionList and VTTParser garbage
+collected objects.
+
+Along with doing so, the references between these objects are now (strong)
+Member references, and not asymmetric RefPtr+raw pointer pairs needed
+to break cycles. This means these inter-related objects will live
+and die together.
+
+Simpler to reason about, and prevents problematic cases where if a
+&#34;child&#34; object (e.g., a text track cue object) is held onto longer
+than its parent track object (or its track list), you&#39;d be unable to
+keep those &#34;parent&#34; objects alive. The best we can currently do without
+Oilpan strong member references is to clear out the raw back pointers
+upon destructing the parent. And we still do in the non-Oilpan case.
+
+<a href="mailto:R=haraken@chromium.org,ager@chromium.org">R=haraken@chromium.org,ager@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/244493002">https://codereview.chromium.org/244493002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172365 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172365&amp;view=revision"><time datetime="2014-04-23">2014-04-23</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Synchronize attribute before animation ends</summary>
+              <pre class=body>
+After <a href="https://codereview.chromium.org/26390004">https://codereview.chromium.org/26390004</a>, width and height on
+SVGSVGElement are presentation attributes. When they are animated,
+they must be synchronized to the attribute system so that the
+presentation attribute code can rebuild the corresponding style.
+
+Prior to this patch, the last synchronization (back to base value or
+to fill value) never happened because the synchronization happened
+after the animation had ended. No animation means no synchronization.
+This patch adds a final synchronization before the animation ends so
+that the final value is properly synchronized.
+
+BUG=308992,364807
+
+Review URL: <a href="https://codereview.chromium.org/248503004">https://codereview.chromium.org/248503004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172353 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172353&amp;view=revision"><time datetime="2014-04-23">2014-04-23</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Adjust Screen&#39;s derived Oilpan type after r172152</summary>
+              <pre class=body>
+Following r172152, Screen is no longer an EventTarget. Hence we can
+simplify it to derive from GarbageCollectedFinalized only.
+
+R=
+BUG=162827
+
+Review URL: <a href="https://codereview.chromium.org/246253008">https://codereview.chromium.org/246253008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172289 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172289&amp;view=revision"><time datetime="2014-04-22">2014-04-22</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Allow hex-style colors to be parsed by fastParseColor in strict mode</summary>
+              <pre class=body>
+Hex-style colors (#rrggbb, #rgb) are valid in strict mode too so allow
+them to be parsed if |strict| == true.
+This prevents unnecessarily falling back to the Bison parser in
+BisonCSSParser::parseColor in these cases.
+
+BUG=365560
+
+Review URL: <a href="https://codereview.chromium.org/246833005">https://codereview.chromium.org/246833005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172150 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172150&amp;view=revision"><time datetime="2014-04-22">2014-04-22</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move mutation observers to the Oilpan heap.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org,erik.corry@gmail.com">R=haraken@chromium.org,erik.corry@gmail.com</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/236653002">https://codereview.chromium.org/236653002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172148 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172148&amp;view=revision"><time datetime="2014-04-22">2014-04-22</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Pass &#39;name&#39; to value getters in InspectorBackendDispatcher as const char*</summary>
+              <pre class=body>
+This avoids generating code for the literal -&gt; WTF::String implicit
+conversions in all callsites.
+
+Review URL: <a href="https://codereview.chromium.org/247193004">https://codereview.chromium.org/247193004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172143 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172143&amp;view=revision"><time datetime="2014-04-22">2014-04-22</time></a>
       
         <tr>
           <td>ed
