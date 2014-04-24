@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 203, 
+    <a href="#chromium">Chromium</a>: 205, 
   
-    <a href="#blink">Blink</a>: 850, 
+    <a href="#blink">Blink</a>: 856, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,38 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>kjakubowski
+          <td class=message>
+            <details>
+              <summary>Fixed routing id in WebPluginProxy::CheckIfRunInsecureContent.</summary>
+              <pre class=body>
+Wrong routing id in this function may cause a hang on some web-pages (process will wait for a response after sending a message which never gets delivered).
+
+Message PluginHostMsg_CheckIfRunInsecureContent is handled in WebPluginDelegateProxy::OnMessageReceived, so instead of host_render_view_routing_id_, route_id_ should be used (just like in WebPluginProxy::URLRedirectResponse).
+
+Review URL: <a href="https://codereview.chromium.org/246253006">https://codereview.chromium.org/246253006</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@265913 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=265913&amp;view=revision"><time datetime="2014-04-24">2014-04-24</time></a>
+      
+        <tr>
+          <td>elisabets
+          <td class=message>
+            <details>
+              <summary>Added a public function to cancel any fling gestures</summary>
+              <pre class=body>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/227303004">https://codereview.chromium.org/227303004</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@265808 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=265808&amp;view=revision"><time datetime="2014-04-24">2014-04-24</time></a>
       
         <tr>
           <td>msimonides
@@ -3998,6 +4030,127 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Disable the activation behavior of media elements (click to play/pause)</summary>
+              <pre class=body>
+Sites that implement click to play/pause using JavaScript without
+calling preventDefault() have unfortunately surfaced. This is serious
+since at worst the videos are completely unplayable.
+
+A remedy would be <a href="http://crbug.com/269454">http://crbug.com/269454</a> so that no events are fired
+when the native controls are used. Revert the activation behavior for
+now, in order to try again after that has been fixed.
+
+This partially reverts r169812 and r170789.
+
+BUG=354746, 358675
+
+Review URL: <a href="https://codereview.chromium.org/249483002">https://codereview.chromium.org/249483002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172484 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172484&amp;view=revision"><time datetime="2014-04-24">2014-04-24</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove useless calls to DOMImplementation::hasFeature(&#34;XML&#34;, String())</summary>
+              <pre class=body>
+These calls will always return true, so this was dead code.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/254423002">https://codereview.chromium.org/254423002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172483 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172483&amp;view=revision"><time datetime="2014-04-24">2014-04-24</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Uninline JSON{Array,Object}Base methods</summary>
+              <pre class=body>
+Most of these are sizable enough to not want to inline too eagerly. Move
+their definitions from the header-file to the cpp-file while dropping the
+&#39;inline&#39; keyword.
+
+Review URL: <a href="https://codereview.chromium.org/247573009">https://codereview.chromium.org/247573009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172482 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172482&amp;view=revision"><time datetime="2014-04-24">2014-04-24</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add synonyms for collection types over MutationObserver-related types.</summary>
+              <pre class=body>
+With r172148, the MutationObserver collection types got even bulkier.
+Tidy up and shorten by adding some typedefs.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/257513002">https://codereview.chromium.org/257513002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172475 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172475&amp;view=revision"><time datetime="2014-04-24">2014-04-24</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Make &lt;iframe&gt; containing SVG behave as every other &lt;iframe&gt;</summary>
+              <pre class=body>
+When an SVG is contained inside an &lt;iframe&gt;, its dimensions should not
+be part of size calculations of the &lt;iframe&gt;. Neither should the SVG&#39;s
+own width and height be ignored when sizing the &lt;svg&gt; inside the
+&lt;iframe&gt;
+
+The specification waters are murky here but this aligns Blink with
+Firefox and IE.
+
+BUG=308992,364051
+
+Review URL: <a href="https://codereview.chromium.org/246933007">https://codereview.chromium.org/246933007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172467 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172467&amp;view=revision"><time datetime="2014-04-24">2014-04-24</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>document.open(): gracefully handle exception thrown on window.open access.</summary>
+              <pre class=body>
+Check if the &#34;open&#34; property lookup on the global object returned anything
+before attempting to use it.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=365659
+TEST=fast/js/document-open-getter-throw-no-crash.html
+
+Review URL: <a href="https://codereview.chromium.org/249653002">https://codereview.chromium.org/249653002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172407 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172407&amp;view=revision"><time datetime="2014-04-23">2014-04-23</time></a>
       
         <tr>
           <td>sigbjornf
