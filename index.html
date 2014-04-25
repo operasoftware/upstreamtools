@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 205, 
   
-    <a href="#blink">Blink</a>: 856, 
+    <a href="#blink">Blink</a>: 861, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -4030,6 +4030,107 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Avoid markDirty when removing out-of-flow line boxes.</summary>
+              <pre class=body>
+Previously, we did a markDirty(false) on the root line box in order to
+rectify the dirtyness caused by removing out-of-flow line boxes after layout.
+However, there were line boxes between root line box and the out-of-flow box
+that were left dirty. Instead we now avoid calling markDirty in the first
+place and remove the rectification code.
+
+Likewise, avoid markDirty when removing empty text renderers as mentioned in
+the removed comment. I tried to stop removing line boxes for the empty text
+renderers as the FIXME says, but the changed test expectations got too scary.
+
+Alternatively, we would have had to traverse the line box tree until we had
+cleaned all dirty bits.
+
+<a href="mailto:R=leviw@chromium.org,eseidel@chromium.org">R=leviw@chromium.org,eseidel@chromium.org</a>
+BUG=362671
+
+Review URL: <a href="https://codereview.chromium.org/254573006">https://codereview.chromium.org/254573006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172550 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172550&amp;view=revision"><time datetime="2014-04-24">2014-04-24</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove unused methods and variables in RenderFlowThread.</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/253393004">https://codereview.chromium.org/253393004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172549 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172549&amp;view=revision"><time datetime="2014-04-24">2014-04-24</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Preserve identical values for background-size and -webkit-mask-size.</summary>
+              <pre class=body>
+This patch fixes a bug where background-size/-webkit-mask-size would be
+incorrectly serialized to text when the values in the pair are identical.
+Setting &#39;background-size: 100% 100%&#39;, for example, would produce a text
+representation of &#39;background-size: 100%&#39;, which is treated as
+&#39;background-position: 100% auto&#39;.
+
+For -webkit-background-size, &#39;100%&#39; really does mean &#39;100% 100%&#39;, so we
+maintain a policy of &#39;DropIdenticalValues&#39; for this property.
+
+BUG=364962
+TEST=fast/backgrounds/size/parsing-background-sizes-values.html
+     fast/masking/parsing-mask.html
+
+Review URL: <a href="https://codereview.chromium.org/249803002">https://codereview.chromium.org/249803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172548 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172548&amp;view=revision"><time datetime="2014-04-24">2014-04-24</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove RuntimeEnabledFeatures.h includes from a few headers</summary>
+              <pre class=body>
+Changing RuntimeEnabledFeatures.in requires many files to be recompiled.
+Getting rid of these unnecessary includes didn&#39;t help much, but still...
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/250583003">https://codereview.chromium.org/250583003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172527 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172527&amp;view=revision"><time datetime="2014-04-24">2014-04-24</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Measure webkitClearResourceTimings() and webkitSetResourceTimingBufferSize()</summary>
+              <pre class=body>
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/258613003">https://codereview.chromium.org/258613003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172517 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172517&amp;view=revision"><time datetime="2014-04-24">2014-04-24</time></a>
       
         <tr>
           <td>philipj
