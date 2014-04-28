@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 205, 
+    <a href="#chromium">Chromium</a>: 206, 
   
-    <a href="#blink">Blink</a>: 871, 
+    <a href="#blink">Blink</a>: 879, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,19 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>msimonides
+          <td class=message>
+            <details>
+              <summary>Revert LOGs inadvertently added in r265615.</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/256593006">https://codereview.chromium.org/256593006</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@266539 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=266539&amp;view=revision"><time datetime="2014-04-28">2014-04-28</time></a>
       
         <tr>
           <td>kjakubowski
@@ -4030,6 +4043,159 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add use counters for &#34;IE Extensions&#34; to the Event interface</summary>
+              <pre class=body>
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/256093003">https://codereview.chromium.org/256093003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172755 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172755&amp;view=revision"><time datetime="2014-04-28">2014-04-28</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Removed unused matching behavior.</summary>
+              <pre class=body>
+MatchOnlyUserAgentRules used to be used for an incorrect evaluation of REM
+units in media queries. No longer needed.
+
+Review URL: <a href="https://codereview.chromium.org/258023004">https://codereview.chromium.org/258023004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172751 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172751&amp;view=revision"><time datetime="2014-04-28">2014-04-28</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Compact JS resource better by using rjsmin.</summary>
+              <pre class=body>
+We have a jsminimizer (not very good but we have it) in blink so we
+should use it.
+
+BUG=359583
+
+Review URL: <a href="https://codereview.chromium.org/252633006">https://codereview.chromium.org/252633006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172748 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172748&amp;view=revision"><time datetime="2014-04-28">2014-04-28</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Fix TextTrackList event attribute lookups when in a detached state.</summary>
+              <pre class=body>
+The TextTrackList object that is attached to a media element can
+(non Oilpan) live beyond that of its owning media element. The object
+is also an event target, with the events being fired by its owning
+media element. Consequently, the execution context is equal to that
+of its owner element.
+
+Adjust the TextTrackList&#39;s execution context lookup to reflect
+that -- if the owner element is not present, there simply is no
+execution context.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=365260
+
+Review URL: <a href="https://codereview.chromium.org/252843005">https://codereview.chromium.org/252843005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172741 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172741&amp;view=revision"><time datetime="2014-04-28">2014-04-28</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a mediaControlsOverlayPlayButtonEnabled setting</summary>
+              <pre class=body>
+This will be followed by a patch to enable the setting on Android and
+then a patch to actually let the setting enable/disable the button.
+
+BUG=366675
+
+Review URL: <a href="https://codereview.chromium.org/250533003">https://codereview.chromium.org/250533003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172737 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172737&amp;view=revision"><time datetime="2014-04-28">2014-04-28</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Update the &lt;canvas&gt; IDLs wrt &#39;unrestricted&#39;</summary>
+              <pre class=body>
+With the basic support for &#39;unrestricted&#39; from
+<a href="https://codereview.chromium.org/257783003">https://codereview.chromium.org/257783003</a> its possible to turn &#39;float&#39;
+into &#39;unrestricted float&#39; where the spec has the attribute/parameter
+marked that way.
+Also apply &#39;unrestricted&#39; to all the non-standard APIs.
+When the actual support has landed it should be possible to remove any
+explicit throwing as well, so mark such locations with FIXMEs.
+
+BUG=367648
+
+Review URL: <a href="https://codereview.chromium.org/257853002">https://codereview.chromium.org/257853002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172733 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172733&amp;view=revision"><time datetime="2014-04-28">2014-04-28</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Allow fragment navigation from &lt;svg:a&gt;</summary>
+              <pre class=body>
+This essentially reverts the fix for WK bug #19995 while adding a test for
+the (new) expected behavior.
+
+BUG=296071
+
+Review URL: <a href="https://codereview.chromium.org/249313005">https://codereview.chromium.org/249313005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172722 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172722&amp;view=revision"><time datetime="2014-04-28">2014-04-28</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Sync test expectations after r172680.</summary>
+              <pre class=body>
+r172680 retired a set of unsound DOMWindow destructor asserts; remove
+the flaky test expectations that had been added due to them.
+
+R=
+BUG=349528, 356992, 356994, 356995, 357069, 357460, 357461, 366043
+
+Review URL: <a href="https://codereview.chromium.org/258713007">https://codereview.chromium.org/258713007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172715 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172715&amp;view=revision"><time datetime="2014-04-28">2014-04-28</time></a>
       
         <tr>
           <td>sigbjornf
