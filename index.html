@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 206, 
+    <a href="#chromium">Chromium</a>: 207, 
   
-    <a href="#blink">Blink</a>: 879, 
+    <a href="#blink">Blink</a>: 884, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,21 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Enable the mediaControlsOverlayPlayButtonEnabled setting on Android</summary>
+              <pre class=body>
+BUG=366675
+
+Review URL: <a href="https://codereview.chromium.org/257643002">https://codereview.chromium.org/257643002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@266800 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=266800&amp;view=revision"><time datetime="2014-04-29">2014-04-29</time></a>
       
         <tr>
           <td>msimonides
@@ -4043,6 +4058,101 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync VTTCue.align/vertical with spec</summary>
+              <pre class=body>
+<a href="http://dev.w3.org/html5/webvtt/#vttcue-interface">http://dev.w3.org/html5/webvtt/#vttcue-interface</a>
+
+The tests have already been fixed in web-platform-tests:
+<a href="https://github.com/w3c/web-platform-tests/commit/5e4f41f421cc87e8bdd154043e20531cc79ec76d">https://github.com/w3c/web-platform-tests/commit/5e4f41f421cc87e8bdd154043e20531cc79ec76d</a>
+
+BUG= 367555
+
+Review URL: <a href="https://codereview.chromium.org/254833003">https://codereview.chromium.org/254833003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172854 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172854&amp;view=revision"><time datetime="2014-04-29">2014-04-29</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Cleanup: Replace adjustForColumns() / offsetForColumns() with columnOffset().</summary>
+              <pre class=body>
+Most of the former adjustForColumns() call sites now look simpler,
+since they call a method that returns the offset instead of using
+pass-by-reference.
+
+<a href="mailto:R=ojan@chromium.org">R=ojan@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/259993006">https://codereview.chromium.org/259993006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172853 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172853&amp;view=revision"><time datetime="2014-04-29">2014-04-29</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Measure Event.returnValue usage in more detail</summary>
+              <pre class=body>
+As suggested by Boris Zbarsky:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=25002#c2">https://www.w3.org/Bugs/Public/show_bug.cgi?id=25002#c2</a>
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/256773006">https://codereview.chromium.org/256773006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172829 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172829&amp;view=revision"><time datetime="2014-04-29">2014-04-29</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Unship MediaController by making it an experimental runtime-enabled feature</summary>
+              <pre class=body>
+Intent to Unship:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/MVcoNSPs1UQ/LIF-fvu2lwoJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/MVcoNSPs1UQ/LIF-fvu2lwoJ</a>
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/250553006">https://codereview.chromium.org/250553006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172814 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172814&amp;view=revision"><time datetime="2014-04-28">2014-04-28</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Compute and use BiDi information in SVGTextMetricsBuilder</summary>
+              <pre class=body>
+This extends upon <a href="https://codereview.chromium.org/104813005">https://codereview.chromium.org/104813005</a>, by computing
+(and plumbing) directionality information for SVG text elements.
+The method used is similar to that used by
+RenderText::computePreferredLogicalWidths although simplified somewhat.
+
+BUG=366939
+
+Review URL: <a href="https://codereview.chromium.org/253823002">https://codereview.chromium.org/253823002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172799 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172799&amp;view=revision"><time datetime="2014-04-28">2014-04-28</time></a>
       
         <tr>
           <td>philipj
