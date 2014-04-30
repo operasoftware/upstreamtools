@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 207, 
   
-    <a href="#blink">Blink</a>: 884, 
+    <a href="#blink">Blink</a>: 896, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -4058,6 +4058,259 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Remove special cases for viewport units, and add tests for viewport units in calc().</summary>
+              <pre class=body>
+The check for viewport units in AnimatableLength::interpolateTo should
+no longer be necessary now that viewport values are resolved at style
+recalc time.
+
+BUG=137617,168840
+TEST=animations/viewport-unit.html
+     css3/calc/viewport-unit.html
+
+Review URL: <a href="https://codereview.chromium.org/228063006">https://codereview.chromium.org/228063006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172971 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172971&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Add tabindex handling in svg, by reusing code from html.</summary>
+              <pre class=body>
+Besides adding the tabindex attribute also reflect it to the tabIndex IDL attribute on the SVGElement interface.
+
+Spec: <a href="https://svgwg.org/svg2-draft/interact.html#sequential-focus-navigation-and-the-tabindex-attribute">https://svgwg.org/svg2-draft/interact.html#sequential-focus-navigation-and-the-tabindex-attribute</a>
+IDL attribute: <a href="https://svgwg.org/svg2-draft/types.html#__svg__SVGElement__tabIndex">https://svgwg.org/svg2-draft/types.html#__svg__SVGElement__tabIndex</a>
+
+BUG=352175
+
+Review URL: <a href="https://codereview.chromium.org/166163005">https://codereview.chromium.org/166163005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172964 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172964&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Make offsetLeft, offsetTop and getClientRects() behave.</summary>
+              <pre class=body>
+Get rid of mapFromFlowToRegion() and mapLocalToContainer() in
+RenderFlowThread, and reimplement columnOffset() in
+RenderMultiColumnFlowThread instead. This method is already used a lot
+in the engine, but it has up until now only worked with the old multicol
+implementation. Need to add a call from
+RenderBox::offsetFromContainer(), since the one that&#39;s already there
+is for old multicol only and does special stuff.
+
+This incidentally also gets rid of assertion failures in
+RenderGeometryMap when compositing is turned on (what used to be in
+RenderFlowThread::mapLocalToContainer() did the wrong thing if the
+target was that flow thread itself). Re-enable tests that used to
+fail on that assertion.
+
+BUG=367688,364960
+
+Review URL: <a href="https://codereview.chromium.org/256743006">https://codereview.chromium.org/256743006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172961 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172961&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add use counters for a number of non-standard APIs on Window</summary>
+              <pre class=body>
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/260313002">https://codereview.chromium.org/260313002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172955 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172955&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the HTMLMediaElementControllerNotNull use counter</summary>
+              <pre class=body>
+The counter was added to help decide what to do with MediaController.
+Now that MediaController has been unshipped, the use counter won&#39;t
+provide useful data.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/260583002">https://codereview.chromium.org/260583002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172949 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172949&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove unused UseCounter features</summary>
+              <pre class=body>
+These are the bugs in which the enum values became unused:
+
+LegacyNotifications/LegacyTextNotifications:
+<a href="https://code.google.com/p/chromium/issues/detail?id=348019">https://code.google.com/p/chromium/issues/detail?id=348019</a>
+
+LegacyWebAudio/WebAudioStart:
+<a href="https://code.google.com/p/chromium/issues/detail?id=358398">https://code.google.com/p/chromium/issues/detail?id=358398</a>
+
+PrefixedShadowRootConstructor:
+<a href="https://code.google.com/p/chromium/issues/detail?id=242153">https://code.google.com/p/chromium/issues/detail?id=242153</a>
+
+SVGAnimateColorElement:
+<a href="https://code.google.com/p/chromium/issues/detail?id=332839">https://code.google.com/p/chromium/issues/detail?id=332839</a>
+
+PrefixedMediaSourceOpen:
+<a href="https://code.google.com/p/chromium/issues/detail?id=363444">https://code.google.com/p/chromium/issues/detail?id=363444</a>
+
+JavascriptExhaustedMemory:
+<a href="https://code.google.com/p/chromium/issues/detail?id=347724">https://code.google.com/p/chromium/issues/detail?id=347724</a>
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/263503002">https://codereview.chromium.org/263503002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172937 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172937&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>PartitionAlloc: Make in-place realloc() less likely to happen</summary>
+              <pre class=body>
+On direct mapped allocations, we support downsizing realloc() in-place.
+As part of trying to figure out what causes apparent OOM crashes, do this
+only in much more restricted circumstances:
+
+ - Only down to 80 % of the size of the original mapping.
+ - Only down to sizes larger than the maximum bucketed allocation size.
+
+BUG=368406
+
+Review URL: <a href="https://codereview.chromium.org/254103003">https://codereview.chromium.org/254103003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172932 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172932&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Start using the mediaControlsOverlayPlayButtonEnabled setting</summary>
+              <pre class=body>
+BUG=366675
+
+Review URL: <a href="https://codereview.chromium.org/254633002">https://codereview.chromium.org/254633002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172923 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172923&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Gracefully support Navigator Gamepad methods in a detached state.</summary>
+              <pre class=body>
+If the frame and window of a Navigator has been detached (closed), the
+Navigator Gamepad methods must still continue to be available. Arrange
+for that to happen by allowing the Gamepad Navigator supplement to
+be creatable without a frame.
+
+R=
+BUG=355783
+
+Review URL: <a href="https://codereview.chromium.org/256593010">https://codereview.chromium.org/256593010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172920 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172920&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Ensure style resolver is created to avoid crash.</summary>
+              <pre class=body>
+The style resolver may be cleared by DOM modifications in event handlers
+prior to changing the :focus/:active/:hover state. Use ensureStyleResolver()
+instead of just styleResolver() to make sure its created to be able to
+schedule style invalidations.
+
+<a href="mailto:R=esprehn@chromium.org">R=esprehn@chromium.org</a>
+BUG=368017,368026
+
+Review URL: <a href="https://codereview.chromium.org/259213002">https://codereview.chromium.org/259213002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172907 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172907&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Move Window use counters from DOMWindow.cpp to Window.idl where possible</summary>
+              <pre class=body>
+None of these are used internally, but even if they were it&#39;s better to
+measure at the bindings level to only measure Web-exposed usage.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/251043007">https://codereview.chromium.org/251043007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172900 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172900&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: build fix after r172864.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=363569
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/260453002">https://codereview.chromium.org/260453002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172870 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172870&amp;view=revision"><time datetime="2014-04-29">2014-04-29</time></a>
       
         <tr>
           <td>philipj
