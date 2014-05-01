@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 207, 
+    <a href="#chromium">Chromium</a>: 209, 
   
-    <a href="#blink">Blink</a>: 896, 
+    <a href="#blink">Blink</a>: 904, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,44 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>add a linux_use_debug_fission gyp variable for -gsplit-dwarf</summary>
+              <pre class=body>
+Since -gsplit-dwarf breaks some extremely useful build tools (eg ccache and icecc), it deserves its own gyp variable.  This setting replaces the previous hack, setting binutils_version=0.
+
+Background:
+ccache: <a href="https://bugzilla.samba.org/show_bug.cgi?id=10005">https://bugzilla.samba.org/show_bug.cgi?id=10005</a>
+icecc: <a href="https://github.com/icecc/icecream/issues/86">https://github.com/icecc/icecream/issues/86</a>
+
+BUG=352046
+
+Review URL: <a href="https://codereview.chromium.org/226613005">https://codereview.chromium.org/226613005</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@267381 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=267381&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>mmaliszkiewicz
+          <td class=message>
+            <details>
+              <summary>Dragging shouldn&#39;t block interstitial page.</summary>
+              <pre class=body>
+Interstitial page should send DragMsg_SourceSystemDragEnded message
+even if it is not supporting dragging. For similar issue see
+<a href="http://crbug.com/157134">http://crbug.com/157134</a>.
+
+Review URL: <a href="https://codereview.chromium.org/258793004">https://codereview.chromium.org/258793004</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@267237 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=267237&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
       
         <tr>
           <td>philipj
@@ -4058,6 +4096,154 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add use counters for a number of prefixed APIs</summary>
+              <pre class=body>
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/263633002">https://codereview.chromium.org/263633002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173066 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173066&amp;view=revision"><time datetime="2014-05-01">2014-05-01</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add use counters for the hspace/vspace attributes on &lt;table&gt;</summary>
+              <pre class=body>
+There&#39;s also a Gecko bug and a spec bug on this:
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=725646">https://bugzilla.mozilla.org/show_bug.cgi?id=725646</a>
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=23039">https://www.w3.org/Bugs/Public/show_bug.cgi?id=23039</a>
+
+BUG=277080
+
+Review URL: <a href="https://codereview.chromium.org/260713002">https://codereview.chromium.org/260713002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173041 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173041&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove stale FIXME about HTMLPreElement.width type</summary>
+              <pre class=body>
+The HTML spec says &#34;attribute long width&#34;:
+<a href="http://whatwg.org/html#HTMLPreElement-partial">http://whatwg.org/html#HTMLPreElement-partial</a>
+
+In Gecko this IDL attribute is also a number, but in IE11 it&#39;s a string.
+
+BUG=none
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/264713002">https://codereview.chromium.org/264713002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173039 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173039&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Faster and more direct RenderMultiColumnSet::multiColumnFlowThread().</summary>
+              <pre class=body>
+No need to go via the parent block to get the flow thread.
+
+Review URL: <a href="https://codereview.chromium.org/254883003">https://codereview.chromium.org/254883003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173025 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173025&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use deferred style recalc for non-blocking stylesheets.</summary>
+              <pre class=body>
+Non-blocking stylesheets like alternate stylesheets cause a synchronous style
+recalc when finished loading. This is quite the opposite of what one would
+expect as these stylesheets should not contribute to the style at all. We use
+deferred style recalc to batch up the style recalcs instead.
+
+It might be possible to further improve this by not doing a style recalc at
+all, but that requires that we detect when a non-blocking stylesheet becomes
+relevant by another link element setting the preferred stylesheet set to the
+same name as that of an alternate stylesheet already added as non-blocking.
+
+<a href="mailto:R=dglazkov@chromium.org">R=dglazkov@chromium.org</a>
+BUG=368659
+
+Review URL: <a href="https://codereview.chromium.org/260713005">https://codereview.chromium.org/260713005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173012 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173012&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Make CanvasGradient.addColorStop throw TypeError for non-finite offsets</summary>
+              <pre class=body>
+This aligns with the spec and Gecko.
+
+BUG=367648
+
+Review URL: <a href="https://codereview.chromium.org/268443003">https://codereview.chromium.org/268443003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172988 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172988&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Mark HTMLMediaElement/MediaController.duration as unrestricted double</summary>
+              <pre class=body>
+This does not change the generated code, it is only to match the spec:
+<a href="http://whatwg.org/html#htmlmediaelement">http://whatwg.org/html#htmlmediaelement</a>
+<a href="http://whatwg.org/html#mediacontroller">http://whatwg.org/html#mediacontroller</a>
+
+BUG=354298
+
+Review URL: <a href="https://codereview.chromium.org/266473003">https://codereview.chromium.org/266473003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172981 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172981&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Removed unused firstNew parameter for appendAuthorStyleSheets.</summary>
+              <pre class=body>
+lazyAppendAuthorStyleSheets seems to handle cumulative addition of
+stylesheets now.
+
+Review URL: <a href="https://codereview.chromium.org/262643002">https://codereview.chromium.org/262643002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@172980 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=172980&amp;view=revision"><time datetime="2014-04-30">2014-04-30</time></a>
       
         <tr>
           <td>andersr
