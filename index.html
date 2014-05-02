@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 209, 
+    <a href="#chromium">Chromium</a>: 210, 
   
-    <a href="#blink">Blink</a>: 904, 
+    <a href="#blink">Blink</a>: 909, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,29 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>ljagielski
+          <td class=message>
+            <details>
+              <summary>Fix for scoring password autofill candidates:</summary>
+              <pre class=body>
+components/password_manager/core/browser/password_form_manager.cc:
+PasswordFormManager::ScoreResult() - added signon realm matching. This fixes
+a following situation: we have passwords saved in login db for 2 websites:
+&#34;https://service1.somedomain.com/path1&#34; and &#34;https://service2.somedomain.com/path2&#34;,
+using the same username &#34;someusername&#34;. We display login form on
+&#34;https://service1.somedomain.com/path3&#34; and we receive password autofill
+suggestion for &#34;https://service2.somedomain.com/path2&#34;.
+
+BUG=363090
+
+Review URL: <a href="https://codereview.chromium.org/241033002">https://codereview.chromium.org/241033002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@267659 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=267659&amp;view=revision"><time datetime="2014-05-01">2014-05-01</time></a>
       
         <tr>
           <td>mostynb
@@ -4096,6 +4119,119 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Apply TypeChecking to MediaSource IDLs</summary>
+              <pre class=body>
+This allows cleaning up a number of null-checks, since the generated IDL
+code now assures non-null where indicated in the IDL.
+Also drop explicit throwTypeError() in MediaSourceBase::endOfStream, since
+the bindings code would&#39;ve thrown that already.
+Add &#39;unrestricted&#39; to the IDLs where the spec has them.
+
+This updates to match spec. revision ba5233c6654d.
+<a href="https://dvcs.w3.org/hg/html-media/rev/ba5233c6654d">https://dvcs.w3.org/hg/html-media/rev/ba5233c6654d</a>
+...per W3 bug:
+Bug 25347 - [MSE] &#39;nullable&#39; arguments and type conversions and
+INVALID_ACCESS_ERR (vs. WebIDL)
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=25347">https://www.w3.org/Bugs/Public/show_bug.cgi?id=25347</a>
+
+One additional non-specced change is to mark arguments to
+SourceBuffer.remove() as &#39;unrestricted&#39; since that&#39;s the
+semantics they expect.
+
+BUG=368634
+BUG=354298
+
+Review URL: <a href="https://codereview.chromium.org/266453005">https://codereview.chromium.org/266453005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173197 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173197&amp;view=revision"><time datetime="2014-05-02">2014-05-02</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Prevent use of stale list length for to-animations of transform lists</summary>
+              <pre class=body>
+When animating a transform list with a &#34;To animation&#34;, the from value
+will be the currently animated value, and hence the clear() in
+SVGTransformList::calculateAnimatedValue will modify the fromList, and
+clobber the |fromListSize| local variable - leading to an out-of-bounds
+access.
+To avoid this, acquire the reference to the effectiveFrom value earlier -
+before the clear(). Also fold the single use of |fromListSize|.
+
+BUG=368481
+
+Review URL: <a href="https://codereview.chromium.org/261603002">https://codereview.chromium.org/261603002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173192 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173192&amp;view=revision"><time datetime="2014-05-02">2014-05-02</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add use counters for a number of extensions and non-standard APIs</summary>
+              <pre class=body>
+Found by searching for &#34;extension&#34; and &#34;non-standard&#34; in *.idl.
+
+Some APIs which are documented as extension/non-standard in the IDL are
+now standardized, and no counters were added for those, like
+Document.readyState.
+
+Ad-hoc testing was done in Firefox and IE. It looks like the comments
+about IE/Mozilla/WebKit extensions are mostly accurate, and none of the
+touched APIs are implemented in both Firefox and IE.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/268663005">https://codereview.chromium.org/268663005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173180 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173180&amp;view=revision"><time datetime="2014-05-02">2014-05-02</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Use [TypeChecking=Unrestricted] for HTMLMediaElement</summary>
+              <pre class=body>
+BUG=354298
+TBR=acolwell
+
+Review URL: <a href="https://codereview.chromium.org/261783009">https://codereview.chromium.org/261783009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173150 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173150&amp;view=revision"><time datetime="2014-05-02">2014-05-02</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Use [TypeChecking=Unrestricted] for MediaController</summary>
+              <pre class=body>
+BUG=354298
+TBR=acolwell
+
+Review URL: <a href="https://codereview.chromium.org/265743010">https://codereview.chromium.org/265743010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173148 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173148&amp;view=revision"><time datetime="2014-05-02">2014-05-02</time></a>
       
         <tr>
           <td>philipj
