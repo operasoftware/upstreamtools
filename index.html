@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 211, 
+    <a href="#chromium">Chromium</a>: 212, 
   
-    <a href="#blink">Blink</a>: 915, 
+    <a href="#blink">Blink</a>: 921, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,28 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>Don&#39;t add -fuse-ld=gold to cflags</summary>
+              <pre class=body>
+Don&#39;t add -fuse-ld=gold to cflags, since gyp emits ninja files that
+compile with -c, which means the linker is not used, making the flag
+useless.
+
+Removing ignored options makes the compiler commands (slightly)
+easier to read, and can avoid some errors in mismatched icecc setups.
+
+BUG=352046
+
+Review URL: <a href="https://codereview.chromium.org/265263002">https://codereview.chromium.org/265263002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@268377 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=268377&amp;view=revision"><time datetime="2014-05-06">2014-05-06</time></a>
       
         <tr>
           <td>joaoe
@@ -4137,6 +4159,124 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Override repaintTreeAfterLayout for RenderSVGModelObject</summary>
+              <pre class=body>
+RenderSVGModelObject needs to have an overload for said method, because
+it inherits directly from RenderObject.
+Also make sure RenderSVGBlock disables use of LayoutState.
+
+BUG=369486
+
+Review URL: <a href="https://codereview.chromium.org/260963012">https://codereview.chromium.org/260963012</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173372 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173372&amp;view=revision"><time datetime="2014-05-06">2014-05-06</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Tighten error checking from SVGLength parsing</summary>
+              <pre class=body>
+When test-parsing width, height before mapping them to style for
+SVGSVGElement and SVGForeignObjectElement, testing for unknown length
+types is not enough, we must check the exceptionState for errors. This
+fixes a case where we apply &#39;inherit&#39; even though we shouldn&#39;t,
+according to spec.
+
+Also align SVGForeignObjectElement and SVGSVGElement by always passing
+along the original string, not the serialized value. As long as only
+valid lengths are passed along, this shouldn&#39;t change behavior but
+re-generating the string back is unnecessary work.
+
+BUG=370017,308992
+R=pdr
+
+Review URL: <a href="https://codereview.chromium.org/262093007">https://codereview.chromium.org/262093007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173371 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173371&amp;view=revision"><time datetime="2014-05-06">2014-05-06</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Remove the term &#34;balancing&#34; from some member names.</summary>
+              <pre class=body>
+This is in line with what it&#39;s called in RenderMultiColumnFlowThread()
+(recalculateColumnHeights()), and soon (once we have support for multiple
+column sets) this isn&#39;t going to be strictly about balancing anyway.
+
+Review URL: <a href="https://codereview.chromium.org/264773018">https://codereview.chromium.org/264773018</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173368 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173368&amp;view=revision"><time datetime="2014-05-06">2014-05-06</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove now-unused WorkerThread ExecutionContextTask.</summary>
+              <pre class=body>
+Follow up r171960&#39;s removal of unused code and also delete now-unused
+task.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/264833007">https://codereview.chromium.org/264833007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173366 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173366&amp;view=revision"><time datetime="2014-05-06">2014-05-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add use counters for VTTCue use/rendering and its attributes</summary>
+              <pre class=body>
+Having some data about how often WebVTT is used/rendered and which cue
+attributes are mostly commonly used could prove valuable in spec
+discussions, and is if nothing else interesting to know.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/263213002">https://codereview.chromium.org/263213002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173330 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173330&amp;view=revision"><time datetime="2014-05-05">2014-05-05</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Populate the name-to-pseudo map lazily</summary>
+              <pre class=body>
+Sort pseudoTypeMap[] to allow using binary search to look up the name.
+
+BUG=365613
+
+Review URL: <a href="https://codereview.chromium.org/256563002">https://codereview.chromium.org/256563002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173317 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173317&amp;view=revision"><time datetime="2014-05-05">2014-05-05</time></a>
       
         <tr>
           <td>rune
