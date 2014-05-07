@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 212, 
   
-    <a href="#blink">Blink</a>: 921, 
+    <a href="#blink">Blink</a>: 926, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -4159,6 +4159,92 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove CSS media features -webkit-transform-2d, -webkit-animation and -webkit-view-mode</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/lYZC-Xqf_Gw/D6Or7mZHwr4J">https://groups.google.com/a/chromium.org/d/msg/blink-dev/lYZC-Xqf_Gw/D6Or7mZHwr4J</a>
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/269053005">https://codereview.chromium.org/269053005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173494 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173494&amp;view=revision"><time datetime="2014-05-07">2014-05-07</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove RenderFlowThread::initialLogicalWidth().</summary>
+              <pre class=body>
+Re-implement updateLogicalWidth() in RenderMultiColumnFlowThread instead.
+
+Review URL: <a href="https://codereview.chromium.org/266973005">https://codereview.chromium.org/266973005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173425 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173425&amp;view=revision"><time datetime="2014-05-06">2014-05-06</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add early-out to RenderSVG{Block,ModelObject}::repaintTreeAfterLayout</summary>
+              <pre class=body>
+Follow-up to <a href="https://codereview.chromium.org/264963004/">https://codereview.chromium.org/264963004/</a> and
+<a href="https://codereview.chromium.org/260963012/">https://codereview.chromium.org/260963012/</a>.
+
+BUG=369486, 320139
+
+Review URL: <a href="https://codereview.chromium.org/263393003">https://codereview.chromium.org/263393003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173415 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173415&amp;view=revision"><time datetime="2014-05-06">2014-05-06</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Remove RenderRegionSet.</summary>
+              <pre class=body>
+It only did one thing, and that one thing can be done directly by
+RenderMultiColumnSet instead.
+
+Review URL: <a href="https://codereview.chromium.org/267903003">https://codereview.chromium.org/267903003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173411 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173411&amp;view=revision"><time datetime="2014-05-06">2014-05-06</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix gc_tracing compilation after r173313.</summary>
+              <pre class=body>
+Expand the GCInfos for ListHashSet&lt;&gt; and ListHashSetNode&lt;&gt; to include
+the required class name string when compiling with GC_TRACING enabled.
+
+<a href="mailto:R=ager@chromium.org,haraken@chromium.org">R=ager@chromium.org,haraken@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/271443004">https://codereview.chromium.org/271443004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173396 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173396&amp;view=revision"><time datetime="2014-05-06">2014-05-06</time></a>
       
         <tr>
           <td>fs
