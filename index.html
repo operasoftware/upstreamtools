@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 212, 
+    <a href="#chromium">Chromium</a>: 214, 
   
-    <a href="#blink">Blink</a>: 926, 
+    <a href="#blink">Blink</a>: 930, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,46 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>joaoe
+          <td class=message>
+            <details>
+              <summary>Fixed uncompressing files with wrong uncompressed size set.</summary>
+              <pre class=body>
+A zip file carries some metadata for each archived file, including the total
+uncompressed size. If that size was incorrect, therefore the compressed file
+being different in size when unpacking, the minizip code would fail with a
+CRC error. Every other zip utility handles these files, so should the minizip
+code for safety sake.
+
+BUG=359516
+
+Review URL: <a href="https://codereview.chromium.org/222243003">https://codereview.chromium.org/222243003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@268940 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=268940&amp;view=revision"><time datetime="2014-05-07">2014-05-07</time></a>
+      
+        <tr>
+          <td>haavardm
+          <td class=message>
+            <details>
+              <summary>Fix link error when building component build on OS X with OpenSSL.</summary>
+              <pre class=body>
+Don&#39;t build base/keygen_handler_openssl.cc when using
+OpenSSL while leaving certificate handling to the OS. Keygen handler
+will in these cases be implemented in OS specific code.
+
+BUG=None
+
+Review URL: <a href="https://codereview.chromium.org/267133004">https://codereview.chromium.org/267133004</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@268808 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=268808&amp;view=revision"><time datetime="2014-05-07">2014-05-07</time></a>
       
         <tr>
           <td>mostynb
@@ -4159,6 +4199,77 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>DOMImplementation::document(): remove redundant get().</summary>
+              <pre class=body>
+Follow up r173611 and remove a redundant use of get() in Document accessor.
+
+<a href="mailto:R=ager@chromium.org">R=ager@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/278573003">https://codereview.chromium.org/278573003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173640 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173640&amp;view=revision"><time datetime="2014-05-08">2014-05-08</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move node/element rare data objects to the heap.</summary>
+              <pre class=body>
+Turn the rare data objects for Node and Elements into garbage
+collected objects.
+
+<a href="mailto:R=haraken@chromium.org,zerny@chromium.org,erik.corry@gmail.com">R=haraken@chromium.org,zerny@chromium.org,erik.corry@gmail.com</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/265793017">https://codereview.chromium.org/265793017</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173615 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173615&amp;view=revision"><time datetime="2014-05-08">2014-05-08</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move DOMImplementation to the heap.</summary>
+              <pre class=body>
+<a href="mailto:R=tkent@chromium.org,haraken@chromium.org">R=tkent@chromium.org,haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/271673005">https://codereview.chromium.org/271673005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173611 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173611&amp;view=revision"><time datetime="2014-05-08">2014-05-08</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Make fast/multicol/overflow-content.html pass in the new implementation.</summary>
+              <pre class=body>
+Insert a break at end of content on our own in the multicol code, to make sure
+that overflow is properly accounted for.
+
+BUG=369954
+
+Review URL: <a href="https://codereview.chromium.org/263083009">https://codereview.chromium.org/263083009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173531 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173531&amp;view=revision"><time datetime="2014-05-07">2014-05-07</time></a>
       
         <tr>
           <td>philipj
