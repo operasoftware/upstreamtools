@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 214, 
+    <a href="#chromium">Chromium</a>: 217, 
   
-    <a href="#blink">Blink</a>: 931, 
+    <a href="#blink">Blink</a>: 934, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,70 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Missing OS guard before including android header.</summary>
+              <pre class=body>
+An Android header was unconditionally included. It works as long as the
+header doesn&#39;t use any Android specific code but it&#39;s doomed to
+break something eventually.
+
+BUG=None
+
+Review URL: <a href="https://codereview.chromium.org/267323008">https://codereview.chromium.org/267323008</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@269430 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=269430&amp;view=revision"><time datetime="2014-05-09">2014-05-09</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>Ensure that _GNU_SOURCE is defined early enough</summary>
+              <pre class=body>
+This style cleanup broke some versions of glibc that include fcntl.h from
+another header before it is explicitly included:
+<a href="https://codereview.chromium.org/236083002/">https://codereview.chromium.org/236083002/</a>
+
+We need _GNU_SOURCE defined before the first time fcntl.h is included since
+we use the linux-specific O_DIRECTORY extension.
+
+Thanks to <a href="mailto:johan_e@opera.com">johan_e@opera.com</a> for helping track this down.
+
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/266913019">https://codereview.chromium.org/266913019</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@269419 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=269419&amp;view=revision"><time datetime="2014-05-09">2014-05-09</time></a>
+      
+        <tr>
+          <td>marcing
+          <td class=message>
+            <details>
+              <summary>Create copy of context record before passing it to StackWalk64</summary>
+              <pre class=body>
+StackWalk64 may modify EXCEPTION_POINTERS struct that is passed
+to it from constructor of StackTrace.
+In the case of StackDumpExceptionFilter the struct that is passed
+to constructor of StackTrace may be later passed to other (chained)
+exception filter(s), so it shouldn&#39;t be modified.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/267463003">https://codereview.chromium.org/267463003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@269296 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=269296&amp;view=revision"><time datetime="2014-05-09">2014-05-09</time></a>
       
         <tr>
           <td>joaoe
@@ -4199,6 +4263,59 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Update sets&#39; flow thread portion rectangles properly.</summary>
+              <pre class=body>
+logicalHeightOfAllFlowThreadContent() was wrong. This still doesn&#39;t matter
+much, but it will once we have support for multiple sets (column-span:all).
+
+Review URL: <a href="https://codereview.chromium.org/265293005">https://codereview.chromium.org/265293005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173769 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173769&amp;view=revision"><time datetime="2014-05-09">2014-05-09</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Store and propagate a list of applied text decorations.</summary>
+              <pre class=body>
+This is preparatory work to fix an issue with style recalculation of text
+decorations (350840), and to implement multiple text decorations per line.
+
+In a future patch, the color and style of each decoration will be added to
+the AppliedTextDecoration objects in order to fix 350840.
+
+BUG=350840, 315271
+TEST=Covered by existing tests
+
+Review URL: <a href="https://codereview.chromium.org/272443002">https://codereview.chromium.org/272443002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173761 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173761&amp;view=revision"><time datetime="2014-05-09">2014-05-09</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG2] overflow should be ignored in img and background-image.</summary>
+              <pre class=body>
+BUG=371250
+
+Review URL: <a href="https://codereview.chromium.org/277563004">https://codereview.chromium.org/277563004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173752 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173752&amp;view=revision"><time datetime="2014-05-09">2014-05-09</time></a>
       
         <tr>
           <td>sigbjornf
