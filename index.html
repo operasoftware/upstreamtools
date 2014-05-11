@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 217, 
   
-    <a href="#blink">Blink</a>: 934, 
+    <a href="#blink">Blink</a>: 935, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -4263,6 +4263,51 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Improve balancing for border/padding and empty block content.</summary>
+              <pre class=body>
+In a balancing pass, when a break occurs at borders, padding or empty block
+content (the trailing part of a block that has no lines or other content),
+we need to report the correct amount of space shortage, so that the balancer
+doesn&#39;t over-stretch the columns for the next balaning pass.
+
+This fixes the actual failure reported by fast/multicol/border-padding-pagination.html ,
+but rendering will still differ, because the new balancer is more correct
+and causes shorter columns than before. Added new tests that will replace
+border-padding-pagination.html for new multicol.
+
+Breaks triggered by lines are already handled just fine in
+adjustLinePositionForPagination(). What we need to handle in
+adjustBlockChildForPagination() is everything that has to do with the
+child block itself.
+
+If a block is unbreakable and crosses a column/page boundary (and
+therefore is moved as a whole to the next column/page), report space
+shortage.
+
+After applying pagination struts, if a block is breakable and crosses
+yet another column/page boundary, report the space occupied in the next
+columns/pages as shortage. We need to report something if all breaks
+occur inside freely breakable block content, or the balancer will have
+no clue.
+
+If none of the above is true, and the child is at the top of a
+column/page, report the total height of the child, in case that turns
+out to be the smallest piece of content that causes a break. This also
+needs to take place after having applied pagination struts.
+
+BUG=361501
+
+Review URL: <a href="https://codereview.chromium.org/261383004">https://codereview.chromium.org/261383004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173826 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173826&amp;view=revision"><time datetime="2014-05-10">2014-05-10</time></a>
       
         <tr>
           <td>mstensho
