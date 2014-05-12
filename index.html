@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 217, 
   
-    <a href="#blink">Blink</a>: 935, 
+    <a href="#blink">Blink</a>: 939, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -4263,6 +4263,88 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Use the term &#34;content run&#34; in favor of &#34;forced break&#34;.</summary>
+              <pre class=body>
+You get one content run even without any forced breaks.
+
+Documentation improvements. In particular for flow thread layout and
+column balancing.
+
+Also don&#39;t assume that a column set starts at flow thread block offset 0.
+This is only true for the first set. So far we only have one set, but this
+will soon change, with the introduction of support for column-span:all.
+Check with the flow thread portion rectangle to get the correct start offset.
+
+Review URL: <a href="https://codereview.chromium.org/267373005">https://codereview.chromium.org/267373005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173879 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173879&amp;view=revision"><time datetime="2014-05-12">2014-05-12</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Tighten the asserts in VTTCue::calculateDisplayParameters()</summary>
+              <pre class=body>
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/276183002">https://codereview.chromium.org/276183002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173842 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173842&amp;view=revision"><time datetime="2014-05-11">2014-05-11</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a use counter for VTTCue right-to-left rendering</summary>
+              <pre class=body>
+The WebVTT position model has been changed:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=20037">https://www.w3.org/Bugs/Public/show_bug.cgi?id=20037</a>
+
+In order to ship this (or any alternative) we need to know that it
+doesn&#39;t break too much, and right-to-left text used to flip the
+interpretation of the position setting, but doesn&#39;t any longer.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/276193002">https://codereview.chromium.org/276193002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173841 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173841&amp;view=revision"><time datetime="2014-05-11">2014-05-11</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Implement navigator.sendBeacon()</summary>
+              <pre class=body>
+This provides support for the Beacon API,
+
+ <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/Beacon/Overview.html">https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/Beacon/Overview.html</a>
+
+allowing async transmission of data using navigator.sendBeacon().
+
+<a href="mailto:R=abarth@chromium.org,mkwst@chromium.org">R=abarth@chromium.org,mkwst@chromium.org</a>
+BUG=360603
+
+Review URL: <a href="https://codereview.chromium.org/232053005">https://codereview.chromium.org/232053005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@173837 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=173837&amp;view=revision"><time datetime="2014-05-11">2014-05-11</time></a>
       
         <tr>
           <td>mstensho
