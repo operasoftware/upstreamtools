@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 219, 
+    <a href="#chromium">Chromium</a>: 220, 
   
-    <a href="#blink">Blink</a>: 939, 
+    <a href="#blink">Blink</a>: 940, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,21 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Fix policy_component shared_library link without configuration_policy</summary>
+              <pre class=body>
+It should depend on url_matcher as url_blacklist_manager uses it.
+
+Review URL: <a href="https://codereview.chromium.org/284493002">https://codereview.chromium.org/284493002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@270410 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=270410&amp;view=revision"><time datetime="2014-05-14">2014-05-14</time></a>
       
         <tr>
           <td>jiangj
@@ -4291,6 +4306,33 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Don&#39;t use pageLogicalHeight() to resolve percentage values in subframes</summary>
+              <pre class=body>
+In printing, pageLogicalHeight() is set to zero for all subframes
+which makes is a bad candidate for resolving percentages against. For
+subframes a better candidate would be the view height, as for
+non-printing documents.
+
+The RenderView knows when to layout in printing mode (top-level
+document) and when not (subframes), so move
+viewLogicalHeightForPercentages() to the RenderView and use its
+knowledge to return the view height for subframes in printing to
+resolve percentages against.
+
+BUG=370948
+R=ojan
+
+Review URL: <a href="https://codereview.chromium.org/273043002">https://codereview.chromium.org/273043002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174051 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174051&amp;view=revision"><time datetime="2014-05-14">2014-05-14</time></a>
       
         <tr>
           <td>mstensho
