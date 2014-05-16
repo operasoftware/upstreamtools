@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 220, 
+    <a href="#chromium">Chromium</a>: 222, 
   
-    <a href="#blink">Blink</a>: 940, 
+    <a href="#blink">Blink</a>: 944, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,67 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jadahl
+          <td class=message>
+            <details>
+              <summary>gpu: Assert that FencedAllocator is empty in destructor</summary>
+              <pre class=body>
+With the commit &#34;gpu: Reuse transfer buffers more aggresively&#34; mapped
+memory is free:ed on lost context. This means that we can reinstate the
+DCHECKs in the FencedAllocator destructor that checks that all blocks
+have been free:ed by their owner.
+
+Tests that didn&#39;t explicitly free mapped memory now do so, and one test
+that tested that leaking was OK has been removed.
+
+BUG=328808
+
+Review URL: <a href="https://codereview.chromium.org/282513003">https://codereview.chromium.org/282513003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@270991 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=270991&amp;view=revision"><time datetime="2014-05-16">2014-05-16</time></a>
+      
+        <tr>
+          <td>haavardm
+          <td class=message>
+            <details>
+              <summary>Move channel id tests up from OpenSSL and update channelid version.</summary>
+              <pre class=body>
+NSS (and soon OpenSSL) runs the new ChannelID version 30032. This patch
+moves the simple ChannelID tests from OpenSSL unittests to the general
+ssl_client_socket_unittest.cc and updates the channelid version in
+TLS Lite.
+
+TLS Lite is not updated with ChannelId resumption support since
+ChannelID signature checking is not yet implemented in TLS Lite.
+
+ChannelID Signature checks, along with ChannelId resumption support
+and  ChannelID resumption tests should be implemented in further work.
+
+This CL will also roll third_party/openssl:
+
+OpenSSL: rolls DEPS 267648-&gt;269063 
+
+Takes in following change:
+
+r269063 | <a href="mailto:haavardm@opera.com">haavardm@opera.com</a> | 2014-05-08 17:48:32 +0200 (to., 08 mai 2014) | 8 lines
+
+New tls channel id version for OpenSSL
+
+New tls channel id version extracted from patch 0015-channelid.patch attached to <a href="http://crbug.com/366961">http://crbug.com/366961</a>.
+
+BUG=366961
+
+Review URL: <a href="https://codereview.chromium.org/263213005">https://codereview.chromium.org/263213005</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@270683 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=270683&amp;view=revision"><time datetime="2014-05-15">2014-05-15</time></a>
       
         <tr>
           <td>jiangj
@@ -4306,6 +4367,79 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Remove unnecessary NULL check in DOMWindow::top()</summary>
+              <pre class=body>
+<a href="https://chromium.googlesource.com/chromium/blink/+/c07c40ae84d58b96cb44ad6c03d89a1b5438470b">https://chromium.googlesource.com/chromium/blink/+/c07c40ae84d58b96cb44ad6c03d89a1b5438470b</a>
+
+The use of |page| in DOMWindow::top() was replaced by going to the
+frame tree, but the NULL check for |page| was not removed. Remove it.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/289983004">https://codereview.chromium.org/289983004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174148 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174148&amp;view=revision"><time datetime="2014-05-16">2014-05-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove x-webkit-speech and x-webkit-grammar from HTMLAttributeNames.in</summary>
+              <pre class=body>
+These are no longer used.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/290593002">https://codereview.chromium.org/290593002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174144 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174144&amp;view=revision"><time datetime="2014-05-16">2014-05-16</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Guard against zero or negative space shortage.</summary>
+              <pre class=body>
+We need positive values in order to get anywhere when stretching columns
+in order to balance them, and we may get called with zero or negative
+values when there&#39;s zero-height content at column boundaries, or when we
+set an early break in order to honor widows in the next column.
+
+BUG=369985
+
+Review URL: <a href="https://codereview.chromium.org/263203003">https://codereview.chromium.org/263203003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174088 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174088&amp;view=revision"><time datetime="2014-05-15">2014-05-15</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add transition types to shadow DOM supporting objects.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org,ager@chromium.org">R=haraken@chromium.org,ager@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/277213004">https://codereview.chromium.org/277213004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174084 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174084&amp;view=revision"><time datetime="2014-05-15">2014-05-15</time></a>
       
         <tr>
           <td>davve
