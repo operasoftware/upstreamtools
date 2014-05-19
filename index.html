@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 222, 
   
-    <a href="#blink">Blink</a>: 944, 
+    <a href="#blink">Blink</a>: 953, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -4367,6 +4367,198 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Don&#39;t pretend that text-decoration is a shorthand in computed style.</summary>
+              <pre class=body>
+Even when the appropriate runtime flag isn&#39;t enabled, we still return
+the shorthand version of the computed style for &#39;text-decoration&#39;. For
+example, for &#39;text-decoration: underline&#39;, we return the computed style
+&#39;underline solid rgb(0, 0, 0)&#39;, which is correct only when the runtime
+flag is on.
+
+BUG=367091,342126
+
+Review URL: <a href="https://codereview.chromium.org/282303007">https://codereview.chromium.org/282303007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174269 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174269&amp;view=revision"><time datetime="2014-05-19">2014-05-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move Node traversal objects to the heap.</summary>
+              <pre class=body>
+Add Oilpan transition types to NodeIterator, TreeIterator and
+NodeFilter objects.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/285213003">https://codereview.chromium.org/285213003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174262 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174262&amp;view=revision"><time datetime="2014-05-19">2014-05-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix failing animation unit tests.</summary>
+              <pre class=body>
+Address three failures:
+
+ * AnimationTest.ElementDestructorClearsAnimationTarget
+   Animation objects now die with their target element, hence testing
+   for it separately being destructed doesn&#39;t make sense in an
+   Oilpan setting.
+ * AnimationStackTest.ForwardsFillDiscarding
+   In order to be able to accurately sample the number of effects on
+   the stack, explicitly GC before querying.
+ * AnimationPlayerTest.AttachedAnimationPlayers
+   Use a persistent to correctly hold on to the test element. If not,
+   the final GC will destruct it also &amp; making any further testing
+   over it invalid.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/287343003">https://codereview.chromium.org/287343003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174261 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174261&amp;view=revision"><time datetime="2014-05-19">2014-05-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add NeedsAdjustAndMark&lt;T&gt; unit test.</summary>
+              <pre class=body>
+Basic test coverage for the NeedsAdjustAndMark&lt;T&gt; template.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/293543003">https://codereview.chromium.org/293543003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174258 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174258&amp;view=revision"><time datetime="2014-05-19">2014-05-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>For media element fetches, remove user:pass components always.</summary>
+              <pre class=body>
+The compatible behavior for media element fetches is to ignore any
+authorization information embedded in the URL. Insist on that by removing
+the user and password components before starting the fetch.
+
+Not doing so currently asserts in DocumentThreadableLoader::loadRequest(),
+which expects that portion of the URL to have been processed already,
+and removed. Satisfy that expectation here.
+
+<a href="mailto:R=japhet@chromium.org,acolwell@chromium.org,philipj@opera.com">R=japhet@chromium.org,acolwell@chromium.org,philipj@opera.com</a>
+BUG=357269
+
+Review URL: <a href="https://codereview.chromium.org/286993008">https://codereview.chromium.org/286993008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174248 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174248&amp;view=revision"><time datetime="2014-05-19">2014-05-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r174194.</summary>
+              <pre class=body>
+Fix compilation errors (unused variable warnings-as-errors) in
+AnimationTest.cpp
+
+R=
+BUG=340522
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/293473003">https://codereview.chromium.org/293473003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174234 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174234&amp;view=revision"><time datetime="2014-05-18">2014-05-18</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use RecalcStyleDeferred for printing.</summary>
+              <pre class=body>
+Style will be recalculated as a pre-layout step regardlessly.
+The goal is to get rid of all RecalcStyleImmediately.
+
+BUG=374162
+
+Review URL: <a href="https://codereview.chromium.org/283333005">https://codereview.chromium.org/283333005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174198 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174198&amp;view=revision"><time datetime="2014-05-16">2014-05-16</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG2] css &#39;outline&#39; property should apply to svg elements</summary>
+              <pre class=body>
+The &#39;outline&#39; property was only partially working in svg before this patch,
+this makes it work on text and text content child elements too.
+
+This makes SVG render the outlines as part of the foreground paint phase.
+
+Partly based on Florin Malita&#39;s webkit patch <a href="https://bugs.webkit.org/show_bug.cgi?id=113666#c12">https://bugs.webkit.org/show_bug.cgi?id=113666#c12</a>.
+
+BUG=369473
+
+Review URL: <a href="https://codereview.chromium.org/261773008">https://codereview.chromium.org/261773008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174186 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174186&amp;view=revision"><time datetime="2014-05-16">2014-05-16</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: remove consts when checking GC-class convertibility.</summary>
+              <pre class=body>
+Achieve the desired conversion outcomes when working with const types,
+explicitly removing &#34;const&#34; qualifiers throughout before testing if
+class types can be converted to GarbageCollected{Mixin,Finalized} etc.
+
+<a href="mailto:R=haraken@chromium.org,erik.corry@gmail.com">R=haraken@chromium.org,erik.corry@gmail.com</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/282263006">https://codereview.chromium.org/282263006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174175 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174175&amp;view=revision"><time datetime="2014-05-16">2014-05-16</time></a>
       
         <tr>
           <td>davve
