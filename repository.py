@@ -1,9 +1,5 @@
 import os
 import subprocess
-import datetime
-import time
-
-from collections import namedtuple
 
 class InvalidStateError(Exception): pass
 
