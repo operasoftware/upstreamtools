@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 222, 
   
-    <a href="#blink">Blink</a>: 956, 
+    <a href="#blink">Blink</a>: 962, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -4367,6 +4367,134 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move LiveNodeList collections to the heap.</summary>
+              <pre class=body>
+Move LiveNodeListBase and all collection objects based on it (NodeLists
+and HTMLCollections) to the heap.
+
+<a href="mailto:R=haraken@chromium.org,tkent@chromium.org,ager@chromium.org,erik.corry@gmail.com">R=haraken@chromium.org,tkent@chromium.org,ager@chromium.org,erik.corry@gmail.com</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/280123002">https://codereview.chromium.org/280123002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174377 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174377&amp;view=revision"><time datetime="2014-05-20">2014-05-20</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Replace CursorList with RefVector&lt;CursorData&gt;.</summary>
+              <pre class=body>
+We recently added a template in wtf/ for any case where we want to
+store a Vector in a RefPtr. The list of CursorData objects should be
+implemented by re-using that template, rather than with its own special
+class which does exactly the same thing.
+
+I added RefVector::at, because it&#39;s used by existing CursorList-code.
+(See CSSComputedStyleDeclaration:1875).
+
+Review URL: <a href="https://codereview.chromium.org/291863003">https://codereview.chromium.org/291863003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174367 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174367&amp;view=revision"><time datetime="2014-05-20">2014-05-20</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use deferred style recalc for xml/xsl.</summary>
+              <pre class=body>
+There should be no need to do synchronous style recalcs when finishing XML
+parsing, regardless of the presence of XSL stylesheets.
+
+BUG=374162
+
+Review URL: <a href="https://codereview.chromium.org/292743002">https://codereview.chromium.org/292743002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174343 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174343&amp;view=revision"><time datetime="2014-05-20">2014-05-20</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: simplify ImageBitmapTest heap clearing.</summary>
+              <pre class=body>
+For ImageBitmapLiveResourcePriority, use a Persistent to hold onto a
+local ImageBitmap object rather than set up and rely on a full stack
+scan.
+
+<a href="mailto:R=wibling@chromium.org,haraken@chromium.org,ager@chromium.org">R=wibling@chromium.org,haraken@chromium.org,ager@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/292763002">https://codereview.chromium.org/292763002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174302 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174302&amp;view=revision"><time datetime="2014-05-19">2014-05-19</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Fix incorrect style recalculation of text-decoration properties.</summary>
+              <pre class=body>
+This change adds the color and style of each decoration to the
+AppliedTextDecoration class. This is needed to make RenderStyle
+diffs compute correctly when the color or style of a decoration is changed.
+
+The color-resolving code in RenderObject has been moved to RenderStyle to
+enable use from both RenderStyle and RenderObject.
+
+This patch also makes it possible to implement multiple decorations
+on the same line. (A future patch).
+
+BUG=350840, 315271
+TEST=text-decoration-color-recalc.html
+     text-decoration-style-recalc.html
+     text-decoration-line-recalc.html
+
+Review URL: <a href="https://codereview.chromium.org/280503003">https://codereview.chromium.org/280503003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174285 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174285&amp;view=revision"><time datetime="2014-05-19">2014-05-19</time></a>
+      
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Use forward declaration instead of include for NPObject</summary>
+              <pre class=body>
+All we use is just a NPObject* here, there is no need to include
+the entire third_party/npapi/bindings/npruntime.h file, plus that
+file includes third_party/npapi/bindings/npapi.h which further
+includes system gl.h in OS X, which contains a GLES2TexImage2D
+definition that conflicts with the definition in
+gpu/GLES2/gl2chromium_autogen.h. Similar issues were fixed in CL
+<a href="https://codereview.chromium.org/11794019/">https://codereview.chromium.org/11794019/</a> We will hit this issue
+when trying to include V8NPObject.h along with ChromeClientImpl.h.
+
+Review URL: <a href="https://codereview.chromium.org/289273003">https://codereview.chromium.org/289273003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174283 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174283&amp;view=revision"><time datetime="2014-05-19">2014-05-19</time></a>
       
         <tr>
           <td>sigbjornf
