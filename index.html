@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 222, 
+    <a href="#chromium">Chromium</a>: 223, 
   
-    <a href="#blink">Blink</a>: 962, 
+    <a href="#blink">Blink</a>: 967, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,23 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>treat all whitespace as a delimiter in GYP_DEFINES</summary>
+              <pre class=body>
+gyp itself treats any whitespace as a delimiter in GYP_DEFINES, this script should behave the same.
+
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/290173005">https://codereview.chromium.org/290173005</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@271851 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=271851&amp;view=revision"><time datetime="2014-05-21">2014-05-21</time></a>
       
         <tr>
           <td>jadahl
@@ -4367,6 +4384,97 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: make DocumentFragment a heap allocated object.</summary>
+              <pre class=body>
+This relands r174382, as it was reverted while investigating a test failure.
+
+<a href="mailto:R=wibling@chromium.org,zerny@chromium.org,haraken@chromium.org">R=wibling@chromium.org,zerny@chromium.org,haraken@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/289273002">https://codereview.chromium.org/289273002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174443 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174443&amp;view=revision"><time datetime="2014-05-21">2014-05-21</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Let updateLayout do style recalc instead of styleResolverChanged.</summary>
+              <pre class=body>
+In updateLayoutIgnorePendingStylesheets, updateLayout will make sure
+updateRenderTreeIfNeeded is called. Hence, we can use deferred style recalc
+for styleResolverChanged.
+
+<a href="mailto:R=ojan@chromium.org">R=ojan@chromium.org</a>
+BUG=374162
+
+Review URL: <a href="https://codereview.chromium.org/287053003">https://codereview.chromium.org/287053003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174429 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174429&amp;view=revision"><time datetime="2014-05-20">2014-05-20</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Defer style recalc when inserting extension stylesheets.</summary>
+              <pre class=body>
+StyleEngine::addAuthorSheet, used when injecting stylesheets from extensions,
+was doing a synchronous style recalc. Adding two stylesheets in a row would
+cause two style recalcs. Do a deferred style recalc instead.
+
+BUG=374901,374162
+
+Review URL: <a href="https://codereview.chromium.org/290563007">https://codereview.chromium.org/290563007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174424 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174424&amp;view=revision"><time datetime="2014-05-20">2014-05-20</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: make DocumentFragment a heap allocated object.</summary>
+              <pre class=body>
+<a href="mailto:R=wibling@chromium.org,zerny@chromium.org,haraken@chromium.org">R=wibling@chromium.org,zerny@chromium.org,haraken@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/289273002">https://codereview.chromium.org/289273002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174382 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174382&amp;view=revision"><time datetime="2014-05-20">2014-05-20</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>navigator.vibrate() crash avoidance when in a detached state.</summary>
+              <pre class=body>
+If the frame isn&#39;t present, gracefully return.
+
+<a href="mailto:R=mvanouwerkerk@chromium.org,haraken@chromium.org">R=mvanouwerkerk@chromium.org,haraken@chromium.org</a>
+BUG=375004
+
+Review URL: <a href="https://codereview.chromium.org/298683002">https://codereview.chromium.org/298683002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174380 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174380&amp;view=revision"><time datetime="2014-05-20">2014-05-20</time></a>
       
         <tr>
           <td>sigbjornf
