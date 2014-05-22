@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 223, 
+    <a href="#chromium">Chromium</a>: 224, 
   
-    <a href="#blink">Blink</a>: 967, 
+    <a href="#blink">Blink</a>: 972, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,33 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Move favicon callbacks to favicon_base</summary>
+              <pre class=body>
+Move FaviconImageCallback, FaviconResultsCallback and FaviconRawCallback
+to favicon_base, those types are shared between favicon and history
+components (methods are declared in FaviconService, but it delegates the
+work to HistoryService) and only uses types from base:: and
+favicon_base:: namespaces.
+
+Also BookmarkClient::FaviconImageCallback is a copy of
+FaviconService::FaviconImageCallback, replace it with favicon_base::
+version.
+
+BUG=372321
+TBR=thakis for //chrome outside of //chrome/browser/history,
+//chrome/browser/favicon
+
+Review URL: <a href="https://codereview.chromium.org/291643002">https://codereview.chromium.org/291643002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@272065 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=272065&amp;view=revision"><time datetime="2014-05-22">2014-05-22</time></a>
       
         <tr>
           <td>mostynb
@@ -4384,6 +4411,144 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Create fewer local v8::TryCatch objects in generated bindings code</summary>
+              <pre class=body>
+When converting constructor and method arguments, switch from generating
+the equivalent of
+
+float x;
+{
+　　v8::TryCatch block;
+　　x = ...;
+　　if (UNLIKELY(block.HasCaught()) {
+　　　　block.ReThrow();
+　　　　return;
+　　}
+}
+float y;
+{
+　　v8::TryCatch block;
+　　y = ...;
+　　/* check result again, same as above */
+}
+
+to generating the equivalent of
+
+float x;
+float y;
+{
+　　v8::TryCatch block;
+　　x = ...;
+　　if (UNLIKELY(block.HasCaught()) {
+　　　　block.ReThrow();
+　　　　return;
+　　}
+　　y = ...;
+　　/* check result again, same as above */
+}
+
+in order to avoid creating and destroying one v8::TryCatch object for each
+argument.
+
+This reduces the size of the final binary by about 20 kB (64-bit Linux) and
+improves performance by up to 30 % on favorable micro-benchmarks (repeatedly
+calling some DOM function that takes many primitive-typed arguments.)
+
+R=haraken, nbarth
+
+Review URL: <a href="https://codereview.chromium.org/265293004">https://codereview.chromium.org/265293004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174546 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174546&amp;view=revision"><time datetime="2014-05-22">2014-05-22</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add [WillBeGarbageCollected] for Element.</summary>
+              <pre class=body>
+Annotate Element as being a heap allocated object
+with Oilpan enabled, and generate binding layer code
+which assumes so for Element and its derived interface
+objects.
+
+To accommodate this, bindings code generated for
+a named constructor need to consult the &#34;gc_type&#34; of
+its interface, and no longer not assume RefCounted.
+Along similar lines, custom element processing can no
+longer assume that the elements will be RefCounted-based
+either.
+
+<a href="mailto:R=haraken@chromium.org,tkent@chromium.org">R=haraken@chromium.org,tkent@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/290333008">https://codereview.chromium.org/290333008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174537 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174537&amp;view=revision"><time datetime="2014-05-22">2014-05-22</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Deprecate the overflowchanged event</summary>
+              <pre class=body>
+Intent to Deprecate:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/1RCzsyEyNU8/5vNpxrhRbUIJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/1RCzsyEyNU8/5vNpxrhRbUIJ</a>
+
+Review URL: <a href="https://codereview.chromium.org/295993006">https://codereview.chromium.org/295993006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174529 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174529&amp;view=revision"><time datetime="2014-05-22">2014-05-22</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>MediaVolumeSliderPart is not vertical</summary>
+              <pre class=body>
+This makes some parts of the keymapping a bit more intuitive for the
+volume-slider of media controls (-webkit-appearance: media-volume-slider).
+
+BUG=135661
+
+Review URL: <a href="https://codereview.chromium.org/294963003">https://codereview.chromium.org/294963003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174503 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174503&amp;view=revision"><time datetime="2014-05-22">2014-05-22</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Save ping+beacon test status in temporary directory.</summary>
+              <pre class=body>
+Try to address occasional Windows-only test failures by explicitly saving
+away the ping + beacon requests in the system temporary directory. Also
+make read access to the test status file a bit more robust.
+
+R=
+BUG=374569
+
+Review URL: <a href="https://codereview.chromium.org/286063003">https://codereview.chromium.org/286063003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174484 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174484&amp;view=revision"><time datetime="2014-05-21">2014-05-21</time></a>
       
         <tr>
           <td>sigbjornf
