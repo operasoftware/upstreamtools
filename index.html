@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 224, 
+    <a href="#chromium">Chromium</a>: 227, 
   
-    <a href="#blink">Blink</a>: 972, 
+    <a href="#blink">Blink</a>: 984, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,86 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Added PRESUBMIT.py for binary_size tools.</summary>
+              <pre class=body>
+Make the tests run for every commit to make sure tests and code
+stay in sync and are both working.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/296003007">https://codereview.chromium.org/296003007</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@272496 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=272496&amp;view=revision"><time datetime="2014-05-23">2014-05-23</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Graphical version of the run_binary_size_analysis tool.</summary>
+              <pre class=body>
+The binary_size tool suit includes tools that are useful when trying
+to reduce binary size of a program, and chromium related programs
+in particular.
+
+This commit (mostly written by <a href="mailto:andrewhayden@chromium.org">andrewhayden@chromium.org</a> for 
+Android but ported to generic Linux by <a href="mailto:bratell@opera.com">bratell@opera.com</a>) adds 
+a graphical HTML based output for run_binary_size_analysis.py.
+In the generated web page it is possible to dynamically and 
+graphically browse the binary and each part of the source tree 
+is given a size that reflects its contribution to the binary size.
+
+The run_binary_size_analysis tool is run on compiled binaries 
+with symbols and uses nm and addr2line to map parts of the
+binary to source code. Since addr2line is slow the operation to map 
+binary symbols to source files takes a while but the output is 
+well worth it when shrinking programs. See its usage information
+for details about how to run it.
+
+This commit also includes the tool explain_binary_size_delta.py 
+(textual output) which can be used to understand why a binary 
+changed size and in what way. See its usage information for 
+details about how to run it.
+
+There are many further improvements possible to to do on these tools.
+Search the bug database for Label:Tools-BinarySize for suggestions.
+
+BUG=339059
+<a href="mailto:R=primiano@chromium.org,andrewhayden@chromium.org">R=primiano@chromium.org,andrewhayden@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/258633003">https://codereview.chromium.org/258633003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@272255 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=272255&amp;view=revision"><time datetime="2014-05-22">2014-05-22</time></a>
+      
+        <tr>
+          <td>mateuszs
+          <td class=message>
+            <details>
+              <summary>Fixed positioning of tooltips in multi monitor setups.</summary>
+              <pre class=body>
+If window is positioned on right monitor in multimonitor setup
+tooltips for items to the left of Chromium window appear on left screen.
+This is because screen on which to display the tooltip is calculated from
+DIP coordinates.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/225403022">https://codereview.chromium.org/225403022</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@272218 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=272218&amp;view=revision"><time datetime="2014-05-22">2014-05-22</time></a>
       
         <tr>
           <td>jiangj
@@ -4411,6 +4491,217 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add UseCounter features for cursor values -webkit-zoom-in/out</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/292183009">https://codereview.chromium.org/292183009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174683 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174683&amp;view=revision"><time datetime="2014-05-23">2014-05-23</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add SVGRemoteFontFaceSource::trace().</summary>
+              <pre class=body>
+<a href="mailto:R=kouhei@chromium.org,haraken@chromium.org">R=kouhei@chromium.org,haraken@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/298863009">https://codereview.chromium.org/298863009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174670 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174670&amp;view=revision"><time datetime="2014-05-23">2014-05-23</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix ImageBitmapTest.ImageLiveResourcePriority test.</summary>
+              <pre class=body>
+Hold onto the local HTMLImageElements using persistents so as to keep
+them alive across the forced GC that the test runs.
+
+<a href="mailto:R=haraken@chromium.org,ager@chromium.org">R=haraken@chromium.org,ager@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/296153005">https://codereview.chromium.org/296153005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174636 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174636&amp;view=revision"><time datetime="2014-05-23">2014-05-23</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Removed RecalcStyleTime.</summary>
+              <pre class=body>
+All style resolver changes are now deferred.
+
+<a href="mailto:R=ojan@chromium.org">R=ojan@chromium.org</a>
+BUG=374162
+
+Review URL: <a href="https://codereview.chromium.org/296743003">https://codereview.chromium.org/296743003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174634 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174634&amp;view=revision"><time datetime="2014-05-23">2014-05-23</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Make shouldTransformOnTextPainting compilation unit local</summary>
+              <pre class=body>
+No need to have this as a public function of the class. It&#39;s only used
+in one place, local to the class implementation.
+
+Review URL: <a href="https://codereview.chromium.org/292663008">https://codereview.chromium.org/292663008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174633 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174633&amp;view=revision"><time datetime="2014-05-23">2014-05-23</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: enable Oilpan by default in modules/quota.</summary>
+              <pre class=body>
+Move the quota objects, but keep the supplements as using transition
+types until Navigator/Window/WorkerGlobalScope are heap supplementables.
+
+R=
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/294953002">https://codereview.chromium.org/294953002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174616 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174616&amp;view=revision"><time datetime="2014-05-23">2014-05-23</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: avoid leak on creating shadow document wrapper.</summary>
+              <pre class=body>
+BUG=357163
+<a href="mailto:TBR=haraken@chromium.org">TBR=haraken@chromium.org</a>
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/289283020">https://codereview.chromium.org/289283020</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174582 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174582&amp;view=revision"><time datetime="2014-05-22">2014-05-22</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Unprefix CSS cursor values zoom-in and zoom-out</summary>
+              <pre class=body>
+Intent to Implement and Ship:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/-GuOTe8c32Q/Gd9PuHYD0-EJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/-GuOTe8c32Q/Gd9PuHYD0-EJ</a>
+
+-webkit-zoom-in and -webkit-zoom-out are kept as aliases for now.
+
+BUG=246998
+TEST=LayoutTests/fast/css/cursor-parsing.html
+
+Review URL: <a href="https://codereview.chromium.org/288303007">https://codereview.chromium.org/288303007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174575 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174575&amp;view=revision"><time datetime="2014-05-22">2014-05-22</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove HTMLHtmlElement.manifest</summary>
+              <pre class=body>
+Intent to Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/5nQVw4T1EJw/FURw6bIpwvoJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/5nQVw4T1EJw/FURw6bIpwvoJ</a>
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/282073008">https://codereview.chromium.org/282073008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174566 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174566&amp;view=revision"><time datetime="2014-05-22">2014-05-22</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Remove unnecessary parameter</summary>
+              <pre class=body>
+After fix for <a href="https://bugs.webkit.org/show_bug.cgi?id=99870">https://bugs.webkit.org/show_bug.cgi?id=99870</a>
+clampedAbsoluteTileBoundaries is not used outside
+RenderSVGResourcePattern::createTileImage.
+
+Review URL: <a href="https://codereview.chromium.org/290733009">https://codereview.chromium.org/290733009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174564 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174564&amp;view=revision"><time datetime="2014-05-22">2014-05-22</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Turn ASSERT_UNUSED into plain ASSERT</summary>
+              <pre class=body>
+ASSERT_UNUSED used to be necessary, before the code paths for USE(CG)
+were removed in <a href="https://codereview.chromium.org/13616008">https://codereview.chromium.org/13616008</a>.
+
+Review URL: <a href="https://codereview.chromium.org/288113009">https://codereview.chromium.org/288113009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174562 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174562&amp;view=revision"><time datetime="2014-05-22">2014-05-22</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Defer style recalc when inserting extension stylesheets.</summary>
+              <pre class=body>
+StyleEngine::addAuthorSheet, used when injecting stylesheets from extensions,
+was doing a synchronous style recalc. Adding two stylesheets in a row would
+cause two style recalcs. Do a deferred style recalc instead.
+
+BUG=374901,374162
+
+Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=174424">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=174424</a>
+
+Review URL: <a href="https://codereview.chromium.org/290563007">https://codereview.chromium.org/290563007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174555 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174555&amp;view=revision"><time datetime="2014-05-22">2014-05-22</time></a>
       
         <tr>
           <td>jl
