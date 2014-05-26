@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 227, 
   
-    <a href="#blink">Blink</a>: 990, 
+    <a href="#blink">Blink</a>: 996, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -4491,6 +4491,117 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add [WillBeGarbageCollected] for Node.</summary>
+              <pre class=body>
+Also make Document hold onto its DOMWindow via a Member when
+Oilpan is enabled.
+
+<a href="mailto:R=haraken@chromium.org,ager@chromium.org,tkent@chromium.org">R=haraken@chromium.org,ager@chromium.org,tkent@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/292503006">https://codereview.chromium.org/292503006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174804 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174804&amp;view=revision"><time datetime="2014-05-26">2014-05-26</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Rudimentary keyboard navigation support for &lt;video&gt;/&lt;audio&gt;</summary>
+              <pre class=body>
+Remove the override of hasCustomFocusLogic() for HTMLMediaElement. This
+allows focus navigation (&lt;tab&gt;ing) to reach the controls.
+
+BUG=135661
+
+Review URL: <a href="https://codereview.chromium.org/292173006">https://codereview.chromium.org/292173006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174795 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174795&amp;view=revision"><time datetime="2014-05-26">2014-05-26</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Implement heuristic for showing media controls during playback w/o a mouse</summary>
+              <pre class=body>
+This implements a heuristic that allows the media controls to re-appear
+when playback has started and the mouse is unavailable.
+The behavior is triggered by a &#39;focusin&#39; event on the HTMLMediaElement,
+which shows the controls. The controls then remain visible as long as
+the media element itself or any part of the control retains focus, or
+until the hide timer fires (which it will on a pause-play &#34;cycle&#34; for
+instance).
+
+BUG=135661
+
+Review URL: <a href="https://codereview.chromium.org/297783004">https://codereview.chromium.org/297783004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174794 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174794&amp;view=revision"><time datetime="2014-05-26">2014-05-26</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: transition types for remaining Node hierarchy object occurrences.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/294343007">https://codereview.chromium.org/294343007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174776 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174776&amp;view=revision"><time datetime="2014-05-25">2014-05-25</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: convert remaining dom + page Element refs to transition types.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/301523002">https://codereview.chromium.org/301523002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174775 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174775&amp;view=revision"><time datetime="2014-05-25">2014-05-25</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>ScriptRegexp::match(): gracefully fail if regexp.exec() throws.</summary>
+              <pre class=body>
+Check if the internal v8 call to do the actual regexp matching threw
+an exception and report that as a match failure.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=377024
+
+Review URL: <a href="https://codereview.chromium.org/300103002">https://codereview.chromium.org/300103002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174774 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174774&amp;view=revision"><time datetime="2014-05-25">2014-05-25</time></a>
       
         <tr>
           <td>sigbjornf
