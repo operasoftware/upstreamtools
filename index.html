@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 227, 
+    <a href="#chromium">Chromium</a>: 228, 
   
-    <a href="#blink">Blink</a>: 996, 
+    <a href="#blink">Blink</a>: 1002, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,25 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>tsniatowski
+          <td class=message>
+            <details>
+              <summary>Disable multisampling on Mali-400 GPUs and Android &lt; 4.3</summary>
+              <pre class=body>
+This avoids a GL error from a buggy glGetIntegerv(GL_MAX_SAMPLES_ANGLE)
+call. Based on patch by <a href="mailto:mkisilev@yandex-team.ru">mkisilev@yandex-team.ru</a>
+
+BUG=362435
+<a href="mailto:R=sievers@chromium.org">R=sievers@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/296133007">https://codereview.chromium.org/296133007</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@272874 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=272874&amp;view=revision"><time datetime="2014-05-26">2014-05-26</time></a>
       
         <tr>
           <td>bratell
@@ -4491,6 +4510,131 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fix computation of local-to-border-box transform for RenderSVGRoot</summary>
+              <pre class=body>
+Use isZero() instead of isEmpty() to correctly handle cases where only
+one of the &#34;dimensions&#34; are non-zero.
+
+BUG=377362
+
+Review URL: <a href="https://codereview.chromium.org/302433009">https://codereview.chromium.org/302433009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174855 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174855&amp;view=revision"><time datetime="2014-05-27">2014-05-27</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Rebalance properly when child content changes.</summary>
+              <pre class=body>
+Some refactoring and cleanup in layoutColumns() &amp; friends was necessary
+to get this a bit more robust and consistent.
+
+Always prepare column sets for layout when we&#39;re going to lay out the
+flow thread. Even when the sets themselves are not going to be laid
+out, laying out the flow thread will update things in the sets, so we
+need a clean slate. This includes making sure that the list of old content
+runs is empty (clean it when the initial column height has been calculated).
+This fixes an assertion failure in the beginning of distributeImplicitBreaks().
+Added a test that used to trigger this.
+
+Make sure that we always validate regions after layout. Doing it from the
+last set was just bogus. There may be no sets, or the last set may not
+have been marked for layout. In both cases we&#39;d end up failing to
+validate. This would result in assertion failures and inability to map
+from a flow thread coordinate to a set.
+
+BUG=370813
+
+Review URL: <a href="https://codereview.chromium.org/288263002">https://codereview.chromium.org/288263002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174854 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174854&amp;view=revision"><time datetime="2014-05-27">2014-05-27</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync the alert() IDL with the spec</summary>
+              <pre class=body>
+<a href="http://html5.org/r/8638">http://html5.org/r/8638</a>
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=25686">https://www.w3.org/Bugs/Public/show_bug.cgi?id=25686</a>
+
+This does not change the behavior of alert() or alert(undefined), it is
+a pre-emptive change so that treating undefined as a missing optional
+argument (per WebIDL) does not change the behavior.
+
+BUG=335871
+
+Review URL: <a href="https://codereview.chromium.org/296853010">https://codereview.chromium.org/296853010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174845 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174845&amp;view=revision"><time datetime="2014-05-27">2014-05-27</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Sync binding test results.</summary>
+              <pre class=body>
+r174804 didn&#39;t update binding tests to account for
+[WillBeGarbageCollected]Node changes.
+
+<a href="mailto:R=nbarth@chromium.org,haraken@chromium.org">R=nbarth@chromium.org,haraken@chromium.org</a>
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/300743002">https://codereview.chromium.org/300743002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174844 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174844&amp;view=revision"><time datetime="2014-05-27">2014-05-27</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Improve the UseCounters for HTMLInputElement.webkitdirectory and .incremental</summary>
+              <pre class=body>
+These are already counted in HTMLInputElement::parseAttribute(), but
+that code path would not be hit when the IDL attributes are read.
+
+Review URL: <a href="https://codereview.chromium.org/297423002">https://codereview.chromium.org/297423002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174813 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174813&amp;view=revision"><time datetime="2014-05-26">2014-05-26</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG2] Make ownerSVGElement and viewportElement nullable.</summary>
+              <pre class=body>
+Spec: <a href="https://svgwg.org/svg2-draft/types.html#InterfaceSVGElement">https://svgwg.org/svg2-draft/types.html#InterfaceSVGElement</a>
+
+BUG=366542
+
+Review URL: <a href="https://codereview.chromium.org/303483005">https://codereview.chromium.org/303483005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174809 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174809&amp;view=revision"><time datetime="2014-05-26">2014-05-26</time></a>
       
         <tr>
           <td>sigbjornf
