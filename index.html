@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 228, 
+    <a href="#chromium">Chromium</a>: 229, 
   
-    <a href="#blink">Blink</a>: 1002, 
+    <a href="#blink">Blink</a>: 1013, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,27 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Pass AutocompleteProvider::kMaxMatches to InMemoryURLIndex</summary>
+              <pre class=body>
+The only client of InMemoryURLIndex::HistoryItemsForTerms is
+//chrome/browser/autocomplete/history_quick_provider.cc which has access
+to the constant. So pass the constant to the history component instead
+of having the dependency.
+
+BUG=374730
+TBR=thakis  // For OWNERS at chrome/browser/autocomplete/history_quick_provider.cc
+
+Review URL: <a href="https://codereview.chromium.org/296743009">https://codereview.chromium.org/296743009</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@273072 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=273072&amp;view=revision"><time datetime="2014-05-27">2014-05-27</time></a>
       
         <tr>
           <td>tsniatowski
@@ -4510,6 +4531,248 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove MessageEvent.webkitInitMessageEvent()</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/H6lsGFqdy3Y/F2GlWvbl-TsJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/H6lsGFqdy3Y/F2GlWvbl-TsJ</a>
+
+Review URL: <a href="https://codereview.chromium.org/303663004">https://codereview.chromium.org/303663004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174967 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174967&amp;view=revision"><time datetime="2014-05-28">2014-05-28</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the UseCounters for the capture attribute</summary>
+              <pre class=body>
+Both of the counters are at 0%:
+<a href="http://www.chromestatus.com/metrics/feature/timeline/popularity/86">http://www.chromestatus.com/metrics/feature/timeline/popularity/86</a>
+<a href="http://www.chromestatus.com/metrics/feature/timeline/popularity/245">http://www.chromestatus.com/metrics/feature/timeline/popularity/245</a>
+
+In other worlds, there&#39;s hardly anyone to see the deprecation message.
+
+BUG=240252
+
+Review URL: <a href="https://codereview.chromium.org/303473004">https://codereview.chromium.org/303473004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174966 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174966&amp;view=revision"><time datetime="2014-05-28">2014-05-28</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the precision=&#34;float&#34; attribute on &lt;input type=&#34;range&#34;&gt;</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/-OvFrybkW1E/Ucrct3sm6foJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/-OvFrybkW1E/Ucrct3sm6foJ</a>
+
+Review URL: <a href="https://codereview.chromium.org/301563002">https://codereview.chromium.org/301563002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174965 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174965&amp;view=revision"><time datetime="2014-05-28">2014-05-28</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: prevent player from accessing its media element during finalization</summary>
+              <pre class=body>
+When finalizing the media element, its media player is also cleared
+out. With Oilpan enabled, that media player object must not touch the
+media element while destructing its &#34;client&#34;, as it is not in a
+valid state (its heap object member may have been finalized already.)
+
+Arrange for that to not happen by having the media element enter a
+&#39;finalizing&#39; state, which is explicitly checked for when the player
+attempts to access the media element during destruction.
+
+This is a shorter-term solution until the media player object itself
+is moved to the Oilpan heap; <a href="http://crbug.com/378229">http://crbug.com/378229</a> for handling that.
+
+<a href="mailto:R=haraken@chromium.org,ager@chromium.org">R=haraken@chromium.org,ager@chromium.org</a>
+BUG=377567
+TEST=media/track/track-removal-crash.html
+TEST=media/audio-delete-while-slider-thumb-clicked.html
+TEST=http/tests/media/media-source/mediasource-closed-on-htmlmediaelement-destruction.html
+
+Review URL: <a href="https://codereview.chromium.org/303593002">https://codereview.chromium.org/303593002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174964 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174964&amp;view=revision"><time datetime="2014-05-28">2014-05-28</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Remove zoom special casing of SVG when computing border-widths</summary>
+              <pre class=body>
+Ever since border-image-width was implemented in
+
+<a href="https://bugs.webkit.org/show_bug.cgi?id=67657">https://bugs.webkit.org/show_bug.cgi?id=67657</a>
+
+border-widths values haven&#39;t been scaled with the zoom level for SVG
+elements. Remove the special casing since it doesn&#39;t seems to be any
+good reason for having it. Firefox doesn&#39;t do anything of the sort and
+there is no specification support for it.
+
+BUG=377447
+
+Review URL: <a href="https://codereview.chromium.org/302643002">https://codereview.chromium.org/302643002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174960 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174960&amp;view=revision"><time datetime="2014-05-28">2014-05-28</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove myself from WATCHLISTS.</summary>
+              <pre class=body>
+I&#39;m going on leave for 11 weeks, and besides there&#39;s a suitable
+mailing list for such notifications now.
+
+<a href="mailto:TBR=rune@opera.com">TBR=rune@opera.com</a>
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/305673002">https://codereview.chromium.org/305673002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174957 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174957&amp;view=revision"><time datetime="2014-05-28">2014-05-28</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r174943.</summary>
+              <pre class=body>
+Add missing tracing of added Event member.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=376349
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/303703004">https://codereview.chromium.org/303703004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174950 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174950&amp;view=revision"><time datetime="2014-05-28">2014-05-28</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move custom element objects to the heap.</summary>
+              <pre class=body>
+<a href="mailto:R=ager@chromium.org,haraken@chromium.org,dominicc@chromium.org">R=ager@chromium.org,haraken@chromium.org,dominicc@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/296703009">https://codereview.chromium.org/296703009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174948 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174948&amp;view=revision"><time datetime="2014-05-28">2014-05-28</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] fast/multicol/multicol-with-child-renderLayer-for-input.html puts the textfield in the wrong place</summary>
+              <pre class=body>
+FrameView.cpp changes merged from WebKit. Original patch by David Hyatt &lt;<a href="mailto:hyatt@apple.com">hyatt@apple.com</a>&gt;.
+Reviewed in WebKit by Brady Eidson &lt;<a href="mailto:beidson@apple.com">beidson@apple.com</a>&gt;.
+Make sure FrameView is patched to pass in the update pagination flag when subtree layout
+is done on textfields. It had code for the old multicolumn system but did not have a check
+for the new multicolumn system.
+
+Additionally, in Blink we need to avoid switching to a different renderer &#34;container&#34; in RenderBoxModelObject::mapAbsoluteToLocalPoint(), or an assertion will fail at the beginning of RenderBox::offsetFromContainer(). Just include the correct column offset instead and proceed as normally.
+
+BUG=369992
+
+Review URL: <a href="https://codereview.chromium.org/264103002">https://codereview.chromium.org/264103002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174871 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174871&amp;view=revision"><time datetime="2014-05-27">2014-05-27</time></a>
+      
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Cleanup: Remove redundant members.</summary>
+              <pre class=body>
+RenderMultiColumnSet doesn&#39;t need to store column width and
+height. These are readily available from the flow thread.
+
+And the flow thread doesn&#39;t need an extra member to store column
+width, since it&#39;s the same as the logical width. Calculate it on
+the fly when we need to determine whether the flow thread will
+get a new width, and when actually updating the logical
+width. It&#39;s not expensive to calculate, and this is not a hot
+path. Duplicated storage can only cause confusion and do harm,
+anyway.
+
+Also use the CSS 2.1 terms &#34;used&#34; and &#34;actual&#34; when we need to
+disambiguate, rather than &#34;computed&#34; and
+nothing. Remove &#34;computed&#34; from some members where it didn&#39;t add
+any value. Those were not CSS 2.1 &#34;computed&#34; values, so I found
+it somewhat confusing and misleading.
+
+No need for columnWidth() and columnHeight() in
+RenderMultiColumnSet.  Use pageLogicalWidth() and
+pageLogicalHeight() instead.
+
+No need for columnWidth() in RenderMultiColumnFlowThread either.
+
+Review URL: <a href="https://codereview.chromium.org/299213002">https://codereview.chromium.org/299213002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174870 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174870&amp;view=revision"><time datetime="2014-05-27">2014-05-27</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Simplify SVGResourcesCycleSolver::resourceContainsCycles</summary>
+              <pre class=body>
+Modify the child traversal to use pre-order. This allows the case
+for |renderer| to be sunk into the loop, reducing the amount of
+code somewhat.
+This also fixes a bug where the child traversal would not traverse its
+the children of node that did not reference any resources.
+
+BUG=351713
+
+Review URL: <a href="https://codereview.chromium.org/294393004">https://codereview.chromium.org/294393004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@174862 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=174862&amp;view=revision"><time datetime="2014-05-27">2014-05-27</time></a>
       
         <tr>
           <td>fs
