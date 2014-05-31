@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 229, 
   
-    <a href="#blink">Blink</a>: 1018, 
+    <a href="#blink">Blink</a>: 1022, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -4531,6 +4531,120 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t render empty shapes with non-scaling-stroke</summary>
+              <pre class=body>
+Compute and validate the shape parameters before deciding which code-path
+should be used (path vs. primitive). Don&#39;t use the fallback when the
+bounding box is empty.
+
+Based on WebKit patch:
+  <a href="https://bugs.webkit.org/attachment.cgi?id=232191&amp;action=prettypatch">https://bugs.webkit.org/attachment.cgi?id=232191&amp;action=prettypatch</a>
+by:
+  Nikos Andronikos &lt;<a href="mailto:nikos.andronikos-webkit@cisra.canon.com.au">nikos.andronikos-webkit@cisra.canon.com.au</a>&gt;
+
+BUG=377610
+
+Review URL: <a href="https://codereview.chromium.org/307643003">https://codereview.chromium.org/307643003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175147 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175147&amp;view=revision"><time datetime="2014-05-30">2014-05-30</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Use auto-rethrowing v8::TryCatch variant</summary>
+              <pre class=body>
+To avoid the need to call ReThrow() on the v8::TryCatch that may or
+may not be declared, and the risk of forgetting to do so in some case,
+use an auto-rethrowing v8::TryCatch variant instead.
+
+BUG=362388
+
+Review URL: <a href="https://codereview.chromium.org/304223007">https://codereview.chromium.org/304223007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175134 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175134&amp;view=revision"><time datetime="2014-05-30">2014-05-30</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Make SVGResourcesCycleSolver check for cycles beyond one level (and more)</summary>
+              <pre class=body>
+The SVGResourceCycleSolver checks for cycles from within the resources
+a RenderObject references to the resources it references, or any resources
+in the ancestor-chain of the starting RenderObject (including itself if
+it is a resource container).
+This suffers from a few issues. One is that a resource that is referenced
+both by the starting RenderObject and another resource referenced from the
+starting RenderObject will be flagged as a cycle because all the resources
+are added to the resources set.
+Another issue is that longer cycles may not be detected because only the
+resources referenced by the starting RenderObject is checked, and
+depending on how the render tree is built, some cycles could be missed.
+Additionally, a resource defined within another resource can cause a
+&#34;false cycle&#34; to be flagged when the inner resource references a resource
+in the resource set - eventhough the inner resource itself is not reachable
+from the starting RenderObject.
+
+To fix the above, make the SVGResourcesCycleSolver traverse the entire
+resource &#34;graph&#34;, and verify that it is acyclic. The cycle-checking is
+achieved by keeping track of the current &#34;path&#34; through the graph, and
+checking any discovered references against that set. When traversing
+a subtree looking for references, any resources discovered will be skipped
+to avoid inject false dependencies that way.
+Also keep a simple &#34;cache&#34; of sub-graphs that has been checked already
+(and verified cycle-free) to avoid having to revisit them.
+
+BUG=351713
+
+Review URL: <a href="https://codereview.chromium.org/303693009">https://codereview.chromium.org/303693009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175129 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175129&amp;view=revision"><time datetime="2014-05-30">2014-05-30</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: have PendingScripts trace their script elements.</summary>
+              <pre class=body>
+To complete the move to transition types for Element in html/ and dom/,
+convert PendingScript and the script runner objects to trace their
+embedded script element references. The script runner objects
+(ScriptRunner and HTMLScriptRunner) are now garbage collected objects,
+with PendingScript being kept in-line or as a part objects of those
+runner objects.
+
+To enable detaching of HTMLScriptRunner without having to rely on its
+host (HTMLDocumentParser), the HTMLScriptRunner is instead made the
+client of the resources it loads. This simplifies dependencies, but
+requiring some follow-on changes to the HTMLScriptRunnerHost interface.
+
+Besides script element references, convert a few other remaining Element
+{Pass}RefPtr uses to transition types.
+
+<a href="mailto:R=ager@chromium.org,haraken@chromium.org,eseidel@chromium.org">R=ager@chromium.org,haraken@chromium.org,eseidel@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/298863010">https://codereview.chromium.org/298863010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175127 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175127&amp;view=revision"><time datetime="2014-05-30">2014-05-30</time></a>
       
         <tr>
           <td>fs
