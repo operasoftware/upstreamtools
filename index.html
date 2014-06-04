@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 229, 
   
-    <a href="#blink">Blink</a>: 1034, 
+    <a href="#blink">Blink</a>: 1037, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -4531,6 +4531,64 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: update remaining Document uses of RefPtr&lt;Node&gt;s.</summary>
+              <pre class=body>
+Made hoverNode()/setHoveNode() private accessors while converting over
+remaining PassRefPtr&lt;Node&gt;/RefPtr&lt;Node&gt; uses to transition types.
+
+<a href="mailto:R=tkent@chromium.org">R=tkent@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/311053003">https://codereview.chromium.org/311053003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175470 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175470&amp;view=revision"><time datetime="2014-06-04">2014-06-04</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: convert remaining editing/ RefPtr&lt;Node&gt;s to transition types.</summary>
+              <pre class=body>
+Remove unnecessary uses of RefPtr&lt;Node&gt;s with Oilpan enabled.
+
+<a href="mailto:R=zerny@chromium.org,ager@chromium.org">R=zerny@chromium.org,ager@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/309283002">https://codereview.chromium.org/309283002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175378 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175378&amp;view=revision"><time datetime="2014-06-03">2014-06-03</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: trace HTMLConstructionSite::PendingText part object.</summary>
+              <pre class=body>
+Convert a pair of RefPtr&lt;&gt;s to Members with Oilpan enabled &amp; have the
+PendingText object be traced by its HTMLConstructionSite parent.
+
+Convert remaining RefPtr&lt;Node&gt; uses in html/ as well.
+
+<a href="mailto:R=zerny@chromium.org,ager@chromium.org">R=zerny@chromium.org,ager@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/310793002">https://codereview.chromium.org/310793002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175369 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175369&amp;view=revision"><time datetime="2014-06-03">2014-06-03</time></a>
       
         <tr>
           <td>fs
