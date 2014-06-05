@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 229, 
+    <a href="#chromium">Chromium</a>: 230, 
   
-    <a href="#blink">Blink</a>: 1037, 
+    <a href="#blink">Blink</a>: 1046, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,26 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Emit partial results if binary_size is interrupted.</summary>
+              <pre class=body>
+Instead of just throwing away everything if the user presses
+Ctrl-c, write down whatever data we have to the disk. By asking for
+the largest symbols first, it&#39;s sometimes possible to get a quite
+good picture after only 10-15% of the total runtime.
+
+BUG=377466
+
+Review URL: <a href="https://codereview.chromium.org/305503002">https://codereview.chromium.org/305503002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@275053 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=275053&amp;view=revision"><time datetime="2014-06-05">2014-06-05</time></a>
       
         <tr>
           <td>jiangj
@@ -4531,6 +4551,223 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Missing return after class invalidation short-cut.</summary>
+              <pre class=body>
+scheduleStyleInvalidationForClassChange skipped comparison when oldClasses
+was empty, but forgot to return afterwards, causing invalidation sets to be
+scheduled twice.
+
+This fix increases runs/s by 10%+ on the added performance test.
+
+<a href="mailto:R=esprehn@chromium.org,chrishtr@chromium.org">R=esprehn@chromium.org,chrishtr@chromium.org</a>
+BUG=380874
+
+Review URL: <a href="https://codereview.chromium.org/313963006">https://codereview.chromium.org/313963006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175568 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175568&amp;view=revision"><time datetime="2014-06-05">2014-06-05</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Skip traversing wholeSubtree subtrees with clean invalidation bits.</summary>
+              <pre class=body>
+During style invalidation we need to continue to traverse a subtree that is
+marked with SubtreeStyleChange to clear any remaining invalidation bits.
+But, when the childNeedsInvalidation bit is not set, there should be no
+bits left to clear in the subtree. Hence, we can skip traversing that
+subtree.
+
+<a href="mailto:R=esprehn@chromium.org,chrishtr@chromium.org">R=esprehn@chromium.org,chrishtr@chromium.org</a>
+BUG=381062
+
+Review URL: <a href="https://codereview.chromium.org/317133002">https://codereview.chromium.org/317133002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175564 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175564&amp;view=revision"><time datetime="2014-06-05">2014-06-05</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Trigger computation of font size when crossing foreignObject boundary</summary>
+              <pre class=body>
+When crossing the svg -&gt; html boundary through a foreignObject, the
+zoom factor is reset to its initial value. This is because SVG has a
+special zoom model where the SVG fragment root puts the scale factor
+on the graphics context, in contrast to non-SVG content where each
+value is scaled individually.
+
+This means the FontBuilder can&#39;t just inherit the font from parent
+when crossing a foreignObject boundary. It may have to recompute the
+font size because the effective zoom, included in the computed font
+size, may change.
+
+Example of behavior after this patch:
+
+&lt;html&gt; &lt;!-- computed font size: 16px. --&gt;
+  &lt;body style=&#34;zoom: 2&#34;&gt; &lt;!-- computed font size: 32px. --&gt;
+    &lt;svg&gt; &lt;!-- scale(2) is applied to the graphics context; computed font size: 32px. --&gt;
+      &lt;text&gt;Sample svg text.&lt;/text&gt; &lt;!-- svg ignores computed font size to be able to support minimal font size. --&gt;
+      &lt;foreignObject&gt; &lt;!-- html rendering again but scale(2) still applied to GC. computed font size must be reset to 16px. --&gt;
+        Sample html text. &lt;!-- Text drawn with computed font size 16px but scaled to 32px by the GC --&gt;
+
+In this annotated test, &#39;Sample html text.&#39; and &#39;Sample svg text.&#39;
+should both be displayed with a 32px font size.
+
+Note: One difference is that the &#39;sample html text&#39; is not sensitive
+to the correct minimal font size since that happens before the scale
+on the GC is applied. In order to get proper minimal font size working
+on foreignObject, we would probably have to put foreignObject in a
+layer separated from the graphical context of the SVG.
+
+BUG=374119
+
+Review URL: <a href="https://codereview.chromium.org/308123010">https://codereview.chromium.org/308123010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175562 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175562&amp;view=revision"><time datetime="2014-06-05">2014-06-05</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Set correct Function.length on overloaded and variadic methods</summary>
+              <pre class=body>
+According to WebIDL, the Function.length property should be the length of
+shortest argument list in the effective overload set for argument count 0.
+This means for instance that variadic arguments don&#39;t contribute to the
+length.
+
+BUG=377718
+
+Review URL: <a href="https://codereview.chromium.org/296403007">https://codereview.chromium.org/296403007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175559 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175559&amp;view=revision"><time datetime="2014-06-05">2014-06-05</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>WebPrivatePtr: avoid creating temporary Persistent&lt;&gt; on assignment.</summary>
+              <pre class=body>
+For RefCountedGarbageCollected objects wrapped in a WebPrivatePtr, the
+PtrStorageImpl::assign(PassRefPtr&lt;T&gt;) overload potentially created a
+Persistent on assigning its underlying raw pointer, even if a RawPtr&lt;&gt;
+was passed along (due to the implicit RawPtr&lt;T&gt; conversion that
+PassRefPtr&lt;T&gt; provides.)
+
+This assign() overload serves no real purpose with Oilpan enabled;
+provide a more appropriate RawPtr&lt;T&gt; version there.
+
+<a href="mailto:R=haraken@chromium.org,tkent@chromium.org">R=haraken@chromium.org,tkent@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/313173009">https://codereview.chromium.org/313173009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175558 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175558&amp;view=revision"><time datetime="2014-06-05">2014-06-05</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Correctly handle accessing a replaced Attr object&#39;s attribute value.</summary>
+              <pre class=body>
+If element.setAttributeNode(attr) is performed on an &#34;element&#34; with
+an attribute that matches &#34;attr.name&#34;, that attribute&#39;s value is
+updated and attr is attached to &#34;element&#34;.
+
+Later accesses of &#34;attr.value&#34; must continue to resolve to &#34;element&#34;&#39;s
+underlying attribute, matching (local) names following the case
+sensitivity of the element.
+
+A normalized local name was previously assumed for the attribute,
+leading to crashing conditions on both setting and getting &#34;attr.value&#34;.
+Address by having Attr record the local name of the element attribute
+it is attached to and use that when looking up the attribute.
+
+<a href="mailto:R=adamk@chromium.org">R=adamk@chromium.org</a>
+BUG=376718
+
+Review URL: <a href="https://codereview.chromium.org/316583002">https://codereview.chromium.org/316583002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175556 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175556&amp;view=revision"><time datetime="2014-06-05">2014-06-05</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: update WebNotification and WebDOMMediaStreamTrack type conversions</summary>
+              <pre class=body>
+These two public/web/ types hadn&#39;t been updated to use transition types
+over their underlying Oilpan-converted objects.
+
+<a href="mailto:R=tkent@chromium.org,haraken@chromium.org">R=tkent@chromium.org,haraken@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/310393004">https://codereview.chromium.org/310393004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175540 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175540&amp;view=revision"><time datetime="2014-06-05">2014-06-05</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Frozen animations still contribute to the sandwich/animation stack</summary>
+              <pre class=body>
+With (for instance) a to-animation, the frozen element will for instance
+provide the &#39;underlying value&#39; to any following element.
+
+BUG=374793
+
+Review URL: <a href="https://codereview.chromium.org/316013003">https://codereview.chromium.org/316013003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175530 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175530&amp;view=revision"><time datetime="2014-06-05">2014-06-05</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Allow hitting the SVG root when its display-type is &#39;block&#39;</summary>
+              <pre class=body>
+The &#39;HitTestChildBlockBackground&#39; hit test action needs to be considered
+as well when detecting hits on the SVG root container itself.
+
+BUG=379299
+
+Review URL: <a href="https://codereview.chromium.org/318663002">https://codereview.chromium.org/318663002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175528 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175528&amp;view=revision"><time datetime="2014-06-05">2014-06-05</time></a>
       
         <tr>
           <td>sigbjornf
