@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 230, 
+    <a href="#chromium">Chromium</a>: 232, 
   
-    <a href="#blink">Blink</a>: 1046, 
+    <a href="#blink">Blink</a>: 1050, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,53 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>gyp performance: Load detect_host_arch directly.</summary>
+              <pre class=body>
+We ran &#34;python detect_host_arch.py&#34; ~15 times from gyp. Run
+detect_host_arch.py directly from from within gyp for faster execution
+and since the path is no longer part of the command, the result will
+also be cached more often.
+
+The total gain is at best 0.3 seconds. For most people it will be less.
+
+BUG=362075
+
+Review URL: <a href="https://codereview.chromium.org/256303003">https://codereview.chromium.org/256303003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@275361 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=275361&amp;view=revision"><time datetime="2014-06-06">2014-06-06</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>elf_symbolizer: Use a process for max 4000 lookups and then restart</summary>
+              <pre class=body>
+addr2line processes keep growing as they are used so it&#39;s best to
+restart them every now and then to avoid making its internal caches
+so large that the computer runs out of RAM or the program becomes
+incredibly slow.
+
+I experimented with different counts. 10000 uses 50% more memory
+than 4000 for a marginal performance increase. 1000 uses a bit
+less memory but will be 10% slower. 3-4000 seems to be the sweat
+spot.
+
+BUG=379153
+
+Review URL: <a href="https://codereview.chromium.org/311443002">https://codereview.chromium.org/311443002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@275165 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=275165&amp;view=revision"><time datetime="2014-06-05">2014-06-05</time></a>
       
         <tr>
           <td>bratell
@@ -4551,6 +4598,87 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add Element/Node Member fields to stack allocated objects.</summary>
+              <pre class=body>
+Tidy up the definition of some stack objects and have them refer to
+Element or Node references by way of Members rather than raw pointers.
+
+<a href="mailto:R=tkent@chromium.org,haraken@chromium.org">R=tkent@chromium.org,haraken@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/319083004">https://codereview.chromium.org/319083004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175646 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175646&amp;view=revision"><time datetime="2014-06-06">2014-06-06</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>:host-context selectors may affect insertion point descendants.</summary>
+              <pre class=body>
+At insertion points, we schedule style recalcs for inserted nodes when we
+have a StyleRecalcChange at the insertion point&#39;s parent. One of the reasons
+is that :host-context selectors which affect inserted nodes may rely on
+matching nodes which are not ascendants of the inserted nodes in the dom
+used for selector matching.
+
+We did use a LocalStyleChange for the inserted nodes, but these selectors
+may affect any node in the inserted node&#39;s subtree. Hence, we start using
+SubtreeStyleChange instead.
+
+<a href="mailto:R=esprehn@chromium.org,dglazkov@chromium.org">R=esprehn@chromium.org,dglazkov@chromium.org</a>
+BUG=381020
+
+Review URL: <a href="https://codereview.chromium.org/317953002">https://codereview.chromium.org/317953002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175636 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175636&amp;view=revision"><time datetime="2014-06-06">2014-06-06</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: tidy up reference to the Document&#39;s &#34;CSS target&#34;.</summary>
+              <pre class=body>
+Keep a traced Member reference to the Element that&#39;s recorded as
+the Document&#39;s CSS target. When that Element is removed from the
+tree, the Member will be explicitly cleared.
+
+R=
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/315333002">https://codereview.chromium.org/315333002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175609 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175609&amp;view=revision"><time datetime="2014-06-06">2014-06-06</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG2] Allow leading and trailing whitespace in svg attributes using</summary>
+              <pre class=body>&lt;integer&gt;, &lt;angle&gt;, &lt;number&gt;, &lt;length&gt; and &lt;percentage&gt;.
+
+BUG=377503,339899
+
+Review URL: <a href="https://codereview.chromium.org/302643004">https://codereview.chromium.org/302643004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175574 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175574&amp;view=revision"><time datetime="2014-06-05">2014-06-05</time></a>
       
         <tr>
           <td>rune
