@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 232, 
   
-    <a href="#blink">Blink</a>: 1052, 
+    <a href="#blink">Blink</a>: 1054, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -4598,6 +4598,54 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG2] Allow leading and trailing whitespace in svg attributes using</summary>
+              <pre class=body>&lt;integer&gt;, &lt;angle&gt;, &lt;number&gt;, &lt;length&gt; and &lt;percentage&gt;.
+
+BUG=377503,339899
+
+Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=175574">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=175574</a>
+
+Review URL: <a href="https://codereview.chromium.org/302643004">https://codereview.chromium.org/302643004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175785 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175785&amp;view=revision"><time datetime="2014-06-09">2014-06-09</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Teach SVGImage::containerSize() to deduce intrinsic values</summary>
+              <pre class=body>
+When an SVG has either intrinsic width or height but not both, and a
+intrinsic ratio, the missing intrinsic width or height can be
+calculated. Doing so enables us to return correct intrinsic width and
+height for SVG images in more cases when the image has no renderer.
+
+Also, this patch removes the unspecified use of the viewBox attribute
+as the source of intrinsic size. A small number of tests depended on
+this and has been updated. The reasoning to make this change is
+because we don&#39;t use the viewBox for intrinsic size in any other
+context than SVGImage. And we only use it until the renderer has a
+containerSize() anyway.
+
+<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/edits.html#dom-img-width">http://www.whatwg.org/specs/web-apps/current-work/multipage/edits.html#dom-img-width</a>
+<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/edits.html#dom-img-height">http://www.whatwg.org/specs/web-apps/current-work/multipage/edits.html#dom-img-height</a>
+
+BUG=376895
+
+Review URL: <a href="https://codereview.chromium.org/308643002">https://codereview.chromium.org/308643002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175784 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175784&amp;view=revision"><time datetime="2014-06-09">2014-06-09</time></a>
       
         <tr>
           <td>sigbjornf
