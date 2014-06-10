@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 232, 
+    <a href="#chromium">Chromium</a>: 233, 
   
-    <a href="#blink">Blink</a>: 1054, 
+    <a href="#blink">Blink</a>: 1058, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,26 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>binary_size: Check debug data format before starting.</summary>
+              <pre class=body>
+If the debug data format is DWARF4 and binutils is not new enough
+the output will be more or less useless (no files will be detected).
+Detect that case early instead of having the user wait for many hours
+for something that can&#39;t be used.
+
+BUG=370378
+
+Review URL: <a href="https://codereview.chromium.org/302633003">https://codereview.chromium.org/302633003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@275866 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=275866&amp;view=revision"><time datetime="2014-06-09">2014-06-09</time></a>
       
         <tr>
           <td>bratell
@@ -4598,6 +4618,81 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: remove RawPtr&lt;&gt; usage for WebNotification.</summary>
+              <pre class=body>
+Go the whole hog and use (non-const) bare pointers for the conversion
+constructor and assignment operator.
+
+R=
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/329463004">https://codereview.chromium.org/329463004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175875 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175875&amp;view=revision"><time datetime="2014-06-10">2014-06-10</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>add a user-provided constructor to emulated c++11 NullPtr</summary>
+              <pre class=body>
+According to this GCC bug/patch, a user-specified constructor is
+required for the emulated C++11 nullptr_t class if we want to be able
+to create const nullptr_t objects without an explicit initializer,
+a la: &#34;const std::nullptr_t nullptr;&#34;
+
+<a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=42844">https://gcc.gnu.org/bugzilla/show_bug.cgi?id=42844</a>
+
+This fixes a build failure in GCC 4.5.
+
+BUG=374431
+
+Review URL: <a href="https://codereview.chromium.org/322913002">https://codereview.chromium.org/322913002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175874 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175874&amp;view=revision"><time datetime="2014-06-10">2014-06-10</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Enable Oilpan by default in modules/speech/</summary>
+              <pre class=body>
+<a href="mailto:R=dmazzoni@chromium.org,haraken@chromium.org,tommi@chromium.org,tkent@chromium.org">R=dmazzoni@chromium.org,haraken@chromium.org,tommi@chromium.org,tkent@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/315133004">https://codereview.chromium.org/315133004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175872 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175872&amp;view=revision"><time datetime="2014-06-10">2014-06-10</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Enable Oilpan by default in modules/filesystem/</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org,tzik@chromium.org,tkent@chromium.org">R=haraken@chromium.org,tzik@chromium.org,tkent@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/314333002">https://codereview.chromium.org/314333002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@175867 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=175867&amp;view=revision"><time datetime="2014-06-10">2014-06-10</time></a>
       
         <tr>
           <td>ed
