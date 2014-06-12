@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 234, 
+    <a href="#chromium">Chromium</a>: 236, 
   
-    <a href="#blink">Blink</a>: 1062, 
+    <a href="#blink">Blink</a>: 1066, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,39 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>binary_size: Avoid creating nodes with many thousand children.</summary>
+              <pre class=body>
+If a bucket has too many thousand children the webapp (graph lib?)
+hangs. Protect against the most common case by splitting up the
+(No Path) section in chunks of 3000 symbols.
+
+BUG=370377
+
+Review URL: <a href="https://codereview.chromium.org/302443006">https://codereview.chromium.org/302443006</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@276650 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=276650&amp;view=revision"><time datetime="2014-06-12">2014-06-12</time></a>
+      
+        <tr>
+          <td>mateuszs
+          <td class=message>
+            <details>
+              <summary>Recent update to Windows 8.1 added new default High DPI mode - 250% for qHD displays.</summary>
+              <pre class=body>This is initial work package to reflect this change, making it possible to add hi-resolution resources in the future (if needed).
+
+Review URL: <a href="https://codereview.chromium.org/327503003">https://codereview.chromium.org/327503003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@276551 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=276551&amp;view=revision"><time datetime="2014-06-12">2014-06-12</time></a>
       
         <tr>
           <td>emoller
@@ -4633,6 +4666,104 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Enable Oilpan by default in modules/speech/</summary>
+              <pre class=body>
+<a href="mailto:R=dmazzoni@chromium.org,haraken@chromium.org,tommi@chromium.org,tkent@chromium.org">R=dmazzoni@chromium.org,haraken@chromium.org,tommi@chromium.org,tkent@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/315133004">https://codereview.chromium.org/315133004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176025 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176025&amp;view=revision"><time datetime="2014-06-12">2014-06-12</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Make SpeechSynthesis gracefully handle ExecutionContext-less operation.</summary>
+              <pre class=body>
+The SpeechSynthesis may lose its observed execution context and still
+be accessed by the platform. Check if present before accessing the
+context.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=345061
+
+Review URL: <a href="https://codereview.chromium.org/330603002">https://codereview.chromium.org/330603002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176018 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176018&amp;view=revision"><time datetime="2014-06-12">2014-06-12</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: restructure logic handling registration of methods</summary>
+              <pre class=body>
+Methods are registered in one of three different ways on an interface&#39;s
+prototype object;
+
+ 1) via an entry in a static array,
+ 2) via custom code in the interface&#39;s configure{{class}}Template(), or
+ 3) via custom code in its installPerContextEnabledMethods();
+
+depending on whether the method is static and its extended attributes.
+E.g., [RuntimeEnabled] leads to 2 and [PerContextEnabled] leads to 3.
+
+The old method of setting flags on each method signalling how it ought
+to be registered, and filtering the single list of methods in the
+templates based on these flags, was becoming seriously unwieldy for
+complicated cases such as overloaded methods.
+
+To address this, change the logic to instead filter methods into three
+lists in the scripts, one for each type of registration. The templates
+simply use a different list of methods when generating the different
+code blocks.
+
+For overloaded methods, take the attributes of all overloads into
+account, instead of looking at only one of them (the first in IDL file
+order, as it were.)
+
+Also introduce a compile-time check that a set of overloaded methods
+doesn&#39;t contain methods with conflicting extended attributes that affect
+how the method ought to be registered.
+
+BUG=339000
+
+Review URL: <a href="https://codereview.chromium.org/328663003">https://codereview.chromium.org/328663003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176017 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176017&amp;view=revision"><time datetime="2014-06-12">2014-06-12</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG2] Add support for the &#39;turn&#39; unit in &lt;angle&gt;.</summary>
+              <pre class=body>
+Spec:
+<a href="https://svgwg.org/svg2-draft/painting.html#OrientAttribute">https://svgwg.org/svg2-draft/painting.html#OrientAttribute</a>
+<a href="http://www.w3.org/TR/2012/WD-css3-values-20120308/#angles">http://www.w3.org/TR/2012/WD-css3-values-20120308/#angles</a>
+
+BUG=377514
+
+Review URL: <a href="https://codereview.chromium.org/303263008">https://codereview.chromium.org/303263008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176014 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176014&amp;view=revision"><time datetime="2014-06-12">2014-06-12</time></a>
       
         <tr>
           <td>sigbjornf
