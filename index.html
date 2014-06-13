@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 236, 
+    <a href="#chromium">Chromium</a>: 239, 
   
-    <a href="#blink">Blink</a>: 1066, 
+    <a href="#blink">Blink</a>: 1074, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,61 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mboc
+          <td class=message>
+            <details>
+              <summary>Aura tooltips do not move on mouse move in case of many neighboring</summary>
+              <pre class=body>views with the same tooltip label
+
+BUG=Aura tooltips do not move on mouse move in case of many neighboring
+views with the same tooltip label. This can be really uncomfortable
+when working with lots of tabs with the same address on the
+tab strip. Try creating ~30 startpage tabs and hover over one of them,
+then move the cursor to others. The tooltip will just sit in the place
+where it was first shown.
+
+Review URL: <a href="https://codereview.chromium.org/213833018">https://codereview.chromium.org/213833018</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@277010 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=277010&amp;view=revision"><time datetime="2014-06-13">2014-06-13</time></a>
+      
+        <tr>
+          <td>ohrn
+          <td class=message>
+            <details>
+              <summary>Add mime type information to the download database</summary>
+              <pre class=body>
+BUG=328382
+
+Review URL: <a href="https://codereview.chromium.org/319703002">https://codereview.chromium.org/319703002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@276775 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=276775&amp;view=revision"><time datetime="2014-06-12">2014-06-12</time></a>
+      
+        <tr>
+          <td>haavardm
+          <td class=message>
+            <details>
+              <summary>Compile fix for OpenSSL on Mac and Windows.</summary>
+              <pre class=body>
+OSCertHandle is not defined to OpenSSL&#39;s X509
+on Mac/Windows.
+
+BUG=None
+TEST=None
+
+Review URL: <a href="https://codereview.chromium.org/329143002">https://codereview.chromium.org/329143002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@276678 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=276678&amp;view=revision"><time datetime="2014-06-12">2014-06-12</time></a>
       
         <tr>
           <td>bratell
@@ -4666,6 +4721,171 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG] Cleanup: remove externalResourcesRequired attribute from parser.</summary>
+              <pre class=body>
+HTML spec update:
+<a href="http://html5.org/tools/web-apps-tracker?from=8674&amp;to=8675">http://html5.org/tools/web-apps-tracker?from=8674&amp;to=8675</a>
+
+BUG=332066
+
+Review URL: <a href="https://codereview.chromium.org/329103003">https://codereview.chromium.org/329103003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176107 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176107&amp;view=revision"><time datetime="2014-06-13">2014-06-13</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: convert remaining OwnPtr EventQueue uses.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/336693006">https://codereview.chromium.org/336693006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176100 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176100&amp;view=revision"><time datetime="2014-06-13">2014-06-13</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG2] The exposed event target should be the &lt;use&gt; element.</summary>
+              <pre class=body>
+Spec:
+<a href="https://svgwg.org/svg2-draft/struct.html#UseElement">https://svgwg.org/svg2-draft/struct.html#UseElement</a>
+
+BUG=382872, 313438
+
+Review URL: <a href="https://codereview.chromium.org/323343004">https://codereview.chromium.org/323343004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176090 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176090&amp;view=revision"><time datetime="2014-06-13">2014-06-13</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync TextTrackList.getTrackById IDL with spec and test it</summary>
+              <pre class=body>
+<a href="http://whatwg.org/html#texttracklist">http://whatwg.org/html#texttracklist</a>
+
+The test has also been submitted to web-platform-tests:
+<a href="https://github.com/w3c/web-platform-tests/pull/1058">https://github.com/w3c/web-platform-tests/pull/1058</a>
+
+Review URL: <a href="https://codereview.chromium.org/336523002">https://codereview.chromium.org/336523002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176089 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176089&amp;view=revision"><time datetime="2014-06-13">2014-06-13</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Unapply effectiveZoom during SVG layout</summary>
+              <pre class=body>
+Text layout in SVG is assumed to happen in unzoomed coordinates.
+Prior to this patch, there was a special SVG mode in the
+StyleResolver that disregarded zoom when resolving lengths for
+SVG elements. That broke down during inheritance though, so a
+better way to handle the SVG zoom model is for the SVG module to
+remove zoom from style values itself.
+
+BUG=382366
+
+Review URL: <a href="https://codereview.chromium.org/323053002">https://codereview.chromium.org/323053002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176051 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176051&amp;view=revision"><time datetime="2014-06-12">2014-06-12</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Simplified code for styleResolverChanged.</summary>
+              <pre class=body>
+Removed StyleResolverChange class by:
+
+- Marking Document scope for recalc in the stylesheet collection class like
+  we do for shadow scopes instead of propagating it up to Document.
+
+- Move the check for doing full repaint after all stylesheets have been
+  loaded to Document::styleResolverChanged.
+
+Introduced a shouldUpdateDocumentStyleSheetCollection helper method.
+
+<a href="mailto:R=esprehn@chromium.org,ojan@chromium.org">R=esprehn@chromium.org,ojan@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/330043002">https://codereview.chromium.org/330043002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176050 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176050&amp;view=revision"><time datetime="2014-06-12">2014-06-12</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fix resolving protocol-agnostic &lt;svg:image&gt; URLs in about:blank iframes</summary>
+              <pre class=body>
+When resolving a protocol-agnostic URL against a base of &#39;about:blank&#39;,
+the result would be an invalid (and empty) URL, because of missing special-
+casing of &#39;about:blank&#39; - which is present in
+Document::completeURLWithOverride.
+Fix by modifying SVGImageLoader::sourceURI to always resolve the URL using
+Document::completeURLWithOverride to not miss out on this special-casing
+logic for &#39;about:blank&#39; base URLs.
+
+BUG=379100
+
+Review URL: <a href="https://codereview.chromium.org/329943003">https://codereview.chromium.org/329943003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176043 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176043&amp;view=revision"><time datetime="2014-06-12">2014-06-12</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: support per-overload [RuntimeEnabled] extended attribute</summary>
+              <pre class=body>
+If different overloads of a method have different [RuntimeEnabled]
+extended attributes, check the runtime flags as part of overload
+resolution instead of when configuring the prototype object template.
+If the runtime feature is disabled, the overload resolution algorithm
+will act as if the method did not exist.
+
+If all overloads have the same [RuntimeEnabled] extended attribute,
+it is checked when configured the prototype object template as for
+regular non-overloaded methods.
+
+BUG=339000
+
+Review URL: <a href="https://codereview.chromium.org/299203002">https://codereview.chromium.org/299203002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176028 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176028&amp;view=revision"><time datetime="2014-06-12">2014-06-12</time></a>
       
         <tr>
           <td>sigbjornf
