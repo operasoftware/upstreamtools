@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 239, 
   
-    <a href="#blink">Blink</a>: 1074, 
+    <a href="#blink">Blink</a>: 1076, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -4721,6 +4721,50 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Revert of Disable the HTMLVideoElement-specific prefixed fullscreen API (2nd attempt) (https://codereview.chromium.org/251873002/)</summary>
+              <pre class=body>
+Reason for revert:
+Wait with removal until the unprefixed Fullscreen API has been shipped.
+
+Original issue&#39;s description:
+&gt; Disable the HTMLVideoElement-specific prefixed fullscreen API (2nd attempt)
+&gt; 
+&gt; BUG=346236
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=172693">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=172693</a>
+
+Review URL: <a href="https://codereview.chromium.org/328303003">https://codereview.chromium.org/328303003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176144 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176144&amp;view=revision"><time datetime="2014-06-14">2014-06-14</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: trace Event.currentTarget.</summary>
+              <pre class=body>
+Strongly keep track of the current target.
+
+For tidiness, also trace the &#39;parent&#39; back reference on the XHR progress
+event throttling part object.
+
+<a href="mailto:R=zerny@chromium.org,ager@chromium.org">R=zerny@chromium.org,ager@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/330273002">https://codereview.chromium.org/330273002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176112 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176112&amp;view=revision"><time datetime="2014-06-13">2014-06-13</time></a>
       
         <tr>
           <td>ed
