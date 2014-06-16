@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 239, 
+    <a href="#chromium">Chromium</a>: 240, 
   
-    <a href="#blink">Blink</a>: 1076, 
+    <a href="#blink">Blink</a>: 1084, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,22 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>ljagielski
+          <td class=message>
+            <details>
+              <summary>NSSDecryptor::ReadAndParseSignons() - improved password form scheme detection,</summary>
+              <pre class=body>when database row has non-empty realm, assume autofill::PasswordForm::SCHEME_BASIC.
+
+BUG=375158
+
+Review URL: <a href="https://codereview.chromium.org/306123004">https://codereview.chromium.org/306123004</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@277393 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=277393&amp;view=revision"><time datetime="2014-06-16">2014-06-16</time></a>
       
         <tr>
           <td>mboc
@@ -4721,6 +4737,178 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move page&#39;s ValidationMessageClient to the heap.</summary>
+              <pre class=body>
+Avoids keeping a bare pointer to the current anchor from the client
+implementation object.
+
+<a href="mailto:R=ager@chromium.org,zerny@chromium.org,haraken@chromium.org,tkent@chromium.org">R=ager@chromium.org,zerny@chromium.org,haraken@chromium.org,tkent@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/334153003">https://codereview.chromium.org/334153003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176206 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176206&amp;view=revision"><time datetime="2014-06-16">2014-06-16</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: have GeolocationInspectorAgent persistently track its controllers.</summary>
+              <pre class=body>
+With GeolocationController (now back) on the heap, maintain a persistent
+set of them from GeolocationInspectorAgent.
+
+<a href="mailto:R=haraken@chromium.org,ager@chromium.org,zerny@chromium.org">R=haraken@chromium.org,ager@chromium.org,zerny@chromium.org</a>
+BUG=304341
+
+Review URL: <a href="https://codereview.chromium.org/332153002">https://codereview.chromium.org/332153002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176202 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176202&amp;view=revision"><time datetime="2014-06-16">2014-06-16</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Support optional argument default value syntax</summary>
+              <pre class=body>
+Adds support for parsing default values of different types, but
+only handles null default values when generating code.
+
+Replaces existing
+
+  [Default=Null] optional SomeInterface arg
+  [Default=NullString] optional DOMString arg
+
+with the now equivalent
+
+  optional SomeInterface arg = null
+  optional DOMString arg = null
+
+in IDL files, and drops support for those [Default] attributes.
+
+No changes to generated code.
+
+BUG=258153
+
+Review URL: <a href="https://codereview.chromium.org/312683005">https://codereview.chromium.org/312683005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176200 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176200&amp;view=revision"><time datetime="2014-06-16">2014-06-16</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Transition networkState back to NETWORK_IDLE on fetch if preload=none</summary>
+              <pre class=body>
+When a media element is marked with the preload hint &#39;none&#39;, a load is not
+started until data is explicitly requested. The progress timer is however
+still started, which means that a &#39;stalled&#39; event will be fired after ~3s.
+This is confusing, since loading never actually started in the first place.
+Fix this by implementing (the &#34;optional&#34;) step 3 from the &#39;resource fetch
+algorithm&#39;.
+
+BUG=382505
+BUG=284413
+
+Review URL: <a href="https://codereview.chromium.org/327553002">https://codereview.chromium.org/327553002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176199 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176199&amp;view=revision"><time datetime="2014-06-16">2014-06-16</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r176183</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=305497
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/332183002">https://codereview.chromium.org/332183002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176198 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176198&amp;view=revision"><time datetime="2014-06-16">2014-06-16</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Remove include of StyleResolverState.h from StyleResolver.h</summary>
+              <pre class=body>
+Instead add includes to .cpp files that needs things that
+StyleResolverState.h included for them.
+
+This brings down the amount of recompilation drastically (from 
+~720 to ~20) when touching files like FontBuilder.h or
+StyleResolverState.h.
+
+Review URL: <a href="https://codereview.chromium.org/327773004">https://codereview.chromium.org/327773004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176195 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176195&amp;view=revision"><time datetime="2014-06-16">2014-06-16</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fix computation of animated transform w/ different from/to transform types</summary>
+              <pre class=body>
+Calculating the animated value between two transforms of differing types
+would give random results (and ASSERT in debug.)
+Fix by requiring the effective &#39;from&#39; value to have the same type as the
+&#39;to&#39; value. If the types are not the same, then use a &#34;zero transform&#34; as
+the &#39;from&#39; value.
+
+Also adjust the behavior of animateTransform additive to-animations in
+this case by clearing the list in these cases too (matching Presto and
+Gecko in this particular case.)
+
+BUG=231409
+
+Review URL: <a href="https://codereview.chromium.org/330813002">https://codereview.chromium.org/330813002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176193 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176193&amp;view=revision"><time datetime="2014-06-16">2014-06-16</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Remove unused method setZoomWithoutReturnValue</summary>
+              <pre class=body>
+When the third parameter to PropertyWrapper was removed in
+<a href="https://codereview.chromium.org/139273007">https://codereview.chromium.org/139273007</a> (legacy animation engine
+removal) setZoomWithoutReturnValue lost its last caller.
+
+Review URL: <a href="https://codereview.chromium.org/324063002">https://codereview.chromium.org/324063002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176182 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176182&amp;view=revision"><time datetime="2014-06-16">2014-06-16</time></a>
       
         <tr>
           <td>philipj
