@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 242, 
+    <a href="#chromium">Chromium</a>: 244, 
   
-    <a href="#blink">Blink</a>: 1086, 
+    <a href="#blink">Blink</a>: 1096, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,51 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL parser: add StaticAttribute production</summary>
+              <pre class=body>
+This is a straight upstream from Blink&#39;s IDL parser, which will allow
+us to drop some overrides there, which in turn will allow us to update
+this parser to use the grammar of current Web IDL, where static
+attributes are supported differently (via a StaticMember production
+that handles both static attributes and static methods.)
+
+Preparation for:
+IDL parser: drop AttributeOrOperation and StaticAttribute overrides
+<a href="https://codereview.chromium.org/336733002/">https://codereview.chromium.org/336733002/</a> (in Blink)
+
+...and ultimately for:
+IDL parser: align with current Web IDL specification
+<a href="https://codereview.chromium.org/329853005/">https://codereview.chromium.org/329853005/</a>
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/333853002">https://codereview.chromium.org/333853002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@277843 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=277843&amp;view=revision"><time datetime="2014-06-17">2014-06-17</time></a>
+      
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Build content with OS X 10.9 SDK</summary>
+              <pre class=body>
+glFlush() in render_widget_host_view_mac.mm requires gl.h since
+10.9 SDK (I suppose it was included implicitly before).
+
+Review URL: <a href="https://codereview.chromium.org/332383002">https://codereview.chromium.org/332383002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@277817 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=277817&amp;view=revision"><time datetime="2014-06-17">2014-06-17</time></a>
       
         <tr>
           <td>jadahl
@@ -4772,6 +4817,224 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix MediaController crashes after r176358.</summary>
+              <pre class=body>
+MediaController::trace() needs to have the declaration of ExecutionContext
+available, so as to determine what NeedsAdjustAndMark&lt;&gt; resolves to for
+its (weak) ExecutionContext member.
+
+<a href="mailto:R=haraken@chromium.org,zerny@chromium.org">R=haraken@chromium.org,zerny@chromium.org</a>
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/344443008">https://codereview.chromium.org/344443008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176415 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176415&amp;view=revision"><time datetime="2014-06-18">2014-06-18</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Evaluate MediaQueryLists on actual media changes only.</summary>
+              <pre class=body>
+MediaQueryLists were re-evaluated for every styleResolverChanged(). The
+evaluation of MediaQueryLists can only change when some media type or
+features change. That is signalled through mediaQueryAffectingValueChanged().
+Set m_evaluateMediaQueriesOnStyleRecalc there instead.
+
+Since the media queries don&#39;t change this is not noticable through layout
+or unit testing.
+
+<a href="mailto:R=esprehn@chromium.org">R=esprehn@chromium.org</a>
+BUG=382894
+
+Review URL: <a href="https://codereview.chromium.org/322043008">https://codereview.chromium.org/322043008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176406 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176406&amp;view=revision"><time datetime="2014-06-18">2014-06-18</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL parser: drop AttributeOrOperation and StaticAttribute overrides</summary>
+              <pre class=body>
+Static attributes are now supported by the base IDL parser, so these
+overrides are no longer needed.
+
+Followup to:
+IDL parser: add StaticAttribute production
+<a href="https://codereview.chromium.org/333853002/">https://codereview.chromium.org/333853002/</a>
+
+...and prep for:
+IDL parser: align with current Web IDL specification
+<a href="https://codereview.chromium.org/329853005/">https://codereview.chromium.org/329853005/</a>
+
+Review URL: <a href="https://codereview.chromium.org/336733002">https://codereview.chromium.org/336733002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176398 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176398&amp;view=revision"><time datetime="2014-06-18">2014-06-18</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Remove unused RenderReplaced::hasReplacedLogicalWidth()</summary>
+              <pre class=body>
+Last user was removed with
+<a href="http://src.chromium.org/viewvc/blink?view=revision&amp;revision=171958">http://src.chromium.org/viewvc/blink?view=revision&amp;revision=171958</a>
+
+Review URL: <a href="https://codereview.chromium.org/341503002">https://codereview.chromium.org/341503002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176394 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176394&amp;view=revision"><time datetime="2014-06-18">2014-06-18</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: reuse more code between CG for methods and constructors</summary>
+              <pre class=body>
+The CG for constructors and named constructors had its own simplified
+mechanism for generating the actual call to the C++ constructor, rather
+than using v8_methods.cpp_value(). Except for constructors with
+optional arguments without default values, which used cpp_value() via
+v8_methods.generate_argument() to generate the &#34;short-cut&#34; call used
+when the function is called without the optional arguments.
+
+With this patch, v8_methods.cpp_value() is used for all calls. This
+will make it easier to adjust the handling of arguments later on in the
+more complex cases.
+
+Some IDL files that declare named constructors are modified by adding
+ConstructorCallWith=Document, which was previously implied for named
+constructors.
+
+BUG=258153
+
+Review URL: <a href="https://codereview.chromium.org/340443004">https://codereview.chromium.org/340443004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176390 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176390&amp;view=revision"><time datetime="2014-06-18">2014-06-18</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Wrong pending sheets test causing FOUC.</summary>
+              <pre class=body>
+In r176050, moving the full view repaint from StyleEngine to Document, the
+check changed from !hasPendingSheets() to haveStylesheetsLoaded(). The
+difference is that m_ignorePendingStylesheets affected the result of the
+check which causes a FOUC in named BUG.
+
+BUG=384969
+
+Review URL: <a href="https://codereview.chromium.org/339573005">https://codereview.chromium.org/339573005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176367 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176367&amp;view=revision"><time datetime="2014-06-18">2014-06-18</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>Remove dead neonDrawLighting code</summary>
+              <pre class=body>
+FELightingNEON.h&#39;s inline FELighting::platformApplyNeon() method refers
+to an extern neonDrawLighting symbol.  This function is implemented in
+assembly in WebKit but does not exist in blink.  This must then be dead
+code (otherwise there would have been complaints).
+
+The only reference to platformApplyNeon that I can find is an ifdef&#39;ed
+call in FELighting::platformApply(), which is only enabled if the target
+supports NEON but not Thumb (which I guess must be very uncommon).
+
+BUG=381082
+TEST=build with arm_neon=1 arm_thumb=0
+
+Review URL: <a href="https://codereview.chromium.org/313303003">https://codereview.chromium.org/313303003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176365 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176365&amp;view=revision"><time datetime="2014-06-17">2014-06-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Outline Element::shouldIgnoreAttributeCase()</summary>
+              <pre class=body>
+This allows the Document.h include to be removed from Element.h, which
+reduces the amount of recompilation when touching Document.h by about
+12%, from 1382 steps to 1214 steps locally.
+
+The only place outside of Element.cpp that uses this function is
+NamedNodeMap::removeNamedItem, which is very rarely used:
+<a href="http://www.chromestatus.com/metrics/feature/timeline/popularity/308">http://www.chromestatus.com/metrics/feature/timeline/popularity/308</a>
+
+In other words, the performance difference should not matter.
+
+Review URL: <a href="https://codereview.chromium.org/334413005">https://codereview.chromium.org/334413005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176358 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176358&amp;view=revision"><time datetime="2014-06-17">2014-06-17</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move platform speech objects to the heap.</summary>
+              <pre class=body>
+With the Speech API now using Oilpan by default, follow up and also
+heap allocate the platform-level intermediary objects.
+
+<a href="mailto:R=tkent@chromium.org,haraken@chromium.org">R=tkent@chromium.org,haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/339823003">https://codereview.chromium.org/339823003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176321 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176321&amp;view=revision"><time datetime="2014-06-17">2014-06-17</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Retire now-unused WorkerGlobalScope subobject accessors.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/342463002">https://codereview.chromium.org/342463002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176320 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176320&amp;view=revision"><time datetime="2014-06-17">2014-06-17</time></a>
       
         <tr>
           <td>philipj
