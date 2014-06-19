@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 244, 
   
-    <a href="#blink">Blink</a>: 1096, 
+    <a href="#blink">Blink</a>: 1100, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -4817,6 +4817,113 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Map light-source oBB-relative coordinates to the user-space of the filter</summary>
+              <pre class=body>
+The &#39;fePointLight&#39; and &#39;feSpotLight&#39; light-source elements for
+&#39;fe{Diffuse,Specular}Lighting&#39; defines positions, and in the case of
+the latter a &#39;look-at&#39; point (implicit direction). When an SVG filter is
+declared to use primitiveUnits=objectBoundingBox, these positions/points
+needs to be mapped to the user-space of the filter.
+This is achieved by adding a new method resolve3dPoint() to Filter, and
+perform the coordinate space mapping when creating the various
+LightSources.
+Open-code SVGFELightElement::findLightSource() in it&#39;s sources to avoid
+passing the Filter-instance around more than necessary.
+
+BUG=176419
+
+Review URL: <a href="https://codereview.chromium.org/337903003">https://codereview.chromium.org/337903003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176499 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176499&amp;view=revision"><time datetime="2014-06-19">2014-06-19</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Make replaced preferred widths independent on available width</summary>
+              <pre class=body>
+Prior to this patch, a replaced element with intrinsic ratio but with
+no intrinsic width nor height and with &#39;width&#39;, &#39;height&#39; both computed
+values of &#39;auto&#39;, would have preferred width and preferred minimal
+width that depended on the available width of the container.
+
+After this patch, such a replaced element will have zero preferred
+width and zero preferred minimal width.
+
+Example:
+
+&lt;!doctype html&gt;
+&lt;div style=&#34;width: 200px&#34;&gt;
+  &lt;svg viewBox=&#34;0 0 1 1&#34; style=&#34;background: blue&#34;&gt;
+  &lt;/svg&gt;
+&lt;div&gt;
+
+&lt;svg&gt; becomes a 200x200 blue rectangle, intrinsic ratio (1) comes from
+viewBox attribute. Preferred minimal width and preferred width would
+be 200px prior to patch.
+
+Changing the width of &lt;div&gt; would require recalculating preferred
+widths on &lt;svg&gt;, something we rather not do, and does not currently
+do. (See RenderReplaced::needsPreferredWidthsRecalculation()). This
+means preferred minimal widths was left with stale values after
+changes to the container.
+
+The new behavior matches Firefox but is not yet in spec, possibly
+because the sizing of such replaced element is undefined in CSS 2.1,
+even though there is a suggestion, followed by Blink, in the spec.
+
+BUG=382922
+
+Review URL: <a href="https://codereview.chromium.org/325183002">https://codereview.chromium.org/325183002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176456 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176456&amp;view=revision"><time datetime="2014-06-18">2014-06-18</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Include HTMLFrameOwnerElement.h in fewer headers</summary>
+              <pre class=body>
+Because HTMLFrameOwnerElement.h includes Document.h, the consequence is
+mostly that Document.h includes need to be added.
+
+Locally, this reduces the number of recompilation steps when touching
+HTMLFrameOwnerElement.h from 579 to 117, and when touching Document.h
+from 1214 to 1160.
+
+There is a risk of performance regressions due to outlining
+Frame::deprecatedLocalOwner().
+
+Review URL: <a href="https://codereview.chromium.org/343593002">https://codereview.chromium.org/343593002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176433 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176433&amp;view=revision"><time datetime="2014-06-18">2014-06-18</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Fix typo checkConnectedSubf(r)ameCountIsConsistent</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/340813002">https://codereview.chromium.org/340813002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176419 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176419&amp;view=revision"><time datetime="2014-06-18">2014-06-18</time></a>
       
         <tr>
           <td>sigbjornf
