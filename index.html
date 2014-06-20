@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 244, 
+    <a href="#chromium">Chromium</a>: 245, 
   
-    <a href="#blink">Blink</a>: 1100, 
+    <a href="#blink">Blink</a>: 1103, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,30 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL parser: align with current Web IDL specification</summary>
+              <pre class=body>
+Mostly renumbered and restructured grammar productions.  Notable changes:
+
+- add support for static attributes via StaticMember
+- add support for built-in types ByteString and RegExp
+- allow trailing comma in enum declarations
+
+Depends on:
+IDL parser: drop AttributeOrOperation and StaticAttribute overrides
+<a href="https://codereview.chromium.org/336733002/">https://codereview.chromium.org/336733002/</a>
+...or else breaks Blink compile.
+
+Review URL: <a href="https://codereview.chromium.org/329853005">https://codereview.chromium.org/329853005</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@278365 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=278365&amp;view=revision"><time datetime="2014-06-19">2014-06-19</time></a>
       
         <tr>
           <td>jl
@@ -4817,6 +4841,64 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move MessagePortArray to the heap.</summary>
+              <pre class=body>
+Complete the addition of Oilpan transition types for MessagePort, and
+also move its array type to the heap.
+
+<a href="mailto:R=haraken@chromium.org,adamk@chromium.org">R=haraken@chromium.org,adamk@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/344833002">https://codereview.chromium.org/344833002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176591 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176591&amp;view=revision"><time datetime="2014-06-20">2014-06-20</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move BatteryStatus to the heap.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org,timvolodine@chromium.org">R=haraken@chromium.org,timvolodine@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/341053002">https://codereview.chromium.org/341053002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176525 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176525&amp;view=revision"><time datetime="2014-06-19">2014-06-19</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Remove KeyframeEffectModel.h include from StyleResolver.h</summary>
+              <pre class=body>
+Replace the include with forward declarations.
+
+Prior to this patch, KeyframeEffectModel.h had roughly 700 targets
+depending on it. After this patch this number has shrunk to around 11.
+In the last 90 days, KeyframeEffectModel.h was modified 13 times on
+trunk, which is a relatively high number.
+
+KeyframeEffectModel.h also pulls in a large amount of other animation
+headers so they should see similar benefits.
+
+Review URL: <a href="https://codereview.chromium.org/346803002">https://codereview.chromium.org/346803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176517 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176517&amp;view=revision"><time datetime="2014-06-19">2014-06-19</time></a>
       
         <tr>
           <td>fs
