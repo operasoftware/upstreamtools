@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 245, 
+    <a href="#chromium">Chromium</a>: 246, 
   
-    <a href="#blink">Blink</a>: 1103, 
+    <a href="#blink">Blink</a>: 1109, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,23 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>joaoe
+          <td class=message>
+            <details>
+              <summary>New ZipReader::ExtractCurrentEntryToString API.</summary>
+              <pre class=body>
+New API which extract a zip entry into a memory buffer.
+
+BUG=359428
+
+Review URL: <a href="https://codereview.chromium.org/292443006">https://codereview.chromium.org/292443006</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@278766 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=278766&amp;view=revision"><time datetime="2014-06-20">2014-06-20</time></a>
       
         <tr>
           <td>jl
@@ -4841,6 +4858,127 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r176674.</summary>
+              <pre class=body>
+<a href="mailto:TBR=haraken@chromium.org">TBR=haraken@chromium.org</a>
+BUG=328961
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/329853011">https://codereview.chromium.org/329853011</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176679 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176679&amp;view=revision"><time datetime="2014-06-21">2014-06-21</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r176651</summary>
+              <pre class=body>
+Remove the use of transition types over JSONValues.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/341383002">https://codereview.chromium.org/341383002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176677 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176677&amp;view=revision"><time datetime="2014-06-21">2014-06-21</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Rework EventSource tests for better Worker test coverage.</summary>
+              <pre class=body>
+Follow on from <a href="https://codereview.chromium.org/340363003/">https://codereview.chromium.org/340363003/</a> and recast
+the remaining Document-agnostic EventSource tests to also be usable from
+a Worker context.
+
+R=
+BUG=386520
+
+Review URL: <a href="https://codereview.chromium.org/347043002">https://codereview.chromium.org/347043002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176665 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176665&amp;view=revision"><time datetime="2014-06-21">2014-06-21</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove some includes from Document.h</summary>
+              <pre class=body>
+Document.h is included a lot, so the less it includes the better. Also,
+touching the removed header files will now cause less recompilation.
+
+Review URL: <a href="https://codereview.chromium.org/343923004">https://codereview.chromium.org/343923004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176656 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176656&amp;view=revision"><time datetime="2014-06-20">2014-06-20</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>RenderView is null for import documents.</summary>
+              <pre class=body>
+Documents for html imports have separate StyleEngines and separate lists of
+pending stylesheets. However, they don&#39;t have a RenderView. In r176050 the
+repaint was moved from the StyleEngine where non-master documents skipped
+the repaint. Trying to do a repaint from a non-master document will crash
+without a check for renderView().
+
+I have added a renderView() check with an assert that checks that it happens
+if we are in an import document. I did keep the changing of
+m_pendingSheetLayout to IgnoreLayoutWithPendingSheets, since we
+envidentially do set it to DidLayoutWithPendingSheets for import documents,
+even before the r176050 change.
+
+It is possible that the m_pendingSheetLayout machinery does nothing useful
+for imported documents, but I frankly don&#39;t know how it should work.
+
+I am only able to reproduce the crash in the layout test with --debug.
+
+<a href="mailto:R=ojan@chromium.org,esprehn@chromium.org">R=ojan@chromium.org,esprehn@chromium.org</a>
+BUG=386564
+
+Review URL: <a href="https://codereview.chromium.org/330093003">https://codereview.chromium.org/330093003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176649 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176649&amp;view=revision"><time datetime="2014-06-20">2014-06-20</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove StyleResolver::documentSettings()</summary>
+              <pre class=body>
+This is the only reason that Document.h needs to be included, so
+removing this will allow that include to be removed (later).
+
+Review URL: <a href="https://codereview.chromium.org/342373004">https://codereview.chromium.org/342373004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176643 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176643&amp;view=revision"><time datetime="2014-06-20">2014-06-20</time></a>
       
         <tr>
           <td>sigbjornf
