@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 246, 
+    <a href="#chromium">Chromium</a>: 247, 
   
-    <a href="#blink">Blink</a>: 1112, 
+    <a href="#blink">Blink</a>: 1118, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,26 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL parser: implement Stringifier production</summary>
+              <pre class=body>
+Emit a node with class &#39;Stringifier&#39; for all stringifier variants.
+If the stringifier is an attribute, this node has a child node that
+represents the attribute. If the stringifier is an operation (named
+or unnamed) the node has a child node that represents the operation.
+
+BUG=306606
+
+Review URL: <a href="https://codereview.chromium.org/329163002">https://codereview.chromium.org/329163002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@279097 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=279097&amp;view=revision"><time datetime="2014-06-23">2014-06-23</time></a>
       
         <tr>
           <td>joaoe
@@ -4858,6 +4878,136 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Remove excessive include of ActiveAnimations.h</summary>
+              <pre class=body>
+CSSAnimations.h, having being changed 23 times in the last 90 days,
+had prior to this patch roughly 507 targets depending on it. After
+this patch, the number has shrunk to 17.
+
+This patch removes unnecessary ActiveAnimation.h includes, from which
+CSSAnimations.h is included.
+
+Review URL: <a href="https://codereview.chromium.org/336163003">https://codereview.chromium.org/336163003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176748 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176748&amp;view=revision"><time datetime="2014-06-23">2014-06-23</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL parser: fix rebuilding of (stale) cached parser tables</summary>
+              <pre class=body>
+The yacc parser&#39;s tables are cached to improve build performance, and are
+rebuilt by running blink_idl_parser.py directly, which simply initializes
+the IDL parser and expects PLY (yacc.py) to write the cached tables as a
+side-effect.
+
+However, if the file containing the cached tables exists, then PLY will
+instead try to load the stale cache. If that succeeds, it will disable
+the rewriting, since there&#39;s no point in writing to the cache what was
+just read from it.
+
+Fix by always deleting the cache file whenever blink_idl_parser.py is
+executed directly, before initializing the parser. This way, PLY will not
+use cached tables, and will instead write the cache file.
+
+BUG=387631
+
+Review URL: <a href="https://codereview.chromium.org/332683004">https://codereview.chromium.org/332683004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176745 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176745&amp;view=revision"><time datetime="2014-06-23">2014-06-23</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move MediaKeyError to the heap.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/331803005">https://codereview.chromium.org/331803005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176742 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176742&amp;view=revision"><time datetime="2014-06-23">2014-06-23</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Fix typo ExeuctionContext -&gt; ExecutionContext</summary>
+              <pre class=body>
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/344723003">https://codereview.chromium.org/344723003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176740 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176740&amp;view=revision"><time datetime="2014-06-23">2014-06-23</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Extend ScalarValueString handling to include constructors.</summary>
+              <pre class=body>
+ScalarValueString conversion may raise an exception; take that into
+account when generating the constructor&#39;s code.
+
+Also, common up various string-like and exception-raising tests
+internally, making them properties over the underlying IDL types.
+
+<a href="mailto:R=jsbell@chromium.org,haraken@chromium.org">R=jsbell@chromium.org,haraken@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/338893004">https://codereview.chromium.org/338893004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176732 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176732&amp;view=revision"><time datetime="2014-06-23">2014-06-23</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Expose URLUtilsReadOnly.origin</summary>
+              <pre class=body>
+Follow up on a recent URL spec addition,
+
+ <a href="http://url.spec.whatwg.org/#urlutilsreadonly">http://url.spec.whatwg.org/#urlutilsreadonly</a>
+ <a href="https://github.com/whatwg/url/commit/0027a2e">https://github.com/whatwg/url/commit/0027a2e</a>
+
+and add the |origin| property to URLUtilsReadOnly.
+
+WorkerLocation is currently the only object implementing this interface,
+so this addition lets scripts executing in Worker contexts look up the
+serialized origin (of the script that initialized the Worker) via
+self.location.origin.
+
+R=
+BUG=303152
+
+Review URL: <a href="https://codereview.chromium.org/342553010">https://codereview.chromium.org/342553010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176712 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176712&amp;view=revision"><time datetime="2014-06-22">2014-06-22</time></a>
       
         <tr>
           <td>philipj
