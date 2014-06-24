@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 247, 
   
-    <a href="#blink">Blink</a>: 1118, 
+    <a href="#blink">Blink</a>: 1122, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -4878,6 +4878,90 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Support &#39;stringifier&#39; keyword</summary>
+              <pre class=body>
+Usable in one of these forms:
+
+  stringifier;
+  stringifier DOMString ();
+  stringifier DOMString name();
+  stringifier attribute DOMString name;
+
+All cause a toString() method to be defined on the interface automatically.
+The first two are equivalent, and call CPPClass::toString() to retrieve the
+string value. The latter two use CPPClass::name() to retrieve the string
+value and also declare a regular attribute and operation, respectively.
+
+Changed all simple &#34;DOMString toString()&#34; occurrences in IDL files to use
+&#34;stringifier&#34; instead.
+
+BUG=306606
+
+Review URL: <a href="https://codereview.chromium.org/345393004">https://codereview.chromium.org/345393004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176833 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176833&amp;view=revision"><time datetime="2014-06-24">2014-06-24</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Include Document.h in fewer headers</summary>
+              <pre class=body>
+Since Document.h is included in so many different places this does not
+amount to much recompilation savings (1165 -&gt; 1155), but does put the
+include where it belongs for future reduction patches.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>, <a href="mailto:jochen@chromium.org">jochen@chromium.org</a>, <a href="mailto:morrita@chromium.org">morrita@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/344813003">https://codereview.chromium.org/344813003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176831 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176831&amp;view=revision"><time datetime="2014-06-24">2014-06-24</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Switch URL and URLUtils interfaces over to use ScalarValueString.</summary>
+              <pre class=body>
+<a href="mailto:R=arv@chromium.org,jsbell@chromium.org">R=arv@chromium.org,jsbell@chromium.org</a>
+BUG=303152
+
+Review URL: <a href="https://codereview.chromium.org/331313011">https://codereview.chromium.org/331313011</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176782 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176782&amp;view=revision"><time datetime="2014-06-23">2014-06-23</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Don&#39;t use the empty string as an url in MemoryCacheTest.</summary>
+              <pre class=body>
+MemoryCacheTest relies on KURL doing something useful with an empty string
+that results in a non-empty string that can be used as hash key for
+the MemoryCache. Better to not do that because KURL is being changed.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/346263003">https://codereview.chromium.org/346263003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176773 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176773&amp;view=revision"><time datetime="2014-06-23">2014-06-23</time></a>
       
         <tr>
           <td>davve
