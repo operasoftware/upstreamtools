@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 247, 
+    <a href="#chromium">Chromium</a>: 249, 
   
-    <a href="#blink">Blink</a>: 1122, 
+    <a href="#blink">Blink</a>: 1129, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,41 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>PlatformFontWin::DeriveFontWithHeight insensitive to base font&#39;s height</summary>
+              <pre class=body>
+As a side effect this commit fixes also bug 149151 and allows <a href="https://codereview.chromium.org/230793003/">https://codereview.chromium.org/230793003/</a> patch to be applied without breaking tests.
+
+BUG=367092
+
+Review URL: <a href="https://codereview.chromium.org/251773002">https://codereview.chromium.org/251773002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@279657 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=279657&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>binary_size: Easier-to-read output</summary>
+              <pre class=body>
+It&#39;s easy to have to have to click a few levels down (in my case down
+into / -&gt; home -&gt; bratell -&gt; src -&gt; chromium -&gt; src). Remove the part
+that seems to be an unnecessary prefix by assuming that everything
+above cwd is not interesting.
+
+Review URL: <a href="https://codereview.chromium.org/303453003">https://codereview.chromium.org/303453003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@279448 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=279448&amp;view=revision"><time datetime="2014-06-24">2014-06-24</time></a>
       
         <tr>
           <td>jl
@@ -4878,6 +4913,144 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fix *-baseline computation for {text-,}after-edge/ideographic/baseline</summary>
+              <pre class=body>
+Negative descents were assumed, although they are positive. Fix sign of
+&#39;descent&#39; in the {text-,}after-edge and ideographic cases.
+Also fix the obvious mistake in the &#39;baseline&#39; case, where it ought to be
+handled in a similar way as &#39;auto&#39;, and not just return the &#34;computed&#34;
+alignment-baseline value.
+
+Added an additional case to pre-existing test for alignment-baseline.
+
+TEST=svg/custom/{alignment,dominant}-baseline-modes.svg (pre-existing)
+BUG=143990
+
+Review URL: <a href="https://codereview.chromium.org/331863014">https://codereview.chromium.org/331863014</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176877 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176877&amp;view=revision"><time datetime="2014-06-24">2014-06-24</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Remove obsolete document wrapper creation in named constructors</summary>
+              <pre class=body>
+For historical reasons, named constructor callbacks contained the code
+
+  toV8(document, info.Holder(), isolate);
+
+to ensure a document wrapper was created. This was necessary to ensure
+the asynchronous lifetime of HTMLAudioElement and HTMLImageElement.
+
+This is no longer the case, so drop the extra code.
+
+R=haraken
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/353623003">https://codereview.chromium.org/353623003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176868 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176868&amp;view=revision"><time datetime="2014-06-24">2014-06-24</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove unnecessary Document.h includes in .cpp files</summary>
+              <pre class=body>
+This change was made by removing the include everywhere, and then
+restoring semi-manually until everything compiled again. This gives a
+small reduction in recompilation when touching Document.h, from 1100
+to 1074 steps locally.
+
+Review URL: <a href="https://codereview.chromium.org/339793006">https://codereview.chromium.org/339793006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176867 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176867&amp;view=revision"><time datetime="2014-06-24">2014-06-24</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Support argument default values</summary>
+              <pre class=body>
+This also changes the code generated for existing null default values,
+by dropping use of argumentOrNull() (which then becomes unused and is
+removed) and setting the argument&#39;s local variable explicitly by
+assigning &#34;nullptr&#34; to it.
+
+The use of argumentOrNull() in V8HistoryCustom.cpp was redundant;
+reading info[N] directly yields an undefined value, which is converted
+to a null string by V8StringResource&lt;WithUndefinedOrNullCheck&gt;.
+
+BUG=258153
+
+Review URL: <a href="https://codereview.chromium.org/335113002">https://codereview.chromium.org/335113002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176861 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176861&amp;view=revision"><time datetime="2014-06-24">2014-06-24</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Outline ContentSecurityPolicy::document()</summary>
+              <pre class=body>
+This allows the Document.h include to be removed from
+ContentSecurityPolicy.h, which reduces recompilation when
+touching Document.h from 1156 to 1101 steps locally.
+
+Since document() was only used internally, make it private.
+
+Review URL: <a href="https://codereview.chromium.org/348743006">https://codereview.chromium.org/348743006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176856 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176856&amp;view=revision"><time datetime="2014-06-24">2014-06-24</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make better internal use of ContentSecurityPolicy::document()</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/346263009">https://codereview.chromium.org/346263009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176852 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176852&amp;view=revision"><time datetime="2014-06-24">2014-06-24</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the unused Document&amp; argument to the TextTrack constructor</summary>
+              <pre class=body>
+<a href="mailto:R=fs@opera.com">R=fs@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/352603002">https://codereview.chromium.org/352603002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176847 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176847&amp;view=revision"><time datetime="2014-06-24">2014-06-24</time></a>
       
         <tr>
           <td>jl
