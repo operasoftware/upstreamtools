@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 249, 
+    <a href="#chromium">Chromium</a>: 251, 
   
-    <a href="#blink">Blink</a>: 1129, 
+    <a href="#blink">Blink</a>: 1150, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,61 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>socket_dispatcher_host.h uses webrtc, skip when webrtc is disabled</summary>
+              <pre class=body>
+<a href="https://codereview.chromium.org/264793017">https://codereview.chromium.org/264793017</a> added some webrtc specific
+code to socket_dispatcher_host.h, and it only appears to be used for
+webrtc as far as I can see.  So we should only include this file
+elsewhere when webrtc is enabled.
+
+BUG=363459
+TEST=build with enable_webrtc=0
+
+Review URL: <a href="https://codereview.chromium.org/345823003">https://codereview.chromium.org/345823003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@279857 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=279857&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Fix creating platform font on Windows</summary>
+              <pre class=body>
+fdwCharSet param changed from 0 to DEFAULT_CHARSET (which is defined to
+1). ScriptShape fails to generate glyphs on Windows XP for some complex
+scripts (Hindi text for instance) if font is created with fdwCharSet=0.
+
+Other paramaters are unchanged because they still expand to 0.
+
+BUG=361994
+
+TEST=On Windows XP, go to Control Panel and Regional and
+Language Options. Under Languages tab check Install files
+for Complex Script and right-to-left languages (including
+Thai) and Install files for East Asian languages. Click
+Details and install Hindi language. Launch Chromium. Go to
+advanced settings and go to Languages. Add Hindi language
+and click Display Chromium in this language button. Restart
+Chromium. Expected result: Hindi font glyphs should be
+properly generated for all UI elements (tabs, menus,
+notification panels).
+
+Committed: <a href="https://src.chromium.org/viewvc/chrome?view=rev&amp;revision=263001">https://src.chromium.org/viewvc/chrome?view=rev&amp;revision=263001</a>
+
+Review URL: <a href="https://codereview.chromium.org/230793003">https://codereview.chromium.org/230793003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@279719 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=279719&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
       
         <tr>
           <td>tmoniuszko
@@ -4913,6 +4968,493 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Mark screen_orientation/page-visibility.html as flaky.</summary>
+              <pre class=body>
+<a href="mailto:TBR=ch.dumez@samsung.com,mlamouri@chromium.org">TBR=ch.dumez@samsung.com,mlamouri@chromium.org</a>
+BUG=389047
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/336863006">https://codereview.chromium.org/336863006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176973 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176973&amp;view=revision"><time datetime="2014-06-26">2014-06-26</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG2] Elements that don&#39;t render shouldn&#39;t contribute to ancestor bboxes.</summary>
+              <pre class=body>
+Based on Nikos Andronikos&#39; patch in <a href="https://bugs.webkit.org/show_bug.cgi?id=134184">https://bugs.webkit.org/show_bug.cgi?id=134184</a>.
+
+SVG elements that have rendering disabled should not contribute to any ancestor elements bounding box.
+Examples of elements with rendering disabled:
+  - basic shape with width &lt;= 0 or height &lt;= 0
+  - path with no path data (d attribute missing or empty)
+  - polyline or polygon element with no point data (points attribute missing or empty)
+
+BUG=388676
+
+Review URL: <a href="https://codereview.chromium.org/355813004">https://codereview.chromium.org/355813004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176972 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176972&amp;view=revision"><time datetime="2014-06-26">2014-06-26</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Let FullscreenElementStack methods take references where possible</summary>
+              <pre class=body>
+The main motivation is requestFullScreenForElement, which handled the
+Element* argument being null even though there&#39;s no way that could
+happen. The fallback to document()-&gt;documentElement() was unreachable.
+
+Get rid of fullScreenIsAllowedForElement since it was only used in a
+single place.
+
+Review URL: <a href="https://codereview.chromium.org/359453002">https://codereview.chromium.org/359453002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176968 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176968&amp;view=revision"><time datetime="2014-06-26">2014-06-26</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: make shutdown of plugin container objects work better.</summary>
+              <pre class=body>
+The plugin container object/widget that&#39;s kept by the plugin element has
+a destructor that accesses its element&#39;s document in a couple of ways:
+
+ - Optionally notifying that a touch event handler has been removed.
+ - Tries to notify element (and its document) that compositing update
+   is needed.
+ - Indirectly clears out the script objects registered on the document
+   frame&#39;s ScriptController when destroying the container&#39;s plugin object.
+
+With Oilpan, none of these can be done during finalization as the document
+cannot be assumed to be alive.
+
+To address, introduce an explicit detach() step for when the element is
+cleanly removed from the document (along with its container.) Otherwise,
+the plugin container is assumed to go away at the same time as the
+element (and the document.) The container&#39;s destructor will then only
+notify any off-heap objects.
+
+<a href="mailto:R=tkent@chromium.org,haraken@chromium.org">R=tkent@chromium.org,haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/357443005">https://codereview.chromium.org/357443005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176967 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176967&amp;view=revision"><time datetime="2014-06-26">2014-06-26</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add missing owner check to form&#39;s &#34;named property retrieval&#34; over images.</summary>
+              <pre class=body>
+If the named lookup for a form doesn&#39;t match the id/name of any listed
+elements, the &lt;img&gt; elements should be considered. But only those being
+descendants of the form itself.
+
+The owner check simply wasn&#39;t included; added here.
+
+<a href="mailto:R=tkent@chromium.org">R=tkent@chromium.org</a>
+BUG=387312
+
+Review URL: <a href="https://codereview.chromium.org/354813004">https://codereview.chromium.org/354813004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176960 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176960&amp;view=revision"><time datetime="2014-06-26">2014-06-26</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Rework EventSource CORS tests to be usable from Workers.</summary>
+              <pre class=body>
+Improve EventSource-in-Workers test coverage by recasting existing
+CORS tests as js-test.js tests, enabling them to also be testable from
+within Workers. As was, we had no such Worker test coverage.
+
+Also add two new tests covering failure-on-redirect handling: one due
+to the CORS access check, the other due to CSP connect-src&#39;s.
+
+<a href="mailto:R=abarth@chromium.org,mkwst@chromium.org">R=abarth@chromium.org,mkwst@chromium.org</a>
+BUG=386520
+
+Review URL: <a href="https://codereview.chromium.org/345813005">https://codereview.chromium.org/345813005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176950 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176950&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Let ThreadableLoaderClientWrapper&#39;s client handle failures better.</summary>
+              <pre class=body>
+If the ThreadableLoaderClientWrapper is notified of a redirect or
+CORS access check failure, it forwards that notification to its client.
+
+Do that without first moving the wrapper object to a &#39;done&#39; state, so as
+to allow the client to fully handle the failure -- the worker threadable
+loader will for instance signal an error-cancellation failure back at
+the wrapper.
+
+<a href="mailto:R=abarth@chromium.org,tyoshino@chromium.org">R=abarth@chromium.org,tyoshino@chromium.org</a>
+BUG=386520
+
+Review URL: <a href="https://codereview.chromium.org/340363003">https://codereview.chromium.org/340363003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176945 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176945&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: [Unforgeable] on operation should imply DontDelete+ReadOnly</summary>
+              <pre class=body>
+Previously, the only effect of [Unforgeable] on an operation was to put
+the property on instance objects instead of on the prototype object.
+
+All actual unforgeable operations -- Location&#39;s assign(), replace(),
+reload(), toString() and valueOf() -- were additionally declared read-
+only using [ReadOnly], which as a side-effect also made the properties
+unconfigurable (&#34;dont-delete&#34;).
+
+This CL fixes [Unforgeable] on operations, and drops the then redundant
+[ReadOnly] attributes from Location.idl. No CG changes.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/350683004">https://codereview.chromium.org/350683004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176940 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176940&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Use IDL argument default values in Document.idl</summary>
+              <pre class=body>
+The &#39;whatToShow&#39; and &#39;filter&#39; arguments to the createNodeIterator() and
+createTreeWalker() methods have default values in the specification.
+Add those default values in Document.idl, and get rid of the extra
+overloads of Document::createNodeIterator() and ::createTreeWalker().
+
+BUG=258153
+
+Review URL: <a href="https://codereview.chromium.org/342403007">https://codereview.chromium.org/342403007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176938 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176938&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Optimize SVGTextQuery&#39;s character offset ligature adjustment query</summary>
+              <pre class=body>
+For queries that take a code unit to compute some property for (basically
+all *OfChar calls), the &lt;start, end&gt; range is mapped to the closest
+glyph-boundary to allow queries within ligatures.
+This adjustment step is O(N), N=number of glyphs within a text node, and
+is performed for each fragment within a text box.
+This means that for text boxes with a large number of fragments - and,
+consequently, a large number of glyphs - there&#39;ll be O(N^2) behavior.
+Since the &lt;start, end&gt; range is invariant for most queries, it should
+suffice to compute the adjusted range once per text node [1].
+The easiest way to achieve this is by adding a simple cache and reuse the
+result of an adjustment query (for every fragment in a text box.)
+
+This improves the runtime of the test in the bug from ~13s to ~120ms (or
+approximately a factor 100) locally.
+
+[1] This CL however only perform caching per text box in order to minimize
+modifications to the actual adjustment code.
+
+BUG=267504
+
+Review URL: <a href="https://codereview.chromium.org/349223003">https://codereview.chromium.org/349223003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176937 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176937&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Handle multiple fragments in the getCharNumberAtPosition SVGTextQuery</summary>
+              <pre class=body>
+The start position (and thus indirectly end position) used to compute the
+extents of a glyph to check against the point is computed based on the
+&#39;processedCharacter&#39; query data state. Said state is only updated after
+each text box has been processed, meaning that for a text box with
+multiple fragments, the offset of the fragment within the box needs to be
+included to get the correct start/end position.
+
+BUG=387725
+
+Review URL: <a href="https://codereview.chromium.org/349573005">https://codereview.chromium.org/349573005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176936 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176936&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Use IDL argument default values in modules/encoding/</summary>
+              <pre class=body>
+Replace bogus &#39;null&#39; default values for DOMString/ScalarValueString
+arguments with the actual default values from the spec, and remove the
+handling of null strings in the C++ implementation.
+
+BUG=258153
+
+Review URL: <a href="https://codereview.chromium.org/356703002">https://codereview.chromium.org/356703002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176934 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176934&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Fix handling of nullable NodeFilter / XPathNSResolver arguments</summary>
+              <pre class=body>
+Arguments of NodeFilter and XPathNSResolver have a special case that adds
+a &#34;.release()&#34; suffix to the argument expression. This special case didn&#39;t
+trigger if the argument was nullable.
+
+Review URL: <a href="https://codereview.chromium.org/340783012">https://codereview.chromium.org/340783012</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176933 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176933&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Use IDL argument default values in modules/indexeddb/</summary>
+              <pre class=body>
+Replace bogus &#39;null&#39; default values for DOMString arguments with the
+actual default values from the spec, and remove the handling of null
+strings in the C++ implementation.
+
+Also replace [Default=Undefined] on some boolean arguments with the
+default value &#39;false&#39; from the spec, which has the same effect.
+
+BUG=258153
+
+Review URL: <a href="https://codereview.chromium.org/332613004">https://codereview.chromium.org/332613004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176930 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176930&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Use available width for replaced element with intrinsic ratio but no dimensions</summary>
+              <pre class=body>
+Prior to this patch, we walked up the ancestor chain to find a
+specified width for replaced content with intrinsic ratio but no
+intrinsic size nor any specified dimensions.
+
+This is clearly wrong when the containing block has no specified width
+but an implicitly set width through the constraint equation. In that
+case we would walk past the containing block and possible find an
+ancestor with specified width to size against.
+
+An other illustration of why it&#39;s wrong in the context of a stf
+container where we would possibly go outside the stf container to
+fetch a width.
+
+Both scenarios illustrated by tests.
+
+After this patch, we instead always use the available width of the
+container, to properly size inside a container with no specified size.
+
+<a href="http://www.w3.org/TR/CSS2/visudet.html#inline-replaced-width">http://www.w3.org/TR/CSS2/visudet.html#inline-replaced-width</a>
+
+BUG=387705
+
+Review URL: <a href="https://codereview.chromium.org/341773004">https://codereview.chromium.org/341773004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176929 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176929&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fix inheritance of baseline-shift &lt;length&gt; values</summary>
+              <pre class=body>
+Needs custom_inherit because of the enum+length combination.
+
+BUG=304006
+
+Review URL: <a href="https://codereview.chromium.org/330913005">https://codereview.chromium.org/330913005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176928 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176928&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: fix handling of non-decimal and unsigned default values</summary>
+              <pre class=body>
+The operation Document.createNodeIterator() has the argument
+  optional unsigned long whatToShow = 0xFFFFFFFF
+which exposes a few problems in the IDL scripts.
+
+First, &#34;0xFFFFFFFF&#34; is rejected by int(x) in default_node_to_idl_literal().
+Using int(x, base=0) solves this; int() then selects base 8, 10 or 16
+automatically.
+
+Second, for unsigned integer types, we should add a &#39;u&#39; suffix to the
+C++ integer literal, or it&#39;s not guaranteed to be valid, in particular not
+in 32-bit builds. This is implemented by adding a utility function on
+IdlType for converting an IdlLiteral to a C++ expression. This utility
+function is also a natural place to add type compatibility checks in the
+future, so include a FIXME about that.
+
+BUG=258153
+
+Review URL: <a href="https://codereview.chromium.org/352133002">https://codereview.chromium.org/352133002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176926 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176926&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove forward declared NSMenu/NSResponder from ChromeClient.h</summary>
+              <pre class=body>
+This was added in <a href="http://trac.webkit.org/changeset/30740">http://trac.webkit.org/changeset/30740</a>
+
+Neither symbol is used in ChromeClient.h.
+
+core/rendering/RenderThemeChromiumMac.h uses NSMenu, but appears to
+get the declaration/definition from elsewhere, together with a few
+other NS* symbols.
+
+Review URL: <a href="https://codereview.chromium.org/352783003">https://codereview.chromium.org/352783003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176923 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176923&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the ChromeClient.h include from RenderLayerCompositor.h</summary>
+              <pre class=body>
+ChromeClient isn&#39;t used in RenderLayerCompositor.h at all, so put the
+includes where they belong and reduce header dependencies somewhat.
+
+Review URL: <a href="https://codereview.chromium.org/351003002">https://codereview.chromium.org/351003002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176922 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176922&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Generate all constructor callbacks with the same template macro</summary>
+              <pre class=body>
+Regular constructors and named constructors are similar enough that using
+separate template macros to generate them mostly leads to duplicated code.
+
+The actual difference is now more visible, since it takes the explicit
+form
+
+  {% if constructor.is_named_constructor %}
+  // the difference
+  {% endif %}
+
+in the shared macro.
+
+Review URL: <a href="https://codereview.chromium.org/349523004">https://codereview.chromium.org/349523004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176920 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176920&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Clarify comments about the role of the lex/parse table cache action</summary>
+              <pre class=body>
+The comment claimed the explicit cache update step wasn&#39;t required, and
+explained why we still did it. This was correct for a clean build, but
+for an incremental build, when stale cache files might exist, it was
+incorrect; the explicit cache update step is in fact required to refresh
+a stale cache.
+
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/335053003">https://codereview.chromium.org/335053003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@176917 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=176917&amp;view=revision"><time datetime="2014-06-25">2014-06-25</time></a>
       
         <tr>
           <td>fs
