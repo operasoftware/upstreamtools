@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 253, 
   
-    <a href="#blink">Blink</a>: 1163, 
+    <a href="#blink">Blink</a>: 1169, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -5005,6 +5005,137 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Drop early-outs for &#34;no boxes&#34; in SVGTextQuery entrypoints</summary>
+              <pre class=body>
+All entrypoints in SVGTextQuery start with check if the text content
+element has any boxes. If it doesn&#39;t, a value representing &#34;empty&#34; is
+returned. In all cases this value is the same as the default value of the
+corresponding query-data. SVGTextQuery::executeQuery itself has no
+problems handling this case (and will return &#39;false&#39; as expected.)
+Removing these early-outs means a few more cycles is needed in these
+&#34;degenerate&#34; cases, although that seems like a small (and hopefully
+reasonable) price to pay for less code (and duplication/exit-paths).
+
+Review URL: <a href="https://codereview.chromium.org/358033005">https://codereview.chromium.org/358033005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177149 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177149&amp;view=revision"><time datetime="2014-06-27">2014-06-27</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Improve rejection test for character-based SVG text queries</summary>
+              <pre class=body>
+Perform an intersection of the involved ranges to reject fragments early,
+while still avoiding calls to mapStartEndPositionsIntoFragmentCoordinates.
+This means the &#34;cache&#34; added in <a href="https://codereview.chromium.org/349223003">https://codereview.chromium.org/349223003</a>
+can be dropped, since we&#39;ll now never even reach it. This gives a moderate
+speed-up - a few percent - on the original TC compared to using the cache.
+
+BUG=267504
+
+Review URL: <a href="https://codereview.chromium.org/359783002">https://codereview.chromium.org/359783002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177148 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177148&amp;view=revision"><time datetime="2014-06-27">2014-06-27</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Drop [TypeChecking=Nullable]; deduce from attribute type instead</summary>
+              <pre class=body>
+[TypeChecking=Nullable] on a nullable attribute meant that the C++ getter
+wasn&#39;t called with a &#34;bool&amp; isNull&#34; argument, instead the C++ value in a
+boolean context was used to determine nullness.
+
+This was only used for attributes where the C++ value was a pointer, and
+made perfect sense for such attributes. So much sense, in fact, that it
+makes sense to let that be the default behavior for such attributes.
+
+Review URL: <a href="https://codereview.chromium.org/352643005">https://codereview.chromium.org/352643005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177126 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177126&amp;view=revision"><time datetime="2014-06-27">2014-06-27</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Add [TypeChecking=Interface] on various methods in Document.idl</summary>
+              <pre class=body>
+This adds type checks on some Node arguments in the generated bindings
+code, and lets us drop the corresponding manual null checks and exception
+throwing code in the implementations.
+
+The type of exception thrown changes from DOMException (NOT_SUPPORTED_ERR)
+to TypeError as a side-effect. This matches the Web IDL specification.
+
+Review URL: <a href="https://codereview.chromium.org/360463005">https://codereview.chromium.org/360463005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177125 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177125&amp;view=revision"><time datetime="2014-06-27">2014-06-27</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Include error status code in console message for non-CORS response.</summary>
+              <pre class=body>
+While CORS is concerned with the access control headers that come
+back in the response and not its status code, an error response
+(status code &gt;= 400) containing no CORS headers is most likely an
+indication of the server not being configured correctly.
+
+To potentially help the user/developer more quickly diagnose that as
+the problem, include the status code in the console message that&#39;s
+emitted for the failed CORS resource sharing check.
+
+R=
+BUG=269192
+
+Review URL: <a href="https://codereview.chromium.org/332633006">https://codereview.chromium.org/332633006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177116 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177116&amp;view=revision"><time datetime="2014-06-27">2014-06-27</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Remove meaningless uses of [TypeChecking=Nullable]</summary>
+              <pre class=body>
+[TypeChecking=Nullable] only serves a purpose on nullable attributes.
+
+Using it on interfaces without nullable attributes, or methods (even those
+with nullable arguments) serves no purpose. Using it on individual
+arguments also serves no purpose; in fact, the [TypeChecking] extended
+attribute is not supported at all on arguments.
+
+This patch does not change any generated code.
+
+Review URL: <a href="https://codereview.chromium.org/356843007">https://codereview.chromium.org/356843007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177108 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177108&amp;view=revision"><time datetime="2014-06-27">2014-06-27</time></a>
       
         <tr>
           <td>andersr
