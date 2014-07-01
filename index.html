@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 253, 
+    <a href="#chromium">Chromium</a>: 254, 
   
-    <a href="#blink">Blink</a>: 1176, 
+    <a href="#blink">Blink</a>: 1185, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,23 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>ohrn
+          <td class=message>
+            <details>
+              <summary>Increase storage for Java exception information.</summary>
+              <pre class=body>
+Nested exceptions have multiple stack traces with the most important one at the end.
+
+BUG=389474
+
+Review URL: <a href="https://codereview.chromium.org/358853002">https://codereview.chromium.org/358853002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@280793 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=280793&amp;view=revision"><time datetime="2014-07-01">2014-07-01</time></a>
       
         <tr>
           <td>sebastianl
@@ -5005,6 +5022,193 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Replace many [TreatReturnedNullStringAs=Null] with nullable DOMString</summary>
+              <pre class=body>
+In IDL files, the attribute declarations
+
+  [TreatReturnedNullStringAs=Null] readonly attribute DOMString X;
+  [TreatReturnedNullStringAs=Null, TreatNullAs=NullString] attribute DOMString X;
+
+can now be changed into
+
+  readonly attribute DOMString? X;
+  attribute DOMString? X;
+
+without changing behavior or generated code, so do that.
+
+Similarly for methods, the declaration
+
+  [TreatReturnedNullStringAs=Null] DOMString f();
+
+can be changed into
+
+  DOMString? f();
+
+without changing behavior or generated code, so do that too.
+
+Review URL: <a href="https://codereview.chromium.org/361883004">https://codereview.chromium.org/361883004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177302 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177302&amp;view=revision"><time datetime="2014-07-01">2014-07-01</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Drop redundant null check for string and wrapper type attributes</summary>
+              <pre class=body>
+For nullable string and wrapper type attributes, we use a null string or
+null pointer return value from the C++ getter to represent a null
+Javascript value.
+
+Rather than generating a separate null check and v8SetReturnValueNull()
+call for these types, we can use v8SetReturnValueStringOrNull() for
+strings, and for wrapper types, we can always use the per-type
+v8SetReturnValue() overload, since they convert null pointers to null
+Javascript values already.
+
+Review URL: <a href="https://codereview.chromium.org/357413003">https://codereview.chromium.org/357413003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177292 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177292&amp;view=revision"><time datetime="2014-07-01">2014-07-01</time></a>
+      
+        <tr>
+          <td>ohrn
+          <td class=message>
+            <details>
+              <summary>Ensure that the controls attribute is correctly reflected in JS.</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/351213007">https://codereview.chromium.org/351213007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177287 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177287&amp;view=revision"><time datetime="2014-07-01">2014-07-01</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add UseCounter for the Mozilla-style fullscreen error handling exemptions</summary>
+              <pre class=body>
+webkitRequestFullScreen skips some checks that webkitRequestFullscreen
+and other modes have.
+
+It is unlikely that the prefixed fullscreen APIs can be removed any time
+soon, so trying to reduce the differences between them is worthwhile.
+
+Review URL: <a href="https://codereview.chromium.org/363493002">https://codereview.chromium.org/363493002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177284 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177284&amp;view=revision"><time datetime="2014-07-01">2014-07-01</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Test adding a &lt;source&gt; element after removing a failed candidate</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/360103003">https://codereview.chromium.org/360103003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177255 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177255&amp;view=revision"><time datetime="2014-06-30">2014-06-30</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Use IDL default argument value for Range.collapse()&#39;s toStart argument</summary>
+              <pre class=body>
+Replace the existing [Default=Undefined] extended attribute, which since
+undefined coerces to false means the same thing, with the actual default
+value that&#39;s in the specification.
+
+BUG=258153
+
+Review URL: <a href="https://codereview.chromium.org/356103003">https://codereview.chromium.org/356103003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177235 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177235&amp;view=revision"><time datetime="2014-06-30">2014-06-30</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Simplify SVGTextQuery::modifyStartEndPositionsRespectingLigatures</summary>
+              <pre class=body>
+Simplify this method by passing it the fragment in question, and then use
+SVGTextFragment::metricsListOffset to get a reasonable starting point.
+Rewrite the big loop into two simpler loops - one for each end-point.
+This shaves another ~15% off the TC in the bug (on top of [1]).
+
+[1] <a href="https://codereview.chromium.org/359783002/">https://codereview.chromium.org/359783002/</a>
+
+BUG=267504
+
+Review URL: <a href="https://codereview.chromium.org/355373003">https://codereview.chromium.org/355373003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177231 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177231&amp;view=revision"><time datetime="2014-06-30">2014-06-30</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add per-fragment early-out for getCharNumAtPosition</summary>
+              <pre class=body>
+Since this is a spatial query, and a SVGTextFragment already contain an
+approximation of it&#39;s own bounds, we can use those to perform a reasonably
+efficient early-rejection test.
+As an example: A TC using the textPath-data from issue 267504 [1] and a
+mouse-move handler that uses getCharNumAtPosition to check which
+&#34;character&#34; (glyph) is under the pointer consumes 0.005-0.2ms, compared to
+0.2-0.5ms without this patch (before the CL in [2], this was 5-10ms!).
+The TC mentioned in [2] now also weighs in at a few thousand us at worst.
+
+[1] <a href="http://jsbin.com/imajow/1/quiet">http://jsbin.com/imajow/1/quiet</a>
+[2] <a href="https://codereview.chromium.org/353003002">https://codereview.chromium.org/353003002</a>
+
+Review URL: <a href="https://codereview.chromium.org/355173002">https://codereview.chromium.org/355173002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177230 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177230&amp;view=revision"><time datetime="2014-06-30">2014-06-30</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: For DOMString? attribute getters, use null string to represent null</summary>
+              <pre class=body>
+Same as we do for wrapper type attributes, where a null pointer is used
+to represent a null Javascript value, use a null string (one for which
+WTF::String::isNull() returns true) to represent a null Javascript value
+for nullable DOMString attributes.
+
+Review URL: <a href="https://codereview.chromium.org/338843005">https://codereview.chromium.org/338843005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177221 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177221&amp;view=revision"><time datetime="2014-06-30">2014-06-30</time></a>
       
         <tr>
           <td>sigbjornf
