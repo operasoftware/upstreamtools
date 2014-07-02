@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 254, 
   
-    <a href="#blink">Blink</a>: 1185, 
+    <a href="#blink">Blink</a>: 1192, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -5022,6 +5022,181 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Remove StyleEngine.h include from RenderObject.h</summary>
+              <pre class=body>
+Achieves it by adding a header file, RenderObjectInlines.h, for use by
+the compilation units that calls the inline methods.
+
+Targets that depend on StyleEngine.h now cut in roughly half, from 678
+to 278. Top ten list of other header files that are affected:
+
+Source/core/dom/StyleEngine.h: 678 -&gt; 278
+Source/core/dom/DocumentStyleSheetCollection.h: 679 -&gt; 279
+Source/core/dom/StyleSheetCollection.h: 680 -&gt; 280
+Source/core/dom/TreeScopeStyleSheetCollection.h: 679 -&gt; 279
+Source/core/dom/StyleSheetScopingNodeList.h: 680 -&gt; 280
+Source/core/css/TreeBoundaryCrossingRules.h: 689 -&gt; 297
+Source/core/css/resolver/ScopedStyleTree.h: 690 -&gt; 298
+Source/core/css/SiblingTraversalStrategies.h: 691 -&gt; 299
+Source/core/css/SelectorFilter.h: 691 -&gt; 299
+Source/core/css/resolver/MatchRequest.h: 690 -&gt; 298
+
+Review URL: <a href="https://codereview.chromium.org/358603002">https://codereview.chromium.org/358603002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177376 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177376&amp;view=revision"><time datetime="2014-07-02">2014-07-02</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: insist that CompositeCreators be stack allocated.</summary>
+              <pre class=body>
+And add missing Oilpan (transition) type to the heap allocated
+MessagePortArray member of Deserializer.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/362923003">https://codereview.chromium.org/362923003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177375 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177375&amp;view=revision"><time datetime="2014-07-02">2014-07-02</time></a>
+      
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Inapplicable top, bottom style shouldn&#39;t affect height calculation</summary>
+              <pre class=body>
+Require an absolute or fixed positioned containing block before
+examining the containing block top and bottom style values for
+contributing a non-auto height. Otherwise we&#39;ll base the decision on
+inapplicable values.
+
+|top| and |left| only applies to positioned elements:
+
+<a href="http://www.w3.org/TR/CSS2/visuren.html#propdef-top">http://www.w3.org/TR/CSS2/visuren.html#propdef-top</a>
+<a href="http://www.w3.org/TR/CSS2/visuren.html#propdef-bottom">http://www.w3.org/TR/CSS2/visuren.html#propdef-bottom</a>
+
+and only contribute to the element&#39;s height (when height is auto) for
+absolute and fixed positioned elements:
+
+<a href="http://www.w3.org/TR/CSS2/visudet.html#normal-block">http://www.w3.org/TR/CSS2/visudet.html#normal-block</a>
+<a href="http://www.w3.org/TR/CSS2/visudet.html#abs-non-replaced-height">http://www.w3.org/TR/CSS2/visudet.html#abs-non-replaced-height</a>
+
+BUG=390101
+
+Review URL: <a href="https://codereview.chromium.org/359673003">https://codereview.chromium.org/359673003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177374 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177374&amp;view=revision"><time datetime="2014-07-02">2014-07-02</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the webkitallowfullscreen content attribute</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/LupOLlogL-g/H8GsBEDGQeMJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/LupOLlogL-g/H8GsBEDGQeMJ</a>
+
+Tests were updated to use allowfullscreen instead of
+webkitallowfullscreen, with a few exceptions:
+
+fullscreen/full-screen-enabled-prefixed.html would have become redundant
+with fullscreen/full-screen-enabled.html and was removed.
+
+fullscreen/full-screen-iframe-with-mixed-allow-webkitallow-attribute.html
+became a test for nested iframes with allowfullscreen and was renamed.
+
+Finally, doctypes were added and whitespace cleaned up in touched test.
+
+fullscreen/resources/full-screen-iframe-allowed-nested2.html depended on
+being in quirks mode, since the size of the body element is smaller in
+standards mode. Put the click event handler on window instead.
+
+BUG=390008
+
+Review URL: <a href="https://codereview.chromium.org/336313015">https://codereview.chromium.org/336313015</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177332 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177332&amp;view=revision"><time datetime="2014-07-01">2014-07-01</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>MediaSource must use ref-counting to handle pending activity counting.</summary>
+              <pre class=body>
+Switch MediaSource to deriving from RefCountedGarbageCollected, as
+ActiveDOMObject::setPendingActivity() relies on ref-counting.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/360323002">https://codereview.chromium.org/360323002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177324 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177324&amp;view=revision"><time datetime="2014-07-01">2014-07-01</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Make [TreatNullAs=NullString] DOMString arguments nullable instead</summary>
+              <pre class=body>
+An IDL method declaration such as
+
+  void f([TreatNullAs=NullString] DOMString x);
+
+can be transformed into
+
+  void f(DOMString? x);
+
+without affecting behavior or generated code, so do that.
+
+Arguments that also have [TreatUndefinedAs=NullString] can&#39;t be converted
+this way (yet), so this CL leaves them unchanged for now.
+
+Review URL: <a href="https://codereview.chromium.org/367663002">https://codereview.chromium.org/367663002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177322 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177322&amp;view=revision"><time datetime="2014-07-01">2014-07-01</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Use IDL default arguments for Window.confirm() and Window.prompt()</summary>
+              <pre class=body>
+This doesn&#39;t change behavior.
+
+BUG=258153
+
+Review URL: <a href="https://codereview.chromium.org/368583004">https://codereview.chromium.org/368583004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177309 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177309&amp;view=revision"><time datetime="2014-07-01">2014-07-01</time></a>
       
         <tr>
           <td>jl
