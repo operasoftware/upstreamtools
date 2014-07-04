@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 254, 
+    <a href="#chromium">Chromium</a>: 255, 
   
-    <a href="#blink">Blink</a>: 1203, 
+    <a href="#blink">Blink</a>: 1214, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,25 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Fix Mac bootstrap sandbox for 64-bit builds</summary>
+              <pre class=body>
+Mach look_up2 message structs should be aligned by 4 bytes like
+breakpad does, otherwise there will be a 192 bytes vs. 188 bytes
+difference for look_up2_request_10_7 when compiling in 64-bit.
+
+BUG=386330
+
+Review URL: <a href="https://codereview.chromium.org/364233002">https://codereview.chromium.org/364233002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@281313 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=281313&amp;view=revision"><time datetime="2014-07-03">2014-07-03</time></a>
       
         <tr>
           <td>ohrn
@@ -5022,6 +5041,269 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use correct destination rectangle in FEComposite w/ type=&#39;in&#39;</summary>
+              <pre class=body>
+When one of the inputs are larger than the other, the destination will
+assume the size of the smaller. When drawing the input onto the
+destination however, the size of the buffer itself is always used. This
+means that the source will be stretched onto a (too large) destination
+rectangle. Destination and sources should always be the same dimensions
+in this particular case, so make sure they are by simply adjusting the
+computed destination rectangle based by the effects paint rect, hence
+retaining the computed dimensions.
+
+BUG=391200
+
+Review URL: <a href="https://codereview.chromium.org/365163002">https://codereview.chromium.org/365163002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177536 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177536&amp;view=revision"><time datetime="2014-07-04">2014-07-04</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: have the media element safely close its MediaSource.</summary>
+              <pre class=body>
+The media element must notify its attached MediaSource upon being
+finalized, as the MediaSource must then transition to a closed state
+and fire the corresponding event. Hence, upon media element finalization,
+it will conditionally notify its MediaSource (if any) object if the
+latter survived the GC. If neither survived, an explicit close isn&#39;t
+needed.
+
+With that in place, the media element no longer keeps a RefPtr to its
+MediaSource (with Oilpan enabled.) Consequently, ref-forwarding over
+HTMLMediaSource is no longer needed nor supported.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/363953002">https://codereview.chromium.org/363953002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177532 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177532&amp;view=revision"><time datetime="2014-07-04">2014-07-04</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r177520.</summary>
+              <pre class=body>
+<a href="mailto:TBR=haraken@chromium.org">TBR=haraken@chromium.org</a>
+BUG=363967
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/370703003">https://codereview.chromium.org/370703003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177529 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177529&amp;view=revision"><time datetime="2014-07-04">2014-07-04</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Remove unnecessary calls to setRegionBasedColumnsEnabled.</summary>
+              <pre class=body>
+Tests which enable region based multicolumn behavior using Javascript
+don&#39;t need to do that anymore, because they are run via
+virtual/regionbasedmulticol, which enables the new behavior using a
+command line flag.
+
+Note that tests in fast/multicol/newmulticol/compare-with-old-impl still
+need to call internals.settings.setRegionBasedColumnsEnabled(true). They
+are now the only tests which need to do so. (And it should remain like
+that until they are removed during Issue 350853).
+
+BUG=334335
+<a href="mailto:R=rune@opera.com">R=rune@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/341103002">https://codereview.chromium.org/341103002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177528 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177528&amp;view=revision"><time datetime="2014-07-04">2014-07-04</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Have the form control element directly handle validation message updating.</summary>
+              <pre class=body>
+Remove the small ValidationMessage class, merging its functionality into
+its owning form control element.
+
+<a href="mailto:R=tkent@chromium.org">R=tkent@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/365223004">https://codereview.chromium.org/365223004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177527 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177527&amp;view=revision"><time datetime="2014-07-04">2014-07-04</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move transformationForTextBox() call out of the fragment-loop</summary>
+              <pre class=body>
+textBox is invariant, so no need to fetch and check the transform for each
+fragment.
+
+Review URL: <a href="https://codereview.chromium.org/362923007">https://codereview.chromium.org/362923007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177517 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177517&amp;view=revision"><time datetime="2014-07-04">2014-07-04</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r177509.</summary>
+              <pre class=body>
+<a href="mailto:TBR=haraken@chromium.org">TBR=haraken@chromium.org</a>
+BUG=383813
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/370693002">https://codereview.chromium.org/370693002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177512 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177512&amp;view=revision"><time datetime="2014-07-04">2014-07-04</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Merge the fullscreen event queues</summary>
+              <pre class=body>
+The two queues are both processed by a single timer, so they might just
+as well be a single queue, which also avoids looping over each queue
+separately.
+
+Instead of queuing Nodes, Events are created and queued. This means that
+the event type is made explicit, which will make it simpler to support
+both prefixed and unprefixed events using the same code.
+
+BUG=383813
+
+Review URL: <a href="https://codereview.chromium.org/365903006">https://codereview.chromium.org/365903006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177509 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177509&amp;view=revision"><time datetime="2014-07-04">2014-07-04</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Skip tests in fast/multicol intended for region based multicolumns.</summary>
+              <pre class=body>
+A bunch of tests in fast/multicol have baselines generated based on the
+region based multicolumn implementation. These tests currently enable the
+new multicolumn implementation via Javascript.
+
+This patch skips those tests in the regular fast/multicol suite, leaving
+virtual/regionbasedmulticol to run those tests instead. The test suite
+virtual/regionbasedmulticol enables the new multicolumn behavior via a
+command line flag, so it&#39;s no longer necessary to enable it via Javascript
+(although they still ineffectively do that, for now).
+
+Note that (ref)tests in fast/multicol/newmulticol/compare-with-old-impl
+are special, because the they require the region based multicol
+implementation in the test itself, and the old implementation in the
+expected result. Hence, these tests should still run in the regular
+fast/multicol suite.
+
+BUG=334335
+<a href="mailto:R=rune@opera.com">R=rune@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/343973002">https://codereview.chromium.org/343973002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177493 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177493&amp;view=revision"><time datetime="2014-07-04">2014-07-04</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Simplify FullscreenElementStack::fullScreenChangeDelayTimerFired()</summary>
+              <pre class=body>
+This function was needlessly complicated:
+
+ 1. A null pointer is never pushed to the queues outside of this
+    function, so by adding a null check for the internal push, the
+    initial null handling can be removed.
+
+ 2. !node-&gt;inDocument() implies !document()-&gt;contains(node.get()), so
+    the latter can be dropped from the condition.
+
+No observable change is expected from this simplication.
+
+Review URL: <a href="https://codereview.chromium.org/365993002">https://codereview.chromium.org/365993002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177489 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177489&amp;view=revision"><time datetime="2014-07-03">2014-07-03</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Create a virtual testsuite for the region based multicol impl.</summary>
+              <pre class=body>
+It is currently possible to switch between the old and the new multicol
+implementation though Javascript. This means that individual tests may
+&#34;choose&#34; in which implementation they should be evaluated. We wish to
+remove the use of this Javascript toggle where it&#39;s not necessary
+(ultimately everywhere), and use virtual test suites instead---even in the
+transitional period where both implementations exist.
+
+This patch is the first in a series which aims to fix this.
+
+The virtual/regionbasedmulticol suite tests everything in fast/multicol,
+except the tests which fail because the baseline is based on the old
+implementation of multicol. The skipped tests should later be evaluated
+individually, and baselined in the virtual/regionbasedmulticol suite, if
+applicable.
+
+I have verified that all the tests we skip in the virtual test suite use
+the old multicol implementation.
+
+Note: The tests fast/multicol/mixed-opacity-test.html and
+multicol/mixed-opacity-fixed-test.html are &#34;new&#34; tests which fail due to a
+known bug.
+
+BUG=334335
+<a href="mailto:R=rune@opera.com">R=rune@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/343963002">https://codereview.chromium.org/343963002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177488 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177488&amp;view=revision"><time datetime="2014-07-03">2014-07-03</time></a>
       
         <tr>
           <td>sigbjornf
