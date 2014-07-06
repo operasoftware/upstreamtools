@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 255, 
   
-    <a href="#blink">Blink</a>: 1215, 
+    <a href="#blink">Blink</a>: 1216, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -5041,6 +5041,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Use [TreatNullAs=EmptyString] for HTMLInputElement.value</summary>
+              <pre class=body>
+This is what the specification has. Previous behavior for setting the
+value IDL attribute to null was effectively to reset the form control&#39;s
+value to the default, which is wrong.
+
+New behavior also matches that of Firefox and Opera/Presto.
+
+BUG=391194
+
+Review URL: <a href="https://codereview.chromium.org/372543002">https://codereview.chromium.org/372543002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177564 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177564&amp;view=revision"><time datetime="2014-07-05">2014-07-05</time></a>
       
         <tr>
           <td>jl
