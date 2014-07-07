@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 255, 
+    <a href="#chromium">Chromium</a>: 257, 
   
     <a href="#blink">Blink</a>: 1216, 
   
@@ -43,6 +43,43 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Fix linking error in message_center</summary>
+              <pre class=body>
+Fixup to 3e28d46ea1840c9d4dc451271dd7e6d3b510fc50
+message_center now depends on aura even if &#39;use_ash=0&#39;.
+
+BUG=375466
+
+Review URL: <a href="https://codereview.chromium.org/369303003">https://codereview.chromium.org/369303003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@281516 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=281516&amp;view=revision"><time datetime="2014-07-07">2014-07-07</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>gcc 4.7 workaround for __uint16_t</summary>
+              <pre class=body>
+It seems that with my gcc 4.7 / eglibc 2.11 toolchain, sys/user.h uses
+__uint16_t without it necessarily being defined first.  This can be
+worked around by simply including sys/types.h first.
+
+BUG=231000
+
+Review URL: <a href="https://codereview.chromium.org/371573003">https://codereview.chromium.org/371573003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@281504 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=281504&amp;view=revision"><time datetime="2014-07-07">2014-07-07</time></a>
       
         <tr>
           <td>jiangj
