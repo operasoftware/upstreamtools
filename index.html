@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 261, 
   
-    <a href="#blink">Blink</a>: 1226, 
+    <a href="#blink">Blink</a>: 1230, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -5169,6 +5169,79 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r177815</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org,jochen@chromium.org">R=haraken@chromium.org,jochen@chromium.org</a>
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/388463002">https://codereview.chromium.org/388463002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177829 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177829&amp;view=revision"><time datetime="2014-07-10">2014-07-10</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t dispatch &#39;(SVG)load&#39; to ancestors of &lt;svg:image&gt; after doc. &#39;load&#39;</summary>
+              <pre class=body>
+When an &lt;svg:image&gt; is inserted after document load has been dispatched,
+we don&#39;t want to dispatch &#39;load&#39; again to any ancestor &#39;svg&#39; roots (inner
+or outer). Hence only dispatch an event to the element itself in this
+condition.
+
+Take the opportunity to clean up SVGElement::sendSVGLoadEventIfPossible
+a bit, by splitting it into send-to-self and send-to-self-and-ancestors
+methods (most callers call the former). Also unravel the control-flow of
+the ancestors-version a bit compared to the old version.
+
+BUG=372946
+
+Review URL: <a href="https://codereview.chromium.org/375923002">https://codereview.chromium.org/375923002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177814 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177814&amp;view=revision"><time datetime="2014-07-10">2014-07-10</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove superfluous LOG_DISABLED guard</summary>
+              <pre class=body>
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/378233003">https://codereview.chromium.org/378233003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177775 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177775&amp;view=revision"><time datetime="2014-07-09">2014-07-09</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Return transform from transformationForTextBox instead of using out-param</summary>
+              <pre class=body>
+Also simplify SVGTextChunkBuilder::transformationForTextBox while in
+the neighborhood.
+
+Review URL: <a href="https://codereview.chromium.org/370803002">https://codereview.chromium.org/370803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177774 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177774&amp;view=revision"><time datetime="2014-07-09">2014-07-09</time></a>
       
         <tr>
           <td>jl
