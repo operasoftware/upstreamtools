@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 261, 
   
-    <a href="#blink">Blink</a>: 1230, 
+    <a href="#blink">Blink</a>: 1243, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -5169,6 +5169,279 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add transition types to remaining Fetch and ServiceWorker objects</summary>
+              <pre class=body>
+<a href="mailto:R=dominicc@chromium.org,haraken@chromium.org,tkent@chromium.org">R=dominicc@chromium.org,haraken@chromium.org,tkent@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/384633002">https://codereview.chromium.org/384633002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177938 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177938&amp;view=revision"><time datetime="2014-07-11">2014-07-11</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Make WebGLRenderingContext.getAttachedShaders() return type nullable</summary>
+              <pre class=body>
+This allows it to return null when the context is lost or when an error
+occurs, without resorting to a custom binding for the method.
+
+BUG=390780
+
+Review URL: <a href="https://codereview.chromium.org/386953002">https://codereview.chromium.org/386953002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177935 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177935&amp;view=revision"><time datetime="2014-07-11">2014-07-11</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>An empty SVG path string is not in error</summary>
+              <pre class=body>
+Adaption of Rob Buis&#39; (&lt;<a href="mailto:rwlbuis@webkit.org">rwlbuis@webkit.org</a>&gt; / &lt;<a href="mailto:rob.buis@samsung.com">rob.buis@samsung.com</a>&gt;)
+WebKit patch. (<a href="http://trac.webkit.org/changeset/154896">http://trac.webkit.org/changeset/154896</a>)
+
+BUG=264123
+
+Review URL: <a href="https://codereview.chromium.org/380213002">https://codereview.chromium.org/380213002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177929 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177929&amp;view=revision"><time datetime="2014-07-11">2014-07-11</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Treat undefined as missing for optional arguments with defaults</summary>
+              <pre class=body>
+For optional arguments with defaults, treat undefined as missing simply
+by checking &#39;info[N].IsUndefined()&#39; instead of &#39;N &lt;= info.Length()&#39;.
+
+This works since V8&#39;s indexing operator returns an undefined value for
+all out-of-range indexes.
+
+Changes in behavior that had (or now has) testing coverade matches
+Firefox (Nightly), except in the case of WebKitCSSMatrix&#39;s constructor,
+which Firefox naturally doesn&#39;t have.
+
+BUG=335871
+
+Review URL: <a href="https://codereview.chromium.org/373043004">https://codereview.chromium.org/373043004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177920 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177920&amp;view=revision"><time datetime="2014-07-11">2014-07-11</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL clean-up: Rename is_nullable_simple =&gt; is_implicit_nullable</summary>
+              <pre class=body>
+... and introduce is_explicit_nullable that is mutually exclusive (for
+nullable types.)
+
+It turns out that the only actual use of is_implicit_nullable right now
+is in the definition of is_explicit_nullable, but having both is fine,
+for symmetry.
+
+Review URL: <a href="https://codereview.chromium.org/384773004">https://codereview.chromium.org/384773004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177912 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177912&amp;view=revision"><time datetime="2014-07-11">2014-07-11</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Make WebGLRenderingContext.getSupportedExtensions()&#39;s return type nullable</summary>
+              <pre class=body>
+This allows it to return null when the context is lost, without resorting
+to a custom binding for the method.
+
+BUG=390780
+
+Review URL: <a href="https://codereview.chromium.org/377113003">https://codereview.chromium.org/377113003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177911 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177911&amp;view=revision"><time datetime="2014-07-11">2014-07-11</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Map all ContextDestroyed custom element exceptions to InvalidStateError.</summary>
+              <pre class=body>
+For the exceptions that document.registerElement() may throw due to the
+context having gone away, map them all to InvalidStateError.
+
+Specifically, map ContextDestroyedRegisteringDefinition to InvalidStateError
+rather than NotSupportedError.
+
+<a href="mailto:R=haraken@chromium.org,ager@chromium.org,dominicc@chromium.org">R=haraken@chromium.org,ager@chromium.org,dominicc@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/375343003">https://codereview.chromium.org/375343003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177907 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177907&amp;view=revision"><time datetime="2014-07-11">2014-07-11</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Support using nullable on any method return type</summary>
+              <pre class=body>
+Previously, nullable string and wrapper types was supported, since those
+types have a native/natural null representation in C++.  Other types,
+like primitives (long, boolean) or complex types like sequence&lt;&gt;, could
+not be nullable.
+
+With this CL, nullable return types other than string or wrapper types
+are handled using Nullable&lt;T&gt;, like so:
+
+  Nullable&lt;T&gt; result = impl-&gt;method(...);
+  if (result.isNull())
+    v8SetReturnValueNull(info);
+  else
+    v8SetReturnValue...(info, ... result.get() ...);
+
+This CL does not change code generation since currently no method return
+such a nullable type.
+
+BUG=390780
+
+Review URL: <a href="https://codereview.chromium.org/385603002">https://codereview.chromium.org/385603002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177887 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177887&amp;view=revision"><time datetime="2014-07-10">2014-07-10</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r177880.</summary>
+              <pre class=body>
+<a href="mailto:TBR=haraken@chromium.org,oilpan-reviews@chromium.org">TBR=haraken@chromium.org,oilpan-reviews@chromium.org</a>
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/385773002">https://codereview.chromium.org/385773002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177883 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177883&amp;view=revision"><time datetime="2014-07-10">2014-07-10</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: trace MediaControlElement&#39;s element reference.</summary>
+              <pre class=body>
+<a href="mailto:R=ager@chromium.org,haraken@chromium.org">R=ager@chromium.org,haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/385593002">https://codereview.chromium.org/385593002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177858 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177858&amp;view=revision"><time datetime="2014-07-10">2014-07-10</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Treat undefined as missing for optional arguments with defaults</summary>
+              <pre class=body>
+For optional arguments with defaults, treat undefined as missing simply
+by checking &#39;info[N].IsUndefined()&#39; instead of &#39;N &lt;= info.Length()&#39;.
+
+This works since V8&#39;s indexing operator returns an undefined value for
+all out-of-range indexes.
+
+Changes in behavior that had (or now has) testing coverade matches
+Firefox (Nightly), except in the case of WebKitCSSMatrix&#39;s constructor,
+which Firefox naturally doesn&#39;t have.
+
+BUG=335871
+
+Review URL: <a href="https://codereview.chromium.org/373043004">https://codereview.chromium.org/373043004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177857 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177857&amp;view=revision"><time datetime="2014-07-10">2014-07-10</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Followup to r177831.</summary>
+              <pre class=body>
+Extend the nodeToIdMap by calling set() rather than update
+the end() iterator.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/382633008">https://codereview.chromium.org/382633008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177841 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177841&amp;view=revision"><time datetime="2014-07-10">2014-07-10</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Use [Reflect=value] for HTMLInputElement.defaultValue</summary>
+              <pre class=body>
+The HTML specification describes the defaultValue as reflecting the value
+content attribute. This was also how it was implemented, but unlike all
+other HTMLInputElement attributes that reflect content attributes,
+[Reflect] wasn&#39;t used for defaultValue.
+
+The C++ getter HTMLInputElement::defaultValue() is kept since it is used
+by other C++ code, and because it&#39;s name is a good documentation of what
+it returns (even if it really just reads the value content attribute.)
+
+This does not affect behavior in any way.
+
+BUG=392471
+
+Review URL: <a href="https://codereview.chromium.org/387493003">https://codereview.chromium.org/387493003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177838 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177838&amp;view=revision"><time datetime="2014-07-10">2014-07-10</time></a>
       
         <tr>
           <td>sigbjornf
