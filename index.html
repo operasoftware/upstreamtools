@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 261, 
   
-    <a href="#blink">Blink</a>: 1246, 
+    <a href="#blink">Blink</a>: 1249, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -5169,6 +5169,69 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Replace uses of {un}setPendingActivity() in FetchBodyStream.</summary>
+              <pre class=body>
+Follow up r178002 and provide FetchBodyStream::hasPendingActivity() rather
+than updating ActiveDOMObject&#39;s refcount-based pending counts.
+
+This lets the class derive from the simpler Oilpan GC class
+(GarbageCollectedFinalized) rather than RefCountedGarbageCollected.
+
+<a href="mailto:R=haraken@chromium.org,kouhei@chromium.org">R=haraken@chromium.org,kouhei@chromium.org</a>
+BUG=354845
+
+Review URL: <a href="https://codereview.chromium.org/390673002">https://codereview.chromium.org/390673002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178009 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178009&amp;view=revision"><time datetime="2014-07-13">2014-07-13</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move FetchBodyStream to the heap.</summary>
+              <pre class=body>
+Followup r177958 and move FetchBodyStream to the heap also.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/389043002">https://codereview.chromium.org/389043002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178002 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178002&amp;view=revision"><time datetime="2014-07-12">2014-07-12</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>For font weights &gt;= 600, create bold system fonts.</summary>
+              <pre class=body>
+Adjust the weight threshold used for creating bold system fonts down
+to 600, so as align with the weight matching specified by
+
+  <a href="http://www.w3.org/TR/CSS21/fonts.html#propdef-font-weight">http://www.w3.org/TR/CSS21/fonts.html#propdef-font-weight</a>
+
+It also aligns better with others.
+
+<a href="mailto:R=eae@chromium.org">R=eae@chromium.org</a>
+BUG=335050
+
+Review URL: <a href="https://codereview.chromium.org/387873002">https://codereview.chromium.org/387873002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@177999 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=177999&amp;view=revision"><time datetime="2014-07-12">2014-07-12</time></a>
       
         <tr>
           <td>sigbjornf
