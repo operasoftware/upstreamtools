@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 261, 
+    <a href="#chromium">Chromium</a>: 263, 
   
-    <a href="#blink">Blink</a>: 1249, 
+    <a href="#blink">Blink</a>: 1259, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,45 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>add double support to base::Pickle</summary>
+              <pre class=body>
+Since WebTimeRange now uses doubles instead of floats[1], we should
+probably add double support to base::Pickle.
+
+[1] <a href="https://codereview.chromium.org/337923006">https://codereview.chromium.org/337923006</a>
+
+BUG=393552
+
+Review URL: <a href="https://codereview.chromium.org/388213002">https://codereview.chromium.org/388213002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@283064 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=283064&amp;view=revision"><time datetime="2014-07-14">2014-07-14</time></a>
+      
+        <tr>
+          <td>christiank
+          <td class=message>
+            <details>
+              <summary>Add support for clearing the HTTP auth cache.</summary>
+              <pre class=body>
+This patch adds an API so that the platform can clear the HTTP auth cache
+at will. This can be useful when clearing private browsing data to prevent
+cached credentials from being re-used.
+
+BUG=63723
+
+Review URL: <a href="https://codereview.chromium.org/351833002">https://codereview.chromium.org/351833002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@282944 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=282944&amp;view=revision"><time datetime="2014-07-14">2014-07-14</time></a>
       
         <tr>
           <td>sigbjornf
@@ -5169,6 +5208,185 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Pass references to SVGTextLayoutEngine::layoutTextOnLineOrPath</summary>
+              <pre class=body>
+|text| and |style| are dereferenced in the (single) caller, so pass them
+as references instead of pointers.
+Also make the reference to the RenderSVGInlineText const, since it
+shouldn&#39;t be mutated in this context. This in turn requires some additional
+const-accessors on RenderSVGInlineText and SVGTextLayoutAttributes.
+
+Review URL: <a href="https://codereview.chromium.org/390373004">https://codereview.chromium.org/390373004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178173 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178173&amp;view=revision"><time datetime="2014-07-15">2014-07-15</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Resolve light-source position/direction when updated</summary>
+              <pre class=body>
+When &#39;x&#39;/&#39;y&#39;/&#39;z&#39; on fePointLight/feSpotLight, or
+&#39;pointsAtX&#39;/&#39;pointsAtY&#39;/&#39;pointsAtZ&#39; on feSpotLight is mutated (animated,
+changed through the DOM) and filter primitive units is &#39;objectBoundingBox&#39;,
+the new coordinate needs to be resolved against the filter&#39;s bounding-box.
+Also simplify getting these position/direction attributes of a light-source
+element by adding new methods on SVGFELightElement.
+
+BUG=393907
+
+Review URL: <a href="https://codereview.chromium.org/395813002">https://codereview.chromium.org/395813002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178167 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178167&amp;view=revision"><time datetime="2014-07-15">2014-07-15</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>HTMLMediaElement::updateActiveTextTrackCues(): use on-heap local vectors</summary>
+              <pre class=body>
+With Oilpan, use heap vectors to hold temporary references to other
+heap objects (text tracks and text track cues.)
+
+<a href="mailto:R=ager@chromium.org,haraken@chromium.org">R=ager@chromium.org,haraken@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/387313011">https://codereview.chromium.org/387313011</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178158 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178158&amp;view=revision"><time datetime="2014-07-15">2014-07-15</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r178153.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=169721
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/395623007">https://codereview.chromium.org/395623007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178156 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178156&amp;view=revision"><time datetime="2014-07-15">2014-07-15</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Introduce FullscreenElementStack::fullyExitFullscreen()</summary>
+              <pre class=body>
+<a href="http://fullscreen.spec.whatwg.org/#fully-exit-fullscreen">http://fullscreen.spec.whatwg.org/#fully-exit-fullscreen</a>
+
+BUG=383813
+
+Review URL: <a href="https://codereview.chromium.org/387233002">https://codereview.chromium.org/387233002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178152 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178152&amp;view=revision"><time datetime="2014-07-15">2014-07-15</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Always report access control failure if accessing unsupported URL.</summary>
+              <pre class=body>
+For attempted cross-origin requests to unsupported CORS URLs, extend the
+error reporting to also apply to non-simple requests that would require
+a preflight. It is also bound to fail.
+
+<a href="mailto:R=abarth@chromium.org,tyoshino@chromium.org">R=abarth@chromium.org,tyoshino@chromium.org</a>
+BUG=389751
+
+Review URL: <a href="https://codereview.chromium.org/389053003">https://codereview.chromium.org/389053003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178091 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178091&amp;view=revision"><time datetime="2014-07-14">2014-07-14</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Constify metrics list references in SVGTextLayoutEngine</summary>
+              <pre class=body>
+The text layout engine should not mutate the metrics list, so make the
+various references to it const to clarify this a bit.
+
+Review URL: <a href="https://codereview.chromium.org/390873002">https://codereview.chromium.org/390873002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178082 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178082&amp;view=revision"><time datetime="2014-07-14">2014-07-14</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: have HTMLImport::recalcTreeState() use on-heap local variables.</summary>
+              <pre class=body>
+<a href="mailto:R=wibling@chromium.org,haraken@chromium.org">R=wibling@chromium.org,haraken@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/394463003">https://codereview.chromium.org/394463003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178078 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178078&amp;view=revision"><time datetime="2014-07-14">2014-07-14</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>[SVG] Make metrics passed to calculateGlyphAdvanceAndOrientation const</summary>
+              <pre class=body>
+Typical in-parameter - the method shouldn&#39;t need to mutate this object.
+
+Review URL: <a href="https://codereview.chromium.org/392583003">https://codereview.chromium.org/392583003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178068 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178068&amp;view=revision"><time datetime="2014-07-14">2014-07-14</time></a>
+      
+        <tr>
+          <td>ljagielski
+          <td class=message>
+            <details>
+              <summary>Leaking CFData in ImageDecoder.h</summary>
+              <pre class=body>
+third_party/WebKit/Source/platform/image-decoders/ImageDecoder.h: added missing
+CFRelease.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/389283004">https://codereview.chromium.org/389283004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178065 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178065&amp;view=revision"><time datetime="2014-07-14">2014-07-14</time></a>
       
         <tr>
           <td>sigbjornf
