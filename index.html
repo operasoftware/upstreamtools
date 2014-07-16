@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 263, 
+    <a href="#chromium">Chromium</a>: 264, 
   
-    <a href="#blink">Blink</a>: 1259, 
+    <a href="#blink">Blink</a>: 1263, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,24 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>fix narrowing conversion warning in SpdyFramerTest.CreatePriority</summary>
+              <pre class=body>
+Avoid narrowing conversion warnings by not trying to put 
+a char in an unsigned char array.
+
+BUG=345769
+
+Review URL: <a href="https://codereview.chromium.org/392883002">https://codereview.chromium.org/392883002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@283352 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=283352&amp;view=revision"><time datetime="2014-07-16">2014-07-16</time></a>
       
         <tr>
           <td>mostynb
@@ -5208,6 +5226,97 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Make FileReader&#39;s throttle controller a supplement.</summary>
+              <pre class=body>
+Avoid using thread-local state to hold the per-ExecutionContext instance
+of this controller object.
+
+By doing so, we can also move the controller object to the heap with
+Oilpan, enabling the tracing of the collections that the controller
+keeps.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/395143002">https://codereview.chromium.org/395143002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178274 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178274&amp;view=revision"><time datetime="2014-07-16">2014-07-16</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>initialize result variables in v8 bindings</summary>
+              <pre class=body>
+<a href="https://codereview.chromium.org/360703003">https://codereview.chromium.org/360703003</a> and
+<a href="https://codereview.chromium.org/362993004">https://codereview.chromium.org/362993004</a> can falsely trigger
+use of uninitialized variable warnings in some toolchains,
+for integer &#34;return&#34; variables.  Let&#39;s explicitly initialize
+these variables.
+
+BUG=341031
+
+Review URL: <a href="https://codereview.chromium.org/390223004">https://codereview.chromium.org/390223004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178263 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178263&amp;view=revision"><time datetime="2014-07-16">2014-07-16</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: make ViewportAnchor fully stack allocated.</summary>
+              <pre class=body>
+Mark this class with STACK_ALLOCATED() and convert its on-heap references
+into Members as a result.
+
+<a href="mailto:R=ager@chromium.org,haraken@chromium.org">R=ager@chromium.org,haraken@chromium.org</a>
+BUG=357163
+
+Review URL: <a href="https://codereview.chromium.org/395843002">https://codereview.chromium.org/395843002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178250 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178250&amp;view=revision"><time datetime="2014-07-16">2014-07-16</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>disable inline ARM saturated arithmetic assembly for debug builds</summary>
+              <pre class=body>
+When building third_party/WebKit/Source/wtf/asm/SaturatedArithmeticARM.h
+in debug builds, we get this error:
+cc1plus: warnings being treated as errors
+ SaturatedArithmeticARM.h: In function &#39;int saturatedSet(int, int)&#39;:
+ SaturatedArithmeticARM.h:70:43: error: asm operand 2 probably doesn&#39;t match constraints
+ SaturatedArithmeticARM.h:70:43: error: asm operand 3 probably doesn&#39;t match constraints
+
+By switching -O0 to -O1 or -O2 in the compile command, the compile
+succeeds. So let&#39;s disable the inline ARM assembly unless the build
+is optimized- gcc defines _OPTIMIZE_=1 in this case.
+I think this is a reasonable workaround until we can find a &#34;proper&#34;
+solution.
+
+BUG=325746
+
+Review URL: <a href="https://codereview.chromium.org/396603002">https://codereview.chromium.org/396603002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178209 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178209&amp;view=revision"><time datetime="2014-07-15">2014-07-15</time></a>
       
         <tr>
           <td>fs
