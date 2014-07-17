@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 264, 
+    <a href="#chromium">Chromium</a>: 267, 
   
-    <a href="#blink">Blink</a>: 1263, 
+    <a href="#blink">Blink</a>: 1270, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,80 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Make ObserverList non-inline to save 90KB with gcc</summary>
+              <pre class=body>
+With gcc, ObserverList expands to 6-700 bytes every time it is 
+iterated. By not trying to force OberservListBase to be inline
+that shrinks some. clang already ignores the hints to inline 
+the code and actually doesn&#39;t change a single bit in the generated
+program with this change.
+
+raw data:
+Total change: -90875 bytes
+==========================
+  262 added, totalling +39188 bytes across 2 sources
+  49 removed, totalling -27573 bytes across 16 sources
+  23 grown, for a net change of +3600 bytes (34968 bytes before, 38568 bytes after) across 8 sources
+  228 shrunk, for a net change of -106090 bytes (239819 bytes before, 133729 bytes after) across 53 sources
+
+The additions is about 2-300 different flavours of ObserverListBase, 100-300 bytes each.
+
+The savings are 200-600 bytes each every time an observer list is used. For example:
+
+-870: content::RenderFrameImpl::didFailLoad(blink::WebLocalFrame*, blink::WebURLError const&amp;) type=t, (was 1635 bytes, 
+now 765 bytes)
+-895: content::RenderFrameImpl::didFinishLoad(blink::WebLocalFrame*) type=t, (was 1646 bytes, now 751 bytes)
+-583: content::WebContentsImpl::DidFailProvisionalLoadWithError(content::RenderFrameHostImpl*, FrameHostMsg_DidFailProvisionalLoadWithError_Params const&amp;) type=t, (was 768 bytes, now 185 bytes)
+-611: content::WebContentsImpl::DidStartProvisionalLoad(content::RenderFrameHostImpl*, GURL const&amp;, bool, bool) type=t, (was 895 bytes, now 284 bytes)
+
+BUG=394311
+
+Review URL: <a href="https://codereview.chromium.org/396473004">https://codereview.chromium.org/396473004</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@283762 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=283762&amp;view=revision"><time datetime="2014-07-17">2014-07-17</time></a>
+      
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Fix header inclusion of chrome_template_url_service_client.cc</summary>
+              <pre class=body>
+chrome_template_url_service_client.cc should include
+chrome/browser/history/history_notifications.h as it&#39;s using
+history::URLVisitedDetails declared there.
+
+Review URL: <a href="https://codereview.chromium.org/396313002">https://codereview.chromium.org/396313002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@283747 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=283747&amp;view=revision"><time datetime="2014-07-17">2014-07-17</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Polishing binary_size tool output.</summary>
+              <pre class=body>
+Doing some sorting and splitting of data to make large amounts
+of changes easier to study.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/375063002">https://codereview.chromium.org/375063002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@283540 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=283540&amp;view=revision"><time datetime="2014-07-16">2014-07-16</time></a>
       
         <tr>
           <td>mostynb
@@ -5226,6 +5300,155 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Simplify an error condition in requestFullScreenForElement()</summary>
+              <pre class=body>
+Use the existing getter for the top element and do the ancestor test
+in a more direct manner.
+
+BUG=383813
+<a href="mailto:R=falken@chromium.org">R=falken@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/392913002">https://codereview.chromium.org/392913002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178360 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178360&amp;view=revision"><time datetime="2014-07-17">2014-07-17</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Rework CORS &lt;link rel=stylesheet&gt; tests as js-tests.</summary>
+              <pre class=body>
+Attempt to get at the flakiness exhibited by one or more of these tests,
+on Windows mainly.
+
+<a href="mailto:R=tyoshino@chromium.org">R=tyoshino@chromium.org</a>
+BUG=394208
+
+Review URL: <a href="https://codereview.chromium.org/399653002">https://codereview.chromium.org/399653002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178341 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178341&amp;view=revision"><time datetime="2014-07-17">2014-07-17</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Unprefix most methods on FullscreenElementStack</summary>
+              <pre class=body>
+fullscreenEnabled no longer even considers the webkitallowfullscreen
+attribute, and the prefixes do no good internally anyway. They are
+left only on the Mozilla-style API since they should generally not be
+used other than for bindings.
+
+It turned out that the Internals wrappers were unused. They were added
+in <a href="http://trac.webkit.org/changeset/114790">http://trac.webkit.org/changeset/114790</a> &#34;to facilitate writing
+reproducible LayoutTests&#34;, but no tests using them were ever added.
+
+BUG=383813
+
+Review URL: <a href="https://codereview.chromium.org/390363002">https://codereview.chromium.org/390363002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178339 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178339&amp;view=revision"><time datetime="2014-07-17">2014-07-17</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r178304</summary>
+              <pre class=body>
+<a href="mailto:TBR=haraken@chromium.org,oilpan-reviews@chromium.org">TBR=haraken@chromium.org,oilpan-reviews@chromium.org</a>
+BUG=393595
+NOTRY=true
+NOTREECHECKS=true
+
+Review URL: <a href="https://codereview.chromium.org/398053006">https://codereview.chromium.org/398053006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178324 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178324&amp;view=revision"><time datetime="2014-07-17">2014-07-17</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Improve the declared IDL type for postMessage()&#39;s transferables</summary>
+              <pre class=body>
+Make the postMessage() IDL type for the transferables argument be
+equal to what the specs and the custom binding code actually
+supports. That is, a sequence of Transferables.
+
+Accurately defining the Transferable typedef is dependent on better
+union type support (<a href="http://crbug.com/240176);">http://crbug.com/240176);</a> provide an incomplete 
+typedef until that is in place.
+
+<a href="mailto:R=haraken@chromium.org,jsbell@chromium.org">R=haraken@chromium.org,jsbell@chromium.org</a>
+BUG=393245
+
+Review URL: <a href="https://codereview.chromium.org/393353003">https://codereview.chromium.org/393353003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178322 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178322&amp;view=revision"><time datetime="2014-07-17">2014-07-17</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: remove now-unused WebNode(Member&lt;T&gt;) constructor.</summary>
+              <pre class=body>
+The (implicit) construction of a WebNode from a Member&lt;T&gt; (where T is
+convertible to a Node) was introduced to allow for assignment of a
+Member&lt;Element&gt; to a WebNode (as needed by <a href="http://crrev.com/280123002/">http://crrev.com/280123002/</a>)
+
+With <a href="http://crrev.com/313813002">http://crrev.com/313813002</a> (r175522), an operator conversion from
+Member&lt;T&gt; to RawPtr&lt;T&gt; was introduced, which makes the reason for having
+the above WebNode() constructor fall away. Remove it here.
+
+<a href="mailto:R=abarth@chromium.org">R=abarth@chromium.org</a>
+BUG=357163
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/400473002">https://codereview.chromium.org/400473002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178296 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178296&amp;view=revision"><time datetime="2014-07-16">2014-07-16</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: improve ScriptPromiseProperty&lt;&gt;&#39;s argument types.</summary>
+              <pre class=body>
+The ScriptPromiseProperty&lt;&gt; template will instantiate three fields holding
+references to objects. In order to ensure lifetime safety, supply better
+transition types where it is used.
+
+<a href="mailto:R=ager@chromium.org,haraken@chromium.org">R=ager@chromium.org,haraken@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/393773004">https://codereview.chromium.org/393773004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178278 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178278&amp;view=revision"><time datetime="2014-07-16">2014-07-16</time></a>
       
         <tr>
           <td>sigbjornf
