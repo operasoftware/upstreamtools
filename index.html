@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 267, 
+    <a href="#chromium">Chromium</a>: 270, 
   
-    <a href="#blink">Blink</a>: 1270, 
+    <a href="#blink">Blink</a>: 1274, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,50 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Avoid merging chrome_browser_desktop_linux_sources lists</summary>
+              <pre class=body>
+chrome_browser_desktop_linux_sources variable is defined in both
+chrome_browser.gypi and chrome_browser_ui.gypi. If we keep the same
+name the lists will be merged in gyp builds, resulting the same list
+compiling twice for both browser and browser_ui targets.
+
+Review URL: <a href="https://codereview.chromium.org/403503003">https://codereview.chromium.org/403503003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@284044 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=284044&amp;view=revision"><time datetime="2014-07-18">2014-07-18</time></a>
+      
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Allow building search_engines component with configuration_policy==0</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/396303002">https://codereview.chromium.org/396303002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@284009 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=284009&amp;view=revision"><time datetime="2014-07-18">2014-07-18</time></a>
+      
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Fix GMOCK warnings in PasswordManagerTest</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/390393002">https://codereview.chromium.org/390393002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@283933 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=283933&amp;view=revision"><time datetime="2014-07-17">2014-07-17</time></a>
       
         <tr>
           <td>bratell
@@ -5300,6 +5344,87 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Propagate nested importScripts() error events outwards.</summary>
+              <pre class=body>
+If importScripts() evaluation fails, we report the exception wrt the
+URL and location of the failing script. Extend that to handle the
+nested case, propagating any inner importScripts-induced error event
+outwards rather than construct a new one wrt the outer script URL.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=394615
+
+Review URL: <a href="https://codereview.chromium.org/404513002">https://codereview.chromium.org/404513002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178432 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178432&amp;view=revision"><time datetime="2014-07-18">2014-07-18</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Gracefully handle FileReader() read operations when in a detached state.</summary>
+              <pre class=body>
+Follow up r178274 and have FileReader handle the case when it becomes
+detached from its document and its frame. Read operations can no longer
+go ahead when that is the case, as the throttling controller isn&#39;t
+available.
+
+<a href="mailto:R=haraken@chromium.org,horo@chromium.org,nhiroki@chromium.org,kinuko@chromium.org">R=haraken@chromium.org,horo@chromium.org,nhiroki@chromium.org,kinuko@chromium.org</a>
+BUG=394828
+
+Review URL: <a href="https://codereview.chromium.org/399863002">https://codereview.chromium.org/399863002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178426 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178426&amp;view=revision"><time datetime="2014-07-18">2014-07-18</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add UseCounter for &lt;iframe allowfullscreen&gt; exemption for &lt;video&gt;</summary>
+              <pre class=body>
+The video-specific fullscreen API can hopefully be retired soon, but
+if it can&#39;t it would still be valuable to get rid of this exemption,
+which could incentivise people to use the API.
+
+BUG=346236
+<a href="mailto:R=falken@chromium.org">R=falken@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/399933002">https://codereview.chromium.org/399933002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178420 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178420&amp;view=revision"><time datetime="2014-07-18">2014-07-18</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Gracefully handle ScriptProcessorNode event processing when detached.</summary>
+              <pre class=body>
+Check that we have an ExecutionContext to deliver a process event to
+before dispatching.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=394718
+
+Review URL: <a href="https://codereview.chromium.org/398573005">https://codereview.chromium.org/398573005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178385 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178385&amp;view=revision"><time datetime="2014-07-17">2014-07-17</time></a>
       
         <tr>
           <td>philipj
