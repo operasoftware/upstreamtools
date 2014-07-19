@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 270, 
+    <a href="#chromium">Chromium</a>: 271, 
   
-    <a href="#blink">Blink</a>: 1274, 
+    <a href="#blink">Blink</a>: 1277, 
   
     <a href="#v8">V8</a>: 16.
   
@@ -43,6 +43,25 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>kolczyk
+          <td class=message>
+            <details>
+              <summary>Added IsConstructorCall to gin::Arguments.</summary>
+              <pre class=body>
+It simply forwards the flag from v8::FunctionCallbackInfo and allows
+the function handler that accept gin::Arguments argument to distinguish
+between normal function invocation and call as an object construction.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/401823002">https://codereview.chromium.org/401823002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@284123 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=284123&amp;view=revision"><time datetime="2014-07-18">2014-07-18</time></a>
       
         <tr>
           <td>jiangj
@@ -5344,6 +5363,74 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: tidy up transition type usage after r178508.</summary>
+              <pre class=body>
+The Image object is not on the heap, adjust transition type usage to
+reflect that. Not doing so lead to
+
+  virtual/threaded/compositing/webgl/webgl-copy-image.html
+
+failing in Oilpan builds --
+
+ <a href="http://test-results.appspot.com/dashboards/flakiness_dashboard.html#tests=virtual%2Fthreaded%2Fcompositing%2Fwebgl%2Fwebgl-copy-image.html">http://test-results.appspot.com/dashboards/flakiness_dashboard.html#tests=virtual%2Fthreaded%2Fcompositing%2Fwebgl%2Fwebgl-copy-image.html</a>
+
+<a href="mailto:TBR=haraken@chromium.org,oilpan-reviews@chromium.org">TBR=haraken@chromium.org,oilpan-reviews@chromium.org</a>
+BUG=392765
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/401013003">https://codereview.chromium.org/401013003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178514 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178514&amp;view=revision"><time datetime="2014-07-19">2014-07-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Handle &#34;frame-less&#34; creation of Touch objects.</summary>
+              <pre class=body>
+Should an empty LocalFrame be used, handle this gracefully.
+
+R=
+BUG=395032
+
+Review URL: <a href="https://codereview.chromium.org/392223003">https://codereview.chromium.org/392223003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178444 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178444&amp;view=revision"><time datetime="2014-07-18">2014-07-18</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix Windows build after r178431.</summary>
+              <pre class=body>
+With <a href="http://crrev.com/406523002">http://crrev.com/406523002</a> making GarbageCollectedMixin a non-abstract
+class, MSVC elicits a warning that DLL exported GCMixin classes have a
+base class that isn&#39;t DLL exported.
+
+Add the needed annotation to GarbageCollectedMixin to address (as warnings
+are considered as errors.)
+
+<a href="mailto:R=haraken@chromium.org,wibling@chromium.org">R=haraken@chromium.org,wibling@chromium.org</a>
+BUG=382557
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/396153003">https://codereview.chromium.org/396153003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178439 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178439&amp;view=revision"><time datetime="2014-07-18">2014-07-18</time></a>
       
         <tr>
           <td>sigbjornf
