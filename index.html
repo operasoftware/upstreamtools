@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 271, 
+    <a href="#chromium">Chromium</a>: 273, 
   
-    <a href="#blink">Blink</a>: 1279, 
+    <a href="#blink">Blink</a>: 1281, 
   
     <a href="#v8">V8</a>: 17.
   
@@ -43,6 +43,59 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Include a pak file in the binary_size output if requested.</summary>
+              <pre class=body>
+By adding --pak out/Release/content_shell.pak at the command line
+the contents of it will be added to the visual output.
+
+BUG=370383
+
+Review URL: <a href="https://codereview.chromium.org/380693002">https://codereview.chromium.org/380693002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@284440 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=284440&amp;view=revision"><time datetime="2014-07-21">2014-07-21</time></a>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Save some gcc footprint (15 KB) in ExplodedFrameState.</summary>
+              <pre class=body>
+Inlining the assignment and copy constructor for a class
+like ExplodedFrameState exploded the machine code in stl::vector.
+
+gcc:
+Total change: -14969 bytes
+==========================
+  2 added, totalling +504 bytes across 1 sources
+  1 removed, totalling -3387 bytes across 1 sources
+  0 added, totalling 0 bytes across 0 sources
+  3 shrunk, for a net change of -12086 bytes (14716 bytes before, 2630 bytes after) across 2 sources
+
+It also helps for clang which normally ignores programmers hints to inline anyway:
+clang:
+Total change: -918 bytes
+========================
+  1 added, totalling +263 bytes across 1 sources
+  3 removed, totalling -1098 bytes across 2 sources
+  2 grown, for a net change of +161 bytes (1822 bytes before, 1983 bytes after) across 1 sources
+  1 shrunk, for a net change of -244 bytes (1401 bytes before, 1157 bytes after) across 1 sources
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/400923002">https://codereview.chromium.org/400923002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@284424 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=284424&amp;view=revision"><time datetime="2014-07-21">2014-07-21</time></a>
       
         <tr>
           <td>kolczyk
@@ -5363,6 +5416,89 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move 2D Canvas and WebGL objects to the heap.</summary>
+              <pre class=body>
+This adds Oilpan transition types to the WebGL object hierarchy, along
+with some remaining Canvas 2D objects. 
+
+Notes:
+
+- Oilpan does not allow destructors to access other garbage collected
+  objects and we want all WebGL script accessible objects to be under
+  the control of Oilpan and be garbage collected. To follow and
+  fulfill both, we cannot make the objects that the destructors depend
+  on for fetching out the graphics context (which they use to finalize
+  their platform resources) be garbage collected. For
+  WebGLSharedObjects (and WebGLRenderingContextBase) that means that
+  WebGLContextGroup cannot be on the heap/garbage-collected, and for
+  WebGLContextObjects, the WebGLRenderingContextBase&#39;s DrawingBuffer
+  cannot be on the heap either.
+  
+  See details below for how this is done for WebGLContextObject&#39;s; the
+  changes to WebGLContextGroup and WebGLSharedObject is along similar
+  lines.
+  
+- In terms of file footprint of the changes here, the WebGLExtension-derived
+  objects make up a significant portion. Their switch in transition
+  types for their create() constructor method is all standard and
+  repetitive.
+
+- The release of platform resources when finalizing WebGL objects
+  requires some extra care with Oilpan. That release is done using a
+  platform graphics context object (blink::WebGraphicsContext3D), which
+  is owned by a DrawingBuffer. As finalization order isn&#39;t deterministic
+  with Oilpan, we have to arrange for that DrawingBuffer&#39;s context
+  object to remain alive until all objects that need it for platform
+  resource release have been finalized. And we cannot rely on fetching
+  the context object from another WebGL object on the Oilpan heap, as it
+  may or may not have been finalized.
+
+  To address, the (off heap) DrawingBuffer is shared among all objects 
+  that need it for finalization, using an off-heap RefCounted abstraction 
+  (WebGLSharedWebGraphicsContext3D). When all objects have been finalized, 
+  that shared object will be destructed and its underlying DrawingBuffer 
+  (and, indirectly, its blink::WebGraphicsContext3D object) is let go of. 
+
+  As a result, each WebGLContextObject adds a RefPtr&lt;&gt; to this shared 
+  DrawingBuffer/WebGraphicsContext3D with Oilpan enabled. 
+
+<a href="mailto:R=haraken@chromium.org,ager@chromium.org,junov@chromium.org,bajones@chromium.org,kbr@chromium.org">R=haraken@chromium.org,ager@chromium.org,junov@chromium.org,bajones@chromium.org,kbr@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/365653002">https://codereview.chromium.org/365653002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178647 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178647&amp;view=revision"><time datetime="2014-07-22">2014-07-22</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Always set the container size for a pAR=none image to the intrinsic size</summary>
+              <pre class=body>
+When updating the viewport for an &lt;svg:image&gt; that has preserveAspectRatio
+set to &#39;none&#39; only update the container size from the intrinsic size, and
+never the actual viewport (size) as specified by the &#39;width&#39; and &#39;height&#39;
+attributes. Previously a change to the actual viewport (when pAR=none)
+would cause an update to the container size from the actual viewport size,
+since the image/container size was previously set to the intrinsic size.
+Also simplify the request for the intrinsic size a bit.
+
+BUG=395139
+
+Review URL: <a href="https://codereview.chromium.org/403393002">https://codereview.chromium.org/403393002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178629 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178629&amp;view=revision"><time datetime="2014-07-22">2014-07-22</time></a>
       
         <tr>
           <td>philipj
