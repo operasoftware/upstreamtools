@@ -27,11 +27,11 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 273, 
+    <a href="#chromium">Chromium</a>: 274, 
   
-    <a href="#blink">Blink</a>: 1281, 
+    <a href="#blink">Blink</a>: 1286, 
   
-    <a href="#v8">V8</a>: 17.
+    <a href="#v8">V8</a>: 18.
   
   <p class=hint>Click message to expand
   
@@ -43,6 +43,42 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Different SPDY Hpack constant table for startup time and footprint (60KB).</summary>
+              <pre class=body>
+The hpack constant table was 40-60 KB (gcc: 40 KB, clang: 60KB), for 
+storing 2 KB of data. Not optimal.
+
+By making it an ordinary static data table we save 60 KB with clang:
+
+Total change: -64153 bytes
+==========================
+  1 added, totalling +2056 bytes across 1 sources
+  1 removed, totalling -66215 bytes across 1 sources
+  1 grown, for a net change of +14 bytes (367 bytes before, 381 bytes after) across 1 sources
+  1 shrunk, for a net change of -8 bytes (10504 bytes before, 10496 bytes after) across 1 sources
+
+and save 40 KB with gcc:
+
+Total change: -41382 bytes
+==========================
+  1 added, totalling +2056 bytes across 1 sources
+  2 removed, totalling -43597 bytes across 2 sources
+  1 grown, for a net change of +167 bytes (341 bytes before, 508 bytes after) across 1 sources
+  1 shrunk, for a net change of -8 bytes (10576 bytes before, 10568 bytes after) across 1 sources
+
+BUG=394269
+
+Review URL: <a href="https://codereview.chromium.org/393573002">https://codereview.chromium.org/393573002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@284698 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=284698&amp;view=revision"><time datetime="2014-07-22">2014-07-22</time></a>
       
         <tr>
           <td>bratell
@@ -5416,6 +5452,107 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>[SVG] Reject hit-test queries when the element has a singular transform</summary>
+              <pre class=body>
+When an SVG element was affected by a transform that was singular,
+AffineTransform::inverse() would return the identity transform, and the
+query point would not actually be transformed to the local user-space.
+
+Make sure all calls to said method is guarded by a check to
+AffineTransform::isInvertible(), and fail the hit-test if it returns false.
+Add a new SVGRenderSupport-helper that does the point-transformation and
+checks against the clipping area, since this is a recurring pattern in
+various implementations of RenderSVG*::nodeAtFloatPoint.
+
+RenderSVGRoot has the logic added, but still does not reject queries. This
+is due to special-case handling of empty viewBoxes in
+SVGFitToViewBox::viewBoxToViewTransform.
+
+BUG=395675
+
+Review URL: <a href="https://codereview.chromium.org/411613002">https://codereview.chromium.org/411613002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178745 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178745&amp;view=revision"><time datetime="2014-07-23">2014-07-23</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add missing id/name check over img-based RadioNodeLists.</summary>
+              <pre class=body>
+For named lookups on forms, the spec tells us (step 2)
+
+ <a href="http://www.whatwg.org/specs/web-apps/current-work/#dom-form-nameditem">http://www.whatwg.org/specs/web-apps/current-work/#dom-form-nameditem</a>
+
+that the RadioNodeList returned for the &lt;img&gt; only case should be
+constrained to only those matching the given name/id.
+
+R=
+BUG=387312
+
+Review URL: <a href="https://codereview.chromium.org/405383003">https://codereview.chromium.org/405383003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178721 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178721&amp;view=revision"><time datetime="2014-07-23">2014-07-23</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove unused event type names</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/405423002">https://codereview.chromium.org/405423002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178666 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178666&amp;view=revision"><time datetime="2014-07-22">2014-07-22</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Internals.selectColorInColorChooser(): type check element argument.</summary>
+              <pre class=body>
+Avoid trouble and verify that the incoming element is indeed an Element.
+
+<a href="mailto:R=keishi@chromium.org">R=keishi@chromium.org</a>
+BUG=395970
+
+Review URL: <a href="https://codereview.chromium.org/409833003">https://codereview.chromium.org/409833003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178662 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178662&amp;view=revision"><time datetime="2014-07-22">2014-07-22</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix compilation after r178648.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=
+NOTRY=true
+NOTREECHECKS=true
+
+Review URL: <a href="https://codereview.chromium.org/413463002">https://codereview.chromium.org/413463002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178651 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178651&amp;view=revision"><time datetime="2014-07-22">2014-07-22</time></a>
       
         <tr>
           <td>sigbjornf
@@ -33635,6 +33772,28 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@149844 bbb929c8-8fbe-4397-9dbb-9b
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sof
+          <td class=message>
+            <details>
+              <summary>Add bailout checks to Message::Get{Start,End}Column()</summary>
+              <pre class=body>
+Also add an initial ON_BAILOUT() check to these two &#39;bailout enabled&#39;
+accessors.
+
+(The need for these was encountered via <a href="http://crbug.com/393273">http://crbug.com/393273</a>)
+
+<a href="mailto:R=dcarney@chromium.org">R=dcarney@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/402173003">https://codereview.chromium.org/402173003</a>
+
+Patch from Sigbjorn Finne &lt;<a href="mailto:sof@opera.com">sof@opera.com</a>&gt;.
+
+git-svn-id: <a href="https://v8.googlecode.com/svn/branches/bleeding_edge@22553">https://v8.googlecode.com/svn/branches/bleeding_edge@22553</a> ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+            </details>
+          <td><a href="https://code.google.com/p/v8/source/detail?r=22553"><time datetime="2014-07-23">2014-07-23</time></a>
       
         <tr>
           <td>mathiasb
