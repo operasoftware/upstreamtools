@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 274, 
+    <a href="#chromium">Chromium</a>: 275, 
   
-    <a href="#blink">Blink</a>: 1286, 
+    <a href="#blink">Blink</a>: 1294, 
   
     <a href="#v8">V8</a>: 18.
   
@@ -43,6 +43,21 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>ljagielski
+          <td class=message>
+            <details>
+              <summary>Removed potential memory leak in PasswordFormManager::OnRequestDone</summary>
+              <pre class=body>
+BUG=395190
+
+Review URL: <a href="https://codereview.chromium.org/405083004">https://codereview.chromium.org/405083004</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@285140 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=285140&amp;view=revision"><time datetime="2014-07-24">2014-07-24</time></a>
       
         <tr>
           <td>bratell
@@ -5452,6 +5467,149 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove WebSettings::setDisallowFullscreenForNonMediaElements(bool)</summary>
+              <pre class=body>
+It is never called from Chromium.
+
+Review URL: <a href="https://codereview.chromium.org/416013002">https://codereview.chromium.org/416013002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178831 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178831&amp;view=revision"><time datetime="2014-07-24">2014-07-24</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix reported unit test leaks.</summary>
+              <pre class=body>
+Make some unit tests not rely on any external code triggering a GC to
+tidy up the resources they allocate on the heap. Prevents reporting of
+leaked test objects.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/412173002">https://codereview.chromium.org/412173002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178830 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178830&amp;view=revision"><time datetime="2014-07-24">2014-07-24</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix WebSockets unit test GC plugin failure.</summary>
+              <pre class=body>
+The MockWebSocketChannelClient&#39;s trace() method must delegate to the
+mixin&#39;s trace() method (even if it is empty.)
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/418803003">https://codereview.chromium.org/418803003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178826 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178826&amp;view=revision"><time datetime="2014-07-24">2014-07-24</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>LocalWindow::printErrorMessage(): check if frame is available.</summary>
+              <pre class=body>
+If there&#39;s no frame, there&#39;s no console to add message to either.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=376704
+
+Review URL: <a href="https://codereview.chromium.org/413683002">https://codereview.chromium.org/413683002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178779 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178779&amp;view=revision"><time datetime="2014-07-23">2014-07-23</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix WebSockets unit tests after r178758.</summary>
+              <pre class=body>
+Explicitly disconnect the channel on test completion, putting the heap
+object in the expected state by the time the next GC sweep happens.
+
+<a href="mailto:TBR=oilpan-reviews@chromium.org,tyoshino@chromium.org,yhirano@chromium.org,hiroshige@chromium.org">TBR=oilpan-reviews@chromium.org,tyoshino@chromium.org,yhirano@chromium.org,hiroshige@chromium.org</a>
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/410263002">https://codereview.chromium.org/410263002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178778 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178778&amp;view=revision"><time datetime="2014-07-23">2014-07-23</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Use the mediaControlsButton() helper more in media tests</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/411833006">https://codereview.chromium.org/411833006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178777 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178777&amp;view=revision"><time datetime="2014-07-23">2014-07-23</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a UseCounter for HTMLPreElement.width</summary>
+              <pre class=body>
+The content attribute has no effect, so this API is completely useless.
+It is widely implemented, but was removed from spec, so attempting
+removal seems worthwhile, as it could leave HTMLPreElement empty.
+
+<a href="http://whatwg.org/html#the-pre-element">http://whatwg.org/html#the-pre-element</a>
+
+Review URL: <a href="https://codereview.chromium.org/415533002">https://codereview.chromium.org/415533002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178773 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178773&amp;view=revision"><time datetime="2014-07-23">2014-07-23</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r178753.</summary>
+              <pre class=body>
+<a href="mailto:TBR=haraken@chromium.org,oilpan-reviews@chromium.org">TBR=haraken@chromium.org,oilpan-reviews@chromium.org</a>
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/410933002">https://codereview.chromium.org/410933002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178757 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178757&amp;view=revision"><time datetime="2014-07-23">2014-07-23</time></a>
       
         <tr>
           <td>fs
