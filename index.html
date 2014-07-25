@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 275, 
+    <a href="#chromium">Chromium</a>: 276, 
   
-    <a href="#blink">Blink</a>: 1294, 
+    <a href="#blink">Blink</a>: 1302, 
   
     <a href="#v8">V8</a>: 18.
   
@@ -43,6 +43,26 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>ljagielski
+          <td class=message>
+            <details>
+              <summary>Added SERVER_UNAUTHORIZED download interrupt reason.</summary>
+              <pre class=body>
+chrome/app/generated_resources.grd: added messages for
+DOWNLOAD_INTERRUPT_REASON_SERVER_UNAUTHORIZED
+content/browser/download: handling of
+DOWNLOAD_INTERRUPT_REASON_SERVER_UNAUTHORIZED
+
+BUG=386146
+
+Review URL: <a href="https://codereview.chromium.org/351863002">https://codereview.chromium.org/351863002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@285359 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=285359&amp;view=revision"><time datetime="2014-07-24">2014-07-24</time></a>
       
         <tr>
           <td>ljagielski
@@ -5467,6 +5487,146 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Handle a terminating context in messageHandlerinWorker().</summary>
+              <pre class=body>
+If execution is terminated while constructing the ErrorEvent representing
+the incoming v8::Message, do not attempt to report the exception.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=393273
+
+Review URL: <a href="https://codereview.chromium.org/405933002">https://codereview.chromium.org/405933002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178929 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178929&amp;view=revision"><time datetime="2014-07-25">2014-07-25</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r178904.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=373120
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/422473002">https://codereview.chromium.org/422473002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178909 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178909&amp;view=revision"><time datetime="2014-07-25">2014-07-25</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: mark fast/forms/select/menulist-appearance-basic.html as slow (dbg)</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=397425
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/419193002">https://codereview.chromium.org/419193002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178906 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178906&amp;view=revision"><time datetime="2014-07-25">2014-07-25</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add navigator.sendBeacon() use counters.</summary>
+              <pre class=body>
+Count API sendBeacon() use, and should its transmission quota be
+exceeded, count that too.
+
+<a href="mailto:R=tkent@chromium.org">R=tkent@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/417943005">https://codereview.chromium.org/417943005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178903 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178903&amp;view=revision"><time datetime="2014-07-25">2014-07-25</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Make DRT output for FEBlend::m_mode lowercase</summary>
+              <pre class=body>
+This is in preparation for switching FEBlend to use WebBlendMode instead
+of BlendModeType - which will enable using compositeOperatorName from
+GraphicsTypes.h
+
+BUG=389594
+
+Review URL: <a href="https://codereview.chromium.org/419533002">https://codereview.chromium.org/419533002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178853 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178853&amp;view=revision"><time datetime="2014-07-24">2014-07-24</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add UseCounters for non-standard WheelEvent.wheelDelta* attributes</summary>
+              <pre class=body>
+In ad-hoc testing neither Firefox nor IE11 support these attributes,
+making them good candidates for deprecation and eventual removal.
+
+Review URL: <a href="https://codereview.chromium.org/416103003">https://codereview.chromium.org/416103003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178849 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178849&amp;view=revision"><time datetime="2014-07-24">2014-07-24</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove dead code backing WheelEvent.webkitDirectionInvertedFromDevice</summary>
+              <pre class=body>
+It always returns false. Make that explicit.
+
+Review URL: <a href="https://codereview.chromium.org/415773008">https://codereview.chromium.org/415773008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178846 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178846&amp;view=revision"><time datetime="2014-07-24">2014-07-24</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a UseCounter for HTMLElement.webkitdropzone</summary>
+              <pre class=body>
+The unprefixed attribute is not supported yet, but knowing the usage of
+the prefixed attribute is still valuable.
+
+<a href="mailto:R=jochen@chromium.org">R=jochen@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/415093002">https://codereview.chromium.org/415093002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@178839 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=178839&amp;view=revision"><time datetime="2014-07-24">2014-07-24</time></a>
       
         <tr>
           <td>philipj
