@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 276, 
   
-    <a href="#blink">Blink</a>: 1303, 
+    <a href="#blink">Blink</a>: 1307, 
   
     <a href="#v8">V8</a>: 18.
   
@@ -5487,6 +5487,87 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Deprecate EventSource.URL and WebSocket.URL</summary>
+              <pre class=body>
+Intent to Deprecate:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/1m47rW4w7dc/MOf_2kgb2wIJw">https://groups.google.com/a/chromium.org/d/msg/blink-dev/1m47rW4w7dc/MOf_2kgb2wIJw</a>
+
+Review URL: <a href="https://codereview.chromium.org/422743002">https://codereview.chromium.org/422743002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179032 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179032&amp;view=revision"><time datetime="2014-07-28">2014-07-28</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>HTMLImageElement.natural{Width,Height} should return intrinsic dimensions</summary>
+              <pre class=body>
+HTML says:
+
+ &#34;The IDL attributes naturalWidth and naturalHeight must return the
+  intrinsic width and height of the image, in CSS pixels, if the image is
+  available, or else 0.&#34;
+
+Change HTMLImageElement::natural{Width,Height} to request the intrinsic
+size from ImageResource::imageSizeForRenderer by passing IntrinsicSize as
+the third parameter. This makes the attributes return more appropriate
+values for SVG-images in &lt;img&gt;.
+
+BUG=396955
+
+Review URL: <a href="https://codereview.chromium.org/422503002">https://codereview.chromium.org/422503002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179030 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179030&amp;view=revision"><time datetime="2014-07-28">2014-07-28</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use WebBlendMode in FEBlend</summary>
+              <pre class=body>
+This replaces the BlendModeType enumeration with the WebBlendMode for
+FEBlend::m_mode. The former is moved to SVGFEBlendElement.
+This enables FEBlend to use all of the blend modes available in
+WebBlendMode, and leave any subset selection to the client of FEBlend
+(which is SVGFEBlendElement).
+The BlendModeType-&gt;string mapping is replaced by compositeOperatorName().
+
+BUG=389594
+
+Review URL: <a href="https://codereview.chromium.org/419253002">https://codereview.chromium.org/419253002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179029 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179029&amp;view=revision"><time datetime="2014-07-28">2014-07-28</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Stop using controller as a variable name for FullscreenElementStack</summary>
+              <pre class=body>
+This was probably originally FullscreenController.
+
+Also fix a typo and simplify isActiveFullScreenElement.
+
+Review URL: <a href="https://codereview.chromium.org/421693003">https://codereview.chromium.org/421693003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179009 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179009&amp;view=revision"><time datetime="2014-07-28">2014-07-28</time></a>
       
         <tr>
           <td>fs
