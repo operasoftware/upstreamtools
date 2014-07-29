@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 276, 
   
-    <a href="#blink">Blink</a>: 1307, 
+    <a href="#blink">Blink</a>: 1315, 
   
     <a href="#v8">V8</a>: 18.
   
@@ -5487,6 +5487,162 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Deprecate the hspace/vspace attributes on table</summary>
+              <pre class=body>
+Intent to Deprecate:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/l3rZbX-BUaM/3iSlHsjmW0wJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/l3rZbX-BUaM/3iSlHsjmW0wJ</a>
+
+BUG=277080
+<a href="mailto:R=jochen@chromium.org">R=jochen@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/421263002">https://codereview.chromium.org/421263002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179142 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179142&amp;view=revision"><time datetime="2014-07-29">2014-07-29</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add UseCounters for non-standard, internally unused reflected attributes</summary>
+              <pre class=body>
+<a href="http://whatwg.org/html#htmlhtmlelement">http://whatwg.org/html#htmlhtmlelement</a>
+<a href="http://whatwg.org/html#htmlmetaelement">http://whatwg.org/html#htmlmetaelement</a>
+<a href="http://whatwg.org/html#htmlobjectelement">http://whatwg.org/html#htmlobjectelement</a>
+<a href="http://whatwg.org/html#htmltablecellelement">http://whatwg.org/html#htmltablecellelement</a>
+
+None of these attributes are used internally, so the only way sites
+can depend on them is via these bindings.
+
+Review URL: <a href="https://codereview.chromium.org/428893002">https://codereview.chromium.org/428893002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179140 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179140&amp;view=revision"><time datetime="2014-07-29">2014-07-29</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove webkitConvertPointFromPageToNode() and webkitConvertPointFromNodeToPage()</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/KS5GAM7JXtg/7KyhsqQFZMkJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/KS5GAM7JXtg/7KyhsqQFZMkJ</a>
+
+BUG=398352
+
+Review URL: <a href="https://codereview.chromium.org/428533003">https://codereview.chromium.org/428533003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179135 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179135&amp;view=revision"><time datetime="2014-07-29">2014-07-29</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove Element.scrollByLines() and Element.scrollByPages()</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/KYJoVzmi_tw/OsTpm27Ty9YJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/KYJoVzmi_tw/OsTpm27Ty9YJ</a>
+
+BUG=398356
+
+Review URL: <a href="https://codereview.chromium.org/416403013">https://codereview.chromium.org/416403013</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179134 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179134&amp;view=revision"><time datetime="2014-07-29">2014-07-29</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove HTMLPreElement.wrap IDL attribute</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/XiDb0IKd2rw/Bb8IPddHejMJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/XiDb0IKd2rw/Bb8IPddHejMJ</a>
+
+BUG=398353
+
+Review URL: <a href="https://codereview.chromium.org/427533003">https://codereview.chromium.org/427533003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179131 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179131&amp;view=revision"><time datetime="2014-07-29">2014-07-29</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove HTMLFrameElement.width/height</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/nECqqvgxIek/poPQf2KX3jMJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/nECqqvgxIek/poPQf2KX3jMJ</a>
+
+BUG=398351
+
+Review URL: <a href="https://codereview.chromium.org/427563002">https://codereview.chromium.org/427563002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179130 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179130&amp;view=revision"><time datetime="2014-07-29">2014-07-29</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL parser: fix rebuilding of (stale) cached lexer tables</summary>
+              <pre class=body>
+The PLY lexer caches its table as a Python module (lextab.py). The
+cache is loaded by attempting to import the module, which succeeds
+if there&#39;s a lextab.py{,c,o} anywhere in the Python path. If the
+import succeeds, the cache is assumed by PLY to be up-to-date, so
+to update the cache, we need to remove those files before calling
+PLY to initialize the lexer.
+
+This patch makes blink_idl_lexer.main() do just that. It also
+extends blink_idl_parser.main() to call the former, since the GYP
+(and GN) build systems only actually call the latter script.
+
+BUG=397909
+
+Review URL: <a href="https://codereview.chromium.org/425953002">https://codereview.chromium.org/425953002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179129 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179129&amp;view=revision"><time datetime="2014-07-29">2014-07-29</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Remove unused and incorrect RenderStyle::initialTextEmphasisColor.</summary>
+              <pre class=body>
+Initial -webkit-text-emphasis-color (correctly) uses
+StyleColor::currentColor, like most of the other colors.
+
+Also, initialTextEmphasisColor returns TextEmphasisFillFilled, which is not a Color.
+
+Review URL: <a href="https://codereview.chromium.org/425763002">https://codereview.chromium.org/425763002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179046 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179046&amp;view=revision"><time datetime="2014-07-28">2014-07-28</time></a>
       
         <tr>
           <td>philipj
