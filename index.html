@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 277, 
+    <a href="#chromium">Chromium</a>: 278, 
   
-    <a href="#blink">Blink</a>: 1320, 
+    <a href="#blink">Blink</a>: 1323, 
   
     <a href="#v8">V8</a>: 18.
   
@@ -43,6 +43,29 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>dbus: don&#39;t add attributes in extern template class specialization</summary>
+              <pre class=body>
+This previous CL added attributes to some template specializations:
+<a href="https://codereview.chromium.org/408143012">https://codereview.chromium.org/408143012</a>
+
+This breaks gcc 4.8, which gives the following warning:
+  ../../dbus/property.h:412:62: error: type attributes ignored after type is already defined [-Werror=attributes]
+
+Since the template class already has the attribute, I suspect that the
+additional attribute specifications are redundant.  ie I think we can
+remove them.
+
+Review URL: <a href="https://codereview.chromium.org/423233003">https://codereview.chromium.org/423233003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@286567 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=286567&amp;view=revision"><time datetime="2014-07-30">2014-07-30</time></a>
       
         <tr>
           <td>mostynb
@@ -5508,6 +5531,67 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add UseCounters for non-standard UIEvent IDL attributes</summary>
+              <pre class=body>
+<a href="mailto:R=rbyers@chromium.org">R=rbyers@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/425263007">https://codereview.chromium.org/425263007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179298 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179298&amp;view=revision"><time datetime="2014-07-31">2014-07-31</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Revert of Add UseCounters for non-standard, internally unused reflected attributes (https://codereview.chromium.org/428893002/)</summary>
+              <pre class=body>
+Reason for revert:
+These IDL attributes are actually in the HTML spec:
+<a href="http://www.whatwg.org/specs/web-apps/current-work/#obsolete">http://www.whatwg.org/specs/web-apps/current-work/#obsolete</a>
+
+Original issue&#39;s description:
+&gt; Add UseCounters for non-standard, internally unused reflected attributes
+&gt; 
+&gt; <a href="http://whatwg.org/html#htmlhtmlelement">http://whatwg.org/html#htmlhtmlelement</a>
+&gt; <a href="http://whatwg.org/html#htmlmetaelement">http://whatwg.org/html#htmlmetaelement</a>
+&gt; <a href="http://whatwg.org/html#htmlobjectelement">http://whatwg.org/html#htmlobjectelement</a>
+&gt; <a href="http://whatwg.org/html#htmltablecellelement">http://whatwg.org/html#htmltablecellelement</a>
+&gt; 
+&gt; None of these attributes are used internally, so the only way sites
+&gt; can depend on them is via these bindings.
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=179140">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=179140</a>
+
+<a href="mailto:TBR=jochen@chromium.org">TBR=jochen@chromium.org</a>
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/427353002">https://codereview.chromium.org/427353002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179256 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179256&amp;view=revision"><time datetime="2014-07-30">2014-07-30</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add UseCounters for non-standard MouseEvent IDL attributes</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/431653003">https://codereview.chromium.org/431653003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179247 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179247&amp;view=revision"><time datetime="2014-07-30">2014-07-30</time></a>
       
         <tr>
           <td>philipj
