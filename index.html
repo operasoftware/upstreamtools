@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 278, 
   
-    <a href="#blink">Blink</a>: 1323, 
+    <a href="#blink">Blink</a>: 1329, 
   
     <a href="#v8">V8</a>: 18.
   
@@ -5531,6 +5531,128 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Add StyleBuilderConverter::convertFlags.</summary>
+              <pre class=body>
+This gets rid of the special style building for text-decoration(-line)
+and touch-action properties.
+
+Review URL: <a href="https://codereview.chromium.org/424683004">https://codereview.chromium.org/424683004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179388 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179388&amp;view=revision"><time datetime="2014-08-01">2014-08-01</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove unused WebSettings getters</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/434873002">https://codereview.chromium.org/434873002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179387 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179387&amp;view=revision"><time datetime="2014-08-01">2014-08-01</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Remove value packing and custom style building for text-underline-position.</summary>
+              <pre class=body>
+The user of this property (currently only computeUnderlineOffset) is
+oblivious to the fact that RenderStyle::textUnderlinePosition may be a
+packed value. (It looks like we&#39;ll ASSERT_NOT_REACHED if we actually pack
+values during style building).
+
+This was probably done in anticipation of the currently missing left|right
+values defined by CSS3 Text Decoration.
+
+I suggest that we remove the custom behavior until support for the
+properties are added. When/if support for left|right is added, it should
+probably go through StyleBuilderConverter anyway.
+
+Review URL: <a href="https://codereview.chromium.org/436563002">https://codereview.chromium.org/436563002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179384 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179384&amp;view=revision"><time datetime="2014-08-01">2014-08-01</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add support for case-insensitive attribute value selectors</summary>
+              <pre class=body>
+Selectors Level 4 adds the syntax &#39;*[foo=&#34;bar&#34; i]&#39; for making an attribute
+value selector case-insensitive. Add support for that.
+
+Does not alter the actual case-sensitivity match - i.e. matching is
+performed using Unicode case-insensitivity rather than ASCII which
+the spec expects.
+
+Based on patch by &lt;<a href="mailto:jl@opera.com">jl@opera.com</a>&gt;.
+
+BUG=366563
+
+Review URL: <a href="https://codereview.chromium.org/330043003">https://codereview.chromium.org/330043003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179370 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179370&amp;view=revision"><time datetime="2014-08-01">2014-08-01</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a UseCounter for the composite attribute on &lt;img&gt;</summary>
+              <pre class=body>
+This was added for Apple&#39;s Dashboard in 2004:
+<a href="http://trac.webkit.org/changeset/6491">http://trac.webkit.org/changeset/6491</a>
+
+Hopefully it&#39;s not used on the Web and can be removed.
+
+Remove the FIXME as it certainly shouldn&#39;t be expanded.
+
+Review URL: <a href="https://codereview.chromium.org/438623002">https://codereview.chromium.org/438623002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179326 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179326&amp;view=revision"><time datetime="2014-07-31">2014-07-31</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a UseCounter for &lt;body bgproperties=fixed&gt;</summary>
+              <pre class=body>
+This is a survivor of the first browser wars, implemented by Internet
+Explorer but not Netscape. It was never standardized, so measure usage
+to figure out the best path forward.
+
+For the archaeologist:
+<a href="http://lists.w3.org/Archives/Public/www-talk/1996JulAug/0177.html">http://lists.w3.org/Archives/Public/www-talk/1996JulAug/0177.html</a>
+<a href="http://lists.w3.org/Archives/Public/www-talk/1997SepOct/0008.html">http://lists.w3.org/Archives/Public/www-talk/1997SepOct/0008.html</a>
+<a href="http://lists.w3.org/Archives/Public/www-html/1998Oct/0016.html">http://lists.w3.org/Archives/Public/www-html/1998Oct/0016.html</a>
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=7474">https://bugzilla.mozilla.org/show_bug.cgi?id=7474</a>
+<a href="https://projects.kde.org/projects/kde/kdelibs/repository/revisions/34867245">https://projects.kde.org/projects/kde/kdelibs/repository/revisions/34867245</a>
+
+Review URL: <a href="https://codereview.chromium.org/428363002">https://codereview.chromium.org/428363002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179314 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179314&amp;view=revision"><time datetime="2014-07-31">2014-07-31</time></a>
       
         <tr>
           <td>philipj
