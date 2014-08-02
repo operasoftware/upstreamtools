@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 278, 
+    <a href="#chromium">Chromium</a>: 283, 
   
-    <a href="#blink">Blink</a>: 1329, 
+    <a href="#blink">Blink</a>: 1334, 
   
     <a href="#v8">V8</a>: 18.
   
@@ -43,6 +43,108 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>webrtc deps in remoting should be inside a webrtc condition</summary>
+              <pre class=body>
+If you try to build with enable_webrtc=0 and remoting=1, gyp will fail:
+libjingle.gyp:libpeerconnection#target&#39; when processing
+remoting.gyp:remoting_host#target.  This happens because the
+libpeerconnnection target is defined inside an enable_webrtc==1 condition.
+Therefore, these dependencies in remoting.gyp should be too.
+
+BUG=399413
+
+Review URL: <a href="https://codereview.chromium.org/431163002">https://codereview.chromium.org/431163002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@287193 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=287193&amp;view=revision"><time datetime="2014-08-02">2014-08-02</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>fix warning in third_party/leveldatabase/chromium_logger.h</summary>
+              <pre class=body>
+Cast thread_id to uint64 to make sure the PRIu64 printf format works.
+Otherwise gcc 4.8 gives an error like so:
+warning: format ‘%lu’ expects argument of type ‘long unsigned int’, but argument 11 has type ‘long long unsigned int’ [-Wformat=]
+
+Followup to <a href="https://codereview.chromium.org/416633002">https://codereview.chromium.org/416633002</a>
+
+BUG=381456
+
+Review URL: <a href="https://codereview.chromium.org/432083003">https://codereview.chromium.org/432083003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@287094 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=287094&amp;view=revision"><time datetime="2014-08-01">2014-08-01</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Use the unprefixed Pointer Lock API</summary>
+              <pre class=body>
+BUG=398457
+
+Review URL: <a href="https://codereview.chromium.org/438693003">https://codereview.chromium.org/438693003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@287053 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=287053&amp;view=revision"><time datetime="2014-08-01">2014-08-01</time></a>
+      
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Fix BookmarkNode MetaInfoMap copypasting for Mac</summary>
+              <pre class=body>
+Bookmark node meta info APIs is exposed Chrome to the Bookmark
+Manager extension for storing extra meta data for bookmarks.
+
+This API is also used by
+//components/enhanced_bookmarks/metadata_accessor.cc to
+store/access extra meta data such as associated image URL for
+a bookmark.
+
+Without this patch the meta data stored along with the bookmark
+will be lost when it has been cut/pasted.
+
+The same functionality works perfectly fine on non-Mac platforms,
+here we add the missing implementation for Mac.
+
+BUG=399010
+
+Review URL: <a href="https://codereview.chromium.org/428183004">https://codereview.chromium.org/428183004</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@287024 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=287024&amp;view=revision"><time datetime="2014-08-01">2014-08-01</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>fix locales for linux but desktop_linux=0</summary>
+              <pre class=body>
+Fixup after <a href="https://codereview.chromium.org/146963007">https://codereview.chromium.org/146963007</a> for non desktop
+linux.
+
+Review URL: <a href="https://codereview.chromium.org/431993002">https://codereview.chromium.org/431993002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@287018 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=287018&amp;view=revision"><time datetime="2014-08-01">2014-08-01</time></a>
       
         <tr>
           <td>mostynb
@@ -5531,6 +5633,105 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r179341.</summary>
+              <pre class=body>
+<a href="mailto:TBR=haraken@chromium.org,oilpan-reviews@chromium.org">TBR=haraken@chromium.org,oilpan-reviews@chromium.org</a>
+BUG=370696
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/435103002">https://codereview.chromium.org/435103002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179442 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179442&amp;view=revision"><time datetime="2014-08-02">2014-08-02</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r179422.</summary>
+              <pre class=body>
+<a href="mailto:TBR=haraken@chromium.org,oilpan-reviews@chromium.org">TBR=haraken@chromium.org,oilpan-reviews@chromium.org</a>
+BUG=392474
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/434203002">https://codereview.chromium.org/434203002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179441 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179441&amp;view=revision"><time datetime="2014-08-02">2014-08-02</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Use exitFullscreen(), not fullyExitFullscreen(), in HTMLMediaElement</summary>
+              <pre class=body>
+For both &lt;video controls&gt; and HTMLVideoElement.webkitExitFullscreen()
+it makes more sense to only exit one level of fullscreen.
+
+There was no test coverage for the distinction, and it&#39;s very unlikely
+that Web content could meaningfully depend on this.
+
+BUG=399556
+
+Review URL: <a href="https://codereview.chromium.org/422023007">https://codereview.chromium.org/422023007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179440 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179440&amp;view=revision"><time datetime="2014-08-02">2014-08-02</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Fix use-after-free related to RenderFullScreen</summary>
+              <pre class=body>
+BUG=357452
+
+Review URL: <a href="https://codereview.chromium.org/414303006">https://codereview.chromium.org/414303006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179436 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179436&amp;view=revision"><time datetime="2014-08-02">2014-08-02</time></a>
+      
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use explicit case-insensitive attribute-value matching in UA-stylesheets</summary>
+              <pre class=body>
+With the &#34;i&#34; (case-insensitive) matching modifier introduced in
+<a href="https://codereview.chromium.org/330043003/">https://codereview.chromium.org/330043003/</a>, it becomes possible to
+refine the hits on the CaseInsensitiveAttrSelectorMatch use-counter
+by applying the modifier to all rules in the UA-stylesheets which
+perform an attribute-value match on one of the attributes that - due
+to legacy reasons - should be matched case-insensitively.
+
+Most of the modified rules involve the &#39;type&#39; attribute on &lt;input&gt;
+elements, but there are a few others as well (&#39;dir&#39; and &#39;align&#39;).
+
+The goal of this is to be able to get rid of the legacy-induced case-
+insensitive cases and leave the &#34;i&#34; flag as a mechanism to opt-in to
+case-insensitive matching. See <a href="https://crbug.com/327060">https://crbug.com/327060</a> for further info.
+
+BUG=327060, 366563
+
+Review URL: <a href="https://codereview.chromium.org/417353004">https://codereview.chromium.org/417353004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179401 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179401&amp;view=revision"><time datetime="2014-08-01">2014-08-01</time></a>
       
         <tr>
           <td>andersr
