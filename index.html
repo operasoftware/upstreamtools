@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 283, 
+    <a href="#chromium">Chromium</a>: 284, 
   
-    <a href="#blink">Blink</a>: 1336, 
+    <a href="#blink">Blink</a>: 1337, 
   
     <a href="#v8">V8</a>: 18.
   
@@ -43,6 +43,28 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>leveldatabase.gyp cleanup</summary>
+              <pre class=body>
+Followup for some style issues identified in <a href="https://codereview.chromium.org/432083003/">https://codereview.chromium.org/432083003/</a>
+
+* move windows source files into the main list
+  (and filter *_win.{cc,h} on non-windows platforms for all targets)
+* remove exclusions of files that don&#39;t exist (*_android.cc &amp; *_portable.cc)
+* exclude header files corresponding to excluded .cc files
+
+BUG=381456
+
+Review URL: <a href="https://codereview.chromium.org/433203002">https://codereview.chromium.org/433203002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@287374 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=287374&amp;view=revision"><time datetime="2014-08-04">2014-08-04</time></a>
       
         <tr>
           <td>mostynb
@@ -5633,6 +5655,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the last remnant of &lt;style scoped&gt;</summary>
+              <pre class=body>
+This code was added while &lt;style scoped&gt; was still supported:
+<a href="http://trac.webkit.org/changeset/125955">http://trac.webkit.org/changeset/125955</a>
+
+The scoped attribute now does nothing anywhere else, so special behavior
+for editing doesn&#39;t make sense.
+
+TEST=LayoutTests/editing/execCommand/delete-selection-has-style.html
+
+BUG=379096
+
+Review URL: <a href="https://codereview.chromium.org/433663002">https://codereview.chromium.org/433663002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179498 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179498&amp;view=revision"><time datetime="2014-08-05">2014-08-05</time></a>
       
         <tr>
           <td>sigbjornf
