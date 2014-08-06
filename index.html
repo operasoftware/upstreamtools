@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 284, 
+    <a href="#chromium">Chromium</a>: 287, 
   
-    <a href="#blink">Blink</a>: 1337, 
+    <a href="#blink">Blink</a>: 1346, 
   
     <a href="#v8">V8</a>: 18.
   
@@ -43,6 +43,50 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mboc
+          <td class=message>
+            <details>
+              <summary>Initialize the global message center instance to NULL</summary>
+              <pre class=body>
+BUG=Uninitialized global message center instance leads to trouble when
+modifying gyps.
+
+Review URL: <a href="https://codereview.chromium.org/444463007">https://codereview.chromium.org/444463007</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@287763 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=287763&amp;view=revision"><time datetime="2014-08-06">2014-08-06</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Update histogram enums after UseCounter change.</summary>
+              <pre class=body>
+BUG=399271
+
+Review URL: <a href="https://codereview.chromium.org/442773002">https://codereview.chromium.org/442773002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@287759 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=287759&amp;view=revision"><time datetime="2014-08-06">2014-08-06</time></a>
+      
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Fix GMOCK warnings in AutofillExternalDelegateUnitTest</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/445573002">https://codereview.chromium.org/445573002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@287598 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=287598&amp;view=revision"><time datetime="2014-08-05">2014-08-05</time></a>
       
         <tr>
           <td>mostynb
@@ -5655,6 +5699,193 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove TestExpectations for some no-longer-flaky fullscreen tests</summary>
+              <pre class=body>
+None of these appear to have any recent failures in the flakiness dashboard:
+<a href="http://test-results.appspot.com/dashboards/flakiness_dashboard.html#tests=full-screen-remove-ancestor.html">http://test-results.appspot.com/dashboards/flakiness_dashboard.html#tests=full-screen-remove-ancestor.html</a>
+<a href="http://test-results.appspot.com/dashboards/flakiness_dashboard.html#tests=full-screen-iframe-allowed.html">http://test-results.appspot.com/dashboards/flakiness_dashboard.html#tests=full-screen-iframe-allowed.html</a>
+
+To verify, the affected tests were run with --iterations=1000 on Linux
+Debug/Release and Mac Debug builds with no failures or timeouts.
+
+BUG=100798
+BUG=243782
+
+Review URL: <a href="https://codereview.chromium.org/448463002">https://codereview.chromium.org/448463002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179592 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179592&amp;view=revision"><time datetime="2014-08-06">2014-08-06</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Remove custom style building for font-variant-ligatures.</summary>
+              <pre class=body>
+This patch uses a small, in-flight structure &#39;VariantLigatures&#39; to
+transfer the font-variant-ligatures data during style building.
+
+This makes font style building less custom, and it removes some use of
+CSSValue inside FontBuilder.
+
+Review URL: <a href="https://codereview.chromium.org/447443003">https://codereview.chromium.org/447443003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179588 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179588&amp;view=revision"><time datetime="2014-08-06">2014-08-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add min-width/max-width/min-height/max-height to the fullscreen UA style sheet</summary>
+              <pre class=body>
+The spec has :fullscreen and obviously not :-webkit-full-screen, but
+this is the closest thing we can do before unprefixing.
+
+BUG=399543
+
+Review URL: <a href="https://codereview.chromium.org/432323002">https://codereview.chromium.org/432323002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179580 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179580&amp;view=revision"><time datetime="2014-08-06">2014-08-06</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Add a UseCounter for SVGStyleElement.title.</summary>
+              <pre class=body>
+BUG=399271
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/438173004">https://codereview.chromium.org/438173004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179575 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179575&amp;view=revision"><time datetime="2014-08-06">2014-08-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove WheelEvent.webkitDirectionInvertedFromDevice</summary>
+              <pre class=body>
+Intent to Deprecate... and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/jQjCy5ynZ58/bpfowBXCsDMJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/jQjCy5ynZ58/bpfowBXCsDMJ</a>
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/jQjCy5ynZ58/TrNqY9VJ42MJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/jQjCy5ynZ58/TrNqY9VJ42MJ</a>
+
+BUG=400794
+
+Review URL: <a href="https://codereview.chromium.org/440963002">https://codereview.chromium.org/440963002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179565 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179565&amp;view=revision"><time datetime="2014-08-06">2014-08-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Work around GC bug to fix a flaky AudioTrackList/VideoTrackList test</summary>
+              <pre class=body>
+BUG=397324
+BUG=400659
+
+Review URL: <a href="https://codereview.chromium.org/440033003">https://codereview.chromium.org/440033003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179558 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179558&amp;view=revision"><time datetime="2014-08-06">2014-08-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove KeyboardEvent.altGraphKey</summary>
+              <pre class=body>
+Added to WebKit in 2003:
+<a href="http://trac.webkit.org/changeset/5402">http://trac.webkit.org/changeset/5402</a>
+
+But never standardized:
+<a href="http://www.w3.org/TR/DOM-Level-3-Events/#interface-KeyboardEvent">http://www.w3.org/TR/DOM-Level-3-Events/#interface-KeyboardEvent</a>
+
+It is always false for real events in Chromium. Synthetic events can be
+created where it is true using initKeyboardEvent, which is also not per
+spec.
+
+Ad-hoc testing with document.createEvent(&#39;KeyboardEvent&#39;).altGraphKey
+shows that this attribute is not supported in IE11, Firefox Nightly or
+Opera 12.16, i.e. only WebKit ever added this.
+
+All in all, it seems very unlikely that content could depend on this,
+and thus the deprecation process is skipped.
+
+BUG= 399451
+
+Review URL: <a href="https://codereview.chromium.org/434683002">https://codereview.chromium.org/434683002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179545 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179545&amp;view=revision"><time datetime="2014-08-05">2014-08-05</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Hashless hex color quirk for color/background/border only.</summary>
+              <pre class=body>
+According to the quirks mode spec[1], the hashless hex color quirk only
+applies to a few properties including color, background-color (not from
+short-hand), and various border-color properties.
+
+This aligns the Blink implementation with Gecko and the spec.
+
+The duplicated code and early break is there to avoid regressions in blink
+performance tests (there were cases in the CSS and SVG directories that
+detected regressions locally).
+
+[1] <a href="http://quirks.spec.whatwg.org/#the-hashless-hex-color-quirk">http://quirks.spec.whatwg.org/#the-hashless-hex-color-quirk</a>
+
+BUG=391343
+
+Review URL: <a href="https://codereview.chromium.org/373603004">https://codereview.chromium.org/373603004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179524 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179524&amp;view=revision"><time datetime="2014-08-05">2014-08-05</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Rename a prefixed fullscreen test to full-screen-* for consistency</summary>
+              <pre class=body>
+This way, fullscreen-* can be used for the unprefixed API tests.
+
+BUG=383813
+
+Review URL: <a href="https://codereview.chromium.org/440673003">https://codereview.chromium.org/440673003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179511 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179511&amp;view=revision"><time datetime="2014-08-05">2014-08-05</time></a>
       
         <tr>
           <td>philipj
