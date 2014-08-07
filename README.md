@@ -1,7 +1,7 @@
 Opera upstreamtools
 ===================
 
-A script to create [a web page](http://operasoftware.github.io/upstreamtools/) tracking
+A script to create [a web page](https://operasoftware.github.io/upstreamtools/) tracking
 upstreamed code to the Chromium project from Opera.
 
 Getting started
