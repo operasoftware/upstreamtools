@@ -27,11 +27,11 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 287, 
+    <a href="#chromium">Chromium</a>: 289, 
   
-    <a href="#blink">Blink</a>: 1346, 
+    <a href="#blink">Blink</a>: 1353, 
   
-    <a href="#v8">V8</a>: 18.
+    <a href="#v8">V8</a>: 20.
   
   <p class=hint>Click message to expand
   
@@ -43,6 +43,41 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>don&#39;t pretend to support dbus on windows in dbus_export.h</summary>
+              <pre class=body>
+Since dbus is only used on linux, don&#39;t bother with windows specific symbol exporting.
+
+BUG=398644
+
+Review URL: <a href="https://codereview.chromium.org/429043003">https://codereview.chromium.org/429043003</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@288034 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=288034&amp;view=revision"><time datetime="2014-08-07">2014-08-07</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>fix libgio-2.0 deps in browser_ui</summary>
+              <pre class=body>
+browser_desktop_root_window_host_x11.cc uses g_dbus_proxy_call which
+is provided by libgio-2.0, so we should depend on the gio target too.
+
+BUG=265560
+
+Review URL: <a href="https://codereview.chromium.org/439613002">https://codereview.chromium.org/439613002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@287981 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=287981&amp;view=revision"><time datetime="2014-08-07">2014-08-07</time></a>
       
         <tr>
           <td>mboc
@@ -5699,6 +5734,153 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG2] Make transform, gradientTransform and patternTransform presentation attributes.</summary>
+              <pre class=body>
+Spec:
+<a href="http://www.w3.org/TR/css3-transforms/#svg-transform">http://www.w3.org/TR/css3-transforms/#svg-transform</a>
+<a href="http://www.w3.org/TR/css3-transforms/#svg-syntax">http://www.w3.org/TR/css3-transforms/#svg-syntax</a>
+<a href="http://www.w3.org/TR/css3-transforms/#svg-gradient-transform-pattern-transform">http://www.w3.org/TR/css3-transforms/#svg-gradient-transform-pattern-transform</a>
+
+BUG=369942
+
+Review URL: <a href="https://codereview.chromium.org/423093014">https://codereview.chromium.org/423093014</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179702 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179702&amp;view=revision"><time datetime="2014-08-07">2014-08-07</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Removed -webkit-marquee-increment leftovers.</summary>
+              <pre class=body>
+Only html attribute lengths are now supported remove recognition of keywords
+from the CSS property. Gets rid of the custom style builder function by
+using generated length conversion method instead.
+
+Review URL: <a href="https://codereview.chromium.org/444803002">https://codereview.chromium.org/444803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179698 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179698&amp;view=revision"><time datetime="2014-08-07">2014-08-07</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Revert the UseCounter for HTMLPreElement.width</summary>
+              <pre class=body>
+This was missing from the multipage spec because of a bug:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=26475">https://www.w3.org/Bugs/Public/show_bug.cgi?id=26475</a>
+
+There&#39;s no point in measuring usage as it&#39;s per spec.
+
+Review URL: <a href="https://codereview.chromium.org/449643003">https://codereview.chromium.org/449643003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179696 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179696&amp;view=revision"><time datetime="2014-08-07">2014-08-07</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make webkitCancelFullScreen() an alias of webkitExitFullscreen()</summary>
+              <pre class=body>
+It appears to be an accident of history that webkitCancelFullScreen()
+behaves differently from webkitExitFullscreen(), as it was implemented
+before the concept of a fullscreen element stack.
+
+In Gecko, mozCancelFullScreen() pops only one element from the stack.
+
+In the spec, &#34;fully exit fullscreen&#34; is now reserved for user escape
+and page navigation, so any other instances should be changed where
+possible.
+
+There was no test coverage for the distinction, and it&#39;s very unlikely
+that Web content could meaningfully depend on it.
+
+BUG=399556
+
+Review URL: <a href="https://codereview.chromium.org/434903002">https://codereview.chromium.org/434903002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179656 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179656&amp;view=revision"><time datetime="2014-08-06">2014-08-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove a few unused resources from Opera &lt;track&gt; tests</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/441383002">https://codereview.chromium.org/441383002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179652 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179652&amp;view=revision"><time datetime="2014-08-06">2014-08-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Work around GC bug to fix flaky autoplay tests</summary>
+              <pre class=body>
+With these changes both tests appear to be reliable.
+
+BUG=357080
+BUG=400659
+
+Review URL: <a href="https://codereview.chromium.org/441253003">https://codereview.chromium.org/441253003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179647 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179647&amp;view=revision"><time datetime="2014-08-06">2014-08-06</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove unused UseCounter features</summary>
+              <pre class=body>
+These are the reviews in which the enum values became unused:
+
+SVGInstanceRoot:
+<a href="https://codereview.chromium.org/272523002">https://codereview.chromium.org/272523002</a>
+
+PromiseConstructor/PromiseCast/PromiseReject/PromiseResolve:
+<a href="https://codereview.chromium.org/293933002">https://codereview.chromium.org/293933002</a>
+
+TextAutosizingLayout:
+<a href="https://codereview.chromium.org/346603005">https://codereview.chromium.org/346603005</a>
+
+PrefixedElementRequestPointerLock/PrefixedDocumentExitPointerLock/PrefixedDocumentPointerLockElement:
+<a href="https://codereview.chromium.org/437443005">https://codereview.chromium.org/437443005</a>
+
+PrefixedConvertPointFromPageToNode/PrefixedConvertPointFromNodeToPage:
+<a href="https://codereview.chromium.org/428533003">https://codereview.chromium.org/428533003</a>
+
+MixedContentTextTrack:
+<a href="https://codereview.chromium.org/348853009">https://codereview.chromium.org/348853009</a>
+
+Review URL: <a href="https://codereview.chromium.org/442323002">https://codereview.chromium.org/442323002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179627 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179627&amp;view=revision"><time datetime="2014-08-06">2014-08-06</time></a>
       
         <tr>
           <td>philipj
@@ -35181,6 +35363,48 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@149844 bbb929c8-8fbe-4397-9dbb-9b
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mathiasb
+          <td class=message>
+            <details>
+              <summary>Only escape U+0022 in argument values of `String.prototype` HTML methods</summary>
+              <pre class=body>
+Contributed by Mathias Bynens &lt;<a href="mailto:mathiasb@opera.com">mathiasb@opera.com</a>&gt;.
+
+TEST=mjsunit/es6/string-html
+BUG=v8:2217
+LOG=Y
+<a href="mailto:R=arv@chromium.org">R=arv@chromium.org</a>, <a href="mailto:yangguo@chromium.org">yangguo@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/446973004">https://codereview.chromium.org/446973004</a>
+
+git-svn-id: <a href="https://v8.googlecode.com/svn/branches/bleeding_edge@22955">https://v8.googlecode.com/svn/branches/bleeding_edge@22955</a> ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+            </details>
+          <td><a href="https://code.google.com/p/v8/source/detail?r=22955"><time datetime="2014-08-07">2014-08-07</time></a>
+      
+        <tr>
+          <td>mathiasb
+          <td class=message>
+            <details>
+              <summary>Add `CheckObjectCoercible` for the `String.prototype` HTML methods</summary>
+              <pre class=body>
+Contributed by Mathias Bynens &lt;<a href="mailto:mathiasb@opera.com">mathiasb@opera.com</a>&gt;.
+
+TEST=mjsunit/es6/string-html
+BUG=v8:2218
+LOG=Y
+<a href="mailto:R=yangguo@chromium.org">R=yangguo@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/422543003">https://codereview.chromium.org/422543003</a>
+
+Patch from Mathias Bynens &lt;<a href="mailto:mathias@qiwi.be">mathias@qiwi.be</a>&gt;.
+
+git-svn-id: <a href="https://v8.googlecode.com/svn/branches/bleeding_edge@22938">https://v8.googlecode.com/svn/branches/bleeding_edge@22938</a> ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+            </details>
+          <td><a href="https://code.google.com/p/v8/source/detail?r=22938"><time datetime="2014-08-06">2014-08-06</time></a>
       
         <tr>
           <td>sof
