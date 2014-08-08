@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 289, 
+    <a href="#chromium">Chromium</a>: 290, 
   
-    <a href="#blink">Blink</a>: 1353, 
+    <a href="#blink">Blink</a>: 1366, 
   
     <a href="#v8">V8</a>: 20.
   
@@ -43,6 +43,32 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Stop using WebMediaPlayerClient::preload() and volume()</summary>
+              <pre class=body>
+There is a &#34;FIXME: Remove once calls on the Chromium-side have been
+removed&#34; for volume() in WebMediaPlayerClient.h. preload() is
+similarly strange layering-wise, so get rid of that as well.
+
+Simply store the values when they cannot immediately be forwarded to
+the internal object.
+
+In the case of WebMediaPlayerImpl::setVolume(), the value can always
+be used immediately, so the setVolume() in DoLoad() appears to simply
+have been unnecessary.
+
+BUG=401415
+
+Review URL: <a href="https://codereview.chromium.org/443393002">https://codereview.chromium.org/443393002</a>
+
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@288080 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=288080&amp;view=revision"><time datetime="2014-08-07">2014-08-07</time></a>
       
         <tr>
           <td>mostynb
@@ -5734,6 +5760,303 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Update OilpanExpectations after r179695</summary>
+              <pre class=body>
+fetch-event.html no longer needs an exception.
+
+TBR=haraken,oilpan-reviews
+BUG=400645
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/454583004">https://codereview.chromium.org/454583004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179825 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179825&amp;view=revision"><time datetime="2014-08-08">2014-08-08</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG2] Harmonize the IDLs of SVGStyleElement and HTMLStyleElement.</summary>
+              <pre class=body>
+Add &#34;readonly attribute StyleSheet sheet&#34; to SVGStyleElement&#39;s IDL.
+
+Spec:
+<a href="https://svgwg.org/svg2-draft/styling.html#InterfaceSVGStyleElement">https://svgwg.org/svg2-draft/styling.html#InterfaceSVGStyleElement</a>
+
+BUG=399271
+
+Review URL: <a href="https://codereview.chromium.org/451663003">https://codereview.chromium.org/451663003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179819 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179819&amp;view=revision"><time datetime="2014-08-08">2014-08-08</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG2] Svg elements that overflow the viewport should also be hittested.</summary>
+              <pre class=body>
+When we have an svg that doesn&#39;t clip to its viewport (aka
+overflow:visible), and there is some overflowing content, we
+need to consider the overflowing elements when hit testing.
+Otherwise it becomes impossible to interact with svg
+elements outside the viewport rect.
+
+BUG=401443
+
+Review URL: <a href="https://codereview.chromium.org/444223005">https://codereview.chromium.org/444223005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179806 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179806&amp;view=revision"><time datetime="2014-08-08">2014-08-08</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Move Web-facing fullscreen APIs to DocumentFullscreen and ElementFullscreen</summary>
+              <pre class=body>
+This is closer to the partial interfaces of the spec:
+<a href="http://fullscreen.spec.whatwg.org/#api">http://fullscreen.spec.whatwg.org/#api</a>
+
+As a side-effect, the prefixed functions are now only used for bindings,
+forcing internal clients to pick a request type more explicitly.
+
+BUG=383813
+
+Review URL: <a href="https://codereview.chromium.org/449133003">https://codereview.chromium.org/449133003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179805 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179805&amp;view=revision"><time datetime="2014-08-08">2014-08-08</time></a>
+      
+        <tr>
+          <td>kolczyk
+          <td class=message>
+            <details>
+              <summary>Make it possible to have &lt;object&gt;&#39;s scriptableObject as a v8 object instead of NPObject.</summary>
+              <pre class=body>
+It is well-known that Chromium is gradually deprecating NPAPI
+with the goal of removing it completely by the end of 2014.
+This is said to include NPObject class as well.
+
+However, currently, for blink::WebPlugin implementators
+(for &lt;object&gt; tag), it is only possible to return the corresponding
+scriptable object (to back properties of the &lt;object&gt; tag
+as visible from JavaScript) as an NPObject*.
+
+This CL introduces the possibility to provide the plain v8 object,
+instead. This lets the embedder to provide scripting facilities
+for plugins (or whatever else provides &lt;object&gt; tags)
+using v8 api or modern means like gin.
+
+On top of it, the compatibility with current NPObject-based
+features like nsplugins is kept
+which simply can be removed once NPAPI is fully deprecated.
+
+
+BUG=351636
+
+Review URL: <a href="https://codereview.chromium.org/230813002">https://codereview.chromium.org/230813002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179794 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179794&amp;view=revision"><time datetime="2014-08-08">2014-08-08</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Rename FullscreenElementStack::requestFullScreenForElement to requestFullscreen</summary>
+              <pre class=body>
+It&#39;s unambigious without the suffix, and now matches the spec:
+<a href="http://fullscreen.spec.whatwg.org/#dom-element-requestfullscreen">http://fullscreen.spec.whatwg.org/#dom-element-requestfullscreen</a>
+
+If there ever was any disambiguity about document fullscreen vs.
+element fullscreen, there isn&#39;t any longer, at least not here.
+
+BUG=383813
+
+Review URL: <a href="https://codereview.chromium.org/444033003">https://codereview.chromium.org/444033003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179787 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179787&amp;view=revision"><time datetime="2014-08-08">2014-08-08</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove WebMediaPlayerClient::preload() and volume()</summary>
+              <pre class=body>
+They are unused as of Chromium r288080.
+
+The WebMediaPlayerClientImpl::m_preload member became unused, so remove
+it. This makes WebMediaPlayerClientImpl::setPreload look fragile, and
+it&#39;s possible that there are existing bugs where the preload state is
+not propagated correctly. However, HTMLMediaElement should eventually
+call WebMediaPlayer::setPreload() directly, so the removed code will be
+of no use.
+
+BUG=401415
+
+Review URL: <a href="https://codereview.chromium.org/455453002">https://codereview.chromium.org/455453002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179773 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179773&amp;view=revision"><time datetime="2014-08-08">2014-08-08</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Remove custom style building for -webkit-font-feature-settings.</summary>
+              <pre class=body>
+This patch replaces the custom style application for
+-webkit-font-feature-settings with a function in StyleBuilderConverter.
+
+Also:
+
+ * Less use of CSSValue in FontBuilder.
+ * We now handle &#39;initial&#39; and &#39;inherit&#39;.
+ * Eliminates FontDescription::makeNormalFeatureSettings.
+
+Note that in StyleBuilderConverter::convertFontFeatureSettings, the check
+for isFontFeatureValue() is removed. Asserting (via toCSSFontFeatureValue)
+should be enough, since the parser will only add CSSFontFeatureValues to the
+list.
+
+Review URL: <a href="https://codereview.chromium.org/444333005">https://codereview.chromium.org/444333005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179764 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179764&amp;view=revision"><time datetime="2014-08-07">2014-08-07</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Make style building for font-weight less custom.</summary>
+              <pre class=body>
+This patch lets the StyleBuilderConverter produce the final values
+for CSSValueBolder and CSSValueLighter, instead of first setting the
+weight on FontBuilder, and then setting the weight again.
+
+This is more in line with how the rest of the style building works.
+
+Review URL: <a href="https://codereview.chromium.org/444413003">https://codereview.chromium.org/444413003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179755 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179755&amp;view=revision"><time datetime="2014-08-07">2014-08-07</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Let the effective media volume be 0 if the media element is muted</summary>
+              <pre class=body>
+The bug was with a muted media element slaved to an unmuted media
+controller, in which case the media element&#39;s muted state was ignored.
+
+Attaching a media controller to an already-playing media element also
+wouldn&#39;t update the volume, so do that in bringElementUpToSpeed().
+
+BUG=399623
+
+Review URL: <a href="https://codereview.chromium.org/444173002">https://codereview.chromium.org/444173002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179738 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179738&amp;view=revision"><time datetime="2014-08-07">2014-08-07</time></a>
+      
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Add support for additional blend modes to SVGFEBlendElement</summary>
+              <pre class=body>
+New modes to be supported are:
+
+  overlay,
+  color-dodge,
+  color-burn,
+  hard-light,
+  soft-light,
+  difference,
+  exclusion,
+  hue,
+  saturation,
+  color and
+  luminosity
+
+Since the new modes don&#39;t have any corresponding IDL constants exposed
+on the SVGFEBlendElement interface, a mechanism is added to be able to
+differentiate between &#34;internal&#34; and &#34;exposed&#34; enumeration values, and
+reject those that are &#34;internal-only&#34; from being read or written
+through SVGAnimatedEnumeration.
+
+Test feBlend-all-modes.html evolved from test in WebKit commit
+<a href="http://trac.webkit.org/changeset/170433">http://trac.webkit.org/changeset/170433</a> by Dirk Schulze.
+
+BUG=389594
+
+Review URL: <a href="https://codereview.chromium.org/447193002">https://codereview.chromium.org/447193002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179732 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179732&amp;view=revision"><time datetime="2014-08-07">2014-08-07</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Convert fullscreen pixel tests to reftests</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/451483004">https://codereview.chromium.org/451483004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179707 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179707&amp;view=revision"><time datetime="2014-08-07">2014-08-07</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Clean up testing.internals argument type checking.</summary>
+              <pre class=body>
+Make use of [TypeChecking=Interface] where possible, fixing null pointer
+deref over internals.addTextMatchMarker in the process.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=375712
+
+Review URL: <a href="https://codereview.chromium.org/445933003">https://codereview.chromium.org/445933003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179706 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179706&amp;view=revision"><time datetime="2014-08-07">2014-08-07</time></a>
       
         <tr>
           <td>ed
