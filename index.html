@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 290, 
   
-    <a href="#blink">Blink</a>: 1370, 
+    <a href="#blink">Blink</a>: 1377, 
   
     <a href="#v8">V8</a>: 20.
   
@@ -5760,6 +5760,140 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove custom getters for File.lastModified{Date}</summary>
+              <pre class=body>
+No particular need for these to be custom, so turned into File accessors
+instead.
+
+Also drop a runtime feature check for FileConstructor; it is now stable.
+
+R=haraken
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/458953002">https://codereview.chromium.org/458953002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179944 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179944&amp;view=revision"><time datetime="2014-08-11">2014-08-11</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r179934.</summary>
+              <pre class=body>
+TBR=haraken,oilpan-reviews
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/463433002">https://codereview.chromium.org/463433002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179935 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179935&amp;view=revision"><time datetime="2014-08-11">2014-08-11</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Avoid preloader-induced test flakiness.</summary>
+              <pre class=body>
+If a preload request for &lt;img&gt; preload fails, the request will be retried
+on parsing the element as per normal. This might result in more than
+one request for the same resource, and consequently more than one console
+error message might be output.
+
+For img-crossorigin-no-credentials-prompt.html, avoid having the preloader
+kick in by not relying on an external script.
+
+R=
+BUG=239918
+
+Review URL: <a href="https://codereview.chromium.org/461563002">https://codereview.chromium.org/461563002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179918 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179918&amp;view=revision"><time datetime="2014-08-11">2014-08-11</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Invert the pass condition of fullscreen/full-screen-render-inline-expected.html</summary>
+              <pre class=body>
+The bug hasn&#39;t been fixed, but now any unrelated change to the test
+result will result in a failure, instead of being silently ignored.
+
+BUG=246077
+
+Review URL: <a href="https://codereview.chromium.org/456743002">https://codereview.chromium.org/456743002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179914 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179914&amp;view=revision"><time datetime="2014-08-11">2014-08-11</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove flaky expectations for parent-flow-inline-with-block-child.html</summary>
+              <pre class=body>
+It&#39;s been green since it was converted to a reftest in r179707:
+<a href="https://codereview.chromium.org/451483004">https://codereview.chromium.org/451483004</a>
+<a href="http://test-results.appspot.com/dashboards/flakiness_dashboard.html#tests=parent-flow-inline-with-block-child.html">http://test-results.appspot.com/dashboards/flakiness_dashboard.html#tests=parent-flow-inline-with-block-child.html</a>
+
+BUG=331576
+
+Review URL: <a href="https://codereview.chromium.org/455803002">https://codereview.chromium.org/455803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179912 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179912&amp;view=revision"><time datetime="2014-08-11">2014-08-11</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r179903.</summary>
+              <pre class=body>
+TBR=haraken,oilpan-reviews
+BUG=396400
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/458053004">https://codereview.chromium.org/458053004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179907 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179907&amp;view=revision"><time datetime="2014-08-11">2014-08-11</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Remove left-overs from -webkit-marquee-speed removal.</summary>
+              <pre class=body>
+The slow, normal, and fast keywords, and the seconds unit, are not used by
+the presentational style for the marquee element.
+
+<a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/457633002">https://codereview.chromium.org/457633002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179896 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179896&amp;view=revision"><time datetime="2014-08-10">2014-08-10</time></a>
       
         <tr>
           <td>sigbjornf
