@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 290, 
   
-    <a href="#blink">Blink</a>: 1377, 
+    <a href="#blink">Blink</a>: 1385, 
   
     <a href="#v8">V8</a>: 20.
   
@@ -5760,6 +5760,156 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r180052.</summary>
+              <pre class=body>
+R=haraken
+BUG=383813
+
+Review URL: <a href="https://codereview.chromium.org/463633004">https://codereview.chromium.org/463633004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180070 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180070&amp;view=revision"><time datetime="2014-08-12">2014-08-12</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r180052.</summary>
+              <pre class=body>
+TBR=haraken,oilpan-reviews
+BUG=383813
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/460983002">https://codereview.chromium.org/460983002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180061 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180061&amp;view=revision"><time datetime="2014-08-12">2014-08-12</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Implement the unprefixed the Fullscreen API</summary>
+              <pre class=body>
+Intent to Implement and Ship:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/GLl6aWs9-EM/uTqxEmM4iGcJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/GLl6aWs9-EM/uTqxEmM4iGcJ</a>
+
+The API is only enabled for testing, to allow the recent spec changes
+to be implemented with tests for the new API: <a href="http://crbug.com/402376">http://crbug.com/402376</a>
+
+This does not add support for the :fullscreen pseudo-class, which is
+tracked by a dedicate issue: <a href="http://crbug.com/402378">http://crbug.com/402378</a>
+
+BUG=383813
+
+Review URL: <a href="https://codereview.chromium.org/395633011">https://codereview.chromium.org/395633011</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180052 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180052&amp;view=revision"><time datetime="2014-08-12">2014-08-12</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Convert more fullscreen tests to reftests</summary>
+              <pre class=body>
+This removes ~242 KB of *-expected.png and leaves only a few
+platform-specific expectations left in
+LayoutTests/platform/linux/virtual/android/fullscreen/
+
+Some tests were simultaneously pixel tests and text tests, which is
+not great for a reftest. To avoid having the (formated) log output in
+*-expected.html, instead make those tests time out if any check fails.
+
+Review URL: <a href="https://codereview.chromium.org/457663002">https://codereview.chromium.org/457663002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180036 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180036&amp;view=revision"><time datetime="2014-08-12">2014-08-12</time></a>
+      
+        <tr>
+          <td>henriks
+          <td class=message>
+            <details>
+              <summary>Check HTMLMediaElement::supportsType() in MediaSource.isTypeSupported()</summary>
+              <pre class=body>
+MediaSource.isTypeSupported() should not return true without making sure
+that the HTMLMediaElement supports the content type as well.
+
+BUG=402386
+<a href="mailto:R=acolwell@chromium.org">R=acolwell@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/456313003">https://codereview.chromium.org/456313003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180035 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180035&amp;view=revision"><time datetime="2014-08-12">2014-08-12</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Invalidation tests for :host-context.</summary>
+              <pre class=body>
+We did not have any test coverage on :host-context and targeted style
+recalc. Added a few tests.
+
+<a href="mailto:R=chrishtr@chromium.org,esprehn@chromium.org">R=chrishtr@chromium.org,esprehn@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/458943002">https://codereview.chromium.org/458943002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179999 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179999&amp;view=revision"><time datetime="2014-08-11">2014-08-11</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL parser: clean up cached lexer table updating code</summary>
+              <pre class=body>
+Follow-up to
+  <a href="https://codereview.chromium.org/425953002/">https://codereview.chromium.org/425953002/</a>
+addressing some late comments.
+
+BUG=397909
+
+Review URL: <a href="https://codereview.chromium.org/462613004">https://codereview.chromium.org/462613004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179971 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179971&amp;view=revision"><time datetime="2014-08-11">2014-08-11</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: remove unnecessary TextTrackList finalization.</summary>
+              <pre class=body>
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/462653002">https://codereview.chromium.org/462653002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@179954 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=179954&amp;view=revision"><time datetime="2014-08-11">2014-08-11</time></a>
       
         <tr>
           <td>sigbjornf
