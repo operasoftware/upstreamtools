@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 290, 
+    <a href="#chromium">Chromium</a>: 295, 
   
-    <a href="#blink">Blink</a>: 1385, 
+    <a href="#blink">Blink</a>: 1393, 
   
     <a href="#v8">V8</a>: 20.
   
@@ -43,6 +43,110 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>make it possible to disable the use of libpci on linux again</summary>
+              <pre class=body>
+When CL 430573002 landed, it forced the use of libpci on linux, but
+many embedded systems lack this library (and probably lack a pci bus
+altogether). Let&#39;s add a new config variable to make it possible to
+disable the use of libpci.
+
+BUG=398416
+
+Review URL: <a href="https://codereview.chromium.org/462433002">https://codereview.chromium.org/462433002</a>
+
+Cr-Commit-Position: refs/heads/master@{#289262}
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@289262 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=289262&amp;view=revision"><time datetime="2014-08-13">2014-08-13</time></a>
+      
+        <tr>
+          <td>msimonides
+          <td class=message>
+            <details>
+              <summary>Don&#39;t increment lazy keep alive count on redirects.</summary>
+              <pre class=body>
+The ChromeExtensionNetworkDelegate::OnBeforeURLRequest is called for new
+requests as well as for redirects. This results in the lazy keep alive
+count in extensions to be incremented several times if there is a redirect
+but then it is decremented only ones when the request finishes. In consequence
+the lazy extension page never shuts down because the count never reaches
+zero.
+
+With this commit requests that have been redirected at least once are
+ignored when incrementing the keep alive count.
+
+BUG=175279
+
+Review URL: <a href="https://codereview.chromium.org/464933002">https://codereview.chromium.org/464933002</a>
+
+Cr-Commit-Position: refs/heads/master@{#289260}
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@289260 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=289260&amp;view=revision"><time datetime="2014-08-13">2014-08-13</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>avoid &gt;&gt; ambiguity in gin test</summary>
+              <pre class=body>
+Followup from <a href="https://codereview.chromium.org/419673004">https://codereview.chromium.org/419673004</a>
+
+BUG=397554
+
+Review URL: <a href="https://codereview.chromium.org/460583002">https://codereview.chromium.org/460583002</a>
+
+Cr-Commit-Position: refs/heads/master@{#289129}
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@289129 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=289129&amp;view=revision"><time datetime="2014-08-13">2014-08-13</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>Use ARRAYSIZE_UNSAFE when using types defined in a function</summary>
+              <pre class=body>
+Small followup from <a href="https://codereview.chromium.org/423333002">https://codereview.chromium.org/423333002</a>
+
+This allows the test to compile on a greater range of toolchains (some
+of which break when using types defined in a function with arraysize).
+
+Review URL: <a href="https://codereview.chromium.org/456403002">https://codereview.chromium.org/456403002</a>
+
+Cr-Commit-Position: refs/heads/master@{#289051}
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@289051 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=289051&amp;view=revision"><time datetime="2014-08-12">2014-08-12</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>include &lt;limits&gt; for std::numeric_limits</summary>
+              <pre class=body>
+CL 435583003 adds usage of std::numeric_limits without including the
+required header &#34;limits&#34; header.  Let&#39;s fix that.
+
+BUG=398712
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/454413002">https://codereview.chromium.org/454413002</a>
+
+Cr-Commit-Position: refs/heads/master@{#288986}
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@288986 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=288986&amp;view=revision"><time datetime="2014-08-12">2014-08-12</time></a>
       
         <tr>
           <td>philipj
@@ -5760,6 +5864,217 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Extract &#34;fullscreen element ready check&#34; from requestFullscreen()</summary>
+              <pre class=body>
+<a href="http://fullscreen.spec.whatwg.org/#fullscreen-element-ready-check">http://fullscreen.spec.whatwg.org/#fullscreen-element-ready-check</a>
+
+This is a change in behavior for what was previously &#34;a descendant
+browsing context&#39;s document has a non-empty fullscreen element stack,&#34;
+now &#34;element has no ancestor element whose local name is iframe and
+namespace is the HTML namespace.&#34;
+
+It&#39;s now never possible to go fullscreen with a descendant of an iframe,
+whereas previously it would be possible as long as that iframe&#39;s
+document had an empty fullscreen element stack.
+
+Since the difference is very unlikely to affect any real content, the
+LegacyFullScreenErrorExemption was dropped for this case. There was
+apparently no test coverage for that exemption.
+
+BUG=402376
+
+Review URL: <a href="https://codereview.chromium.org/462103002">https://codereview.chromium.org/462103002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180162 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180162&amp;view=revision"><time datetime="2014-08-13">2014-08-13</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Rename parameter providedleastNumMandatoryParams =&gt; provided</summary>
+              <pre class=body>
+The name is probably a copy/paste typo originally; the expression used
+for the |expected| parameter&#39;s value in code_generator_v8.pm originally
+was $leastNumMandatoryParams, and this identifier somehow ended up
+concatenated to the |provided| parameter&#39;s name on the C++ side.
+
+Since then, the strange name has spread a bit, and had been &#34;fixed&#34; into
+|providedLeastNumMandatoryParams| in some places along the way.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/466283002">https://codereview.chromium.org/466283002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180154 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180154&amp;view=revision"><time datetime="2014-08-13">2014-08-13</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: trace part objects as per the GC plugin&#39;s wishes.</summary>
+              <pre class=body>
+Following <a href="https://src.chromium.org/viewvc/chrome?view=rev&amp;revision=287310">https://src.chromium.org/viewvc/chrome?view=rev&amp;revision=287310</a>,
+the Blink clang plugin insists that part objects are to be traced
+via Visitor&#39;s fallback method
+
+  template&lt;typename T&gt;void trace(const T&amp; t);
+
+Fix up some uses that were not.
+
+R=haraken
+BUG=340522
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/471463002">https://codereview.chromium.org/471463002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180152 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180152&amp;view=revision"><time datetime="2014-08-13">2014-08-13</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix (release) builds after r180088.</summary>
+              <pre class=body>
+R=haraken
+BUG=340522
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/469713002">https://codereview.chromium.org/469713002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180149 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180149&amp;view=revision"><time datetime="2014-08-13">2014-08-13</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: make r180096&#39;s FIXME comment accurate.</summary>
+              <pre class=body>
+The underlying cause described in r180096 wasn&#39;t correct; update the
+FIXME comment to make it more accurate.
+
+R=haraken
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/461373002">https://codereview.chromium.org/461373002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180147 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180147&amp;view=revision"><time datetime="2014-08-13">2014-08-13</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Add lextab.pyc as an output of the cached_lex_yacc_tables action</summary>
+              <pre class=body>
+The primary output is lextab.py, but since it is imported, Python also
+writes lextab.pyc. Listing it too as an output means it won&#39;t be left
+around by &#34;ninja -t clean&#34; (and not much else, I think.)
+
+Prior to the patch
+  <a href="https://codereview.chromium.org/425953002/">https://codereview.chromium.org/425953002/</a>
+the result of not having lextab.pyc listed as an output and running
+&#34;ninja -t clean&#34; was a tree that would build correctly, but that would
+always rerun all the IDL code generation scripts, and thus never become
+&#34;clean&#34;.
+
+BUG=397909
+
+Review URL: <a href="https://codereview.chromium.org/463063003">https://codereview.chromium.org/463063003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180142 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180142&amp;view=revision"><time datetime="2014-08-13">2014-08-13</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Handle empty title attribute tooltips.</summary>
+              <pre class=body>
+The spec tells us that if an element has a title attribute, its value
+should be returned as its tooltip/advisory information:
+
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/#the-title-attribute">http://www.whatwg.org/specs/web-apps/current-work/#the-title-attribute</a>
+
+Align with how other browsers behave for &lt;foo title&gt; and return the
+empty string rather than consult the parent element.
+
+R=
+BUG=399255
+
+Review URL: <a href="https://codereview.chromium.org/462073003">https://codereview.chromium.org/462073003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180109 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180109&amp;view=revision"><time datetime="2014-08-12">2014-08-12</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r180084.</summary>
+              <pre class=body>
+Address type conversion subtlety over RawPtr&lt;&gt;s. We have at hand:
+
+ Handle&lt;Value&gt; toV8(PassRefPtrWillBeRawPtr&lt;NodeList&gt;, ...);
+
+ template&lt;NodeType&gt;class StaticNodeTypeList : public NodeList {
+   public:
+       static PassRefPtrWillBeRawPtr&lt;StaticNodeTypeList&gt; adopt(..);
+       ...
+   }
+
+ typedef StaticNodeTypeList&lt;Element&gt; StaticElementList;
+
+and the call
+
+ toV8(StaticElementList::adopt(namedItems), ....);
+
+For the toV8() call to be successfully resolved, the adopt() result
+must be convertible to PassRefPtrWillBeRawPtr&lt;NodeList&gt;. For the non-Oilpan
+case, we do have the
+
+   PassRefPtr(const PassRefPtr&lt;U&gt;, EnsurePtrConvertibleArgDecl(U, T))
+
+constructor at hand, which will convert the PassRefPtr&lt;StaticElementList&gt;
+into PassRefPtr&lt;NodeList&gt;. We do not have the corresponding type-convertible
+constructor over RawPtr&lt;&gt;, as providing that runs into problems when
+using RawPtr&lt;&gt; as part of the PassOwnPtrWillBeRawPtr transition type.
+
+Address/step-around-the-issue by being explicit about the conversion.
+
+TBR=haraken,oilpan-reviews
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/451303003">https://codereview.chromium.org/451303003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180096 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180096&amp;view=revision"><time datetime="2014-08-12">2014-08-12</time></a>
       
         <tr>
           <td>sigbjornf
