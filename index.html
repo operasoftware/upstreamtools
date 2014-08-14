@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 295, 
+    <a href="#chromium">Chromium</a>: 298, 
   
-    <a href="#blink">Blink</a>: 1393, 
+    <a href="#blink">Blink</a>: 1398, 
   
     <a href="#v8">V8</a>: 20.
   
@@ -43,6 +43,68 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Fix Mac sandbox meta data access</summary>
+              <pre class=body>
+Sandbox::AllowMetadataForPath() currently allow all metadata access due to
+<a href="https://codereview.chromium.org/10539009/">https://codereview.chromium.org/10539009/</a> made the for loop comparison
+in Sandbox::AllowMetadataForPath() always false, when we actually only
+want to allow access to the path and all its parent path until root.
+
+Turn the for loop to a do/while loop instead as it&#39;s a better fit, also
+add a test case for Sandbox::AllowMetadataForPath().
+
+It should only affect component builds on OS X 10.6 and utility process
+as no other process is using this mechanism.
+
+Review URL: <a href="https://codereview.chromium.org/472513002">https://codereview.chromium.org/472513002</a>
+
+Cr-Commit-Position: refs/heads/master@{#289526}
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@289526 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=289526&amp;view=revision"><time datetime="2014-08-14">2014-08-14</time></a>
+      
+        <tr>
+          <td>ljagielski
+          <td class=message>
+            <details>
+              <summary>Getting rid of net::LOAD_ENABLE_LOAD_CONTENT.</summary>
+              <pre class=body>
+There are too many load flags. This one is only used by loader code.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/451623002">https://codereview.chromium.org/451623002</a>
+
+Cr-Commit-Position: refs/heads/master@{#289318}
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@289318 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=289318&amp;view=revision"><time datetime="2014-08-13">2014-08-13</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Stop using the needsSiteSpecificQuirks setting</summary>
+              <pre class=body>
+It does nothing as of Blink r178756:
+<a href="https://codereview.chromium.org/414443006">https://codereview.chromium.org/414443006</a>
+
+BUG=401887
+
+Review URL: <a href="https://codereview.chromium.org/449393002">https://codereview.chromium.org/449393002</a>
+
+Cr-Commit-Position: refs/heads/master@{#289294}
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@289294 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=289294&amp;view=revision"><time datetime="2014-08-13">2014-08-13</time></a>
       
         <tr>
           <td>mostynb
@@ -5864,6 +5926,119 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Tweak the documentation of &#34;fullscreen element ready check&#34;</summary>
+              <pre class=body>
+Use |element| for the variable (italic in spec) and add missing word:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=26580">https://www.w3.org/Bugs/Public/show_bug.cgi?id=26580</a>
+
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/473803002">https://codereview.chromium.org/473803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180249 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180249&amp;view=revision"><time datetime="2014-08-14">2014-08-14</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the fullscreen element stack exemption for webkitRequestFullScreen()</summary>
+              <pre class=body>
+This exemption allowed the fullscreen element stack to get into a state
+not otherwise possible, namely with elements in any order as opposed to
+in tree order. It also seemed possible to enter fullscreen in a sibling
+iframe, leading to a (cross-document) set of fullscreen elements forming
+a tree instead of a simple chain, a case without any test coverage.
+
+Removing the exemption means that a webkitfullscreenerror event will be
+fired if one is already in fullscreen and requests fullscreen for an
+element other than a descendant of the current fullscreen element.
+
+The use counter was intended to tell whether any content depends on this
+or not, but data will not be available for a long time yet. In order to
+be affected one needs to, in fullscreen, have a currently visible button
+request fullscreen for an element currently not visible, which seems
+far-fetched, so site compat is probably not a problem.
+
+The use counter for webkitRequestFullScreen() provides an upper bound:
+<a href="http://www.chromestatus.com/metrics/feature/timeline/popularity/177">http://www.chromestatus.com/metrics/feature/timeline/popularity/177</a>
+
+BUG=383813
+
+Review URL: <a href="https://codereview.chromium.org/458223003">https://codereview.chromium.org/458223003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180243 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180243&amp;view=revision"><time datetime="2014-08-14">2014-08-14</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r180238</summary>
+              <pre class=body>
+R=haraken
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/471823002">https://codereview.chromium.org/471823002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180242 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180242&amp;view=revision"><time datetime="2014-08-14">2014-08-14</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the needsSiteSpecificQuirks setting</summary>
+              <pre class=body>
+It does nothing as of Blink r178756:
+<a href="https://codereview.chromium.org/414443006">https://codereview.chromium.org/414443006</a>
+
+It&#39;s never set as of Chromium r289294:
+<a href="https://codereview.chromium.org/449393002">https://codereview.chromium.org/449393002</a>
+
+BUG=401887
+
+Review URL: <a href="https://codereview.chromium.org/453813003">https://codereview.chromium.org/453813003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180193 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180193&amp;view=revision"><time datetime="2014-08-13">2014-08-13</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Use a precise target type for Beacon requests.</summary>
+              <pre class=body>
+To allow the embedder to distinguish POST requests emanating from
+sendBeacon() from those from a &lt;a ping&gt;, assign a more precise target
+type to the former.
+
+This is done in preparation for adding Beacon-Age: headers to Beacon
+requests.
+
+<a href="mailto:R=mkwst@chromium.org">R=mkwst@chromium.org</a>
+BUG=398167
+
+Review URL: <a href="https://codereview.chromium.org/468853002">https://codereview.chromium.org/468853002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180179 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180179&amp;view=revision"><time datetime="2014-08-13">2014-08-13</time></a>
       
         <tr>
           <td>philipj
