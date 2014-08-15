@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 298, 
+    <a href="#chromium">Chromium</a>: 299, 
   
-    <a href="#blink">Blink</a>: 1398, 
+    <a href="#blink">Blink</a>: 1406, 
   
     <a href="#v8">V8</a>: 20.
   
@@ -43,6 +43,35 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Fix Mac sandbox meta data access (reland)</summary>
+              <pre class=body>
+We currently allow all metadata access due to
+<a href="https://codereview.chromium.org/10539009/">https://codereview.chromium.org/10539009/</a> made the for loop comparison
+in Sandbox::AllowMetadataForPath() always false, when we actually only
+want to allow access to the path and all its parent path until root.
+
+Turn the for loop to a do/while loop instead as it&#39;s a better fit, also
+add a test case for Sandbox::AllowMetadataForPath().
+
+We also need file read meta data access to all the .dylibs we linked to.
+
+It should only affect component builds on OS X 10.6 and utility process
+as no other process is using this mechanism.
+
+BUG=403801
+
+Review URL: <a href="https://codereview.chromium.org/469383002">https://codereview.chromium.org/469383002</a>
+
+Cr-Commit-Position: refs/heads/master@{#289738}
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@289738 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=289738&amp;view=revision"><time datetime="2014-08-15">2014-08-15</time></a>
       
         <tr>
           <td>jiangj
@@ -5926,6 +5955,191 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: update test expectations after r179905.</summary>
+              <pre class=body>
+With the shutdown crashes involving InjectedScriptManager::CallbackData
+having been addressed, remove some crash test expectations.
+
+<a href="mailto:R=ager@chromium.org">R=ager@chromium.org</a>
+BUG=398472
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/478643002">https://codereview.chromium.org/478643002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180357 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180357&amp;view=revision"><time datetime="2014-08-15">2014-08-15</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Revert of Add lextab.pyc as an output of the cached_lex_yacc_tables action (patchset #1 of https://codereview.chromium.org/463063003/)</summary>
+              <pre class=body>
+Reason for revert:
+This CL added the assumption that Python will write the lextab.pyc file. If that&#39;s a wrong assumption, which seems to be the case in some situations, the result is that the cached_lex_yacc_tables target never becomes clean, which in turn means that all IDL files are recompiled on each build.
+
+The problem fixed by this CL was cosmetic only, so is not worth the risk.
+
+Original issue&#39;s description:
+&gt; Add lextab.pyc as an output of the cached_lex_yacc_tables action
+&gt; 
+&gt; The primary output is lextab.py, but since it is imported, Python also
+&gt; writes lextab.pyc. Listing it too as an output means it won&#39;t be left
+&gt; around by &#34;ninja -t clean&#34; (and not much else, I think.)
+&gt; 
+&gt; Prior to the patch
+&gt;   <a href="https://codereview.chromium.org/425953002/">https://codereview.chromium.org/425953002/</a>
+&gt; the result of not having lextab.pyc listed as an output and running
+&gt; &#34;ninja -t clean&#34; was a tree that would build correctly, but that would
+&gt; always rerun all the IDL code generation scripts, and thus never become
+&gt; &#34;clean&#34;.
+&gt; 
+&gt; BUG=397909
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=180142">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=180142</a>
+
+<a href="mailto:TBR=haraken@chromium.org,nbarth@chromium.org">TBR=haraken@chromium.org,nbarth@chromium.org</a>
+NOTREECHECKS=true
+NOTRY=true
+BUG=397909
+
+Review URL: <a href="https://codereview.chromium.org/468743003">https://codereview.chromium.org/468743003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180329 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180329&amp;view=revision"><time datetime="2014-08-15">2014-08-15</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Use IdlArrayOrSequenceType for array/sequence IDL types</summary>
+              <pre class=body>
+Representing array and sequence types this way, rather than via auxiliary
+flags on the member type, means exotic types like array-of-arrays,
+array-of-sequences, arrays-of-nullables and similar can be supported.
+
+More importantly, this also means that an array or sequence type can&#39;t be
+mistaken for its member type if you forget to check the &#34;is array&#34; and
+&#34;is sequence&#34; flags, and thus lets us remove a bunch of &#34;is this an array
+or sequence type&#34; checks from code that has nothing to do with supporting
+arrays or sequences.
+
+This patch doesn&#39;t change code generation.
+
+Review URL: <a href="https://codereview.chromium.org/470063003">https://codereview.chromium.org/470063003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180298 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180298&amp;view=revision"><time datetime="2014-08-14">2014-08-14</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Clean-up &#34;should use Nullable&lt;&gt;&#34; logic a little</summary>
+              <pre class=body>
+Some duplication had sneaked in as part of the IDL dictionary work, with
+IdlTypeBase.impl_should_use_nullable_container meaning almost the same
+thing as IdlTypeBase.is_explicit_nullable, except the latter also implies
+that the type is nullable.
+
+Common up the actual logic in the new IdlTypeBase.cpp_type_has_null_value
+property, and use it for both impl_should_use_nullable_container and
+is_{implicit,explicit}_nullable.
+
+Review URL: <a href="https://codereview.chromium.org/472803002">https://codereview.chromium.org/472803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180287 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180287&amp;view=revision"><time datetime="2014-08-14">2014-08-14</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Prefer to extend IdlTypeBase instead of IdlType</summary>
+              <pre class=body>
+In v8_types.py and elsewhere, we extend the classes defined in idl_types.py
+by adding properties or methods. Usually, these properties or methods are
+supposed to be available on all type objects. Since all type objects now
+have a common base class, IdlTypeBase, prefer to set new properties and
+methods on it instead of on IdlType.
+
+This doesn&#39;t change CG, and is done to simplify the process of adding new
+IdlTypeBase sub-classes in the future.
+
+Review URL: <a href="https://codereview.chromium.org/469243002">https://codereview.chromium.org/469243002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180276 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180276&amp;view=revision"><time datetime="2014-08-14">2014-08-14</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Gracefully handle property enumeration over deleted plugins.</summary>
+              <pre class=body>
+R=haraken
+BUG=397473
+
+Review URL: <a href="https://codereview.chromium.org/476663002">https://codereview.chromium.org/476663002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180274 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180274&amp;view=revision"><time datetime="2014-08-14">2014-08-14</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync fullscreen element removal with the spec</summary>
+              <pre class=body>
+<a href="http://fullscreen.spec.whatwg.org/#model">http://fullscreen.spec.whatwg.org/#model</a>
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=26326">https://www.w3.org/Bugs/Public/show_bug.cgi?id=26326</a>
+
+TEST=LayoutTests/fullscreen/model/remove-*.html (new)
+TEST=LayoutTests/fullscreen/full-screen-remove-*.html (no regression)
+
+The distinction between fullyExitFullscreen() and exitFullscreen() was
+not tested, but the new remove-last.html test fails with the old code.
+
+BUG=383813
+
+Review URL: <a href="https://codereview.chromium.org/476433002">https://codereview.chromium.org/476433002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180259 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180259&amp;view=revision"><time datetime="2014-08-14">2014-08-14</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove early returns in fullscreen tests</summary>
+              <pre class=body>
+These checks make the tests longer and don&#39;t seem particularly useful.
+
+Review URL: <a href="https://codereview.chromium.org/462253003">https://codereview.chromium.org/462253003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180256 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180256&amp;view=revision"><time datetime="2014-08-14">2014-08-14</time></a>
       
         <tr>
           <td>philipj
