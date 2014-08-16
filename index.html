@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 299, 
   
-    <a href="#blink">Blink</a>: 1406, 
+    <a href="#blink">Blink</a>: 1409, 
   
     <a href="#v8">V8</a>: 20.
   
@@ -5955,6 +5955,57 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove unused bits of Internals</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/471863002">https://codereview.chromium.org/471863002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180406 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180406&amp;view=revision"><time datetime="2014-08-16">2014-08-16</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: initialize union member variables (to null/zero)</summary>
+              <pre class=body>
+Since we now use non-null to represent union member presence, either by
+wrapping with Nullable&lt;&gt; or using the implicit null value (for pointers
+and strings,) we must make sure the locals we pass to the implementation
+are all properly initialized to null.
+
+For strings and RefPtr&lt;&gt;/OwnPtr&lt;&gt;, this requires no special care due to
+default constructors taking care of it. For RawPtr&lt;&gt; (when used in
+practice, i.e. mostly in Oilpan builds) we need to initialize explicitly.
+
+This fixes Oilpan crashes introduced by this CL:
+  <a href="https://codereview.chromium.org/466323002/">https://codereview.chromium.org/466323002/</a>
+
+Review URL: <a href="https://codereview.chromium.org/474323002">https://codereview.chromium.org/474323002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180405 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180405&amp;view=revision"><time datetime="2014-08-16">2014-08-16</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Simplify full-screen-test.js&#39;s runWithKeyDown()</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/469203002">https://codereview.chromium.org/469203002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180373 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180373&amp;view=revision"><time datetime="2014-08-15">2014-08-15</time></a>
       
         <tr>
           <td>sigbjornf
