@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 299, 
+    <a href="#chromium">Chromium</a>: 300, 
   
     <a href="#blink">Blink</a>: 1409, 
   
@@ -43,6 +43,43 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert &#34;Add IPC benchmarking API to Blink TestRunner&#34; (patchset #3 of https://codereview.chromium.org/478483005/ , commit 345949391e63d5237326eb16771ae48af0a2e881.)</summary>
+              <pre class=body>
+Reason for revert:
+Breaks fast/dom/Window LayoutTests
+
+ <a href="http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Linux/builds/35621">http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Linux/builds/35621</a>
+ <a href="http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Mac10.9/builds/10059">http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Mac10.9/builds/10059</a>
+
+Original issue&#39;s description:
+&gt; Add IPC benchmarking API to Blink TestRunner
+&gt; 
+&gt; This add an window.testRunner API that sends do-nothing IPC message
+&gt; roundtrip. This API can be used to build IPC benchmark using
+&gt; JavaScript.
+&gt; 
+&gt; TEST=none (Will add blink-side LayoutTest once this is landed)
+&gt; BUG=402185
+&gt; <a href="mailto:R=darin@chromium.org">R=darin@chromium.org</a>, <a href="mailto:jam@chromim.org">jam@chromim.org</a>, <a href="mailto:jochen@chromium.org">jochen@chromium.org</a>
+&gt;
+&gt; Committed: <a href="https://src.chromium.org/viewvc/chrome?view=rev&amp;revision=290063">https://src.chromium.org/viewvc/chrome?view=rev&amp;revision=290063</a>
+
+<a href="mailto:TBR=morrita@chromium.org">TBR=morrita@chromium.org</a>, <a href="mailto:darin@chromium.org">darin@chromium.org</a>, <a href="mailto:jochen@chromium.org">jochen@chromium.org</a>, <a href="mailto:jam@chromium.org">jam@chromium.org</a>
+BUG=402185
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/477343002">https://codereview.chromium.org/477343002</a>
+
+Cr-Commit-Position: refs/heads/master@{#290153}
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@290153 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=290153&amp;view=revision"><time datetime="2014-08-16">2014-08-16</time></a>
       
         <tr>
           <td>jiangj
