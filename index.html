@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 300, 
   
-    <a href="#blink">Blink</a>: 1409, 
+    <a href="#blink">Blink</a>: 1416, 
   
     <a href="#v8">V8</a>: 20.
   
@@ -5992,6 +5992,162 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>FileReader: switch to using TypeChecking=Interface </summary>
+              <pre class=body>
+Let generated bindings code handle the type checking of Blob arguments.
+
+<a href="mailto:R=tzik@chromium.org">R=tzik@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/474353004">https://codereview.chromium.org/474353004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180454 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180454&amp;view=revision"><time datetime="2014-08-18">2014-08-18</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Avoid GCing an aborting and stopped FileReader.</summary>
+              <pre class=body>
+If a FileReader is abort()ed, a task is scheduled to perform the actual
+abort operation. Should the containing Document&#39;s ActiveDOMObjects be
+stopped before that task gets to run, the FileReader would already
+advance to a DONE state and be at risk from being GCed before the abort
+task gets to run. If so, it would then access a dead object.
+
+The provided test elicits an assert that shows up the problem, but
+doesn&#39;t trigger the GC and subsequent access of the dead object.
+
+<a href="mailto:R=kouhei@chromium.org">R=kouhei@chromium.org</a>, <a href="mailto:tzik@chromium.org">tzik@chromium.org</a>
+BUG=404513
+
+Review URL: <a href="https://codereview.chromium.org/478263002">https://codereview.chromium.org/478263002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180450 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180450&amp;view=revision"><time datetime="2014-08-18">2014-08-18</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Ignore fullscreen requests for the current fullscreen element</summary>
+              <pre class=body>
+<a href="http://fullscreen.spec.whatwg.org/#dom-element-requestfullscreen">http://fullscreen.spec.whatwg.org/#dom-element-requestfullscreen</a>
+
+This spec change was made in order to simplify the fix for mis-nested
+fullscreen in iframes:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=26568">https://www.w3.org/Bugs/Public/show_bug.cgi?id=26568</a> (comments 9-13)
+
+The requestFullscreen() implementation is not in sync with the spec, but
+an early return is equivalent until the &#34;run the remaining steps
+asynchronously&#34; bit is implemented.
+
+In order to be affected by this change, one would have to request
+fullscreen for the same element twice and do something meaningful in the
+fullscreenerror event, which is likely rare.
+
+Note that exitFullscreen() already does nothing if the fullscreen
+element stack is empty, so there is some symmetry to this.
+
+TEST=LayoutTests/fullscreen/api/element-request-fullscreen-top.html
+TEST=LayoutTests/fullscreen/api/element-request-fullscreen-non-top.html
+
+BUG=403741
+
+Review URL: <a href="https://codereview.chromium.org/482543002">https://codereview.chromium.org/482543002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180444 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180444&amp;view=revision"><time datetime="2014-08-18">2014-08-18</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove webkitIsFullScreen everywhere except in bindings</summary>
+              <pre class=body>
+It&#39;s equivalent to webkitCurrentFullScreenElement != null.
+
+BUG=383813
+
+Review URL: <a href="https://codereview.chromium.org/476353002">https://codereview.chromium.org/476353002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180439 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180439&amp;view=revision"><time datetime="2014-08-18">2014-08-18</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Use common converter for -webkit-column-[gap, width].</summary>
+              <pre class=body>
+This patch adds support for the &#39;converter&#39; attribute for a group of
+semi-custom CSS properties handled by the &#39;apply_auto&#39; macro. This gets
+rid of the redundant &#39;compute_length=true/false&#39; argument, plus the code
+related to that.
+
+It also makes it easier to add other things to the apply_auto-list which
+can&#39;t be converted with computeLength or a primitive value mapping.
+
+Review URL: <a href="https://codereview.chromium.org/454133004">https://codereview.chromium.org/454133004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180437 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180437&amp;view=revision"><time datetime="2014-08-18">2014-08-18</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync fullscreen element removal with the spec (again)</summary>
+              <pre class=body>
+<a href="http://fullscreen.spec.whatwg.org/#model">http://fullscreen.spec.whatwg.org/#model</a>
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=26568#c12">https://www.w3.org/Bugs/Public/show_bug.cgi?id=26568#c12</a>
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=26568#c16">https://www.w3.org/Bugs/Public/show_bug.cgi?id=26568#c16</a>
+
+BUG=383813
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/477133002">https://codereview.chromium.org/477133002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180435 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180435&amp;view=revision"><time datetime="2014-08-18">2014-08-18</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Rename FullscreenElementStack to just Fullscreen</summary>
+              <pre class=body>
+This class does more than just manage the fullscreen element stack, and
+the shorter name makes the code more readable in many places. In the
+renamed Fullscreen class, it also makes it more obvious when the actual
+fullscreen element stack is being manipulated.
+
+BUG=383813
+
+Review URL: <a href="https://codereview.chromium.org/476763004">https://codereview.chromium.org/476763004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180433 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180433&amp;view=revision"><time datetime="2014-08-18">2014-08-18</time></a>
       
         <tr>
           <td>philipj
