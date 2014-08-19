@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 300, 
   
-    <a href="#blink">Blink</a>: 1416, 
+    <a href="#blink">Blink</a>: 1426, 
   
     <a href="#v8">V8</a>: 20.
   
@@ -5992,6 +5992,226 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>refer to WebServiceWorkerCacheError values in c++03 style</summary>
+              <pre class=body>
+Since WebServiceWorkerCacheError values are prefixed with
+&#34;WebServiceWorkerCacheError&#34;, the c++11 style enum prefix
+is a bit redundant.
+
+BUG=392621
+
+Review URL: <a href="https://codereview.chromium.org/489473002">https://codereview.chromium.org/489473002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180548 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180548&amp;view=revision"><time datetime="2014-08-19">2014-08-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r180544.</summary>
+              <pre class=body>
+TBR=oilpan-reviews
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/488543002">https://codereview.chromium.org/488543002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180545 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180545&amp;view=revision"><time datetime="2014-08-19">2014-08-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Stop RenderProgress timer on destruction.</summary>
+              <pre class=body>
+To handle the Oilpan case where the RenderObject stays
+around until the next GC after the object has been
+destroy()ed, stop the RenderProgress animation timer.
+
+<a href="mailto:R=tkent@chromium.org">R=tkent@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/476543003">https://codereview.chromium.org/476543003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180536 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180536&amp;view=revision"><time datetime="2014-08-19">2014-08-19</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Fix overload resolution for dictionary types</summary>
+              <pre class=body>
+Overload resolution only handled the &#34;Dictionary&#34; type correctly, not
+actual declared dictionary types.
+
+BUG=321462
+
+Review URL: <a href="https://codereview.chromium.org/474813004">https://codereview.chromium.org/474813004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180527 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180527&amp;view=revision"><time datetime="2014-08-19">2014-08-19</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync &#34;fully exit fullscreen&#34; with the spec</summary>
+              <pre class=body>
+<a href="http://fullscreen.spec.whatwg.org/#fully-exit-fullscreen">http://fullscreen.spec.whatwg.org/#fully-exit-fullscreen</a>
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=26587">https://www.w3.org/Bugs/Public/show_bug.cgi?id=26587</a>
+
+This should not change observable behavior.
+
+When to actually invoke &#34;fully exit fullscreen&#34; is not finalized:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=26584">https://www.w3.org/Bugs/Public/show_bug.cgi?id=26584</a>
+
+TEST=LayoutTests/fullscreen/full-screen-exit-when-popup.html (old)
+TEST=LayoutTests/fullscreen/model/fully-exit-fullscreen-*.html (new)
+
+The old test enters the fullyExitFullscreen() code path, but passes even
+if fullyExitFullscreen() is made an alias of exitFullscreen().
+
+The new tests will fail if a non-top-level document is used or if more
+than one element is on the stack when exitFullscreen() is called.
+
+BUG=403763
+
+Review URL: <a href="https://codereview.chromium.org/470723002">https://codereview.chromium.org/470723002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180506 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180506&amp;view=revision"><time datetime="2014-08-19">2014-08-19</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Invalidation set features recognized left of adjacent.</summary>
+              <pre class=body>
+Only recognize features (foundIdent) up until we see a relation different
+from SubSelector.
+
+After we allowed selectors with adjacent combinators to use invalidation
+sets, we started to acknowledge id/class/attribute to the left of adjacent
+combinators as features of the rightmost compound selector because we only
+looked for descendant type of selectors.
+
+For instance, the class &#39;b&#39; below were recognized as an invalidation set
+feature in this selector: &#34;.a .b + *&#34;.
+
+<a href="mailto:R=esprehn@chromium.org,chrishtr@chromium.org">R=esprehn@chromium.org,chrishtr@chromium.org</a>
+BUG=391244,391193
+
+Review URL: <a href="https://codereview.chromium.org/365063005">https://codereview.chromium.org/365063005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180500 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180500&amp;view=revision"><time datetime="2014-08-18">2014-08-18</time></a>
+      
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Remove custom style building functions for &#39;clip&#39;.</summary>
+              <pre class=body>
+The property &#39;clip&#39; is (with some modifications) compatible with the
+apply_auto-properties.
+
+Changes in this commit:
+
+ * Use apply_auto + converter instead of custom building functions.
+ * StyleVisualData::hasClip -&gt; hasAutoClip (meaning reversed).
+ * Remove unnecessary RenderStyle::setClip*-functions.
+
+Review URL: <a href="https://codereview.chromium.org/462133002">https://codereview.chromium.org/462133002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180465 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180465&amp;view=revision"><time datetime="2014-08-18">2014-08-18</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Invalidation set features are not skippable.</summary>
+              <pre class=body>
+Ids, attributes, tag names, and custom pseudo elements are handled as
+invalidation set features and not skippable. Should be unnecessary to check
+for them in isSkippableComponentForInvalidation.
+
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>, <a href="mailto:esprehn@chromium.org">esprehn@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/450293002">https://codereview.chromium.org/450293002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180463 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180463&amp;view=revision"><time datetime="2014-08-18">2014-08-18</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Prevent mis-nested fullscreen in iframes</summary>
+              <pre class=body>
+<a href="http://fullscreen.spec.whatwg.org/#fullscreen-element-ready-check">http://fullscreen.spec.whatwg.org/#fullscreen-element-ready-check</a>
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=26568">https://www.w3.org/Bugs/Public/show_bug.cgi?id=26568</a>
+
+BUG=403741
+
+Review URL: <a href="https://codereview.chromium.org/485443002">https://codereview.chromium.org/485443002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180460 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180460&amp;view=revision"><time datetime="2014-08-18">2014-08-18</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Improve &#34;argument needs v8::TryCatch&#34; logic slightly</summary>
+              <pre class=body>
+Enumeration types are effectively strings, and should thus be handled the
+same, meaning they don&#39;t need a v8::TryCatch object.
+
+This changes generated code for a few methods that take at least one
+enumeration type argument, and don&#39;t otherwise need a v8::TryCatch, by
+eliminating the unnecessary v8::TryCatch locals.
+
+Also refactor slightly: pass in the IdlOperation object and check whether
+the return type is Promise inside argument_needs_try_catch(), instead
+of passing in that fact as an argument. This keeps the logic localized in
+argument_needs_try_catch().
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/482713002">https://codereview.chromium.org/482713002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180459 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180459&amp;view=revision"><time datetime="2014-08-18">2014-08-18</time></a>
       
         <tr>
           <td>sigbjornf
