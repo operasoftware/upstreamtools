@@ -24,6 +24,10 @@ def get_commit_log(git_repo):
             m3 = re.search('(Contributed|Patch) (from|by) [^<]*<(?P<name>[^@]+)@opera\.com>',
                            commit.body)
             if not m3:
+                review_match = re.search('R=[^\n]+@opera.com', commit.body)
+                if review_match:
+                    # Skip stuff only reviewed
+                    continue
                 raise Exception("Didn't find Opera employee in commit msg ({})".format(commit.body))
             author = m3.group('name')
         else:
