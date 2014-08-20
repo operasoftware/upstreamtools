@@ -27,11 +27,11 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 300, 
+    <a href="#chromium">Chromium</a>: 301, 
   
-    <a href="#blink">Blink</a>: 1426, 
+    <a href="#blink">Blink</a>: 1436, 
   
-    <a href="#v8">V8</a>: 20.
+    <a href="#v8">V8</a>: 21.
   
   <p class=hint>Click message to expand
   
@@ -43,6 +43,24 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>joleksy
+          <td class=message>
+            <details>
+              <summary>Fix KDE Wallet backward compatibility when (de)serializing FormData.</summary>
+              <pre class=body>
+The problem was introduced by <a href="https://codereview.chromium.org/365783002">https://codereview.chromium.org/365783002</a>
+
+BUG=404615
+
+Review URL: <a href="https://codereview.chromium.org/443873011">https://codereview.chromium.org/443873011</a>
+
+Cr-Commit-Position: refs/heads/master@{#290677}
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@290677 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=290677&amp;view=revision"><time datetime="2014-08-19">2014-08-19</time></a>
       
         <tr>
           <td>sigbjornf
@@ -5992,6 +6010,215 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Move HTMLTable*Element.insert{Row,Cell}&#39;s argument default into IDL file</summary>
+              <pre class=body>
+They each take an index argument, that should default to -1.
+
+This matches the specification, and doesn&#39;t change behavior since these
+defaults were already implemented in the C++ code.
+
+BUG=258153
+
+Review URL: <a href="https://codereview.chromium.org/494653002">https://codereview.chromium.org/494653002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180656 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180656&amp;view=revision"><time datetime="2014-08-20">2014-08-20</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Move HTMLInputElement method argument defaults into IDL file</summary>
+              <pre class=body>
+The stepUp()/stepDown() methods&#39; argument should default to 1, and the
+setRangeText() method&#39;s selectionMode argument should default to
+&#34;preserve&#34;.
+
+This matches the specification, and doesn&#39;t change behavior since these
+defaults were already implemented in the C++ code.
+
+BUG=258153
+
+Review URL: <a href="https://codereview.chromium.org/471163006">https://codereview.chromium.org/471163006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180647 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180647&amp;view=revision"><time datetime="2014-08-20">2014-08-20</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Gracefully handle drag cancellation during drag start.</summary>
+              <pre class=body>
+Should the dispatching of a dragstart cause the drag to be reset, take
+that into account when trying to handle follow-on drag operations.
+
+The test is imported from <a href="https://bugs.webkit.org/show_bug.cgi?id=115296">https://bugs.webkit.org/show_bug.cgi?id=115296</a>
+
+<a href="mailto:R=dcheng@chromium.org">R=dcheng@chromium.org</a>
+BUG=405442
+
+Review URL: <a href="https://codereview.chromium.org/488923003">https://codereview.chromium.org/488923003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180646 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180646&amp;view=revision"><time datetime="2014-08-20">2014-08-20</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Support invalidation sets for negated selectors.</summary>
+              <pre class=body>
+Add invalidation set features to invalidation sets for negated classes, ids,
+etc. But still treat negated features as universal selectors and trigger
+subtree recalc.
+
+Example selector -&gt; invalidation set mappings:
+
+&#34;:not(.a)&#34;    -&gt; &#34;.a {}&#34;
+&#34;:not(.a) .b&#34; -&gt; &#34;.b {}, .a { .b }&#34;
+&#34;.a :not(.b)&#34;  -&gt; &#34;.a { * }, .b {}&#34;
+&#34;.a .b:not(.c)&#34; -&gt; &#34;.a { .b }, .b {}, .c {}&#34;
+
+BUG=377939
+
+Review URL: <a href="https://codereview.chromium.org/462593002">https://codereview.chromium.org/462593002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180632 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180632&amp;view=revision"><time datetime="2014-08-20">2014-08-20</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix MSVC compilation after r180556.</summary>
+              <pre class=body>
+Have the &#34;same-size&#34; class inherit from the same classes as CSSRule, so
+as to have the MSVC-specific alignment constraints of the parent
+ScriptWrappableBase class apply in equal measure.
+
+<a href="mailto:TBR=oilpan-reviews@chromium.org,yukishiino@chromium.org">TBR=oilpan-reviews@chromium.org,yukishiino@chromium.org</a>
+BUG=235436
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/487923002">https://codereview.chromium.org/487923002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180601 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180601&amp;view=revision"><time datetime="2014-08-19">2014-08-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r180659.</summary>
+              <pre class=body>
+TBR=oilpan-reviews
+BUG=404107
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/487313003">https://codereview.chromium.org/487313003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180591 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180591&amp;view=revision"><time datetime="2014-08-19">2014-08-19</time></a>
+      
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>All selectors in :-webkit-any must have an invalidation set feature.</summary>
+              <pre class=body>
+In order to avoid subtree style recalc for a :-webkit-any selector in the
+rightmost compound selector, all of its selectors must contain an
+invalidation set feature. In terms of invalidation sets, these selectors
+are all universal in the rightmost compound:
+
+.x :-webkit-any(*)
+.x :-webkit-any(.y, *)
+.x :-webkit-any(.y, :hover)
+
+The fix is to set foundIdent to true when all selectors in the selector
+list have found one.
+
+BUG=392852
+
+Review URL: <a href="https://codereview.chromium.org/383833002">https://codereview.chromium.org/383833002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180566 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180566&amp;view=revision"><time datetime="2014-08-19">2014-08-19</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Use IdlNullableType wrapper to represent nullable types</summary>
+              <pre class=body>
+Replaces the |is_nullable| flag previously stored in IdlTypeBase.
+
+Review URL: <a href="https://codereview.chromium.org/474173002">https://codereview.chromium.org/474173002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180564 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180564&amp;view=revision"><time datetime="2014-08-19">2014-08-19</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make Fullscreen::fullyExitFullscreen() static</summary>
+              <pre class=body>
+The implementation may not need the Fullscreen instance for the Document
+fullyExitFullscreen() is given, and can avoid creating one for the
+top-level Document in case there is no fullscreen element, which is &gt;99%
+of time.
+
+BUG=403763
+
+Review URL: <a href="https://codereview.chromium.org/485953003">https://codereview.chromium.org/485953003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180563 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180563&amp;view=revision"><time datetime="2014-08-19">2014-08-19</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Use SpecialWrapFor over HTMLMediaElement.</summary>
+              <pre class=body>
+To appropriately delegate the creation of a wrapper to
+subclasses of HTMLMediaElement, annotate HTMLMediaElement&#39;s
+interface with SpecialWrapFor.
+
+<a href="mailto:R=haraken@chromium.org">R=haraken@chromium.org</a>
+BUG=379499
+
+Review URL: <a href="https://codereview.chromium.org/483863003">https://codereview.chromium.org/483863003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180555 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180555&amp;view=revision"><time datetime="2014-08-19">2014-08-19</time></a>
       
         <tr>
           <td>mostynb
@@ -37211,6 +37438,23 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@149844 bbb929c8-8fbe-4397-9dbb-9b
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>
+          <td class=message>
+            <details>
+              <summary>Remove RegExp.$input.</summary>
+              <pre class=body>
+<a href="mailto:R=arv@chromium.org">R=arv@chromium.org</a>, <a href="mailto:mathiasb@opera.com">mathiasb@opera.com</a>
+BUG=v8:3486
+LOG=Y
+
+Review URL: <a href="https://codereview.chromium.org/465273002">https://codereview.chromium.org/465273002</a>
+
+git-svn-id: <a href="https://v8.googlecode.com/svn/branches/bleeding_edge@23223">https://v8.googlecode.com/svn/branches/bleeding_edge@23223</a> ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+            </details>
+          <td><a href=""><time datetime="2014-08-20">2014-08-20</time></a>
       
         <tr>
           <td>mathiasb
