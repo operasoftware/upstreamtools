@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 301, 
+    <a href="#chromium">Chromium</a>: 303, 
   
-    <a href="#blink">Blink</a>: 1436, 
+    <a href="#blink">Blink</a>: 1441, 
   
     <a href="#v8">V8</a>: 21.
   
@@ -43,6 +43,52 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>haavardm
+          <td class=message>
+            <details>
+              <summary>Fix mapping of weak DH key and remove unused error codes.</summary>
+              <pre class=body>
+None of these error codes are actually reported back by BoringSSL.
+
+SSL_R_WRONG_NUMBER_OF_KEY_BITS is changed to the proper
+error code SSL_R_BAD_DH_P_LENGTH.
+
+Test DH issue by loading <a href="https://demo.cmrg.net/">https://demo.cmrg.net/</a>
+
+BUG=353579
+
+Review URL: <a href="https://codereview.chromium.org/495553002">https://codereview.chromium.org/495553002</a>
+
+Cr-Commit-Position: refs/heads/master@{#291051}
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@291051 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=291051&amp;view=revision"><time datetime="2014-08-21">2014-08-21</time></a>
+      
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>parameterize http response header tests</summary>
+              <pre class=body>
+Followup to <a href="https://codereview.chromium.org/391763002">https://codereview.chromium.org/391763002</a> to allow this
+to build on more compilers (which can fail when using structs defined
+in funtions in arraysize calls- as mentioned in base/macros.h).
+
+By refactoring to use TEST_P we can skip the manual loop entirely.
+
+BUG=348877
+TEST=net_unittests --gtest_filter=Http*
+
+Review URL: <a href="https://codereview.chromium.org/448373003">https://codereview.chromium.org/448373003</a>
+
+Cr-Commit-Position: refs/heads/master@{#291025}
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@291025 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=291025&amp;view=revision"><time datetime="2014-08-21">2014-08-21</time></a>
       
         <tr>
           <td>joleksy
@@ -6010,6 +6056,98 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add tests for removing the parent/child of the fullscreen element</summary>
+              <pre class=body>
+The parent test would fail if Fullscreen::elementRemoved() were only
+called for the top-most removed element.
+
+The child test would require a more serious misinterpretation of &#34;in
+fullscreen element stack&#34;.
+
+BUG=383813
+
+Review URL: <a href="https://codereview.chromium.org/479113003">https://codereview.chromium.org/479113003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180700 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180700&amp;view=revision"><time datetime="2014-08-21">2014-08-21</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make the fullscreen element ready check static</summary>
+              <pre class=body>
+Also, use Element instead of HTMLFrameOwnerElement.
+
+BUG=402376
+
+Review URL: <a href="https://codereview.chromium.org/494743002">https://codereview.chromium.org/494743002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180692 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180692&amp;view=revision"><time datetime="2014-08-21">2014-08-21</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r180648.</summary>
+              <pre class=body>
+<a href="mailto:TBR=oilpan-reviews,mkwst@chromium.org">TBR=oilpan-reviews,mkwst@chromium.org</a>
+BUG=400674
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/489903002">https://codereview.chromium.org/489903002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180674 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180674&amp;view=revision"><time datetime="2014-08-20">2014-08-20</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r180653.</summary>
+              <pre class=body>
+Need an explicit RawPtr&lt;&gt; conversion to resolve toV8() overloading.
+
+TBR=oilpan-reviews
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/493783002">https://codereview.chromium.org/493783002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180671 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180671&amp;view=revision"><time datetime="2014-08-20">2014-08-20</time></a>
+      
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the Notation interface</summary>
+              <pre class=body>
+Neither Firefox Nightly nor IE11 has the Notation interface,
+and it doesn&#39;t actually do anything in Blink/WebKit.
+
+BUG=405525
+
+Review URL: <a href="https://codereview.chromium.org/491693003">https://codereview.chromium.org/491693003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180662 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180662&amp;view=revision"><time datetime="2014-08-20">2014-08-20</time></a>
       
         <tr>
           <td>jl
