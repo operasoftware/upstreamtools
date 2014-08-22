@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 303, 
+    <a href="#chromium">Chromium</a>: 304, 
   
-    <a href="#blink">Blink</a>: 1441, 
+    <a href="#blink">Blink</a>: 1444, 
   
     <a href="#v8">V8</a>: 21.
   
@@ -43,6 +43,26 @@ h1 { margin-top: 0; text-align: center; }
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>EventSender::KeyDown(): add &#34;escape&#34; and &#34;backspace&#34; key names.</summary>
+              <pre class=body>
+..as their ASCII codes are used in various layout tests. Mapped to
+VKEY_ESCAPE and VKEY_BACK, respectively.
+
+<a href="mailto:R=tkent@chromium.org">R=tkent@chromium.org</a>
+BUG=392517
+
+Review URL: <a href="https://codereview.chromium.org/488053002">https://codereview.chromium.org/488053002</a>
+
+Cr-Commit-Position: refs/heads/master@{#291110}
+git-svn-id: svn://svn.chromium.org/chrome/trunk/src@291110 0039d316-1c4b-4281-b951-d872f2087c98
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/chrome?revision=291110&amp;view=revision"><time datetime="2014-08-21">2014-08-21</time></a>
       
         <tr>
           <td>haavardm
@@ -6056,6 +6076,59 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <colgroup class=col-when>
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Test tidying: use &#34;escape&#34; and &#34;backspace&#34; with eventSender.keyDown()</summary>
+              <pre class=body>
+<a href="mailto:R=keishi@chromium.org,yosin@chromium.org">R=keishi@chromium.org,yosin@chromium.org</a>
+BUG=392517
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/484353004">https://codereview.chromium.org/484353004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180765 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180765&amp;view=revision"><time datetime="2014-08-22">2014-08-22</time></a>
+      
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Fix spelling of provideNotificationPermissionClientTo()</summary>
+              <pre class=body>
+TBR=tkent
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/489373002">https://codereview.chromium.org/489373002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180755 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180755&amp;view=revision"><time datetime="2014-08-22">2014-08-22</time></a>
+      
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Make some ScriptValue references const</summary>
+              <pre class=body>
+The functions FontFaceSet::forEach() and Headers::forEach() are called
+from the bindings layer, and by having non-const reference arguments, they
+somewhat restrict what we can do in the bindings layer.
+
+Since there is no reason for the arguments to be non-const references,
+just make them const.
+
+Review URL: <a href="https://codereview.chromium.org/478233003">https://codereview.chromium.org/478233003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@180719 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="http://src.chromium.org/viewvc/blink?revision=180719&amp;view=revision"><time datetime="2014-08-21">2014-08-21</time></a>
       
         <tr>
           <td>philipj
