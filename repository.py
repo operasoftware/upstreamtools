@@ -1,7 +1,12 @@
 import os
 import subprocess
 
-class InvalidStateError(Exception): pass
+import config
+
+
+class InvalidStateError(Exception):
+    pass
+
 
 class Repo(object):
     dirty = False
@@ -20,8 +25,8 @@ class Repo(object):
         return subprocess.call(
             [self.git, '--git-dir='+self.gitdir] + args, stderr=subprocess.STDOUT)
 
-    def commits(self, use_grep):
-        raw_commits = self.get_log(use_grep)
+    def commits(self, search, search_body=False):
+        raw_commits = self.get_log(search, search_body)
         commits = []
         for c in raw_commits:
             parts = c.split('\n', 5)
@@ -30,15 +35,17 @@ class Repo(object):
                 commits.append(commit)
         return commits
 
-    def get_log(self, use_grep):
+    def get_log(self, search, search_body):
+        search_line = '--grep={search}' if search_body else '--author={search}'
         lines = self._git([
                     'log',
                     '--format=%H%n%an%n%ad%n%ar%n%B',
                     '--date=short',
-                    '--grep=opera.com' if use_grep else '--author=opera.com',
+                    search_line.format(search=search),
                     '-z',
                     'master']).split('\0')
         return lines
+
 
 class Commit(object):
     def __init__(self, sha, author, date, date_relative, subject, body):

@@ -5,7 +5,7 @@
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   {% for project in projects %}
-    <a href="#{{ project.name|lower|e }}">{{ project.name|e }}</a>: {{ project.log|length }}{% if project != projects[-1] %}, {% else %}.{% endif %}
+    <a href="#{{ project.name|lower|e }}">{{ project.name|e }}</a>: {{ project.log|length }}{% if project != projects[-1] %},{% else %}.{% endif %}
   {% endfor %}
   <p class=hint>Click message to expand
   {% for project in projects %}
@@ -19,14 +19,14 @@
       <tbody>
       {% for c in project.log %}
         <tr>
-          <td>{{ c.author_stripped|e }}
+          <td>{{ c.stripped_author|e }}
           <td class=message>
             <details>
               <summary>{{ c.subject|e }}</summary>
               <pre class=body>{{ c.body|e|urlize }}</pre>
             </details>
           <td><a href="{{ c.viewvc|e }}"><time datetime="{{ c.date|e }}">{{ c.date|e }}</time></a>
-      {% endfor %}
+      {%- endfor %}
       </table>
     </section>
   {% endfor %}
