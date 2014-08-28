@@ -1,8 +1,6 @@
 import os
 import subprocess
 
-import config
-
 
 class InvalidStateError(Exception):
     pass

@@ -10,7 +10,7 @@ from repository import Repo
 def get_commit_log(git_repo, viewvc_url, author_in_commit_body=False):
     repo = Repo(git_repo)
     log = repo.commits(config.EMAIL_GREP, search_body=author_in_commit_body)
-    for commit in log:
+    for commit in log[:]:
         if author_in_commit_body:
             name_match = re.search(
                 '(Contributed|Patch) (from|by) [^<]*<{name_re}>'.format(name_re=config.EMAIL_RE),
@@ -19,6 +19,7 @@ def get_commit_log(git_repo, viewvc_url, author_in_commit_body=False):
                 review_match = re.search('R=.*{}'.format(config.EMAIL_RE), commit.body)
                 if review_match:
                     # Skip stuff only reviewed
+                    log.remove(commit)
                     continue
                 raise Exception("Didn't find {} in commit msg ({})".format(config.EMAIL_RE, commit.body))
             commit.author = name_match.group('full_email')
