@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 307,
+    <a href="#chromium">Chromium</a>: 308,
   
-    <a href="#blink">Blink</a>: 1457,
+    <a href="#blink">Blink</a>: 1461,
   
     <a href="#v8">V8</a>: 20.
   
@@ -44,6 +44,18 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>krzysztofc
+          <td class=message>
+            <details>
+              <summary>Fix for a crash in NativeViewAccessibilityWin.</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/521573003">https://codereview.chromium.org/521573003</a>
+
+Cr-Commit-Position: refs/heads/master@{#292605}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/f86e51b545004a0f4c2196c0f53ca6c30a5ddad9"><time datetime="2014-08-29">2014-08-29</time></a>
         <tr>
           <td>philipj
           <td class=message>
@@ -5829,6 +5841,77 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r181083</summary>
+              <pre class=body>
+Move FrameConsole and ConsoleMessageStorage to the heap in order to do so.
+
+<a href="mailto:R=ager@chromium.org">R=ager@chromium.org</a>, <a href="mailto:zerny@chromium.org">zerny@chromium.org</a>
+BUG=408121
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/517213003">https://codereview.chromium.org/517213003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181087 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3dc6ddb01b37de7ca8d2a76289ce59db85c07e38"><time datetime="2014-08-29">2014-08-29</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>BitmapImage: Use the cheapest Vector constructor.</summary>
+              <pre class=body>
+Vector() and Vector(0) will result in the same object
+but Vector() is cheaper (unless the optimizer manages
+to optimize away everything in Vector(size_t) ).
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/435913002">https://codereview.chromium.org/435913002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181084 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/36ab3ca0c54f6841a3617b1eaebb8507853347af"><time datetime="2014-08-29">2014-08-29</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Transfer pending async script loader to new document.</summary>
+              <pre class=body>
+If a script element is moved to a new document and it has a pending
+async script being loaded in the old document, transfer the pending
+script load to the new document.
+
+<a href="mailto:R=japhet@chromium.org">R=japhet@chromium.org</a>
+BUG=407824
+
+Review URL: <a href="https://codereview.chromium.org/496443008">https://codereview.chromium.org/496443008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181081 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/af85f9db5aa6759c90fc0866c8037c958fde165f"><time datetime="2014-08-29">2014-08-29</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r181070.</summary>
+              <pre class=body>
+TBR=oilpan-reviews
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/523543002">https://codereview.chromium.org/523543002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181076 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/aaa7384cc2df3fc375c7aff1ee736681749ce8f9"><time datetime="2014-08-29">2014-08-29</time></a>
         <tr>
           <td>philipj
           <td class=message>
