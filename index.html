@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 310,
+    <a href="#chromium">Chromium</a>: 312,
   
-    <a href="#blink">Blink</a>: 1465,
+    <a href="#blink">Blink</a>: 1471,
   
     <a href="#v8">V8</a>: 20.
   
@@ -44,6 +44,44 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>use c++03 style enum scope</summary>
+              <pre class=body>
+Followup to <a href="https://codereview.chromium.org/411973004">https://codereview.chromium.org/411973004</a>
+
+We haven&#39;t officially switched over to using c++11 everywhere
+yet, so this patch replaces c++11 style enum scope with c++03 style scope.
+
+BUG=392621
+
+Review URL: <a href="https://codereview.chromium.org/526193002">https://codereview.chromium.org/526193002</a>
+
+Cr-Commit-Position: refs/heads/master@{#292902}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/23a9a22b232c86d47edc1b6c7f7e9e677931252e"><time datetime="2014-09-02">2014-09-02</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove unused GeolocationDispatcher::geolocationDestroyed().</summary>
+              <pre class=body>
+As of Blink r180944, Blink is no longer notifying the embedder of its
+GeolocationController reference going away (as there&#39;s no need.) Follow
+up and retire the notification implementation on the embedder side.
+
+<a href="mailto:R=mvanouwerkerk@chromium.org">R=mvanouwerkerk@chromium.org</a>, <a href="mailto:jochen@chromium.org">jochen@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/526123002">https://codereview.chromium.org/526123002</a>
+
+Cr-Commit-Position: refs/heads/master@{#292890}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/46343cfc3ce2ca18ccfed5da9df28c06d7437c6c"><time datetime="2014-09-01">2014-09-01</time></a>
         <tr>
           <td>mboc
           <td class=message>
@@ -5869,6 +5907,132 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Increase maxBeaconTransmission default to 64k bytes.</summary>
+              <pre class=body>
+The implementation should impose an upper bound on the amount of
+per-document data that sendBeacon() is allowed to transmit.
+
+Increase the default setting to a larger 64k (was: 16k), taking feedback from
+some Google internal projects into account.
+
+<a href="mailto:R=jochen@chromium.org">R=jochen@chromium.org</a>
+BUG=402991
+
+Review URL: <a href="https://codereview.chromium.org/503843002">https://codereview.chromium.org/503843002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181229 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2856bb101929ce5d4253129818f8f2d9e981bba7"><time datetime="2014-09-02">2014-09-02</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Merge willEnter/willExitFullScreen into didEnter/didExitFullScreen</summary>
+              <pre class=body>
+The will/did callback pairs came into being in 2011:
+<a href="https://bugs.webkit.org/show_bug.cgi?id=70477">https://bugs.webkit.org/show_bug.cgi?id=70477</a>
+<a href="https://code.google.com/p/chromium/issues/detail?id=100264">https://code.google.com/p/chromium/issues/detail?id=100264</a>
+
+The original problem was that the webkitfullscreenchange was
+dispatched too early, but this is not affected since the did*
+callbacks are the ones left in use.
+
+The risk is that something done in the will* callbacks is too late if
+done moved to the did* callbacks. That amounts to:
+
+ - Saving placeholder style and unwrapping/wrapping the renderer in
+   Fullscreen::willEnterFullScreenForElement().
+
+ - The overlayFullscreenVideoEnabled() bits in
+   HTMLMediaElement::willStopBeingFullscreenElement() and
+   FullscreenController::willExitFullScreen().
+
+Since the only difference between will* and did* is that the new size
+is known and events aren&#39;t fired synchronously, this seems likely to
+be safe.
+
+BUG=407002
+
+Review URL: <a href="https://codereview.chromium.org/497723002">https://codereview.chromium.org/497723002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181218 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4d01f57059d6233929853cd5a6f2e7b0b2ecaac6"><time datetime="2014-09-02">2014-09-02</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove geolocationDestroyed() client notification.</summary>
+              <pre class=body>
+This WebGeolocationClient notification is no longer issued by Blink
+to the embedder (Blink r180944), nor implemented (Chromium r292890.)
+
+R=
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/521223003">https://codereview.chromium.org/521223003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181206 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3f8c215cc175348494320365a58b01b2440f669a"><time datetime="2014-09-02">2014-09-02</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>use c++03 style enum scope</summary>
+              <pre class=body>
+Followup to <a href="https://codereview.chromium.org/473833002">https://codereview.chromium.org/473833002</a>
+
+We haven&#39;t officially switched over to using c++11 everywhere
+yet, so this patch replaces c++11 style enum scope with c++03 style scope.
+
+BUG=402749
+
+Review URL: <a href="https://codereview.chromium.org/528843002">https://codereview.chromium.org/528843002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181202 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2504b5ab42fcfdb91c782eabef1b1118b61d8749"><time datetime="2014-09-01">2014-09-01</time></a>
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[svg] getScreenCTM reporting incorrect transformation matrix.</summary>
+              <pre class=body>
+BUG=402790
+
+Review URL: <a href="https://codereview.chromium.org/464823003">https://codereview.chromium.org/464823003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181197 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a437be840d7d26ff0cd4ee60d4cf048d78498de1"><time datetime="2014-09-01">2014-09-01</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Stop inlining StringBuffer&lt;CharType&gt;::shrink().</summary>
+              <pre class=body>
+Minor cleanup as part of looking at overly aggressive inlining. The default
+for all code should be that no code is force-inlined unless it is
+critical for some other reason.
+
+This is a prerequisite for <a href="http://codereview.chromium.org/390003003/">http://codereview.chromium.org/390003003/</a>
+
+Review URL: <a href="https://codereview.chromium.org/520723002">https://codereview.chromium.org/520723002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181193 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3b727086d84dbc43597d5bf0a896be2226302631"><time datetime="2014-09-01">2014-09-01</time></a>
         <tr>
           <td>philipj
           <td class=message>
