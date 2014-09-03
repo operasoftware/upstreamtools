@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 312,
+    <a href="#chromium">Chromium</a>: 315,
   
-    <a href="#blink">Blink</a>: 1471,
+    <a href="#blink">Blink</a>: 1479,
   
     <a href="#v8">V8</a>: 20.
   
@@ -44,6 +44,61 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mharanczyk
+          <td class=message>
+            <details>
+              <summary>Change VKEY_MENU to VKEY_LMENU in interactive ui tests key sequence sending.</summary>
+              <pre class=body>
+On windows depending on system/keyboard setting right alt (alt gr) can be
+seen as alt+ctrl. This is also true for sending VKEY_MENU via SendInput,
+probably because it is treated as any alt key. To avoid intorducing
+unwanted ctrl key in sequence use VKEY_LMENU which will only add alt key
+without a risk of adding ctrl key regardless of system setup.
+The change fixes CommandsApiTest.DontOverwriteSystemShortcuts test timout.
+Test expected alt+shift+f, but what was received was ctrl+alt+shift+f.
+
+BUG=409567
+
+Review URL: <a href="https://codereview.chromium.org/526063002">https://codereview.chromium.org/526063002</a>
+
+Cr-Commit-Position: refs/heads/master@{#293112}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/6047562c6cd816727b7a78a0def63cc30f0999a5"><time datetime="2014-09-03">2014-09-03</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>binarysize tool: Cleaning up some progress output.</summary>
+              <pre class=body>
+R=primiano
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/399683004">https://codereview.chromium.org/399683004</a>
+
+Cr-Commit-Position: refs/heads/master@{#292999}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/42cab11e12ec82915197f300d26007f30b959c6b"><time datetime="2014-09-02">2014-09-02</time></a>
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Further cleanup of RenderText</summary>
+              <pre class=body>
+Remove redundant data member and include.
+Followup after <a href="https://codereview.chromium.org/493363006">https://codereview.chromium.org/493363006</a>
+
+BUG=388084
+
+Review URL: <a href="https://codereview.chromium.org/527103003">https://codereview.chromium.org/527103003</a>
+
+Cr-Commit-Position: refs/heads/master@{#292982}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/17657629ccd75c5fa76019f06da04d4ceec2367f"><time datetime="2014-09-02">2014-09-02</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -5907,6 +5962,159 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Force layout to make a track rendering test non-flaky</summary>
+              <pre class=body>
+While !textTracksAreReady(), readyState is constrained to
+HAVE_CURRENT_DATA or lower. Once text tracks are ready, if the media
+load has already progressed far, the canplaythrough event dispatch and
+the text track rendering will be racy.
+
+Since the rendering is not observable to Web content, it does not seem
+worthwhile trying to make this deterministic.
+
+The same fix was applied to WebKit:
+<a href="http://trac.webkit.org/changeset/148050/trunk/LayoutTests/media/track/track-cue-container-rendering-position.html">http://trac.webkit.org/changeset/148050/trunk/LayoutTests/media/track/track-cue-container-rendering-position.html</a>
+
+BUG=330049
+
+Review URL: <a href="https://codereview.chromium.org/533073003">https://codereview.chromium.org/533073003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181310 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8d612ab95078313e5d805f74644e837ee847c166"><time datetime="2014-09-03">2014-09-03</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove TestExpectations for a test that has not crashed recently</summary>
+              <pre class=body>
+There have not been any crashes recorded recently:
+<a href="http://test-results.appspot.com/dashboards/flakiness_dashboard.html#showAllRuns=true&amp;tests=http%2Ftests%2Fsecurity%2FcontentSecurityPolicy%2Freport-only-from-header.php">http://test-results.appspot.com/dashboards/flakiness_dashboard.html#showAllRuns=true&amp;tests=http%2Ftests%2Fsecurity%2FcontentSecurityPolicy%2Freport-only-from-header.php</a>
+
+There has been a timeout on WebKit Win Oilpan, so leave that alone.
+
+BUG=282081
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/528273002">https://codereview.chromium.org/528273002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181308 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f31c8afaa2c81b7455a9af92564ca2b24784408a"><time datetime="2014-09-03">2014-09-03</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Move navigator.sendBeacon() to stable.</summary>
+              <pre class=body>
+R=
+BUG=402991
+
+Review URL: <a href="https://codereview.chromium.org/416283004">https://codereview.chromium.org/416283004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181307 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/87bee6ba408357be3f46ecd7c04e86039c8c9896"><time datetime="2014-09-03">2014-09-03</time></a>
+        <tr>
+          <td>mboc
+          <td class=message>
+            <details>
+              <summary>Use correct font for label in a drag image</summary>
+              <pre class=body>
+The drag image, generated when dragging a link from web contents is
+using the same font for both the title and its link, even though
+different fonts (bold and regular) are created for those two elements
+(accordingly). This change makes the title use the bold font as it is
+supposed to do.
+
+<a href="mailto:R=eae@chromium.org">R=eae@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/517193002">https://codereview.chromium.org/517193002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181293 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1b3fdee555915f6ac5f0398b434496e4efa296ed"><time datetime="2014-09-03">2014-09-03</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r181280.</summary>
+              <pre class=body>
+R=haraken
+BUG=396372
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/535733003">https://codereview.chromium.org/535733003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181284 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9f570d2973c2b06b3a92cd1664e7022ce3585447"><time datetime="2014-09-03">2014-09-03</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Avoid auto-resize re-entrancy problems.</summary>
+              <pre class=body>
+ASSERT(needsLayout()) failed in various layout() methods. The reason is
+that autoSizeIfEnabled() will re-enter FrameView::layout(), and upon return,
+the rootForThisLayout RenderObject has already been layed out.
+
+This CL moves the auto-sizing up to the top of FrameView::layout() to avoid
+the re-entrancy problem with rootForThisLayout.
+
+BUG=403743
+
+Review URL: <a href="https://codereview.chromium.org/473903002">https://codereview.chromium.org/473903002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181258 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/37cb8fc8b0279274685f18032a50aeed79360a0a"><time datetime="2014-09-02">2014-09-02</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove WebKitPoint</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/pIbpN_8Lqpg/tp9f71GsslIJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/pIbpN_8Lqpg/tp9f71GsslIJ</a>
+
+BUG=409956
+
+Review URL: <a href="https://codereview.chromium.org/521883003">https://codereview.chromium.org/521883003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181252 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5194b5ea02e7bc32f2278a6515dd55448d181ec9"><time datetime="2014-09-02">2014-09-02</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Rewrote multicol/newmulticol/column-rules-fixed-height and moved it to fast/multicol/</summary>
+              <pre class=body>
+It&#39;s a pure reftest now. It used to compare between the old and new
+implementations, until settings.setRegionBasedColumnsEnabled(true)
+got removed from a lot of tests a couple of months ago, at which point
+the test and the ref essentially became identical.
+
+<a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/508953004">https://codereview.chromium.org/508953004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181248 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/62a02b448f38ebff80bab2778a5b619b0bdcf0e2"><time datetime="2014-09-02">2014-09-02</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
