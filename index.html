@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 315,
+    <a href="#chromium">Chromium</a>: 316,
   
-    <a href="#blink">Blink</a>: 1481,
+    <a href="#blink">Blink</a>: 1488,
   
     <a href="#v8">V8</a>: 20.
   
@@ -44,6 +44,22 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>joleksy
+          <td class=message>
+            <details>
+              <summary>Use changed_button_flags() when converting MouseEvent to blink::WebMouseEvent.</summary>
+              <pre class=body>
+Event::flags() contains all the buttons that are being held down during the event, while MouseEvent::changed_button_flags() contains the buttons that are actually pressed/released during the event (and this is what we really are interested in).
+
+This fixes the issue with LMB being pressed while RMB is being held down. Without the fix, we always get blink::WebMouseEvent::ButtonRight in blink::WebMouseEvent::button.
+
+Review URL: <a href="https://codereview.chromium.org/302593002">https://codereview.chromium.org/302593002</a>
+
+Cr-Commit-Position: refs/heads/master@{#293487}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/87e6b0f6d72b12e4b0308b035d1c06f2beb90feb"><time datetime="2014-09-05">2014-09-05</time></a>
         <tr>
           <td>mharanczyk
           <td class=message>
@@ -5962,6 +5978,139 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Update :link/:visited style when changing href.</summary>
+              <pre class=body>
+Previously, :link/:visited style was only updated when the href was changed
+to/from a clickable anchor. The :enabled style still only needs updating
+when wasLink and isLink differ.
+
+BUG=63372
+
+Review URL: <a href="https://codereview.chromium.org/537353002">https://codereview.chromium.org/537353002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181432 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/bda06cb3d802ea18369a5757b51a2822712a0b90"><time datetime="2014-09-05">2014-09-05</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Make markCaptionAndSubtitleTracksAsUnconfigured() do what the box say</summary>
+              <pre class=body>
+Sink the call to configureTextTracks() out of
+markCaptionAndSubtitleTracksAsUnconfigured() - this means the latter does
+what it advertises and nothing more.
+This also allows tightening the scope for when m_processingPreferenceChange
+is set to true.
+
+Review URL: <a href="https://codereview.chromium.org/541593004">https://codereview.chromium.org/541593004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181416 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e9404405fb732467a725f6d970060749a0e263bf"><time datetime="2014-09-04">2014-09-04</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Spec compliant url.search/url.hash setters over empty values.</summary>
+              <pre class=body>
+Setting the URLUtils properties &#39;search&#39; and &#39;hash&#39; to empty strings
+should result in null query and hash URL components, respectively.
+
+R=arv
+BUG=410395
+
+Review URL: <a href="https://codereview.chromium.org/537103002">https://codereview.chromium.org/537103002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181410 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b498a9d429f3ab514c8799e447661194e46a4241"><time datetime="2014-09-04">2014-09-04</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Simplify calls to HTMLMediaElement::createMediaControls()</summary>
+              <pre class=body>
+All calls to the above method is currently guarded by a check of the
+predicate hasMediaControls(). The first thing createMediaControls() does
+though is to check the same predicate.
+Remove the checks at the callsites and leave the checking to
+createMediaControls().
+
+Review URL: <a href="https://codereview.chromium.org/539003003">https://codereview.chromium.org/539003003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181403 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ef4e644799126e8e3edc0a877c9eee4029f35bf0"><time datetime="2014-09-04">2014-09-04</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Rename HTMLMediaElement::closeCaptionTracksChanged to textTracksChanged</summary>
+              <pre class=body>
+The name closeCaptionTracksChanged() is slightly misleading since this
+method is called for all kinds of (text) tracks, and not just &#39;caption&#39;
+tracks (and the &#39;closed&#39; needn&#39;t necessarily apply either...)
+Rename to textTracksChanged() since that more accurately describe what it
+does.
+Also replace a few &#34;manual&#34; instances of textTracksChanged() with calls
+to the method. In the case of HTMLMediaElement::didAddTrackElement, it
+can be dropped altogether because addTextTrack already calls it (and
+scheduleDelayedAction(LoadTextTrackResource) does not have side-effects
+that would affect the result.)
+Also do the same name-change for the closedCaptionTracksChanged() notifier
+on MediaControls (same semantic meaning.)
+
+Review URL: <a href="https://codereview.chromium.org/540853003">https://codereview.chromium.org/540853003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181401 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d94d6cbf9afdd1a7d0355f44f76a8a68a2287b0a"><time datetime="2014-09-04">2014-09-04</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Mark fast/css/css-selector-deeply-nested.html as not flaky</summary>
+              <pre class=body>
+It stopped crashing with the update of V8 to version 3.28.21:
+<a href="https://codereview.chromium.org/381383003">https://codereview.chromium.org/381383003</a>
+
+BUG=392853
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/532283002">https://codereview.chromium.org/532283002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181397 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ca283b521e4e06ef38b403ebf8a1f346af4be7fb"><time datetime="2014-09-04">2014-09-04</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Move pending async script to the correct resolved document.</summary>
+              <pre class=body>
+Follow up r181081 and move the pending script load to the document we&#39;re
+executing in the context of.
+
+R=haraken
+BUG=409618
+
+Review URL: <a href="https://codereview.chromium.org/532643002">https://codereview.chromium.org/532643002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181374 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5d712e0f337ceb69930f17daee42da9dff9375a1"><time datetime="2014-09-04">2014-09-04</time></a>
         <tr>
           <td>philipj
           <td class=message>
