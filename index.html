@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 316,
+    <a href="#chromium">Chromium</a>: 318,
   
-    <a href="#blink">Blink</a>: 1491,
+    <a href="#blink">Blink</a>: 1492,
   
     <a href="#v8">V8</a>: 20.
   
@@ -44,6 +44,49 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>arjanl
+          <td class=message>
+            <details>
+              <summary>Fix maximize on some window managers</summary>
+              <pre class=body>
+On some window managers the Maximize hints are not respected when they
+are set on an unmapped window. There was an existing workaround for this
+in the code, but the workaround failed whenever ShowWindowWithState
+didn&#39;t happen to be called with the parameters needed to activate the
+workaround. This meant that if a window was first made visible and later
+activated, it would not get maximized at all.
+
+This fix saves whether the maximize hints need to be sent to the window,
+and makes sure it gets done after mapping the window.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/543663003">https://codereview.chromium.org/543663003</a>
+
+Cr-Commit-Position: refs/heads/master@{#293698}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/79cd33a2ae10b9424fc7bde5b577ec732bfa4a04"><time datetime="2014-09-08">2014-09-08</time></a>
+        <tr>
+          <td>arjanl
+          <td class=message>
+            <details>
+              <summary>Fix focus on popup GTK dialogs</summary>
+              <pre class=body>
+Previously we didn&#39;t have a call to gtk_window_present(), which would
+mean that the widgets would become visible, but the necessary actions to
+focus weren&#39;t always taken. This resulted in the active window not being
+correct after opening the file or print dialogs.
+
+BUG=399514
+
+Review URL: <a href="https://codereview.chromium.org/543093002">https://codereview.chromium.org/543093002</a>
+
+Cr-Commit-Position: refs/heads/master@{#293691}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b7954eebe6fe06dd1e585c83efa7a20e7be0a2ac"><time datetime="2014-09-08">2014-09-08</time></a>
         <tr>
           <td>joleksy
           <td class=message>
@@ -5978,6 +6021,22 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r181536.</summary>
+              <pre class=body>
+TBR=oilpan-reviews
+BUG=367689
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/547323002">https://codereview.chromium.org/547323002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181544 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3fbd9a9430eb8388cd98b96c68a977b96e652256"><time datetime="2014-09-08">2014-09-08</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
