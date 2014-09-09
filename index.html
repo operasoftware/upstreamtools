@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 318,
+    <a href="#chromium">Chromium</a>: 320,
   
-    <a href="#blink">Blink</a>: 1492,
+    <a href="#blink">Blink</a>: 1498,
   
     <a href="#v8">V8</a>: 20.
   
@@ -44,6 +44,49 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Fix wifi_component build with 10.9+ SDK</summary>
+              <pre class=body>
+Use forward declaration to build on both 10.6 and 10.9 SDK and
+runtime checking to make sure we don&#39;t call the wrong API.
+
+BUG=390212
+
+Review URL: <a href="https://codereview.chromium.org/530193004">https://codereview.chromium.org/530193004</a>
+
+Cr-Commit-Position: refs/heads/master@{#293911}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/6acb57597d5d18ab9d0e2954993863a8e2848774"><time datetime="2014-09-09">2014-09-09</time></a>
+        <tr>
+          <td>arjanl
+          <td class=message>
+            <details>
+              <summary>[Linux] Show preview contents for minimized windows</summary>
+              <pre class=body>
+When minimizing a window, we hide the contents to prevent
+unnecessary redrawing. However, this means that when the frame is
+redrawn after the hiding, it is blank. Several desktop environments rely
+on the window having contents when minimized, drawing the window
+off-screen to be able to show preview content in overviews (Unity,
+Gnome Shell).
+
+This patch stops all drawing operations before hiding the
+window, making sure that the content before hiding is retained and can
+be shown by the window manager as a preview, but still avoiding unnecessary
+redrawing of minimized windows.
+
+BUG=156346
+
+Review URL: <a href="https://codereview.chromium.org/542113004">https://codereview.chromium.org/542113004</a>
+
+Cr-Commit-Position: refs/heads/master@{#293909}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/d2ff06116540022bb9d835eec843bcb70ada67d0"><time datetime="2014-09-09">2014-09-09</time></a>
         <tr>
           <td>arjanl
           <td class=message>
@@ -6021,6 +6064,139 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Remove support for [LogPreviousValue] extended attribute</summary>
+              <pre class=body>
+Also remove the logSetter() overload taking an old value parameter from
+the WebDOMActivityLogger interface, since there are no calls to it.
+
+BUG=388287
+
+Review URL: <a href="https://codereview.chromium.org/497773004">https://codereview.chromium.org/497773004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181643 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e7a749816a422ec45744676917fd9d3102a2cbde"><time datetime="2014-09-09">2014-09-09</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Don&#39;t use rowIndex() if needsCellRecalc().</summary>
+              <pre class=body>
+The row index may be bogus or even unset in that case.
+
+Rows may be inserted with an initially unknown row index. This happens
+when the row isn&#39;t inserted at the end of its table section, and also
+when splitting an anonymous row. This would lead to an assertion failure
+for row()-&gt;rowIndexWasSet() in RenderTableCell::styleDidChange().
+rowIndex() is used there in a call to
+RenderTableSection::rowLogicalHeightChanged(). rowIndex() is also used
+in a similar way in RenderTableRow::styleDidChange(), albeit without
+asserting first.
+
+styleDidChange() may be called while needsCellRecalc() is set, which
+may mean that row index hasn&#39;t been calculated yet (or is bogus). We
+could of course just recalculate the cells (which also involves
+calculating all row indices) in styleDidChange(), but it&#39;s not really
+necessary, since the row index was just needed in order to call
+rowLogicalHeightChanged(), which just bails anyway if cells need recalc.
+
+So the solution is to pass a RenderTableRow instead of the row index to
+rowLogicalHeightChanged(). This way we don&#39;t call rowIndex() when
+row index is unknown.
+
+BUG=397442
+
+Review URL: <a href="https://codereview.chromium.org/532513002">https://codereview.chromium.org/532513002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181637 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/db0e72a31f408f5ee5fa7f7b5c30a6afacd83786"><time datetime="2014-09-09">2014-09-09</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Make vertical-lr and vertical-rl versions of the tests that replace border-padding-pagination.html</summary>
+              <pre class=body>
+border-padding-pagination.html exists for both these writing modes, and it won&#39;t be
+used in the new implementation, so better make sure that we don&#39;t lose coverage.
+
+<a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/510123002">https://codereview.chromium.org/510123002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181622 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ba684e1160d504206ede72bdf1a610393d5654f5"><time datetime="2014-09-09">2014-09-09</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r181604.</summary>
+              <pre class=body>
+TBR=oilpan-reviews
+BUG=321462
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/553993004">https://codereview.chromium.org/553993004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181611 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/51269ba17c2ed1e0504eca719a47f361d8854ab0"><time datetime="2014-09-09">2014-09-09</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add philipj@opera.com to Source/modules/mediasource/OWNERS</summary>
+              <pre class=body>
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/550133002">https://codereview.chromium.org/550133002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181582 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c3189785ec7e27e32a6aff951bffd25a56672630"><time datetime="2014-09-08">2014-09-08</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Support scientific notation in CSS numbers/percentages/dimensions</summary>
+              <pre class=body>
+Previously, scientific notation (scinot) was only supported for SVG
+presentation attributes through a special tokenizer quirk. Since scinot
+has now been added to the CSS syntax spec [1][2][3] and is already
+supported by Gecko [4] and IE(11).
+To harmonize, the call to parseSVGNumber(...) is replaced with a call to
+charactersToDouble(...). This results in a small behavioral change, since
+the former would reject numbers that were too large. These will now parse
+as &#34;Infinity&#34; [5].
+Since this removes the last caller of isSVGNumberParsingEnabledForMode()
+that function is removed as well.
+
+[1] <a href="http://dev.w3.org/csswg/css-syntax/#number-token-diagram">http://dev.w3.org/csswg/css-syntax/#number-token-diagram</a>
+[2] <a href="http://lists.w3.org/Archives/Public/www-style/2012Aug/0900.html">http://lists.w3.org/Archives/Public/www-style/2012Aug/0900.html</a>
+[3] <a href="http://lists.w3.org/Archives/Public/www-style/2013Apr/0428.html">http://lists.w3.org/Archives/Public/www-style/2013Apr/0428.html</a>
+[4] <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=964529">https://bugzilla.mozilla.org/show_bug.cgi?id=964529</a>
+[5] Tested browsers were not entirely consistent in their treatment of
+    infinities (Gecko: Infinity, IE: FLT_MAX).
+
+BUG=388161
+BUG=344645
+
+Review URL: <a href="https://codereview.chromium.org/545173003">https://codereview.chromium.org/545173003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181560 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6f7c9357556a727b2e33539ba385240b5be32eff"><time datetime="2014-09-08">2014-09-08</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
