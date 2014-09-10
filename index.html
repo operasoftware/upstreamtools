@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 320,
+    <a href="#chromium">Chromium</a>: 323,
   
-    <a href="#blink">Blink</a>: 1498,
+    <a href="#blink">Blink</a>: 1505,
   
     <a href="#v8">V8</a>: 20.
   
@@ -44,6 +44,58 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>henriks
+          <td class=message>
+            <details>
+              <summary>Make ffmpeg specific unit_tests depend on media_use_ffmpeg</summary>
+              <pre class=body>
+Media unit tests depending on ffmpeg are currently only removed
+using OS==&#34;android&#34;, but let&#39;s remove them based on
+media_use_ffmpeg==0 instead.
+
+BUG=410779
+<a href="mailto:R=acolwell@chromium.org">R=acolwell@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/541553003">https://codereview.chromium.org/541553003</a>
+
+Cr-Commit-Position: refs/heads/master@{#294148}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/08a76ea64572fccb87596ae31352861b5e2e71a1"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove &gt;&gt; ambiguity in quic_protocol.h</summary>
+              <pre class=body>
+Resolve c++03 ambiguity introduced by CL 478153003 and 497553004, since
+we haven&#39;t officially switched over to c++11 yet.
+
+Review URL: <a href="https://codereview.chromium.org/561463002">https://codereview.chromium.org/561463002</a>
+
+Cr-Commit-Position: refs/heads/master@{#294094}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/dc40b8061f10dfd12aee6c51616393a1fa6a9e3e"><time datetime="2014-09-09">2014-09-09</time></a>
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Fix SDK forward declarations after CL 530193004</summary>
+              <pre class=body>
+The APIs that need forward declarations were actually introduced in
+OS X 10.7 SDK instead of 10.9 SDK, forward declare them in the wrong
+place will cause build issue when using older SDKs like 10.7 or 10.8.
+
+BUG=390212
+
+Review URL: <a href="https://codereview.chromium.org/555163002">https://codereview.chromium.org/555163002</a>
+
+Cr-Commit-Position: refs/heads/master@{#294013}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/59c4ad104b6f03af9c9acffc0fd9a42707083390"><time datetime="2014-09-09">2014-09-09</time></a>
         <tr>
           <td>jiangj
           <td class=message>
@@ -6064,6 +6116,147 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Make &#39;crossOrigin&#39; IDL attributes nullable</summary>
+              <pre class=body>
+This affects the &#39;crossOrigin&#39; IDL attributes in the interfaces
+HTMLImageElement, HTMLLinkElement, HTMLMediaElement and HTMLScriptElement,
+and is done to match the corresponding specification change:
+  <a href="http://html5.org/r/8727">http://html5.org/r/8727</a>
+
+The effect is that on setting the IDL attribute to null, the content
+attribute is removed (if present) instead of set to the string &#34;null&#34;, and
+on getting null is returned instead of the empty string if the content
+attribute is not present.
+
+BUG=409524
+
+Review URL: <a href="https://codereview.chromium.org/529933002">https://codereview.chromium.org/529933002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181728 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/98de62ecb85eb27b503cefd4512b8e34b4ce356b"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove template c++11&#39;ism in Heap.h</summary>
+              <pre class=body>
+Followup to CL 486193002 to remove default arguments from template types,
+which is only allowed in c++11 and later (and we haven&#39;t officially switched
+to c++11 yet afaik).
+
+Review URL: <a href="https://codereview.chromium.org/559733004">https://codereview.chromium.org/559733004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181719 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/55da3393fcffd61157f6132ea9977184401c80c2"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: make DOMWindowProperty a GC mixin.</summary>
+              <pre class=body>
+As all objects deriving from DOMWindowProperty are on the heap, make
+it a GC mixin and have it trace its Window reference. The registered
+DOMWindowProperty instances on a LocalDOMWindow live at least as long
+it.
+
+The benefit is that we can remove its destructor. Deriving objects can
+as a consequence remove their empty finalizers.
+
+<a href="mailto:R=ager@chromium.org">R=ager@chromium.org</a>, <a href="mailto:haraken@chromium.org">haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/552733003">https://codereview.chromium.org/552733003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181717 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6b505e23eab1c14e4678852bb9d4256e1981e9fd"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>In V8Binding.cpp, throw all exceptions via ExceptionState&amp; argument</summary>
+              <pre class=body>
+In those the conversion functions that take an ExceptionState&amp; argument,
+always throw via the ExceptionState object, and never directly to V8.
+Various existing callers assume this, and fail to detect exceptions that
+were thrown directly to V8.
+
+This misbehavior is a regression from
+  <a href="https://codereview.chromium.org/313033002/">https://codereview.chromium.org/313033002/</a>
+which changed the definition of the TONATIVE_DEFAULT_EXCEPTIONSTATE()
+macro, but these functions were somewhat tricky to use even before then,
+since exceptions were sometimes thrown to V8 and sometimes not, while
+always stored in the ExceptionState object.
+
+Review URL: <a href="https://codereview.chromium.org/559553003">https://codereview.chromium.org/559553003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181709 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/256a2a96a425a5983de5b2b57cf17974ed3210d6"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Move IdlType.may_raise_exception_on_conversion to v8_types.py</summary>
+              <pre class=body>
+Also rename it v8_conversion_needs_exception_state, which is exactly what
+it means.  The old name is somewhat misleading, since other conversions
+can typically also raise exceptions in practice; the difference is whether
+the conversion function does so via (and thus expects) an ExceptionState
+argument.
+
+Defining it in v8_types.py makes sense since this is a property of the
+V8 bindings layer&#39;s conversion API for the type, not of the type itself.
+
+Review URL: <a href="https://codereview.chromium.org/556893002">https://codereview.chromium.org/556893002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181669 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8ef0289e7caa4a53dca9137e6fffdd60aa55fa6d"><time datetime="2014-09-09">2014-09-09</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move PromiseTracker to the heap (fix build after r181646.)</summary>
+              <pre class=body>
+Follow up r181646 and make PromiseTracker work better with Oilpan.
+
+TBR=oilpan-reviews
+BUG=340522
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/558673003">https://codereview.chromium.org/558673003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181662 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6d784be3126d2dacb86e5a9b1e1375536a698883"><time datetime="2014-09-09">2014-09-09</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>MIDIAccess::create(): add missing adoptRefCountedGarbageCollected().</summary>
+              <pre class=body>
+<a href="mailto:R=ager@chromium.org,haraken@chromium.org">R=ager@chromium.org,haraken@chromium.org</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/552143003">https://codereview.chromium.org/552143003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181653 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8c33177074ab109238d17fd4559691dcabe2a46d"><time datetime="2014-09-09">2014-09-09</time></a>
         <tr>
           <td>jl
           <td class=message>
