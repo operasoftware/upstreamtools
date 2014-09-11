@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 323,
+    <a href="#chromium">Chromium</a>: 329,
   
-    <a href="#blink">Blink</a>: 1505,
+    <a href="#blink">Blink</a>: 1517,
   
     <a href="#v8">V8</a>: 20.
   
@@ -44,6 +44,113 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove c++11 enum scope in copy_or_move_operation_delegate.cc</summary>
+              <pre class=body>
+Followup to CL 469993007, which added a c++11 style enum scope,
+but we haven&#39;t officially switched to c++11 yet.
+
+BUG=360088
+
+Review URL: <a href="https://codereview.chromium.org/562513005">https://codereview.chromium.org/562513005</a>
+
+Cr-Commit-Position: refs/heads/master@{#294358}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/8bf5f9c78492317b0400ba2743b7d339a8ee81fa"><time datetime="2014-09-11">2014-09-11</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove c++11 enum scope in ServiceWorkerRegistration::OnRestoreFinished</summary>
+              <pre class=body>
+Followup to CL 506043002: remove unneeded c++11 enum scope for
+consistency (and since we haven&#39;t officially switched to c++11 yet).
+
+BUG=398355
+
+Review URL: <a href="https://codereview.chromium.org/560993002">https://codereview.chromium.org/560993002</a>
+
+Cr-Commit-Position: refs/heads/master@{#294311}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/36e00d9f13a77da9d30e6df5923335529f16f34f"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove lambda expression in quic</summary>
+              <pre class=body>
+Followup to CL 478153003 which added a lambda expression even
+though we haven&#39;t officially switched to c++11 yet.
+
+Review URL: <a href="https://codereview.chromium.org/565443002">https://codereview.chromium.org/565443002</a>
+
+Cr-Commit-Position: refs/heads/master@{#294269}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b90815544b10850c6021db5ca8d6ec8bb0785068"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Clean up security_wrappers.cc/.h</summary>
+              <pre class=body>
+It was introduced by <a href="https://codereview.chromium.org/10344009">https://codereview.chromium.org/10344009</a> for
+keychain reauthorization, now that keychain reauthorization was
+removed by <a href="https://codereview.chromium.org/183713003">https://codereview.chromium.org/183713003</a> we no longer
+need most of it.
+
+BUG=411926
+
+Review URL: <a href="https://codereview.chromium.org/558233002">https://codereview.chromium.org/558233002</a>
+
+Cr-Commit-Position: refs/heads/master@{#294187}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/a80fc361793678a90258e50aa1c9f697c7df64e0"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Binary size tool: Don&#39;t escape text that won&#39;t be parsed.</summary>
+              <pre class=body>
+Only text that will be sent through an HTML parser needs to be parsed.
+Escaping more than that results in &amp;amp; and &amp;lt; and similar in the
+output.
+
+<a href="mailto:R=andrewhayden@chromium.org">R=andrewhayden@chromium.org</a>
+
+BUG=412708
+
+Review URL: <a href="https://codereview.chromium.org/562623002">https://codereview.chromium.org/562623002</a>
+
+Cr-Commit-Position: refs/heads/master@{#294176}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/1dc8a928dcc8ddf51198f067e694de250e771891"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>joleksy
+          <td class=message>
+            <details>
+              <summary>Rename gyp variable use_titlecase_in_grd_files -&gt; use_titlecase_in_grd</summary>
+              <pre class=body>
+See tools/gyp/pylib/gyp/input.py:
+&#34;Sections mathing the regexp &#39;_(dir|file|path)s?$&#39; are also considered PathSections.&#34;
+
+Standard gyp variables should not be named like this.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/552203002">https://codereview.chromium.org/552203002</a>
+
+Cr-Commit-Position: refs/heads/master@{#294166}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/a91e86837e8af810c14543eb01851b7881ff95d8"><time datetime="2014-09-10">2014-09-10</time></a>
         <tr>
           <td>henriks
           <td class=message>
@@ -6116,6 +6223,250 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Add toDouble() helper, and use toFloat()/toDouble() for conversions</summary>
+              <pre class=body>
+Like we do for all integer types, use helper functions from V8Binding.h
+to convert from v8::Value to native types. These helper functions throw
+all exceptions via their ExceptionState&amp; argument, which means we don&#39;t
+need to initialize a v8::TryCatch in the caller.
+
+The helpers initialize a v8::TryCatch if they call in to V8 to convert
+a value, but they do not do this if the value is already of the correct
+type.
+
+Review URL: <a href="https://codereview.chromium.org/567503002">https://codereview.chromium.org/567503002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181812 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/33a4ddd363f908e112cd98c6f5773de13441fbe0"><time datetime="2014-09-11">2014-09-11</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use invalidation set for :empty pseudo changes.</summary>
+              <pre class=body>
+Schedule an invalidation set for :empty on an element when the pseudo state
+changes instead of a SubtreeStyleChange.
+
+<a href="mailto:R=chrishtr@chromium.org,esprehn@chromium.org">R=chrishtr@chromium.org,esprehn@chromium.org</a>
+BUG=412999
+
+Review URL: <a href="https://codereview.chromium.org/565493002">https://codereview.chromium.org/565493002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181805 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c8efcc05b7acf878b1c94ad94d969c08e4d8e9dc"><time datetime="2014-09-11">2014-09-11</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Removed stray declared method.</summary>
+              <pre class=body>
+Left-over from the removal of diffNeedsRecompositeLayer [1].
+
+[1] <a href="https://codereview.chromium.org/360103008">https://codereview.chromium.org/360103008</a>
+
+<a href="mailto:R=abarth@chromium.org">R=abarth@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/565583002">https://codereview.chromium.org/565583002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181801 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f4bc0e7049a0a29cf063754e9758ce7235d24b2d"><time datetime="2014-09-11">2014-09-11</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Don&#39;t clear StyleAffectedByEmpty before recalc.</summary>
+              <pre class=body>
+ElementRareData::resetStyleState() cleared the StyleAffectedByEmpty flag
+before recalculating style for an Element. However, this flag can be set by
+style recalc for any of the sibling subtree elements in the presence of
+adjacent combinators. If you have a LocalStyleChange for the element that
+may become empty/non-empty, the flag can not be cleared since it may never
+be set again unless the siblings affected by the :empty state are
+recalculated.
+
+<a href="mailto:R=esprehn@chromium.org">R=esprehn@chromium.org</a>
+BUG=412950
+
+Review URL: <a href="https://codereview.chromium.org/558333002">https://codereview.chromium.org/558333002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181799 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4ed3f7079546a9ab0414a43783a5b76a806d1ccd"><time datetime="2014-09-11">2014-09-11</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Simplify TONATIVE_*_EXCEPTIONSTATE* macros</summary>
+              <pre class=body>
+By assuming that the |value| expression throws exceptions via the
+ExceptionState object, and only via it, we can skip the v8::TryCatch
+declaration and check. This is good since it is less code, and since
+v8::TryCatch objects cost a bit of CPU time to initialize.
+
+The correctness of this patch depends on
+  <a href="https://codereview.chromium.org/559553003/">https://codereview.chromium.org/559553003/</a>
+and
+  <a href="https://codereview.chromium.org/556273003/">https://codereview.chromium.org/556273003/</a>
+that make sure all type conversion helpers with an ExceptionState&amp;
+argument actually throw all exceptions via it.
+
+Review URL: <a href="https://codereview.chromium.org/552143004">https://codereview.chromium.org/552143004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181796 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7ed1a8ef01a256d74b4099278565b2396502f8e6"><time datetime="2014-09-11">2014-09-11</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>Avoid ambiguous overload for operator= in FrameView.h</summary>
+              <pre class=body>
+Followup to CL 459633002, this fixes a compile error with some
+older toolchains.
+
+BUG=401254
+
+Review URL: <a href="https://codereview.chromium.org/558283003">https://codereview.chromium.org/558283003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181772 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8699a77c516c36966c3767ed89bdab1fa8101481"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Simplify DOMWindowProperty and its unregistration.</summary>
+              <pre class=body>
+As LocalDOMWindow controls the registration lifetime of its
+DOMWindowProperties, there&#39;s no need to offer a separate unregistration
+mechanism. Remove it, simplify notification code + retire now unused
+LocalDOMWindow back reference on DOMWindowProperty.
+
+R=haraken,ager
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/558213002">https://codereview.chromium.org/558213002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181758 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/07675b8c751ca1252fcb34033f8c376ed4b87456"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use correct viewport for intrinsic size-less SVG images in &lt;svg:image&gt;</summary>
+              <pre class=body>
+Prior to <a href="https://codereview.chromium.org/403393002">https://codereview.chromium.org/403393002</a>, an SVG image which had
+no intrinsic size specified, would (somewhat accidentally) get the
+&lt;image&gt;&#39;s bounds set as their container size. After said CL, the container
+size would never be set, and hence remain as 300x150. This will result in
+incorrect scale factors being used when painting, and hence an incorrectly
+scaled result.
+Revert to setting the &lt;image&gt;&#39;s bounds when the SVG image does not have an
+intrinsic size.
+
+BUG=411906
+
+Review URL: <a href="https://codereview.chromium.org/551043006">https://codereview.chromium.org/551043006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181752 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/515b1afb793f3a081f409776a818371130d9b9da"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Shrink canonicalizedTitle a bit.</summary>
+              <pre class=body>
+Noticed that it was (in content_shell x64 for Linux) 421 and 425 bytes
+which seemed excessive. Just rewrote it a bit to do less work for the
+same result.
+
+gcc (not even going to guess why createQualifiedName changed):
+---------------------------------------------------------------------------------------------------------------------
+ -635 - Source: /home/bratell/src/chromium/src/third_party/WebKit/Source/core/dom/Document.cpp - (gained 8, lost 643)
+---------------------------------------------------------------------------------------------------------------------
+  Grown symbols:
+         +8: WebCore::Document::didChangeVisibilityState() type=t, (was 299 bytes, now 307 bytes)
+  Shrunk symbols:
+        -64: WebCore::createQualifiedName(WTF::AtomicString const&amp;, WTF::AtomicString const&amp;, WebCore::ExceptionState&amp;) type=t, (was 1112 bytes, now 1048 bytes)
+       -579: WebCore::Document::updateTitle(WTF::String const&amp;) type=t, (was 1541 bytes, now 962 bytes)
+
+clang:
+  Shrunk symbols:
+       -241: WebCore::Document::updateTitle(WTF::String const&amp;) type=t, (was 1124 bytes, now 883 bytes)
+
+Review URL: <a href="https://codereview.chromium.org/390003003">https://codereview.chromium.org/390003003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181746 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e394ef552a99f5683407a1af2024e4c7ea4ff80a"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>In generated dictionary toImpl(), throw all exceptions via ExceptionState</summary>
+              <pre class=body>
+This allows us to simplify callers by not having a v8::TryCatch there, and
+instead only check the ExceptionState object.
+
+Review URL: <a href="https://codereview.chromium.org/556273003">https://codereview.chromium.org/556273003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181738 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/467a3d3910919f4331b16b3fe2d71f33d4892685"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Adjust error-handling for invalid filter primitive references</summary>
+              <pre class=body>
+When a filter primitive has an &#39;in&#39; (or, where applicable, &#39;in2&#39;) attribute
+that references a non-existent result, treat that reference as having the
+default value (==no value) instead of producing an error.
+This aligns with Presto and IE.
+
+BUG=411833
+
+Review URL: <a href="https://codereview.chromium.org/558693002">https://codereview.chromium.org/558693002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181733 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ffa39ae78904542a2864e2cb7d1c16c24ee2324e"><time datetime="2014-09-10">2014-09-10</time></a>
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[SVG2] Add support for marker orient=&#34;auto-start-reverse&#34;.</summary>
+              <pre class=body>
+Spec: <a href="https://svgwg.org/svg2-draft/painting.html#OrientAttribute">https://svgwg.org/svg2-draft/painting.html#OrientAttribute</a>
+
+BUG=367748
+
+Review URL: <a href="https://codereview.chromium.org/539833004">https://codereview.chromium.org/539833004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181732 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f6886b44510d8cd384f4e926721c79287411486c"><time datetime="2014-09-10">2014-09-10</time></a>
         <tr>
           <td>jl
           <td class=message>
