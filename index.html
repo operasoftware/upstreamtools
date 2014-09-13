@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 336,
+    <a href="#chromium">Chromium</a>: 339,
   
-    <a href="#blink">Blink</a>: 1522,
+    <a href="#blink">Blink</a>: 1527,
   
     <a href="#v8">V8</a>: 20.
   
@@ -44,6 +44,56 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>use OVERRIDE macro consistently in spdy_framer_test.cc</summary>
+              <pre class=body>
+Followup to CL 485833002, which mixed use of the OVERRIDE macro and
+bare override.
+
+BUG=400336
+
+Review URL: <a href="https://codereview.chromium.org/562353004">https://codereview.chromium.org/562353004</a>
+
+Cr-Commit-Position: refs/heads/master@{#294645}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/db3bbbfe84dd4caab3a266a91d1204c45fb6c901"><time datetime="2014-09-12">2014-09-12</time></a>
+        <tr>
+          <td>landell
+          <td class=message>
+            <details>
+              <summary>Forward kPpapiInProcess flag to zygote process</summary>
+              <pre class=body>
+Make sure this flag can be used for out of sandbox plugin setup.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/562073002">https://codereview.chromium.org/562073002</a>
+
+Cr-Commit-Position: refs/heads/master@{#294616}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/5dfcebfb91df269e8e1b09cb0b19f843921e763b"><time datetime="2014-09-12">2014-09-12</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Remove commandline flag &#34;--enable-targeted-style-recalc&#34;.</summary>
+              <pre class=body>
+The feature is always on regardless. The corresponding CL for removing the
+runtime flag in blink is <a href="https://codereview.chromium.org/562403002">https://codereview.chromium.org/562403002</a>
+
+<a href="mailto:R=jochen@chromium.org">R=jochen@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/544163003">https://codereview.chromium.org/544163003</a>
+
+Cr-Commit-Position: refs/heads/master@{#294586}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/76406971406e3c9a144d3e7ab6cb4291815c6668"><time datetime="2014-09-12">2014-09-12</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -6344,6 +6394,93 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Reduce memory peaks when generating data urls for images.</summary>
+              <pre class=body>
+Adding Vector&lt;char&gt; to a String results in one (or more) temporary
+copies of that Vector&lt;char&gt; since Vector isn&#39;t a pointer/smart pointer
+like the types usually used.
+
+Luckily there are many other ways to solve the problem. With StringBuilder
+or using a String.
+
+BUG=389085 (related to, not necessarily fixing it)
+
+Review URL: <a href="https://codereview.chromium.org/559103002">https://codereview.chromium.org/559103002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181925 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b15a0c165fe1fc9baef07ab7a393755fdbfe5ce6"><time datetime="2014-09-12">2014-09-12</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Make some use of RenderSVGResourceClipper::clipPathUnits()</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/570583002">https://codereview.chromium.org/570583002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181909 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e816af1d1a4a01581cd963e1da27db97bd350d1c"><time datetime="2014-09-12">2014-09-12</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Factor out common code from RenderSVGResource*::postApplyResource</summary>
+              <pre class=body>
+Factor the fill/stroke code out of the various paint-server
+RenderSVGResource subclasses and move it to SVGRenderSupport.
+
+Review URL: <a href="https://codereview.chromium.org/571463002">https://codereview.chromium.org/571463002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181907 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fb2faaef11ab76fa519d8f80d22f6e5a03c931ba"><time datetime="2014-09-12">2014-09-12</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Un-inline requestPaintingResource in RenderSVGResource.cpp</summary>
+              <pre class=body>
+This method is large, and the gain that propagating the constant mode from
+its caller is relatively small. Make {fill,stroke}PaintingResource default
+inline instead, and un-inline requestPaintingResource and move it into the
+class.
+
+Review URL: <a href="https://codereview.chromium.org/563973003">https://codereview.chromium.org/563973003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181906 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a07af0becb3f813877ba42a534869b24d2da6ac6"><time datetime="2014-09-12">2014-09-12</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move transient/temporary RenderSVGResource state out of SVGInlineTextBox</summary>
+              <pre class=body>
+The SVGInlineTextBox member variable |m_paintingResource| is only set
+temporarily within paintTextWithShadows and paintDecorationWithStyle, and
+is only accessed from the methods that do setup and teardown of it. This
+makes it possible to remove it from SVGInlineTextBox and instead manage it
+in through a variable on the stack.
+The lifetime management is kept manual/the same as previously. The
+interaction with TextRun::RenderingContext is changed to be passed as a
+parameter to the added &#34;scope&#34; object in order to simplify the interface
+a bit.
+
+Review URL: <a href="https://codereview.chromium.org/568723002">https://codereview.chromium.org/568723002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181904 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4b0e1400845c6665bcba6b68ff318e8ca23d98c3"><time datetime="2014-09-12">2014-09-12</time></a>
         <tr>
           <td>jl
           <td class=message>
