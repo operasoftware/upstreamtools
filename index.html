@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 339,
   
-    <a href="#blink">Blink</a>: 1527,
+    <a href="#blink">Blink</a>: 1530,
   
     <a href="#v8">V8</a>: 20.
   
@@ -6394,6 +6394,73 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Dispose ApplicationCacheHost on DocumentLoader finalization.</summary>
+              <pre class=body>
+To cater to Oilpan, introduce an explicit dispose() for
+ApplicationCacheHost, which the DocumentLoader will call upon when
+being finalized.
+
+Without it, a DocumentLoader might clear the Persistent reference to
+its ApplicationCacheHost, but it&#39;ll still be accessible to embedder
+notifications via its WebApplicationCacheHost until the next Oilpan GC
+strikes. If so, the callbacks might access a now-dead DocumentLoader.
+
+R=ager
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/571003002">https://codereview.chromium.org/571003002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181973 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5c22afcdcb294e3cad300a9740844a76ade916d0"><time datetime="2014-09-15">2014-09-15</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Simplify and weaken DOMWindowProperty unregistration</summary>
+              <pre class=body>
+A DOMWindowProperty object should not be kept alive if it is only
+referenced from a LocalDOMWindow&#39;s set of registered DOMWindowProperty
+objects. Adjust LocalDOMWindow&#39;s DOMObjectProperty references to be 
+weak for Oilpan also.
+
+In most cases, DOMWindowProperty objects will remain alive for at least
+as long as their associated LocalDOMWindow, but this cannot be assumed.
+The added test checks for that wrt DOMSelection objects created from
+shadow roots.
+
+Along with adjusting the weakness of these references, simplify
+how LocalDOMWindow unregisters its DOMWindowProperty objects. That is,
+no longer have the instances unregister themselves, but let the
+LocalDOMWindow remove them all after having notified them of impending
+destruction.
+
+R=haraken,ager
+BUG=413316
+
+Review URL: <a href="https://codereview.chromium.org/569643002">https://codereview.chromium.org/569643002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181970 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/136ea4aae159b9050d86cca357df18caeb24a9ee"><time datetime="2014-09-15">2014-09-15</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Remove unused argument in computeRenderStyle.</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/572623002">https://codereview.chromium.org/572623002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181969 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fa522ca52018282235dbe008a035082f3c441318"><time datetime="2014-09-15">2014-09-15</time></a>
         <tr>
           <td>bratell
           <td class=message>
