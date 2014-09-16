@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 339,
+    <a href="#chromium">Chromium</a>: 343,
   
-    <a href="#blink">Blink</a>: 1530,
+    <a href="#blink">Blink</a>: 1533,
   
     <a href="#v8">V8</a>: 20.
   
@@ -44,6 +44,97 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Binary size tool, handle symbols with no path better.</summary>
+              <pre class=body>
+If symbols with the same name appeared in the same &#34;file&#34; (as in
+&#39;unknown file&#39;) then they collided and only the last such symbol was
+remembered. This happened for me with string symbols where all
+.L.str21 were in the ?? file.
+
+Store a list of symbol sizes per symbol and file. If there are more
+than one symbol size per symbol and file, compare them differently to
+see what might have happened.
+
+A bit hard to read code. I hope it won&#39;t have to be changed.
+
+BUG=412335
+<a href="mailto:R=andrewhayden@chromium.org">R=andrewhayden@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/551203004">https://codereview.chromium.org/551203004</a>
+
+Cr-Commit-Position: refs/heads/master@{#295033}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/352f1537f3774bb29bb084ad95e30bf52930917a"><time datetime="2014-09-16">2014-09-16</time></a>
+        <tr>
+          <td>arjanl
+          <td class=message>
+            <details>
+              <summary>Don&#39;t paint text outside display area</summary>
+              <pre class=body>
+When rendering text, we don&#39;t have to render glyphs that fall outside of
+the display area. This change stops processing glyps when we&#39;re outside
+the display area, and stops processing further style ranges if those are
+outside the display area. Note that the equivalent functionality is
+already in place for Windows text rendering.
+
+This fixes an issue where text rendering would become very slow when
+rendering big strings.
+
+BUG=413540
+
+Review URL: <a href="https://codereview.chromium.org/543073002">https://codereview.chromium.org/543073002</a>
+
+Cr-Commit-Position: refs/heads/master@{#295023}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/88328875c41317c728a20b78308218c176a6ee72"><time datetime="2014-09-16">2014-09-16</time></a>
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Fix Cocoa setFrame:display: call type mismatch</summary>
+              <pre class=body>
+-[NSView setFrame:display:] accepts BOOL as the second argument,
+passing nil only worked by accident.
+
+Review URL: <a href="https://codereview.chromium.org/569263002">https://codereview.chromium.org/569263002</a>
+
+Cr-Commit-Position: refs/heads/master@{#294862}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b40f80fada5945194089a42883c389b313c6493e"><time datetime="2014-09-15">2014-09-15</time></a>
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Fix Cocoa accessibility callbacks type mismatch</summary>
+              <pre class=body>
+If you compile without preprocessing (first clang -E then clang, like
+ccache does by default without CCACHE_CPP2), you will see warnings like:
+
+you will see warnings like:
+
+../../content/browser/accessibility/browser_accessibility_cocoa.mm:1155:12:error: implicit conversion of NULL constant to &#39;NSUInteger&#39; (aka
+&#39;unsigned long&#39;) [-Werror,-Wnull-conversion]
+    return __null;
+    ~~~~~~ ^~~~~~
+           0
+
+It&#39;s because we return nil when 0 or NO should be returned instead,
+normal clang compile won&#39;t catch that for some reason, perhaps because
+its checking is less strict for preprocessed code.
+
+Review URL: <a href="https://codereview.chromium.org/565383003">https://codereview.chromium.org/565383003</a>
+
+Cr-Commit-Position: refs/heads/master@{#294848}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/8cd33c00d45afc7879d352d471f857c9faab59db"><time datetime="2014-09-15">2014-09-15</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -6394,6 +6485,87 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Shrink Document::parseQualifiedName a bit.</summary>
+              <pre class=body>
+It duplicated a large code chunk by using a templated function full of 
+generic code both for UChar and LChar. By extracting the generic code
+to the caller the amount of duplicate code was greatly reduced. With clang
+the function shrunk from 5 KB to 2.5 KB (which is still large but not crazy
+large).
+
+-----------------------------------------------------------------------------------------------------------------------
+ -2196 - Source: /home/bratell/src/chromium/src/third_party/WebKit/Source/core/dom/Document.cpp - (gained 0, lost 2196)
+-----------------------------------------------------------------------------------------------------------------------
+  Shrunk symbols:
+      -2196: blink::Document::parseQualifiedName(WTF::AtomicString const&amp;, WTF::AtomicString&amp;, WTF::AtomicString&amp;, blink::ExceptionState&amp;) type=t, (was 4808 bytes, now 2612 bytes)
+
+BUG=
+<a href="mailto:R=fs@opera.com">R=fs@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/555813003">https://codereview.chromium.org/555813003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182043 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c18e4200b82cc58b37f406d54b157eebd8e72fa8"><time datetime="2014-09-16">2014-09-16</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move geometry generation out of RenderSVGResource*::postApplyResource</summary>
+              <pre class=body>
+The code-paths that will operate on RenderSVGResources that are
+paint-servers are quite easily distinguishable from those where other
+resources are involved - and because all paint-servers have the same kind
+of geometry generation it&#39;s trivially hoistable into the relevant
+callsites.
+This allows the argument list of postApplyResource to be shortened
+(removing |path|, |shape| and |resourceMode| since they are now unused).
+Since all callers of the hoisted function (fillOrStrokePrimitive) passes
+either a |shape| or a |path| - but never both, we can split this method into
+its two logical parts.
+Doing this however reveal that the |shape| variant can be trivially folded
+into it&#39;s callers since they will always end up calling the same method.
+This means that fillOrStrokePrimitive is replaced with/transformed into
+fillOrStrokePath.
+
+Review URL: <a href="https://codereview.chromium.org/571923002">https://codereview.chromium.org/571923002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182004 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b07112336043c43838bc99d0e4d1437ae4014d01"><time datetime="2014-09-15">2014-09-15</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: handle delayed removal of PromiseTracker promises.</summary>
+              <pre class=body>
+When a PromiseTracker is disabled as part of shutting down, it clears
+its ID -&gt; vector(PromiseData) map. However, once the unfulfilled
+promises in that cleared map later on have their weak callbacks
+invoked, we weren&#39;t prepared for the map being empty. Add the required
+empty map check.
+
+A further twist for Oilpan is that the ScopedPersistents held on the
+PromiseData objects need to be cleared out eagerly to prevent v8
+assuming that these objects will leak -- they won&#39;t, but will only be
+cleared at the next Oilpan GC. Be more eager, and promptly clear out
+the references.
+
+R=haraken
+BUG=414163
+
+Review URL: <a href="https://codereview.chromium.org/571043002">https://codereview.chromium.org/571043002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@181979 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b0b02b336d3f75168455a0355fca1a231a825662"><time datetime="2014-09-15">2014-09-15</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
