@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 343,
   
-    <a href="#blink">Blink</a>: 1533,
+    <a href="#blink">Blink</a>: 1542,
   
     <a href="#v8">V8</a>: 20.
   
@@ -6485,6 +6485,172 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Eliminate SVGTextRunRenderingContext::m_activePaintingResource</summary>
+              <pre class=body>
+With geometry being emitted independently from the paint server setup, it
+becomes possible to just rely on the current state of the GC when
+painting SVG font text (which in turn allows us to make stricter
+assumptions with more confidence elsewhere.)
+
+Review URL: <a href="https://codereview.chromium.org/565063003">https://codereview.chromium.org/565063003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182153 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/74d663b3de02ee74a701148567ceeba0157beb3c"><time datetime="2014-09-17">2014-09-17</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Have window.closed return true when frame is closed.</summary>
+              <pre class=body>
+This Window property currently returns true once the Frame it is attached
+to is destroyed, which exposes an object memory management detail that&#39;s
+hard to emulate with Oilpan.
+
+Switch instead to having &#34;closed&#34; return true once the frame is externally
+closed or the (i)frame is removed&amp;detached.
+
+Adjust tests to check for this instead -- no indication that this slight
+adjustment in behavior will pose a compatibility problem.
+
+R=haraken,ager,mkwst,tkent
+BUG=414658
+
+Review URL: <a href="https://codereview.chromium.org/538323003">https://codereview.chromium.org/538323003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182148 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b4e442fe37dd474df89b221e0f6fbf083730bc0c"><time datetime="2014-09-17">2014-09-17</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: have ScriptStreamingTest correctly trace its PendingScript.</summary>
+              <pre class=body>
+As testing::Test is not on the heap, accommodate Oilpan by wrapping up
+ScriptStreamingTest&#39;s PendingScript (a part object containing a Member)
+inside an object that is on the heap &amp; use a Persistent to refer to it
+from ScriptStreamingTest.
+
+R=ager
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/576853003">https://codereview.chromium.org/576853003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182136 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/950989fb2c87550e55d5a09f04071998b96b1c1f"><time datetime="2014-09-17">2014-09-17</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r182077.</summary>
+              <pre class=body>
+TBR=oilpan-reviews
+BUG=390125
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/572933005">https://codereview.chromium.org/572933005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182104 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d8b00012f09ef7c47afbf0a6d3cea50691bd5d6e"><time datetime="2014-09-16">2014-09-16</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Remove TargetedStyleRecalc runtime flag.</summary>
+              <pre class=body>
+The flag has had status=stable for more than 4 months.
+
+<a href="mailto:R=chrishtr@chromium.org,esprehn@chromium.org,abarth@chromium.org">R=chrishtr@chromium.org,esprehn@chromium.org,abarth@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/562403002">https://codereview.chromium.org/562403002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182098 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/41882a2cf7387466cc7f325179fdda33b0ca85cf"><time datetime="2014-09-16">2014-09-16</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Get rid of anonymous table* wrappers when they are no longer needed.</summary>
+              <pre class=body>
+When a renderer is removed, don&#39;t just see if an anonymous parent
+should be destroyed, but keep looking further up in the ancestry
+as well.
+
+BUG=389129
+
+Review URL: <a href="https://codereview.chromium.org/540453003">https://codereview.chromium.org/540453003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182082 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e02afca77774579bf48f72a6d2b342e6a0e49797"><time datetime="2014-09-16">2014-09-16</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Drop SVG_PAINTTYPE_* values that are never used (written)</summary>
+              <pre class=body>
+Drop SVG_PAINTTYPE_UNKNOWN and SVG_PAINTTYPE_*_ICCCOLOR since there&#39;s
+currently no code that sets anything to those values, and since they&#39;re
+no longer part of a Web-facing API.
+
+Review URL: <a href="https://codereview.chromium.org/545033003">https://codereview.chromium.org/545033003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182066 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/86d538398647bf67a26726c1d8270ec800040875"><time datetime="2014-09-16">2014-09-16</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Drop RenderSVGResource::{fill,stroke}PaintingResource shims</summary>
+              <pre class=body>
+Makes for slightly less branchy code in some places, otherwise very little
+difference.
+
+Review URL: <a href="https://codereview.chromium.org/577583002">https://codereview.chromium.org/577583002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182058 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b59a47a17a0246e2fb3faaee621c0b20baf53542"><time datetime="2014-09-16">2014-09-16</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Tidy up ConsoleMessage callstack inclusion, fix Worker console crashes</summary>
+              <pre class=body>
+Follow up r181319 (+ r180544) and annotate ConsoleMessages from
+console.count() and console.timeEnd() with a call stack.
+
+Not doing so broke the WorkerConsole::reportMessageToConsole()
+assumption that a ConsoleMessage has a call stack. An unnecessary
+assumption to make, so instead have it mirror how &#34;non-Worker&#34; console
+messages are handled when reported, and allow &#34;stackless&#34; messages.
+
+R=kozyatinskiy,aandrey,jochen
+BUG=413223
+
+Review URL: <a href="https://codereview.chromium.org/562683003">https://codereview.chromium.org/562683003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182056 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/435acf076b2d5f0243b4a87c5d5ef904ae59bed3"><time datetime="2014-09-16">2014-09-16</time></a>
         <tr>
           <td>bratell
           <td class=message>
