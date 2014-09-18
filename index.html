@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 343,
+    <a href="#chromium">Chromium</a>: 348,
   
-    <a href="#blink">Blink</a>: 1542,
+    <a href="#blink">Blink</a>: 1548,
   
     <a href="#v8">V8</a>: 20.
   
@@ -44,6 +44,100 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>use absolute path to clang plugins</summary>
+              <pre class=body>
+clang + icecc has problems finding libFindBadConstructs.so, probably
+due to a path bug in icecc.
+
+We can however workaround this bug by using the canonical absolute path
+instead of an absolute path that includes redundant directories (ie
+remove &#34;tools/clang/scripts/../../../&#34; from the middle).  This has the
+benefit of simplifying and shortening clang compile commands.
+
+BUG=409571
+
+Review URL: <a href="https://codereview.chromium.org/525733005">https://codereview.chromium.org/525733005</a>
+
+Cr-Commit-Position: refs/heads/master@{#295446}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/e98080bad4592b495158eaaf2bc10f03b6ead511"><time datetime="2014-09-18">2014-09-18</time></a>
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Don&#39;t split text runs on underline style change</summary>
+              <pre class=body>
+BUG=392154
+
+Review URL: <a href="https://codereview.chromium.org/371413002">https://codereview.chromium.org/371413002</a>
+
+Cr-Commit-Position: refs/heads/master@{#295444}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/a7fd79d2cddafb635489bd5a2a65dc647af6a927"><time datetime="2014-09-18">2014-09-18</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Binary Size tool: Check DWARF format only when possible.</summary>
+              <pre class=body>
+The tool can be run with a preprocessed nm file as input and trying
+to run a DWARF version check in that case won&#39;t work.
+
+BUG=415084
+<a href="mailto:R=andrewhayden@chromium.org">R=andrewhayden@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/573273002">https://codereview.chromium.org/573273002</a>
+
+Cr-Commit-Position: refs/heads/master@{#295443}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/87b3e5c74d8197d28c663dc567f2e683a45c7350"><time datetime="2014-09-18">2014-09-18</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>don&#39;t build IpcNetworkManager unit tests in non-webrtc builds</summary>
+              <pre class=body>
+Followup to CL 565773003, ipc_network_manager_unittest.cc seems to be
+webrtc-specific, so it shouldn&#39;t be built when webrtc is disabled.
+
+Review URL: <a href="https://codereview.chromium.org/554913004">https://codereview.chromium.org/554913004</a>
+
+Cr-Commit-Position: refs/heads/master@{#295356}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/47565bb702a13947acb5115be1f8ed5d4357a216"><time datetime="2014-09-17">2014-09-17</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Make the net logging code more compact.</summary>
+              <pre class=body>
+The generation of the lookup table between errors and strings for
+the net log expanded to 37 KB, due to the repeated code. Rewriting
+the code to a loop and it shrank by roughly 75%.
+
+Total change: -32087 bytes
+==========================
+  3 added, totalling +960 bytes across 1 sources
+  60 removed, totalling -1143 bytes across 1 sources
+  1 shrunk, for a net change of -31904 bytes (36336 bytes before, 4432 bytes after) across 1 sources
+
+BUG=
+<a href="mailto:R=mmenke@chromium.org">R=mmenke@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/574433002">https://codereview.chromium.org/574433002</a>
+
+Cr-Commit-Position: refs/heads/master@{#295338}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/3795272d194b346ef1f066936cb20e67bd4b5dba"><time datetime="2014-09-17">2014-09-17</time></a>
         <tr>
           <td>bratell
           <td class=message>
@@ -6485,6 +6579,146 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Shrink isValidNameNonASCII by using U16_NEXT only once.</summary>
+              <pre class=body>
+This function was much larger than expected (314 bytes in gcc) and I think
+it is because U16_NEXT is a large macro. Use it once instead of
+twice.
+
+Seems to have saved 144 bytes with gcc. U16_NEXT must be a crazily large macro:
+
+  Shrunk symbols:
+       -144: WebCore::Document::isValidName(WTF::String const&amp;) type=t, (was 1253 bytes, now 1109 bytes)
+
+74 bytes saved with clang:
+ Shrunk symbols:
+        -74: WebCore::Document::isValidName(WTF::String const&amp;) type=t, (was 1190 bytes, now 1116 bytes)
+
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/387313002">https://codereview.chromium.org/387313002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182236 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/dadf5a004d8cfd99fd1ef0a6a8472141f77c180f"><time datetime="2014-09-18">2014-09-18</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Support getComputedStyle for non-rendered pseudo elements.</summary>
+              <pre class=body>
+Computed style for pseudo elements exist and is defined by [1] regardless
+of whether the pseudo element, or its ancestor, is rendered or not [2].
+We make sure that the computed pseudo element style hangs off of the
+RenderStyle of the ancestor, or the computed style in the ancestor&#39;s
+rare-data if the ancestor is not rendered.
+
+getCachedPseudoStyle, getUncachedPseudoStyle, and pseudoStyleForElement are
+all written to not return anything if the pseudo element is not rendered.
+That is the reason for calling pseudoStyleForElement in a special mode at
+the end of Element::computedStyle to force creating and adding the pseudo
+style to the cache.
+
+This CL does not try to support computed style for pseudo elements which
+are not in the document.
+
+[1] <a href="http://dev.w3.org/csswg/cssom/#dom-window-getcomputedstyle">http://dev.w3.org/csswg/cssom/#dom-window-getcomputedstyle</a>
+[2] <a href="http://dev.w3.org/csswg/cssom/#::after-pseudo-element">http://dev.w3.org/csswg/cssom/#::after-pseudo-element</a>
+
+<a href="mailto:R=esprehn@chromium.org">R=esprehn@chromium.org</a>
+BUG=414088
+
+Review URL: <a href="https://codereview.chromium.org/572043002">https://codereview.chromium.org/572043002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182203 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b8a994e2be583eaf0135f56117201b0d04b738b6"><time datetime="2014-09-18">2014-09-18</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Simplify window.closed testing.</summary>
+              <pre class=body>
+Instead of keeping a separate Frame flag, have LocalDOMWindow::closed
+consider the presence of a FrameHost on the frame. It&#39;ll be cleared
+during detach and impending frame closure, and is observationally
+equivalent to keeping an unnecessary extra flag.
+
+R=dcheng,ager
+BUG=414658
+
+Review URL: <a href="https://codereview.chromium.org/544013005">https://codereview.chromium.org/544013005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182201 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0c0822429ae7aded7b420aa8254f35222aa04e56"><time datetime="2014-09-18">2014-09-18</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Drop redundant checks for a color when the primary resource is a color</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/574373004">https://codereview.chromium.org/574373004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182164 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7b254727a74dea1614dba11f66fd5dfdb546009c"><time datetime="2014-09-17">2014-09-17</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Align assumptions in RenderSVGResourceSolidColor with other paint servers</summary>
+              <pre class=body>
+Since the SVG fonts code-path no longer directly call
+RenderSVGResource::applyResource, the same pre-conditions should hold
+for RenderSVGResourceSolidColor as for the other paint servers. Drop the
+existing (stale) comment and assert that |object| and |style| are
+non-null instead.
+
+Review URL: <a href="https://codereview.chromium.org/559653006">https://codereview.chromium.org/559653006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182159 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8bd91ec0764cf16c8be4eb0d9280d28ae10fda09"><time datetime="2014-09-17">2014-09-17</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Make style building for &#39;font-size&#39; less custom.</summary>
+              <pre class=body>
+This change adds a FontDescription::Size structure which represents a
+(specified) font size in transit. The conversion from CSSValue* to
+font size (now FontDescription::Size) has been moved to
+StyleBuilderConverter. This reduces the dependency on RenderStyle/CSSValue
+in FontBuilder.
+
+Keyword sizes are now resolved into actual float sizes in FontBuilder::
+setSize. This happens only if the FontDescription::Size has a keyword size,
+but has no float value size. The idea is that if both a keyword size
+and float value size is provided from the outside, it means we inherit
+the &#34;entire&#34; Size as-is, and no re-resolving of the keyword size is
+necessary.
+
+The m_fontSizehasViewportUnits flag has been removed. StyleBuilderConverter
+is now marking the relevant style directly (more or less) during conversion
+instead.
+
+Review URL: <a href="https://codereview.chromium.org/468793003">https://codereview.chromium.org/468793003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182154 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/392c60650be362d401e16768112d41090eafd8f1"><time datetime="2014-09-17">2014-09-17</time></a>
         <tr>
           <td>fs
           <td class=message>
