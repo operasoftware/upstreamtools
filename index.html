@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 348,
   
-    <a href="#blink">Blink</a>: 1548,
+    <a href="#blink">Blink</a>: 1554,
   
     <a href="#v8">V8</a>: 20.
   
@@ -6579,6 +6579,135 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>[SVG] Restore the non-selection style after painting the selected run</summary>
+              <pre class=body>
+After having painted the selection-styled text run, the resources need to
+be re-acquired with the non-selection style.
+
+BUG=415632
+
+Review URL: <a href="https://codereview.chromium.org/585563002">https://codereview.chromium.org/585563002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182311 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3141a6f7da6bf475ec4a12f0a27731cccb1d4082"><time datetime="2014-09-19">2014-09-19</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Avoid calculating style for ::before/::after without content.</summary>
+              <pre class=body>
+A universal ::before or ::after rule without content triggers calculation
+of pseudo style for most elements on <a href="http://theverge.com">theverge.com</a> just to find that most of
+them won&#39;t be rendered due to the missing content.
+
+Check if matching ::before or ::after rules actually contain a content
+value before marking the render style with setHasPseudoStyle.
+
+This change reduces the style recalc time by ~50% when expanding the
+comments section on <a href="http://theverge.com">theverge.com</a> articles.
+
+<a href="mailto:R=esprehn@chromium.org,eseidel@chromium.org">R=esprehn@chromium.org,eseidel@chromium.org</a>
+BUG=412558
+
+Review URL: <a href="https://codereview.chromium.org/570713002">https://codereview.chromium.org/570713002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182308 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/92803cb0fb91bdf8cfa21f0eaec5e8cf2d23a862"><time datetime="2014-09-19">2014-09-19</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Prevent reading stale/invalid data when applying a &lt;pattern&gt;</summary>
+              <pre class=body>
+RenderSVGResourcePattern::applyResource was checking the value of
+PatternAttributes::patternUnits() before it had been set from the element,
+meaning it could have been stale after having been updated, or plain wrong
+since the default value is oBB.
+Hoist the PatternAttribute setup out of buildPattern() to make sure
+|m_attributes| is valid when read.
+The |resourceMode| attribute passed to buildPattern() is removed because
+it is unused.
+
+BUG=415619
+
+Review URL: <a href="https://codereview.chromium.org/579243004">https://codereview.chromium.org/579243004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182268 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/18c63ee355762896ca06a30d706e8156cd0a70fb"><time datetime="2014-09-18">2014-09-18</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Mark media/media-controller-media-fragment-uri-initial-playback-position.html as flaky</summary>
+              <pre class=body>
+BUG=415620
+<a href="mailto:TBR=amogh.bihani@samsung.com">TBR=amogh.bihani@samsung.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/584653002">https://codereview.chromium.org/584653002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182259 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c2a844546f5896a6a33ae233085ea12a7f95a708"><time datetime="2014-09-18">2014-09-18</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Simplify fallback-handling for SVG_PAINTTYPE_URI_*</summary>
+              <pre class=body>
+De-duplicate some of the logic for determining a fallback for a
+non-existant url(...). This also fixes the case where a SVGResources
+object is available, but the fallback is &#34;none&#34;.
+
+BUG=415622
+
+Review URL: <a href="https://codereview.chromium.org/577283003">https://codereview.chromium.org/577283003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182253 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a581194d80467f740bec55bda88aa12d504f694e"><time datetime="2014-09-18">2014-09-18</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Prevent more script-observable cases of HTMLMediaElement GC</summary>
+              <pre class=body>
+This is intended to cover all cases where Gecko prevents GC:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=26515#c5">https://www.w3.org/Bugs/Public/show_bug.cgi?id=26515#c5</a>
+
+Additionally, change the behavior for MediaSource so that an
+HTMLMediaElement attached to a MediaSource is never collected. Since the
+reverse is also true (see MediaSource::hasPendingActivity) a connected
+media element + media source pair will now live as long as the document.
+
+LayoutTests for the new cases in HTMLMediaElement::hasPendingActivity()
+were added:
+
+media/gc-while-delaying-the-load-event.html (was timeout)
+http/tests/media/gc-while-network-loading.html (was timeout)
+media/gc-while-playing.html (was pass)
+media/gc-while-seeking.html (was timeout)
+http/tests/media/media-source/mediasource-htmlmediaelement-lifetime.html (was failure)
+
+BUG=400659
+
+Review URL: <a href="https://codereview.chromium.org/552303006">https://codereview.chromium.org/552303006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182247 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/21980cb5acc1e2bf1801bd110a5d4c21b0111bf3"><time datetime="2014-09-18">2014-09-18</time></a>
         <tr>
           <td>bratell
           <td class=message>
