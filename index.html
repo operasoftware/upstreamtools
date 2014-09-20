@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 348,
   
-    <a href="#blink">Blink</a>: 1554,
+    <a href="#blink">Blink</a>: 1558,
   
     <a href="#v8">V8</a>: 20.
   
@@ -6579,6 +6579,100 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Move Frame to the Oilpan heap.</summary>
+              <pre class=body>
+Move Frame and related classes to the Oilpan heap.
+
+R=haraken,dcheng,ager,tkent
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/517043003">https://codereview.chromium.org/517043003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182337 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f8455e511aabe0432a4d9a4d59e736edef49f2d9"><time datetime="2014-09-19">2014-09-19</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove HTMLMediaElement::isPlaying()</summary>
+              <pre class=body>
+It&#39;s unused as of r182247:
+<a href="https://codereview.chromium.org/552303006">https://codereview.chromium.org/552303006</a>
+
+BUG=400659
+
+Review URL: <a href="https://codereview.chromium.org/583203002">https://codereview.chromium.org/583203002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182333 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e37863948e43d3b5ebf10da1dd1c80bd8ae9383f"><time datetime="2014-09-19">2014-09-19</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Ensure that hasPendingActivity() is false for stopped media elements</summary>
+              <pre class=body>
+Where stopped means that ActiveDOMObject::stop() has been called.
+
+All the conditions in hasPendingActivity() are now false after stop():
+
+ - m_shouldDelayLoadEvent is set to false by userCancelledLoad() -&gt;
+   setShouldDelayLoadEvent(false).
+
+ - m_networkState is either NETWORK_EMPTY or NETWORK_IDLE after
+   userCancelledLoad().
+
+ - couldPlayEnoughData() returns false because m_paused is now set to
+   true by stop().
+
+ - m_seeking is now set to false by stop().
+
+ - m_mediaSource is set to null by userCancelledLoad() -&gt;
+   closeMediaSource().
+
+ - m_asyncEventQueue-&gt;hasPendingEvents() is false because stop() calls
+   m_asyncEventQueue-&gt;close().
+
+TEST=LayoutTests/media/gc-pending-event-inactive-document.html
+
+This test reliably hits the assert that revealed this problem:
+<a href="https://codereview.chromium.org/584633004">https://codereview.chromium.org/584633004</a>
+
+BUG=400659
+
+Review URL: <a href="https://codereview.chromium.org/587683002">https://codereview.chromium.org/587683002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182332 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7318b1bc8e472f8029e1b732cf4cb47c4d29135a"><time datetime="2014-09-19">2014-09-19</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Conversion to Dictionary is trivial (can&#39;t fail)</summary>
+              <pre class=body>
+Conversion from v8::Value to blink::Dictionary simply stores a reference
+to the v8::Value in the blink::Dictionary object, so can&#39;t throw an
+exception.  Adjust v8_conversion_is_trivial() accordingly, to avoid
+use of TONATIVE_VOID(_INTERNAL) and thus declaration of unnecessary
+v8::TryCatch locals.
+
+BUG=413257
+
+Review URL: <a href="https://codereview.chromium.org/587653002">https://codereview.chromium.org/587653002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182331 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8d5cbd4deb3d72773140e43189c1b45248657561"><time datetime="2014-09-19">2014-09-19</time></a>
         <tr>
           <td>fs
           <td class=message>
