@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 348,
   
-    <a href="#blink">Blink</a>: 1559,
+    <a href="#blink">Blink</a>: 1561,
   
     <a href="#v8">V8</a>: 20.
   
@@ -6579,6 +6579,42 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: tighten up allowed allocation of some types.</summary>
+              <pre class=body>
+No need to support these objects as being part of collections; adjust
+macro usage.
+
+R=ager
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/592673002">https://codereview.chromium.org/592673002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182398 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e79ee6d394b9cc34a826ade847594cf51359f778"><time datetime="2014-09-22">2014-09-22</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Assert that frame() derefs a non-null pointer.</summary>
+              <pre class=body>
+The Frame references kept by these objects are assumed to be non-null;
+assert that it is so.
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/593583002">https://codereview.chromium.org/593583002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182394 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/542b834e8d8a4dc51f32650157efff29019aad81"><time datetime="2014-09-22">2014-09-22</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
