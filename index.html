@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 348,
+    <a href="#chromium">Chromium</a>: 350,
   
-    <a href="#blink">Blink</a>: 1561,
+    <a href="#blink">Blink</a>: 1571,
   
     <a href="#v8">V8</a>: 20.
   
@@ -44,6 +44,41 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>landell
+          <td class=message>
+            <details>
+              <summary>Fix URLRequest pepper unit test</summary>
+              <pre class=body>
+This patch creates new URLLoaderResource objects for each request
+since those objects can&#39;t be reused.
+
+Calling Open() on an instance of URLLoaderResource requires that mode_
+is set to MODE_WAITING_TO_OPEN. After Open() has been called mode_
+will never reach that state again.
+
+BUG=None
+
+Review URL: <a href="https://codereview.chromium.org/582623002">https://codereview.chromium.org/582623002</a>
+
+Cr-Commit-Position: refs/heads/master@{#296155}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/3d0670895e15c8e913d8d14322d3eefd9693b92d"><time datetime="2014-09-23">2014-09-23</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove empty gl.gyp file</summary>
+              <pre class=body>
+Followup to an old CL: 7283013, which attempted to delete this file.
+
+Review URL: <a href="https://codereview.chromium.org/587103004">https://codereview.chromium.org/587103004</a>
+
+Cr-Commit-Position: refs/heads/master@{#295982}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/241405ee4bf55feb3de2c6bffc6b892294563793"><time datetime="2014-09-22">2014-09-22</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -6579,6 +6614,255 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>ckulakowski
+          <td class=message>
+            <details>
+              <summary>Don&#39;t crash when an image fails to decode.</summary>
+              <pre class=body>
+The code that extracts the image for the default frame from an animated
+bitmap should check that the image data is actually available.
+It is possible for decoding to fail for invalid frames, Blink should not
+crash when this happens.
+
+BUG=408026
+
+Review URL: <a href="https://codereview.chromium.org/535823002">https://codereview.chromium.org/535823002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182496 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/083e053ad526c8c26eaaf7e0f7d9b1e0c8752def"><time datetime="2014-09-23">2014-09-23</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Support [DeprecateAs] and [MeasureAs] on constants</summary>
+              <pre class=body>
+For constants with [DeprecateAs] or [MeasureAs], create the property
+using v8::Template::SetNativeDataProperty() instead, using a simple
+accessor callback function that handles the deprecation/measuring and
+returns the constant value.
+
+BUG=358506
+
+Review URL: <a href="https://codereview.chromium.org/577303002">https://codereview.chromium.org/577303002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182492 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/63c07864df208386ac203522b44d09b1e7efb59d"><time datetime="2014-09-23">2014-09-23</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Mark http/tests/media/gc-while-network-loading.html as slow</summary>
+              <pre class=body>
+The test has slow runs of 3 seconds on Linux and Mac, and occasionally
+times out at 6 seconds on Windows.
+
+A more sophisticated server-side script could serve the first half of
+the file very quickly and then trickle the rest.
+
+BUG=400659
+NOTRY=true
+<a href="mailto:R=fs@opera.com">R=fs@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/591313003">https://codereview.chromium.org/591313003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182483 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b867c4aaa294bb716f722d8805a018d54ab1ef73"><time datetime="2014-09-23">2014-09-23</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Mark media/gc-while-playing.html as not flaky</summary>
+              <pre class=body>
+It is no longer failing after r182442:
+<a href="https://codereview.chromium.org/587373002/">https://codereview.chromium.org/587373002/</a>
+
+BUG=400659
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/593013002">https://codereview.chromium.org/593013002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182478 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a65660546ae9a0e68390a91b93e4def2cf614926"><time datetime="2014-09-23">2014-09-23</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: make Supplementable tracing more regular.</summary>
+              <pre class=body>
+With PersistentHeapSupplementable retired, follow up and only provide a
+trace() method for a Supplementable that&#39;s on the heap.
+
+No changes made for Supplements: an empty trace() method is still
+provided for off-heap supplements, as this is the better solution
+while we still are using the transition type WillBeHeapSupplement
+for all the supplement objects.
+
+R=haraken,zerny,wibling
+BUG=395036
+
+Review URL: <a href="https://codereview.chromium.org/587393002">https://codereview.chromium.org/587393002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182477 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4523c2af89e6d2f525509ee3a490c9758b27e0ce"><time datetime="2014-09-23">2014-09-23</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Skip unnecessary v8::TryCatch in V8StringResource::prepare()</summary>
+              <pre class=body>
+Since we&#39;re only interested in detecting and propagating an exception,
+check whether v8::Value::ToString()&#39;s return value is an empty handle
+instead of using a v8::TryCatch local.
+
+This is faster, since initializing a v8::TryCatch has non-zero cost, and
+should also be less binary code (v8::Handle::IsEmpty() is inlined and
+simply a null check.)
+
+BUG=413257
+
+Review URL: <a href="https://codereview.chromium.org/576323004">https://codereview.chromium.org/576323004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182476 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/48a6a02efbb360d43a6234fef8f0f927d3cc2701"><time datetime="2014-09-23">2014-09-23</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: adjust placement of no-FrameOwner assert.</summary>
+              <pre class=body>
+Assert that all Frames will have been detached from their owner upon
+finalization, not just local ones.
+
+R=haraken, dcheng
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/594503002">https://codereview.chromium.org/594503002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182443 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2f37bf12cb901f8593c1f5d0bcdeb7df59213a3b"><time datetime="2014-09-22">2014-09-22</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Do not fire an initial periodic timeupdate event while currentTime is 0</summary>
+              <pre class=body>
+m_lastTimeUpdateEventMovieTime has been initialized to infinity for as
+long as the code has existed: <a href="http://trac.webkit.org/changeset/41907">http://trac.webkit.org/changeset/41907</a>
+
+This may be the cause of a spurious timeupdate event on Mac 10.9 in a
+recently added test: <a href="https://codereview.chromium.org/578243003">https://codereview.chromium.org/578243003</a>
+
+TEST=media/gc-while-playing.html
+
+BUG=400659
+
+Review URL: <a href="https://codereview.chromium.org/587373002">https://codereview.chromium.org/587373002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182442 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fc8dcfc88a627e77de542d6932ff430ff2585c5b"><time datetime="2014-09-22">2014-09-22</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Expanding Type Traits to make Vector use mem ops more.</summary>
+              <pre class=body>
+Vector has several code paths depending on whether the encapsulated
+object can be handled with memmove/memcpu/memset or not, and those
+are used by many objects. Unfortunately that requires manual hinting
+in each class because the type traits used are not strong enough.
+
+By using type trait functions available in all modern compilers it&#39;s
+possible to more intelligently select the most optimal code path.
+
+Preferably the code would use the new type traits in C++ 11 but
+unfortunately that requires a modern c++ library. Luckily, those
+libraries are mostly just thin wrappers on top of de facto-standard
+compiler extension functions anyway.
+
+With clang this cuts away 105 KB of machine code in blink. Mostly by 
+no longer needing copy constructor and assignment operators in many
+classes so those can be stripped from the binary. 
+
+With gcc the changes are differently. The binary is smaller but only 
+by 5 KB. It&#39;s clear that many Vector methods have become more compact but
+it seems gcc compensated by spending that space elsewhere (more inlining?).
+
+I don&#39;t have as good measurement tools for Visual Studio but there was no
+huge difference in footprint.
+
+Performance, all this is from a noisy development computer with a 
+non-stable cpu clock frequency (turbo ftl...):
+
+In LayoutTests most changes are within noise levels. But it looks like 
+large tables and flexboxes might be 1-5% faster. In ParserTests 
+html5-full-render (macro-benchmark) became 2-3% faster.
+
+clang footprint numbers:
+Total change: -109940 bytes
+===========================
+  14 added, totalling +3397 bytes across 8 sources
+  19 removed, totalling -13302 bytes across 6 sources
+  8 grown, for a net change of +578 bytes (2268 bytes before, 2846 bytes after) across 6 sources
+  230 shrunk, for a net change of -100613 bytes (190909 bytes before, 90296 bytes after) across 49 sources
+
+Biggest changes:
+ -84410 - Source: /home/bratell/src/chromium/src/third_party/WebKit/Source/wtf/Vector.h - (gained 784, lost 85194)
+  -6934 - Source: /home/bratell/src/chromium/src/third_party/WebKit/Source/wtf/Deque.h - (gained 0, lost 6934)
+  -2267 - Source: /home/bratell/src/chromium/src/third_party/WebKit/Source/core/animation/css/CSSAnimationData.cpp - (gained 904, lost 3171)
+...
+   +245 - Source: /home/bratell/src/chromium/src/third_party/WebKit/Source/core/svg/animation/SVGSMILElement.cpp - (gained 245, lost 0)
+
+BUG=
+<a href="mailto:R=jochen@chromium.org">R=jochen@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/581683002">https://codereview.chromium.org/581683002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182427 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/226e0b916c01bbb4c2e8cb0f275d877755a6e2a9"><time datetime="2014-09-22">2014-09-22</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove HTMLMediaElement::setPausedInternal()</summary>
+              <pre class=body>
+The bits in updatePlayState() could have been inlined into stop(), but
+none of it is useful:
+
+ - isPlaying is always false because of userCancelledLoad() -&gt;
+   clearMediaPlayer(), so webMediaPlayer()-&gt;pause() is dead code.
+
+ - refreshCachedTime() will do nothing for the same reason.
+
+ - m_playbackProgressTimer.stop() is done by stopPeriodicTimers().
+
+ - mediaControls()-&gt;playbackStopped() is pointless because the document
+   is no longer doing layout/rendering.
+
+Review URL: <a href="https://codereview.chromium.org/594493003">https://codereview.chromium.org/594493003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182422 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7f259b302f19392a28a183a658667d2dba4723d3"><time datetime="2014-09-22">2014-09-22</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
