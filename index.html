@@ -29,9 +29,9 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 350,
   
-    <a href="#blink">Blink</a>: 1573,
+    <a href="#blink">Blink</a>: 1576,
   
-    <a href="#v8">V8</a>: 20.
+    <a href="#v8">V8</a>: 21.
   
   <p class=hint>Click message to expand
   
@@ -6614,6 +6614,85 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Inline exception handling code into PrivateScriptRunner helpers</summary>
+              <pre class=body>
+Inline the v8::TryCatch and rethrowExceptionInPrivateScript() call into
+PrivateScriptRunner&#39;s runDOMAttributeGetter(), runDOMAttributeSetter()
+and runDOMMethod().
+
+This is done to avoid duplicating the code once per actual attribute
+getter/setter callback or method callback.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/594213002">https://codereview.chromium.org/594213002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182512 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a1bfba81a197b3f3352ff27eb97c0d39182a32a9"><time datetime="2014-09-23">2014-09-23</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use style invalidation for more pseudo classes.</summary>
+              <pre class=body>
+Support descendant invalidation sets for :checked, :disabled, :enabled,
+:indeterminate, :target, :link, and :visited. Pseudo state changes for those
+classes were recalculated with SubtreeStyleChange in didAffectSelector.
+
+Instead, schedule invalidation sets when these pseudo states change.
+
+This change does not fully fix 388965 as there are still several
+SubtreeStyleChange instances left.
+
+The pseudo flags could be removed from the SelectRuleFeatureSet since they
+will now be present through invalidation sets in the m_cssRuleFeatureSet.
+
+<a href="mailto:R=esprehn@chromium.org">R=esprehn@chromium.org</a>
+BUG=388965
+
+Review URL: <a href="https://codereview.chromium.org/540533004">https://codereview.chromium.org/540533004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182507 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d710ac77646cad66b98668d50eb21e24e5533fcb"><time datetime="2014-09-23">2014-09-23</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Make StorageArea cleanly observe its cached frame</summary>
+              <pre class=body>
+StorageArea caches the result of its last access check wrt to a
+LocalFrame. With Oilpan, we have to weakly hold on to that frame
+so as not to have scripts be able to retain an entire frame.
+
+Also, the cached frame might be destroyed before the StorageArea
+holding a reference is; the implementation is better off clearing
+that reference when this happens (with or without Oilpan.)
+
+Address both by making StorageArea a FrameDestructionObserver that
+observes its cached frame. It is a weak reference and it will be
+cleared upon frame destruction.
+
+To accommodate StorageArea switching the frame it is observing,
+make FrameDestructionObserver::observeFrame() again a protected
+method.
+
+R=haraken,ager,zerny
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/594083002">https://codereview.chromium.org/594083002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182501 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/84d1c4b8390bb8150d07960bb7aa86694ef9c3de"><time datetime="2014-09-23">2014-09-23</time></a>
         <tr>
           <td>jl
           <td class=message>
@@ -39400,6 +39479,28 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@149844 bbb929c8-8fbe-4397-9dbb-9b
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Preserve message when rethrowing exception</summary>
+              <pre class=body>
+A new message was always generated if there is a the top-most verbose
+TryCatch, even when rethrowing an exception from a TryCatch that is going
+out of scope, and we already have a message.
+
+BUG=v8:3583
+LOG=Y
+<a href="mailto:R=yangguo@chromium.org">R=yangguo@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/587703002">https://codereview.chromium.org/587703002</a>
+
+Patch from Jens Widell &lt;<a href="mailto:jl@opera.com">jl@opera.com</a>&gt;.
+
+git-svn-id: <a href="https://v8.googlecode.com/svn/branches/bleeding_edge@24152">https://v8.googlecode.com/svn/branches/bleeding_edge@24152</a> ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+            </details>
+          <td><a href="https://github.com/v8/v8/commit/ddd6388264b37d060ce489e9acb90f9e931e2180"><time datetime="2014-09-23">2014-09-23</time></a>
         <tr>
           <td>mathiasb
           <td class=message>
