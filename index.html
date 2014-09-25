@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 350,
+    <a href="#chromium">Chromium</a>: 353,
   
-    <a href="#blink">Blink</a>: 1576,
+    <a href="#blink">Blink</a>: 1589,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,61 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>joleksy
+          <td class=message>
+            <details>
+              <summary>Use changed_button_flags() when converting MouseEvent to blink::WebMouseEvent.</summary>
+              <pre class=body>
+Event::flags() contains all the buttons that are being held down during event,
+while MouseEvent::changed_button_flags() contains the buttons that are
+actually pressed/released during the press/release event (and this is what we
+really are interested in).
+
+This is a follow up to <a href="https://codereview.chromium.org/302593002/">https://codereview.chromium.org/302593002/</a> which caused problems
+during integration, and it seems to me it got just closed, so I am opening a new one.
+
+Review URL: <a href="https://codereview.chromium.org/585393002">https://codereview.chromium.org/585393002</a>
+
+Cr-Commit-Position: refs/heads/master@{#296691}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/a1d1985ccaae302c911676f41c0b062ee7c32371"><time datetime="2014-09-25">2014-09-25</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add test runner support for overriding web_security_enabled preference.</summary>
+              <pre class=body>
+Have TestRunner::OverridePreference() recognize &#34;WebKitWebSecurityEnabled&#34;
+as a boolean preference which controls the web_security_enabled web
+preference.
+
+R=mkwst,jochen
+BUG=254993
+
+Review URL: <a href="https://codereview.chromium.org/601513002">https://codereview.chromium.org/601513002</a>
+
+Cr-Commit-Position: refs/heads/master@{#296543}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b45d62cc833513e74b1550284900e3c52f93706a"><time datetime="2014-09-24">2014-09-24</time></a>
+        <tr>
+          <td>mmaliszkiewicz
+          <td class=message>
+            <details>
+              <summary>BufferedDataSource: don&#39;t reallocate buffer unnecessarily</summary>
+              <pre class=body>
+When buffer size is different than kInitialReadBufferSize then
+intermediate buffer would be reallocated on each Read() operation
+which is unnecessary.
+
+Review URL: <a href="https://codereview.chromium.org/594733004">https://codereview.chromium.org/594733004</a>
+
+Cr-Commit-Position: refs/heads/master@{#296469}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/360e2c0067dec6b1b2c25c654d3f9e4a7f257a34"><time datetime="2014-09-24">2014-09-24</time></a>
         <tr>
           <td>landell
           <td class=message>
@@ -6614,6 +6669,252 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Conversion of Promise is trivial</summary>
+              <pre class=body>
+Promise values are converted using ScriptPromise::cast(), which is trivial
+insofar as it can&#39;t cause an exception to be thrown.
+
+BUG=413257
+
+Review URL: <a href="https://codereview.chromium.org/606603002">https://codereview.chromium.org/606603002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182676 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1140138237ad4384f76900afb108de527db51eb1"><time datetime="2014-09-25">2014-09-25</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Conversion of Date is trivial</summary>
+              <pre class=body>
+Date values are converted using toCoreDate() in V8Bindings.h, which
+specifically handles native Date objects and numbers, converting each in
+a trivial way, and returning NaN for all other values.
+
+Note: WebIDL actually only allows Date objects, so toCoreDate() supports
+too much and would thus be even more trivial if it was to be adjusted to
+fully match the specification.
+
+BUG=413257
+
+Review URL: <a href="https://codereview.chromium.org/604723002">https://codereview.chromium.org/604723002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182668 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/494b88af56d7c7fcf7fa13c88db0cddee53df331"><time datetime="2014-09-25">2014-09-25</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Let toParentMediaElement return null for the media element itself</summary>
+              <pre class=body>
+An element isn&#39;t its own parent, and actual usage doesn&#39;t require it.
+
+TEST=LayoutTests/media/video-webkit-appearance.html
+
+Without the fix, this test hits the ASSERT_WITH_SECURITY_IMPLICATION
+in mediaControlElementType(), via paintMediaPlayButton().
+
+BUG=414100
+<a href="mailto:R=fs@opera.com">R=fs@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/598013002">https://codereview.chromium.org/598013002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182664 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/803532feac28a4728e072b5f7a672b5b1951ebea"><time datetime="2014-09-25">2014-09-25</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Have MixedContentChecker and ProgressTracker keep a LocalFrame Member.</summary>
+              <pre class=body>
+Tidy up the Oilpan handling of these two FrameLoader-owned objects,
+and arrange it so that their LocalFrame back references are correctly
+traced.
+
+R=haraken,mkwst
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/596653006">https://codereview.chromium.org/596653006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182652 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ed8ea3dad8b6b27b118081ead680d251d22ab24d"><time datetime="2014-09-25">2014-09-25</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r182602</summary>
+              <pre class=body>
+TBR=haraken
+BUG=413257
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/598153002">https://codereview.chromium.org/598153002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182628 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fc0afb4abeefaf9e2e6c39190102a7328c6be8a8"><time datetime="2014-09-24">2014-09-24</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Change SVG paint server fallback for a non-existent URL</summary>
+              <pre class=body>
+SVG2 changed the behavior from &#34;...the document is in error&#34; to
+&#34;...it must be treated as if none was specified&#34;.
+
+BUG=416580
+
+Review URL: <a href="https://codereview.chromium.org/593173002">https://codereview.chromium.org/593173002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182616 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0a485827be3a2461318adb4851fdf79bb448be93"><time datetime="2014-09-24">2014-09-24</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Rewrite SVG text-decoration handling to not require GC scale-adjustment</summary>
+              <pre class=body>
+Since drawing decorations for text means drawing &#34;regular geometry&#34; rather
+than specially-scaled glyphs of a font, there&#39;s no need to first append
+the inverse scale-factor the CTM and then scale the geometry - just adjust
+the computed (scaled) font-metrics and emit unscaled geometry.
+This allows for the stroke thickness adjustment to only be applied in the
+text-case, so sink it out of PaintingResourceScope.
+Also modify the function that computes the offset for the decorations to
+do so relative to the baseline, and rename it accordingly.
+
+Review URL: <a href="https://codereview.chromium.org/601763002">https://codereview.chromium.org/601763002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182615 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f4f6a891c5e948d5259bf4e173cc57d2915a6f21"><time datetime="2014-09-24">2014-09-24</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove unused headers from RenderSVGResource.h</summary>
+              <pre class=body>
+Fix fallout and do some (very minor) drive-by fixing.
+
+Review URL: <a href="https://codereview.chromium.org/601833002">https://codereview.chromium.org/601833002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182614 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1216f1ba0dbe3d9ecc9309f3eb046956fa0e7e39"><time datetime="2014-09-24">2014-09-24</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Make SerializedScriptValue arguments less of a special case</summary>
+              <pre class=body>
+Remove the special handling of SerializedScriptValue arguments from the
+methods.cpp template, and instead fix the already existing handling in
+v8_types.py.
+
+The conversion uses an ExceptionState object to report exceptions, and is
+now handled like any other conversion that does that.
+
+BUG=413257
+
+Review URL: <a href="https://codereview.chromium.org/600863002">https://codereview.chromium.org/600863002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182613 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2c11352c75112ddbebfe7651325049e956cbc6ba"><time datetime="2014-09-24">2014-09-24</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Conversion of any, NodeFilter and XPathNSResolver arguments is trivial</summary>
+              <pre class=body>
+The &#39;any&#39; type is converted to by constructing a ScriptValue object, which
+simply wraps the v8::Value.
+
+The &#39;NodeFilter&#39; and &#39;XPathNSResolver&#39; types are converted to by wrapping
+the v8::Value in custom objects, with &#34;soft&#34; type checks (null is returned
+on failure.)
+
+BUG=413257
+
+Review URL: <a href="https://codereview.chromium.org/600833003">https://codereview.chromium.org/600833003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182612 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/42d4c027e9f50a8ee18be60f0897964ecc58e507"><time datetime="2014-09-24">2014-09-24</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move color/gradient/pattern out of StrokeData</summary>
+              <pre class=body>
+The &#34;other methods&#34; referred to in the documentation of StrokeData, only
+use the stroke information that pertain to the &#34;geometry&#34; of the stroke.
+This means that m_color/m_gradient/m_pattern are dead weight except for
+the use in GraphicsContextState. Move those fields to GCS for better
+separation of &#34;geometry&#34; and &#34;ink&#34;.
+
+Review URL: <a href="https://codereview.chromium.org/597053003">https://codereview.chromium.org/597053003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182610 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/16e6f7f6d92cd230bef37a23f74fac0c3fce368f"><time datetime="2014-09-24">2014-09-24</time></a>
+        <tr>
+          <td>mathiash
+          <td class=message>
+            <details>
+              <summary>Add WTF::String::emptyString16Bit.</summary>
+              <pre class=body>
+This makes sure WTF::String::make16BitFrom8BitSource returns a 16-bit string,
+which some callers count on even if the source string happens to be empty.
+
+BUG=412032
+
+Review URL: <a href="https://codereview.chromium.org/587173005">https://codereview.chromium.org/587173005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182606 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/85c283a6e8417526f534dfc56ba51dddfe720970"><time datetime="2014-09-24">2014-09-24</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Use ExceptionState to throw exceptions when converting arrays</summary>
+              <pre class=body>
+In the to*NativeArray(), toImplArray() and toImplArguments() helpers,
+throw all exceptions via an ExceptionState&amp; argument.
+
+To facilitate this, also add an ExceptionState&amp; argument to the various
+NativeValueTraits&lt;&gt;::nativeValue() implementations, and add a
+V8StringValue::prepare() variant that takes an ExceptionState&amp; argument.
+
+BUG=413257
+
+Review URL: <a href="https://codereview.chromium.org/555133003">https://codereview.chromium.org/555133003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182602 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4d5ca33d598c051d1937c595462169c1f36b0ad7"><time datetime="2014-09-24">2014-09-24</time></a>
         <tr>
           <td>jl
           <td class=message>
