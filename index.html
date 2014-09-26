@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 353,
+    <a href="#chromium">Chromium</a>: 354,
   
-    <a href="#blink">Blink</a>: 1589,
+    <a href="#blink">Blink</a>: 1601,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,44 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Make the GPU feature info code more compact.</summary>
+              <pre class=body>
+AddExtensionString is called quite a lot, always with a constant
+string literal, which makes it a bit unnecessary to convert the
+argument to a std::string before every function call.
+
+This small change cuts away 7 KB of the machine code:
+
+Total change: -7208 bytes
+=========================
+  1 added, totalling +559 bytes across 1 sources
+  1 removed, totalling -471 bytes across 1 sources
+  1 shrunk, for a net change of -7296 bytes (25422 bytes before, 18126 bytes after) across 1 sources
+  267984 unchanged, totalling 50299073 bytes
+Per-source Analysis:
+
+--------------------------------------------------------------------------------------------------------------------
+ -7208 - Source: /home/bratell/src/chromium/src/gpu/command_buffer/service/feature_info.cc - (gained 559, lost 7767)
+--------------------------------------------------------------------------------------------------------------------
+  New symbols:
+       +559: gpu::gles2::FeatureInfo::AddExtensionString(char const*) type=t, size=559 bytes
+  Removed symbols:
+       -471: gpu::gles2::FeatureInfo::AddExtensionString(std::string const&amp;) type=t, size=471 bytes
+  Shrunk symbols:
+      -7296: gpu::gles2::FeatureInfo::InitializeFeatures() type=t, (was 25422 bytes, now 18126 bytes)
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/571073003">https://codereview.chromium.org/571073003</a>
+
+Cr-Commit-Position: refs/heads/master@{#296785}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/6a4eb0c42d3f1b29f82b7e49f33b89ea6eadc6a9"><time datetime="2014-09-25">2014-09-25</time></a>
         <tr>
           <td>joleksy
           <td class=message>
@@ -6669,6 +6707,230 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove column set range map from RenderFlowThread.</summary>
+              <pre class=body>
+It was calculated for every block, but never used.
+
+Review URL: <a href="https://codereview.chromium.org/481333005">https://codereview.chromium.org/481333005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182759 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/32312d40fa42451526d151d15853615ff80006aa"><time datetime="2014-09-26">2014-09-26</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Move adjustForUnsplittableChild() from RenderBlock to RenderBlockFlow.</summary>
+              <pre class=body>
+BUG=302024
+<a href="mailto:R=leviw@chromium.org">R=leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/567463004">https://codereview.chromium.org/567463004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182757 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c584291ab3c2d04cfd71d1c58793eeeec837a68f"><time datetime="2014-09-26">2014-09-26</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Minimal feature collector for select selectors.</summary>
+              <pre class=body>
+Use a feature collector method that collects necessary features for select
+attribute selectors. These selectors can only have element, id, class,
+attribute and :not() according to the spec, and no combinators. Blink also
+supports pseudo classes for UA shadow DOM.
+
+A motivation here is to be able to collapse
+RuleFeatureSet::collectFeaturesFromSelector into the same loop as
+updateInvalidationSets now that invalidation sets are always in use.
+
+<a href="mailto:R=chrishtr@chromium.org,esprehn@chromium.org">R=chrishtr@chromium.org,esprehn@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/600223002">https://codereview.chromium.org/600223002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182755 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5ce3b1a1a27d8348f09128e9480dcbd3d880d345"><time datetime="2014-09-26">2014-09-26</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Clean up argument conversion error handling</summary>
+              <pre class=body>
+Remove all handling of the conditional (now never generated) v8::TryCatch
+local from the code generator.
+
+Also restructure v8_value_to_local_cpp_value() which now has two major
+code paths: conversions that need error handling (strings and conversions
+that use ExceptionState,) and conversions that don&#39;t need error handling.
+The unused code path that generated code using TONATIVE_VOID() is removed.
+
+This patch does not change any generated code, aside from in the bindings
+tests.
+
+BUG=413257
+
+Review URL: <a href="https://codereview.chromium.org/611453002">https://codereview.chromium.org/611453002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182754 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f0582890ca7de6d8ac0f5bc89aed42dbe3bb892b"><time datetime="2014-09-26">2014-09-26</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Property propagation to anonymous children only needed by old multicol.</summary>
+              <pre class=body>
+The new (flowthread based) multicol implementation has no need for this.
+
+Although it IS harmless to propagate this for new multicol, better add
+a check, so that we remember to get rid of this code once we remove the
+old multicol implementation.
+
+Review URL: <a href="https://codereview.chromium.org/493283003">https://codereview.chromium.org/493283003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182748 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f7c2624ef8c8196835e563636b9c22d99f5a1b55"><time datetime="2014-09-26">2014-09-26</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Simplify SelectRuleFeatureSet class.</summary>
+              <pre class=body>
+Subclass SelectRuleFeatureSet from RuleFeatureSet instead of having it as a
+member. Also make use of the parsePseudo method to simplify the Internals
+helper.
+
+Review URL: <a href="https://codereview.chromium.org/598093005">https://codereview.chromium.org/598093005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182746 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/74bdd9ee2d842ac495c1a697caa3221bbb69b7f2"><time datetime="2014-09-26">2014-09-26</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>RenderGrid::paintChild() declared but not defined.</summary>
+              <pre class=body>
+<a href="https://codereview.chromium.org/594293002/">https://codereview.chromium.org/594293002/</a> moved paint code from RenderGrid
+to GridPainter, including the implementation of paintChild(), but the
+declaration was left behind in RenderGrid.
+
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/601113002">https://codereview.chromium.org/601113002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182745 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b7332a5d2ed99d7e014a4be71a465f5f9c4b692c"><time datetime="2014-09-26">2014-09-26</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t include nested outlines when computing repaint rects for SVG objects</summary>
+              <pre class=body>
+Because the paint invalidation rect is inflated in
+SVGRenderSupport::computeFloatRectForPaintInvalidation, rather than in
+clippedOverflowRectForPaintInvalidation (for example) the repaint rect
+being computed includes outlines from all (SVG) ancestors.
+Hoist the &#39;inflation&#39; out of computeFloatRectForPaintInvalidation (both
+the SVGRenderSupport one and its callers).
+
+BUG=417729
+
+Review URL: <a href="https://codereview.chromium.org/609463002">https://codereview.chromium.org/609463002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182744 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6fbd2a421c2c05d995cc06120edef77ffe720949"><time datetime="2014-09-26">2014-09-26</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Comply (more) with check-webkit-style in and around HTMLMediaElement</summary>
+              <pre class=body>
+<a href="mailto:R=fs@opera.com">R=fs@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/606703002">https://codereview.chromium.org/606703002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182739 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5885ce9697dc00c09daca233a98d4f802769263c"><time datetime="2014-09-26">2014-09-26</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r182688.</summary>
+              <pre class=body>
+TBR=haraken
+BUG=348919
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/602183002">https://codereview.chromium.org/602183002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182701 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fbac942f7ecb9319533219b88155a128e30da12a"><time datetime="2014-09-25">2014-09-25</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Use ExceptionState when converting string arguments to promise methods</summary>
+              <pre class=body>
+A method whose return type is Promise should never throw an exception
+directly, instead it should return a rejected promise holding the
+exception that would have been thrown.
+
+Because of this, string arguments in such methods were converted using a
+special macro that extracted the exception from the v8::TryCatch local.
+
+Since we want to get rid of that v8::TryCatch local, and also have a
+V8StringResource::prepare() overload that reports exceptions via an
+ExceptionState argument, use that for the method-returning-Promise case.
+
+BUG=413257
+
+Review URL: <a href="https://codereview.chromium.org/604833002">https://codereview.chromium.org/604833002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182687 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/35f42327fc27fc9cfb87685468214063d8d3fb4c"><time datetime="2014-09-25">2014-09-25</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove 1.3 MB of superfluous media files for LayoutTests</summary>
+              <pre class=body>
+These were unused or use where another file works just as well.
+
+Note that test.webm was corrupted (encrypted?) so if it were ever
+chosen by findMediaFile() it wouldn&#39;t work.
+
+Also remove unused formats from media-file.js.
+
+Review URL: <a href="https://codereview.chromium.org/603943002">https://codereview.chromium.org/603943002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182681 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2589857d253d80c84af1a73a3e4e76b8f659ab67"><time datetime="2014-09-25">2014-09-25</time></a>
         <tr>
           <td>jl
           <td class=message>
