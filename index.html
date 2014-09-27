@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 354,
+    <a href="#chromium">Chromium</a>: 355,
   
-    <a href="#blink">Blink</a>: 1601,
+    <a href="#blink">Blink</a>: 1605,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,20 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>Gyp cleanup after https://codereview.chromium.org/495353003</summary>
+              <pre class=body>
+BUG=408338
+
+Review URL: <a href="https://codereview.chromium.org/607073002">https://codereview.chromium.org/607073002</a>
+
+Cr-Commit-Position: refs/heads/master@{#296999}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/d9983ebf4b5464ddad65acd4f7692af72ce2a78f"><time datetime="2014-09-26">2014-09-26</time></a>
         <tr>
           <td>bratell
           <td class=message>
@@ -6707,6 +6721,89 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Initial PaintInvalidationState support for SVG</summary>
+              <pre class=body>
+Extend PaintInvalidationState with a transform, to allow computing the
+position/area of an SVG object first within the (outermost) SVG root, and
+then relative to the document.
+Handling of PaintInvalidationState is added only to RenderSVGModelObject-
+derived render objects for now.
+
+BUG=391054
+
+Review URL: <a href="https://codereview.chromium.org/598623002">https://codereview.chromium.org/598623002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182799 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d2536dc1531cb20c91f6c465a7ff00e175aa39e5"><time datetime="2014-09-27">2014-09-27</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Generate global constants in a loop rather than in sequence.</summary>
+              <pre class=body>
+The generated code just repeated the same code over and over again
+which resulted in larger machine code than necessary. Doing the
+same thing with a data table and a loop makes the code
+more compact and efficient.
+
+clang x64 diff:
+Total change: -72804 bytes
+==========================
+  281 added, totalling +21557 bytes across 1 sources
+  1482 removed, totalling -10809 bytes across 1 sources
+  2 grown, for a net change of +2 bytes (3 bytes before, 5 bytes after) across 1 sources
+  19 shrunk, for a net change of -83554 bytes (87001 bytes before, 3447 bytes after) across 17 sources
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/604743003">https://codereview.chromium.org/604743003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182780 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a9535660559d2b685cf9b3002735aa89476e64e1"><time datetime="2014-09-26">2014-09-26</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Make sure m_usePathFallback is always updated when updating shape</summary>
+              <pre class=body>
+When mutating a shape such that it would change from using the fallback
+to _not_ using the fallback, the |m_usePathFallback| flag was not updated
+to reflect this, mean that the shape could/would still be painted.
+
+BUG=417454
+
+Review URL: <a href="https://codereview.chromium.org/599103005">https://codereview.chromium.org/599103005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182770 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d13130a9a57172965534e520787d4cd519f51462"><time datetime="2014-09-26">2014-09-26</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync &#34;restrained media controller&#34; with the spec</summary>
+              <pre class=body>
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=25429">https://www.w3.org/Bugs/Public/show_bug.cgi?id=25429</a>
+
+The spec comments were already in sync.
+
+BUG=417232
+
+Review URL: <a href="https://codereview.chromium.org/262463003">https://codereview.chromium.org/262463003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182768 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ef8b03fa391c748a5cb5c4bef73dbc1a4f53c262"><time datetime="2014-09-26">2014-09-26</time></a>
         <tr>
           <td>mstensho
           <td class=message>
