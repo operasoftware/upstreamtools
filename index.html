@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 355,
+    <a href="#chromium">Chromium</a>: 357,
   
-    <a href="#blink">Blink</a>: 1610,
+    <a href="#blink">Blink</a>: 1620,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,37 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Switch from WebMediaPlayer::maxTimeSeekable() to seekable()</summary>
+              <pre class=body>
+BUG=417669
+
+Review URL: <a href="https://codereview.chromium.org/599103003">https://codereview.chromium.org/599103003</a>
+
+Cr-Commit-Position: refs/heads/master@{#297395}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b0e6f3fce92c7e2cc3df4a1d10d5508a48d1febc"><time datetime="2014-09-30">2014-09-30</time></a>
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Implement mix-blend-mode=screen using glBlendFunc.</summary>
+              <pre class=body>
+This avoids creating a temporary texture for the blending step, and
+if there&#39;s no background filter also avoids creating the backdrop texture.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/608523003">https://codereview.chromium.org/608523003</a>
+
+Cr-Commit-Position: refs/heads/master@{#297385}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/4388931142e7a999ad6a0820afde47810e050e68"><time datetime="2014-09-30">2014-09-30</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -6721,6 +6752,210 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>BatteryManager: release promise resolver once resolved.</summary>
+              <pre class=body>
+Do not retain the Promise resolver any longer than necessary.
+
+This prevents a reported document leak for detached frame uses of
+navigator.getBattery().
+
+R=haraken
+BUG=385384
+
+Review URL: <a href="https://codereview.chromium.org/619583004">https://codereview.chromium.org/619583004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182921 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e7b167f505a28ce06ac4ed56c2ba72f5d7164b92"><time datetime="2014-09-30">2014-09-30</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove default implementation of WebMediaPlayer::seekable()</summary>
+              <pre class=body>
+BUG=417669
+
+Review URL: <a href="https://codereview.chromium.org/604823002">https://codereview.chromium.org/604823002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182912 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/480e551adf33a2e924fa35928e96ecfb4d3fa57c"><time datetime="2014-09-30">2014-09-30</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Let the RenderFlowThread layer have an empty size.</summary>
+              <pre class=body>
+The RenderFlowThread has a RenderLayer used as a helper for painting. The
+layer got its bounds from the RenderFlowThread contents which is typically
+a tall strip and not the size of the area that where the contents are
+rendered. That resulted in unnecessarily expanding the height of the parent
+RenderLayer backing. The MultiColumnSet already contributes the correct
+sizes, thus we can return an empty bounding rectangle for the layer of the
+RenderFlowThread.
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=418899
+
+Review URL: <a href="https://codereview.chromium.org/612363002">https://codereview.chromium.org/612363002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182906 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ea6d13f690102b98174fd2ce5162515a1d2bd499"><time datetime="2014-09-30">2014-09-30</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Change &lt;video controls=true&gt; to just &lt;video controls&gt; in LayoutTests</summary>
+              <pre class=body>
+This avoids the appearance of the attribute value being important.
+
+NOTRY=true
+<a href="mailto:R=fs@opera.com">R=fs@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/613153002">https://codereview.chromium.org/613153002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182905 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a35caee29c7394b0775587fa4cbd80e20def25b7"><time datetime="2014-09-30">2014-09-30</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Avoid repeated code when building SVG help tables.</summary>
+              <pre class=body>
+This saves roughly 6 KB of code.
+
+  Grown symbols:
+       +123: blink::SVGFontFaceElement::parseAttribute(blink::QualifiedName const&amp;, WTF::AtomicString const&amp;) type=t, (was 330 bytes, now 453 bytes)
+  Removed symbols:
+        -94: blink::mapAttributeToCSSProperty(WTF::HashMap&lt;WTF::StringImpl*, blink::CSSPropertyID, WTF::StringHash, WTF::HashTraits&lt;WTF::StringImpl*&gt;, WTF::HashTraits&lt;blink::CSSPropertyID&gt;, WTF::DefaultAllocator&gt;*, blink::QualifiedName const&amp;) type=t, size=94 bytes
+  Shrunk symbols:
+      -2121: blink::SVGElement::animatedPropertyTypeForCSSAttribute(blink::QualifiedName const&amp;) type=t, (was 3795 bytes, now 1674 bytes)
+      -3786: blink::SVGElement::cssPropertyIdForSVGAttributeName(blink::QualifiedName const&amp;) type=t, (was 5076 bytes, now 1290 bytes)
+
+<a href="mailto:R=fs@opera.com">R=fs@opera.com</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/610593002">https://codereview.chromium.org/610593002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182903 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1734e2fa997c6ffee8b7566740f2c11057094a7c"><time datetime="2014-09-30">2014-09-30</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Transfer SecurityOrigin overrides to Workers.</summary>
+              <pre class=body>
+Should a Document be operating with a SecurityOrigin that grants
+(powerful) abilities like disabling same-origin policy or allows
+file access, have those transfer over to any new Workers created.
+
+R=horo,mkwst,jochen
+BUG=254993
+
+Review URL: <a href="https://codereview.chromium.org/594803002">https://codereview.chromium.org/594803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182897 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e0997d4e6a4cb99eaa27700895fe85877c342ba7"><time datetime="2014-09-30">2014-09-30</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Remove unused StyleChangeReason::Plugin.</summary>
+              <pre class=body>
+The &#34;reason&#34; was used when setNeedsStyleRecalc was used to trigger a
+re-attachment of plugin renderers.
+
+After landing <a href="https://codereview.chromium.org/596773002">https://codereview.chromium.org/596773002</a> a lazy re-attach is
+done instead and this constant is no longer in use.
+
+Review URL: <a href="https://codereview.chromium.org/615663003">https://codereview.chromium.org/615663003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182879 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ec38d0bfb3e79d846c615f6e76b7d13efb84254a"><time datetime="2014-09-30">2014-09-30</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Re-attach plugin renderers in the standard way.</summary>
+              <pre class=body>
+When embedded content changes its source or type, it potential needs to
+change its renderer. That was done by reattaching the renderer using a
+combination of SubtreeStyleChange plus an explicit reattach in a custom
+willRecalcStyle callback. This CL uses a standard lazy reattach instead.
+
+Three svg tests changed their expected repaint rectangles due to the
+following reason:
+
+The reattach in willRecalcStyle did not re-attach any whitespace siblings
+like the standard reattach does (certainly wrong, but I don&#39;t know if it
+actually is observable as a display property change is necessary to affect
+the whitespace renderers afaik). Moving to standard reattach makes
+reattachment of a whitespace sibling do paint invalidation for the closest
+block ancestor.
+
+It&#39;s possible that we can improve whitespace re-attachment by:
+
+1. Not invalidate block containers for whitespace renderers (will they ever
+   render anything?)
+
+2. Detect if we need to reattach whitespace siblings before we do the actual
+   reattachment.
+
+<a href="mailto:R=esprehn@chromim.org,leviw@chromium.org">R=esprehn@chromim.org,leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/596773002">https://codereview.chromium.org/596773002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182868 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/376770532e8ac6b9530127efdc8f3cc8e9a405cd"><time datetime="2014-09-29">2014-09-29</time></a>
+        <tr>
+          <td>joaoe
+          <td class=message>
+            <details>
+              <summary>Remove unused and undefined RenderImage::highQualityRepaintTimerFired</summary>
+              <pre class=body>
+Not be confused with the one in ImageQualityController.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/609293003">https://codereview.chromium.org/609293003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182854 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0b3445c5a5832f82e66e9cec6fe1fef7c6fb3c4d"><time datetime="2014-09-29">2014-09-29</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Simplify MediaController with C++11 range-base for loops</summary>
+              <pre class=body>
+Some uses of MediaElementSequence::const_iterator remain, where the
+first media element in m_mediaElements is handled differently.
+
+Review URL: <a href="https://codereview.chromium.org/612873002">https://codereview.chromium.org/612873002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182845 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2e6c361a12cee426bcd9ac7dd263fc6bb214b63c"><time datetime="2014-09-29">2014-09-29</time></a>
         <tr>
           <td>andersr
           <td class=message>
