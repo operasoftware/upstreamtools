@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 357,
+    <a href="#chromium">Chromium</a>: 359,
   
-    <a href="#blink">Blink</a>: 1620,
+    <a href="#blink">Blink</a>: 1623,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,45 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>kolczyk
+          <td class=message>
+            <details>
+              <summary>Fix for crash when attaching a frame in WebUI renderer.</summary>
+              <pre class=body>
+It crashes when trying to install property on &#34;chrome&#34; object in Javascript.
+Before the patch, the code assumes the &#34;chrome&#34; either does not exist
+or is an object. Apparently, it holds &#34;undefined&#34; value in WebUI pages.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/611483002">https://codereview.chromium.org/611483002</a>
+
+Cr-Commit-Position: refs/heads/master@{#297621}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/e1b79c756bf3ee66a4211f06d59af0c95a17d49e"><time datetime="2014-10-01">2014-10-01</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Have PlatformEventObserver implementations orderly stop on destruction.</summary>
+              <pre class=body>
+Move out the stop-a-still-observing-observer-on-destruct handling to the
+destructors of the objects that implement the pure virtual
+SendStopMessage().
+
+Cannot call upon a virtual from within ~PlatformEventObserver.
+
+<a href="mailto:R=jochen@chromium.org,mkwst@chromium.org,mlamouri@chromium.org">R=jochen@chromium.org,mkwst@chromium.org,mlamouri@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/613203002">https://codereview.chromium.org/613203002</a>
+
+Cr-Commit-Position: refs/heads/master@{#297614}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/89f23cffd859b3dc00c98686209e2ab5343ede80"><time datetime="2014-10-01">2014-10-01</time></a>
         <tr>
           <td>philipj
           <td class=message>
@@ -6752,6 +6791,56 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Retire some beacon+ping flaky test expectations.</summary>
+              <pre class=body>
+No longer signs of Windows flakiness for these; remove the expectations.
+
+<a href="mailto:R=mkwst@chromium.org,ojan@chromium.org">R=mkwst@chromium.org,ojan@chromium.org</a>
+BUG=374569
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/615053004">https://codereview.chromium.org/615053004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183036 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/516870f8aef67cdc328ec46eadfa297d173ba476"><time datetime="2014-10-01">2014-10-01</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Drop FilterDataState::Applying</summary>
+              <pre class=body>
+This state is never transitioned to, so it can be removed.
+
+Review URL: <a href="https://codereview.chromium.org/620483002">https://codereview.chromium.org/620483002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182947 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e95401945e33e368eaa496ce148e1ddb337a0a77"><time datetime="2014-09-30">2014-09-30</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>fast/dom/navigator-{with-content-}detached-no-crash.html no longer leaks.</summary>
+              <pre class=body>
+With the leak addressed, sync LeakExpectations.
+
+<a href="mailto:TBR=kouhei@chromium.org">TBR=kouhei@chromium.org</a>
+BUG=385384
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/614923003">https://codereview.chromium.org/614923003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@182929 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8f496fe3a3d0aca914b27ec68d44803df16c8a7d"><time datetime="2014-09-30">2014-09-30</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
