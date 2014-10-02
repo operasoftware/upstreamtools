@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 359,
+    <a href="#chromium">Chromium</a>: 361,
   
-    <a href="#blink">Blink</a>: 1623,
+    <a href="#blink">Blink</a>: 1625,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,52 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Use a more suitable storage for the timezone table.</summary>
+              <pre class=body>
+Creating a runtime table of std::string objects, just to copy those
+into a map, is not optimal from a runtime or footprint point of view.
+
+Making the table use raw char pointers shrinks the code and data by 75%,
+from 36 KB to 10 KB (clang, Linux, 64 bit content_shell).
+
+clang:
+Total change: -27266 bytes
+==========================
+  2 added, totalling +8448 bytes across 1 sources
+  774 removed, totalling -36401 bytes across 2 sources
+  1 grown, for a net change of +687 bytes (481 bytes before, 1168 bytes after) across 1 sources
+
+<a href="mailto:R=estade@chromium.org,mark@chromium.org">R=estade@chromium.org,mark@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/573623003">https://codereview.chromium.org/573623003</a>
+
+Cr-Commit-Position: refs/heads/master@{#297821}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/68f667d7c49c3c09cb084dd2739ce5445130464d"><time datetime="2014-10-02">2014-10-02</time></a>
+        <tr>
+          <td>kolczyk
+          <td class=message>
+            <details>
+              <summary>Don&#39;t ensure, in single-process mode, that WebUI render views are the only ones in the process, as it makes no sense</summary>
+              <pre class=body> - we have single process only and no process-separation is expected.
+
+This allows testing navigation between WebUI and standard pages
+in single-process mode.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/298133002">https://codereview.chromium.org/298133002</a>
+
+Cr-Commit-Position: refs/heads/master@{#297683}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/bf50b9cc28f7a7749183a6c241c4836d5a66c54c"><time datetime="2014-10-01">2014-10-01</time></a>
         <tr>
           <td>kolczyk
           <td class=message>
@@ -6791,6 +6837,41 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mmaliszkiewicz
+          <td class=message>
+            <details>
+              <summary>Resources restored from CSS cache should be able to trigger InsecureContent messages</summary>
+              <pre class=body>
+After a page reload resources such as an Image or a Font could be loaded
+directly from CSS cache and browser may lose information about mixed content
+so ViewHostMsg_DidDisplayInsecureContent or ViewHostMsg_DidRunInsecureContent
+messages should be sent.
+
+BUG=393572
+
+Review URL: <a href="https://codereview.chromium.org/439223005">https://codereview.chromium.org/439223005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183103 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f08ac8f1ef90a488b69f923376bca8dc5abc1a4e"><time datetime="2014-10-01">2014-10-01</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r183074.</summary>
+              <pre class=body>
+TBR=haraken
+BUG=409031
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/615843003">https://codereview.chromium.org/615843003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183079 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b77fd47a52c412dc4fd575d2ac6d57249b6cada1"><time datetime="2014-10-01">2014-10-01</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
