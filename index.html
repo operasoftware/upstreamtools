@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 361,
+    <a href="#chromium">Chromium</a>: 362,
   
-    <a href="#blink">Blink</a>: 1625,
+    <a href="#blink">Blink</a>: 1627,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,27 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>the_jk
+          <td class=message>
+            <details>
+              <summary>Make FTS2 inclusion in SQLite optional</summary>
+              <pre class=body>
+Only platforms/products that need to support old history files need
+FTS2 support in the included SQLite library.
+
+BUG=418082
+
+<a href="mailto:R=shess@chromium.org">R=shess@chromium.org</a>
+<a href="mailto:R=michaeln@chromium.org">R=michaeln@chromium.org</a>
+<a href="mailto:R=erikwright@chromium.org">R=erikwright@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/606033002">https://codereview.chromium.org/606033002</a>
+
+Cr-Commit-Position: refs/heads/master@{#298022}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/ffdda02dd3b523b35f63c0580fcde3f17cdf1e9a"><time datetime="2014-10-03">2014-10-03</time></a>
         <tr>
           <td>bratell
           <td class=message>
@@ -6837,6 +6858,47 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove battery-status/page-visibility.html test expectation.</summary>
+              <pre class=body>
+Test back to normal following r183158.
+
+<a href="mailto:TBR=jsbell@chromium.org">TBR=jsbell@chromium.org</a>
+BUG=419515
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/610563003">https://codereview.chromium.org/610563003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183161 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ef8cdb9f8ff7fa726d2cb940884634ee2a385a26"><time datetime="2014-10-02">2014-10-02</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: reliably track listening PlatformEventControllers.</summary>
+              <pre class=body>
+Turn PlatformEventController into a GC mixin with Oilpan enabled, and
+have the PlatformEventDispatcher instance track those via a Persistent
+reference.
+
+It seems precarious to rely on the controller lifetimes be maintained by
+way of other references &#39;long enough&#39; for the embedder&#39;s platform event
+handling layer.
+
+R=mlamouri,mkwst,haraken,timvolodine
+BUG=419515
+
+Review URL: <a href="https://codereview.chromium.org/618673002">https://codereview.chromium.org/618673002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183158 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b9530557529aa7a62df40a1dc0db7eb68dd84f53"><time datetime="2014-10-02">2014-10-02</time></a>
         <tr>
           <td>mmaliszkiewicz
           <td class=message>
