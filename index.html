@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 370,
+    <a href="#chromium">Chromium</a>: 371,
   
-    <a href="#blink">Blink</a>: 1629,
+    <a href="#blink">Blink</a>: 1637,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,20 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mathiash
+          <td class=message>
+            <details>
+              <summary>Allow override of user agent depending on url.</summary>
+              <pre class=body>
+BUG=419308
+
+Review URL: <a href="https://codereview.chromium.org/614343002">https://codereview.chromium.org/614343002</a>
+
+Cr-Commit-Position: refs/heads/master@{#298216}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/0cf2564781c97d1cd20428bc63f701cfc3a4a001"><time datetime="2014-10-06">2014-10-06</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -6970,6 +6984,183 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Fix when fast/events/message-port-gc-closed.html forces a GC.</summary>
+              <pre class=body>
+Delay the garbage collection until the event handler invocation has returned.
+
+R=haraken
+BUG=420061
+
+Review URL: <a href="https://codereview.chromium.org/635473002">https://codereview.chromium.org/635473002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183263 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/60947fdf85976adb38ace4aa9b238cd818dcd5fd"><time datetime="2014-10-06">2014-10-06</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Introduce new entry-points for non-paint-server RenderSVGResources</summary>
+              <pre class=body>
+The applyResource/postApplyResource entry-points defined in the
+RenderSVGResource interface are not of much use to non-paint-server
+resource-types (clipPath, mask, filter, marker), since they share
+very little semantic-wise. This also mean that they impede changes
+that could benefit the &#34;other&#34; type of resource.
+Make the mentioned methods be used only for the paint-server
+resources, and move the current functionality for mask/filter
+(clipPath already has an interface of its own, as does marker)
+to methods with the names prepareEffect/finishEffect.
+
+This removes all actual uses of the RenderSVGResourceMode
+ApplyToDefaultMode &#34;flag&#34;, so drop it.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/622393002">https://codereview.chromium.org/622393002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183261 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/80bfd35fd28572ac318333cd348eb5367bdaf349"><time datetime="2014-10-06">2014-10-06</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move ScriptController+WindowProxy to the heap.</summary>
+              <pre class=body>
+Turn LocalFrame&#39;s ScriptController into a GCed object, letting it
+correctly trace its member reference back to its owner.
+
+Having it be heap allocated also simplifies how its LocalFrame is kept
+alive across calls that invoke scripts which indirectly detaches/removes
+the frame.
+
+Transitively do the exact same for ScriptController&#39;s owned WindowProxies.
+
+R=mkwst,haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/627933002">https://codereview.chromium.org/627933002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183255 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/967212c7b7d44182095d57ec8c7cd08b33b288b3"><time datetime="2014-10-06">2014-10-06</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use fragmented bounding box for hit-test/paint clipping.</summary>
+              <pre class=body>
+When calculating the bounding box used for hit testing and paint clipping,
+use the visual bounding box from the union of the fragments instead of the
+flow thread coordinates.
+
+The physicalBoundingBox method returned a bounding box in flow thread
+coordinates and not visual coordinates. Rename it to boundingBox and
+introduce a fragmentedBoundingBox to find the visual one.
+
+Fixed a bug negation bug in previously unused convertToLayerCoords that
+takes a LayoutRect.
+
+This fixes the regressions introduced by 18e0c42d.
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=359877
+
+Review URL: <a href="https://codereview.chromium.org/612323011">https://codereview.chromium.org/612323011</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183251 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/96b2d2b0f32f1faadc16a3e47d3eba342058ea9f"><time datetime="2014-10-06">2014-10-06</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Consolidated checks for the PaintBehaviorRenderingSVGMask flag</summary>
+              <pre class=body>
+Move various (more or less) open-coded checks of the
+PaintBehaviorRenderingSVGMask flag to SVGRenderSupport, and call the new
+function instead.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/625933003">https://codereview.chromium.org/625933003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183250 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/00952e8c360ca84919124fc529ae20bb5e9920cd"><time datetime="2014-10-06">2014-10-06</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix (MSVC) build after r183241.</summary>
+              <pre class=body>
+Rename WebFrame::isAlive(Visitor*, WebFrame*) to isFrameAlive(). Using
+isAlive() is problematic wrt IsGarbageCollectedMixin&lt;T&gt;, which
+syntactically probes for isAlive().
+
+(MSVC is more eager about template instantiation and the probing for the
+private WebFrame::isAlive() method is disallowed.)
+
+R=haraken,tkent
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/628063003">https://codereview.chromium.org/628063003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183247 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/873c5a16dac05fd2cd2404d8e52536ecd12df48a"><time datetime="2014-10-06">2014-10-06</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Avoid some explicit WebSpeechRecognitionHandle() conversions.</summary>
+              <pre class=body>
+It&#39;s now tidier to have these be implicit instead.
+
+Also remove an unused WebSpeechGrammar() constructor + some Speech API
+assignment operators.
+
+R=
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/623953002">https://codereview.chromium.org/623953002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183242 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/25bc23d15726243fb00409f1979a87e6aecd0564"><time datetime="2014-10-05">2014-10-05</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: extend tracing over WebFrame trees.</summary>
+              <pre class=body>
+Have the tracing also encompass the parent and opener.
+
+Also refreshed some unrelated LocalFrame handling comments.
+
+TBR=tkent
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/594483002">https://codereview.chromium.org/594483002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183241 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4b2cc2c4ded016d58507a1f346c07553f6ac28f9"><time datetime="2014-10-05">2014-10-05</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
