@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 385,
+    <a href="#chromium">Chromium</a>: 387,
   
-    <a href="#blink">Blink</a>: 1647,
+    <a href="#blink">Blink</a>: 1651,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,34 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>replace OVERRIDE and FINAL with override and final in base/</summary>
+              <pre class=body>
+BUG=417463
+
+Review URL: <a href="https://codereview.chromium.org/611153004">https://codereview.chromium.org/611153004</a>
+
+Cr-Commit-Position: refs/heads/master@{#298520}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/9e096de10e6fdcafde67df469ed9a6b8b156dfb1"><time datetime="2014-10-07">2014-10-07</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>replace OVERRIDE and FINAL with override and final in android_webview/</summary>
+              <pre class=body>
+BUG=417463
+
+Review URL: <a href="https://codereview.chromium.org/623833003">https://codereview.chromium.org/623833003</a>
+
+Cr-Commit-Position: refs/heads/master@{#298465}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/d731a491c905999cd6b70286165a3dbd24299624"><time datetime="2014-10-07">2014-10-07</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -7185,6 +7213,89 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Prefer using RenderSVGResourceMode when possible</summary>
+              <pre class=body>
+It&#39;s not too difficult to keep track of when we&#39;re about to paint text,
+so all methods in SVGInlineTextBoxPainter taking
+RenderSVGResourceModeFlags can be adjusted to take RenderSVGResourceMode
+instead, and then ApplyToTextMode can be ored in to the few (one) calls
+where it&#39;s needed.
+With the use (setting) of the ApplyToTextMode flag limited to a single
+method, it makes sense to sink the calls to setTextDrawingMode out of
+RenderSVGResource::updateGraphicsContext.
+Bonus: Somewhat increased type-safety.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/637503003">https://codereview.chromium.org/637503003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183398 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fdfaa5ac2ecd32a18074fe5fbe572e6e62bea3d3"><time datetime="2014-10-08">2014-10-08</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r183074.</summary>
+              <pre class=body>
+TBR=haraken,oilpan-reviews
+BUG=419270
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/639693002">https://codereview.chromium.org/639693002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183382 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4eb347182f541f239cf9b9a5550d11e5eeba90d3"><time datetime="2014-10-08">2014-10-08</time></a>
+        <tr>
+          <td>joleksy
+          <td class=message>
+            <details>
+              <summary>Allow default font size changing on Linux.</summary>
+              <pre class=body>
+
+See <a href="https://codereview.chromium.org/549303004/">https://codereview.chromium.org/549303004/</a> for Chromium part.
+
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/570243002">https://codereview.chromium.org/570243002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183350 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/49614ddfd6ea8e29462a73e7f7e13521022f6237"><time datetime="2014-10-07">2014-10-07</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move common GC state update code out of paint-server application</summary>
+              <pre class=body>
+All paint-server RenderSVGResources contain the same code to update the
+GC state, transferring stroke properties, fill-rule etc. as required by
+the resource mode. They only deviate in which set{Stroke,Fill}* variant
+they end up calling.
+Move the part that updates non-(direct-)paint-server state to a new
+helper SVGRenderSupport::updateGraphicsContext, and then sink that out
+of the various applyResource methods.
+The special case handling of clipping masks in
+RenderSVGResourceSolidColor is transformed into a single block, leaving
+the generic path oblivious to this detail.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/630903003">https://codereview.chromium.org/630903003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183332 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/159ade59a72dc0dd884963aeec0055549b628f39"><time datetime="2014-10-07">2014-10-07</time></a>
         <tr>
           <td>fs
           <td class=message>
