@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 400,
   
-    <a href="#blink">Blink</a>: 1664,
+    <a href="#blink">Blink</a>: 1665,
   
     <a href="#v8">V8</a>: 21.
   
@@ -7410,6 +7410,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Steer clear of g++ scoping bug in range-based for loop.</summary>
+              <pre class=body>
+With g++, the scope of the per-element local variable currently
+(g++-4.8.1) and incorrectly extends over the generator/range
+expression also,
+
+  <a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=54430">https://gcc.gnu.org/bugzilla/show_bug.cgi?id=54430</a>
+
+Rename the loop variable in CachedMatchedPropertiesHashTraits&#39;s
+traceInCollection() to avoid running into the bug.
+
+R=haraken
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/646013002">https://codereview.chromium.org/646013002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183574 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/895953a6f285bdff745f053fa15f00982c3ea798"><time datetime="2014-10-11">2014-10-11</time></a>
         <tr>
           <td>rune
           <td class=message>
