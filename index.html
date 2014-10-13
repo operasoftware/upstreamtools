@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 400,
+    <a href="#chromium">Chromium</a>: 403,
   
-    <a href="#blink">Blink</a>: 1665,
+    <a href="#blink">Blink</a>: 1672,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,49 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>fix newly added OVERRIDE in profile_impl_io_data.h</summary>
+              <pre class=body>
+BUG=417463
+
+Review URL: <a href="https://codereview.chromium.org/653583002">https://codereview.chromium.org/653583002</a>
+
+Cr-Commit-Position: refs/heads/master@{#299285}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/a938d3d1acbae3ce04052475cfecdd7b17d46eaf"><time datetime="2014-10-13">2014-10-13</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove new OVERRIDEs added to mojo/</summary>
+              <pre class=body>
+BUG=417463
+
+Review URL: <a href="https://codereview.chromium.org/639043003">https://codereview.chromium.org/639043003</a>
+
+Cr-Commit-Position: refs/heads/master@{#299278}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/c7628a4898078a6b974f4cd64c52d972d914a402"><time datetime="2014-10-13">2014-10-13</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>replace OVERRIDE and FINAL with override and final in chrome/browser/[a-i]*</summary>
+              <pre class=body>
+<a href="mailto:TBR=dgozman@chromium.org">TBR=dgozman@chromium.org</a>
+BUG=417463
+
+Review URL: <a href="https://codereview.chromium.org/625113002">https://codereview.chromium.org/625113002</a>
+
+Cr-Commit-Position: refs/heads/master@{#299274}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/01d8b10ed37d813b6eaef8c8c075aafb14b0c459"><time datetime="2014-10-13">2014-10-13</time></a>
         <tr>
           <td>ed
           <td class=message>
@@ -7410,6 +7453,130 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r183596.</summary>
+              <pre class=body>
+TBR=haraken,oilpan-reviews
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/648193002">https://codereview.chromium.org/648193002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183602 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6a0067a9a9253040ce6a54298b6ecc0cf2ae851b"><time datetime="2014-10-13">2014-10-13</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Store [-webkit-]perspective-origin as a LengthPoint.</summary>
+              <pre class=body>
+Using a LengthPoint for this property makes it possible to use
+a converter rather than custom code, and it makes animation
+building cleaner too.
+
+The setPerspectiveOrigin[X,Y] are kept because of the corresponding
+prefixed properties, but they can be removed eventually.
+
+Review URL: <a href="https://codereview.chromium.org/643893002">https://codereview.chromium.org/643893002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183600 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/93de0949eaf8b618c7f41ec499c5afbcb47fd9ff"><time datetime="2014-10-13">2014-10-13</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Use StyleBuilderConverter for [-webkit-]perspective.</summary>
+              <pre class=body>
+We don&#39;t need custom behavior for this property.
+
+Review URL: <a href="https://codereview.chromium.org/645043002">https://codereview.chromium.org/645043002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183596 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/027d06ee74ef351b191cb4900ea07560aa6578bc"><time datetime="2014-10-13">2014-10-13</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Move style building for grid-auto-flow to StyleBuilderConverter.</summary>
+              <pre class=body>
+There doesn&#39;t appear to be a reason for this property to have
+custom behavior. It&#39;s better to use a converter and call that
+from the generated function.
+
+Review URL: <a href="https://codereview.chromium.org/642303002">https://codereview.chromium.org/642303002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183595 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/194240fd33cc4cf540f5b3147fd56725f7ae9bc1"><time datetime="2014-10-13">2014-10-13</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Remove CachedUAStyle::hasAppearance.</summary>
+              <pre class=body>
+As of f885f9b1178fa278beafd201fb92a93af2117d64, this variable is now
+pointless, because the existence of a CachedUAStyle is only possible
+when &#39;hasAppearance&#39; is &#39;true&#39;.
+
+Review URL: <a href="https://codereview.chromium.org/639963005">https://codereview.chromium.org/639963005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183594 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c0d906a08f10d5b4d73e4897d3e4bc03e2bc12af"><time datetime="2014-10-13">2014-10-13</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix ref counting of derived SVG property objects.</summary>
+              <pre class=body>
+Following r183582, RefCountedGarbageCollected&lt;T&gt;::m_refCount is left as
+0. This is incompatible with the derived SVG objects which have a base
+object (SVGPropertyBase) that&#39;s a RefCountedGarbageCollected&lt;&gt; object,
+but the derived objects are all exposed as if they were deriving from
+a RefCounted&lt;T&gt; base.
+
+Adjust the ref count upon construction of SVGPropertyBase to provide
+that illusion.
+
+TBR=haraken,oilpan-reviews
+BUG=340522
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/650033002">https://codereview.chromium.org/650033002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183586 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8c86ef6cd99cdea04bd56f534256b8efb2c02a44"><time datetime="2014-10-13">2014-10-13</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Move the Widget hierarchy to the Oilpan heap.</summary>
+              <pre class=body>
+Turn Widget into a GCable object, along with its derived objects
+(PluginView, FrameView, Scrollbar, PopupContainer).
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/603193005">https://codereview.chromium.org/603193005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183583 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4c20982d3aab10e05f7d1bb5cbab979b988dde51"><time datetime="2014-10-12">2014-10-12</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
