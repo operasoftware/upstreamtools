@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 403,
+    <a href="#chromium">Chromium</a>: 407,
   
-    <a href="#blink">Blink</a>: 1672,
+    <a href="#blink">Blink</a>: 1680,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,64 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>replace OVERRIDE with override in courgette/</summary>
+              <pre class=body>
+<a href="mailto:R=dgarrett@chromium.org">R=dgarrett@chromium.org</a>
+BUG=417463
+
+Review URL: <a href="https://codereview.chromium.org/655553003">https://codereview.chromium.org/655553003</a>
+
+Cr-Commit-Position: refs/heads/master@{#299446}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/264aa6a70677c12109af8c64dbe3fbf2facff2f4"><time datetime="2014-10-14">2014-10-14</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove some new OVERRIDE instances in ui/</summary>
+              <pre class=body>
+BUG=417463
+
+Review URL: <a href="https://codereview.chromium.org/636233004">https://codereview.chromium.org/636233004</a>
+
+Cr-Commit-Position: refs/heads/master@{#299444}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/c189d183795073ed9e2b8641542d2392464b2617"><time datetime="2014-10-14">2014-10-14</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>replace newly added OVERRIDE in content/</summary>
+              <pre class=body>
+<a href="mailto:R=jochen@chromium.org,falken@chromium.org">R=jochen@chromium.org,falken@chromium.org</a>
+BUG=417463
+
+Review URL: <a href="https://codereview.chromium.org/653593003">https://codereview.chromium.org/653593003</a>
+
+Cr-Commit-Position: refs/heads/master@{#299418}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b162ec76520509a254b13360e908c312758dd264"><time datetime="2014-10-13">2014-10-13</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>fix newly added OVERRIDEs in chrome/browser/ui/</summary>
+              <pre class=body>
+BUG=417463
+
+Review URL: <a href="https://codereview.chromium.org/648133002">https://codereview.chromium.org/648133002</a>
+
+Cr-Commit-Position: refs/heads/master@{#299342}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/f165e0a8a059ab186e6cf7affdd87a5048861eb0"><time datetime="2014-10-13">2014-10-13</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -7453,6 +7511,173 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r183657.</summary>
+              <pre class=body>
+TBR=oilpan-reviews,haraken
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/653053002">https://codereview.chromium.org/653053002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183666 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b171db14b225bb8e9b2e2f67ce79be953e06b6b6"><time datetime="2014-10-14">2014-10-14</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Skip rule matching during animations.</summary>
+              <pre class=body>
+If a style change is due to animations updating their interpolated values
+only, store a clone of the RenderStyle before the animated properties are
+applied to use as a base for updating RenderStyle for the next frames.
+
+The base RenderStyle is stored on the ActiveAnimations object and cleared
+when a recalc is triggered by changes that require rule matching.
+
+The machinery for detecting if a LocalStyleChange is caused by an animation
+update only was already in place, so this CL is making use of that.
+
+Running blink_perf.animation shows a frame rate increase of 18-40% with
+the exception of three tests which are unchanged.
+
+In general this seems to shave off nearly 50% of the time used in
+recalcStyle for each animation frame if no inherited properties are
+animated. For instance, in &#34;The expansion of the dictionary definition card&#34;
+from issue 377939.
+
+<a href="mailto:R=dstockwell@chromium.org,esprehn@chromium.org">R=dstockwell@chromium.org,esprehn@chromium.org</a>
+BUG=377939,421822
+
+Review URL: <a href="https://codereview.chromium.org/635203003">https://codereview.chromium.org/635203003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183662 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/75d2d6918fb6839966e16dbaae8794da64d8e1e7"><time datetime="2014-10-14">2014-10-14</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Remove -webkit-aspect-ratio.</summary>
+              <pre class=body>
+This property is parsed and stored on RenderStyle, but it&#39;s not
+used anywhere, i.e. it has no effect.
+
+If we later decide that we want this after all, we can re-implement
+it as &#39;aspect-ratio&#39; behind a flag.
+
+Review URL: <a href="https://codereview.chromium.org/647723002">https://codereview.chromium.org/647723002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183652 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/aa2de60f63c9973f581ebf6225bc92d7f6d1e71d"><time datetime="2014-10-14">2014-10-14</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Store [-webkit-]transform-origin as a TransformOrigin.</summary>
+              <pre class=body>
+This makes it possible to use a converter, and makes
+style/animation application cleaner.
+
+Review URL: <a href="https://codereview.chromium.org/644953003">https://codereview.chromium.org/644953003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183651 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/82108eece191dfb72b3a2ae286a2a7f75e56bcf1"><time datetime="2014-10-14">2014-10-14</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Separate method for adding features to an invalidation set.</summary>
+              <pre class=body>
+Tried to improve readability. Also re-arranged the for-loop a bit.
+
+This CL is part of splitting up [1].
+
+[1] <a href="https://codereview.chromium.org/639433002">https://codereview.chromium.org/639433002</a>
+
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/652703002">https://codereview.chromium.org/652703002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183633 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8bb9f5b65f0ec6eab85f83fc261a01cef5312ad5"><time datetime="2014-10-14">2014-10-14</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove unused ScrollAnimatorNone::PerAxisData constructor argument.</summary>
+              <pre class=body>
+The &#39;parent&#39; argument is not used, remove it.
+
+This implicitly fixes an incorrect invocation of the constructor from
+ScrollAnimatorNoneTest::SavePerAxisData, which following r183583 was
+passing in an uninitialized pointer value as argument.
+
+R=mkwst
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/648273002">https://codereview.chromium.org/648273002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183625 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fa803631416db8b52376e39b02bb371da5a90974"><time datetime="2014-10-13">2014-10-13</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Introduce SVGPaintServer</summary>
+              <pre class=body>
+Fetch the actual fill from the various paint-server RenderSVGResources
+into a new &#34;data blob&#34; SVGPaintServer. This makes said resources
+independent of the GC, and means that GC-state can be managed more
+directly by the caller.
+Since this makes postApplyResource useless, it&#39;s removed, and
+applyResource is renamed to preparePaintServer.
+Some functions residing on RenderSVGResource is moved to SVGPaintServer.
+Paint-server fetch+application is moved to updateGraphicsContext, which
+is also changed to return a bool indicating if a paint-server is
+available. Handling of clip-path-as-mask is also moved here.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/638933002">https://codereview.chromium.org/638933002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183619 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/326aae88c3223028060f102d58c6e80aa312c305"><time datetime="2014-10-13">2014-10-13</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: eager resource disposal on MemoryCache eviction.</summary>
+              <pre class=body>
+Promptly let go of a memory cache entry&#39;s Resource when evicting it,
+and do not wait until the next GC to strike. This provides the same
+behavior &amp; lifetime for the resource as non-Oilpan.
+
+R=mkwst
+BUG=420068
+
+Review URL: <a href="https://codereview.chromium.org/649213002">https://codereview.chromium.org/649213002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183606 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/74b73337e8f948c2561c31e23738019c67dd9c5b"><time datetime="2014-10-13">2014-10-13</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
