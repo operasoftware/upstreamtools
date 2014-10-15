@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 407,
+    <a href="#chromium">Chromium</a>: 409,
   
-    <a href="#blink">Blink</a>: 1680,
+    <a href="#blink">Blink</a>: 1686,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,42 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>declare extern template classes sooner</summary>
+              <pre class=body>
+This avoids a gcc warning that is promoted to an error:
+error: type attributes ignored after type is already defined [-Werror=attributes]
+
+(Tested with gcc 4.8.2-19ubuntu1.)
+
+BUG=414363
+
+Review URL: <a href="https://codereview.chromium.org/643703003">https://codereview.chromium.org/643703003</a>
+
+Cr-Commit-Position: refs/heads/master@{#299532}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/83d5b708e432a573da1245316882ecd7df080cf3"><time datetime="2014-10-14">2014-10-14</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove the FINAL macro</summary>
+              <pre class=body>
+All uses of the FINAL macro have been removed now, let&#39;s remove the
+macro itself.
+
+BUG=417463
+
+Review URL: <a href="https://codereview.chromium.org/655543003">https://codereview.chromium.org/655543003</a>
+
+Cr-Commit-Position: refs/heads/master@{#299523}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b6e8e6c86aa003c5bf04ad26a937733c2e9f8591"><time datetime="2014-10-14">2014-10-14</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -7511,6 +7547,115 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Hoist paint-server transform adaption out of preparePaintServer</summary>
+              <pre class=body>
+The additional transform computed by the helper function
+RenderSVGResourceContainer::computeResourceSpaceTransform by each
+paint-server (that is CTM-dependent), only depends on the input to
+preparePaintServer, and not the paint-server itself.
+Hoist the computation into SVGRenderSupport::updateGraphicsContext.
+This in turn mean that the various preparePaintServer implementations
+no longer use the passed RenderStyle (previously only used for checking
+for vector-effect) and RenderSVGResourceModeFlags, so remove those.
+computeResourceSpaceTransform w/ associated helpers are moved to
+SVGRenderSupport.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/652243002">https://codereview.chromium.org/652243002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183746 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ea74e4a705a1ef916c2129e98fe83058db4891dd"><time datetime="2014-10-15">2014-10-15</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r183735.</summary>
+              <pre class=body>
+TBR=haraken,oilpan-reviews
+BUG=421948
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/655213002">https://codereview.chromium.org/655213002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183741 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/73d5519617eedfcdcbb79e288293561b63dd9668"><time datetime="2014-10-15">2014-10-15</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r183736.</summary>
+              <pre class=body>
+TBR=haraken,oilpan-reviews
+BUG=397902
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/656093002">https://codereview.chromium.org/656093002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183740 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/dbb4eb33354c9ece2eb63ce1cf8ef3cf71b86fe9"><time datetime="2014-10-15">2014-10-15</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fold SVGRenderSupport::fillOrStrokePath into only user</summary>
+              <pre class=body>
+Only used in SVGTextRunRenderingContext::drawSVGGlyphs. Fold up and
+simplify. Clean up some includes.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/657553002">https://codereview.chromium.org/657553002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183732 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1a6a4eed93b179f3cc2590c09e572d98eb73bdac"><time datetime="2014-10-15">2014-10-15</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fold away SVGInlineTextBoxPainter::paintDecorationWithStyle</summary>
+              <pre class=body>
+The geometry is the same in both the stroke and the fill case, which means
+it can be hoisted into the caller (paintDecoration). That leaves only some
+fairly trivial code in paintDecorationWithStyle, so fold it up entirely.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/654873002">https://codereview.chromium.org/654873002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183705 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4a29b91c27e7aafe1f367503f50d29a0a8fd2961"><time datetime="2014-10-14">2014-10-14</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Be consistent about writing modes in boundingBoxForCompositingOverlapTest().</summary>
+              <pre class=body>
+Always use &#34;physical&#34; rectangles (i.e. flip for writing-mode). This is what
+boundingBoxForCompositing() already uses.
+
+BUG=423372
+
+Review URL: <a href="https://codereview.chromium.org/653973002">https://codereview.chromium.org/653973002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183694 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/da2e2543f8dc48c748881f0a71bf9983aeeca5db"><time datetime="2014-10-14">2014-10-14</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
