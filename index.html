@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 409,
+    <a href="#chromium">Chromium</a>: 410,
   
-    <a href="#blink">Blink</a>: 1686,
+    <a href="#blink">Blink</a>: 1694,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,20 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Correct style ranges on text eliding instead of clearing them</summary>
+              <pre class=body>
+BUG=416798
+
+Review URL: <a href="https://codereview.chromium.org/637293002">https://codereview.chromium.org/637293002</a>
+
+Cr-Commit-Position: refs/heads/master@{#299865}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/4757aae11843c5fa7891cda80653f51543d2a26d"><time datetime="2014-10-16">2014-10-16</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -7547,6 +7561,181 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r183810.</summary>
+              <pre class=body>
+R=haraken
+BUG=393913
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/662633002">https://codereview.chromium.org/662633002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183814 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/baf3175d19bd2c88909c9e67707a91a9c4df44f5"><time datetime="2014-10-16">2014-10-16</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove redundant [WillBeGarbageCollected] uses on derived EventTargets.</summary>
+              <pre class=body>
+[WillBeGarbageCollected] is already inherited from the parent EventTarget.
+
+R=haraken
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/653263006">https://codereview.chromium.org/653263006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183800 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0402c8e750244f46be3bf8e105ed6affba0f45e7"><time datetime="2014-10-16">2014-10-16</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r183788.</summary>
+              <pre class=body>
+TBR=oilpan-reviews,haraken
+BUG=355467
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/660723003">https://codereview.chromium.org/660723003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183797 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c82abcfc46bfbf206bea70d3472a67f51af2cc8b"><time datetime="2014-10-16">2014-10-16</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Removed unused scrollbar pseudo classes.</summary>
+              <pre class=body>
+::-webkit-scrollbar-back and ::-webkit-scrollbar-forward had PseudoType
+constants, but the strings were not recognized and no other code for
+handling them present.
+
+Review URL: <a href="https://codereview.chromium.org/659833002">https://codereview.chromium.org/659833002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183795 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/54964d76386a54b2695bcc08faae4053fc1ff718"><time datetime="2014-10-16">2014-10-16</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Let the paint-server client compute and pass any additional transform</summary>
+              <pre class=body>
+The clients/callers of updateGraphicsContext(...) already independently
+compute the same transform as computeResourceSpaceTransform(...). This
+means that we can get rid of the latter in favor of the computations in the
+callers - who just need to set up an AffineTransform and pass to
+updateGraphicsContext(...).
+This allows getting rid of the ApplyToTextMode resource-mode flag, and
+doing so allows converting the RenderSVGResourceMode enum to a non-bitmask
+such - and remove RenderSVGResourceModeFlags.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/655263002">https://codereview.chromium.org/655263002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183776 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/bc5904a1c006fc7011590c6b1dc6c756a9a7034a"><time datetime="2014-10-16">2014-10-16</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use full white/black listing for invalidation selectors.</summary>
+              <pre class=body>
+In preparation for dropping InvalidationSetMode [1], list all possible
+selector components, either in an explicit black-list or white-listed in
+an assert making sure that new selector component types are either black-
+or white-listed when added.
+
+The goal is to make the black-list really short as demonstrated in [1], but
+getting rid of more of the unnecessarily black-listed ones should be
+carefully done on a case-by-case basis. The intent of this patch is to
+effectively keep the white-list unchanged.
+
+[1] <a href="https://codereview.chromium.org/639433002">https://codereview.chromium.org/639433002</a>
+
+<a href="mailto:R=chrishtr@chromium.org,esprehn@chromium.org">R=chrishtr@chromium.org,esprehn@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/658813002">https://codereview.chromium.org/658813002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183767 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5920dbcea7e8532644cee9d929c31a07d0b75b55"><time datetime="2014-10-15">2014-10-15</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Make layer bounding boxes visual and relative to &#34;root&#34;.</summary>
+              <pre class=body>
+The bounding box needs to be the union of all the box&#39;s fragments.
+There&#39;s one fragment for each column in which the box occurs.
+
+In addition to being a union of all fragments, the bounding box needs to
+be relative to the &#34;root&#34;/&#34;ancestor&#34; layer. If the root layer is also
+inside the fragmentation context, we need to find the visual position of
+the root layer as well (which may very well be in a different column than
+the layer we&#39;re working on).
+
+A lot was already almost correct in RenderLayer::fragmentsBoundingBox(),
+while it was completely missing in RenderLayer::boundingBoxForCompositing().
+
+Added a helper convertFromFlowThreadToVisualBoundingBoxInAncestor() to
+deal with this piece of advanced technology in one place.
+
+BUG=359877
+
+Review URL: <a href="https://codereview.chromium.org/645023002">https://codereview.chromium.org/645023002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183766 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/04b237118b848cf6f7269c98296b9fb6af68e16d"><time datetime="2014-10-15">2014-10-15</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Ruby: Update beforeChild when redirecting renderer insertion to a child.</summary>
+              <pre class=body>
+In addChild(), beforeChild needs to be a descendant of the parent
+that&#39;s attempting to insert a renderer.
+
+Therefore, when inserting a something, and we decide to drill further
+into the tree to find a suitable parent for the new renderer, we need
+to update beforeChild as we go, to make sure that it remains a
+descendant of the parent that&#39;s trying to do the insertion.
+
+In this case it was the list item code that attempted to insert a list
+item marker beside a RenderRubyRun (beforeChild). However,
+RenderRubyAsBlock::addChild() doesn&#39;t want that, so it tells its
+RenderRubyRun child to insert it instead. RenderRubyRun will in turn
+do the same thing, redirect insertion to its RenderRubyBase child,
+which finally is a suitable parent for the marker (and pretty much
+anything else). Doing this without updating beforeChild as we go,
+caused problems, since beforeChild suddenly was a parent of the
+inserting parent.
+
+BUG=395522
+
+Review URL: <a href="https://codereview.chromium.org/563763002">https://codereview.chromium.org/563763002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183761 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6ee8495354d9a5cdc3558983eed671fb8334ee6b"><time datetime="2014-10-15">2014-10-15</time></a>
         <tr>
           <td>fs
           <td class=message>
