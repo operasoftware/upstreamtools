@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 413,
+    <a href="#chromium">Chromium</a>: 414,
   
-    <a href="#blink">Blink</a>: 1701,
+    <a href="#blink">Blink</a>: 1706,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,18 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Remove unused headers after CL 609833003</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/638383003">https://codereview.chromium.org/638383003</a>
+
+Cr-Commit-Position: refs/heads/master@{#300174}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/2b7431cd37d803334961c405d2408db97a4ab312"><time datetime="2014-10-17">2014-10-17</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -7604,6 +7616,98 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Detach first letter pseudo element during RenderTextFragment destruction.</summary>
+              <pre class=body>
+If the RenderTextFragment is being destroyed, make sure the pseudo element
+is unlinked (Oilpan or not) during destroy() instead.
+
+R=haraken
+BUG=391288
+
+Review URL: <a href="https://codereview.chromium.org/660413002">https://codereview.chromium.org/660413002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183943 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3ec745a266fe7b0fa17bb252fefe025caaa5f327"><time datetime="2014-10-18">2014-10-18</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r183913.</summary>
+              <pre class=body>
+TBR=oilpan-reviews,haraken
+BUG=391288
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/659953004">https://codereview.chromium.org/659953004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183928 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/babd12295716845076157093629d2b4c31cbba2d"><time datetime="2014-10-17">2014-10-17</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Support style invalidation for scrollbar pseudo elements.</summary>
+              <pre class=body>
+No need to fall back to subtree recalc for:
+
+::-webkit-scrollbar
+::-webkit-scrollbar-button
+::-webkit-scrollbar-thumb
+::-webkit-scrollbar-track
+::-webkit-scrollbar-track-piece
+
+<a href="mailto:R=chrishtr@chromium.org,esprehn@chromium.org">R=chrishtr@chromium.org,esprehn@chromium.org</a>
+BUG=424546
+
+Review URL: <a href="https://codereview.chromium.org/653423003">https://codereview.chromium.org/653423003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183922 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7da463dc9a85b3087fff25227ef08f1d548cb8e5"><time datetime="2014-10-17">2014-10-17</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move ScriptLoader to the heap.</summary>
+              <pre class=body>
+So as to be able to trace its PendingScript part object.
+
+R=haraken
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/660233002">https://codereview.chromium.org/660233002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183909 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b46dd2f5a79b7574e94deb168c84b44ccd9808ea"><time datetime="2014-10-17">2014-10-17</time></a>
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Experimental SVG 1.1 DOM runtime flag.</summary>
+              <pre class=body>
+This adds UseCounters for SVG DOM, to see how much usage there is.
+
+SVG DOM support is enabled by default, but it will be possible to disable it with a commandline flag (--disable-svg1dom), see <a href="https://codereview.chromium.org/577943002">https://codereview.chromium.org/577943002</a>.
+
+BUG=415074
+
+Review URL: <a href="https://codereview.chromium.org/474013004">https://codereview.chromium.org/474013004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183898 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/99f38dbd08a2c10f07d7fbd6352009a216bcd993"><time datetime="2014-10-17">2014-10-17</time></a>
         <tr>
           <td>fs
           <td class=message>
