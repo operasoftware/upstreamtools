@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 414,
   
-    <a href="#blink">Blink</a>: 1706,
+    <a href="#blink">Blink</a>: 1707,
   
     <a href="#v8">V8</a>: 21.
   
@@ -7616,6 +7616,70 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Expanding Type Traits to make Vector use mem ops more.</summary>
+              <pre class=body>
+Vector has several code paths depending on whether the encapsulated
+object can be handled with memmove/memcpy/memset or not. The fast path
+with memops is used by many objects, but unfortunately that 
+requires manual hinting in every class because the type traits 
+used are not strong enough.
+
+By using type trait functions available in all modern compilers it&#39;s
+possible to more intelligently select the most optimal code path.
+
+Preferably the code would use the new type traits in C++ 11 but
+unfortunately that requires a modern c++ library. Luckily, those
+libraries are mostly just thin wrappers on top of de facto-standard
+compiler extension functions anyway.
+
+With clang this cuts away 105 KB of machine code in blink. Mostly by 
+no longer needing copy constructor and assignment operators in many
+classes so those can be stripped from the binary. 
+
+With gcc the changes are differently. The binary is smaller but only 
+by 5 KB. It&#39;s clear that many Vector methods have become more compact but
+it seems gcc compensated by spending that space elsewhere (more inlining?).
+
+I don&#39;t have as good measurement tools for Visual Studio but there was no
+huge difference in footprint.
+
+Performance, all this is from a noisy development computer with a 
+non-stable cpu clock frequency (turbo ftl...):
+
+In LayoutTests most changes are within noise levels. But it looks like 
+large tables and flexboxes might be 1-5% faster. In ParserTests 
+html5-full-render (macro-benchmark) became 2-3% faster. There were also
+indications that some micro-benchmarks became 30% faster since reverting
+an earlier version of this caused that size performance regressions.
+
+clang footprint numbers:
+Total change: -109940 bytes
+===========================
+  14 added, totalling +3397 bytes across 8 sources
+  19 removed, totalling -13302 bytes across 6 sources
+  8 grown, for a net change of +578 bytes (2268 bytes before, 2846 bytes after) across 6 sources
+  230 shrunk, for a net change of -100613 bytes (190909 bytes before, 90296 bytes after) across 49 sources
+
+Biggest changes:
+ -84410 - Source: /home/bratell/src/chromium/src/third_party/WebKit/Source/wtf/Vector.h - (gained 784, lost 85194)
+  -6934 - Source: /home/bratell/src/chromium/src/third_party/WebKit/Source/wtf/Deque.h - (gained 0, lost 6934)
+  -2267 - Source: /home/bratell/src/chromium/src/third_party/WebKit/Source/core/animation/css/CSSAnimationData.cpp - (gained 904, lost 3171)
+...
+   +245 - Source: /home/bratell/src/chromium/src/third_party/WebKit/Source/core/svg/animation/SVGSMILElement.cpp - (gained 245, lost 0)
+
+BUG=
+<a href="mailto:R=jochen@chromium.org">R=jochen@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/594023002">https://codereview.chromium.org/594023002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183947 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/833fa841b98805bf2d5ba0e116d07a9b616fb820"><time datetime="2014-10-19">2014-10-19</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
