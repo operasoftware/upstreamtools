@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 414,
+    <a href="#chromium">Chromium</a>: 415,
   
-    <a href="#blink">Blink</a>: 1707,
+    <a href="#blink">Blink</a>: 1710,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,25 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Blink GC plugin: Gracefully handle cyclic part objects.</summary>
+              <pre class=body>
+When checking a class if it or its part objects don&#39;t define GC roots,
+avoid looping on part objects that are cyclic. i.e., the part object
+containing a collection that refers back to itself.
+
+R=haraken
+BUG=424962
+
+Review URL: <a href="https://codereview.chromium.org/666473003">https://codereview.chromium.org/666473003</a>
+
+Cr-Commit-Position: refs/heads/master@{#300256}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/fa4843d2396ab7540007d5efaf18c767cf92ce5d"><time datetime="2014-10-20">2014-10-20</time></a>
         <tr>
           <td>jiangj
           <td class=message>
@@ -7616,6 +7635,64 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r183972.</summary>
+              <pre class=body>
+With Oilpan, ScriptWrappable has no destructor, so we need to provide
+a virtual destructor for RefCounted&lt;DOMArrayBufferView&gt; instead.
+
+TBR=oilpan-reviews,haraken
+BUG=235436
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/645993004">https://codereview.chromium.org/645993004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183976 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/18f0c75c03662aa8c536ad7f562727e834599fd8"><time datetime="2014-10-20">2014-10-20</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move context menu providers to the heap.</summary>
+              <pre class=body>
+Avoids keeping Persistent&lt;&gt; references on CustomContextMenuProvider.
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/665763002">https://codereview.chromium.org/665763002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183966 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ccbca44a2847531f1767f046bae7644a06ff15e4"><time datetime="2014-10-20">2014-10-20</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use style invalidation sets for :-webkit-autofill.</summary>
+              <pre class=body>
+Add invalidation features to a set for :-webkit-autofill and move
+CSSSelector::PseudoAutofill away from the list of pseudo classes requiring
+subtree style recalc.
+
+The pseudo type cases in invalidationSetForSelector were re-ordered to
+match the enum order.
+
+<a href="mailto:R=chrishtr@chromium.org,esprehn@chromium.org">R=chrishtr@chromium.org,esprehn@chromium.org</a>
+BUG=424581
+
+Review URL: <a href="https://codereview.chromium.org/660273002">https://codereview.chromium.org/660273002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@183955 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/35367cdf59d45afdaaffe2de5ba27f4807e27368"><time datetime="2014-10-20">2014-10-20</time></a>
         <tr>
           <td>bratell
           <td class=message>
