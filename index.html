@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 416,
+    <a href="#chromium">Chromium</a>: 419,
   
-    <a href="#blink">Blink</a>: 1720,
+    <a href="#blink">Blink</a>: 1729,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,60 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove obsolete OVERRIDE/FINAL presubmit checks</summary>
+              <pre class=body>
+BUG=417463
+
+Review URL: <a href="https://codereview.chromium.org/655693003">https://codereview.chromium.org/655693003</a>
+
+Cr-Commit-Position: refs/heads/master@{#300675}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/5a73a5d37237fcf25bb05571a314193188600c65"><time datetime="2014-10-22">2014-10-22</time></a>
+        <tr>
+          <td>kolczyk
+          <td class=message>
+            <details>
+              <summary>Make sure new site instance (and therefore) render is used when navigating away</summary>
+              <pre class=body>from blank page (about:blank) that has been loaded in WebUI-bindings-enabled renderer.
+
+This currently reproduces in process models other than default
+process-per-site(-instance) as they only enforce new renderer
+on webui-vs-regular navigations and fail to recognize that about:blank
+might have been loaded in WebUI (as per <a href="http://crbug.com/42547">http://crbug.com/42547</a>).
+
+This CL includes the browser test that reproduces this problem
+and verifies the fix.
+
+BUG=424526
+
+Review URL: <a href="https://codereview.chromium.org/659293002">https://codereview.chromium.org/659293002</a>
+
+Cr-Commit-Position: refs/heads/master@{#300645}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/2c0c6c9e4f04e76373a884d03a4e09c8fee5d141"><time datetime="2014-10-22">2014-10-22</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>fix broken xdisplaycheck dependency</summary>
+              <pre class=body>
+Followup to:
+<a href="https://codereview.chromium.org/601263002">https://codereview.chromium.org/601263002</a>
+
+BUG=416594
+
+Review URL: <a href="https://codereview.chromium.org/669883002">https://codereview.chromium.org/669883002</a>
+
+Cr-Commit-Position: refs/heads/master@{#300508}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/37460d48a5c667a88b0d93eb29291d463a426177"><time datetime="2014-10-21">2014-10-21</time></a>
         <tr>
           <td>ed
           <td class=message>
@@ -7651,6 +7705,173 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>christiank
+          <td class=message>
+            <details>
+              <summary>Update touch selection to only modify one selection point at a time.</summary>
+              <pre class=body>
+This is made in preparation for enabling selection auto scroll using touch
+handles.
+
+BUG=340658
+
+Review URL: <a href="https://codereview.chromium.org/653383002">https://codereview.chromium.org/653383002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184179 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0233db5fab92be313c36f2eb05d21c0b11a69d27"><time datetime="2014-10-22">2014-10-22</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Make CSS resize property non-inherited.</summary>
+              <pre class=body>
+Align with CSS UI spec[1] and Gecko.
+
+[1] <a href="http://dev.w3.org/csswg/css-ui/#resize">http://dev.w3.org/csswg/css-ui/#resize</a>
+
+<a href="mailto:R=andersr@opera.com,timloh@chromium.org">R=andersr@opera.com,timloh@chromium.org</a>
+BUG=425552
+
+Review URL: <a href="https://codereview.chromium.org/639293008">https://codereview.chromium.org/639293008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184176 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d04720e34763c0beabdba1cb44f4eb69a0b55b8e"><time datetime="2014-10-22">2014-10-22</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>PartitionAlloc: Count direct mapped pages as committed</summary>
+              <pre class=body>
+Extend committed pages counting to direct mapped allocations as well. We
+already did adjust the total committed pages size when reallocating a
+direct mapped allocation to reflect the difference, but since we didn&#39;t do
+any counting when initially mapping or when unmapping, this would just
+result in accounting errors.
+
+Review URL: <a href="https://codereview.chromium.org/649583004">https://codereview.chromium.org/649583004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184169 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f0987e8c32830c7edd67fd070597e42dea7f4352"><time datetime="2014-10-22">2014-10-22</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add window.postMessage() use counters.</summary>
+              <pre class=body>
+Instrument postMessage() to determine usage of the overload
+
+  postMessage(data, origin, transferables)
+
+R=mkwst
+BUG=425896
+
+Review URL: <a href="https://codereview.chromium.org/670893003">https://codereview.chromium.org/670893003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184160 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/206475eee5190b798f198dbdfee8d05263ba0082"><time datetime="2014-10-22">2014-10-22</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Convert fast/multicol/client-rects.html to reftest.</summary>
+              <pre class=body>
+ * Use standards mode.
+ * Use inline-block to make all the content fit in content_shell.
+ * Use &#39;margin: 0&#39; for input=range to simplify the reference file.
+ * Use a solid color rather than opacity (to deal with the rogue extra
+   &#34;outline&#34; drawn for alt-imgs).
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/667693002">https://codereview.chromium.org/667693002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184128 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/141c486830d5dc0ddacb00991d1ea3d121f962fe"><time datetime="2014-10-21">2014-10-21</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Fix crash from DescendantInvalidationSet::show().</summary>
+              <pre class=body>
+Adding a dictionary without a name to TracedValue without being inside an
+array asserts. Added an array around the invalidation set to avoid that
+crash from DescendantInvalidationSet::show() which is used for debugging.
+
+<a href="mailto:R=kouhei@chromium.org">R=kouhei@chromium.org</a>
+BUG=425577
+
+Review URL: <a href="https://codereview.chromium.org/637383004">https://codereview.chromium.org/637383004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184097 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/923dc130ef0f29ea0c273db58122dea65787565c"><time datetime="2014-10-21">2014-10-21</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Make RenderSVGResource::requestPaintingResource an implementation detail</summary>
+              <pre class=body>
+This allows &#34;simple color&#34; and resource-based paint-servers to be
+separated, and clears the path for removing RenderSVGResource from the
+inheritance chain.
+Rename requestPaintingResource to requestPaint, because it no longer
+return (only) a &#39;resource&#39;.
+RenderSVGResource::sharedSolidPaintingResource becomes unused - as well
+as RenderSVGResourceSolidColor, so remove those.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/658333003">https://codereview.chromium.org/658333003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184094 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9250c9614f8c3c12bd1e657b7ee60a12de91a547"><time datetime="2014-10-21">2014-10-21</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove includes of RenderSVGResource.h where it&#39;s not used</summary>
+              <pre class=body>
+Some additional unused includes nearby also bite the dust.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/666143003">https://codereview.chromium.org/666143003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184091 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0e9e13b85e5e2d757f8c7d0c1eed50eb9f78ec51"><time datetime="2014-10-21">2014-10-21</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>svg/animations/svglengthlist-animation-3.html no longer flaky</summary>
+              <pre class=body>
+Doesn&#39;t appear flaky anymore based on the dashboard.
+
+BUG=350827
+
+Review URL: <a href="https://codereview.chromium.org/670723002">https://codereview.chromium.org/670723002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184087 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cb6b3261d7ed2899622d9697010121de47a4b238"><time datetime="2014-10-21">2014-10-21</time></a>
         <tr>
           <td>jl
           <td class=message>
