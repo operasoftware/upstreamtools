@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 419,
+    <a href="#chromium">Chromium</a>: 422,
   
-    <a href="#blink">Blink</a>: 1729,
+    <a href="#blink">Blink</a>: 1738,
   
     <a href="#v8">V8</a>: 21.
   
@@ -44,6 +44,55 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Update khronos headers.</summary>
+              <pre class=body>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/637953007">https://codereview.chromium.org/637953007</a>
+
+Cr-Commit-Position: refs/heads/master@{#300868}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/14b90d5719304421745e59ba621a9cf0a13f0c22"><time datetime="2014-10-23">2014-10-23</time></a>
+        <tr>
+          <td>atanasb
+          <td class=message>
+            <details>
+              <summary>BookmarksFunction sending response after execution in all cases</summary>
+              <pre class=body>
+On some occasions (most likely on big bookmarks models), BookmarksFunction
+might be executed while bookmarks model is not yet ready. In this case we
+must schedule the function for later execution (when model is ready) and
+once function has executed we must SendResponse().
+
+Adding SendResponse() in the above described scenario.
+
+BUG=None
+
+Review URL: <a href="https://codereview.chromium.org/660513002">https://codereview.chromium.org/660513002</a>
+
+Cr-Commit-Position: refs/heads/master@{#300744}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/5e25a3281098f5ba5f73659c6732a7ac01a3068a"><time datetime="2014-10-22">2014-10-22</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove OVERRIDE/FINAL presubmit checks now the macros are gone</summary>
+              <pre class=body>
+BUG=417463
+
+Review URL: <a href="https://codereview.chromium.org/670073003">https://codereview.chromium.org/670073003</a>
+
+Cr-Commit-Position: refs/heads/master@{#300681}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/a924ebe97ccde57415f5c7fd94109663d2d1d6a2"><time datetime="2014-10-22">2014-10-22</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -7705,6 +7754,171 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Relocate markForLayoutAndParentResourceInvalidation</summary>
+              <pre class=body>
+To facilitate repurposing of RenderSVGResource for paint-server use,
+move RenderSVGResource::markForLayoutAndParentResourceInvalidation
+to RenderSVGResourceContainer.
+
+For reduced dependencies call through a method with the same name on
+SVGElement.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/669153002">https://codereview.chromium.org/669153002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184258 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/db8def92034a041347b02c0db18e374f2b24a8f3"><time datetime="2014-10-23">2014-10-23</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Don&#39;t use PLY cache files in Tools/Scripts/run-bindings-tests</summary>
+              <pre class=body>
+We don&#39;t need the caching, and disabling it avoids cache coherency issues
+as well as leaving untracked files in the tree.
+
+BUG=426339
+
+Review URL: <a href="https://codereview.chromium.org/646283004">https://codereview.chromium.org/646283004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184249 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8b9fda54cc9d2a9d8a4584d9b6d1e1636795a7e5"><time datetime="2014-10-23">2014-10-23</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Convert fast/multicol/flipped-blocks-border-after to reftest.</summary>
+              <pre class=body>
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/669603003">https://codereview.chromium.org/669603003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184248 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a5e8eaebcfedc0ad77fc8fd3db99eb6e57bd35b8"><time datetime="2014-10-23">2014-10-23</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Decouple content transform fiddling from SVGRenderingContext::renderSubtree</summary>
+              <pre class=body>
+The &#34;content transform&#34; is essentially a property of the call-site, and
+is hence invariant for a sequence of calls to renderSubtree.
+This means we ought to be able to save-mutate-restore (SMR) once per
+call-site, and not per call to renderSubtree. Achieve this by moving the
+SMR to a helper SubtreeContentTransformScope, and then instantiate objects
+where needed.
+This means the transform-logistics can be cleaned up a bit for some of the
+callers.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/666403002">https://codereview.chromium.org/666403002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184245 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/76974be9983a897103c72ccd7677ec2b2586e042"><time datetime="2014-10-23">2014-10-23</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move HistoryItem to the heap.</summary>
+              <pre class=body>
+Doing so removes a FrameLoader-reachable Persistent reference to
+a DocumentState.
+
+R=
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/639023004">https://codereview.chromium.org/639023004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184228 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e43e660eda66b57773274aea70dc08686ca9b721"><time datetime="2014-10-23">2014-10-23</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Convert fast/multicol/columns-shorthand-parsing to reftest.</summary>
+              <pre class=body>
+ * Use standards mode.
+ * Adjust test slightly to make ref easier to make.
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/655253004">https://codereview.chromium.org/655253004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184222 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a4f85af631b2591e79820eb52935e09c7eb1a43a"><time datetime="2014-10-22">2014-10-22</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Convert fast/multicol/column-count-with-rules (and related) to reftests.</summary>
+              <pre class=body>
+ * Make test small enough to fit in content_shell. (Only the baselines for
+   the -webkit-writing-mode versions were incorrect, though).
+ * Used explicit column-gap to simplify ref.
+ * Used even-size column-rule to simplify ref.
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/670473002">https://codereview.chromium.org/670473002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184202 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9edff47e1f1ff9a697a5a6cb5a54d025cdd8a265"><time datetime="2014-10-22">2014-10-22</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move resourceType() method to RenderSVGResourceContainer</summary>
+              <pre class=body>
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/672613002">https://codereview.chromium.org/672613002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184200 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/59f872eaaf97faf273d139614d3f0755cd596aaa"><time datetime="2014-10-22">2014-10-22</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Convert fast/multicol/column-break-with-balancing (and related) to reftests.</summary>
+              <pre class=body>
+ * Use standards mode.
+ * Make test small enough to fit in content_shell.
+ * Use fixed widths columns to simplify ref.
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/671433002">https://codereview.chromium.org/671433002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184184 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e4824d43c01378e26e531950665da4d46f7fc2f5"><time datetime="2014-10-22">2014-10-22</time></a>
         <tr>
           <td>christiank
           <td class=message>
