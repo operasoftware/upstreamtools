@@ -27,11 +27,11 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 422,
+    <a href="#chromium">Chromium</a>: 425,
   
-    <a href="#blink">Blink</a>: 1738,
+    <a href="#blink">Blink</a>: 1747,
   
-    <a href="#v8">V8</a>: 21.
+    <a href="#v8">V8</a>: 22.
   
   <p class=hint>Click message to expand
   
@@ -44,6 +44,59 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>kolczyk
+          <td class=message>
+            <details>
+              <summary>[gin] Use variadic templates in gin/function_template.h</summary>
+              <pre class=body>
+Replace pump.py generated gin/function_template.h with variadic template version.
+
+This results in a concise code which does not require the use
+of pump preprocessor.
+Similar effort for base/callback.h is happening in <a href="https://codereview.chromium.org/610423003/">https://codereview.chromium.org/610423003/</a>
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/671433004">https://codereview.chromium.org/671433004</a>
+
+Cr-Commit-Position: refs/heads/master@{#301089}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/735c49b6ad67166ccbcc8e3717681bb560fbf1cf"><time datetime="2014-10-24">2014-10-24</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Use auto, not const auto*, for libyuv function pointers</summary>
+              <pre class=body>
+This was a compiler error on GCC 4.9.1:
+unable to deduce ‘const auto*’ from ‘((((content::PpFrameWriter::FrameWriterDelegate*)this)-&gt;content::PpFrameWriter::FrameWriterDelegate::endian_ == (content::PpFrameWriter::FrameWriterDelegate::PixelEndian)1u) ? libyuv::BGRAToI420 :  libyuv::ARGBToI420)’
+
+Introduced in <a href="https://codereview.chromium.org/663183002">https://codereview.chromium.org/663183002</a>
+
+BUG=426020
+
+Review URL: <a href="https://codereview.chromium.org/675963002">https://codereview.chromium.org/675963002</a>
+
+Cr-Commit-Position: refs/heads/master@{#301083}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/1694f0d39e4846fbe53ea7f33943502bdd015932"><time datetime="2014-10-24">2014-10-24</time></a>
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Add support for all blendmodes if we have GL_KHR_blend_equation_advanced.</summary>
+              <pre class=body>
+BUG=243223
+
+Review URL: <a href="https://codereview.chromium.org/643373003">https://codereview.chromium.org/643373003</a>
+
+Cr-Commit-Position: refs/heads/master@{#300887}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/9198b422852a9640e47c2851679b0c69be3eac68"><time datetime="2014-10-23">2014-10-23</time></a>
         <tr>
           <td>ed
           <td class=message>
@@ -7754,6 +7807,201 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Add a test for font/line-height cascade.</summary>
+              <pre class=body>
+The line-height property has lots of special handling in the style
+resolver which we want to remove at some point. When we do, it&#39;s nice to
+know that this still works correctly.
+
+<a href="mailto:R=rune@opera.com">R=rune@opera.com</a>
+BUG=353932
+
+Review URL: <a href="https://codereview.chromium.org/678483005">https://codereview.chromium.org/678483005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184346 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/182074e2777499d84c966802df2cdb8b27847e21"><time datetime="2014-10-24">2014-10-24</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>RenderStyle operator== incorrect for shape-outside and clip-path.</summary>
+              <pre class=body>
+Use dataEquivalent instead of comparing pointers. Updating the base
+RenderStyle in ActiveAnimations asserts that the cached base RenderStyle
+is correct by comparing RenderStyle objects. It triggered an assert when
+comparing two shape-outside values represented by different objects
+representing the same value.
+
+<a href="mailto:R=esprehn@chromium.org,dstockwell@chromium.org">R=esprehn@chromium.org,dstockwell@chromium.org</a>
+BUG=425473
+
+Review URL: <a href="https://codereview.chromium.org/669093002">https://codereview.chromium.org/669093002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184345 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/aa392ae7e80e4487368979dd1b7e211007fbf4bf"><time datetime="2014-10-24">2014-10-24</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Remove myself from WATCHLISTS.</summary>
+              <pre class=body>
+NOTRY=true
+<a href="mailto:TBR=sigbjornf@opera.com">TBR=sigbjornf@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/674103002">https://codereview.chromium.org/674103002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184343 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/645f0da2ff379ef4529268dfc6eceee5595bf87b"><time datetime="2014-10-24">2014-10-24</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Eliminate FontBuilder::initForStyleResolve.</summary>
+              <pre class=body>
+It&#39;s not necessary to do initialization of FontBuilder separately from
+StyleResolverState::setStyle. It just adds noise.
+
+Also, use a reference for Document in FontBuilder, since its existence can
+be guaranteed in all cases.
+
+<a href="mailto:R=dglazkov@chromium.org">R=dglazkov@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/671613003">https://codereview.chromium.org/671613003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184342 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/82641fdc9f712d91303e9514fdcf8c12afa84db8"><time datetime="2014-10-24">2014-10-24</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove fallback matching ::cue* pseudo-element selectors</summary>
+              <pre class=body>
+Because there is a &#34;cue&#34; entry in both pseudoTypeWithoutArgumentsMap and
+pseudoTypeWithArgumentsMap, this path is never taken (verified with
+ASSERT(0)) when running LayoutTests/media/.
+
+It is taken for something like ::cuefoo, but that makes no sense.
+
+This was initially the only code path:
+<a href="http://trac.webkit.org/changeset/136991">http://trac.webkit.org/changeset/136991</a>
+
+Later commits made it obsolete:
+<a href="http://trac.webkit.org/changeset/137955">http://trac.webkit.org/changeset/137955</a>
+<a href="https://src.chromium.org/viewvc/blink?revision=155834&amp;view=revision">https://src.chromium.org/viewvc/blink?revision=155834&amp;view=revision</a>
+
+This was the last usage of PseudoUserAgentCustomElement, so remove that
+too, together with its use counter:
+<a href="https://src.chromium.org/viewvc/blink?revision=155928&amp;view=revision">https://src.chromium.org/viewvc/blink?revision=155928&amp;view=revision</a>
+<a href="https://www.chromestatus.com/metrics/feature/timeline/popularity/103">https://www.chromestatus.com/metrics/feature/timeline/popularity/103</a>
+
+At the time pseudos starting with &#34;x-&#34; were also
+PseudoUserAgentCustomElement, but has since been removed:
+<a href="https://src.chromium.org/viewvc/blink?revision=170210&amp;view=revision">https://src.chromium.org/viewvc/blink?revision=170210&amp;view=revision</a>
+
+Review URL: <a href="https://codereview.chromium.org/646853007">https://codereview.chromium.org/646853007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184341 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3c597b4891d3e11b5f33e538893583b3f856786f"><time datetime="2014-10-24">2014-10-24</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move TextFinder to the heap.</summary>
+              <pre class=body>
+With WebLocalFrameImpl on the heap, this object no longer needs to use
+persistent (or untraced) references.
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/674773003">https://codereview.chromium.org/674773003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184332 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/bcef85c11a242b73acd026e807bec5ccd1e8bc52"><time datetime="2014-10-24">2014-10-24</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Only dispose proxy-less WebServiceWorkerRegistration objects.</summary>
+              <pre class=body>
+If a service worker registration is passed along to a resolver that&#39;s
+in a detached/stopping state, the WebServiceWorkerRegistration is
+simply disposed of.
+
+Have that dispose step only delete the object if the registration object
+isn&#39;t attached to a proxy already. If it is, it is responsible for
+releasing the resource.
+
+R=haraken
+BUG=426321
+
+Review URL: <a href="https://codereview.chromium.org/669423002">https://codereview.chromium.org/669423002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184288 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f75bb06baccdf17447450eaf60a31fa9731fd9dc"><time datetime="2014-10-23">2014-10-23</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Convert fast/multicol/float-avoidance to reftest.</summary>
+              <pre class=body>
+Changed column-width such that we&#39;re actually using more than one
+column. Makes it easier to immediately visually verify that multicol is
+being used.
+
+Also changed text contents to be less sensitive to computed font size
+across platforms.
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/643923003">https://codereview.chromium.org/643923003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184281 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/13db30de7adf657b9a4d9764c698ca1b5edd996a"><time datetime="2014-10-23">2014-10-23</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move RenderSVGResource into the inheritance hierarchy</summary>
+              <pre class=body>
+With RenderSVGResource reduced to a common base for paint-servers,
+it&#39;s possible to get rid of the multiple inheritance on
+RenderSVGResourceContainer by instead making it the base of
+RenderSVGResource{Gradient,Pattern} while inheriting from
+RenderSVGResourceContainer.
+Rename the files appropriately and update existing references to
+RenderSVGResource. Also take the opportunity to tighten the types
+a bit in some places.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/673753004">https://codereview.chromium.org/673753004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184278 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b07e3c27495073f5e07f25f1a807470175ed994d"><time datetime="2014-10-23">2014-10-23</time></a>
         <tr>
           <td>fs
           <td class=message>
@@ -43831,6 +44079,28 @@ git-svn-id: svn://svn.chromium.org/blink/trunk@149844 bbb929c8-8fbe-4397-9dbb-9b
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>only define ARRAYSIZE_UNSAFE for NaCl builds</summary>
+              <pre class=body>
+Now that C++11 is allowed, we can use arraysize instead of
+ARRAYSIZE_UNSAFE, except in NaCl builds.  So let&#39;s move this
+macro inside an NaCl ifdef.
+
+BUG=chromium:405225
+LOG=y
+<a href="mailto:R=jochen@chromium.org">R=jochen@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/668303002">https://codereview.chromium.org/668303002</a>
+
+Patch from Mostyn Bramley-Moore &lt;<a href="mailto:mostynb@opera.com">mostynb@opera.com</a>&gt;.
+
+git-svn-id: <a href="https://v8.googlecode.com/svn/branches/bleeding_edge@24875">https://v8.googlecode.com/svn/branches/bleeding_edge@24875</a> ce2b1a6d-e550-0410-aec6-3dcde31c8c00
+</pre>
+            </details>
+          <td><a href="https://github.com/v8/v8/commit/221a8ba99f43e1959c3a085181b07212cbfae5c8"><time datetime="2014-10-24">2014-10-24</time></a>
         <tr>
           <td>jl
           <td class=message>
