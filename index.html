@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 425,
+    <a href="#chromium">Chromium</a>: 426,
   
-    <a href="#blink">Blink</a>: 1747,
+    <a href="#blink">Blink</a>: 1754,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,22 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>ljagielski
+          <td class=message>
+            <details>
+              <summary>Get rid of net::LOAD_ENABLE_UPLOAD_PROGRESS.</summary>
+              <pre class=body>
+It&#39;s only used by Loader code.
+
+BUG=426442
+
+Review URL: <a href="https://codereview.chromium.org/669073003">https://codereview.chromium.org/669073003</a>
+
+Cr-Commit-Position: refs/heads/master@{#301110}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/69c091ddba1bddda795eb5da4e400d16b29cc732"><time datetime="2014-10-24">2014-10-24</time></a>
         <tr>
           <td>kolczyk
           <td class=message>
@@ -7807,6 +7823,146 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: widen Mac expectations for table-inflation-crash.html</summary>
+              <pre class=body>
+TBR=oilpan-reviews,haraken
+BUG=389648
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/678873002">https://codereview.chromium.org/678873002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184403 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cfa672c28dc41efa84206144842dc4d4ceb0a3f2"><time datetime="2014-10-25">2014-10-25</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: remove now-unused thread affinity macros.</summary>
+              <pre class=body>
+Explicit USED_FROM_MULTIPLE_THREADS*() declarations haven&#39;t been used for
+some time; remove the unused macros.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/674143002">https://codereview.chromium.org/674143002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184402 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e8d2198c7d3b85fd8466d8e850e8acadd8841e18"><time datetime="2014-10-25">2014-10-25</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Removed incorrect StyleInvalidator FIXME.</summary>
+              <pre class=body>
+Cloning the RenderStyle, like the FIXME said, is not enough. It would be
+true if we only scheduled invalidation sets for classes/ids/... not in the
+rightmost compound selector, but we schedule invalidation sets for classes
+on the element it needs to invalidate too. Setting class=a on an element
+with the style rules below requires us to do a LocalStyleChange on both
+&#39;.a&#39; and &#39;.b&#39; in order to apply the first rule as well. For setting
+class=x, that wouldn&#39;t be necesarry.
+
+.a {}
+.a .b {}
+.x .y {}
+
+It&#39;s possible to optimize that case by adding a flag to the invalidation
+set to indicate that the feature the invalidation set is for is present in
+the rightmost compound of some selector.
+
+<a href="mailto:R=chrishtr@chromium.org,esprehn@chromium.org">R=chrishtr@chromium.org,esprehn@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/679663002">https://codereview.chromium.org/679663002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184394 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/81deb17c1983a0adc521194e3e19524347bce036"><time datetime="2014-10-25">2014-10-25</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use invalidation sets for :invalid/:valid/:required/:optional.</summary>
+              <pre class=body>
+Create invalidation sets for :invalid, :valid, :required, and :optional
+pseudo classes and schedule invalidations instead of using
+SubtreeStyleChange when those states change.
+
+BUG=419873
+
+Review URL: <a href="https://codereview.chromium.org/620333002">https://codereview.chromium.org/620333002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184392 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3cbb6067889c91986daf63dc3aeed319e1851cfb"><time datetime="2014-10-25">2014-10-25</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: clear FrameLoader during LocalFrame detach.</summary>
+              <pre class=body>
+Following r183834, the FrameOwner is disconnected during frame detach.
+The clearing of the FrameLoader that needs to happen for Oilpan can
+consequently be moved to a more natural place and be done as part
+of the other LocalFrame detach operations (rather than being a
+special action of FrameOwner disconnecting.)
+
+R=haraken
+BUG=425559
+
+Review URL: <a href="https://codereview.chromium.org/678673002">https://codereview.chromium.org/678673002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184382 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9044554066c3079fd7c839c7f2b1ef4d11570f44"><time datetime="2014-10-24">2014-10-24</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove SVGTextMetrics::m_glyph</summary>
+              <pre class=body>
+This field was previously used for ligature and kerning lookups for SVG
+fonts. Since SVGTextMetrics::glyph() is no longer called we can remove the
+field and collapse some related code.
+
+BUG=242735
+
+Review URL: <a href="https://codereview.chromium.org/665253003">https://codereview.chromium.org/665253003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184376 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/50a9345697d0b2bb0e08bd467037354cb4b3d01a"><time datetime="2014-10-24">2014-10-24</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Avoid sub-tree style recalc for ::selection.</summary>
+              <pre class=body>
+The presence of the ::selection pseudo element should not trigger a
+sub-tree style recalc from style invalidation. The same goes for the
+:window-inactive pseudo class.
+
+<a href="mailto:R=chrishtr@chromium.org,esprehn@chromium.org">R=chrishtr@chromium.org,esprehn@chromium.org</a>
+BUG=425494
+
+Review URL: <a href="https://codereview.chromium.org/669873003">https://codereview.chromium.org/669873003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184367 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/63377b2daccfb3952c3a2365df20cebda85053c2"><time datetime="2014-10-24">2014-10-24</time></a>
         <tr>
           <td>andersr
           <td class=message>
