@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 426,
+    <a href="#chromium">Chromium</a>: 428,
   
-    <a href="#blink">Blink</a>: 1754,
+    <a href="#blink">Blink</a>: 1760,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,39 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove stray usage of logging_like_official_build</summary>
+              <pre class=body>
+The logging_like_official_build gyp setting was removed in this CL:
+<a href="https://codereview.chromium.org/189603007">https://codereview.chromium.org/189603007</a>
+
+BUG=334021
+
+Review URL: <a href="https://codereview.chromium.org/682603002">https://codereview.chromium.org/682603002</a>
+
+Cr-Commit-Position: refs/heads/master@{#301344}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/43a6f9c8185dddfce0cd016964524059175de74b"><time datetime="2014-10-27">2014-10-27</time></a>
+        <tr>
+          <td>mharanczyk
+          <td class=message>
+            <details>
+              <summary>Use embedded test server instead of spawned one in AllUrlsApiTest.</summary>
+              <pre class=body>
+This prevents file lock problems on those tests shutdown on windows.
+
+BUG=427420
+
+Review URL: <a href="https://codereview.chromium.org/682593002">https://codereview.chromium.org/682593002</a>
+
+Cr-Commit-Position: refs/heads/master@{#301340}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/16390930b069582d9476c4d5f07f404ec59720ef"><time datetime="2014-10-27">2014-10-27</time></a>
         <tr>
           <td>ljagielski
           <td class=message>
@@ -7823,6 +7856,128 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Expand system font values during property parsing.</summary>
+              <pre class=body>
+This is alancutter&#39;s patch, adjusted to work with the current master.
+
+This patch removes special case handling of the font shorthand property.
+Previously this property would be carried through to the style resolving
+stage if system font values were used. This patch refactors this process
+to happen in the CSS parser so that font is always expanded into longhand
+values.
+
+BUG=353932
+
+Review URL: <a href="https://codereview.chromium.org/677103002">https://codereview.chromium.org/677103002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184449 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f0ab9794a9d1240ce5a57e510fdb82dbc8337906"><time datetime="2014-10-27">2014-10-27</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Avoid subtree style recalc for :-webkit-full-page-media.</summary>
+              <pre class=body>
+Do not let the presence of a :-webkit-full-page-media selector require a
+sub-tree style recalc.
+
+I did not find a way to test style invalidation inside a media document, so
+I made a test with the negated selector instead.
+
+<a href="mailto:R=chrishtr@chromium.org,esprehn@chromium.org">R=chrishtr@chromium.org,esprehn@chromium.org</a>
+BUG=425070
+
+Review URL: <a href="https://codereview.chromium.org/664583007">https://codereview.chromium.org/664583007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184448 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a13ee768f7aea540fd4b4feac546cc51a301e03b"><time datetime="2014-10-27">2014-10-27</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Avoid sub-tree style recalc for ::-webkit-resizer.</summary>
+              <pre class=body>
+The presence of the ::-webkit-resizer pseudo element should not trigger a
+sub-tree style recalc from style invalidation.
+
+This CL depends on <a href="https://codereview.chromium.org/639293008/">https://codereview.chromium.org/639293008/</a>
+
+<a href="mailto:R=esprehn@chromium.org,chrishtr@chromium.org">R=esprehn@chromium.org,chrishtr@chromium.org</a>
+BUG=425557
+
+Review URL: <a href="https://codereview.chromium.org/663313004">https://codereview.chromium.org/663313004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184442 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/005ee1bdbea25f3bd957b7b9c55b82d64389c9ee"><time datetime="2014-10-27">2014-10-27</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Avoid subtree style recalc for fullscreen pseudos.</summary>
+              <pre class=body>
+Do not let the presence of any of the following pseudo classes require a
+sub-tree style recalc:
+
+:-webkit-full-screen
+:-webkit-full-screen-ancestor
+:-webkit-full-screen-document
+
+<a href="mailto:R=chrishtr@chromium.org,esprehn@chromium.org">R=chrishtr@chromium.org,esprehn@chromium.org</a>
+BUG=425070
+
+Review URL: <a href="https://codereview.chromium.org/663023003">https://codereview.chromium.org/663023003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184441 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4b6ad0acf7835475a8cf9cd16b6e4700a96de3c6"><time datetime="2014-10-27">2014-10-27</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Custom pseudo elements do not require sub-tree recalcs.</summary>
+              <pre class=body>
+Custom pseudo elements are already invalidation set features and handled
+in invalidationSetModeForSelector and extractInvalidationSetFeature.
+
+TEST=fast/css/invalidation/targeted-class-custom-pseudo.html
+
+<a href="mailto:R=chrishtr@chromium.org,esprehn@chromium.org">R=chrishtr@chromium.org,esprehn@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/669643003">https://codereview.chromium.org/669643003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184438 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0a7e8daec84bde82cb41b9926c9c3dd847db37b3"><time datetime="2014-10-27">2014-10-27</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: simplify quota storage callbacks objects.</summary>
+              <pre class=body>
+With callback objects now being on the heap by default, we can simplify
+the objects wrapping storage callbacks.
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/676183002">https://codereview.chromium.org/676183002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184420 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0acbfa582bcc0c3bca9b49bc82d3c941bdadbfa2"><time datetime="2014-10-27">2014-10-27</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
