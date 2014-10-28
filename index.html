@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 428,
+    <a href="#chromium">Chromium</a>: 429,
   
-    <a href="#blink">Blink</a>: 1760,
+    <a href="#blink">Blink</a>: 1766,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,27 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Revert &#34;Accelerate the lighten blendmode if GL_EXT_blend_minmax is enabled.&#34;</summary>
+              <pre class=body>
+This reverts <a href="https://crrev.com/fad658b4d6af2be70c1d39b98ffa92c578f31006">https://crrev.com/fad658b4d6af2be70c1d39b98ffa92c578f31006</a>.
+
+The &#39;lighten&#39; results are incorrect if we have alpha, demonstrated by
+<a href="https://codereview.chromium.org/673873005/">https://codereview.chromium.org/673873005/</a>, the resulting blend
+equation doesn&#39;t match the one in the spec.
+
+BUG=243223
+<a href="mailto:TBR=enne@chromium.org">TBR=enne@chromium.org</a>, <a href="mailto:jbauman@chromium.org">jbauman@chromium.org</a>, <a href="mailto:mkwst@chromium.org">mkwst@chromium.org</a>, <a href="mailto:rosca@adobe.com">rosca@adobe.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/680973002">https://codereview.chromium.org/680973002</a>
+
+Cr-Commit-Position: refs/heads/master@{#301624}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/20607badde183d15907cef19ae8a4f34512e1861"><time datetime="2014-10-28">2014-10-28</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -7856,6 +7877,117 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Clear baseRenderStyle on detach.</summary>
+              <pre class=body>
+ActiveAnimations::baseRenderStyle was only nulled correctly from
+styleForElement, but that method is not always called when clearing the
+styleChangeType(). For instance when the we have detached the element, but
+don&#39;t need to create a renderer for it when re-attaching.
+
+This bug caused the baseRenderStyle to survive moving an element between
+documents triggering the assert checking that the baseRenderStyle was
+correct.
+
+Clearing the baseRenderStyle unconditionally on detach() should fix this.
+
+<a href="mailto:R=dstockwell@chromium.org,esprehn@chromium.org">R=dstockwell@chromium.org,esprehn@chromium.org</a>
+BUG=427433
+
+Review URL: <a href="https://codereview.chromium.org/642773004">https://codereview.chromium.org/642773004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184515 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1ce0d1673ee409025319c0031f370bbc12d079cb"><time datetime="2014-10-28">2014-10-28</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Split fast/multicol/float-multicol into smaller tests.</summary>
+              <pre class=body>
+ * float-edge: Tests that floats line up with the edge of the
+   column, and not something else.
+ * float-break: Tests that tall floats break into columns.
+ * float-content-break: Tests that content of floats are broken
+   into columns.
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/675433002">https://codereview.chromium.org/675433002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184505 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0e1950df2d34d4056d3d913f5876961a3bac64a7"><time datetime="2014-10-28">2014-10-28</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Rebaseline crash tests in fast/multicol/span with dumpAsText.</summary>
+              <pre class=body>
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/677063002">https://codereview.chromium.org/677063002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184475 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/75cde82632c94a6e8e16b2170b108a8349edbd1d"><time datetime="2014-10-27">2014-10-27</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Remove obsolete baseline for column-break-with-balancing.</summary>
+              <pre class=body>
+This baseline accidentally survived an earlier reftest-conversion.
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/683483003">https://codereview.chromium.org/683483003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184470 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d688951a19f291daaefa40ea7c84530b300bbaef"><time datetime="2014-10-27">2014-10-27</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r184449.</summary>
+              <pre class=body>
+TBR=oilpan-reviews,haraken
+BUG=353932
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/681013002">https://codereview.chromium.org/681013002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184469 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1a2cfe31ae71a4d2e1b3929b3ab239d439867034"><time datetime="2014-10-27">2014-10-27</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Drop RenderStyle-arg. from RenderSVGResource{Filter,Masker}::prepareEffect</summary>
+              <pre class=body>
+It&#39;s unused in both cases.
+
+BUG=420022
+
+Review URL: <a href="https://codereview.chromium.org/674373004">https://codereview.chromium.org/674373004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184457 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/56de9f84e5b3e117370142c7fa6646a088a8113f"><time datetime="2014-10-27">2014-10-27</time></a>
         <tr>
           <td>andersr
           <td class=message>
