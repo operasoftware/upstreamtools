@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 429,
   
-    <a href="#blink">Blink</a>: 1766,
+    <a href="#blink">Blink</a>: 1772,
   
     <a href="#v8">V8</a>: 22.
   
@@ -7877,6 +7877,125 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Simplify WebServiceWorker{Registration}Proxy interfaces.</summary>
+              <pre class=body>
+Turn WebServiceWorkerRegistrationProxy and WebServiceWorkerProxy into
+pure abstract interfaces, letting the embedder call the &#34;proxy&#34;
+interfaces on the ServiceWorkerRegistration and ServiceWorker Blink
+objects, respectively. That is, no longer keep private (and bare)
+pointers on these platform proxy objects; unnecessary and runs up
+against overall platform layering constraints.
+
+Like before, the ownership of these proxy objects resides with Blink.
+
+R=nhiroki,haraken,mkwst
+BUG=410257
+
+Review URL: <a href="https://codereview.chromium.org/682003003">https://codereview.chromium.org/682003003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184587 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c44e76967a2f6b7b09cd1774d9688b7be343c349"><time datetime="2014-10-29">2014-10-29</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Clarify that there is no :cue or :cue(...) pseudo-class</summary>
+              <pre class=body>
+The test passes with or without these changes, demonstrating that the
+::cue pseudo-element is already the only one, as per the spec:
+<a href="http://dev.w3.org/html5/webvtt/#the-cue-pseudo-element">http://dev.w3.org/html5/webvtt/#the-cue-pseudo-element</a>
+
+TEST=LayoutTests/media/track/track-css-cue-pseudo-class.html
+
+Review URL: <a href="https://codereview.chromium.org/677943002">https://codereview.chromium.org/677943002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184585 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1988ec34d03162564097a666ef8c1bfb1197b805"><time datetime="2014-10-29">2014-10-29</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove updatePaintingInfoForFragments() and per-fragment shouldPaintContent flag.</summary>
+              <pre class=body>
+It seems that all it did was to erroneously make us skip fragments. It
+intersected with layer bounds, which don&#39;t include layer overflow. Before
+we create the fragments in RenderMultiColumnSet, we carefully intersect
+with everything relevant anyway. So rather than fixing the buggy code,
+just remove it.
+
+This means that there&#39;s no need for a per-fragment shouldPaintContent flag.
+anymore.
+
+BUG=359877
+
+Review URL: <a href="https://codereview.chromium.org/666493002">https://codereview.chromium.org/666493002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184562 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/981f1778dfcfd6796f9fd10d6da314ec08c81d5a"><time datetime="2014-10-29">2014-10-29</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: update expectations paths to match current.</summary>
+              <pre class=body>
+Testst that needs rebaselines on Windows now live in antialiasedtext/;
+update paths accordingly.
+
+TBR=oilpan-reviews,haraken
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/684013002">https://codereview.chromium.org/684013002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184544 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c0b526bc21e7b1e53e2bfc114de76acf101ab4b9"><time datetime="2014-10-28">2014-10-28</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move &lt;svg:image&gt; buffered-rendering management to SVGImagePainter</summary>
+              <pre class=body>
+There are no strong dependencies on SVGRenderingContext or other
+surroundings, so the move is reasonably straight-forward.
+While moving, modify the flow of the bufferForeground function a bit.
+
+BUG=412088
+
+Review URL: <a href="https://codereview.chromium.org/675173003">https://codereview.chromium.org/675173003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184542 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c168b6e13b01fcd4f2fe6f4dd8205b18937fb051"><time datetime="2014-10-28">2014-10-28</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>No subtree recalc for scrollbar pseudo classes.</summary>
+              <pre class=body>
+Removed a set of pseudo classes which only apply to scrollbar pseudo elements
+from the list of classes that require subtree recalcs.
+
+<a href="mailto:R=esprehn@chromium.org,chrishtr@chromium.org">R=esprehn@chromium.org,chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/654683003">https://codereview.chromium.org/654683003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184529 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/790019fbf45517445b361d121b7b9de0616bb6e4"><time datetime="2014-10-28">2014-10-28</time></a>
         <tr>
           <td>rune
           <td class=message>
