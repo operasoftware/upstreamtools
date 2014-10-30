@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 429,
+    <a href="#chromium">Chromium</a>: 430,
   
-    <a href="#blink">Blink</a>: 1772,
+    <a href="#blink">Blink</a>: 1779,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,25 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>ljagielski
+          <td class=message>
+            <details>
+              <summary>Get rid of net::LOAD_ENABLE_UPLOAD_PROGRESS.</summary>
+              <pre class=body>
+It&#39;s only used by Loader code.
+
+BUG=426442
+
+Committed: <a href="https://crrev.com/69c091ddba1bddda795eb5da4e400d16b29cc732">https://crrev.com/69c091ddba1bddda795eb5da4e400d16b29cc732</a>
+Cr-Commit-Position: refs/heads/master@{#301110}
+
+Review URL: <a href="https://codereview.chromium.org/669073003">https://codereview.chromium.org/669073003</a>
+
+Cr-Commit-Position: refs/heads/master@{#301843}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/6615c1cc5a503300512accc00c28e4cb5989829e"><time datetime="2014-10-29">2014-10-29</time></a>
         <tr>
           <td>ed
           <td class=message>
@@ -7877,6 +7896,133 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the composite attribute on &lt;img&gt;</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/bLlTQWlLTOM/ZPrSv4t_WxUJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/bLlTQWlLTOM/ZPrSv4t_WxUJ</a>
+
+BUG=428636
+
+Review URL: <a href="https://codereview.chromium.org/688743002">https://codereview.chromium.org/688743002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184644 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e315e48a089e5e32207db058507c7d7a4021fd38"><time datetime="2014-10-30">2014-10-30</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Demote &#39;line-height&#39; to a low priority property.</summary>
+              <pre class=body>
+Our special handling of the &#39;line-height&#39; property is no longer
+required, since the &#39;font&#39; shorthand is now expanded in the parser
+in all cases (also for system fonts).
+
+<a href="mailto:R=timloh@chromium.org">R=timloh@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/670373002">https://codereview.chromium.org/670373002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184629 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d50f1c03b002f3348b5c1d35828898936afb3358"><time datetime="2014-10-30">2014-10-30</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Never fire popstate event when navigating between documents</summary>
+              <pre class=body>
+The specification says to only fire popstate events when the document&#39;s
+&#34;latest entry&#34; isn&#39;t the session history entry being navigated to. This
+can be the case when navigating between documents (when skipping history
+entries, e.g. using history.go(-2)), but this patch simply disables
+popstate entirely when navigating between documents.
+
+The resulting behavior matches that of Firefox and MSIE.
+
+BUG=400427
+
+Review URL: <a href="https://codereview.chromium.org/680273004">https://codereview.chromium.org/680273004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184628 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5da5b5931fe82baf6affd57aae914d0cedc10f08"><time datetime="2014-10-30">2014-10-30</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r184599.</summary>
+              <pre class=body>
+TBR=oilpan-reviews,haraken
+BUG=425186
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/691613002">https://codereview.chromium.org/691613002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184601 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/12399fbf4a8fe566c0f100bd070a01dd97f079b8"><time datetime="2014-10-29">2014-10-29</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: pull SVGPropertyBase off the heap.</summary>
+              <pre class=body>
+Having the SVG property base class derive from RefCountedGarbageCollected,
+but its derived classes all be created and kept as ref-counted pointers
+doesn&#39;t bring any benefits.
+
+Revert back to deriving from RefCounted&lt;&gt; until the entire SVG property
+hierarchy can be moved to the Oilpan heap, and ref-counts be avoided
+altogether for these objects.
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/686163002">https://codereview.chromium.org/686163002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184600 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/990e337be18bd6a7d25b5dbfd73672983c80221a"><time datetime="2014-10-29">2014-10-29</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add two more expected Windows image only failures.</summary>
+              <pre class=body>
+TBR=oilpan-reviews,haraken
+BUG=410145
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/656183003">https://codereview.chromium.org/656183003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184598 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b7ae05b3f089729a7e47fb0965924d269ac7da13"><time datetime="2014-10-29">2014-10-29</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r184578.</summary>
+              <pre class=body>
+R=haraken
+BUG=425623
+
+Review URL: <a href="https://codereview.chromium.org/686093002">https://codereview.chromium.org/686093002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184593 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a9961b58d83c3a52af26c7a351e68caffa252f83"><time datetime="2014-10-29">2014-10-29</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
