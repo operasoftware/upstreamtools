@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 430,
   
-    <a href="#blink">Blink</a>: 1784,
+    <a href="#blink">Blink</a>: 1791,
   
     <a href="#v8">V8</a>: 22.
   
@@ -7896,6 +7896,166 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Avoid trigger compositing update on media player finalization.</summary>
+              <pre class=body>
+When finalizing a media element and clearing out its associated
+media player, prevent the media player finalizer from indirectly
+triggering a composition update on the media element itself.
+Unsafe, as it will touch other heap objects, which might have
+been finalized by now.
+
+R=haraken
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/696103003">https://codereview.chromium.org/696103003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184769 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e839e8b17d1e13b34ec6b5a5c384ac47ac27995d"><time datetime="2014-11-01">2014-11-01</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Prevent leak on completion of drop operation.</summary>
+              <pre class=body>
+If the &#39;drop&#39; event handler signals that the event has been handled and
+no default handling is to be done, we clear the document and consider
+the operation complete. Also clear out the drag caret selection at that
+time, as it may hold onto an anchor node (and its document.)
+
+R=dcheng
+BUG=364417
+TEST=fast/dom/shadow/drop-event-for-input-in-shadow.html
+
+Review URL: <a href="https://codereview.chromium.org/689103003">https://codereview.chromium.org/689103003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184768 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d4b29b1e0ec1c0c2c436ba9978054704fedbe884"><time datetime="2014-11-01">2014-11-01</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Corrected serialization of ::cue() functions.</summary>
+              <pre class=body>
+The selectorList argument of ::cue() functions were just dropped.
+Serialization of that list is now done.
+
+The explicit universal tag &#34;*&#34; is not correct per CSSOM spec, but I didn&#39;t
+address that in this CL. Besides, that also affects a bunch of the custom
+pseudo elements. Nothing changed here.
+
+Also removed a bunch of unnecessary CSSSelector:: prefixing.
+
+<a href="mailto:R=timloh@chromium.org,andersr@opera.com">R=timloh@chromium.org,andersr@opera.com</a>
+BUG=428696
+
+Review URL: <a href="https://codereview.chromium.org/689933002">https://codereview.chromium.org/689933002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184767 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b631706f8c14bb8f80a11bef66e441f6429b2788"><time datetime="2014-11-01">2014-11-01</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a UseCounter for when xml:base takes effect in Element.baseURI</summary>
+              <pre class=body>
+This is the only internal usage of xml:base.
+
+BUG=341854
+
+Review URL: <a href="https://codereview.chromium.org/697693003">https://codereview.chromium.org/697693003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184763 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/abda936a9ea87672f8bfb2f1663d09672305d368"><time datetime="2014-11-01">2014-11-01</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Use the return value from flipForWritingMode().</summary>
+              <pre class=body>
+flipForWritingMode() comes in at least two flavors; one that takes a
+LayoutRect&amp; and one that takes a LayoutSize&amp;. The one that takes
+LayoutRect puts the result in the reference passed (and returns nothing).
+The one that takes LayoutSize leaves the reference passed untouched
+(after all, it&#39;s const) and returns the result. Not confusing at all.
+
+Better not ignore the returned value when using the LayoutSize version.
+
+This fixes fast/multicol/vertical-rl/composited-relpos-overlapping-will-change.html
+
+BUG=359877
+<a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/696523003">https://codereview.chromium.org/696523003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184757 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e5007cdba1387496cfb3bd4cd8ac7bb7788768bd"><time datetime="2014-10-31">2014-10-31</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Prefer unprefixed clip-path to (webkit) prefixed</summary>
+              <pre class=body>
+In the world of prefixes, a property without takes precedence over a
+property with. That tends to assume that there&#39;s not actually two
+properties supported though. In the case of &#39;clip-path&#39; and
+&#39;-webkit-clip-path&#39;, they both exist and are handled by different code.
+The latter also takes precedence over the former which leads to strange
+behavior in the cases where both the prefixed and unprefixed property is
+specified in a rule.
+Change the behavior in this case to be more in line with prefix handling
+in general, byt preferring the unprefixed property if it exists.
+
+This requires moving one or the other of the two code-blocks that setup the
+clip. In this CL the application of &#39;clip-path&#39; is moved before the
+application of &#39;mask&#39;. With this move, the rendering-clip-as-mask code-path
+can be simplified a bit. Also fix an edge-case where a clip-shape which
+referenced a non-existent filter would not be rendered (TC added.)
+
+Also clean-up the rendering-clip-as-mask handling around
+opacity/blend-mode/isolation, to avoid creating a (redundant) transparency
+layer when a clip-shape has isolation specified.
+
+BUG=391608
+
+Review URL: <a href="https://codereview.chromium.org/683703005">https://codereview.chromium.org/683703005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184752 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f1cb4b96ccd6fa070fe3ceb6601b591bc8414617"><time datetime="2014-10-31">2014-10-31</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Reset animation player map on disconnecting Inspector frontend.</summary>
+              <pre class=body>
+Clear out the node ID to AnimationPlayer map on disconnect to avoid
+references to elements (and their documents) from lingering longer than
+necessary.
+
+R=haraken,aandrey
+BUG=428685
+
+Review URL: <a href="https://codereview.chromium.org/690603003">https://codereview.chromium.org/690603003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184743 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/83277c33334fd9cf6da3784ef5a30273ab8edb82"><time datetime="2014-10-31">2014-10-31</time></a>
         <tr>
           <td>andersr
           <td class=message>
