@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 430,
+    <a href="#chromium">Chromium</a>: 431,
   
-    <a href="#blink">Blink</a>: 1793,
+    <a href="#blink">Blink</a>: 1794,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,23 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>christiank
+          <td class=message>
+            <details>
+              <summary>Update touch selection to only modify one selection point at a time.</summary>
+              <pre class=body>
+This is made in preparation for enabling selection auto scroll using touch
+handles.
+
+BUG=340658
+
+Review URL: <a href="https://codereview.chromium.org/657803002">https://codereview.chromium.org/657803002</a>
+
+Cr-Commit-Position: refs/heads/master@{#302776}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/aeed9866ec8ef2172404784edeebc85aaafbf330"><time datetime="2014-11-05">2014-11-05</time></a>
         <tr>
           <td>ljagielski
           <td class=message>
@@ -7896,6 +7913,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Convert fast/multicol/float-paginate to reftest.</summary>
+              <pre class=body>
+Added an explicit column-gap, used column-count rather than column-width,
+and removed some lines to make the test fit better in content_shell.
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/695283002">https://codereview.chromium.org/695283002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184868 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/62df5d421ad67b2fa361de6a094d2a7102532eca"><time datetime="2014-11-05">2014-11-05</time></a>
         <tr>
           <td>andersr
           <td class=message>
