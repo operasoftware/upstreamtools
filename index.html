@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 431,
+    <a href="#chromium">Chromium</a>: 432,
   
-    <a href="#blink">Blink</a>: 1794,
+    <a href="#blink">Blink</a>: 1798,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,20 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mathiash
+          <td class=message>
+            <details>
+              <summary>Make WebContentsDelegateAndroid pass more calls to Java.</summary>
+              <pre class=body>
+BUG=428784
+
+Review URL: <a href="https://codereview.chromium.org/684133007">https://codereview.chromium.org/684133007</a>
+
+Cr-Commit-Position: refs/heads/master@{#302997}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/ea83ff6e9f1c0743ca418e6c79036ae4abaadf32"><time datetime="2014-11-06">2014-11-06</time></a>
         <tr>
           <td>christiank
           <td class=message>
@@ -7913,6 +7927,93 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Convert fast/multicol/vertical-[lr, rl]/rules-with-border-before to reftest.</summary>
+              <pre class=body>
+Added DOCTYPE and described pass conditions.
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/701803002">https://codereview.chromium.org/701803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184910 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1d479bdbaeba16563291048f1c5504f61ada467f"><time datetime="2014-11-06">2014-11-06</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove HTMLHeadElement.profile</summary>
+              <pre class=body>
+Intent to Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/GotqYh_4mFA/KgO0qCCpXcMJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/GotqYh_4mFA/KgO0qCCpXcMJ</a>
+
+BUG= 430788
+
+Review URL: <a href="https://codereview.chromium.org/690033002">https://codereview.chromium.org/690033002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184898 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b4bebb047f35d98a11b55053b6619b71f71356d7"><time datetime="2014-11-06">2014-11-06</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Add RenderMultiColumnSpannerSet.</summary>
+              <pre class=body>
+This is in preparation for column-span:all support.
+
+This CL puts basic set renderer insertion needed by column-span:all into
+place. Full support for set management (cope with dynamic changes after
+inital layout, etc.) and actual support for layout will be introduced in
+follow-up CLs. Likewise for layout tests.
+
+Each column-span:all renderer needs a corresponding
+RenderMultiColumnSpannerSet. This means that if there&#39;s column content
+preceding and following the spanner, we need a RenderMultiColumnSet both
+before and after it (while, without spanners, there&#39;d never be any need
+for more than one column set).
+
+Some extra attention is required when inserting flow thread
+descendants now, because we need to figure out if the renderer
+inserted should trigger creation of a new column set or a spanner set.
+
+Wrote some unit tests. Layout tests not possible at this time, since this
+CL has no (intentional) web-facing changes.
+
+BUG=347325
+
+Review URL: <a href="https://codereview.chromium.org/688703003">https://codereview.chromium.org/688703003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184887 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/80e3d142a78aa02e516a3a61faa1c2f0ec7a9adc"><time datetime="2014-11-06">2014-11-06</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Replace fast/multicol/float-paginate-complex with float-big-line.</summary>
+              <pre class=body>
+The test float-paginate-complex adds nothing over the other float-* tests,
+except the case with a big line box. That case has been split out into
+a new reftest: float-big-line.
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/699593003">https://codereview.chromium.org/699593003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184876 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/26756731f525bd18e42be1a573cd7057255508e4"><time datetime="2014-11-05">2014-11-05</time></a>
         <tr>
           <td>andersr
           <td class=message>
