@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 432,
   
-    <a href="#blink">Blink</a>: 1798,
+    <a href="#blink">Blink</a>: 1803,
   
     <a href="#v8">V8</a>: 22.
   
@@ -7927,6 +7927,99 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Convert fast/multicol/positioned-split to reftest.</summary>
+              <pre class=body>
+ * Set explicit column-gap and line-height.
+ * Clarified pass condition.
+ * Removed useless evil twin in fast/multicol/newmulticol.
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/702093002">https://codereview.chromium.org/702093002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184967 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/62c3f8d428750d37a2a72f4cb38a4c2b3fc50af1"><time datetime="2014-11-07">2014-11-07</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Introduce paintFragmentWithPhase(), to simplify paint*ForFragments().</summary>
+              <pre class=body>
+There was some ~duplicated code in those methods, pertaining to clipping
+and setting up a PaintInfo and calling renderer::paint().
+
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/704753002">https://codereview.chromium.org/704753002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184936 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5e0dd48c689edd826491cbde874aa2ead070ed64"><time datetime="2014-11-06">2014-11-06</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Cleanup: Use foreground rect in paintChildClippingMaskForFragments().</summary>
+              <pre class=body>
+The clip rectangle was based on the foreground rectangle, while we
+passed the background rectangle to PaintInfo.
+Be consistent and use the foreground rectangle in both cases.
+
+There was also a comment about skipping ourselves for border radius
+clipping, although we did include ourselves. Removed the comment.
+
+No behavioral changes intended, but added a test that would fail if we
+had gone for the background rect instead of the foreground rect.
+
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/706603002">https://codereview.chromium.org/706603002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184931 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c9bf7b33cf2e50a7d5e5f52d5630de48ca6f5819"><time datetime="2014-11-06">2014-11-06</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Convert fast/multicol/vertical-rl/rule-style to reftest.</summary>
+              <pre class=body>
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/690133003">https://codereview.chromium.org/690133003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184921 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ff68124db8ba841863f2ee63d66d14142ff4d13b"><time datetime="2014-11-06">2014-11-06</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Convert fast/multicol/unsplittable-inline-block to reftest.</summary>
+              <pre class=body>
+Removed explicit &#39;width&#39; and shortened text lines to make the test
+&#34;compatible&#34; with vertical-lr/rl.
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+BUG=386567
+
+Review URL: <a href="https://codereview.chromium.org/698203003">https://codereview.chromium.org/698203003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184916 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/196812ff8a2aa414ba1ca11e3d986024492ef154"><time datetime="2014-11-06">2014-11-06</time></a>
         <tr>
           <td>andersr
           <td class=message>
