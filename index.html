@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 432,
+    <a href="#chromium">Chromium</a>: 433,
   
-    <a href="#blink">Blink</a>: 1803,
+    <a href="#blink">Blink</a>: 1805,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,23 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Allow C++11 Delegated Constructors.</summary>
+              <pre class=body>
+An as-small-as-possible change has been made to JSONReader to test
+this feature.
+
+<a href="mailto:R=jamesr@chromium.org">R=jamesr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/685603005">https://codereview.chromium.org/685603005</a>
+
+Cr-Commit-Position: refs/heads/master@{#303245}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/127772eed524dac861781b03ff22bc9d9a408257"><time datetime="2014-11-07">2014-11-07</time></a>
         <tr>
           <td>mathiash
           <td class=message>
@@ -7927,6 +7944,47 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r185003.</summary>
+              <pre class=body>
+TBR=oilpan-reviews,haraken
+BUG=430507
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/709893002">https://codereview.chromium.org/709893002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185004 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6e42bdc84e77837886fe2f67afe3441f2d801dc0"><time datetime="2014-11-08">2014-11-08</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>PartitionAlloc: Leave bucket in valid state when allocation fails</summary>
+              <pre class=body>
+When an allocation with the PartitionAllocReturnNull flag fails, we need to
+make sure to leave all structures in a valid state when bailing out, since
+the process lives on and may call again later.
+
+Specifically, make sure that the bucket&#39;s activePagesHead has a valid value,
+instead of null, when returning null from partitionAllocSlowPath(). Since
+there&#39;s no meaningful page to set as the active pages head, set it to its
+initial value, &amp;PartitionRootBase::gSeedPage.
+
+This was already necessarily supported by the allocation code paths. The
+deallocation code path needs some minor adjustments to handle this state
+correctly.
+
+Review URL: <a href="https://codereview.chromium.org/645223007">https://codereview.chromium.org/645223007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@184983 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/64ffda44c57337b45a4d19ea6e818d5c5573d325"><time datetime="2014-11-07">2014-11-07</time></a>
         <tr>
           <td>andersr
           <td class=message>
