@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 433,
   
-    <a href="#blink">Blink</a>: 1806,
+    <a href="#blink">Blink</a>: 1808,
   
     <a href="#v8">V8</a>: 22.
   
@@ -7944,6 +7944,85 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Removed test case having scrollbar issues on Mac.</summary>
+              <pre class=body>
+For some reason the generated scrollbar pseudo element count was different
+on Mac, although the test passed on the Mac bot when landing. I&#39;ve removed
+the test for :single-button/:double-button as the test coverage by the
+other pseudo classes should be enough.
+
+<a href="mailto:R=leviw@chromium.org">R=leviw@chromium.org</a>
+BUG=427953
+
+Review URL: <a href="https://codereview.chromium.org/687943002">https://codereview.chromium.org/687943002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185036 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e655c182adc57696e5648ed0e71524c64f72f53d"><time datetime="2014-11-10">2014-11-10</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Decouple font unit conversion in computeLengthDouble from RenderStyle.</summary>
+              <pre class=body>
+Simply passing the RenderStyle(s) to computeLengthDouble, and letting it decide
+how to convert units is ugly, since the conversion factors depends on context.
+(Notably font-size, where parent specified font size is to be used rather than
+current computed font size).
+
+The same applies to zoom, where we normally want to use the effective zoom
+of some RenderStyle, and in other cases some alternative specific zoom.
+
+To make matters worse, the same RenderStyle from which we produce font unit
+factors, and (maybe) effective zoom, is also marked as having viewport units (if
+encountered), even though the RenderStyle we want to mark is not always the same
+as the one we want to produce factors from.
+
+This patch reworks CSSToLengthConversionData to contain more specific coversion
+data, instead of just forwarding RenderStyles into dark places.
+
+CSSToLengthConversionData now consists of:
+
+ * CSSToLengthFontSizes which knows which factors to use for em/rem/ex/ch.
+   The units that only depend on FontDescription (em, rem) are always computed,
+   and the units which depend on FontMetrics (ex, ch) are computed on demand.
+   This is to avoid loading of fonts in cases where its metrics weren&#39;t really
+   needed after all.
+ * CSSToLengthViewportSize just contains the size of the viewport, and exists
+   only to improve the structure of CSSToLengthConversionData. (Less params).
+ * Zoom. This is the zoom used in all cases. Effective/non-effective is now
+   handled by the outside.
+ * (Private) RenderStyle. Only to mark as having viewport units.
+
+This is better, because:
+
+ * The special situation of computing font-size is now handled in the converter
+   for font-size, not computeLengthDouble, which really shouldn&#39;t have to care.
+ * The RenderStyle we&#39;re passing is only used for viewport unit marking, so we
+   can actually pass the correct one for font-size.
+ * The ... extravagant ... constructors of CSSToLengthConversionData are now
+   under control.
+
+Notes:
+
+ * StyleResolver now calls inheritFrom on styles before setting the style on the
+   StyleResolverState. This ensures that correct font unit factors are computed
+   (as the Font is inheritable).
+ * An extra updateFont is needed if we inheritFrom a cached style.
+ * StyleResolver::defaultStyleForElement does not need to use a
+   StyleResolverState anymore. A FontBuilder will suffice.
+
+Review URL: <a href="https://codereview.chromium.org/705783002">https://codereview.chromium.org/705783002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185033 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1f2a30be5cd4dce8d1eb033012000682e0475ed3"><time datetime="2014-11-10">2014-11-10</time></a>
         <tr>
           <td>philipj
           <td class=message>
