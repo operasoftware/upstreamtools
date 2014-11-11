@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 433,
   
-    <a href="#blink">Blink</a>: 1808,
+    <a href="#blink">Blink</a>: 1813,
   
     <a href="#v8">V8</a>: 22.
   
@@ -7944,6 +7944,110 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Handle parser-blocking script cancellations while nested.</summary>
+              <pre class=body>
+Gracefully handle cancellation of a parser-blocking script load that
+was initiated while already executing scripts. That is, quietly stop
+waiting for it to load without notifying the host.
+
+<a href="mailto:R=marja@chromium.org,kouhei@chromium.org,haraken@chromium.org">R=marja@chromium.org,kouhei@chromium.org,haraken@chromium.org</a>
+BUG=398090
+
+Review URL: <a href="https://codereview.chromium.org/710933003">https://codereview.chromium.org/710933003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185122 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5584785e504be10c00176fff2c7cac3944b4e377"><time datetime="2014-11-11">2014-11-11</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove clipRect parameter from LayerPainter::applyRoundedRectClips().</summary>
+              <pre class=body>
+It was only used to check if there was a radius involved, which is easy
+enough, and even sensible (since we can then avoid calling this method
+at all in most cases - after all, it&#39;s not like border radius is
+something you set on every other element), to check before calling the
+method.
+
+Additionally, this made it pretty obvious that calling this from
+paintTransformedLayerIntoFragments() was rather useless, since clipRect
+there wasn&#39;t a ClipRect but a LayoutRect (which knows nothing about
+radii).
+
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/705303004">https://codereview.chromium.org/705303004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185086 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c5c94760a0eac054d5308d46a3cc38838c248395"><time datetime="2014-11-11">2014-11-11</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove keyboard event filtering in fullscreen</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/eeGNNCIBkX8/5KzPyK2caoUJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/eeGNNCIBkX8/5KzPyK2caoUJ</a>
+
+BUG=428348
+
+Review URL: <a href="https://codereview.chromium.org/681113006">https://codereview.chromium.org/681113006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185081 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/227b79fcd2c760dcaeefa0bfae092ccc375f317a"><time datetime="2014-11-11">2014-11-11</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Support optional union type arguments with default values</summary>
+              <pre class=body>
+Since union container types have setters rather than assignment operators,
+restructure the default value handling to generate a C++ expression that
+sets the value instead of the value as a C++ literal expression.
+
+And as a special case, since union containers are null initially, if the
+default value is null, generate an empty expression then.
+
+This also fixes a minor bug in the union handling: enum types were not
+supported. They should be treated as string types, including conflicting
+with any other string type in the union.
+
+BUG=240176
+
+Review URL: <a href="https://codereview.chromium.org/713683003">https://codereview.chromium.org/713683003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185046 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cd1012879a4acd80233ce490adde6082032912f5"><time datetime="2014-11-10">2014-11-10</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Retire xmlhttprequest/workers/close.html test expectation.</summary>
+              <pre class=body>
+Test is no longer reported as timing out on Windows bots.
+
+<a href="mailto:R=tyoshino@chromium.org">R=tyoshino@chromium.org</a>
+BUG=409535
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/711013002">https://codereview.chromium.org/711013002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185042 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/abe9e2915ee4fc0359802670654df223013b1d38"><time datetime="2014-11-10">2014-11-10</time></a>
         <tr>
           <td>rune
           <td class=message>
