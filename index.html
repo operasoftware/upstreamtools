@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 433,
+    <a href="#chromium">Chromium</a>: 435,
   
-    <a href="#blink">Blink</a>: 1813,
+    <a href="#blink">Blink</a>: 1818,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,42 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>msimonides
+          <td class=message>
+            <details>
+              <summary>Send extension console messages to the right WebFrame.</summary>
+              <pre class=body>
+The extensions::console::ByContextFinder&#39;s conditions are tightened so
+that the correct RenderView is found for a given v8::Context.
+This fixes the problem where console messages may be sent to an
+incorrect document (e.g. background page instead of the options page).
+
+BUG=427922
+
+Review URL: <a href="https://codereview.chromium.org/678393002">https://codereview.chromium.org/678393002</a>
+
+Cr-Commit-Position: refs/heads/master@{#303824}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/15c088458a1e6bf4f315f7b61f1b153a5ca1d60d"><time datetime="2014-11-12">2014-11-12</time></a>
+        <tr>
+          <td>eirik
+          <td class=message>
+            <details>
+              <summary>Add some necessary configuration_policy gyp conditions</summary>
+              <pre class=body>
+These targets are defined inside a condition, so their
+usage must clearly be inside the same condition.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/710253003">https://codereview.chromium.org/710253003</a>
+
+Cr-Commit-Position: refs/heads/master@{#303807}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/bf865e0424ac895a0937a07c0218c424713fdb13"><time datetime="2014-11-12">2014-11-12</time></a>
         <tr>
           <td>andersr
           <td class=message>
@@ -7944,6 +7980,116 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Use union types for HTMLSelectElement.add()&#39;s arguments</summary>
+              <pre class=body>
+According to the specification, the first argument should be
+  (HTMLOptionElement or HTMLOptGroupElement)
+and the second argument should be
+  (HTMLElement or long)?
+(and also be optional and default to null).
+
+This changes behavior for the first argument (previously HTMLElement)
+where a call was a silent no-op for invalid element types, and where
+HTMLHRElement was allowed against the specification and with no
+observable effects.
+
+The new behavior is to throw TypeError for all invalid arguments, which is
+compatible with Firefox and MSIE.
+
+Also apply the same change to HTMLOptionsCollection.add(), which is little
+more than a short-hand for calling add() on the owning select element.
+Also drop the custom bindings implementation for that method, which was
+essentially implementing the unionized second argument.
+
+The behavior of HTMLOptionsCollection.add() is changed to ignore all
+invalid (out of range) integer second arguments, rather than to throw for
+negative ones below than -1. This change is also per specification and
+compatible with other implementations.
+
+BUG=430337
+
+Review URL: <a href="https://codereview.chromium.org/716773002">https://codereview.chromium.org/716773002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185199 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9285698ee6fd3b94801e2c97ccd6dadb80207240"><time datetime="2014-11-12">2014-11-12</time></a>
+        <tr>
+          <td>henriks
+          <td class=message>
+            <details>
+              <summary>Implement seekable() according to the MediaSource specification</summary>
+              <pre class=body>
+BUG=432051
+<a href="mailto:R=philipj@opera.com">R=philipj@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/710173004">https://codereview.chromium.org/710173004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185191 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7ab71247e318239d9b87ce6a5537832f568616cf"><time datetime="2014-11-12">2014-11-12</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Sync webaudio leak expectations after r185177.</summary>
+              <pre class=body>
+Following r185177, these tests no longer crash.
+
+TBR=yhirano,haraken
+BUG=431996
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/719023002">https://codereview.chromium.org/719023002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185187 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/768e9b1d3857a85cdb799807313a953e53487045"><time datetime="2014-11-12">2014-11-12</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Fix union type support in cross-component partial interfaces</summary>
+              <pre class=body>
+If a partial interface in modules extends an interface in core and uses
+any union types, the generated bindings/modules/v8/V8*Partial.cpp file
+needs to include UnionTypesModules.h. This did not happen, since use of
+union types was only tracked per main (non-partial) interface.
+
+BUG=240176
+
+Review URL: <a href="https://codereview.chromium.org/684653009">https://codereview.chromium.org/684653009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185136 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a636e40d69e1dcf01acf7bd94c9ff5e8035ffc88"><time datetime="2014-11-11">2014-11-11</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Count internal use of DOMImplementation::hasFeature() returning false</summary>
+              <pre class=body>
+This is the only internal usage of DOMImplementation::hasFeature(), and
+the only way that svg:requiredFeatures is observable, other than the
+it-&gt;isEmpty() case.
+
+If usage is low, DOMImplementation.hasFeature() and this internal usage
+can be changed together, see
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/r2aARnIHG4k/_dN33g65mYgJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/r2aARnIHG4k/_dN33g65mYgJ</a>
+
+Review URL: <a href="https://codereview.chromium.org/712813002">https://codereview.chromium.org/712813002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185133 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2d984811c650b1a6232e70827287427f4555163f"><time datetime="2014-11-11">2014-11-11</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
