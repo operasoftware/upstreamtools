@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 435,
   
-    <a href="#blink">Blink</a>: 1818,
+    <a href="#blink">Blink</a>: 1828,
   
     <a href="#v8">V8</a>: 22.
   
@@ -7980,6 +7980,222 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Improve overload resolution for methods with variadic arguments</summary>
+              <pre class=body>
+When calculating &#34;optionality list&#34; for a method (as part of calculating
+the effective overload set), treat variadic arguments as optional instead
+as required.
+
+WebIDL defines the optionality list as a list of &#34;required&#34;, &#34;optional&#34;
+and &#34;variadic&#34;, whereas we implement it as a list of booleans. A list of
+booleans is enough to achieve correct behavior, assuming both &#34;optional&#34;
+and &#34;variadic&#34; are considered to be optional (true).
+
+BUG=293561
+
+Review URL: <a href="https://codereview.chromium.org/723013003">https://codereview.chromium.org/723013003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185289 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0eed6dbaca9ea2df0b10b151b2b9f53fe4de78a8"><time datetime="2014-11-13">2014-11-13</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>No need for subtree recalc for :-internal-spatial-navigation-focus.</summary>
+              <pre class=body>
+Make the pseudo class a skippable component. This selector is for internal
+use only, and currently there are no selectors in UA stylesheets that will
+cause style invalidation with that pseudo class. Still, there is no need to
+have it in the list of selectors requiring subtree recalc.
+
+We do not support testing internal properties in layout tests since there
+is no api for injecting UA style, but I have added a test that relies on a
+current bug (see prose in the test itself).
+
+<a href="mailto:R=chrishtr@chromium.org,esprehn@chromium.org">R=chrishtr@chromium.org,esprehn@chromium.org</a>
+BUG=432440
+
+Review URL: <a href="https://codereview.chromium.org/705693005">https://codereview.chromium.org/705693005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185284 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/57a8639eabb60f16909128cf31be8c97740a50f6"><time datetime="2014-11-13">2014-11-13</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Support style invalidation for ::cue selectors.</summary>
+              <pre class=body>
+Don&#39;t resort to subtree recalc in the presence of ::cue, ::cue(), :past
+and :future selectors. Traverse the selector list in ::cue() to find
+invalidation set features.
+
+The test for the ::cue element yields a recalc for more than two elements
+because ::cue is currently a PseudoWebKitCustomElement, and other such
+elements are present as part of the shadow DOM for video elements.
+
+<a href="mailto:R=esprehn@chromium.org,chrishtr@chromium.org">R=esprehn@chromium.org,chrishtr@chromium.org</a>
+BUG=432110
+
+Review URL: <a href="https://codereview.chromium.org/684993007">https://codereview.chromium.org/684993007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185255 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2834ba6d9cdc2f53cbb5c81bbb7e6f5d2ba18bfb"><time datetime="2014-11-12">2014-11-12</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Use CanvasImageSource union type instead of overloading</summary>
+              <pre class=body>
+In CanvasRenderingContext2D.idl, use the already defined union type
+CanvasImageSource for the argument to drawImage() and createPattern(),
+instead of having one overload of each per union member type.
+
+This reduces the number of overloads for drawImage() from 12 to 3 and
+thus greatly reduces the amount of generated bindings code for it.
+
+BUG=430337
+
+Review URL: <a href="https://codereview.chromium.org/703783004">https://codereview.chromium.org/703783004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185247 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ce849d1a2dc5376598c7104aa92968b0e3aed61a"><time datetime="2014-11-12">2014-11-12</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move SVG property hierarchy to the heap.</summary>
+              <pre class=body>
+Turn SVGPropertyBase into a non-refcounted, GCed object
+and move all its derived objects to the heap.
+
+R=kouhei,haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/678163002">https://codereview.chromium.org/678163002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185240 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/54f47cc56a76a4a3599625d8c4f4908ea36d99a3"><time datetime="2014-11-12">2014-11-12</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove &#39;paginated line width&#39; from RootInlineBox.</summary>
+              <pre class=body>
+It was set but never used. Probably a relic from CSS regions support.
+
+<a href="mailto:R=leviw@chromium.org">R=leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/716213002">https://codereview.chromium.org/716213002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185233 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/12353d8cbc05ef7530e98cdd3e47232f4b7749b6"><time datetime="2014-11-12">2014-11-12</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Support callback function types in overload resolution</summary>
+              <pre class=body>
+The specification has a &#34;if Callable(V) is true, ...&#34; case for (among
+other things) callback function types, which is implemented here, only
+for callback function types.
+
+BUG=293561
+
+Review URL: <a href="https://codereview.chromium.org/715353002">https://codereview.chromium.org/715353002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185230 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3d6d55a320ff41436378295f1e086d5984fba5b0"><time datetime="2014-11-12">2014-11-12</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use the viewBox when scaling &lt;svg:image&gt;s non-uniformly w/ pAR=none</summary>
+              <pre class=body>
+When referencing an SVG image from &lt;svg:image&gt; with pAR set to &#39;none&#39;, and
+said image had no intrinsic size, but a &#39;viewBox&#39;, the use of the intrinsic
+size (which would be computed as 300x150) as the container size would
+incorrect. The &#39;viewBox&#39; would resolve against 300x150, so if it defined
+a different aspect ratio than that, the image would not appear correctly
+scaled.
+
+For pAR=none there&#39;re a number of cases to consider:
+  1) The referenced image has a &#39;viewBox&#39;.
+  2) The referenced image has intrinsic dimensions.
+  3) The referenced image has none of the above.
+For cases (1) and (2), we should use the &#39;viewBox&#39; and intrinsic dimensions
+(respectively) to define the container size (~= the image&#39;s viewport maps
+to the viewport defined by &lt;svg:image&gt;). In case (3) we try to use whatever
+is left to use (300x150). (In practice cases (2) and (3) should be
+equivalent.)
+
+This also recognizes that the TC
+svg/custom/svg-image-par-none-zero-intrinsic-size.html
+is incorrect, and modifies it. Gecko seem to agree with this change.
+
+The TC from the bug also made it obvious that there was a repaint bug at
+play, which resulted in the updated return value from
+RenderSVGImage::updateImageViewport. This is covered by the existing TC
+svg/custom/svg-image-par-resize.html, which now seem to issue more correct
+repaint rectangles.
+
+BUG=428324
+
+Review URL: <a href="https://codereview.chromium.org/713263002">https://codereview.chromium.org/713263002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185226 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/214027fe9a295bc44a3df7dcfd906b1e479373a9"><time datetime="2014-11-12">2014-11-12</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: avoid invoking some no-op finalizers.</summary>
+              <pre class=body>
+Derive from GarbageCollected&lt;&gt; instead whenever possible.
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/697893003">https://codereview.chromium.org/697893003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185218 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/75114d09c2ba9b1d942af20e56a669b06e70f9ea"><time datetime="2014-11-12">2014-11-12</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Add Function and VoidFunction as built-in callback function types</summary>
+              <pre class=body>
+They are included as &#34;common definitions&#34; in WebIDL and can thus be used
+by other specifications without definition.
+
+Review URL: <a href="https://codereview.chromium.org/715233003">https://codereview.chromium.org/715233003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185216 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6ce257398aebaf0bc169de43229cc84a33997230"><time datetime="2014-11-12">2014-11-12</time></a>
         <tr>
           <td>jl
           <td class=message>
