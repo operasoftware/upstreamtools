@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 436,
+    <a href="#chromium">Chromium</a>: 437,
   
-    <a href="#blink">Blink</a>: 1841,
+    <a href="#blink">Blink</a>: 1842,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,20 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>ohrn
+          <td class=message>
+            <details>
+              <summary>Set the ui::PAGE_TRANSITION_CLIENT_REDIRECT flag.</summary>
+              <pre class=body>
+This patch sets ui::PAGE_TRANSITION_CLIENT_REDIRECT at the beginning of a request which allows it to be used for decisions when hooking into navigation via the components/navigation_interception API.
+
+Review URL: <a href="https://codereview.chromium.org/626913004">https://codereview.chromium.org/626913004</a>
+
+Cr-Commit-Position: refs/heads/master@{#304425}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/19893e6bce9005ef4a406fc61f0555c2e0f21d50"><time datetime="2014-11-17">2014-11-17</time></a>
         <tr>
           <td>philipj
           <td class=message>
@@ -7992,6 +8006,33 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Build animated font properties through FontBuilder.</summary>
+              <pre class=body>
+Font mutations during style resolution should happen through the FontBuilder
+of the StyleResolverState. Otherwise, the elaborate zooming and min-max
+logic in FontSize via FontBuilder is not applied.
+
+It is also good etiquette by AnimatedStyleBuilder to *not* secretly update
+the Font without notice, because it makes the &#39;fontDirty&#39; flag wrong, in
+some cases. (Although the worst-case scenario is just an extra Font update).
+
+FontBuilder::setSize used to accept a CSSValue*, and I would assume that&#39;s
+why RenderStyle::setFontSize was created in the first place. It&#39;s easy to
+cleanly set a new size on the builder now, though.
+
+<a href="mailto:R=alancutter@chromium.org">R=alancutter@chromium.org</a>
+BUG=227545
+
+Review URL: <a href="https://codereview.chromium.org/721773002">https://codereview.chromium.org/721773002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185449 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/44c9bd32643441f13ca6a9eaa7be011643b59718"><time datetime="2014-11-17">2014-11-17</time></a>
         <tr>
           <td>philipj
           <td class=message>
