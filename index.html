@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 437,
   
-    <a href="#blink">Blink</a>: 1844,
+    <a href="#blink">Blink</a>: 1845,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8006,6 +8006,23 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move RenderBoxClipper to core/paint/</summary>
+              <pre class=body>
+Only used/referenced from paint code. Straight-forward code movement, while
+renaming RenderBoxClipper -&gt; BoxClipper.
+
+BUG=412088
+
+Review URL: <a href="https://codereview.chromium.org/732093002">https://codereview.chromium.org/732093002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185460 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6a5d694d25603d79563f52f8be2d11bc2f2a9cb2"><time datetime="2014-11-17">2014-11-17</time></a>
         <tr>
           <td>andersr
           <td class=message>
