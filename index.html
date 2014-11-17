@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 437,
   
-    <a href="#blink">Blink</a>: 1842,
+    <a href="#blink">Blink</a>: 1843,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8006,6 +8006,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a UseCounter for Text.wholeText</summary>
+              <pre class=body>
+Text.replaceWholeText() was removed from DOM and has very low usage:
+<a href="https://www.chromestatus.com/metrics/feature/timeline/popularity/100">https://www.chromestatus.com/metrics/feature/timeline/popularity/100</a>
+
+Measure Text.wholeText also to see if it is similarly unused.
+
+Discussed briefly with Anne van Kesteren on IRC:
+<a href="http://krijnhoetmer.nl/irc-logs/whatwg/20141117#l-248">http://krijnhoetmer.nl/irc-logs/whatwg/20141117#l-248</a>
+
+Review URL: <a href="https://codereview.chromium.org/730003003">https://codereview.chromium.org/730003003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185453 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1da04df8b63dd9f74f0f24d4192569ab2027b274"><time datetime="2014-11-17">2014-11-17</time></a>
         <tr>
           <td>andersr
           <td class=message>
