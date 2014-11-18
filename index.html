@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 437,
   
-    <a href="#blink">Blink</a>: 1845,
+    <a href="#blink">Blink</a>: 1846,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8006,6 +8006,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Mark fast/pagination/div-x-horizontal-bt-[ltr, rtl] as flaky.</summary>
+              <pre class=body>
+These two tests (and their copies in compare-with-old-impl) are all among
+the top ten flakes on the Blink trybots, so win_blink_rel reliability
+should noticably improve with this CL.
+
+The compare-with-old-impl versions have been removed, since they&#39;re no
+longer needed after virtual/regionbasedmulticol.
+
+Marked as flakes for Windows only, since they seem stable on other
+platforms.
+
+BUG=433848
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/729973003">https://codereview.chromium.org/729973003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185477 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1661f4271f56688576b0a1bdc3679c392f49faac"><time datetime="2014-11-18">2014-11-18</time></a>
         <tr>
           <td>fs
           <td class=message>
