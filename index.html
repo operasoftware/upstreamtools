@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 438,
   
-    <a href="#blink">Blink</a>: 1849,
+    <a href="#blink">Blink</a>: 1851,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8020,6 +8020,41 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move TextPainter to core/paint/</summary>
+              <pre class=body>
+Also clean out a bunch of unused includes from
+core/rendering/InlineTextBox.cpp.
+
+BUG=412088
+
+Review URL: <a href="https://codereview.chromium.org/738863002">https://codereview.chromium.org/738863002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185534 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6d6802db778175f97817703f0b2441024868325c"><time datetime="2014-11-18">2014-11-18</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Un-deprecate APIs which have been un-removed in the DOM Standard</summary>
+              <pre class=body>
+<a href="https://dom.spec.whatwg.org/#dom-attr-ownerelement">https://dom.spec.whatwg.org/#dom-attr-ownerelement</a>
+<a href="https://dom.spec.whatwg.org/#dom-document-createattributens">https://dom.spec.whatwg.org/#dom-document-createattributens</a>
+
+Element.setAttributeNodeNS() is also back in the spec, but is under
+discussion: <a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=27344">https://www.w3.org/Bugs/Public/show_bug.cgi?id=27344</a>
+
+Review URL: <a href="https://codereview.chromium.org/738833002">https://codereview.chromium.org/738833002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185531 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/142f970f5d9387742d9a54a8d6a103dc39495a69"><time datetime="2014-11-18">2014-11-18</time></a>
         <tr>
           <td>fs
           <td class=message>
