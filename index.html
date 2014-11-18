@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 437,
   
-    <a href="#blink">Blink</a>: 1847,
+    <a href="#blink">Blink</a>: 1848,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8006,6 +8006,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move m_paintInvalidationBoundingBox into RenderSVGModelObject</summary>
+              <pre class=body>
+All classes (directly) derived from RenderSVGModelObject [1] carry a
+member &#39;FloatRect m_paintInvalidationBoundingBox&#39;, and relocating it
+does increase the size of any of the derived classes.
+This will allow reducing the number of virtual calls in the paint
+invalidation code-path, and possibly elsewhere.
+
+[1] RenderSVGShape, RenderSVGImage and RenderSVGContainer
+
+Review URL: <a href="https://codereview.chromium.org/731243002">https://codereview.chromium.org/731243002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185511 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b4f5ad134ea888c040d316ab9e93509de638cb2c"><time datetime="2014-11-18">2014-11-18</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
