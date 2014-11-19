@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 441,
   
-    <a href="#blink">Blink</a>: 1859,
+    <a href="#blink">Blink</a>: 1860,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8073,6 +8073,38 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Un-deprecate Attr.nodeValue and Attr.textContent</summary>
+              <pre class=body>
+These are both back in the DOM Standard:
+<a href="https://dom.spec.whatwg.org/#attr">https://dom.spec.whatwg.org/#attr</a>
+
+Spec bugs:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=26596">https://www.w3.org/Bugs/Public/show_bug.cgi?id=26596</a>
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=27363">https://www.w3.org/Bugs/Public/show_bug.cgi?id=27363</a>
+
+These were deprecated in Blink before any of this happened:
+<a href="https://codereview.chromium.org/253843002">https://codereview.chromium.org/253843002</a>
+
+It turns out that the usage of nodeValue in particular is far too high:
+<a href="https://www.chromestatus.com/metrics/feature/timeline/popularity/348">https://www.chromestatus.com/metrics/feature/timeline/popularity/348</a>
+<a href="https://www.chromestatus.com/metrics/feature/timeline/popularity/349">https://www.chromestatus.com/metrics/feature/timeline/popularity/349</a>
+
+We&#39;re probably stuck with both forever, but they&#39;re trivial to support.
+
+Keep the counters just to see if things change over time.
+
+BUG=305105
+
+Review URL: <a href="https://codereview.chromium.org/739193002">https://codereview.chromium.org/739193002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185606 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4f76e8e30e431b88619cc18f5544589b3b514a1d"><time datetime="2014-11-19">2014-11-19</time></a>
         <tr>
           <td>philipj
           <td class=message>
