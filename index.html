@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 438,
+    <a href="#chromium">Chromium</a>: 441,
   
-    <a href="#blink">Blink</a>: 1856,
+    <a href="#blink">Blink</a>: 1857,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,59 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>ljagielski
+          <td class=message>
+            <details>
+              <summary>SearchEngineTabHelper: added delegate_ member initializer to constructor.</summary>
+              <pre class=body>
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/735683002">https://codereview.chromium.org/735683002</a>
+
+Cr-Commit-Position: refs/heads/master@{#304789}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/a45e34acb629d58dcc3e8f9a61b2974934d4fb31"><time datetime="2014-11-19">2014-11-19</time></a>
+        <tr>
+          <td>msimonides
+          <td class=message>
+            <details>
+              <summary>Don&#39;t crash when granting permissions to active tab.</summary>
+              <pre class=body>
+It seems unlikely for active tab permissions to be granted to a tab that
+is closing but on the other hand there is nothing that would prevent a
+race condition in which the RenderView is destroyed before the
+ExtensionMsg_UpdateTabSpecificPermissions message is processed.
+
+The ExtensionMsg_{Update,Clear}TabSpecificPermissions message is changed
+to a ROUTED message so that it is sent to the specific RenderView directly.
+This removes the need to find the RenderView by tab_id which could fail.
+
+BUG=396232
+
+Review URL: <a href="https://codereview.chromium.org/708713003">https://codereview.chromium.org/708713003</a>
+
+Cr-Commit-Position: refs/heads/master@{#304784}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/8747c1d912e10bbb8fe746ff6a06bb5a3d067efc"><time datetime="2014-11-19">2014-11-19</time></a>
+        <tr>
+          <td>mathiash
+          <td class=message>
+            <details>
+              <summary>Add WebContents source to methods in WebContentsDelegate</summary>
+              <pre class=body>
+The added parameter helps us avoid a potential timing-related security issue. The UI can be instructed to open a new tab and show a dialog roughly at the same time, and since it&#39;s handled asynchronously the dialog may end up in front of the new tab. Knowing what web contents issued the dialog would allow us to prevent that from happening.
+
+BUG=428793
+
+Review URL: <a href="https://codereview.chromium.org/691823002">https://codereview.chromium.org/691823002</a>
+
+Cr-Commit-Position: refs/heads/master@{#304781}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/72a5e46303c13d806475cd01aedfb1305fcde5d7"><time datetime="2014-11-19">2014-11-19</time></a>
         <tr>
           <td>mathiash
           <td class=message>
@@ -8020,6 +8073,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>RenderGrid needs to pop its LayoutState before relayout.</summary>
+              <pre class=body>
+All other renderers do this, and so should RenderGrid. If the new
+layout affects the presence of scrollbars (if overflow-[xy] is auto),
+another layout pass may be required. Pushing two LayoutState objects
+for the same object is unhealthy inside multicol, because the stack
+in RenderFlowThread is implemented using a hash map, for some reason.
+
+BUG=414456
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/739743002">https://codereview.chromium.org/739743002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185577 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/746c24fa9be690e35e4828a05705fe59ce659007"><time datetime="2014-11-19">2014-11-19</time></a>
         <tr>
           <td>philipj
           <td class=message>
