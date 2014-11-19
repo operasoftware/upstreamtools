@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 441,
   
-    <a href="#blink">Blink</a>: 1857,
+    <a href="#blink">Blink</a>: 1858,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8073,6 +8073,39 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Remove all tests in fast/multicol/newmulticol/compare-with-old-impl.</summary>
+              <pre class=body>
+These tests are no longer needed, as almost all of them are already run in
+both implementations after the virtual/regionbasedmulticol suite was
+created.
+
+Only two tests are not run in both implementations (skipped for the old
+implementation).
+
+ * fast/multicol/newmulticol/multicol-becomes-regular-block.html
+ * fast/multicol/newmulticol/regular-block-becomes-multicol.html
+
+This patch simply enables those tests for the old implementation, to
+continue to ensure equality between implementations via the shared
+baseline.
+
+Three compare-with-old-impl tests are skipped on Mac, which is very
+strange, as the corresponding originals are reftests, and *not* skipped.
+Possibly, the skipping is outdated, although I didn&#39;t verify that.
+
+BUG=386567
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/735003003">https://codereview.chromium.org/735003003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185583 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/442ebaf777fc1c36633f5aa0d66c63f4cccd7ceb"><time datetime="2014-11-19">2014-11-19</time></a>
         <tr>
           <td>mstensho
           <td class=message>
