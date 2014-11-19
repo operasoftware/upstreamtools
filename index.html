@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 438,
   
-    <a href="#blink">Blink</a>: 1854,
+    <a href="#blink">Blink</a>: 1855,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8020,6 +8020,22 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move InlineTextBox::rotation to TextPainter</summary>
+              <pre class=body>
+This helper method is static and only used from (text) paint(ing) code.
+
+BUG=412088
+
+Review URL: <a href="https://codereview.chromium.org/734313004">https://codereview.chromium.org/734313004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185558 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f65d500c1fc548f8f1cddea8a1c5493cf98501a8"><time datetime="2014-11-19">2014-11-19</time></a>
         <tr>
           <td>fs
           <td class=message>
