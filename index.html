@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 441,
   
-    <a href="#blink">Blink</a>: 1868,
+    <a href="#blink">Blink</a>: 1870,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8073,6 +8073,51 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove &lt;body bgproperties=fixed&gt;</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/YFCis6fR9I4/abCd0j92NGsJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/YFCis6fR9I4/abCd0j92NGsJ</a>
+
+BUG=434627
+<a href="mailto:R=pdr@chromium.org">R=pdr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/750523002">https://codereview.chromium.org/750523002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185780 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/278d9993a71dfaa8f8e324ac021313ea038e5e44"><time datetime="2014-11-21">2014-11-21</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Get rid of LayerPainter::paintTransformedLayerIntoFragments().</summary>
+              <pre class=body>
+Now we have a more unified code path for multicol and non-multicol.
+
+Note that we no longer clip against the &#34;paint dirty rect&#34; here.
+That was wrong anyway, since the &#34;paint dirty rect&#34; is in physical
+pixels, while what it was clipped against (parent clip rectangle) was
+not transformed. Instead of adding code that transforms or
+inverse-transforms one of the rectangles, we can just as well trust
+paintFragmentWithPhase() to do proper clipping when we finally get there.
+
+We also make an effort not to meddle with layers that are not within
+paintingInfo.rootLayer, since that&#39;s going to produce incorrect results
+anyway.
+
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/731933004">https://codereview.chromium.org/731933004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185777 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f9bbb71913d404610d3bcb682edefea0da34d00a"><time datetime="2014-11-21">2014-11-21</time></a>
         <tr>
           <td>philipj
           <td class=message>
