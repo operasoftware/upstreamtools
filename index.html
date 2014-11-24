@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 441,
   
-    <a href="#blink">Blink</a>: 1880,
+    <a href="#blink">Blink</a>: 1882,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8073,6 +8073,55 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use IDL union types for CanvasRenderingContext2D.{fill,stroke}Style</summary>
+              <pre class=body>
+This gets rid of the custom bindings for said attributes by using the
+union type support in the bindings codegen.
+Also rework the resolution of &#39;currentColor&#39; by using
+parseColorOrCurrentColor directly in set{Fill,Stroke}Style, rather than
+first parse and then resolve.
+This allows CanvasStyle to cleaned up and shrunk a bit.
+Also remove code from CanvasStyle that became dead when the legacy
+set{Fill,Stroke}Color methods was removed (CMYKA, float RGBA,
+gray-level, override alpha).
+
+BUG=430337
+BUG=363180,363181
+
+Review URL: <a href="https://codereview.chromium.org/752083003">https://codereview.chromium.org/752083003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185879 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/97587ed28bdef3d90af11443795a9f5751cab148"><time datetime="2014-11-24">2014-11-24</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Ignore &lt;rt&gt; children when determining WebVTT text direction (LTR/RTL)</summary>
+              <pre class=body>
+In the previous implementation of determineTextDirection the
+node.localName() == rtTag check would always be false, because the
+isTextNode() check would guarantee that localName() was a null String.
+
+Even if it had worked, it would only have skipped the &lt;rt&gt; elements
+themselves, not its descendant text nodes.
+
+Rewrite the traversal to skip the children of &lt;rt&gt;.
+
+The two cases added to captions-rtl.vtt would previously detect the
+wrong text direction.
+
+Review URL: <a href="https://codereview.chromium.org/747363003">https://codereview.chromium.org/747363003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185878 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/07b95a084afe2ad05045a9d863932498a51ff995"><time datetime="2014-11-24">2014-11-24</time></a>
         <tr>
           <td>andersr
           <td class=message>
