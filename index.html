@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 441,
   
-    <a href="#blink">Blink</a>: 1877,
+    <a href="#blink">Blink</a>: 1878,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8073,6 +8073,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Have ProcessingInstruction&#39;s XSLT event listener keep a weak backreference</summary>
+              <pre class=body>
+To avoid an unnecessary strong-reference cycle between
+ProcessingInstruction and its owned &#34;XSLT event listener&#34;, have the
+latter keep an effectively-weak reference. ProcessingInstruction is
+responsible to detach itself and clear that weak reference when it
+is finalized.
+
+R=haraken
+BUG=367689
+
+Review URL: <a href="https://codereview.chromium.org/738443003">https://codereview.chromium.org/738443003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185858 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2c8c1f9b1b0e9cfc7b86f9d458b0b5167fbb594e"><time datetime="2014-11-24">2014-11-24</time></a>
         <tr>
           <td>philipj
           <td class=message>
