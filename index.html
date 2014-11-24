@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 441,
   
-    <a href="#blink">Blink</a>: 1879,
+    <a href="#blink">Blink</a>: 1880,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8073,6 +8073,32 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Respect fallback colors when interpolating text-decoration-color.</summary>
+              <pre class=body>
+Currently, we interpolate the incorrect colors if one of the fallback
+colors (other than currentColor) are used for text decoration. This happens
+because we bypass the fallback code when creating the AnimatableValues.
+
+This patch moves the color retrieving code for text decoration into
+the main RenderStyle::colorIncludingCallback function, and changes callers
+to use visitedDependentColor/colorIncludingFallback also for
+CSSPropertyTextDecorationColor. This is better, because you don&#39;t have to
+do anything special with the text decoration color compared to all other
+colors.
+
+<a href="mailto:R=alancutter@chromium.org">R=alancutter@chromium.org</a>
+BUG=435546
+
+Review URL: <a href="https://codereview.chromium.org/746173002">https://codereview.chromium.org/746173002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185870 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fe490f1550bb452806b08e25b29bce105e765bb2"><time datetime="2014-11-24">2014-11-24</time></a>
         <tr>
           <td>andersr
           <td class=message>
