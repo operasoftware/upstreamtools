@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 441,
   
-    <a href="#blink">Blink</a>: 1884,
+    <a href="#blink">Blink</a>: 1885,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8073,6 +8073,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove globalSVGPath* from SVGPathUtilities.cpp</summary>
+              <pre class=body>
+All the globalSVGPath* globals, don&#39;t really help much since all the state
+they carry are transient and not particularly expensive to recreate.
+Doing this also allows us to get rid of the cleanup() method on the various
+classes involved, since this is now handled by the regular scoping rules.
+(In most/many cases this means that cleanup isn&#39;t necessary anymore,
+because the fields being &#34;cleaned up&#34; previously were types without
+destructors). Inline a few of the constructors to benefit more from this.
+Take this opportunity to make these classes more RAII-like, and replace
+pointers with references.
+
+Review URL: <a href="https://codereview.chromium.org/734053005">https://codereview.chromium.org/734053005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185899 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3afd7baf9983af54584c586596aa9be25bba58ae"><time datetime="2014-11-24">2014-11-24</time></a>
         <tr>
           <td>mstensho
           <td class=message>
