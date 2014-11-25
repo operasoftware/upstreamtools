@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 441,
   
-    <a href="#blink">Blink</a>: 1891,
+    <a href="#blink">Blink</a>: 1892,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8073,6 +8073,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Let NamedNodeMap take and return Attr instead of Node</summary>
+              <pre class=body>
+<a href="https://dom.spec.whatwg.org/#namednodemap">https://dom.spec.whatwg.org/#namednodemap</a>
+
+The Attr arguments are also made non-optional.
+
+This makes for less error handling in C++.
+
+<a href="mailto:R=mkwst@chromium.org">R=mkwst@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/755213002">https://codereview.chromium.org/755213002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@185973 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5bdf91466de8fe2f16e62f389fce53bdb7d2d48e"><time datetime="2014-11-25">2014-11-25</time></a>
         <tr>
           <td>rune
           <td class=message>
