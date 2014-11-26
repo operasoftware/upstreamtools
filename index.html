@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 441,
   
-    <a href="#blink">Blink</a>: 1902,
+    <a href="#blink">Blink</a>: 1903,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8073,6 +8073,47 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Store :last/first-child state as restyle flags.</summary>
+              <pre class=body>
+firstChildState and lastChildState were set to true on RenderStyle if we
+had tried to match :first-child or :last-child on the element for which we
+were constructing the RenderStyle. But also, when trying to match
+:last-child on siblings or ascendants of the element, we set this flag on
+their RenderStyle objects respectively.
+
+That was problematic for a number of reasons. First, the state is used to
+check if an element needs a style recalc when nodes are added or removed,
+and that recalc is also necessary for if you have
+
+:last-child { display: none }
+
+in which case you have no RenderStyle. Second, the flag was reset as part
+of recalculating style for a RenderStyle whose descendants depended on its
+:last-child state. That flag would not be set again if the descendants
+themselves didn&#39;t need a recalc. Last, the flag inconsistency caused
+RenderStyle operator== to incorrectly return false, causing an assert in
+the animations code.
+
+This CL converts these RenderStyle state flags to DynamicRestyleFlags on
+Element instead. That means they will give more false positives about the
+need to recalculate for last-child/first-child mutations since they will
+not be reset that often. They will be cleared along with the other restyle
+flags when the element is removed from the tree. Since they will not be
+reset on style recalc, they will also be unconditionally set when trying
+to match the selector, not only when it matches.
+
+BUG=435481,100559,435534
+
+Review URL: <a href="https://codereview.chromium.org/758523002">https://codereview.chromium.org/758523002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186043 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cb76ee59a5318281b016c7abe2b92d943bc02afb"><time datetime="2014-11-26">2014-11-26</time></a>
         <tr>
           <td>fs
           <td class=message>
