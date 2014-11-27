@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 442,
   
-    <a href="#blink">Blink</a>: 1908,
+    <a href="#blink">Blink</a>: 1909,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8090,6 +8090,32 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Always propagate direction and writing-mode from &lt;body&gt;.</summary>
+              <pre class=body>
+Even though the specification says that direction/writing-mode are *not* to
+be propagated from &lt;body&gt;, all major browsers currently do this.
+
+In Blink, when opposing direction/writing-modes are explicitly set on both the
+root element and &lt;body&gt;, the direction/writing-mode of the root element is
+propagated to the view, ignoring what is specified on &lt;body&gt;. This is different
+from Firefox and IE, where the direction/writing-mode is always propagated from
+the computed style of &lt;body&gt;.
+
+This patch aligns Blink&#39;s behavior to that of Firefox and IE, such that
+we always propagate from &lt;body&gt;.
+
+<a href="mailto:R=rune@opera.com">R=rune@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/758073003">https://codereview.chromium.org/758073003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186115 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8e453febc014e907c6e4b254a1d76de0834c7c85"><time datetime="2014-11-27">2014-11-27</time></a>
         <tr>
           <td>andersr
           <td class=message>
