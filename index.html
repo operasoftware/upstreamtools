@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 442,
   
-    <a href="#blink">Blink</a>: 1907,
+    <a href="#blink">Blink</a>: 1908,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8090,6 +8090,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Make fast/multicol/break-properties independent of the size of &lt;body&gt;.</summary>
+              <pre class=body>
+This test currently relies on our special behavior when &lt;html&gt; and &lt;body&gt;
+explicitly disagree on &#39;direction&#39; or &#39;writing-mode&#39;. I wish to change
+that behavior, so I removed that dependency here by checking which column
+the boxes are placed in rather than its exact position in two dimensions.
+
+To simplify calculations, the body margin is now equal to the column-gap.
+Also, since it has no effect on the test, the multicol container is now
+much smaller to avoid overflow in the vertical-lr/rl versions of the test.
+
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/764503002">https://codereview.chromium.org/764503002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186112 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/42bc96665a1113c8526f763b0ed4f80aaab3dd53"><time datetime="2014-11-27">2014-11-27</time></a>
         <tr>
           <td>mstensho
           <td class=message>
