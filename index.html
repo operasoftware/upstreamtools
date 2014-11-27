@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 442,
   
-    <a href="#blink">Blink</a>: 1911,
+    <a href="#blink">Blink</a>: 1912,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8090,6 +8090,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert &#34;Animations: Pass animation timing function through to compositor.&#34;</summary>
+              <pre class=body>
+This reverts commit 76fdebf3158ef64f73f3f882a669b30756cffc60.
+
+It breaks webkit_unit_tests on Windows debug bots,
+
+  <a href="https://build.chromium.org/p/chromium.webkit/builders/WebKit%20Win7%20%28dbg%29/builds/8536">https://build.chromium.org/p/chromium.webkit/builders/WebKit%20Win7%20%28dbg%29/builds/8536</a>
+
+TBR=ikilpatrick@chromium.org,tkent,dstockwell,samli
+BUG=437183,417909
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/768653002">https://codereview.chromium.org/768653002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186138 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e0305fb4672675fa60622b79fe34e852ad36f2a6"><time datetime="2014-11-27">2014-11-27</time></a>
         <tr>
           <td>philipj
           <td class=message>
