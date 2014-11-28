@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 442,
   
-    <a href="#blink">Blink</a>: 1912,
+    <a href="#blink">Blink</a>: 1913,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8090,6 +8090,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the tagNamesToSkip argument on MarkupAccumulator::serializeNodes</summary>
+              <pre class=body>
+The tagNamesToSkip vector was introduced in WebKit in 2012:
+<a href="http://trac.webkit.org/changeset/116685">http://trac.webkit.org/changeset/116685</a>
+
+It was used by Source/WebCore/loader/archive/cf/LegacyWebArchive.cpp,
+which was removed in Blink in 2013:
+<a href="https://src.chromium.org/viewvc/blink?revision=147676&amp;view=revision">https://src.chromium.org/viewvc/blink?revision=147676&amp;view=revision</a>
+
+Review URL: <a href="https://codereview.chromium.org/750353008">https://codereview.chromium.org/750353008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186186 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/dc1396005b6bbd71d4945fedfdbefc33aad694cf"><time datetime="2014-11-28">2014-11-28</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
