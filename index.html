@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 445,
   
-    <a href="#blink">Blink</a>: 1924,
+    <a href="#blink">Blink</a>: 1925,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8133,6 +8133,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make Document.inputEncoding an explicit alias of Document.characterSet</summary>
+              <pre class=body>
+Document.inputEncoding has been revived in the DOM Standard:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=27435">https://www.w3.org/Bugs/Public/show_bug.cgi?id=27435</a>
+<a href="https://dom.spec.whatwg.org/#document">https://dom.spec.whatwg.org/#document</a>
+
+Drop the FIXME in XMLHttpRequest::send, as per spec the charset should
+always be UTF-8:
+<a href="https://xhr.spec.whatwg.org/#the-send()-method">https://xhr.spec.whatwg.org/#the-send()-method</a>
+
+This is internal refactoring; no observable change intended.
+
+Review URL: <a href="https://codereview.chromium.org/761113003">https://codereview.chromium.org/761113003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186333 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/dcd89faaaf8a05c6965cf38b6f6cc9b8bdc0db3c"><time datetime="2014-12-02">2014-12-02</time></a>
         <tr>
           <td>fs
           <td class=message>
