@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 444,
   
-    <a href="#blink">Blink</a>: 1919,
+    <a href="#blink">Blink</a>: 1921,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8119,6 +8119,39 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove CSSCharsetRule</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/lwq9fhV5uF8/ikrrc76SvG4J">https://groups.google.com/a/chromium.org/d/msg/blink-dev/lwq9fhV5uF8/ikrrc76SvG4J</a>
+
+BUG=438147
+
+Review URL: <a href="https://codereview.chromium.org/756313002">https://codereview.chromium.org/756313002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186292 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c46c4651235f49abfa1b1b11c0cfd5bda7b4468d"><time datetime="2014-12-02">2014-12-02</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Get rid of getCTM/setCTM pair in Font::paintGlyphsVertical</summary>
+              <pre class=body>
+GC::setCTM is not safe to use in the presence of active recordings, since
+it will end up accumulating the saved matrix on the currently active
+SkCanvas. Use a GCSS to save/restore the CTM instead.
+
+Review URL: <a href="https://codereview.chromium.org/748863004">https://codereview.chromium.org/748863004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186291 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9e0d6c8c071f672cdf50b30adf942d86c3748e0e"><time datetime="2014-12-02">2014-12-02</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
