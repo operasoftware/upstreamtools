@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 445,
   
-    <a href="#blink">Blink</a>: 1925,
+    <a href="#blink">Blink</a>: 1926,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8133,6 +8133,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Delay construction of StyleResolverState until after style sharing.</summary>
+              <pre class=body>
+In some (synthetic) cases, style sharing is so efficient that the
+construction of StyleResolverState negatively impacts performance.
+Since we only need an ElementResolveContext (plus some parent information)
+to determine style sharing, we can delay the StyleResolverState
+construction until after that.
+
+<a href="mailto:R=rune@opera.com">R=rune@opera.com</a>
+BUG=437281
+
+Review URL: <a href="https://codereview.chromium.org/772803002">https://codereview.chromium.org/772803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186346 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f3efbbe82925835881ef3b2760a8cdb85beb2cd3"><time datetime="2014-12-02">2014-12-02</time></a>
         <tr>
           <td>philipj
           <td class=message>
