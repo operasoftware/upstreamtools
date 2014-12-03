@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 445,
   
-    <a href="#blink">Blink</a>: 1927,
+    <a href="#blink">Blink</a>: 1928,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8133,6 +8133,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Support runtime enabled overloads affecting Function.length</summary>
+              <pre class=body>
+Before this CL, a runtime enabled overload with fewer required arguments
+than any non-runtime enabled overload resulted in an error from the IDL
+compiler, since such an overload would change the correct Function.length
+value (runtime) in a way that wasn&#39;t supported.
+
+Since such overloads are now becoming a reality, add support for them by
+generating a simple function that returns the correct Function.length
+value depending on whether features are enabled.
+
+BUG=437885
+
+Review URL: <a href="https://codereview.chromium.org/751223003">https://codereview.chromium.org/751223003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186393 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/986018d9d904335f64fed4ef04c8adcfb5d5b6fe"><time datetime="2014-12-03">2014-12-03</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
