@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 446,
   
-    <a href="#blink">Blink</a>: 1933,
+    <a href="#blink">Blink</a>: 1934,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8152,6 +8152,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Dispose of DOMTimer upon explicit ExecutionContext unregistration.</summary>
+              <pre class=body>
+Follow up on r186385 and explicitly dispose&amp;stop a DOMTimer when it is
+removed from its associated ExecutionContext. Needed for Oilpan, as the
+now-GCed object will only later be finalized.
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/766183004">https://codereview.chromium.org/766183004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186425 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5386ec2b7f64a0972d12814ce8f00bb8888eb55f"><time datetime="2014-12-03">2014-12-03</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
