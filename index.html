@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 445,
+    <a href="#chromium">Chromium</a>: 446,
   
     <a href="#blink">Blink</a>: 1932,
   
@@ -44,6 +44,25 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>ljagielski
+          <td class=message>
+            <details>
+              <summary>Linux: fix saving window state in fluxbox.</summary>
+              <pre class=body>
+DesktopWindowTreeHostX11::OnWMStateUpdated(): assume that none of the
+_NET_WM_STATE atoms are set if the _NET_WM_STATE window property is missing.
+Fluxbox removes the _NET_WM_STATE window property if none of the _NET_WM_STATE
+atoms are set.
+
+BUG=437816, 411705
+
+Review URL: <a href="https://codereview.chromium.org/764373002">https://codereview.chromium.org/764373002</a>
+
+Cr-Commit-Position: refs/heads/master@{#306595}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/6783cdb2f65a63ca7e83d9e53527fa2d64ce4dd3"><time datetime="2014-12-03">2014-12-03</time></a>
         <tr>
           <td>tmoniuszko
           <td class=message>
