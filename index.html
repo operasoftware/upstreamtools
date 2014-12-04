@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 448,
   
-    <a href="#blink">Blink</a>: 1943,
+    <a href="#blink">Blink</a>: 1945,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8181,6 +8181,43 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove RenderFlowThread::offsetFromLogicalTopOfFirstRegion().</summary>
+              <pre class=body>
+What RenderBlock::offsetFromLogicalTopOfFirstPage() does via its
+layout state also suffices for flowthread-based multicol.
+
+This also made &#39;flow thread layout state&#39; vanish into thin air.
+
+<a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/775753002">https://codereview.chromium.org/775753002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186532 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/385d8ea7afb8a976c5050b6bc954e08d895d93dc"><time datetime="2014-12-04">2014-12-04</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove duplicated code for image-strip computation in InlineFlowBoxPainter</summary>
+              <pre class=body>
+The code to compute the &#34;strip&#34;/&#34;slice&#34; of an inline was duplicated for
+the border, mask and fill cases.
+Move this code to a new method paintRectForImageStrip.
+
+BUG=423071
+
+Review URL: <a href="https://codereview.chromium.org/752373003">https://codereview.chromium.org/752373003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186531 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7f4ee88ba95e4ce7a0c1c6fa7310ca68ac52cd7a"><time datetime="2014-12-04">2014-12-04</time></a>
         <tr>
           <td>fs
           <td class=message>
