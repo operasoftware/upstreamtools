@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 446,
   
-    <a href="#blink">Blink</a>: 1940,
+    <a href="#blink">Blink</a>: 1943,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8152,6 +8152,71 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove duplicated entry from LeakExpectations</summary>
+              <pre class=body>
+Once should be enough...
+
+<a href="mailto:TBR=schenney@chromium.org">TBR=schenney@chromium.org</a>
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/771513003">https://codereview.chromium.org/771513003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186516 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fbbde5dfc429c776bcd92e0049a954c7b1c5b2b4"><time datetime="2014-12-04">2014-12-04</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: prevent eager tracing of Node and RenderObjects.</summary>
+              <pre class=body>
+If eager tracing is enabled, we do not want to eagerly trace Node or
+RenderObject object structures; it consumes too much system stack space
+for unclear gains. Add declarations to disable it.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/778643002">https://codereview.chromium.org/778643002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186515 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ece22f6b0bfdcda711f2e70cd38c12a7134bfd81"><time datetime="2014-12-04">2014-12-04</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make getComputedStyle&#39;s pseudoElt argument nullable again</summary>
+              <pre class=body>
+The getComputedStyle IDL was synced with the spec in r186258:
+<a href="https://codereview.chromium.org/765123002">https://codereview.chromium.org/765123002</a>
+
+This caused a performance regression in a Dromaeo test:
+<a href="http://dromaeo.com/?jslib-style-jquery">http://dromaeo.com/?jslib-style-jquery</a>
+
+The likely cause is that jQuery passes null for the pseudoElt argument:
+<a href="https://github.com/jquery/jquery/search?q=getComputedStyle">https://github.com/jquery/jquery/search?q=getComputedStyle</a>
+
+With a non-nullable pseudoElt, null is converted to &#34;null&#34;, which makes
+a measurable difference. Make it nullable again to avoid the problem.
+
+There&#39;s no observable difference, because only a pseudoElt beginning
+with a : actually does anything.
+
+BUG=438109
+
+Review URL: <a href="https://codereview.chromium.org/774243003">https://codereview.chromium.org/774243003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186514 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/532c7329202995e936f5970b6eaa4160d6b12e7f"><time datetime="2014-12-04">2014-12-04</time></a>
         <tr>
           <td>fs
           <td class=message>
