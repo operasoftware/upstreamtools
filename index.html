@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 448,
   
-    <a href="#blink">Blink</a>: 1947,
+    <a href="#blink">Blink</a>: 1948,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8181,6 +8181,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>fast/pagination/div-x-horizontal-bt-{rtl,ltr} should no longer be flaky.</summary>
+              <pre class=body>
+The fix for issue 438864 rids us of the sporadic crash / assertion
+failure.
+
+The lines in TestExpectations looked wrong in any case, since they didn&#39;t
+mention &#34;Crash&#34;.
+
+BUG=433848
+<a href="mailto:R=andersr@opera.com">R=andersr@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/770063003">https://codereview.chromium.org/770063003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186576 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0e1755c0035c7750aac11e51c6a0d73f845e90db"><time datetime="2014-12-05">2014-12-05</time></a>
         <tr>
           <td>rune
           <td class=message>
