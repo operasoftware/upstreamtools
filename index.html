@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 448,
   
-    <a href="#blink">Blink</a>: 1953,
+    <a href="#blink">Blink</a>: 1954,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8181,6 +8181,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Tidy up WorkerConsoleAgent&#39;s handling of its WorkerGlobalScope reference.</summary>
+              <pre class=body>
+With Oilpan, have the console agent correctly trace its WorkerGlobalScope
+reference.
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/782043002">https://codereview.chromium.org/782043002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186645 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4ddcd8b7318246922b6f8d6315a67e74dafacecb"><time datetime="2014-12-06">2014-12-06</time></a>
         <tr>
           <td>jiangj
           <td class=message>
