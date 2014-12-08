@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 448,
+    <a href="#chromium">Chromium</a>: 450,
   
     <a href="#blink">Blink</a>: 1955,
   
@@ -44,6 +44,37 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>auygun
+          <td class=message>
+            <details>
+              <summary>Refactor part of CompositorImpl::SetVisible() into its own method.</summary>
+              <pre class=body>
+Add method CompositorImpl::CreateLayerTreeHost() and move part of
+CompositorImpl::SetVisible() that creates LayerTreeHost into it.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/782723002">https://codereview.chromium.org/782723002</a>
+
+Cr-Commit-Position: refs/heads/master@{#307221}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b2101b61fd870b4b8f8a8a1421b355cda635649f"><time datetime="2014-12-08">2014-12-08</time></a>
+        <tr>
+          <td>stinae
+          <td class=message>
+            <details>
+              <summary>Do not call GenerateCacheKey() if disk cache is disabled.</summary>
+              <pre class=body>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/761763003">https://codereview.chromium.org/761763003</a>
+
+Cr-Commit-Position: refs/heads/master@{#307213}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/447b8b18c9104a9be7ca95a7ccc346bf2f0c985d"><time datetime="2014-12-08">2014-12-08</time></a>
         <tr>
           <td>jiangj
           <td class=message>
