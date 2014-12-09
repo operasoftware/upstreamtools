@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 451,
   
-    <a href="#blink">Blink</a>: 1960,
+    <a href="#blink">Blink</a>: 1961,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8226,6 +8226,34 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync DOMImplementation.createDocument() IDL with spec</summary>
+              <pre class=body>
+<a href="https://dom.spec.whatwg.org/#interface-domimplementation">https://dom.spec.whatwg.org/#interface-domimplementation</a>
+
+Because DOMImplementation::createDocument calls qualifiedName.isEmpty()
+there is no observable difference when qualifiedName is null.
+
+The added [TypeChecking=Interface] only affects the generated code for
+the doctype argument, where passing a non-null, non-DocType object will
+now throw an exception.
+
+Firefox Nightly and IE11 pass all of the new tests, with the exception
+of IE11 throwing an exception when the doctype argument is undefined. In
+other words, the cases where we now throw exceptions already throw
+exceptions in Firefox and IE, making it likely Web compatible.
+
+TEST=LayoutTests/fast/dom/DOMImplementation/createDocument-doctype-err.html
+
+Review URL: <a href="https://codereview.chromium.org/762383004">https://codereview.chromium.org/762383004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186779 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c0d31d26795b3c2e20c8109c732ec6f2360e61e3"><time datetime="2014-12-09">2014-12-09</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
