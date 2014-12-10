@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 452,
+    <a href="#chromium">Chromium</a>: 453,
   
     <a href="#blink">Blink</a>: 1969,
   
@@ -44,6 +44,27 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>haavardm
+          <td class=message>
+            <details>
+              <summary>Fix crashes in ElementsUploadDataStreamTest</summary>
+              <pre class=body>
+standard lib reports:
+error: attempt to insert with an iterator range
+[__first, __last) from this container.
+
+When compiling standard lib from gcc 4.9 with C++11, insert
+cannot take the same vector as both source and destination.
+
+BUG=None
+
+Review URL: <a href="https://codereview.chromium.org/789953002">https://codereview.chromium.org/789953002</a>
+
+Cr-Commit-Position: refs/heads/master@{#307699}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/190d3252e6a748150527da946eda704a6a30894d"><time datetime="2014-12-10">2014-12-10</time></a>
         <tr>
           <td>wmaslowski
           <td class=message>
