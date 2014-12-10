@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 453,
   
-    <a href="#blink">Blink</a>: 1970,
+    <a href="#blink">Blink</a>: 1971,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8263,6 +8263,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add use counter for credentialed CORS access from null origins.</summary>
+              <pre class=body>
+To gain some data on how widespread the use of
+
+  Access-Control-Allow-Origin: null
+  Access-Control-Allow-Credentials: true
+
+is (and it being currently allowed), add a use counter.
+
+To enable the use counter reporting from within the CORS access check,
+some extra plumbing required (but unavoidable.)
+
+R=tyoshino
+BUG=440676
+
+Review URL: <a href="https://codereview.chromium.org/732323004">https://codereview.chromium.org/732323004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186875 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1cb28245cca50a812140c3f3938546f80a6867f1"><time datetime="2014-12-10">2014-12-10</time></a>
         <tr>
           <td>philipj
           <td class=message>
