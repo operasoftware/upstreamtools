@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 453,
   
-    <a href="#blink">Blink</a>: 1982,
+    <a href="#blink">Blink</a>: 1983,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8263,6 +8263,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Remove extraneous needsRecalc condition.</summary>
+              <pre class=body>
+childNeedsDistributionRecalc() was added to the condition in r186599, but
+it is already checked inside needsFullRenderTreeUpdate(). Removing it
+again.
+
+<a href="mailto:R=andersr@opera.com">R=andersr@opera.com</a>
+BUG=436064
+
+Review URL: <a href="https://codereview.chromium.org/793263002">https://codereview.chromium.org/793263002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186947 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cda0dfae80a6b96393e5d46784bc4d24903f7e56"><time datetime="2014-12-11">2014-12-11</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
