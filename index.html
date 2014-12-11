@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 453,
   
-    <a href="#blink">Blink</a>: 1983,
+    <a href="#blink">Blink</a>: 1987,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8263,6 +8263,79 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL parser: override Attribute production from base IDL parser</summary>
+              <pre class=body>
+The Attribute production is deprecated in the base IDL parser and is kept
+around only because Blink references it.
+
+It would be better to name this production ExceptionAttribute, but doing
+that now leaves the Attribute production in the base parser unused, which
+causes warnings. Overriding it here will let us remove it from the base
+parser without fuzz.
+
+Review URL: <a href="https://codereview.chromium.org/793343002">https://codereview.chromium.org/793343002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186957 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d92f944ddf9dfacc15bd3fbe8a2226f2fbdc42b5"><time datetime="2014-12-11">2014-12-11</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r186944.</summary>
+              <pre class=body>
+TBR=oilpan-reviews,haraken
+BUG=439376
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/796863002">https://codereview.chromium.org/796863002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186955 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/39face380509a0a4094759cee6996f1f9553aa41"><time datetime="2014-12-11">2014-12-11</time></a>
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Collect content:attr(...)-features in RuleFeatureSet.</summary>
+              <pre class=body>
+We currently store the attribute names seen in content:attr(...) during
+style application as a special case, and then afterwards ensure that we
+have invalidation sets for those attributes. This is bad, because it&#39;s yet
+another special thing we have to do when resolving a style.
+
+This patch moves the collection of this feature to RuleFeatureSet, along
+with the rest of the feature collection.
+
+<a href="mailto:R=rune@opera.com">R=rune@opera.com</a>
+TEST=fast/css/invalidation/content-attr.html
+
+Review URL: <a href="https://codereview.chromium.org/772103002">https://codereview.chromium.org/772103002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186954 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/56b03193e74fb83a9ff418762bf45ec636569b5a"><time datetime="2014-12-11">2014-12-11</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add philipj@opera.com to public/OWNERS</summary>
+              <pre class=body>
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/794183002">https://codereview.chromium.org/794183002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186951 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fe4b53d664b28bf3ee43a55797655f30f4f9e829"><time datetime="2014-12-11">2014-12-11</time></a>
         <tr>
           <td>rune
           <td class=message>
