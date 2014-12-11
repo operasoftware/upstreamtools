@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 453,
   
-    <a href="#blink">Blink</a>: 1981,
+    <a href="#blink">Blink</a>: 1982,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8263,6 +8263,23 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: tidy up definition of some stack-allocated scope objects.</summary>
+              <pre class=body>
+Have these keep a strong Member&lt;&gt; reference to their objects.
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/791043002">https://codereview.chromium.org/791043002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186941 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5cbdb538ad15be1c9a361befaccdbaf067b7cac1"><time datetime="2014-12-11">2014-12-11</time></a>
         <tr>
           <td>mstensho
           <td class=message>
