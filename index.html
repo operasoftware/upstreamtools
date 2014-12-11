@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 453,
   
-    <a href="#blink">Blink</a>: 1977,
+    <a href="#blink">Blink</a>: 1981,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8263,6 +8263,79 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Paint invalidation: Need to check offset cacheability for invalidation containers.</summary>
+              <pre class=body>
+A check for supportsPaintInvalidationStateCachedOffsets() was missing for
+renderers establishing a paint invalidation container, which incorrectly
+made us assume that offsets were always cacheable for paint invalidation
+containers.
+
+BUG=438901
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/772913003">https://codereview.chromium.org/772913003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186938 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0ea2fb690d23a24cc64a2c893443f1250d2f3b34"><time datetime="2014-12-11">2014-12-11</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Move recently landed align attribute tests to fast/block/</summary>
+              <pre class=body>
+These were introduced in <a href="https://codereview.chromium.org/766223004">https://codereview.chromium.org/766223004</a>
+
+BUG=438931
+<a href="mailto:TBR=ktf.kim@samsung.com">TBR=ktf.kim@samsung.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/793283002">https://codereview.chromium.org/793283002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186937 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/af2a8d9db46c6655a4daccaa2d0a9cea8f90a02e"><time datetime="2014-12-11">2014-12-11</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make execCommand(&#34;insertImage&#34;, false, &#34;&#34;) not add a src attribute</summary>
+              <pre class=body>
+This matches IE&#39;s behavior, and most importantly will preserve the
+behavior of the 1-argument execCommand(&#34;insertImage&#34;) when the default
+value changes from null to &#34;&#34;, needed to match the spec.
+
+A spec bug has been filed asking for the same change:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=27552">https://www.w3.org/Bugs/Public/show_bug.cgi?id=27552</a>
+
+Review URL: <a href="https://codereview.chromium.org/788153003">https://codereview.chromium.org/788153003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186936 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c359a69b9e533fde5552ca90f8d9a70e688047dd"><time datetime="2014-12-11">2014-12-11</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move InspectorOverlay to the heap.</summary>
+              <pre class=body>
+Thereby avoiding its Persistent references.
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/783923005">https://codereview.chromium.org/783923005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@186935 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/345823d352a806a120a49bbb5f54bddfa53096ea"><time datetime="2014-12-11">2014-12-11</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
