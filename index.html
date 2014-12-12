@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 454,
   
-    <a href="#blink">Blink</a>: 1996,
+    <a href="#blink">Blink</a>: 1997,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8281,6 +8281,51 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Keep a separate list of :host(-context) rules.</summary>
+              <pre class=body>
+:host and :host-context in the rightmost compound selector apply to the
+host element in the parent scope of a scoped stylesheet. However, we put
+all these rules into the universal rule list and collected :host rules in
+its own scope and other rules in the scope outside. For example:
+
+&lt;custom-element&gt;
+  &lt;:shadow-root&gt;
+    &lt;style&gt;
+      :host { background: green }
+      * { background: red; }
+    &lt;/style&gt;
+    &lt;custom-element&gt;&lt;/custom-element&gt;
+&lt;/custom-element&gt;
+
+&#34;:host&#34; applies to the outer &lt;custom-element&gt;, &#34;*&#34; applies to the
+inner one. We collected both rules for both elements.
+
+Instead keep a list of :host and :host-context rules for each scope to be
+matched for the outer scope only, and skip all other rules from the inner
+scope when matching for the outer scope.
+
+Note that selectors with :host(-context) in non-rightmost compounds are
+still in the other rule lists as they don&#39;t match the shadow host, but an
+element in the same scope as the stylesheet is.
+
+For instance: &#34;:host(.x) div&#34;.
+
+<a href="mailto:R=kochi@chromium.org,esprehn@chromium.org">R=kochi@chromium.org,esprehn@chromium.org</a>
+BUG=437846
+
+TEST=fast/dom/shadow/host-pseudo-class.html
+TEST=fast/dom/shadow/hostcontext-pseudo-class.html
+
+Review URL: <a href="https://codereview.chromium.org/789403005">https://codereview.chromium.org/789403005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187036 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/293e0e56d991598fbe81ac6e5c9c11b7d4ba58ca"><time datetime="2014-12-12">2014-12-12</time></a>
         <tr>
           <td>mstensho
           <td class=message>
