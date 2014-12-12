@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 454,
   
-    <a href="#blink">Blink</a>: 1993,
+    <a href="#blink">Blink</a>: 1994,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8281,6 +8281,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: clear out AsyncCallChainMaps in an orderly manner.</summary>
+              <pre class=body>
+Follow up r186955 and avoid delaying clearing an ExecutionContextData&#39;s
+AsyncCallChainMaps until the next GC, as that&#39;s not safe due to it
+touching other possibly-finalized heap objects at that time. Handle
+it instead when the ExecutionContextData is notified of impending
+destruction instead.
+
+R=haraken,aandrey
+BUG=439376
+
+Review URL: <a href="https://codereview.chromium.org/799693002">https://codereview.chromium.org/799693002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187025 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f0e7c9bba4ad49d31fec2fc9e4634364a71f0c90"><time datetime="2014-12-12">2014-12-12</time></a>
         <tr>
           <td>philipj
           <td class=message>
