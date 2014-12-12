@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 454,
   
-    <a href="#blink">Blink</a>: 1994,
+    <a href="#blink">Blink</a>: 1996,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8281,6 +8281,63 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Let a spanner&#39;s containing block be the multicol container.</summary>
+              <pre class=body>
+This helps avoid some cheating and tightrope walking that we would
+have to perform when laying out spanners while canceling out all ill
+effects that the pagination code could cause. A spanner is no longer
+part of the flow thread (although it is a descendant), much like
+absolutely positioned descendants whose containing block is outside
+the multicol container. It&#39;s no longer laid out during flow thread
+layout.
+
+RenderMultiColumnSpannerSet has never really been a &#34;set&#34;, and now it
+doesn&#39;t even inherit from RenderMultiColumnSet, so a rename seemed
+prudent. It&#39;s now called RenderMultiColumnSpannerPlaceholder. The
+placeholder will be in charge of laying out the spanner and
+positioning it correctly. It will also be in charge of invalidating,
+painting and hit-testing the spanner.
+
+Instead of a hashmap that maps column-span:all renderers to their
+corresponding placeholder, store a pointer directly in the rare-data
+of the RenderBox that is column-span:all. A spanner isn&#39;t part of the
+flow thread anymore, so locating the spanner&#39;s flow thread is a
+meaningless or hacky task, so storing this map in the flow thread
+would just be messy.
+
+This change contains the bare minimum to avoid assertions during
+layout and paint invalidation. There&#39;s no actual support for laying
+out (or painting, etc.) spanners properly yet.
+
+BUG=347325
+<a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/789433006">https://codereview.chromium.org/789433006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187033 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d107e96363d20cefa20b26c3a319f4b0bca3b234"><time datetime="2014-12-12">2014-12-12</time></a>
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Add the &#39;lighter&#39; composite operator to feComposite.</summary>
+              <pre class=body>
+Spec: <a href="http://www.w3.org/TR/filter-effects-1/#valdef-operator-lighter">http://www.w3.org/TR/filter-effects-1/#valdef-operator-lighter</a>
+
+BUG=439037
+
+Review URL: <a href="https://codereview.chromium.org/779963002">https://codereview.chromium.org/779963002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187029 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f27321c9440cb30554508b79003b0dddc63f9e3b"><time datetime="2014-12-12">2014-12-12</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
