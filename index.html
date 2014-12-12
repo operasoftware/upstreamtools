@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 453,
+    <a href="#chromium">Chromium</a>: 454,
   
-    <a href="#blink">Blink</a>: 1991,
+    <a href="#blink">Blink</a>: 1993,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,24 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>henriks
+          <td class=message>
+            <details>
+              <summary>Remove the index of in-band tracks on the Chromium side</summary>
+              <pre class=body>
+Note: <a href="https://codereview.chromium.org/754963009">https://codereview.chromium.org/754963009</a> removes the usage of
+textTrackIndex() and has to be applied first.
+
+BUG=440777
+<a href="mailto:R=philipj@opera.com">R=philipj@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/787343003">https://codereview.chromium.org/787343003</a>
+
+Cr-Commit-Position: refs/heads/master@{#308063}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/9cce5fa8aecab7b9ece31a6f920a6746508e1f9e"><time datetime="2014-12-12">2014-12-12</time></a>
         <tr>
           <td>haavardm
           <td class=message>
@@ -8263,6 +8281,52 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Let ShadowRoot.getElementById() fall back to DocumentFragment</summary>
+              <pre class=body>
+ShadowRoot.getElementById() was added in 2012:
+<a href="http://trac.webkit.org/changeset/106434">http://trac.webkit.org/changeset/106434</a>
+
+DocumentFragment.getElementById() was added in 2014:
+<a href="https://codereview.chromium.org/251633002">https://codereview.chromium.org/251633002</a>
+
+The ShadowRoot override no longer serves any purpose. The argument
+becomes non-optional with this change, which is Web-observable.
+
+Review URL: <a href="https://codereview.chromium.org/799543002">https://codereview.chromium.org/799543002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187009 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/35e8a35997172a3c3716ee70f278e350d3c15079"><time datetime="2014-12-12">2014-12-12</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Have ElementRuleCollector keep match result vector as part object.</summary>
+              <pre class=body>
+Simplify the representation of the matched results vector, keeping
+the vector as a part object. The vector ends up being updated when
+ElementRuleCollector is used, so lazily creating it gets in the
+way of that. Not doing so also enables the prompt release of its
+backing store with Oilpan, as it is an &#39;inline-capacity&#39; vector.
+
+In terms of performance, this brings Oilpan back on level terms
+with non-Oilpan on blink_perf.layout:SimpleTextPathLineLayout,
+undoing a 6% regression seen previously (linux.)
+
+<a href="mailto:R=haraken@chromium.org,rune@opera.com">R=haraken@chromium.org,rune@opera.com</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/795043002">https://codereview.chromium.org/795043002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187007 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8e6fc6d7c91e0ec090732ae0076a834badd60b02"><time datetime="2014-12-12">2014-12-12</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
