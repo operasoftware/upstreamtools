@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 454,
   
-    <a href="#blink">Blink</a>: 1998,
+    <a href="#blink">Blink</a>: 1999,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8281,6 +8281,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove FIXME regarding respecting overflow clip.</summary>
+              <pre class=body>
+Background: <a href="https://bugs.webkit.org/show_bug.cgi?id=91117">https://bugs.webkit.org/show_bug.cgi?id=91117</a>
+
+This is where ShouldRespectOverflowClip was introduced, and, as the name might
+suggest, it was only meant to be used for &#34;overflow clip&#34;
+(RenderObject::hasOverflowClip()), not &#34;clip&#34; (RenderObject::hasClip()).
+
+The &#39;clip&#39; property should always be respected, while we have to ignore
+overflow clipping sometimes, so that we can composite content not currently
+within the viewport established by a scrollable container.
+
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/798913002">https://codereview.chromium.org/798913002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187047 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7a6ed1d05e9a6c5d342d487f7f350afa7add6fb3"><time datetime="2014-12-12">2014-12-12</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
