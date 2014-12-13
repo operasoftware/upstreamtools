@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 454,
   
-    <a href="#blink">Blink</a>: 1999,
+    <a href="#blink">Blink</a>: 2000,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8281,6 +8281,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove WTF::Complex</summary>
+              <pre class=body>
+WTF::Complex looks pretty useless- all it does is provide a
+typedef for std::complex and an inline implementation of
+std::polar.
+
+It looks like it was planned to be extended at some point,
+but that never happened:
+<a href="https://bugs.webkit.org/show_bug.cgi?id=34538">https://bugs.webkit.org/show_bug.cgi?id=34538</a>
+
+Let&#39;s remove it.
+
+BUG=442004
+
+Review URL: <a href="https://codereview.chromium.org/801033003">https://codereview.chromium.org/801033003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187086 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/be5abfc4af799268b7d366644557dd4f91031324"><time datetime="2014-12-13">2014-12-13</time></a>
         <tr>
           <td>mstensho
           <td class=message>
