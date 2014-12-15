@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 455,
+    <a href="#chromium">Chromium</a>: 456,
   
     <a href="#blink">Blink</a>: 2007,
   
@@ -44,6 +44,28 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>elisabets
+          <td class=message>
+            <details>
+              <summary>Hide/show topbar when scrolling page up or down.</summary>
+              <pre class=body>
+Topbar was not hiding while scrolling down at some pages
+starting with a table. It did show up however if previously
+hidden when scrolling up. With this change, topbar animation is
+triggered for both up &amp; down scrolling.
+
+See for example <a href="http://sv.wikipedia.org/wiki/M%C3%B6lnlycke">http://sv.wikipedia.org/wiki/M%C3%B6lnlycke</a> and try
+scrolling down, topbar is not hidden.
+
+BUG=438548
+
+Review URL: <a href="https://codereview.chromium.org/769273002">https://codereview.chromium.org/769273002</a>
+
+Cr-Commit-Position: refs/heads/master@{#308340}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/01d84d33126f4162c9bd0c7c7f9a2e5970ea2e73"><time datetime="2014-12-15">2014-12-15</time></a>
         <tr>
           <td>tmoniuszko
           <td class=message>
