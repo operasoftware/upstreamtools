@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 454,
+    <a href="#chromium">Chromium</a>: 455,
   
-    <a href="#blink">Blink</a>: 2005,
+    <a href="#blink">Blink</a>: 2007,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,23 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Fix icon on Windows XP taskbar</summary>
+              <pre class=body>
+BUG=437829
+
+Committed: <a href="https://crrev.com/0593c1690aeb6ac4869504b91d8172546aea1da6">https://crrev.com/0593c1690aeb6ac4869504b91d8172546aea1da6</a>
+Cr-Commit-Position: refs/heads/master@{#306389}
+
+Review URL: <a href="https://codereview.chromium.org/772533002">https://codereview.chromium.org/772533002</a>
+
+Cr-Commit-Position: refs/heads/master@{#308326}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/cd5b3ee6956e1c5adfe0c498c67213ebf17f60ce"><time datetime="2014-12-15">2014-12-15</time></a>
         <tr>
           <td>henriks
           <td class=message>
@@ -8281,6 +8298,56 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert &#34;Remove MediaKeys.isTypeSupported().&#34;</summary>
+              <pre class=body>
+This reverts commit f3bca1bfe191b94af316a54bb55dec53ec4f4cf2.
+
+Reasons for revert:
+
+Various encrypt-media tests have started to fail (flakily on some bots),
+
+ <a href="http://test-results.appspot.com/dashboards/flakiness_dashboard.html#tests=media%2Fencrypted-media%2Fencrypted-media-lifetime-mediakeys-with-session.html%2Cmedia%2Fencrypted-media%2Fencrypted-media-lifetime-mediakeysession-reference.html%2Cmedia%2Fencrypted-media%2Fencrypted-media-lifetime-mediakeysession-release-noreference.html%2Cmedia%2Fencrypted-media%2Fencrypted-media-lifetime-mediakeysession-release.html%2Cmedia%2Fencrypted-media%2Fencrypted-media-lifetime-multiple-mediakeys.html">http://test-results.appspot.com/dashboards/flakiness_dashboard.html#tests=media%2Fencrypted-media%2Fencrypted-media-lifetime-mediakeys-with-session.html%2Cmedia%2Fencrypted-media%2Fencrypted-media-lifetime-mediakeysession-reference.html%2Cmedia%2Fencrypted-media%2Fencrypted-media-lifetime-mediakeysession-release-noreference.html%2Cmedia%2Fencrypted-media%2Fencrypted-media-lifetime-mediakeysession-release.html%2Cmedia%2Fencrypted-media%2Fencrypted-media-lifetime-multiple-mediakeys.html</a>
+
+TBR=jrummell,ddorwin
+BUG=425186
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/806653004">https://codereview.chromium.org/806653004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187122 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/16865ea500273c906a5d47c6512a9f44350ce485"><time datetime="2014-12-15">2014-12-15</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make CSSSupportsRule function arguments non-optional</summary>
+              <pre class=body>
+<a href="http://dev.w3.org/csswg/css-conditional/#the-csssupportsrule-interface">http://dev.w3.org/csswg/css-conditional/#the-csssupportsrule-interface</a>
+<a href="http://dev.w3.org/csswg/css-conditional/#the-cssconditionrule-interface">http://dev.w3.org/csswg/css-conditional/#the-cssconditionrule-interface</a>
+<a href="http://dev.w3.org/csswg/css-conditional/#the-cssgroupingrule-interface">http://dev.w3.org/csswg/css-conditional/#the-cssgroupingrule-interface</a>
+
+Per spec CSSSupportsRule and CSSMediaRule inherits from CSSConditionRule
+which inherits from CSSGroupingRule, which is where insertRule() and
+deleteRule() live. We expose neither CSSConditionRule nor
+CSSGroupingRule, but this change aligns CSSSupportsRule with
+CSSMediaRule, so that introducing CSSGroupingRule becomes a smaller
+change.
+
+Firefox Nightly already throws exceptions when insertRule() or
+deleteRule() arguments are omitted. IE11 does not support @supports.
+
+Review URL: <a href="https://codereview.chromium.org/797013002">https://codereview.chromium.org/797013002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187121 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/917e89f5e51771db385ece10c11993437b7eaf20"><time datetime="2014-12-15">2014-12-15</time></a>
         <tr>
           <td>philipj
           <td class=message>
