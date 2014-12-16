@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 456,
   
-    <a href="#blink">Blink</a>: 2015,
+    <a href="#blink">Blink</a>: 2017,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8320,6 +8320,46 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove WorkerGlobalScope.webkitURL</summary>
+              <pre class=body>
+Intent to Deprecate and Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/Ng4rRmc6C0I/d0oFrGqACxgJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/Ng4rRmc6C0I/d0oFrGqACxgJ</a>
+
+BUG=348985
+
+Review URL: <a href="https://codereview.chromium.org/792103003">https://codereview.chromium.org/792103003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187246 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/74c8306bed0db65944bbcbbe5318b06549665087"><time datetime="2014-12-16">2014-12-16</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Tweak style of AudioListener doppler deprecations</summary>
+              <pre class=body>
+None of the other existing Deprecated* are actually deprecated and
+none of the other currently deprecated features are named Deprecated*.
+
+Use the InterfaceAttributeOrFunction naming convention instead.
+
+Also, extra blank lines in UseCounter.h has caused trouble:
+<a href="https://codereview.chromium.org/729393002/#msg19">https://codereview.chromium.org/729393002/#msg19</a>
+
+BUG=439644
+<a href="mailto:TBR=rtoy@chromium.org">TBR=rtoy@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/803183006">https://codereview.chromium.org/803183006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187245 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9d701b10cdcbbfc65f0656099dfcc053008f74f4"><time datetime="2014-12-16">2014-12-16</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
