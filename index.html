@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 457,
+    <a href="#chromium">Chromium</a>: 458,
   
     <a href="#blink">Blink</a>: 2019,
   
@@ -44,6 +44,27 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>wjarosik
+          <td class=message>
+            <details>
+              <summary>Use Blink&#39;s flag to prevent fling boosting.</summary>
+              <pre class=body>
+This flag prevents the flingCancel event from being used
+as a part of a fling boost event sequence.
+The synthetic FlingCancel method works properly now and cancels flings
+instantly, without deferring flingCancel event.
+
+See: <a href="https://codereview.chromium.org/789223002">https://codereview.chromium.org/789223002</a>
+
+BUG=440886
+
+Review URL: <a href="https://codereview.chromium.org/792833002">https://codereview.chromium.org/792833002</a>
+
+Cr-Commit-Position: refs/heads/master@{#308599}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b6c0ec4b3a2aab896c2ace17d1fec5db729bad17"><time datetime="2014-12-16">2014-12-16</time></a>
         <tr>
           <td>jl
           <td class=message>
