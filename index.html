@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 456,
   
-    <a href="#blink">Blink</a>: 2014,
+    <a href="#blink">Blink</a>: 2015,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8320,6 +8320,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: attempt first-fit freelist allocation for backing heaps.</summary>
+              <pre class=body>
+When not being able to bump allocate a vector/hash table&#39;s backing storage,
+try to reuse an entry from the corresponding sized bin, picking the first.
+
+Should that fail, fall into allocating the largest chunk available.
+
+This freelist allocation scheme has some merit on
+shadow_dom:LargeDistributionWithoutLayout, improving Linux performance
+by 27%.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/798293002">https://codereview.chromium.org/798293002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187243 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3c66206ae22c883b8f833d75d7c14676f18990e0"><time datetime="2014-12-16">2014-12-16</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
