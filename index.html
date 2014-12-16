@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 456,
+    <a href="#chromium">Chromium</a>: 457,
   
-    <a href="#blink">Blink</a>: 2017,
+    <a href="#blink">Blink</a>: 2018,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,25 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: various adjustments to match Web IDL specification better</summary>
+              <pre class=body>
+Notably adds support for maplike&lt;type, type&gt;, setlike&lt;type&gt;, iterable&lt;type&gt;
+and legacyiterable&lt;type&gt; declarations.
+
+Also changes some interface member grammar productions around a bit, and
+drops the deprecated Attribute production, which Blink&#39;s parser no longer
+references.
+
+Review URL: <a href="https://codereview.chromium.org/803933003">https://codereview.chromium.org/803933003</a>
+
+Cr-Commit-Position: refs/heads/master@{#308584}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/9016ef32769c396deb32c17dc5f3ff4a6d8acdd4"><time datetime="2014-12-16">2014-12-16</time></a>
         <tr>
           <td>elisabets
           <td class=message>
@@ -8320,6 +8339,23 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Deprecate Window.webkitURL</summary>
+              <pre class=body>
+Intent to Deprecate:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/EsJE9wb321I/zzW9Zr3D1xYJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/EsJE9wb321I/zzW9Zr3D1xYJ</a>
+
+BUG=330691,348985
+
+Review URL: <a href="https://codereview.chromium.org/804733002">https://codereview.chromium.org/804733002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187252 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0574d22869256a057fdd570bb80d33f85d3730c2"><time datetime="2014-12-16">2014-12-16</time></a>
         <tr>
           <td>philipj
           <td class=message>
