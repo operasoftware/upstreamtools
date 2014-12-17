@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 458,
   
-    <a href="#blink">Blink</a>: 2025,
+    <a href="#blink">Blink</a>: 2029,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8360,6 +8360,66 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: have PageSerializer accurately handle its GCed references.</summary>
+              <pre class=body>
+Have the references to GCed objects be appropriately accounted for during
+GCs over this stack allocated object.
+
+R=
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/813453002">https://codereview.chromium.org/813453002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187314 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/eacc763927646db7962eeadc6e02c2552f97e589"><time datetime="2014-12-17">2014-12-17</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>replace COMPILE_ASSERT with static_assert in core/rendering/</summary>
+              <pre class=body>
+BUG=442514
+
+Review URL: <a href="https://codereview.chromium.org/811843003">https://codereview.chromium.org/811843003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187306 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cd984535ecd394ea1ea27e7f96ecd04bcee156b1"><time datetime="2014-12-17">2014-12-17</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>replace COMPILE_ASSERT with static assert in core/css/</summary>
+              <pre class=body>
+BUG=442514
+
+Review URL: <a href="https://codereview.chromium.org/809823002">https://codereview.chromium.org/809823002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187305 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/18e1e608ba253c9887ee438024dbb682ca210f30"><time datetime="2014-12-17">2014-12-17</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>replace COMPILE_ASSERT with static_assert in core/dom/</summary>
+              <pre class=body>
+BUG=442514
+
+Review URL: <a href="https://codereview.chromium.org/792083006">https://codereview.chromium.org/792083006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187304 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/65aa0ecf0bde4391dec35a6f8af48078a048a1be"><time datetime="2014-12-17">2014-12-17</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
