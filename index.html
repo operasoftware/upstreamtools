@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 458,
   
-    <a href="#blink">Blink</a>: 2035,
+    <a href="#blink">Blink</a>: 2037,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8360,6 +8360,59 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Remove the use of :-webkit-full-screen-document.</summary>
+              <pre class=body>
+This is a pseudo class that is not implemented by Gecko nor IE, while the
+ancestor variant is implemented prefixed by Gecko.
+
+It would be good to remove this. As a first step get rid of the use in the
+UA style.
+
+This selector:
+
+:root:-webkit-full-screen-document:not(:-webkit-full-screen)
+
+matches a subset of this:
+
+:root:-webkit-full-screen-ancestor
+
+which means we can just remove the former.
+
+Use counters are added for fullscreen pseudo classes. The ancestor and
+document variants are no longer in the spec. Let&#39;s see if we can remove them
+further down the road.
+
+<a href="mailto:R=jchaffraix@chromium.org,philipj@opera.com">R=jchaffraix@chromium.org,philipj@opera.com</a>
+BUG=442239
+TEST=LayoutTests/fullscreen/
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/807473002">https://codereview.chromium.org/807473002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187369 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d058c7d5dd0a8acc0903ba3279f924eef9c54f29"><time datetime="2014-12-17">2014-12-17</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r187362.</summary>
+              <pre class=body>
+R=yurys
+BUG=439376
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/809023003">https://codereview.chromium.org/809023003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187368 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c2a8171870cd8a7310ee251ce9a2877067cda032"><time datetime="2014-12-17">2014-12-17</time></a>
         <tr>
           <td>mostynb
           <td class=message>
