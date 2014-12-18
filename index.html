@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 460,
   
-    <a href="#blink">Blink</a>: 2042,
+    <a href="#blink">Blink</a>: 2043,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8391,6 +8391,38 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Make computeOffsetFromCompositedAncestor() flowthread-aware.</summary>
+              <pre class=body>
+This function needs to produce the visual offset, and you cannot get that
+by calling convertToLayerCoords().
+
+Introducing RenderLayer::visualOffsetFromAncestor() to calculate the
+correct visual offset. This also allows for reducing
+convertFromFlowThreadToVisualBoundingBoxInAncestor() by a few lines.
+
+We can now add compositing/columns to the virtual/regionbasedmulticol/
+testsuite, since both tests there have started to pass.
+
+The fast/multicol/composited-layer-single-fragment.html test is based on work by
+<a href="mailto:andersr@opera.com">andersr@opera.com</a>
+
+The test for hit-testing something 3D-transformed has already been passing
+for some time (since <a href="https://codereview.chromium.org/625903004">https://codereview.chromium.org/625903004</a>), but
+actual painting was wrong, until now.
+
+BUG=359877
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/799403006">https://codereview.chromium.org/799403006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187413 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/21bee1357cfbbb6eb54e4902937281ed95d4940b"><time datetime="2014-12-18">2014-12-18</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
