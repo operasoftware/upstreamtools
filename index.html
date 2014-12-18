@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 460,
   
-    <a href="#blink">Blink</a>: 2054,
+    <a href="#blink">Blink</a>: 2055,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8391,6 +8391,35 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Windows run-webkit-tests broke if --disable-breakpad was used</summary>
+              <pre class=body>
+Running run-webkit-tests in Windows with --disable-breakpad resulted in
+
+AttributeError raised: &#39;WinPort&#39; object has no attribute &#39;_crash_service&#39;
+Traceback (most recent call last):
+  File &#34;src\third_party\WebKit\Tools\Scripts\webkitpy\layout_tests\run_webkit_tests.py&#34;, line 73, in main
+    run_details = run(port, options, args, stderr)
+  File &#34;src\third_party\WebKit\Tools\Scripts\webkitpy\layout_tests\run_webkit_tests.py&#34;, line 381, in run
+    run_details = manager.run(args)
+  File &#34;src\third_party\WebKit\Tools\Scripts\webkitpy\layout_tests\controllers\manager.py&#34;, line 278, in run
+    self._clean_up_run()
+  File &#34;src\third_party\WebKit\Tools\Scripts\webkitpy\layout_tests\controllers\manager.py&#34;, line 359, in _clean_up_run
+    self._port.clean_up_test_run()
+  File &#34;L:\src\clean_chromium\src\third_party\WebKit\Tools\Scripts\webkitpy\layout_tests\port\win.py&#34;, line 150, in clean_up_test_run
+    if self._crash_service:
+
+<a href="mailto:R=dpranke@chromium.org">R=dpranke@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/808163002">https://codereview.chromium.org/808163002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187488 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/831d2f222cb65544523657dfd562d06623c65a65"><time datetime="2014-12-18">2014-12-18</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
