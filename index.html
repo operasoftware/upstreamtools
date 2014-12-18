@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 460,
   
-    <a href="#blink">Blink</a>: 2044,
+    <a href="#blink">Blink</a>: 2046,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8391,6 +8391,50 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Don&#39;t apply column-span:all for display:table-*</summary>
+              <pre class=body>
+The spec doesn&#39;t allow this, and we crash if we allow it.
+
+This fix is specific to the old / current multicol implementation. The
+new one already does it correctly, FWIW.
+
+The old / current multicol implementation has this concept of block
+continuations, which we establish when there&#39;s a spanner inside some multicol
+child. We do this before considering any render tree fixup for anonymous table
+objects. These two render tree fixup mechanisms simply don&#39;t play well
+together, and since table-* cannot become spanners, according to the spec,
+there&#39;s no need to make them cope with such situations. Just prevent spanners
+in such cases.
+
+BUG=435815,443205
+<a href="mailto:R=dsinclair@chromium.org">R=dsinclair@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/809193002">https://codereview.chromium.org/809193002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187422 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7efc6f485ddae6a9940894189778fbcb84da7151"><time datetime="2014-12-18">2014-12-18</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove COMPILER_SUPPORTS(BLOCKS) and COMPILER_SUPPORTS(HAS_TRIVIAL_DESTRUCTOR)</summary>
+              <pre class=body>
+These macros are unused.
+
+BUG=443364
+
+Review URL: <a href="https://codereview.chromium.org/784273006">https://codereview.chromium.org/784273006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187417 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4a38d19fea5f4ac5750b4eb20d0519fbc8c21789"><time datetime="2014-12-18">2014-12-18</time></a>
         <tr>
           <td>mostynb
           <td class=message>
