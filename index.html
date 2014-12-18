@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 460,
   
-    <a href="#blink">Blink</a>: 2048,
+    <a href="#blink">Blink</a>: 2049,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8391,6 +8391,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make elementFromPoint() arguments non-optional</summary>
+              <pre class=body>
+<a href="http://dev.w3.org/csswg/cssom-view/#extensions-to-the-document-interface">http://dev.w3.org/csswg/cssom-view/#extensions-to-the-document-interface</a>
+<a href="http://w3c.github.io/webcomponents/spec/shadow/#the-shadowroot-interface">http://w3c.github.io/webcomponents/spec/shadow/#the-shadowroot-interface</a>
+
+Document.elementFromPoint() throws with too few arguments in Firefox
+Nightly and IE11, making this likely Web compatibly.
+
+ShadowRoot.elementFromPoint() has only been shipped in Blink, so stuff
+could break, but it does not seem likely enough to warrant use counters.
+
+Review URL: <a href="https://codereview.chromium.org/812173002">https://codereview.chromium.org/812173002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187443 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7d0ff0bcb729c0025ab838ca1aa3b6fee4aa1a9a"><time datetime="2014-12-18">2014-12-18</time></a>
         <tr>
           <td>rune
           <td class=message>
