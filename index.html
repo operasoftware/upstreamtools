@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 460,
   
-    <a href="#blink">Blink</a>: 2049,
+    <a href="#blink">Blink</a>: 2050,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8391,6 +8391,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Expose MediaQueryList interface and make arguments non-optional</summary>
+              <pre class=body>
+<a href="http://dev.w3.org/csswg/cssom-view/#the-mediaquerylist-interface">http://dev.w3.org/csswg/cssom-view/#the-mediaquerylist-interface</a>
+
+In Firefox Nightly and IE11, the interface is already exposed and
+calling addListener() or removeListener() throws an exception, making
+this change likely Web compatible.
+
+The added early returns in the implementation are per spec, but
+redudant with similar checks decorated with FIXMEs in EventTarget.
+Save some trouble for the time when those are removed.
+
+Review URL: <a href="https://codereview.chromium.org/809613008">https://codereview.chromium.org/809613008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187449 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0760a5655ffb606dac967b1ad48802754510b6c5"><time datetime="2014-12-18">2014-12-18</time></a>
         <tr>
           <td>philipj
           <td class=message>
