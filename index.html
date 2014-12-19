@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 463,
   
-    <a href="#blink">Blink</a>: 2064,
+    <a href="#blink">Blink</a>: 2065,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8445,6 +8445,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert &#34;Oilpan: Expand HashTableBacking buffer when possible&#34;</summary>
+              <pre class=body>
+This reverts commit fc69cd97719458d01ed12cb770280b63bc5802c8.
+
+Reason: crashes seen on Windows and Mac bots,
+
+ <a href="http://test-results.appspot.com/dashboards/flakiness_dashboard.html#master=ChromiumWebkit&amp;tests=fast/css/invalidation/style-invalidation-before-attach.html,fast/dom/Window/window-lookup-precedence.html,fast/dom/dom-constructors.html,fast/forms/ValidityState-tooLong-input.html,fast/forms/ValidityState-tooShort-input.html,fast/harness/results.html,html5lib/generated/run-tests22-data.html,html5lib/generated/run-tests22-write.html,traversal/moz-mutations-3.html">http://test-results.appspot.com/dashboards/flakiness_dashboard.html#master=ChromiumWebkit&amp;tests=fast/css/invalidation/style-invalidation-before-attach.html,fast/dom/Window/window-lookup-precedence.html,fast/dom/dom-constructors.html,fast/forms/ValidityState-tooLong-input.html,fast/forms/ValidityState-tooShort-input.html,fast/harness/results.html,html5lib/generated/run-tests22-data.html,html5lib/generated/run-tests22-write.html,traversal/moz-mutations-3.html</a>
+
+TBR=keishi,jochen@chromium.org,haraken,oilpan-reviews
+BUG=420515
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/808253004">https://codereview.chromium.org/808253004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187545 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2308cccb914dc02193c57cb559ba6ab58c4a5d86"><time datetime="2014-12-19">2014-12-19</time></a>
         <tr>
           <td>rune
           <td class=message>
