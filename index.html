@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 460,
+    <a href="#chromium">Chromium</a>: 461,
   
     <a href="#blink">Blink</a>: 2059,
   
@@ -44,6 +44,24 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove some dead visual studio &lt; 2013 code</summary>
+              <pre class=body>
+We only support building for windows with Visual Studio 2013 Update 4
+now, so let&#39;s remove dead code that is only used for older Visual
+Studio versions.
+
+BUG=442035,158570
+
+Review URL: <a href="https://codereview.chromium.org/798163004">https://codereview.chromium.org/798163004</a>
+
+Cr-Commit-Position: refs/heads/master@{#309187}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/7e42a8f70f08bb903ba610afd573ebbfdce5a1d6"><time datetime="2014-12-19">2014-12-19</time></a>
         <tr>
           <td>mostynb
           <td class=message>
