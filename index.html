@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 468,
   
-    <a href="#blink">Blink</a>: 2070,
+    <a href="#blink">Blink</a>: 2071,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8515,6 +8515,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Explicitly dispose of async call chains.</summary>
+              <pre class=body>
+When resetting V8AsyncCallTracker&#39;s call chains, promptly dispose of the
+call chain map; Oilpan friendly not to delay it until the dtor is
+eventually invoked.
+
+R=yurys
+BUG=443585
+
+Review URL: <a href="https://codereview.chromium.org/818673004">https://codereview.chromium.org/818673004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187723 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c19d809b5534af4036c2eb6fdaad6f82c8077ca3"><time datetime="2014-12-26">2014-12-26</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
