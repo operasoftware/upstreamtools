@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 469,
+    <a href="#chromium">Chromium</a>: 470,
   
     <a href="#blink">Blink</a>: 2072,
   
@@ -44,6 +44,44 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Blink GC plugin: improve handling of type dependent bases.</summary>
+              <pre class=body>
+When exhaustively traversing the set of base classes for a class C,
+the RecordInfo::IsGCDerived() method relied on the clang traversal method
+used to support name lookups for a class. It will step over and ignore
+any derived classes with dependent types as these are not to be considered
+for that purpose.
+
+In order to identify GC derived base classes for a definition like
+
+ template&lt;typename T&gt;
+ class A : public GarbageCollected&lt;A&gt; {
+ public:
+   // ..other needed stuff..
+   class Local : public GarbageCollected&lt;Local&gt; { ... };
+ };
+
+and its nested class Local, traverse the base classes and if any
+of them has a dependent type, resolve its dependent template and
+use its class name when determining if it is a &#34;GC derived&#34; class.
+
+For the above class, Local gets a dependent type when it is lifted
+out of the class template by the AST visitor -- its type depending
+on T.
+
+R=
+BUG=444740
+
+Review URL: <a href="https://codereview.chromium.org/827693004">https://codereview.chromium.org/827693004</a>
+
+Cr-Commit-Position: refs/heads/master@{#309696}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/a3d83dbb235465f5a8f2fe70a9f60b68fe5e055b"><time datetime="2014-12-28">2014-12-28</time></a>
         <tr>
           <td>mostynb
           <td class=message>
