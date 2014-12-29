@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 470,
+    <a href="#chromium">Chromium</a>: 471,
   
     <a href="#blink">Blink</a>: 2072,
   
@@ -44,6 +44,27 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Make NavigatorConnectProvider finalize its owned callback objects.</summary>
+              <pre class=body>
+Add missing IDMapOwnPointer annotation to have ConnectCallback objects
+be destructed and finalized once done with, as the provider owns these.
+
+Needed with Oilpan enabled to prevent persistent strong references
+from going missing, and not being cleared in a timely fashion.
+
+R=mek,mkwst
+BUG=445388
+
+Review URL: <a href="https://codereview.chromium.org/827953002">https://codereview.chromium.org/827953002</a>
+
+Cr-Commit-Position: refs/heads/master@{#309713}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/419f0760c569b7837b42636a61e0bace316e65a5"><time datetime="2014-12-29">2014-12-29</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
