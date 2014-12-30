@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 472,
+    <a href="#chromium">Chromium</a>: 473,
   
-    <a href="#blink">Blink</a>: 2075,
+    <a href="#blink">Blink</a>: 2076,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,24 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Make use of blink::WebNavigatorConnectCallbacks typedef</summary>
+              <pre class=body>
+Switch NavigatorConnectProvider over to using this type alias instead
+of its WebCallbacks&lt;&gt; expansion.
+
+R=mek
+BUG=445388
+
+Review URL: <a href="https://codereview.chromium.org/810953007">https://codereview.chromium.org/810953007</a>
+
+Cr-Commit-Position: refs/heads/master@{#309766}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/4cbcd6d212774d2668bcbd4dee6dec94df8d84a8"><time datetime="2014-12-30">2014-12-30</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -8611,6 +8629,20 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove unused CLANG_PRAGMA macro</summary>
+              <pre class=body>
+BUG=445236
+
+Review URL: <a href="https://codereview.chromium.org/787373009">https://codereview.chromium.org/787373009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187782 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4583b1f2d96f3aeeed5a870b366d7081b323bb29"><time datetime="2014-12-30">2014-12-30</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
