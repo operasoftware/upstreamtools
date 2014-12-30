@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 471,
+    <a href="#chromium">Chromium</a>: 472,
   
     <a href="#blink">Blink</a>: 2073,
   
@@ -44,6 +44,29 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>gn: don&#39;t reject absolute unix style pathnames in labels</summary>
+              <pre class=body>
+Absolute paths have been suggested by brettw as a way for external products
+based upon chromium to include code outside the chromium source tree.  gn
+supports absolute paths in theory, but this has not been tried in practice yet.
+This patch is the first step towards testing this proposed setup.
+
+Some background details:
+<a href="https://groups.google.com/a/chromium.org/forum/#!topic/gn-dev/CU7MzRLrQuE">https://groups.google.com/a/chromium.org/forum/#!topic/gn-dev/CU7MzRLrQuE</a>
+
+BUG=445454
+<a href="mailto:R=brettw@chromium.org">R=brettw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/825013003">https://codereview.chromium.org/825013003</a>
+
+Cr-Commit-Position: refs/heads/master@{#309753}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/db6c2cc6aa2ce8bd5b70964fefe7e39f2e5487a9"><time datetime="2014-12-30">2014-12-30</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
