@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 473,
+    <a href="#chromium">Chromium</a>: 474,
   
     <a href="#blink">Blink</a>: 2077,
   
@@ -44,6 +44,25 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>arjanl
+          <td class=message>
+            <details>
+              <summary>Don&#39;t supply value for boolean attribute</summary>
+              <pre class=body>
+According to the documentation, &#34;If the attribute is Boolean, do not
+supply a value because its presence in the attributes array implies a
+true value.&#34; kCGLPFAAllowOfflineRenderers is a Boolean attribute, so
+adding a value would make it interpret that value as another attribute.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/826353002">https://codereview.chromium.org/826353002</a>
+
+Cr-Commit-Position: refs/heads/master@{#309807}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/5af45da16e3d03aeb1482ab6d5234b67337bc9f1"><time datetime="2014-12-31">2014-12-31</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
