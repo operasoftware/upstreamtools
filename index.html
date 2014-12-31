@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 474,
   
-    <a href="#blink">Blink</a>: 2077,
+    <a href="#blink">Blink</a>: 2080,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8648,6 +8648,61 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: remove unused typed pointer cast operation over (Weak)Member.</summary>
+              <pre class=body>
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/808053003">https://codereview.chromium.org/808053003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187809 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/88ac847721047fbc15ee964887bb23fc3cd6a34c"><time datetime="2014-12-31">2014-12-31</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: non-eagerly trace HTML element stack records.</summary>
+              <pre class=body>
+For some parses, the ElementRecord chains kept by the HTML element parse
+stack might end up very long, requiring corresponding amounts of call
+stack when being traced eagerly.
+
+Use the marking stack instead for these objects, as is done for the
+ContainerNodes these record objects refer to.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/809803003">https://codereview.chromium.org/809803003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187808 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0f5851b24eb3f6f3029c91548ce494d4a0ba2eeb"><time datetime="2014-12-31">2014-12-31</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>For large object allocations, do not clear already zeroed memory.</summary>
+              <pre class=body>
+The page memory regions are allocated with OS calls that already 
+guarantee that the pages returned are all zeroes.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/827423002">https://codereview.chromium.org/827423002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187807 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0664b9193322d11328302b43cd6e302e1d83b44c"><time datetime="2014-12-31">2014-12-31</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
