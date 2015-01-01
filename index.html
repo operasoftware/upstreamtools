@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 474,
   
-    <a href="#blink">Blink</a>: 2080,
+    <a href="#blink">Blink</a>: 2081,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8648,6 +8648,39 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Do not (re)start NavigatorGamepad updating once detached.</summary>
+              <pre class=body>
+Following r187750, NavigatorGamepad uses DOMWindowProperty::frame()
+to access its window and document, dispatching and handling events
+via those when activated and receiving platform event updates.
+
+With Oilpan enabled, a DOMWindowProperty instance will be informed
+of frame &amp; document detachment via willDetachGlobalObjectFromFrame(),
+with the frame remaining alive until the next GC sweep. Without
+Oilpan, frame destruction is synchronous.
+
+Consequently, a NavigatorGamepad with a now-detached frame() should
+not reactivate itself, as the weak frame() reference will become
+null once the next GC has struck. NavigatorGamepad relies on
+frame() being non-null when activated.
+
+Insist on the frame being non-detached to (re)activate. The
+difference in behavior from the previous check is only observable
+with Oilpan enabled, hence no need to make it suitably conditional.
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/828983002">https://codereview.chromium.org/828983002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187811 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cf940d675ea34a03c198f63ee03637ba24c1875b"><time datetime="2015-01-01">2015-01-01</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
