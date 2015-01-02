@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 474,
   
-    <a href="#blink">Blink</a>: 2081,
+    <a href="#blink">Blink</a>: 2082,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8648,6 +8648,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Do not create a temporary Range object on updating spell checking markers.</summary>
+              <pre class=body>
+As these markers are conditionally updated on every edit operation,
+avoid creating a temporary Range object when doing so. With Oilpan
+enabled, this avoids creating a GCed object that is only delay&#39;edly
+released.
+
+Improves Oilpan performance on blink_perf.dom.textarea-edit by 10%.
+
+R=haraken
+BUG=388681
+
+Review URL: <a href="https://codereview.chromium.org/828293002">https://codereview.chromium.org/828293002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187820 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8e5647f5edeb37ef6faa84c6f842fbeefd905227"><time datetime="2015-01-02">2015-01-02</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
