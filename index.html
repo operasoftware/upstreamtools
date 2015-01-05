@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 474,
+    <a href="#chromium">Chromium</a>: 477,
   
-    <a href="#blink">Blink</a>: 2082,
+    <a href="#blink">Blink</a>: 2083,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,48 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>replace COMPILE_ASSERT with static_assert in remoting/</summary>
+              <pre class=body>
+BUG=442514
+
+Review URL: <a href="https://codereview.chromium.org/824383002">https://codereview.chromium.org/824383002</a>
+
+Cr-Commit-Position: refs/heads/master@{#309982}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/f62b08923a5017530d2113ca1a96909d40520e19"><time datetime="2015-01-05">2015-01-05</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>replace COMPILE_ASSERT with static_assert in chrome/common/</summary>
+              <pre class=body>
+BUG=442514
+
+Review URL: <a href="https://codereview.chromium.org/812503003">https://codereview.chromium.org/812503003</a>
+
+Cr-Commit-Position: refs/heads/master@{#309974}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/07b849f08f82d3e351d28939a827543b89d603fd"><time datetime="2015-01-05">2015-01-05</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>replace COMPILE_ASSERT with static_assert in chrome/[r-z]*/</summary>
+              <pre class=body>
+BUG=442514
+
+Review URL: <a href="https://codereview.chromium.org/810283003">https://codereview.chromium.org/810283003</a>
+
+Cr-Commit-Position: refs/heads/master@{#309968}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/ee997022ea745adec4b4e1d90ccb9457cd2d81ed"><time datetime="2015-01-05">2015-01-05</time></a>
         <tr>
           <td>arjanl
           <td class=message>
@@ -8648,6 +8690,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Delay string conversion of attribute names until needed.</summary>
+              <pre class=body>
+Upon attribute creation/update/removal wrt a qualified name, that
+operation is reported to inspector via the
+InspectorInstrumentation interface. Do that without stringifying
+the qualified name first, as the notification and its stringified
+name may very well not be made use of. If, for instance, developer
+tools aren&#39;t active.
+
+Gains 4% on dromaeo.domattr.dom_attr_setAttribute.
+
+R=adamk
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/832343003">https://codereview.chromium.org/832343003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187871 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/29da686db8cb2df842dcdb1c67501d31f797c2ef"><time datetime="2015-01-05">2015-01-05</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
