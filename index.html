@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 490,
+    <a href="#chromium">Chromium</a>: 491,
   
-    <a href="#blink">Blink</a>: 2092,
+    <a href="#blink">Blink</a>: 2093,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,25 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>fix builds with vpx and/or ffmpeg disabled</summary>
+              <pre class=body>
+If media_use_libvpx==0 then we should not include any libvpx headers.
+And similarly for ffmpeg.
+
+Followup to <a href="https://codereview.chromium.org/783003002">https://codereview.chromium.org/783003002</a>
+
+BUG=416570
+
+Review URL: <a href="https://codereview.chromium.org/839763002">https://codereview.chromium.org/839763002</a>
+
+Cr-Commit-Position: refs/heads/master@{#310383}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/10406b9bcce7a8cb744a7ba118b11450444afb16"><time datetime="2015-01-07">2015-01-07</time></a>
         <tr>
           <td>ljagielski
           <td class=message>
@@ -8899,6 +8918,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix webkit unit tests following r187980.</summary>
+              <pre class=body>
+Avoid stack allocating heap-residing ScriptResource objects.
+
+TBR=oilpan-reviews,haraken
+BUG=441130
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/832933005">https://codereview.chromium.org/832933005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187998 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2c67e39c3d441e9501b9a44c54463e5ecafef089"><time datetime="2015-01-07">2015-01-07</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
