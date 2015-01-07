@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 485,
   
-    <a href="#blink">Blink</a>: 2088,
+    <a href="#blink">Blink</a>: 2089,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8810,6 +8810,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Support unit-less lengths for white-list of properties only.</summary>
+              <pre class=body>
+The Quirks Mode spec[1] has a white-list of properties for which we should
+accept unitless lengths in quirks mode. This CL limits the quirk to apply
+to those properties/short-hands.
+
+[1] <a href="https://quirks.spec.whatwg.org/#the-unitless-length-quirk">https://quirks.spec.whatwg.org/#the-unitless-length-quirk</a>
+
+BUG=436145
+
+Review URL: <a href="https://codereview.chromium.org/764703002">https://codereview.chromium.org/764703002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@187959 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f3d18cf973dd96108d3a96cc433e51030c10d0a8"><time datetime="2015-01-07">2015-01-07</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
