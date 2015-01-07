@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 486,
+    <a href="#chromium">Chromium</a>: 487,
   
     <a href="#blink">Blink</a>: 2091,
   
@@ -44,6 +44,30 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Nobody uses base::JsonPrefStore::ReadResult without a path</summary>
+              <pre class=body>and if they had tried it, it would have crashed.
+
+This removes the code that tried to support non-path
+JsonPrefStore and adds a DCHECK in the constructor in case
+it happens in the future.
+
+If the code is ever needed in the future, the
+scoped_ptr&lt;ReadResult&gt; need to be initialized
+with new ReadResult.
+
+BUG=
+<a href="mailto:R=bauerb@chromium.org">R=bauerb@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/836093005">https://codereview.chromium.org/836093005</a>
+
+Cr-Commit-Position: refs/heads/master@{#310300}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/970f39d3eeac9baa033a48dfe3310df8e388c68f"><time datetime="2015-01-07">2015-01-07</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
