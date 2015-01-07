@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 485,
+    <a href="#chromium">Chromium</a>: 486,
   
     <a href="#blink">Blink</a>: 2089,
   
@@ -44,6 +44,29 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>BlinkGCPlugin: require GC mixin instances to declare local trace().</summary>
+              <pre class=body>
+For classes that derive from GarbageCollectedMixin and declare both
+adjustAndMark() and isHeapObjectAlive() overrides (typically using
+the USING_GARBAGE_COLLECTED_MIXIN() macro), check that the class also
+declares a local trace() method override.
+
+This is done so as to require that GC mixin instances do have trace()
+in their leftmost vtbl.
+
+R=haraken
+BUG=444565
+
+Review URL: <a href="https://codereview.chromium.org/834373003">https://codereview.chromium.org/834373003</a>
+
+Cr-Commit-Position: refs/heads/master@{#310272}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/35290f1ba94f90e89492b51567826270c02a81da"><time datetime="2015-01-07">2015-01-07</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
