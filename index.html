@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 491,
   
-    <a href="#blink">Blink</a>: 2096,
+    <a href="#blink">Blink</a>: 2097,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8918,6 +8918,35 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Bring back multicol reftests that were removed for impl side painting.</summary>
+              <pre class=body>
+When adding --enable-impl-side-painting for virtual/regionbasedmulticol/
+some reftests started to fail, and were accordingly turned into
+PNG + render tree dump tests. This was done in
+<a href="https://codereview.chromium.org/803683002/">https://codereview.chromium.org/803683002/</a> plus a few rebaseline commits
+that followed.
+
+This CL reverts that brings them back as reftests, while retaining
+--enable-impl-side-painting. Fixed the refs instead. The fixes are
+somewhat weird, though. It seems (from where I stand, at least) that
+when a ref has an opacity layer with only one paint operation (draw text,
+paint background, whatever), there&#39;ll be minor pixel differences, compared
+to when there&#39;s more than one operation. This doesn&#39;t happen with the
+actual tests, though. Could be some impl side painting optimization that
+doesn&#39;t kick in for multicol, perhaps?
+
+<a href="mailto:R=enne@chromium.org,chrishtr@chromium.org">R=enne@chromium.org,chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/839793003">https://codereview.chromium.org/839793003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188055 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c133915add0a46be3d5250ba32aa177314d37861"><time datetime="2015-01-08">2015-01-08</time></a>
         <tr>
           <td>ollel
           <td class=message>
