@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 491,
+    <a href="#chromium">Chromium</a>: 492,
   
     <a href="#blink">Blink</a>: 2097,
   
@@ -44,6 +44,31 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Adding missing include for base/bind.h</summary>
+              <pre class=body>
+This code uses base::Bind and in default configurations
+&#34;base/bind.h&#34; is included through
+chrome/browser/extensions/extension_service.h -&gt;
+chrome/browser/extensions/blacklist.h -&gt;
+chrome/browser/safe_browsing/database_manager.h -&gt;
+chrome/browser/safe_browsing/protocol_manager.h -&gt;
+...
+
+but in my configuration the code needs to be good code and include
+headers for code it uses itself.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/838003003">https://codereview.chromium.org/838003003</a>
+
+Cr-Commit-Position: refs/heads/master@{#310549}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/7bc7846ce63fc60f2c87b279c3a506c76c2a5323"><time datetime="2015-01-08">2015-01-08</time></a>
         <tr>
           <td>mostynb
           <td class=message>
