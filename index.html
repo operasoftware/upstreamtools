@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 495,
   
-    <a href="#blink">Blink</a>: 2100,
+    <a href="#blink">Blink</a>: 2105,
   
     <a href="#v8">V8</a>: 22.
   
@@ -8989,6 +8989,108 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Re-enable the activation behavior of media elements (click to play/pause)</summary>
+              <pre class=body>
+This revives most of the code and tests from an earlier revert:
+<a href="https://codereview.chromium.org/249483002">https://codereview.chromium.org/249483002</a>
+
+The &#34;Don&#39;t fire events when interacting with &lt;video controls&gt;&#34; bug has
+been fixed, so the native controls and scripted controls will no
+longer compete for control:
+<a href="https://codereview.chromium.org/406213002">https://codereview.chromium.org/406213002</a>
+
+The definition of &#34;restrained media controller&#34; has been simplified in
+spec and implementation since the last time:
+<a href="https://codereview.chromium.org/262463003">https://codereview.chromium.org/262463003</a>
+
+BUG=354746
+
+Review URL: <a href="https://codereview.chromium.org/830183005">https://codereview.chromium.org/830183005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188141 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e902c0422d4aa424263107afd0e0923a32ab2732"><time datetime="2015-01-09">2015-01-09</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Retire unnecessary ScriptStreamer back reference from SourceStream.</summary>
+              <pre class=body>
+Passing along the ScriptStreamer reference when needed is simpler.
+
+R=marja
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/829313004">https://codereview.chromium.org/829313004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188140 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/31af57aad5a98a95b7933f8f6b8b40e76370518a"><time datetime="2015-01-09">2015-01-09</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Ensure cancellation of animation timer in a detached state.</summary>
+              <pre class=body>
+If an SVG element becomes detached from its document, its animations will
+be paused. Make sure this really cancels any &#34;once&#34; timers that might
+be scheduled.
+
+<a href="mailto:R=haraken,fs@opera.com">R=haraken,fs@opera.com</a>
+BUG=3690
+
+Review URL: <a href="https://codereview.chromium.org/811763005">https://codereview.chromium.org/811763005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188139 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/34b9f924d296992eb9dd6f51500292e4d7e306cf"><time datetime="2015-01-09">2015-01-09</time></a>
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Attempt to slim the test down for dbg trybots.</summary>
+              <pre class=body>
+BUG=446356
+
+Review URL: <a href="https://codereview.chromium.org/837393003">https://codereview.chromium.org/837393003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188138 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/62d994f6c0c2e0b55b07cad88265a59325a523e7"><time datetime="2015-01-09">2015-01-09</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Support iterable&lt;&gt;, maplike&lt;&gt; and setlike&lt;&gt; syntax</summary>
+              <pre class=body>
+This adds support for the basic syntax (in idl_definitions.py) but no
+handling of the additional parsed information beyond what the [Iterable]
+extended attribute already does. Extended attributes are currently not
+supported on the iterable&lt;&gt;, maplike&lt;&gt; or setlike&lt;&gt; definitions.
+
+In existing interfaces, replace [Iterable] with what the specification
+has, or in the case of MIDIInputMap and MIDIOutputMap, what seems to be
+the intention. In the Iterator interface, [Iterable] is still used,
+since it&#39;s somewhat unclear what it ought to be replaced with.
+
+This results in no changes in generated code.
+
+BUG=432683
+
+Review URL: <a href="https://codereview.chromium.org/841973002">https://codereview.chromium.org/841973002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188135 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1a668060da66f3a1cbd73918d619d18dfe43d498"><time datetime="2015-01-09">2015-01-09</time></a>
         <tr>
           <td>mstensho
           <td class=message>
