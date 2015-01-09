@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 494,
+    <a href="#chromium">Chromium</a>: 495,
   
     <a href="#blink">Blink</a>: 2098,
   
@@ -44,6 +44,23 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjorn
+          <td class=message>
+            <details>
+              <summary>Make Python sync server stoppable</summary>
+              <pre class=body>
+The testserver attempts to inherit from StoppableHTTPServer, but then
+overrides the stoppable functionality. Instead of overriding serve_forever, override handle_request, to maintain stoppability.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/797253003">https://codereview.chromium.org/797253003</a>
+
+Cr-Commit-Position: refs/heads/master@{#310732}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/1e630129a6dbb309618c97d0b63a1c42d689e679"><time datetime="2015-01-09">2015-01-09</time></a>
         <tr>
           <td>jiangj
           <td class=message>
