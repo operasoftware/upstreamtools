@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 495,
+    <a href="#chromium">Chromium</a>: 496,
   
     <a href="#blink">Blink</a>: 2116,
   
@@ -44,6 +44,23 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>ljagielski
+          <td class=message>
+            <details>
+              <summary>IdentityLaunchWebAuthFlowFunction shouldn&#39;t be able to send response twice.</summary>
+              <pre class=body>
+It is possible before this change, because when response it sent, WebAuthFlow
+isn&#39;t stopped or destroyed and it still can call its delegate methods.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/829853006">https://codereview.chromium.org/829853006</a>
+
+Cr-Commit-Position: refs/heads/master@{#311028}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/ee37f1b7c6da834dec9056283cf83d88b0f2f53c"><time datetime="2015-01-12">2015-01-12</time></a>
         <tr>
           <td>sigbjorn
           <td class=message>
