@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 496,
+    <a href="#chromium">Chromium</a>: 497,
   
-    <a href="#blink">Blink</a>: 2120,
+    <a href="#blink">Blink</a>: 2121,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,24 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mpawlowski
+          <td class=message>
+            <details>
+              <summary>Refactor FakeServer::CreateDefaultPermanentItems()</summary>
+              <pre class=body>
+Removing some copy-paste code reuse. It&#39;s not that bad
+here, but in Opera we have more folders we fake this way
+and the copies start looking silly.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/833243007">https://codereview.chromium.org/833243007</a>
+
+Cr-Commit-Position: refs/heads/master@{#311066}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/908428a01742a93c4817a463cfd4e6c99fc56c0b"><time datetime="2015-01-12">2015-01-12</time></a>
         <tr>
           <td>ljagielski
           <td class=message>
@@ -9006,6 +9024,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Re-re-enable the activation behavior of media elements (click to play/pause)</summary>
+              <pre class=body>
+The previous attempt broke the overlay play button:
+<a href="https://codereview.chromium.org/830183005/#msg15">https://codereview.chromium.org/830183005/#msg15</a>
+
+Drop the changes to MediaControlOverlayPlayButtonElement and add a test.
+
+BUG=354746
+
+Review URL: <a href="https://codereview.chromium.org/829393004">https://codereview.chromium.org/829393004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188233 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a837a6fbc166b7250e9f9a7d24ba302ad6bceacb"><time datetime="2015-01-12">2015-01-12</time></a>
         <tr>
           <td>philipj
           <td class=message>
