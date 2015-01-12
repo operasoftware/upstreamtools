@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 497,
   
-    <a href="#blink">Blink</a>: 2122,
+    <a href="#blink">Blink</a>: 2123,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9024,6 +9024,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Avoid looping through all attributes for attribute selector.</summary>
+              <pre class=body>
+An attribute selector may only match a single attribute in a given element
+unless the selector matches all namespaces. Break the loop if the selector
+has no namespace, or if it has a specific namespace.
+
+<a href="mailto:R=esprehn@chromium.org">R=esprehn@chromium.org</a>
+BUG=447832
+
+Review URL: <a href="https://codereview.chromium.org/844203002">https://codereview.chromium.org/844203002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188250 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/166064aefbab0fd94ae13316836bae6975652e97"><time datetime="2015-01-12">2015-01-12</time></a>
         <tr>
           <td>rune
           <td class=message>
