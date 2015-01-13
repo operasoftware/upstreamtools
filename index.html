@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 500,
+    <a href="#chromium">Chromium</a>: 501,
   
     <a href="#blink">Blink</a>: 2127,
   
@@ -44,6 +44,27 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>Mostyn Bramley-Moore
+          <td class=message>
+            <details>
+              <summary>make gn label unit tests pass again</summary>
+              <pre class=body>
+Update the unit tests corresponding to this previous CL:
+<a href="https://codereview.chromium.org/825013003">https://codereview.chromium.org/825013003</a>
+
+BUG=445454
+TEST=gn_unittests --gtest_filter=Label*
+<a href="mailto:R=brettw@chromium.org">R=brettw@chromium.org</a>, <a href="mailto:tfarina@chromium.org">tfarina@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/827643003">https://codereview.chromium.org/827643003</a>
+
+Patch from Mostyn Bramley-Moore &lt;<a href="mailto:mostynb@opera.com">mostynb@opera.com</a>&gt;.
+
+Cr-Commit-Position: refs/heads/master@{#311270}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/781d460cc35be4585de7cab07c65dd1474aa7022"><time datetime="2015-01-13">2015-01-13</time></a>
         <tr>
           <td>mostynb
           <td class=message>
