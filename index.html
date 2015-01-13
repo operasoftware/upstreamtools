@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 500,
   
-    <a href="#blink">Blink</a>: 2126,
+    <a href="#blink">Blink</a>: 2127,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9066,6 +9066,39 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Only match style from element&#39;s TreeScope for normal rules.</summary>
+              <pre class=body>
+We collected all scoped resolvers up to the document resolver while
+collecting normal style rules. That was necessary for &lt;style scoped&gt;, but
+now that all scoping is done through shadow roots, only boundary crossing
+rules can match from other author style scopes. Those rules are handled
+through the global TreeBoundaryCrossingRules.
+
+Instead, collect using the ScopedStyleResolver for the element&#39;s tree
+scope if present. The need for CascadeScope disappears, so it&#39;s been
+removed.
+
+There is an exception for custom pseudo elements and VTT elements (styled
+through ::cue) since those rules are crossing a shadow boundary, yet not
+handled as part of boundary crossing rules. I chose to do the special
+handling instead of start adding them to the boundary crossing rules
+since the boundary crossing rule handling is about to change as part of
+401359 anyway, and the special handling is safer since it&#39;s closer to the
+previous behavior.
+
+<a href="mailto:R=hayato@chromium.org">R=hayato@chromium.org</a>
+BUG=401359
+
+Review URL: <a href="https://codereview.chromium.org/843773002">https://codereview.chromium.org/843773002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188292 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5a446db488f08f859be54b180f9b3405e4ab63f0"><time datetime="2015-01-13">2015-01-13</time></a>
         <tr>
           <td>fs
           <td class=message>
