@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 501,
   
-    <a href="#blink">Blink</a>: 2131,
+    <a href="#blink">Blink</a>: 2132,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9087,6 +9087,35 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Add keys(), values() and entries() methods on iterable&lt;&gt; interfaces</summary>
+              <pre class=body>
+Change the IDL code generator to add keys(), values() and entries()
+methods to interfaces with an iterable&lt;&gt; definition.
+
+Also add utility (mixin) base-classes for iterable interfaces,
+ValueIterable&lt;&gt; and PairIterable&lt;&gt;, that take care of most of the work
+of supporting iterable&lt;&gt; IDL definitions on the C++ side, i.e.
+implementing keys(), values(), entries() and @@iterator.
+
+Finally, update the two interfaces with iterable&lt;&gt; definitions
+(core/testing/Internals.idl and modules/fetch/Headers.idl) to inherit
+the new utility base classes. Internals has a &#34;value iterator&#34; and thus
+inherits ValueIterable&lt;&gt;, while Headers has a &#34;pair iterator&#34; and
+inherits PairIterable&lt;&gt;. Update existing tests for each to test the new
+keys(), values() and entries() methods.
+
+BUG=432683
+
+Review URL: <a href="https://codereview.chromium.org/848673002">https://codereview.chromium.org/848673002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188364 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/24e6399c71e59046ecf18037d04a31fec94dd4ea"><time datetime="2015-01-14">2015-01-14</time></a>
         <tr>
           <td>rune
           <td class=message>
