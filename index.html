@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 503,
   
-    <a href="#blink">Blink</a>: 2134,
+    <a href="#blink">Blink</a>: 2135,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9116,6 +9116,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Expose the DataTransferItem interface</summary>
+              <pre class=body>
+<a href="https://html.spec.whatwg.org/#the-datatransferitem-interface">https://html.spec.whatwg.org/#the-datatransferitem-interface</a>
+
+Both Firefox Nightly and IE11 expose the DataTransfer interface, but
+neither DataTransferItem nor DataTransferItemList. We already expose
+DataTransferItemList. Per spec all three interfaces should be exposed.
+
+This will allow feature detection of the methods on DataTransferItem, in
+particular DataTransferItem.prototype.webkitGetAsEntry, the lack of
+which has forced at least one library to resort to UA string sniffing:
+<a href="https://github.com/FineUploader/fine-uploader/issues/1346">https://github.com/FineUploader/fine-uploader/issues/1346</a>
+
+BUG=448696
+
+Review URL: <a href="https://codereview.chromium.org/850863002">https://codereview.chromium.org/850863002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188382 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/456993e90c07286f40ce9dbb6e566b2d36c2c413"><time datetime="2015-01-14">2015-01-14</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
