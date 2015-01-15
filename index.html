@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 504,
   
-    <a href="#blink">Blink</a>: 2145,
+    <a href="#blink">Blink</a>: 2147,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9132,6 +9132,43 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Make RenderObject::resolveColor(const RenderStyle*, int) static.</summary>
+              <pre class=body>
+It doesn&#39;t need anything from RenderObject.
+
+<a href="mailto:R=eae@chromium.org">R=eae@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/856523002">https://codereview.chromium.org/856523002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188491 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/dbb933faedf000a080cec2a74b503517422c5d32"><time datetime="2015-01-15">2015-01-15</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[Slimming paint] [New Multicolumn] Repaint column rules when they change.</summary>
+              <pre class=body>
+And DON&#39;T paint them when they don&#39;t change, or we&#39;ll get an assertion failure.
+
+Column rules are painted by an anonymous RenderMultiColumnSet, while
+-webkit-column-rule is specified on the parent multicol, so some extra work is
+required to properly invalidate the column set(s).
+
+BUG=449118
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/834653003">https://codereview.chromium.org/834653003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188489 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9f3eeebc80a2c835c2b500c5121c55c858bf3ad2"><time datetime="2015-01-15">2015-01-15</time></a>
         <tr>
           <td>fs
           <td class=message>
