@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 504,
   
-    <a href="#blink">Blink</a>: 2138,
+    <a href="#blink">Blink</a>: 2139,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9132,6 +9132,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Margins incorrectly accounted for before forced breaks.</summary>
+              <pre class=body>
+The spec basically says that margins should be ignored at column boundaries,
+although it&#39;s explicitly ambiguous about what should happen to top margins
+after a forced break. This CL is solely about margins before a break, though,
+and they should all be set to 0, so that contents that follow start at the top
+of the next column, instead of leaving one column blank and skipping to the
+next one after that.
+
+BUG=448366
+<a href="mailto:R=jchaffraix@chromium.org,leviw@chromium.org">R=jchaffraix@chromium.org,leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/850703002">https://codereview.chromium.org/850703002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188456 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/575278da9d3e223f3a3416082ed058e15a1ccac9"><time datetime="2015-01-15">2015-01-15</time></a>
         <tr>
           <td>jl
           <td class=message>
