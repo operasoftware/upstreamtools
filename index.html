@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 504,
   
-    <a href="#blink">Blink</a>: 2140,
+    <a href="#blink">Blink</a>: 2143,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9132,6 +9132,74 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Revert 187544 &#34;Remove unnecessary sync style recalc for fullscreen.&#34;</summary>
+              <pre class=body>
+BUG=448721
+
+&gt; Remove unnecessary sync style recalc for fullscreen.
+&gt; 
+&gt; There is no code nearby that depends on an up-to-date render tree. The
+&gt; render tree will now be updated as part of WillBeginMainFrame. I&#39;ve not
+&gt; been able to construct a test case that can hook into the code between
+&gt; the removed call and the new place since the webkitfullscreenchange event
+&gt; code is called after WillBeginMainFrame.
+&gt; 
+&gt; <a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+&gt; TEST=fullscreen/
+&gt; TEST=media/
+&gt; 
+&gt; Review URL: <a href="https://codereview.chromium.org/816953002">https://codereview.chromium.org/816953002</a>
+
+<a href="mailto:TBR=rune@opera.com">TBR=rune@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/837923005">https://codereview.chromium.org/837923005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188466 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/05331c7d31ed8ece082313df57fe3705a0a7fc7c"><time datetime="2015-01-15">2015-01-15</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Support :hover/:active in quirks when leftmost in compound.</summary>
+              <pre class=body>
+SelectorChecker checked if there was a simple selector to the left of
+:hover/:active. Added check for simple selector to the right too.
+
+The relevant spec is [1].
+
+[1] <a href="https://quirks.spec.whatwg.org/#the-:active-and-:hover-quirk">https://quirks.spec.whatwg.org/#the-:active-and-:hover-quirk</a>
+
+BUG=448325,448049
+
+Review URL: <a href="https://codereview.chromium.org/848853004">https://codereview.chromium.org/848853004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188465 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/de74bf6a39645104882bcfd74039e8906c0feec9"><time datetime="2015-01-15">2015-01-15</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Stop pretending MediaControls::initializeControls() will fail</summary>
+              <pre class=body>
+Failure here would mean programmer error, so ASSERT_NO_EXCEPTION seems
+enough.
+
+BUG=448795
+
+Review URL: <a href="https://codereview.chromium.org/828413005">https://codereview.chromium.org/828413005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188464 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/48cc302d4aa972d550987c9f64c14de560e4b4b5"><time datetime="2015-01-15">2015-01-15</time></a>
         <tr>
           <td>fs
           <td class=message>
