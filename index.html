@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 504,
+    <a href="#chromium">Chromium</a>: 505,
   
     <a href="#blink">Blink</a>: 2149,
   
@@ -44,6 +44,27 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>christiank
+          <td class=message>
+            <details>
+              <summary>Update GPU memory buffers to use StrideInBytes internally.</summary>
+              <pre class=body>
+Tile texture compression will add support for GPU memory buffer formats
+that use less than a byte per pixel.
+
+This CL prepares GPU buffers for this by using a new function
+StrideInBytes instead of relying on bytes per pixel calculations when
+calculating the number of bytes needed to store a certain number of pixels.
+
+BUG=434699
+
+Review URL: <a href="https://codereview.chromium.org/806653006">https://codereview.chromium.org/806653006</a>
+
+Cr-Commit-Position: refs/heads/master@{#311862}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/53e678c7962e12efe4bca3b58c9efbf755b86798"><time datetime="2015-01-16">2015-01-16</time></a>
         <tr>
           <td>haraldh
           <td class=message>
