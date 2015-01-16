@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 505,
   
-    <a href="#blink">Blink</a>: 2149,
+    <a href="#blink">Blink</a>: 2152,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9153,6 +9153,71 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Clip correctly if the &#34;root&#34; layer is inside the multicol container.</summary>
+              <pre class=body>
+When the &#34;root&#34; layer is inside the multicol container, don&#39;t get lost and
+make the clip rectangle relative to the RenderView. It needs to be relative
+to the &#34;root&#34; layer. When compositing, the &#34;root&#34; layer could be the very
+same as the layer being painted.
+
+BUG=359877
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/848163002">https://codereview.chromium.org/848163002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188552 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8877c0df040ad61ca49c3ce9c87dcd253662b651"><time datetime="2015-01-16">2015-01-16</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Render string sequences of more than 64k characters.</summary>
+              <pre class=body>
+InlineBox can only handle sequences of text that fits in an
+unsigned short and while that is normally not a problem,
+it can be a problem for someone trying to upload a long
+chunk of data in an &lt;input&gt; field. &lt;input&gt; uses normal
+text layout to render the text so it gets the same limitations
+as document text.
+
+The symptoms of this overflow is typically missing text.
+
+This fixes the problem by splitting BidiRun objects that would
+have referred to too-long sequences of characters into multiple
+BidiRun objects.
+
+BUG=155241,448424,448425
+
+Review URL: <a href="https://codereview.chromium.org/853903002">https://codereview.chromium.org/853903002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188548 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9b42ff60926552998b766fe5ff818a43cdca02f8"><time datetime="2015-01-16">2015-01-16</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>VTTCue: Simplify computation of direction-aware text position</summary>
+              <pre class=body>
+Add a helper resolveCueAlignment to resolve &#39;start&#39; and &#39;end&#39; to the
+corresponding &#34;visual&#34; value, and also compute the visual text position
+once.
+
+BUG=448000
+
+Review URL: <a href="https://codereview.chromium.org/852233002">https://codereview.chromium.org/852233002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188545 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5323a60f8d173e92c30d2594ea0851fbf2c89a04"><time datetime="2015-01-16">2015-01-16</time></a>
         <tr>
           <td>mstensho
           <td class=message>
