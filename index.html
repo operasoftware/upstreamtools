@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 505,
   
-    <a href="#blink">Blink</a>: 2153,
+    <a href="#blink">Blink</a>: 2154,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9153,6 +9153,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Do not fire timers for finalizing objects.</summary>
+              <pre class=body>
+If a lazy sweep is in progress and a timer fires, do check that
+the underlying object is still alive before invoking its method.
+
+R=haraken
+BUG=448392
+
+Review URL: <a href="https://codereview.chromium.org/850063002">https://codereview.chromium.org/850063002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188577 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/01b4aad9dac1431bec785c6edbc6f76224ee57eb"><time datetime="2015-01-17">2015-01-17</time></a>
         <tr>
           <td>philipj
           <td class=message>
