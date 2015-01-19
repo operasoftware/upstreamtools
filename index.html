@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 505,
   
-    <a href="#blink">Blink</a>: 2156,
+    <a href="#blink">Blink</a>: 2157,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9153,6 +9153,22 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Add missing type-check for callback function arguments</summary>
+              <pre class=body>
+Internally, callback function arguments are represented as ScriptValue
+and can thus support any value, but the bindings layer should throw
+a TypeError if the value isn&#39;t a function object.
+
+Review URL: <a href="https://codereview.chromium.org/810563007">https://codereview.chromium.org/810563007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188611 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1aa0818f464f9e24a02773d2fde93e3b3d609f63"><time datetime="2015-01-19">2015-01-19</time></a>
         <tr>
           <td>philipj
           <td class=message>
