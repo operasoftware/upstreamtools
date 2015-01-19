@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 505,
   
-    <a href="#blink">Blink</a>: 2155,
+    <a href="#blink">Blink</a>: 2156,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9153,6 +9153,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Simplify HTMLImageElement::canStartSelection()</summary>
+              <pre class=body>
+It originally always return true, and got its current behavior as part
+of &#34;Shadow DOM for img element&#34; which was reverted:
+<a href="http://trac.webkit.org/changeset/122824">http://trac.webkit.org/changeset/122824</a>
+<a href="http://trac.webkit.org/changeset/125397">http://trac.webkit.org/changeset/125397</a>
+<a href="http://trac.webkit.org/changeset/140097">http://trac.webkit.org/changeset/140097</a>
+
+What is left looks odd in isolation, so revert it for now.
+
+Review URL: <a href="https://codereview.chromium.org/858533002">https://codereview.chromium.org/858533002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188603 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e68592be0df50430c8780f684458bb876642fe8b"><time datetime="2015-01-19">2015-01-19</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
