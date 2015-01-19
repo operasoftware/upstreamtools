@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 505,
+    <a href="#chromium">Chromium</a>: 506,
   
-    <a href="#blink">Blink</a>: 2157,
+    <a href="#blink">Blink</a>: 2158,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,22 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>peterp
+          <td class=message>
+            <details>
+              <summary>Support different formats in the same resource pool.</summary>
+              <pre class=body>
+This allows us to use different formats for tiles with opaque or translucent content for better memory savings or quality.
+
+BUG=434699
+
+Review URL: <a href="https://codereview.chromium.org/817133006">https://codereview.chromium.org/817133006</a>
+
+Cr-Commit-Position: refs/heads/master@{#312090}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/8bde4e839b4c55733b730a71cd9beaff95e01fe4"><time datetime="2015-01-19">2015-01-19</time></a>
         <tr>
           <td>christiank
           <td class=message>
@@ -9153,6 +9169,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Percentage heights can be resolved against any parent if writing mode is orthogonal.</summary>
+              <pre class=body>
+It doesn&#39;t matter then if the height of the containing block is auto, since
+we&#39;re going to resolve the percentage height against a *width* anyway. Check
+for containing block writing mode orthogonality earlier. It used to be omitted
+for render flow threads (we&#39;d just skip unconditionally), and we want to be
+able to resolve against the column width.
+
+This makes fast/multicol/fixed-column-percent-logical-height-orthogonal-writing-mode.html
+pass in the new multicol implementation.
+
+BUG=386567
+<a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/846483002">https://codereview.chromium.org/846483002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188612 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/dda613caa9c54d64f4f463b941b5664f1805722b"><time datetime="2015-01-19">2015-01-19</time></a>
         <tr>
           <td>jl
           <td class=message>
