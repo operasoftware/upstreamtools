@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 506,
   
-    <a href="#blink">Blink</a>: 2163,
+    <a href="#blink">Blink</a>: 2164,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9169,6 +9169,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use TextTrackKind enum in HTMLMediaElement.addTextTrack IDL signature</summary>
+              <pre class=body>
+With <a href="https://codereview.chromium.org/831483004">https://codereview.chromium.org/831483004</a> is becomes possible to use
+the TextTrackKind enum defined in TextTrack.idl without redefining it.
+Do that, and also update the spec. steps in HTMLMediaElement::addTextTrack
+to match a later version. Move the call to setReadinessState() since it
+does not cause any side-effects, but add a comment about a potential issue
+with the current order of setup.
+Also add default values to the optional arguments and drop the unneeded
+forwarders. This also means that undefined will now be properly handled
+for these arguments.
+Update tests to reflect the new exception thrown as well as the behavior
+with undefined.
+
+Review URL: <a href="https://codereview.chromium.org/790633003">https://codereview.chromium.org/790633003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188644 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cf062e38ed2fcf345c5926ba52cc83b5b03061d6"><time datetime="2015-01-19">2015-01-19</time></a>
         <tr>
           <td>rune
           <td class=message>
