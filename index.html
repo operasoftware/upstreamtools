@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 506,
   
-    <a href="#blink">Blink</a>: 2158,
+    <a href="#blink">Blink</a>: 2159,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9169,6 +9169,34 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Layout support for column-span:all.</summary>
+              <pre class=body>
+There are still issues with block direction margins specified on
+spanners and on content adjacent to them. Will take care of that in a
+follow-up CL. Similarly for overflow.
+
+Also no support for dynamically inserting and removing spanners
+yet. Another follow-up CL can be expected for that.
+
+Added some layout tests. Removed
+fast/multicol/newmulticol/direct-child-column-span-all.html .
+Although it could detect crashes, it was useless rendering-wise, since
+the test and the ref were identical. fast/multicol/span/sole-spanner.html
+should be a satisfactory replacement.
+
+BUG=347325
+<a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/792803002">https://codereview.chromium.org/792803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188619 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/070ef347ecbd6390f58d63b70f6d10001024d95c"><time datetime="2015-01-19">2015-01-19</time></a>
         <tr>
           <td>mstensho
           <td class=message>
