@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 506,
   
-    <a href="#blink">Blink</a>: 2166,
+    <a href="#blink">Blink</a>: 2167,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9169,6 +9169,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Expose the Crypto and SubtleCrypto interface objects</summary>
+              <pre class=body>
+Per spec Crypto, CryptoKey and SubtleCrypto are all exposed:
+<a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html#crypto-interface">https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html#crypto-interface</a>
+<a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html#cryptokey-interface">https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html#cryptokey-interface</a>
+<a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html#subtlecrypto-interface">https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html#subtlecrypto-interface</a>
+
+Firefox Nightly already exposes all three, while IE11 exposes
+Crypto and SubtleCrypto.
+
+BUG=450064
+
+Review URL: <a href="https://codereview.chromium.org/859733002">https://codereview.chromium.org/859733002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188653 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c7bb60c6e52234efe6b2d707d7d40e8de0298aa4"><time datetime="2015-01-20">2015-01-20</time></a>
         <tr>
           <td>philipj
           <td class=message>
