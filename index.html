@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 506,
+    <a href="#chromium">Chromium</a>: 507,
   
     <a href="#blink">Blink</a>: 2170,
   
@@ -44,6 +44,25 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Fix WebCore -&gt; blink changes in VS debugger visualizers.</summary>
+              <pre class=body>
+Visual Studio type visualizers need to be updated to reflect
+that blink uses the blink namespace instead of WebCore now. Otherwise
+you won&#39;t get the readable view of LayoutUnit/LayoutPoint/LayoutRect.
+
+<a href="mailto:R=zturner@chromium.org">R=zturner@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/829093003">https://codereview.chromium.org/829093003</a>
+
+Cr-Commit-Position: refs/heads/master@{#312224}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/56a8939968f2989b3ed4eda5c13e0143f5890c05"><time datetime="2015-01-20">2015-01-20</time></a>
         <tr>
           <td>peterp
           <td class=message>
