@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 508,
   
-    <a href="#blink">Blink</a>: 2171,
+    <a href="#blink">Blink</a>: 2173,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9203,6 +9203,57 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Support for block direction margins on spanners.</summary>
+              <pre class=body>
+Block direction margins need to be copied from the column-span:all element
+to its placeholder, since it&#39;s the placeholder that gets laid out and
+positioned among other placeholders and column sets within the multicol
+container.
+
+Also prevent margin-collapsing through column sets, since that suddenly
+matters.
+
+Note that inline direction margins were already working. Some of the
+tests in this CL also test those.
+
+BUG=347325
+<a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/855413002">https://codereview.chromium.org/855413002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188696 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2950169f7b6ffc2604cb4d323847ae0b94f5d27e"><time datetime="2015-01-20">2015-01-20</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Initialize GC mixin bases only when leftmost vtable has been initialized.</summary>
+              <pre class=body>
+For GC mixin constructors that allocate on the Oilpan heap, extra care
+is required. It is unsafe to fully construct these until the vptr for the
+leftmost object that implement/provide the mixin has been initialized.
+
+Should a (conservative) GC kick in while in that mixin&#39;s constructor, the
+object reference to the object instance will be located through stack
+scanning, but it will not as-yet have its trace method set up. The result
+is failure to trace the object being constructed (including its mixin
+base).
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/860063002">https://codereview.chromium.org/860063002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188695 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/087325ccb8f00f949afe4858521a369b54311612"><time datetime="2015-01-20">2015-01-20</time></a>
         <tr>
           <td>philipj
           <td class=message>
