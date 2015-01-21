@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 510,
   
-    <a href="#blink">Blink</a>: 2178,
+    <a href="#blink">Blink</a>: 2179,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9238,6 +9238,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>WebVTT: Support &#39;auto&#39; text position</summary>
+              <pre class=body>
+This changes the behavior of the VTTCue.position attribute to match the
+current spec. draft. It also changes the default of the same value when
+parsed from a VTT file or created via the VTTCue constructor.
+
+A number of tests where updated to reflect the new behavior (50 -&gt; &#39;auto&#39;).
+
+BUG=448000
+
+Review URL: <a href="https://codereview.chromium.org/851933003">https://codereview.chromium.org/851933003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188753 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/66412c17b7b2aace4d01f434fdf6f510f4c16c93"><time datetime="2015-01-21">2015-01-21</time></a>
         <tr>
           <td>fs
           <td class=message>
