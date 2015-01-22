@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 511,
   
-    <a href="#blink">Blink</a>: 2185,
+    <a href="#blink">Blink</a>: 2187,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9262,6 +9262,55 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Support [TypeChecking=Interface] correctly on indexed setters</summary>
+              <pre class=body>
+Normally, [TypeChecking=Interface] can be set either on an interface as
+a whole, affecting all its definitions (attributes and methods), or on
+individual definitions. But for indexed setter definitions
+
+  setter ElementType (unsigned long index, ElementType value);
+
+it had to be set explicitly for the setter definition; setting it only on
+the interface as a whole did not work.
+
+This change affects the following interfaces with indexed setters:
+
+  SVGLengthList
+  SVGNumberList
+  SVGPathSegList
+  SVGPointList
+  SVGTransformList
+
+Review URL: <a href="https://codereview.chromium.org/862403002">https://codereview.chromium.org/862403002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188807 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e31b21362e0139adee88f41dae488097dd14c297"><time datetime="2015-01-22">2015-01-22</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: expose near-finalized predicate as Heap::willObjectBeLazilySwept()</summary>
+              <pre class=body>
+Provide an inverted, and more focused version of the previous
+isFinalizedObjectAlive() predicate. willObjectBeLazilySwept() returns true
+iff an object reference has been slated for finalization by sweeping,
+but hasn&#39;t been yet.
+
+R=haraken
+BUG=448392
+
+Review URL: <a href="https://codereview.chromium.org/858363005">https://codereview.chromium.org/858363005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188804 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/58faf97fd55cba06b733635d2ca7ceddeec01e10"><time datetime="2015-01-22">2015-01-22</time></a>
         <tr>
           <td>philipj
           <td class=message>
