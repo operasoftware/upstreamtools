@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 511,
   
-    <a href="#blink">Blink</a>: 2191,
+    <a href="#blink">Blink</a>: 2192,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9262,6 +9262,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>WebVTT: Support fractional percentage values for position/line/size</summary>
+              <pre class=body>
+This updates the WebVTT (cue settings) parser to accept fractional
+percentage values for the &#39;position&#39;, &#39;line&#39; and &#39;size&#39; settings -
+per the current spec draft.
+Also updates spec steps and rewraps some comments.
+
+BUG=364697
+
+Review URL: <a href="https://codereview.chromium.org/864043002">https://codereview.chromium.org/864043002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188814 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ee341881973b0f626acdafa50e48b5b3b3f946fd"><time datetime="2015-01-22">2015-01-22</time></a>
         <tr>
           <td>jl
           <td class=message>
