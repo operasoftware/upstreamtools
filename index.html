@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 511,
   
-    <a href="#blink">Blink</a>: 2192,
+    <a href="#blink">Blink</a>: 2194,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9262,6 +9262,43 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>WebVTT: Update cue alignment to a later spec. version</summary>
+              <pre class=body>
+This implements the updated spec. behavior by removing the dependency
+on the (resolved) direction when determining the alignment.
+
+BUG=449521
+
+Review URL: <a href="https://codereview.chromium.org/851333003">https://codereview.chromium.org/851333003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188817 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e79071b4c4e899957766312459dd4a5199bf266d"><time datetime="2015-01-22">2015-01-22</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Make ScriptStreamer and dependents Oilpan friendly.</summary>
+              <pre class=body>
+As ScriptStreamer has a reference to a GCed ScriptResource, turn
+ScriptStreamer into a GCed object also. Transitively, ScriptSourceCode
+and other objects that refer to those need to be moved to the
+Oilpan heap also.
+
+R=haraken
+BUG=340515
+
+Review URL: <a href="https://codereview.chromium.org/847803002">https://codereview.chromium.org/847803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188816 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9af98a7b499c1e4c62f2f959f89709564bc064d0"><time datetime="2015-01-22">2015-01-22</time></a>
         <tr>
           <td>fs
           <td class=message>
