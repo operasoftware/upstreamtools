@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 511,
   
-    <a href="#blink">Blink</a>: 2194,
+    <a href="#blink">Blink</a>: 2195,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9262,6 +9262,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Drop redundant null checks in SVGListPropertyTearOffHelper</summary>
+              <pre class=body>
+All interfaces that use this code has [TypeChecking=Interface] so the
+generated code will do type checking and throw exceptions on invalid
+arguments. The error handling code removed here could thus never trigger.
+
+This patch depends on these fixes for indexed setter type checking:
+  <a href="https://codereview.chromium.org/862403002/">https://codereview.chromium.org/862403002/</a>
+  <a href="https://codereview.chromium.org/871443002/">https://codereview.chromium.org/871443002/</a>
+
+Review URL: <a href="https://codereview.chromium.org/827373003">https://codereview.chromium.org/827373003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188821 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2f55be18d957fa44632c95b555058ae81167ffe5"><time datetime="2015-01-22">2015-01-22</time></a>
         <tr>
           <td>fs
           <td class=message>
