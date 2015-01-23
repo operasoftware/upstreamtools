@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 511,
   
-    <a href="#blink">Blink</a>: 2200,
+    <a href="#blink">Blink</a>: 2201,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9262,6 +9262,44 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Revert of Re-re-enable the activation behavior of media elements (click to play/pause) (patchset #2 id:20001 of https://codereview.chromium.org/829393004/)</summary>
+              <pre class=body>
+Reason for revert:
+On Android:
+1. The entire video is now clickable, leading more often to ambigous
+   touches and zooming.
+2. When the controls are not visible, touching the video will both pause
+   the video and show the controls, where they would previously only
+   show the controls.
+
+Original issue&#39;s description:
+&gt; Re-re-enable the activation behavior of media elements (click to play/pause)
+&gt; 
+&gt; The previous attempt broke the overlay play button:
+&gt; <a href="https://codereview.chromium.org/830183005/#msg15">https://codereview.chromium.org/830183005/#msg15</a>
+&gt; 
+&gt; Drop the changes to MediaControlOverlayPlayButtonElement and add a test.
+&gt; 
+&gt; BUG=354746
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=188233">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=188233</a>
+
+<a href="mailto:TBR=fs@opera.com">TBR=fs@opera.com</a>
+NOPRESUBMIT=true
+NOTREECHECKS=true
+NOTRY=true
+BUG=354746
+
+Review URL: <a href="https://codereview.chromium.org/867063003">https://codereview.chromium.org/867063003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188869 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0ef596b4d6493d394f640e43e4445e6416588ba0"><time datetime="2015-01-23">2015-01-23</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
