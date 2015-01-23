@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 511,
   
-    <a href="#blink">Blink</a>: 2203,
+    <a href="#blink">Blink</a>: 2205,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9262,6 +9262,66 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>VTTCue: Remove dead exception throwing code in setLine/setPosition</summary>
+              <pre class=body>
+After <a href="https://codereview.chromium.org/860353002">https://codereview.chromium.org/860353002</a>, these checks should be
+handled by the generated bindings code.
+
+TEST=media/track/opera/interfaces/VTTCue/{line,position}.html
+
+Review URL: <a href="https://codereview.chromium.org/869173002">https://codereview.chromium.org/869173002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188884 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f6a0e35abb645bc5443e7006adebaa7921c7968c"><time datetime="2015-01-23">2015-01-23</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Support dynamic insertion and removal of multicol content.</summary>
+              <pre class=body>
+Special attention is required when a dynamic change requires a column spanner
+placeholder to be inserted. When a spanner is inserted, we need to create a
+placeholder. If the spanner was inserted in the middle of regular column
+content, it means that there&#39;s a column set there that we need to split, so
+that we get one column row before the spanner and one column row after. We may
+also have to create an additional column set when inserting column set, e.g.
+when it&#39;s inserted between adjacent spanners.
+
+Removal of spanners was already being handled properly (in terms of merging any
+surrounding column sets). But removing superfluous column sets when column
+content is removed wasn&#39;t taken care of until this CL.
+
+Also had to fix how spanner placeholders are torn down, as we cannot notify the
+flow thread both in RenderBox and RenderObject, when a spanner is removed. If
+we first did it in RenderBox, the spanner placeholder would be destroyed at
+that time. This would mean that when we finally got to
+RenderObject::removeFromRenderFlowThreadRecursive(), the ex-spanner would
+notify the thread again for the same renderer (which is bad in any regard), and
+this time the flow thread would think that we&#39;re removing actual column content
+(since there&#39;s no longer a placeholder associated with it). The unit test
+MultiColumnTreeModifyingTest.InsertSpannerAndRemove would assert without this
+change, as we wouldn&#39;t be able to find a column set to remove (since there is
+none in that case, since the multicol container only contains a sole spanner).
+
+Added a bunch of layout and unit tests. The unit tests need to modify the
+render tree on their own, so we need to tell the document that this needs to be
+allowed.
+
+BUG=347325
+<a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/869583002">https://codereview.chromium.org/869583002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188883 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3f3c7496bb89d017fc776da49a43f6200ac6de6e"><time datetime="2015-01-23">2015-01-23</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
