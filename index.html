@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 511,
   
-    <a href="#blink">Blink</a>: 2201,
+    <a href="#blink">Blink</a>: 2202,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9262,6 +9262,40 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Fix problems with flakes in SVG LayoutTests by reordering arithmetic.</summary>
+              <pre class=body>
+This operation gives 4.99999952: float(25 + 200 * double(1.f*(-10.0f/100.f)))
+This operation gives 5.00000000: float(25 + 200 * float(1.f*(-10.0f/100.f)))
+
+Why 4.99999952 appear only sometimes, and only on Windows, is
+not fully known. A suspect is that it&#39;s related to the 32-bit ABI which
+requires use of x87 for passing floats. That combined with various
+inlining decisions and context switches could possibly affect the final
+value in a way that makes it seem random.
+
+The fix in this patch is to reorder some operations. Using the example
+above it will be changed to:
+
+  float(25 + (200 * 1.f * -10.f) / 100.f)
+
+By delaying the dangerous division, every intermediate value will
+be representable by a float with no errors.
+
+This won&#39;t solve all floating point errors but it will solve the one that causes
+the most common CQ flakes.
+
+BUG=438282
+
+Review URL: <a href="https://codereview.chromium.org/861213003">https://codereview.chromium.org/861213003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188871 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8121bc6f022ced7e5af78c66e5c4278b58013be5"><time datetime="2015-01-23">2015-01-23</time></a>
         <tr>
           <td>philipj
           <td class=message>
