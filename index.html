@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 511,
+    <a href="#chromium">Chromium</a>: 512,
   
     <a href="#blink">Blink</a>: 2213,
   
@@ -44,6 +44,36 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>kolczyk
+          <td class=message>
+            <details>
+              <summary>Fix for font files being mmaped multiple times (Fontconfig).</summary>
+              <pre class=body>
+Before this change, when there were a lot of font fallbacks happening on
+the web site, the fallback font was mmaped multiple times, reaching up to
+200 times in the TC url: <a href="http://jsfiddle.net/p5pe81vs/">http://jsfiddle.net/p5pe81vs/</a>, leading to OOMs
+and crashes for renderer process.
+
+This happens after the change introduced in
+<a href="https://codereview.chromium.org/307243002">https://codereview.chromium.org/307243002</a>
+
+This CL keeps track of the mmaps for each font ID to avoid any further
+unnecessary IPC requests and mmaps for future requests of the same font
+ID that would result in new FD.
+
+BUG=430021
+
+NOPRESUBMIT=true
+brettw indicates this use of ScopedAllowIO is acceptable.
+Previous code eluded IO checks, this change makes the IO use find-able.
+
+Review URL: <a href="https://codereview.chromium.org/697383002">https://codereview.chromium.org/697383002</a>
+
+Cr-Commit-Position: refs/heads/master@{#313102}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/78db5e535ef48c596223fe272572e5679fbb44fd"><time datetime="2015-01-26">2015-01-26</time></a>
         <tr>
           <td>christiank
           <td class=message>
