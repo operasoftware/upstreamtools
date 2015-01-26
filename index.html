@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 511,
   
-    <a href="#blink">Blink</a>: 2210,
+    <a href="#blink">Blink</a>: 2212,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9262,6 +9262,53 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Fix gamepad/page-visibility.html flakiness.</summary>
+              <pre class=body>
+If the running of the individual tests took longer, we ran the risk
+of having a bail-out timer fire and report foul; in debug builds
+typically. Not a failure condition to be slow(er) here.
+
+Remove that bail-out timer; should the delivery of gamepad events somehow
+not be complete, just let the test time out &amp; report failure that way.
+
+R=haraken
+BUG=386846
+
+Review URL: <a href="https://codereview.chromium.org/872373002">https://codereview.chromium.org/872373002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188950 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/770dc021f0b65ffb58f1e84c80a73cf2db732a2e"><time datetime="2015-01-26">2015-01-26</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: dispose ServiceWorker (and registration) objects earlier.</summary>
+              <pre class=body>
+It is unsafe to keep a ServiceWorker registered with the embedder once
+it has been determined to be unreachable by the garbage collector, but
+not yet finalized, as it cannot be assumed to be in a valid state beyond
+that point.
+
+Hence, we detach and unregister the object during a pre-finalization step.
+
+The same lifetime issue applies to ServiceWorkerRegistration, so extend
+the same treatment to it also.
+
+R=haraken
+BUG=451692
+
+Review URL: <a href="https://codereview.chromium.org/874003002">https://codereview.chromium.org/874003002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@188949 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/190d8740d61db7a2b10864c982f629384f6ec295"><time datetime="2015-01-26">2015-01-26</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
