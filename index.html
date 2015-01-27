@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 512,
+    <a href="#chromium">Chromium</a>: 513,
   
-    <a href="#blink">Blink</a>: 2215,
+    <a href="#blink">Blink</a>: 2219,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,22 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>peterp
+          <td class=message>
+            <details>
+              <summary>Remove the default format from ResourcePool.</summary>
+              <pre class=body>
+Let each client store the format locally instead.
+
+BUG=434699
+
+Review URL: <a href="https://codereview.chromium.org/860813002">https://codereview.chromium.org/860813002</a>
+
+Cr-Commit-Position: refs/heads/master@{#313247}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/66304d3c5632199f46abb85b1acca5d87f03ce49"><time datetime="2015-01-27">2015-01-27</time></a>
         <tr>
           <td>kolczyk
           <td class=message>
@@ -9292,6 +9308,89 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Give a canvas/video test more time.</summary>
+              <pre class=body>
+We have seen the yuv-video-on-accelerated-canvas.html test timeout
+and since it&#39;s not obviously fast, maybe it is just a case of too
+slow bot. Trying to give it more time hoping that will solve
+the problem.
+
+BUG=450699
+
+Review URL: <a href="https://codereview.chromium.org/872383002">https://codereview.chromium.org/872383002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189018 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/60fdfab472ffa17fad5f12a9f389ccf85094e9f3"><time datetime="2015-01-27">2015-01-27</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Rename and turn fast/multicol/span/clone-summary.html into a reftest.</summary>
+              <pre class=body>
+The name &#34;clone-summary&#34; wasn&#39;t exactly great for the new multicol
+implementation, since nothing gets cloned there. Still a useful test, though,
+since SUMMARY is always a block (even if attempted displayed as table-row) and
+there&#39;s a spanner cutting right through it.
+
+BUG=386567
+<a href="mailto:R=andersr@opera.com">R=andersr@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/871473002">https://codereview.chromium.org/871473002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189017 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c0c62bafc25b471bda539696fde33d88f74f7125"><time datetime="2015-01-27">2015-01-27</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Rewrote fast/multicol/span/anonymous-style-inheritance.html to a check-layout test.</summary>
+              <pre class=body>
+Also renamed it. The only useful thing this did test, taking existing tests into
+consideration, was to make sure that margins on a multicol don&#39;t collapse with those
+of a spanner.
+
+BUG=386567
+<a href="mailto:R=andersr@opera.com">R=andersr@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/864333002">https://codereview.chromium.org/864333002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189016 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2565a74963884c5c82663d96ac10ec20c68003c8"><time datetime="2015-01-27">2015-01-27</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Replace marquee in test to make it deterministic.</summary>
+              <pre class=body>
+Marquees cause visible state changes in the layout tree both because
+they trigger extra layers and because the scroll offset is not well known.
+
+Most often the LayoutTest framework captures marquees after the
+shadow &lt;div&gt; has been created but before the layout engine has
+reacted to the transformation commands and animation. But not always.
+
+This groups the marquee tests in TestExpectations (they should be treated
+as the same problem) and replaces one marquee with an equally good generic
+element.
+
+BUG=439478
+
+Review URL: <a href="https://codereview.chromium.org/879603002">https://codereview.chromium.org/879603002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189015 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/107d745e2d2b1e14d7aed0f65c09da6cf2483e3a"><time datetime="2015-01-27">2015-01-27</time></a>
         <tr>
           <td>fs
           <td class=message>
