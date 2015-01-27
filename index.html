@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 512,
   
-    <a href="#blink">Blink</a>: 2214,
+    <a href="#blink">Blink</a>: 2215,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9292,6 +9292,32 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move WebVTT snap-to-lines layout code to a helper class</summary>
+              <pre class=body>
+Move the bulk of the cue (post &#34;box generation&#34;) layout code to a new
+helper SnapToLinesLayouter.
+This eliminates transient state from RenderVTTCue, and should make is
+easier to cache additional values (like the containing block and it&#39;s
+bounding box for example.) It could eventually also help breaking the
+dependency with the physical VTT cue structure, and make it possible to
+move the layout to the cue container.
+The code that tries to adjust for margin/border/padding is split out into
+a method.
+
+No functional changes intended.
+
+BUG=301580
+
+Review URL: <a href="https://codereview.chromium.org/873483003">https://codereview.chromium.org/873483003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189004 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/31885006cff37b04a4a76846f72a45ffe61cd76e"><time datetime="2015-01-27">2015-01-27</time></a>
         <tr>
           <td>fs
           <td class=message>
