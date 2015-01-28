@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 513,
+    <a href="#chromium">Chromium</a>: 514,
   
     <a href="#blink">Blink</a>: 2223,
   
@@ -44,6 +44,23 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>kolczyk
+          <td class=message>
+            <details>
+              <summary>Send notification when render process has failed to launch.</summary>
+              <pre class=body>
+Before this patch, information about renderer that crashed
+at startup (i.e. failed to start) was not forwarded to WebContents, etc...
+
+BUG=452812
+
+Review URL: <a href="https://codereview.chromium.org/879533006">https://codereview.chromium.org/879533006</a>
+
+Cr-Commit-Position: refs/heads/master@{#313461}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/d0f1f7659d4aee2aba2123d2c9a3db66cf8023ff"><time datetime="2015-01-28">2015-01-28</time></a>
         <tr>
           <td>peterp
           <td class=message>
