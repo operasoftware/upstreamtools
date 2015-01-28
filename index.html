@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 514,
   
-    <a href="#blink">Blink</a>: 2225,
+    <a href="#blink">Blink</a>: 2227,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9325,6 +9325,51 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Stabilize transition testcase.</summary>
+              <pre class=body>
+Roughly 1% of the times transitions/svg-visited-link-transitions.html
+runs it will set the &#34;active&#34; class before a previous layout. When that
+happens there won&#39;t be any style to animate so the elements reach the
+final step immediately.
+
+Fixed by forcing a layout pass before setting the &#34;active&#34; style.
+
+BUG=450497
+
+Review URL: <a href="https://codereview.chromium.org/876343002">https://codereview.chromium.org/876343002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189106 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c437eb61d943763d3966302e5b327cee1cf3a540"><time datetime="2015-01-28">2015-01-28</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: merge MIDIAccessInitializer&#39;s prefinalizers.</summary>
+              <pre class=body>
+As the prefinalizer handling does not support having multiple prefinalizers
+per object, combine the MIDIAccessInitializer + LifecycleObserver
+prefinalizers methods into one, and arrange for it to be the prefinalizer
+for MIDIAccessInitializer.
+
+In the event this manual prefinalizer re-combination turns out to be a
+common pattern and workaround, we will revisit the restriction of allowing
+only one prefinalizer registration per object.
+
+R=haraken,kouhei
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/873573005">https://codereview.chromium.org/873573005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189103 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c0113c428fabd2277c9155ba07d9657527ff168f"><time datetime="2015-01-28">2015-01-28</time></a>
         <tr>
           <td>jl
           <td class=message>
