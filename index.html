@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 514,
   
-    <a href="#blink">Blink</a>: 2228,
+    <a href="#blink">Blink</a>: 2229,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9325,6 +9325,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: restrict implicit RawPtr&lt;U&gt; conversions; U must be T-convertible.</summary>
+              <pre class=body>
+Make RawPtr&lt;U&gt; only be convertible to a RawPtr&lt;T&gt; iff U is type convertible
+to T. This restricts the range of implicit conversions available, avoiding
+extts ambiguities. It makes RawPtr symmetric with PassRefPtr in this
+regard.
+
+This fixes Oilpan compilation following r189188.
+
+TBR=oilpan-reviews
+BUG=450662
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/864753005">https://codereview.chromium.org/864753005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189132 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4ff23af9aef6e313f78503d12c70c232ec194fc7"><time datetime="2015-01-28">2015-01-28</time></a>
         <tr>
           <td>fs
           <td class=message>
