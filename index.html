@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 514,
+    <a href="#chromium">Chromium</a>: 515,
   
-    <a href="#blink">Blink</a>: 2235,
+    <a href="#blink">Blink</a>: 2237,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,25 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jimmym
+          <td class=message>
+            <details>
+              <summary>Make gdb debugging on un-rooted devices work for Android 5.x.</summary>
+              <pre class=body>
+Android 5.x does not allow running the gdb executable in
+/data/local/tmp. For gdb to be executable by the package
+it need to be located in /data/data/{PACKAGE-NAME} which is
+allowed to run the exucutable.
+
+BUG=453379
+
+Review URL: <a href="https://codereview.chromium.org/884993003">https://codereview.chromium.org/884993003</a>
+
+Cr-Commit-Position: refs/heads/master@{#313737}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b5b0414406e7b56204e11eb0f9c463fdfc295c4e"><time datetime="2015-01-29">2015-01-29</time></a>
         <tr>
           <td>kolczyk
           <td class=message>
@@ -9325,6 +9344,70 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Fix crash when establishing an inline continuation inside a block continuation.</summary>
+              <pre class=body>
+When attempting to add a child into a block continuation C
+(RenderBlock::addChildToContinuation()), and there&#39;s a beforeChild
+specified, we used to jump directly to the parent of beforeChild, and
+insert it there (by calling addChildIgnoringContinuation() on
+beforeChild-&gt;parent()). Normal behavior (when block continuations
+aren&#39;t involved) would be to analyze the renderers in the ancestry
+chain between beforeChild and C. This way we perform necessary
+adjustments to the tree, such as inserting additional anonymous table
+part objects. However, this wasn&#39;t done when block continuations were
+involved.
+
+What really caused the crash in this case was that there&#39;s no override
+for addChildIgnoringContinuation() in LayoutTable, so it&#39;d just use
+the one in RenderBlock, and that way we&#39;d never get to
+LayoutTable::addChild(), which is exactly where we make sure that
+children aren&#39;t inserted at invalid places (like putting a
+RenderInline as a direct child of LayoutTable).
+
+The solution is to find the nearest RenderBlockFlow ancestor of
+beforeChild and try to insert it there, and additionally add an
+addChildIgnoringContinuation() override in LayoutTable for good
+measure (since it&#39;s dangerous to use the one in
+RenderBlock).
+
+Note that block continuations are only used in the old / current
+multicol code, and even then only if there&#39;s a spanner that&#39;s not a
+direct child of a multicol container. Support for block continuations
+can be removed when the old multicol code is removed.
+
+BUG=451059
+
+Review URL: <a href="https://codereview.chromium.org/880113002">https://codereview.chromium.org/880113002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189206 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/05dd7deeab36facdf8a88c9fd9fb9bf426b55d93"><time datetime="2015-01-29">2015-01-29</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Dispose of MIDIAccessInitializer on contextDestroyed() notification.</summary>
+              <pre class=body>
+If a contextDestroyed() notification is issued, dispose of the
+MIDIAccessInitializer then. With Oilpan enabled, this can be the last
+opportunity to dispose via the ExecutionContext, as the weak reference
+to the context may well have been cleared by the time the prefinalizer
+runs.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/864943003">https://codereview.chromium.org/864943003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189204 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/dab78ddb88548ec30b68188b5ea6876111fbb46f"><time datetime="2015-01-29">2015-01-29</time></a>
         <tr>
           <td>fs
           <td class=message>
