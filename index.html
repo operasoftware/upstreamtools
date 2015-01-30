@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 516,
   
-    <a href="#blink">Blink</a>: 2240,
+    <a href="#blink">Blink</a>: 2241,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9363,6 +9363,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t collect &#39;other tracks&#39; in HTMLMediaElement::configureTextTracks</summary>
+              <pre class=body>
+After having processed &#39;subtitles&#39;, &#39;captions&#39;, &#39;descriptions&#39; and
+&#39;chapters&#39; tracks, there&#39;s only &#39;metadata&#39; tracks left (no more kinds are
+currently defined). This means that the &#39;otherTracks&#39; set will always be
+empty. Remove it an add an assert.
+
+Also take the opportunity to rename the various methods involved to match
+the match the names of the spec. algorithms they implement.
+
+ configureTextTracks -&gt; honorUserPreferencesForAutomaticTextTrackSelection
+ configureTextTrackGroup -&gt; performAutomaticTextTrackSelection
+ configureMetadataTextTrackGroup -&gt; enableDefaultMetadataTextTracks
+
+Review URL: <a href="https://codereview.chromium.org/891733002">https://codereview.chromium.org/891733002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189262 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ed4e1d2039a7635eadc7e5083c254278adda864e"><time datetime="2015-01-30">2015-01-30</time></a>
         <tr>
           <td>fs
           <td class=message>
