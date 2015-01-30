@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 516,
   
-    <a href="#blink">Blink</a>: 2238,
+    <a href="#blink">Blink</a>: 2240,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9363,6 +9363,47 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Make sure a container size is always set for SVG images in &lt;svg:image&gt;</summary>
+              <pre class=body>
+If a referenced image had the same dimensions as the referencing &lt;image&gt;,
+a container size would not be set. This could cause the wrong scaling (etc)
+to be applied if there existed another reference to the same image resource
+that ended up applying a different scale-factor.
+To ensure that a container size is set in this case, determine if the
+referenced image has a container size set or not by checking if what
+the &#34;base&#34; image (as returned by ImageResource::image()) differs from the
+RenderObject-specific image (as returned by
+ImageResource::imageForRenderer)
+
+BUG=453169
+
+Review URL: <a href="https://codereview.chromium.org/889613002">https://codereview.chromium.org/889613002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189241 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a6395360eb704ee7f7d60544e576486e782810d6"><time datetime="2015-01-30">2015-01-30</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove Oilpan-specific clearing of DOMWindow during document detach.</summary>
+              <pre class=body>
+Keep the observable lifetime of this object equal to what it is non-Oilpan.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/883393002">https://codereview.chromium.org/883393002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189240 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1897c41324c04cd6aef7ce9b8d5f4e4c01f02cca"><time datetime="2015-01-30">2015-01-30</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
