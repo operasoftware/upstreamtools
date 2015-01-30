@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 515,
+    <a href="#chromium">Chromium</a>: 516,
   
-    <a href="#blink">Blink</a>: 2237,
+    <a href="#blink">Blink</a>: 2238,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,25 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>haavardm
+          <td class=message>
+            <details>
+              <summary>Set the quiet shutdown flag.</summary>
+              <pre class=body>
+Currently |SSL_shutdown| is only called to avoid that the
+session is marked as unresumable. Without the quiet flag the
+close notify message is generated without being sent on the
+network.
+
+BUG=None
+
+Review URL: <a href="https://codereview.chromium.org/885083002">https://codereview.chromium.org/885083002</a>
+
+Cr-Commit-Position: refs/heads/master@{#313887}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/c80b0ee3708252814a0a20e795305ee2fc0ebc2f"><time datetime="2015-01-30">2015-01-30</time></a>
         <tr>
           <td>jimmym
           <td class=message>
@@ -9344,6 +9363,38 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Upgrade Blink to milliseconds-based last modified filetimes, part 1.</summary>
+              <pre class=body>
+This is the initial change towards switching Blink and Chromium to
+work over milliseconds-based WebFileInfo modification times.
+
+It adds a temporary millisecond-based extra field to WebFileInfo
+recording time in milliseconds, alongside the current seconds-based
+one.
+
+This is the first patch in the following Blink+Chromium series:
+
+1: [blink] *this one* [ <a href="https://codereview.chromium.org/873723004/">https://codereview.chromium.org/873723004/</a> ]
+2: [chromium] fill in modificationTimeMS [ <a href="https://codereview.chromium.org/884413002/">https://codereview.chromium.org/884413002/</a> ] 
+3: [blink] make use of modificationTimeMS [ <a href="https://codereview.chromium.org/884393002/">https://codereview.chromium.org/884393002/</a> ]
+4: [chromium] set modificationTime to something msec-based [ <a href="https://codereview.chromium.org/862203003/">https://codereview.chromium.org/862203003/</a> ]
+5: [blink] switch to using modificationTime instead of *MS [ <a href="https://codereview.chromium.org/882343002/">https://codereview.chromium.org/882343002/</a> ]
+6: [chromium] stop setting modificationTimeMS [ <a href="https://codereview.chromium.org/890523002/">https://codereview.chromium.org/890523002/</a> ]
+7: [blink] remove modificationTimeMS [ <a href="https://codereview.chromium.org/869613005/">https://codereview.chromium.org/869613005/</a> ]
+
+R=mkwst,kinuko
+BUG=451747
+
+Review URL: <a href="https://codereview.chromium.org/873723004">https://codereview.chromium.org/873723004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189238 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ae3a337117c1d007d920d55eb32895cadf231343"><time datetime="2015-01-30">2015-01-30</time></a>
         <tr>
           <td>mstensho
           <td class=message>
