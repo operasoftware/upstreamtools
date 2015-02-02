@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 516,
   
-    <a href="#blink">Blink</a>: 2249,
+    <a href="#blink">Blink</a>: 2250,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9363,6 +9363,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use style invalidation for :-webkit-any-link.</summary>
+              <pre class=body>
+We did not use an invalidation set for the PseudoAnyLink, and we didn&#39;t do
+a SubtreeStyleChange on link changes either, so when no :link or :visited
+selectors were present, the link style was not updated when the href was
+changed.
+
+Start using an invalidation set and updatePseudoState for PseudoAnyLink.
+
+<a href="mailto:R=esprehn@chromium.org">R=esprehn@chromium.org</a>
+BUG=453314
+
+Review URL: <a href="https://codereview.chromium.org/889803003">https://codereview.chromium.org/889803003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189327 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3568f80a0d2ccba9ff6973fb50b1f19472c34490"><time datetime="2015-02-02">2015-02-02</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
