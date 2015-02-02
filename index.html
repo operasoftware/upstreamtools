@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 516,
   
-    <a href="#blink">Blink</a>: 2252,
+    <a href="#blink">Blink</a>: 2254,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9363,6 +9363,47 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Ensure that performance.memory is updated on first access.</summary>
+              <pre class=body>
+A platform&#39;s implementation of monotonicallyIncreasingTime() is only
+required to be non-decreasing over time. Hence when checking if memory
+usage info should be updated for the first time, do not assume the
+function returns a value that will trigger the initial update.
+
+R=haraken
+BUG=454380
+
+Review URL: <a href="https://codereview.chromium.org/893803003">https://codereview.chromium.org/893803003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189339 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/925d81d716dd1896eeee9a30662e2ba30968393a"><time datetime="2015-02-02">2015-02-02</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Keep SVGImage alive across its animation timer callback.</summary>
+              <pre class=body>
+An SVGImage runs the risk of being finalized while its animation
+callback is running. Add the required protection.
+
+The premature finalization is only a possibility with Oilpan enabled;
+see code comment.
+
+<a href="mailto:R=haraken,fs@opera.com">R=haraken,fs@opera.com</a>
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/891263003">https://codereview.chromium.org/891263003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189338 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c32ffd2453618ac0031256110f0e585c9b8e0016"><time datetime="2015-02-02">2015-02-02</time></a>
         <tr>
           <td>rune
           <td class=message>
