@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 518,
   
-    <a href="#blink">Blink</a>: 2257,
+    <a href="#blink">Blink</a>: 2258,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9423,6 +9423,38 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the WEBCORE_NAVIGATOR_* defines</summary>
+              <pre class=body>
+This is motivated by navigator.vendor, which Opera and multiple other
+Chromium-based browsers have tweaked using this mechanism instead of
+treating it like the long-frozen navigator.appName &#34;Netscape&#34;.
+
+There are cases of site compat issues caused by this, in a library
+called UDM: <a href="http://www.udm4.com/demos/horizontal-relative-left.php">http://www.udm4.com/demos/horizontal-relative-left.php</a>
+
+The &#34;Intent to Implement and Ship: navigator.vendor as the empty string&#34;
+did not get the support required to align with Firefox and IE, so
+freezing it in time as &#34;Google Inc.&#34; is the second best thing.
+
+It&#39;s unlikely that any of the other defines have been used.
+
+History and discussion:
+<a href="https://code.google.com/p/chromium/issues/detail?id=276813">https://code.google.com/p/chromium/issues/detail?id=276813</a>
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=27786">https://www.w3.org/Bugs/Public/show_bug.cgi?id=27786</a>
+<a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/QrgyulnqvmE">https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/QrgyulnqvmE</a>
+
+BUG=276813, 454291
+
+Review URL: <a href="https://codereview.chromium.org/896463002">https://codereview.chromium.org/896463002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189436 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7908dc41f196ff6fb2323d79dd02f840e57ff1fa"><time datetime="2015-02-03">2015-02-03</time></a>
         <tr>
           <td>jl
           <td class=message>
