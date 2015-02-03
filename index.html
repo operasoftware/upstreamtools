@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 516,
+    <a href="#chromium">Chromium</a>: 517,
   
     <a href="#blink">Blink</a>: 2254,
   
@@ -44,6 +44,33 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Upgrade Blink to milliseconds-based last modified filetimes, part 2.</summary>
+              <pre class=body>
+With WebFileInfo::modificationTimeMS now available, have
+content::FileInfoToWebFileInfo() set it accordingly and alongside
+modificationTime.
+
+1: [blink] add WebFileInfo::modificationTimeMS [ <a href="https://codereview.chromium.org/873723004/">https://codereview.chromium.org/873723004/</a> ]
+2: [chromium] *this one* [ <a href="https://codereview.chromium.org/884413002/">https://codereview.chromium.org/884413002/</a> ]
+3: [blink] make use of modificationTimeMS [ <a href="https://codereview.chromium.org/884393002/">https://codereview.chromium.org/884393002/</a> ]
+4: [chromium] set modificationTime to something msec-based [ <a href="https://codereview.chromium.org/862203003/">https://codereview.chromium.org/862203003/</a> ]
+5: [blink] switch to using modificationTime instead of *MS [ <a href="https://codereview.chromium.org/882343002/">https://codereview.chromium.org/882343002/</a> ]
+6: [chromium] stop setting modificationTimeMS [ <a href="https://codereview.chromium.org/890523002/">https://codereview.chromium.org/890523002/</a> ]
+7: [blink] remove modificationTimeMS [ <a href="https://codereview.chromium.org/869613005/">https://codereview.chromium.org/869613005/</a> ]
+
+R=kinuko,jam
+BUG=451747
+
+Review URL: <a href="https://codereview.chromium.org/884413002">https://codereview.chromium.org/884413002</a>
+
+Cr-Commit-Position: refs/heads/master@{#314214}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/21810c1f4e59ba515a5c7fd22815fb913be48322"><time datetime="2015-02-02">2015-02-02</time></a>
         <tr>
           <td>haavardm
           <td class=message>
