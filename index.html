@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 517,
   
-    <a href="#blink">Blink</a>: 2255,
+    <a href="#blink">Blink</a>: 2256,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9390,6 +9390,23 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Split property priority functions out of StyleResolver.</summary>
+              <pre class=body>
+This makes it easier to access the priority from other (future)
+files which shouldn&#39;t depend on StyleResolver.
+
+<a href="mailto:R=timloh@chromium.org">R=timloh@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/892643002">https://codereview.chromium.org/892643002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189408 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b7aa6e574c4d264c121f21bb6368b497a3c658b7"><time datetime="2015-02-03">2015-02-03</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
