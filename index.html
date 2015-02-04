@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 518,
   
-    <a href="#blink">Blink</a>: 2261,
+    <a href="#blink">Blink</a>: 2263,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9423,6 +9423,64 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert &#34;Revert of Revert of Issue FrameDestructionObserver::frameDestroyed() notification on detach. (patchset #1 id:1 of https://codereview.chromium.org/896103002/)&#34;</summary>
+              <pre class=body>
+This reverts commit b66d223c1aca5ca01eb08d93dc1f5687584cd147.
+
+This CL is suspect wrt the ChromeOS test failure as outlined in
+
+  <a href="https://codereview.chromium.org/890243003/#msg6">https://codereview.chromium.org/890243003/#msg6</a>
+
+reverting to ensure that that issue is taken care of; see
+<a href="https://code.google.com/p/chromium/issues/detail?id=455161">https://code.google.com/p/chromium/issues/detail?id=455161</a>
+
+<a href="mailto:TBR=noel@chromium.org">TBR=noel@chromium.org</a>
+BUG=446452
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/896523004">https://codereview.chromium.org/896523004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189478 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/caff929ff18852f54d3c602f273bebf690193c2a"><time datetime="2015-02-04">2015-02-04</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Upgrade Blink to milliseconds-based last modified filetimes, part 3.</summary>
+              <pre class=body>
+With WebFileInfo now recording modification time in milliseconds via
+modificationTimeMS, switch FileMetadata over to using it and keep a
+milliseconds-based modification time field also. Also have the fileapi&#39;s
+File object&#39;s snapshot times be milliseconds-based.
+
+To make it clearer what units the modification time values are over,
+append a MS suffix. This is temporary until the conversion is complete.
+
+This patch is the third one in the following series,
+
+1: [blink] add WebFileInfo::modificationTimeMS [ <a href="https://codereview.chromium.org/873723004/">https://codereview.chromium.org/873723004/</a> ]
+2: [chromium] fill in modificationTimeMS [ <a href="https://codereview.chromium.org/884413002/">https://codereview.chromium.org/884413002/</a> ] 
+3: [blink] *this one* [ <a href="https://codereview.chromium.org/884393002/">https://codereview.chromium.org/884393002/</a> ]
+4: [chromium] set modificationTime to something msec-based [ <a href="https://codereview.chromium.org/862203003/">https://codereview.chromium.org/862203003/</a> ]
+5: [blink] switch to using modificationTime instead of *MS [ <a href="https://codereview.chromium.org/882343002/">https://codereview.chromium.org/882343002/</a> ]
+6: [chromium] stop setting modificationTimeMS [ <a href="https://codereview.chromium.org/890523002/">https://codereview.chromium.org/890523002/</a> ]
+7: [blink] remove modificationTimeMS [ <a href="https://codereview.chromium.org/869613005/">https://codereview.chromium.org/869613005/</a> ]
+
+R=mkwst,jsbell
+BUG=451747
+
+Review URL: <a href="https://codereview.chromium.org/884393002">https://codereview.chromium.org/884393002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189475 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/75a4e7d107064ae0ab9688fd998b7a2cf41826d5"><time datetime="2015-02-04">2015-02-04</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
