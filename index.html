@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 519,
+    <a href="#chromium">Chromium</a>: 520,
   
     <a href="#blink">Blink</a>: 2273,
   
@@ -44,6 +44,32 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Use the supplied memory for YUV decoding.</summary>
+              <pre class=body>
+As some kind of optimization the yuv decoder replaced some pointers
+to point to decoder-internal memory when an API user asked for
+yuv data. That often worked, but failed if the data needed to
+outlive the decoder. It was also a violation of the API contract.
+
+This replaces that with a buffer copy. It will be slower but will avoid
+random bitmap errors that also happened randomly on cq try bots.
+
+This is a stopgap solution while a better solution is designed, coded and
+tested.
+
+BUG=455235
+<a href="mailto:R=sugoi@chromium.org,dongseong.hwang@intel.com">R=sugoi@chromium.org,dongseong.hwang@intel.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/901573004">https://codereview.chromium.org/901573004</a>
+
+Cr-Commit-Position: refs/heads/master@{#314865}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/a86ffa06e4415b155a96b9513ed2f18e0d9deaf6"><time datetime="2015-02-05">2015-02-05</time></a>
         <tr>
           <td>jimmym
           <td class=message>
