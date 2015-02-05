@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 520,
+    <a href="#chromium">Chromium</a>: 521,
   
     <a href="#blink">Blink</a>: 2273,
   
@@ -44,6 +44,24 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rogerj
+          <td class=message>
+            <details>
+              <summary>eglWaitSyncKHR is part of the EGL_KHR_wait_sync extension</summary>
+              <pre class=body>
+The eglWaitSyncKHR function should only be expected to exist if the
+EGL_KHR_wait_sync extension is supported. The code prior to this patch
+triggered a DCHECK if only the EGL_KHR_fence_sync extension was available.
+
+BUG=None
+
+Review URL: <a href="https://codereview.chromium.org/900233003">https://codereview.chromium.org/900233003</a>
+
+Cr-Commit-Position: refs/heads/master@{#314878}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/075f83963550a232d2832d615ad5c1fea8426b45"><time datetime="2015-02-05">2015-02-05</time></a>
         <tr>
           <td>bratell
           <td class=message>
