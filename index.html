@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 519,
   
-    <a href="#blink">Blink</a>: 2271,
+    <a href="#blink">Blink</a>: 2272,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9441,6 +9441,32 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Turn WorkerLoaderProxy into a threadsafe, ref-counted object.</summary>
+              <pre class=body>
+To avoid relying on the loader client bridge&#39;s WorkerLoaderProxy reference
+remaining valid until all uses of that bridge object have been finalized,
+turn the WorkerLoaderProxy object into a threadsafe, ref-counted object.
+
+Along with that, make the WorkerLoaderProxy implementation more flexible,
+allowing the &#34;backend&#34; that actually proxies calls between the worker
+and the main thread context to be detached when it is destructed.
+This to allow it to be finalized before the WorkerLoaderProxy
+instance can be. WorkerLoaderProxyProvider defines that &#34;backend&#34;
+interface.
+
+R=kinuko,haraken
+BUG=451344
+
+Review URL: <a href="https://codereview.chromium.org/887463003">https://codereview.chromium.org/887463003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189549 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5297c7e5c7917262a6b508603eebc1032cefb4dc"><time datetime="2015-02-05">2015-02-05</time></a>
         <tr>
           <td>fs
           <td class=message>
