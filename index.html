@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 521,
   
-    <a href="#blink">Blink</a>: 2276,
+    <a href="#blink">Blink</a>: 2278,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9485,6 +9485,59 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Revert of Fix inconsistent LengthMode definition for &#39;textLength&#39; (patchset #2 id:20001 of https://codereview.chromium.org/899293002/)</summary>
+              <pre class=body>
+Reason for revert:
+May need some rebaselines of
+
+svg/batik/text/textPosition2.svg
+svg/batik/text/xmlSpace.svg
+
+Original issue&#39;s description:
+&gt; Fix inconsistent LengthMode definition for &#39;textLength&#39;
+&gt; 
+&gt; The &#39;textLength&#39; attribute on SVGTextContentElement was defined as
+&gt; LengthModeOther, while the lengthModeForAnimatedLengthAttribute table
+&gt; defined as LengthModeWidth. Use the latter in both cases instead.
+&gt; 
+&gt; BUG=455737
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=189637">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=189637</a>
+
+<a href="mailto:TBR=ed@opera.com,rhodovan.u-szeged@partner.samsung.com,kouhei@chromium.org">TBR=ed@opera.com,rhodovan.u-szeged@partner.samsung.com,kouhei@chromium.org</a>
+NOPRESUBMIT=true
+NOTREECHECKS=true
+NOTRY=true
+BUG=455737
+
+Review URL: <a href="https://codereview.chromium.org/904043002">https://codereview.chromium.org/904043002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189649 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7e38934e2598d76a429f57d8a6d9aa10eef8b07e"><time datetime="2015-02-06">2015-02-06</time></a>
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Tweak test in preparation for fixing bug 400725.</summary>
+              <pre class=body>
+Since rect.x will be made into a presentation attribute,
+pick another element and attribute for this test.
+
+BUG=
+<a href="mailto:TBR=fs@opera.com">TBR=fs@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/890123003">https://codereview.chromium.org/890123003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189647 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/662d18da27f3c3c9b957e6fee08686f056664fe2"><time datetime="2015-02-06">2015-02-06</time></a>
         <tr>
           <td>ed
           <td class=message>
