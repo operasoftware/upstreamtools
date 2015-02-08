@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 521,
   
-    <a href="#blink">Blink</a>: 2282,
+    <a href="#blink">Blink</a>: 2283,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9485,6 +9485,37 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Render transformed layers into multiple fragments.</summary>
+              <pre class=body>
+When composited, a layer is transformed on the graphics side, so the best thing
+we can do is to carry on and just paint in all columns (without applying the
+transform on our own). collectLayerFragments() used to refuse to collect a
+fragment for each column involved if the layer was transformed. This is only
+correct when not compositing, because then we apply the transform in software
+for each column.
+
+Note that the end result won&#39;t always be correct for transformed composited
+layers. Column gap clipping may be wrong, since the gaps get transformed along
+with the layer (also a problem prior to this CL). Furthermore, each fragment
+should ideally be transformed separately, in order to use a different origin
+for each fragment. But at least we won&#39;t lose all content outside the first
+fragment, like we used to.
+
+Most of the tests are based on work by <a href="mailto:andersr@opera.com">andersr@opera.com</a>.
+
+BUG=359877
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/801053005">https://codereview.chromium.org/801053005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189754 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/772b5df8568fda2caaadcb1e829dcc9841dce2b1"><time datetime="2015-02-08">2015-02-08</time></a>
         <tr>
           <td>fs
           <td class=message>
