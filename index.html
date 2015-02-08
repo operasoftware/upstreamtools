@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 521,
   
-    <a href="#blink">Blink</a>: 2283,
+    <a href="#blink">Blink</a>: 2284,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9485,6 +9485,41 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Upgrade Blink to milliseconds-based last modified filetimes, part 3.</summary>
+              <pre class=body>
+With WebFileInfo now recording modification time in milliseconds via
+modificationTimeMS, switch FileMetadata over to using it and keep a
+milliseconds-based modification time field also. Also have the fileapi&#39;s
+File object&#39;s snapshot times be milliseconds-based.
+
+To make it clearer what units the modification time values are over,
+append a MS suffix. This is temporary until the conversion is complete.
+
+This patch is the third one in the following series,
+
+1: [blink] add WebFileInfo::modificationTimeMS [ <a href="https://codereview.chromium.org/873723004/">https://codereview.chromium.org/873723004/</a> ]
+2: [chromium] fill in modificationTimeMS [ <a href="https://codereview.chromium.org/884413002/">https://codereview.chromium.org/884413002/</a> ] 
+3: [blink] *this one* [ <a href="https://codereview.chromium.org/884393002/">https://codereview.chromium.org/884393002/</a> ]
+4: [chromium] set modificationTime to something msec-based [ <a href="https://codereview.chromium.org/862203003/">https://codereview.chromium.org/862203003/</a> ]
+5: [blink] switch to using modificationTime instead of *MS [ <a href="https://codereview.chromium.org/882343002/">https://codereview.chromium.org/882343002/</a> ]
+6: [chromium] stop setting modificationTimeMS [ <a href="https://codereview.chromium.org/890523002/">https://codereview.chromium.org/890523002/</a> ]
+7: [blink] remove modificationTimeMS [ <a href="https://codereview.chromium.org/869613005/">https://codereview.chromium.org/869613005/</a> ]
+
+R=mkwst,jsbell
+BUG=451747
+
+Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=189475">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=189475</a>
+
+Review URL: <a href="https://codereview.chromium.org/884393002">https://codereview.chromium.org/884393002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189755 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e426ccc089cd03eaa51e673393aeae7afcf94e44"><time datetime="2015-02-08">2015-02-08</time></a>
         <tr>
           <td>mstensho
           <td class=message>
