@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 523,
   
-    <a href="#blink">Blink</a>: 2293,
+    <a href="#blink">Blink</a>: 2295,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9532,6 +9532,68 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Upgrade Blink to milliseconds-based last modified filetimes, part 5.</summary>
+              <pre class=body>
+Switch Blink to use a milliseconds-based WebFileInfo::modificationTime
+field instead, leaving the temporary field modificationTimeMS as unused
+until the embedder has stopped expecting it (see next patch in the series.)
+
+With the WebFileInfo switch back to modificationTime, follow up
+FileMetadata and change its modification time field back to
+&#34;modificationTime&#34;; it now/still being milliseconds-based.
+
+This patch is the fifth one in the following series,
+
+1: [blink] add WebFileInfo::modificationTimeMS [ <a href="https://codereview.chromium.org/873723004/">https://codereview.chromium.org/873723004/</a> ]
+2: [chromium] fill in modificationTimeMS [ <a href="https://codereview.chromium.org/884413002/">https://codereview.chromium.org/884413002/</a> ] 
+3: [blink] make use of modificationTimeMS [ <a href="https://codereview.chromium.org/884393002/">https://codereview.chromium.org/884393002/</a> ]
+4: [chromium] set modificationTime to something msec-based [ <a href="https://codereview.chromium.org/862203003/">https://codereview.chromium.org/862203003/</a> ]
+5: [blink] *this one* [ <a href="https://codereview.chromium.org/882343002/">https://codereview.chromium.org/882343002/</a> ]
+6: [chromium] stop setting modificationTimeMS [ <a href="https://codereview.chromium.org/890523002/">https://codereview.chromium.org/890523002/</a> ]
+7: [blink] remove modificationTimeMS [ <a href="https://codereview.chromium.org/869613005/">https://codereview.chromium.org/869613005/</a> ]
+
+R=mkwst
+BUG=451747
+
+Review URL: <a href="https://codereview.chromium.org/882343002">https://codereview.chromium.org/882343002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189838 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ce8070536ede54d2cb17d64f19147800ecf7c326"><time datetime="2015-02-09">2015-02-09</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Issue FrameDestructionObserver::frameDestroyed() notification on detach.</summary>
+              <pre class=body>
+Send this notification during detach instead of waiting until finalization,
+which will typically proceed shortly afterwards (non-Oilpan.) The
+supplements of the LocalFrame are cleared at the same time so as to
+prevent FrameDestructionObservers that are also supplements from being
+used in their detached state.
+
+Doing so makes the observable lifetimes for FrameDestructionObserver&#39;s
+frame() identical, with and without Oilpan. Not having GC/finalization
+of frames be observable to scripts is preferable.
+
+For LocalDOMWindow, a FrameDestructionObserver, its set of registered
+DOMWindowProperty objects are also detached on frameDestroyed(),
+clearing their frame references at the same time.
+
+R=haraken,dcheng
+BUG=446452
+
+Review URL: <a href="https://codereview.chromium.org/881683003">https://codereview.chromium.org/881683003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189837 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d1230c1e9c90c0e0aea1243879114903a7a3b5d6"><time datetime="2015-02-09">2015-02-09</time></a>
         <tr>
           <td>mstensho
           <td class=message>
