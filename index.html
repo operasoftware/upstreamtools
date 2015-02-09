@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 521,
   
-    <a href="#blink">Blink</a>: 2284,
+    <a href="#blink">Blink</a>: 2285,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9485,6 +9485,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Re-attach renderer for progress/meter when author shadow is allowed.</summary>
+              <pre class=body>
+If the author shadow dom is added to progress/meter after the UA shadow dom
+renderers have been created, the UA shadow dom renderers will stick. Fixed
+by doing a lazyReattachIfAttached for the progress/meter host which were
+already done for input elements, for instance.
+
+Fixes flaky tests for progress/meter.
+
+<a href="mailto:R=tkent@chromium.org">R=tkent@chromium.org</a>
+BUG=432129
+
+Review URL: <a href="https://codereview.chromium.org/880573007">https://codereview.chromium.org/880573007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189764 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b553ab6bb42a642719fe10d1e5e150609b2091a8"><time datetime="2015-02-08">2015-02-08</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
