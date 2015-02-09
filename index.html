@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 522,
+    <a href="#chromium">Chromium</a>: 523,
   
     <a href="#blink">Blink</a>: 2292,
   
@@ -44,6 +44,22 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>ohrn
+          <td class=message>
+            <details>
+              <summary>Update JNI generator for javap version 1.8.</summary>
+              <pre class=body>
+In javap 1.7 the signature line was prefixed with &#39;Signature: &#39;, which in javap 1.8 has changed to &#39;descriptor: &#39;.
+
+This CL adds support for the new format, and adds a test to ensure that all parsers still work correctly.
+
+Review URL: <a href="https://codereview.chromium.org/872843004">https://codereview.chromium.org/872843004</a>
+
+Cr-Commit-Position: refs/heads/master@{#315329}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/f0286503313bc0214bd275cab9f3020511422415"><time datetime="2015-02-09">2015-02-09</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
