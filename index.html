@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 521,
+    <a href="#chromium">Chromium</a>: 522,
   
-    <a href="#blink">Blink</a>: 2291,
+    <a href="#blink">Blink</a>: 2292,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,37 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Upgrade Blink to milliseconds-based last modified filetimes, part 4.</summary>
+              <pre class=body>
+Have content::FileInfoToWebFileInfo() set the temporarily Blink-unused
+field WebFileInfo::modificationTime to something milliseconds-based
+
+Once landed, this is to allow Blink to switch to no longer using
+WebFileInfo::modificationTimeMS, but modificationTime only (again.)
+
+This is the fourth patch in the following series,
+
+1: [blink] add WebFileInfo::modificationTimeMS [ <a href="https://codereview.chromium.org/873723004/">https://codereview.chromium.org/873723004/</a> ]
+2: [chromium] fill in modificationTimeMS [ <a href="https://codereview.chromium.org/884413002/">https://codereview.chromium.org/884413002/</a> ]
+3: [blink] make use of modificationTimeMS [ <a href="https://codereview.chromium.org/884393002/">https://codereview.chromium.org/884393002/</a> ]
+4: [chromium] *this one* [ <a href="https://codereview.chromium.org/862203003/">https://codereview.chromium.org/862203003/</a> ]
+5: [blink] switch to using modificationTime instead of *MS [ <a href="https://codereview.chromium.org/882343002/">https://codereview.chromium.org/882343002/</a> ]
+6: [chromium] stop setting modificationTimeMS [ <a href="https://codereview.chromium.org/890523002/">https://codereview.chromium.org/890523002/</a> ]
+7: [blink] remove modificationTimeMS [ <a href="https://codereview.chromium.org/869613005/">https://codereview.chromium.org/869613005/</a> ]
+
+R=jochen
+BUG=451747
+
+Review URL: <a href="https://codereview.chromium.org/862203003">https://codereview.chromium.org/862203003</a>
+
+Cr-Commit-Position: refs/heads/master@{#315322}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/08b24b4f9ea7ad41a31347da059a35fb4ad592b3"><time datetime="2015-02-09">2015-02-09</time></a>
         <tr>
           <td>rogerj
           <td class=message>
@@ -9485,6 +9516,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Restrict floats over SVGSVGElement to finite values.</summary>
+              <pre class=body>
+Add [TypeChecking=Unrestricted] to this interface, constraining the
+setter for &#34;currentScale&#34; and setCurrentTime() to work over finite
+floats.
+
+This aligns behavior with Gecko.
+
+<a href="mailto:R=fs@opera.com">R=fs@opera.com</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/910713002">https://codereview.chromium.org/910713002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189812 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b4e294d0dec2aeffa4d401e19916e753a7d74a75"><time datetime="2015-02-09">2015-02-09</time></a>
         <tr>
           <td>jl
           <td class=message>
