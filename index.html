@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 523,
+    <a href="#chromium">Chromium</a>: 524,
   
-    <a href="#blink">Blink</a>: 2297,
+    <a href="#blink">Blink</a>: 2299,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,23 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rchlodnicki
+          <td class=message>
+            <details>
+              <summary>Add missing include header</summary>
+              <pre class=body>
+Needed for the Profile::FromBrowserContext call. Happens to work due to
+some other includes that pull in profile.h header.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/910743003">https://codereview.chromium.org/910743003</a>
+
+Cr-Commit-Position: refs/heads/master@{#315523}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/0ceb3a8a35f06c2839b4fcab958c04709c02a5d9"><time datetime="2015-02-10">2015-02-10</time></a>
         <tr>
           <td>ohrn
           <td class=message>
@@ -9532,6 +9549,65 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Make WebGL2 objects Oilpan compatible.</summary>
+              <pre class=body>
+Follow up r189868 by rounding out its Oilpan support.
+
+R=haraken
+BUG=295792
+
+Review URL: <a href="https://codereview.chromium.org/913603003">https://codereview.chromium.org/913603003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189881 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/104bfe93d6d8f74bbfbcf30eb89f82ba8f3f8f2d"><time datetime="2015-02-10">2015-02-10</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Auto-declare remaining methods implied by maplike&lt;&gt;/setlike&lt;&gt;</summary>
+              <pre class=body>
+For maplike&lt;K, V&gt;, declare these:
+
+  boolean has(K key);
+  any get(K key);
+
+  // read-write only:
+  void clear();
+  boolean delete(K key);
+  X set(K key, V value); // returns self
+
+For setlike&lt;V&gt;, declare these:
+
+  boolean has(V value);
+
+  // read-write only:
+  X add(V value); // returns self
+  void clear();
+  boolean delete(V value);
+
+In interface declarations that contains explicit declarations of methods
+with these names already, those existing declarations override the auto-
+declared ones. This is the case for all existing uses of maplike&lt;&gt; and
+setlike&lt;&gt; in Blink, so this CL does not add any new methods in practice.
+
+To avoid naming conflicts in a uniform way, also add the suffix
+&#34;ForBinding&#34; to all auto-declared methods&#39; names on the C++ side, via
+the [ImplementedAs=...] extended attribute.
+
+BUG=432683
+
+Review URL: <a href="https://codereview.chromium.org/911433003">https://codereview.chromium.org/911433003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189880 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3d5b9660a8ac565273e4927663f2cdd66b66e630"><time datetime="2015-02-10">2015-02-10</time></a>
         <tr>
           <td>philipj
           <td class=message>
