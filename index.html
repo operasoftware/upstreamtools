@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 524,
+    <a href="#chromium">Chromium</a>: 525,
   
     <a href="#blink">Blink</a>: 2299,
   
@@ -44,6 +44,29 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>ohrn
+          <td class=message>
+            <details>
+              <summary>Absolute path fixes for gn.</summary>
+              <pre class=body>
+To avoid collisions object files and other build ouput is now prefixed
+with ABS_PATH and the full path of the input file.
+E.g. /some/path/foo.cc maps to //out/obj/ABS_PATH/some/path/foo.o
+
+In addition there are several fixes for absolute paths on Windows:
+The drive letter colon is skipped when parsing labels.
+Transform C:\ to /C:\ where needed.
+
+BUG=445454
+NOPRESUBMIT=true
+
+Review URL: <a href="https://codereview.chromium.org/857163002">https://codereview.chromium.org/857163002</a>
+
+Cr-Commit-Position: refs/heads/master@{#315531}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/8808c5544ceb04ec281d40041af5272bdb7fad63"><time datetime="2015-02-10">2015-02-10</time></a>
         <tr>
           <td>rchlodnicki
           <td class=message>
