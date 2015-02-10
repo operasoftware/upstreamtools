@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 525,
+    <a href="#chromium">Chromium</a>: 526,
   
     <a href="#blink">Blink</a>: 2299,
   
@@ -44,6 +44,36 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Upgrade Blink to milliseconds-based last modified filetimes, part 6.</summary>
+              <pre class=body>
+Have content::FileInfoToWebFileInfo() no longer fill in
+WebFileInfo::modificationTimeMS; it is now unused by Blink.
+
+Once landed, this lets Blink remove the WebFileInfo field entirely.
+
+This is part 6 in the following patch series,
+
+1: [blink] add WebFileInfo::modificationTimeMS [ <a href="https://codereview.chromium.org/873723004/">https://codereview.chromium.org/873723004/</a> ]
+2: [chromium] fill in modificationTimeMS [ <a href="https://codereview.chromium.org/884413002/">https://codereview.chromium.org/884413002/</a> ]
+3: [blink] make use of modificationTimeMS [ <a href="https://codereview.chromium.org/884393002/">https://codereview.chromium.org/884393002/</a> ]
+4: [chromium] set modificationTime to something msec-based [ <a href="https://codereview.chromium.org/862203003/">https://codereview.chromium.org/862203003/</a> ]
+5: [blink] switch to modificationTime [ <a href="https://codereview.chromium.org/882343002/">https://codereview.chromium.org/882343002/</a> ]
+6: [chromium] *this one* [ <a href="https://codereview.chromium.org/890523002/">https://codereview.chromium.org/890523002/</a> ]
+7: [blink] remove modificationTimeMS [ <a href="https://codereview.chromium.org/869613005/">https://codereview.chromium.org/869613005/</a> ]
+
+R=jochen
+BUG=451747
+
+Review URL: <a href="https://codereview.chromium.org/890523002">https://codereview.chromium.org/890523002</a>
+
+Cr-Commit-Position: refs/heads/master@{#315545}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/65e08559dd9b0bc349868a0b954d58f3dc9cae48"><time datetime="2015-02-10">2015-02-10</time></a>
         <tr>
           <td>ohrn
           <td class=message>
