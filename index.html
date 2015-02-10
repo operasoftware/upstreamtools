@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 527,
   
-    <a href="#blink">Blink</a>: 2302,
+    <a href="#blink">Blink</a>: 2303,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9621,6 +9621,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Check visited color for visual diff.</summary>
+              <pre class=body>
+The color which is actually used for painting needs to be checked when
+figuring out if we need to do a paint invalidation. We are checking both
+the color for :link and :visited so that the visited state is not exposed
+through repaint timing.
+
+This is a problem for other colors as well. If this approach is OK&#39;ed,
+I&#39;ll go ahead and fix the other ones.
+
+BUG=439812
+
+Review URL: <a href="https://codereview.chromium.org/900443006">https://codereview.chromium.org/900443006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189918 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0283fd72efe33f9a3e66c9a679e0e71992f41f58"><time datetime="2015-02-10">2015-02-10</time></a>
         <tr>
           <td>andersr
           <td class=message>
