@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 527,
   
-    <a href="#blink">Blink</a>: 2305,
+    <a href="#blink">Blink</a>: 2307,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9621,6 +9621,44 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Make DOMParser create documents with a context document set</summary>
+              <pre class=body>
+Store a (weak) reference to the current context&#39;s document in DOMParser
+objects when created, and use this in parseFromString() when creating
+the parsed document.
+
+This matches how parsed documents are created by XMLHttpRequest.
+
+BUG=456624
+
+Review URL: <a href="https://codereview.chromium.org/919473004">https://codereview.chromium.org/919473004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189959 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ec747729fb2c13ef94cfd05c8be6169c95cd9921"><time datetime="2015-02-11">2015-02-11</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Don&#39;t install private script class without a context document</summary>
+              <pre class=body>
+In HTMLMarqueeElement&#39;s constructor, don&#39;t try to install the private
+script class if there is no context document. Doing so is doesn&#39;t work,
+and will crash (safely).
+
+BUG=456624
+
+Review URL: <a href="https://codereview.chromium.org/918433004">https://codereview.chromium.org/918433004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189958 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b358a1ceab659285c00efb524188b2d5e8af5175"><time datetime="2015-02-11">2015-02-11</time></a>
         <tr>
           <td>fs
           <td class=message>
