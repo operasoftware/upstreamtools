@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 527,
   
-    <a href="#blink">Blink</a>: 2308,
+    <a href="#blink">Blink</a>: 2311,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9621,6 +9621,73 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move automatic text track selection code to AutomaticTrackSelection helper</summary>
+              <pre class=body>
+Move the body of
+HTMLMediaElement::honorUserPreferencesForAutomaticTextTrackSelection and
+support functions to a helper class (AutomaticTrackSelection).
+A straight-forward code movement with the only difference being that the
+helper uses the a configuration object set up from HTMLMediaElement state.
+
+Also moves HTMLMediaElement::markCaptionAndSubtitleTracksAsUnconfigured
+closer to it user.
+
+BUG=321654
+
+Review URL: <a href="https://codereview.chromium.org/868113005">https://codereview.chromium.org/868113005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189971 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/901a879ade209b494f4adbbcc489c8e688e9eda0"><time datetime="2015-02-11">2015-02-11</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Initialize all MouseEvent members in all constructors</summary>
+              <pre class=body>
+In the &#34;Improve detection of touch events when hiding media controls&#34;
+change &lt;<a href="https://codereview.chromium.org/453493002">https://codereview.chromium.org/453493002</a>&gt;, m_syntheticEventType
+was initialized only in one constructor.
+
+BUG=401177, 445305
+<a href="mailto:R=igsolla@chromium.org">R=igsolla@chromium.org</a>, <a href="mailto:rbyers@chromium.org">rbyers@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/918553002">https://codereview.chromium.org/918553002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189968 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9735ffcb82eb5e0e91e1e700c6a3237b39499539"><time datetime="2015-02-11">2015-02-11</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Preparatory work for nested multicol support.</summary>
+              <pre class=body>
+Introducing the class MultiColumnRow. A RenderMultiColumnSet will have one
+or more of those. For now, only one row is supported. Moved a lot of code
+from RenderMultiColumnSet into MultiColumnRow.
+
+Additionally, since it would just be just cumbersome and waseful to store the
+flow thread rectangle in RenderRegion (or RenderMultiColumnSet, for that
+matter) now, create a rectangle on the fly when requested.
+
+No behavioral changes are intended.
+
+<a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+BUG=447718
+
+Review URL: <a href="https://codereview.chromium.org/883293004">https://codereview.chromium.org/883293004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189966 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b67ec51524aa9121f18a54dabfaf025b1b2cd161"><time datetime="2015-02-11">2015-02-11</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
