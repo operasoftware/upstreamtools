@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 527,
   
-    <a href="#blink">Blink</a>: 2312,
+    <a href="#blink">Blink</a>: 2313,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9621,6 +9621,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Re-add markForPaginationRelayoutIfNeeded() for all table children.</summary>
+              <pre class=body>
+This piece of code got removed in <a href="https://codereview.chromium.org/196533012">https://codereview.chromium.org/196533012</a> ,
+assumedly because some merge conflict wasn&#39;t resolved correctly.
+
+Now we can re-enable fast/multicol/table-cell-content-change.html for
+region-based multicol.
+
+BUG=348064
+<a href="mailto:R=leviw@chromium.org">R=leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/918703002">https://codereview.chromium.org/918703002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@189998 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/42cf013c6143d7df5278a1dcfde4d0cda8e44c13"><time datetime="2015-02-11">2015-02-11</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
