@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 528,
   
-    <a href="#blink">Blink</a>: 2324,
+    <a href="#blink">Blink</a>: 2326,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9637,6 +9637,46 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use SVGLength-references in the SVGLengthContext API</summary>
+              <pre class=body>
+Convert all the PassRefPtrWillBeRawPtr&lt;SVGLength&gt;-typed arguments to
+const SVGLength&amp;. This avoids unnecessary ref-count churn (the caller will
+always own a reference anyway). As a side-effect footprint is reduced by
+~2k. (resolveRectangle&lt;T&gt; can now be properly inlined and other methods
+shrink a bit.)
+
+Review URL: <a href="https://codereview.chromium.org/921823002">https://codereview.chromium.org/921823002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190070 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/960cbac938a9789abe12c6059e4840c5e8558119"><time datetime="2015-02-12">2015-02-12</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>:visited invalidation for remaining text-related properties.</summary>
+              <pre class=body>
+Following up <a href="https://codereview.chromium.org/900443006">https://codereview.chromium.org/900443006</a>
+
+All text-related CSS properties which may have different :visited style
+needs to be checked when deciding if we need a repaint.
+
+Also added a missing check for window.testRunner in the testcase for color.
+
+<a href="mailto:R=wangxianzhu@chromium.org">R=wangxianzhu@chromium.org</a>
+BUG=439812
+
+Review URL: <a href="https://codereview.chromium.org/917973002">https://codereview.chromium.org/917973002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190066 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a65a499f663700ba98f82eb1e472ffc819117b5a"><time datetime="2015-02-12">2015-02-12</time></a>
         <tr>
           <td>fs
           <td class=message>
