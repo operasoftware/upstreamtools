@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 527,
   
-    <a href="#blink">Blink</a>: 2316,
+    <a href="#blink">Blink</a>: 2318,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9621,6 +9621,48 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Only need to re-evaluate MQ on resize.</summary>
+              <pre class=body>
+We did this on every layout, which should be unnecessary.
+
+<a href="mailto:R=esprehn@chromium.org">R=esprehn@chromium.org</a>
+BUG=450384
+TEST=fast/media/media-query-list-listener
+TEST=fast/css/media-query-dynamic.html
+
+Review URL: <a href="https://codereview.chromium.org/888503003">https://codereview.chromium.org/888503003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190034 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/80213db994fd05c972bdc7452afe32e39f1bafa9"><time datetime="2015-02-12">2015-02-12</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: allow StoppingOtherThreads GC state transition.</summary>
+              <pre class=body>
+If collectGarbage() fails to park all threads, the GCState is
+reset from StoppingOtherThreads back to its previous state.
+
+If collectAllGarbage() is what brings about that GC, then
+collectGarbage()&#39;s incoming GCState will either be GCScheduledForTesting
+or NoGCScheduled. setGCState()&#39;s asserts lacked permission for
+a StoppingOtherThreads =&gt; NoGCScheduled transition.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/916373002">https://codereview.chromium.org/916373002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190033 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a18cbfddc5bf23964faeb8f7e9f58a98fe0633cb"><time datetime="2015-02-12">2015-02-12</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
