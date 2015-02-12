@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 527,
   
-    <a href="#blink">Blink</a>: 2318,
+    <a href="#blink">Blink</a>: 2319,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9621,6 +9621,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make MediaControls::m_wasLastEventTouch a local variable</summary>
+              <pre class=body>
+Made possible by &#34;Ensure media control goes to transparent(hide) after
+seek by touch&#34;: <a href="https://codereview.chromium.org/892963003">https://codereview.chromium.org/892963003</a>
+
+BUG=454304
+<a href="mailto:R=william.xie@intel.com">R=william.xie@intel.com</a>, <a href="mailto:fs@opera.com">fs@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/917043003">https://codereview.chromium.org/917043003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190039 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/748be88852f2d5ab88915b3661129c26f0853cb5"><time datetime="2015-02-12">2015-02-12</time></a>
         <tr>
           <td>rune
           <td class=message>
