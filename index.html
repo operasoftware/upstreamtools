@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 527,
   
-    <a href="#blink">Blink</a>: 2320,
+    <a href="#blink">Blink</a>: 2322,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9621,6 +9621,45 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Support iterable&lt;&gt;/maplike&lt;&gt;/setlike&lt;&gt; referencing typedefs</summary>
+              <pre class=body>
+The types referenced by iterable&lt;&gt;, maplike&lt;&gt; and setlike&lt;&gt; definitions
+were not subject to typedef resolution, leading to incorrect code
+generation.
+
+In the process, slightly generalize the typedef resolution mechanism to
+support objects referencing more than one type, as iterable&lt;&gt; and
+maplike&lt;&gt; definitions do.
+
+BUG=432683
+
+Review URL: <a href="https://codereview.chromium.org/924443002">https://codereview.chromium.org/924443002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190052 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4e8aa2889238e52f1c47f85ac439bce7923355a0"><time datetime="2015-02-12">2015-02-12</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix zeroed page allocation assert.</summary>
+              <pre class=body>
+Loop must and should use block start.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/922613002">https://codereview.chromium.org/922613002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190049 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4138f33f59407b663916243776f0c451d4d34f47"><time datetime="2015-02-12">2015-02-12</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
