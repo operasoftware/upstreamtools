@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 528,
   
-    <a href="#blink">Blink</a>: 2326,
+    <a href="#blink">Blink</a>: 2327,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9637,6 +9637,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fold up the SVGLengthContext::convertValueFrom* helpers</summary>
+              <pre class=body>
+There are three with similar-looking names, and they are all a single
+line each. Fold up where it improves readability, and make the last one
+static.
+Having folded up convertValueFromUserUnitsToPercentage() we get an
+expression that looks like: value * 100 / dimension... * 100; where the
+factors (100) obviously cancel out one another. Looking at the single
+call-site (SVGLength::setValue) which can actual pass a percentage, it
+does an explicit adjustment too. Move that adjustment into the
+SVGLengthContext method and drop the two &#39;* 100&#39; - yielding a more
+obvious conversion (and less operations to execute).
+
+Review URL: <a href="https://codereview.chromium.org/897313004">https://codereview.chromium.org/897313004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190078 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1d474adfa4f93c6bba5d9f80275ca78a7bf5b75f"><time datetime="2015-02-12">2015-02-12</time></a>
         <tr>
           <td>fs
           <td class=message>
