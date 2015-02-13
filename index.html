@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 530,
   
-    <a href="#blink">Blink</a>: 2338,
+    <a href="#blink">Blink</a>: 2339,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9679,6 +9679,23 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add TypeChecking=Unrestricted to SVGPathSeg interfaces and &#34;constructors&#34;</summary>
+              <pre class=body>
+&#34;constructors&#34; are the SVGPathElement.createSVGPathSeg* functions.
+These methods have low usage, and this matches Geckos behavior.
+
+BUG=354298,311246
+
+Review URL: <a href="https://codereview.chromium.org/925873005">https://codereview.chromium.org/925873005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190173 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6c88b8523382de1516e65c5b24b2ea284c652b8a"><time datetime="2015-02-13">2015-02-13</time></a>
         <tr>
           <td>mstensho
           <td class=message>
