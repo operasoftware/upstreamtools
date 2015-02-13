@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 529,
   
-    <a href="#blink">Blink</a>: 2332,
+    <a href="#blink">Blink</a>: 2333,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9654,6 +9654,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Trigger hardware accelerated canvas GC more aggressively.</summary>
+              <pre class=body>
+A hardware accelerated canvas indirectly owns a number of GPU resources
+and if they become too numerous we see drastic slowdowns. At the very
+least we should let the GC know about the cost of an HTMLCanvasElement
+so that it can correctly schedule garbage collects.
+
+This makes test timeouts caused by buildup of HTMLCanvasElements in
+canvas tests slightly less likely.
+
+BUG=450699
+<a href="mailto:R=jochen@chromium.org,junov@chromium.org">R=jochen@chromium.org,junov@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/910613003">https://codereview.chromium.org/910613003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190135 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d19a4caf25ecdd92191fbb62d74da4007b5a8183"><time datetime="2015-02-13">2015-02-13</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
