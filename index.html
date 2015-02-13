@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 529,
+    <a href="#chromium">Chromium</a>: 530,
   
     <a href="#blink">Blink</a>: 2335,
   
@@ -44,6 +44,31 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>joleksy
+          <td class=message>
+            <details>
+              <summary>[Mac] Allow vibrancy &amp; transparency on WebContentsView</summary>
+              <pre class=body>
+In order to make a view vibrant we need to:
+1. Place the view inside NSVisualEffectView
+2. Return YES from allowsVibrancy
+
+In order to make it possible to use WebContentsViewCocoa in vibrant view hierarchy, we need to implement allowsVibrancy.
+
+From NSView documentation for allowsVibrancy:
+&#34;AppKit checks this property when the view is incorporated into a view hierarchy that uses vibrancy.&#34;
+
+This means that only returning YES from allowsVibrancy will have no effect on the way view is rendered, we are safe to just return YES here.
+
+Note: returning YES from isOpaque causes problems with vibrancy, that is why a setter is needed on RenderWidgetHostViewCocoa.
+
+Review URL: <a href="https://codereview.chromium.org/869563003">https://codereview.chromium.org/869563003</a>
+
+Cr-Commit-Position: refs/heads/master@{#316210}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/9b7defaa80bca9d488021c36df27fc94ef446496"><time datetime="2015-02-13">2015-02-13</time></a>
         <tr>
           <td>jiangj
           <td class=message>
