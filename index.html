@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 528,
+    <a href="#chromium">Chromium</a>: 529,
   
     <a href="#blink">Blink</a>: 2329,
   
@@ -44,6 +44,23 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Add missing ppapi_cpp_objects dependency to pdf</summary>
+              <pre class=body>
+<a href="https://codereview.chromium.org/799643004/">https://codereview.chromium.org/799643004/</a> links pdf to
+ppapi_internal_module, it should link to ppapi_cpp_objects as well.
+
+That CL broke disable_nacl==1 builds due to the missing dependency.
+
+Review URL: <a href="https://codereview.chromium.org/920853002">https://codereview.chromium.org/920853002</a>
+
+Cr-Commit-Position: refs/heads/master@{#316112}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/5cd73c0c2307e6e93680a749991f81b0767a9d47"><time datetime="2015-02-12">2015-02-12</time></a>
         <tr>
           <td>mostynb
           <td class=message>
