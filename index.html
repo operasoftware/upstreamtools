@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 529,
   
-    <a href="#blink">Blink</a>: 2330,
+    <a href="#blink">Blink</a>: 2331,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9654,6 +9654,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Add Maplike&lt;&gt; utility mixin class for implementing maplike interfaces</summary>
+              <pre class=body>
+This utility class inherits PairIterable&lt;&gt; and currently implements has()
+and get() based on a single virtual getMapEntry() function that a sub-class
+needs to implement. It takes care of the slight complication that get()
+should return undefined if the requested key is not in the map, which is
+somewhat impractical to implement (requires constructing a ScriptValue to
+return.)
+
+Update the maplike implementations MIDIPortMap and MediaKeyStatusMap to
+inherit Maplike&lt;&gt; instead of its base-class PairIterable&lt;&gt;, and remove
+their has()/get() implementations.
+
+BUG=432683
+
+Review URL: <a href="https://codereview.chromium.org/920713002">https://codereview.chromium.org/920713002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190113 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/52d4e2326d9e329cbc368d25be71515eea53d533"><time datetime="2015-02-13">2015-02-13</time></a>
         <tr>
           <td>landell
           <td class=message>
