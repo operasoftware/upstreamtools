@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 530,
   
-    <a href="#blink">Blink</a>: 2343,
+    <a href="#blink">Blink</a>: 2344,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9679,6 +9679,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>andersr
+          <td class=message>
+            <details>
+              <summary>Don&#39;t allocate Strings in FontDescription().</summary>
+              <pre class=body>
+Creation of the &#39;locale&#39; String in the FontDescription constructor accounts
+for 14% of the time spent in StyleResolver::styleForElement in the test-
+case html5-full-render.html.
+
+Changes in this patch:
+
+ * Let locale default-initialize, and instead produce &#34;en&#34; on demand.
+ * Use AtomicString instead of String. The locale is already stored on
+   LayoutStyle as an AtomicString, so we might as well use that.
+
+<a href="mailto:R=eae@chromium.org">R=eae@chromium.org</a>
+BUG=438069
+
+Review URL: <a href="https://codereview.chromium.org/924903002">https://codereview.chromium.org/924903002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190246 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/da3c39476bf20d3d93b7b83b45b48dfd11207a81"><time datetime="2015-02-16">2015-02-16</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
