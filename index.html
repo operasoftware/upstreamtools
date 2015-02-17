@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 530,
   
-    <a href="#blink">Blink</a>: 2365,
+    <a href="#blink">Blink</a>: 2367,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9679,6 +9679,50 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add TypeChecking=Unrestricted to SVGElements where applicable</summary>
+              <pre class=body>
+Affects the following methods:
+
+  SVGAnimationElement.beginElementAt(float offset)
+  SVGAnimationElement.endElementAt(float offset)
+  SVGFEDropShadowElement.setStdDeviation(float ..., float ...)
+  SVGFEGaussianBlurElement.setStdDeviation(float ..., float ...)
+
+The new behavior matches Gecko.
+
+Adjust the test svg/custom/elementTimeControl-nan-crash.html to handle the
+exception and make it call dumpAsText earlier.
+
+BUG=354298, 311246
+
+Review URL: <a href="https://codereview.chromium.org/931583003">https://codereview.chromium.org/931583003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190359 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9c56271f746790b757e2df52b590cebde9520b76"><time datetime="2015-02-17">2015-02-17</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use TypeChecking=Unrestricted on Internal* interfaces</summary>
+              <pre class=body>
+These interfaces should generally not be used for testing the types of
+IDL edge-cases that non-finite numbers imply, so make all float/double
+parameters &#39;restricted&#39;.
+
+BUG=354298
+
+Review URL: <a href="https://codereview.chromium.org/930933002">https://codereview.chromium.org/930933002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190358 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/71011f2961def71dc3fa149eae8703e4ac43cc7c"><time datetime="2015-02-17">2015-02-17</time></a>
         <tr>
           <td>mstensho
           <td class=message>
