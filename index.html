@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 530,
   
-    <a href="#blink">Blink</a>: 2359,
+    <a href="#blink">Blink</a>: 2361,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9679,6 +9679,42 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add TypeChecking=Unrestricted to DataView</summary>
+              <pre class=body>
+This may be mostly for show, but it at the very least documents behavior
+and intent.
+Also drop comment referring to JSC since that no longer applies.
+
+BUG=354298
+
+Review URL: <a href="https://codereview.chromium.org/927323002">https://codereview.chromium.org/927323002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190313 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d4be2fd44a74d3e6041b0fe65ce8858780245695"><time datetime="2015-02-17">2015-02-17</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Move and rename RenderFrame and RenderFrameSet.</summary>
+              <pre class=body>
+RenderFrame -&gt; LayoutFrame
+RenderFrameSet -&gt; LayoutFrameSet
+
+BUG=450612
+<a href="mailto:TBR=dsinclair@chromium.org,jochen@chromium.org">TBR=dsinclair@chromium.org,jochen@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/929223003">https://codereview.chromium.org/929223003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190311 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/504a2182a4b661d4d213417d5b7c15149bd1d7d7"><time datetime="2015-02-17">2015-02-17</time></a>
         <tr>
           <td>mstensho
           <td class=message>
