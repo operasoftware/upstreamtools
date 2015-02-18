@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 530,
   
-    <a href="#blink">Blink</a>: 2368,
+    <a href="#blink">Blink</a>: 2370,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9679,6 +9679,43 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add TypeChecking=Unrestricted to Element and Window interfaces</summary>
+              <pre class=body>
+Affects
+
+  Element.scrollLeft/Top and
+  Element/Window.scroll{,By,To}.
+
+Matches CSSOM View, but no change in behavior or generated code.
+
+BUG=354298
+
+Review URL: <a href="https://codereview.chromium.org/936503003">https://codereview.chromium.org/936503003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190381 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5e03253424457fe8fe39b92712c31f05eb36ab93"><time datetime="2015-02-18">2015-02-18</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add TypeChecking=Unrestricted to Document</summary>
+              <pre class=body>
+Only affects createTouch(...). No changes to generated code.
+
+BUG=354298
+
+Review URL: <a href="https://codereview.chromium.org/935583003">https://codereview.chromium.org/935583003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190380 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5594a833fd3d8d0800a40723c3b3285d68d38746"><time datetime="2015-02-18">2015-02-18</time></a>
         <tr>
           <td>fs
           <td class=message>
