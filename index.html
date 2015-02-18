@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 530,
   
-    <a href="#blink">Blink</a>: 2370,
+    <a href="#blink">Blink</a>: 2371,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9679,6 +9679,34 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Add [TypeChecking=Unrestricted] to Web Audio interfaces</summary>
+              <pre class=body>
+This changes behavior when non-finite floating point values are assigned
+to attributes or passed as arguments to methods, by throwing TypeError
+exceptions. The old behavior was to throw InvalidStateError exceptions
+in some cases, as required by the current spec, and to not throw anything
+in other cases.
+
+Since value checks are now done by the bindings layer, some checks can
+be removed from or simplified in the Web Audio implementation.
+
+The new behavior is required by the WebIDL spec and matches Firefox. There
+is an (at the time of writing) open Web Audio bug to align it with WebIDL:
+
+  <a href="https://github.com/WebAudio/web-audio-api/issues/385">https://github.com/WebAudio/web-audio-api/issues/385</a>
+
+BUG=354298
+
+Review URL: <a href="https://codereview.chromium.org/927333004">https://codereview.chromium.org/927333004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190397 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b9d3c822d74ad78c4a765f88989c1f0eaac6100e"><time datetime="2015-02-18">2015-02-18</time></a>
         <tr>
           <td>fs
           <td class=message>
