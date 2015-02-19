@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 531,
+    <a href="#chromium">Chromium</a>: 533,
   
-    <a href="#blink">Blink</a>: 2378,
+    <a href="#blink">Blink</a>: 2380,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,38 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>eirik
+          <td class=message>
+            <details>
+              <summary>Fix some virtual vs override issues in PolicyServiceStub</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/935333004">https://codereview.chromium.org/935333004</a>
+
+Cr-Commit-Position: refs/heads/master@{#317040}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/8c1e232e44631a890fabb2d29f06a6e6cf1cc244"><time datetime="2015-02-19">2015-02-19</time></a>
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Do not use hardcoded identifier in password manager user authorization</summary>
+              <pre class=body>
+password_manager_util_mac uses hardcoded &#34;com.google.Chrome&#34;, since rest of the
+code is pretty generic we would like to use this file directly in Opera, however
+we want to use something like com.operasoftware.Opera, since that information is
+can already be retrieved from [base::mac::MainBundle() bundleIdentifier] we can
+just use it and append &#34;.show-passwords&#34;.
+
+BUG=447344
+
+Review URL: <a href="https://codereview.chromium.org/817333002">https://codereview.chromium.org/817333002</a>
+
+Cr-Commit-Position: refs/heads/master@{#317037}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/6a4346b2119c1155aea9835478895fbe2660a1d2"><time datetime="2015-02-19">2015-02-19</time></a>
         <tr>
           <td>bratell
           <td class=message>
@@ -9701,6 +9733,50 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Drop unused includes from SVGLayoutStyle.h</summary>
+              <pre class=body>
+After pushing most of the ExceptionState-usage out of SVGLength, the
+construction of SVGLength&#39;s no longer need to include
+ExceptionStatePlaceholder.h
+
+CSSValueList.h also isn&#39;t needed here, so propagate that to where it is.
+
+Review URL: <a href="https://codereview.chromium.org/933333003">https://codereview.chromium.org/933333003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190467 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8106225039ab32d8597d066b69d711c9176b7795"><time datetime="2015-02-19">2015-02-19</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Support default values for dictionary members of union types</summary>
+              <pre class=body>
+Fix in three parts:
+
+1) For each union member, add a static &#34;fromThatType(ThatType value)&#34;
+   function, that constructs and returns a union type container object.
+
+2) Add IdlUnionType.literal_cpp_value() that returns an C++ expression
+   using a static function (added in 1) that matches the literal value.
+
+3) Use idl_type.literal_cpp_value(literal_value) in v8_dictionary.py
+   instead of str(literal_value), thus using the union type override
+   (added in 2) for union type members.
+
+BUG=240176, 321462
+
+Review URL: <a href="https://codereview.chromium.org/937773002">https://codereview.chromium.org/937773002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190464 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/37cbf81271d66e43a8c9e36b743ebcda84ebeb3f"><time datetime="2015-02-19">2015-02-19</time></a>
         <tr>
           <td>mstensho
           <td class=message>
