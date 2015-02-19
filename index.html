@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 534,
   
-    <a href="#blink">Blink</a>: 2383,
+    <a href="#blink">Blink</a>: 2384,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9749,6 +9749,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Add a more evil version of fast/multicol/table-cell-content-change.html</summary>
+              <pre class=body>
+It&#39;s not really that evil, but still too much for the old / current multicol
+implementation to handle, because of an imperfect column balancing algorithm
+there.
+
+BUG=352052
+<a href="mailto:R=andersr@opera.com">R=andersr@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/940873003">https://codereview.chromium.org/940873003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190485 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e2030ef95daa47d1fe5cd215bd2f077abb68a886"><time datetime="2015-02-19">2015-02-19</time></a>
         <tr>
           <td>mstensho
           <td class=message>
