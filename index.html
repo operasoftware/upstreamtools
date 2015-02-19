@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 533,
+    <a href="#chromium">Chromium</a>: 534,
   
-    <a href="#blink">Blink</a>: 2380,
+    <a href="#blink">Blink</a>: 2381,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,22 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Properly ifdef sync code in password_manager</summary>
+              <pre class=body>
+Fix one misplaced header include and use PASSWORD_MANAGER_ENABLE_SYNC
+macro to properly guard the other place of sync usage to fix a linking
+issue when PASSWORD_MANAGER_ENABLE_SYNC is disabled.
+
+Review URL: <a href="https://codereview.chromium.org/943533002">https://codereview.chromium.org/943533002</a>
+
+Cr-Commit-Position: refs/heads/master@{#317043}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/e13de14ab0eba806c7e065bbb56e1a66ae3ee5e7"><time datetime="2015-02-19">2015-02-19</time></a>
         <tr>
           <td>eirik
           <td class=message>
@@ -9733,6 +9749,36 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add TypeChecking=Unrestricted to Web Animation APIs</summary>
+              <pre class=body>
+This CL enables type-checking of IDL floating point values on interfaces:
+
+  AnimationPlayer,
+  AnimationTimeline and
+  Timing
+
+and the dictionaries:
+    
+  AnimationPlayerEventInit,
+  ComputedTimingProperties and
+  WebKitAnimationEventInit
+
+Per AnimationTiming{,ReadOnly} in the current draft specification, make
+Timing.duration and Timing.iterations &#39;unrestricted double&#39;, while keeping
+other attributes as &#34;restricted&#34;.
+
+BUG=335350, 354298
+
+Review URL: <a href="https://codereview.chromium.org/939623002">https://codereview.chromium.org/939623002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190474 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c3ad533486c5721e304b00682f4f643552905cf4"><time datetime="2015-02-19">2015-02-19</time></a>
         <tr>
           <td>fs
           <td class=message>
