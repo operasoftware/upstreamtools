@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 534,
+    <a href="#chromium">Chromium</a>: 536,
   
     <a href="#blink">Blink</a>: 2384,
   
@@ -44,6 +44,49 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>bookmarks component should depend on base_i18n</summary>
+              <pre class=body>
+bookmark_index.cc, bookmark_model.cc and bookmark_utils.cc all uses
+functions from base_i18n.
+
+Review URL: <a href="https://codereview.chromium.org/938003002">https://codereview.chromium.org/938003002</a>
+
+Cr-Commit-Position: refs/heads/master@{#317096}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/1d3287151e6ea83e386966846dfcf170f77d182b"><time datetime="2015-02-19">2015-02-19</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Avoid large inlined automatic methods in IndexedDB code.</summary>
+              <pre class=body>
+The chromium base policy is to not inline code but since automatically
+generated code and templates easily become inlined it can happen
+anyway. This explicitly outlines destructors, copy constructors and
+assignment operators in the IndexedDB code for a win of
+11 KB of x64 machine code. Most of it (maybe 8 KB) from IndexedDBKey.
+
+clang x64 numbers:
+Total change: -11795 bytes
+==========================
+  42 added, totalling +3270 bytes across 13 sources
+  25 removed, totalling -5883 bytes across 14 sources
+  9 grown, for a net change of +1556 bytes (7936 bytes before, 9492 bytes after) across 6 sources
+  60 shrunk, for a net change of -10738 bytes (54277 bytes before, 43539 bytes after) across 17 sources
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/933823002">https://codereview.chromium.org/933823002</a>
+
+Cr-Commit-Position: refs/heads/master@{#317090}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/1027bb83a75224af86c8ab8c3526a1dba5fc7243"><time datetime="2015-02-19">2015-02-19</time></a>
         <tr>
           <td>jiangj
           <td class=message>
