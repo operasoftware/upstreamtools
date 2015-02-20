@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 536,
   
-    <a href="#blink">Blink</a>: 2386,
+    <a href="#blink">Blink</a>: 2388,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9792,6 +9792,58 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Start moving tree-boundary-crossing rules to ScopedStyleResolver.</summary>
+              <pre class=body>
+This is a step towards getting StyleResolver and the document-wide
+TreeBoundaryCrossingRules removed.
+
+Store tree-boundary-crossing rules on ScopedStyleResolver instead of
+having a map between scope and tree-boundary-crossing rules in the
+TreeBoundaryCrossingRules object.
+
+What&#39;s left in TreeBoundaryCrossingRules is now a list of scopes which
+contains tree-boundary-crossing rules. When we find an efficient way to
+limit the scopes considered when resolving style for a given element, we
+can get rid of TreeBoundaryCrossingRules completely, I think.
+
+Adding @font-face and @keyframe rules is also moved into
+ScopedStyleResolver and StyleResolver::processScopedRules can be removed.
+
+BUG=401359
+
+Review URL: <a href="https://codereview.chromium.org/931143002">https://codereview.chromium.org/931143002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190549 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c5839f24974c80bbb2ae72f94ace39ce0969daeb"><time datetime="2015-02-20">2015-02-20</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove TextTrackCue::notifyRegionWhenRemovingDisplayTree</summary>
+              <pre class=body>
+This method is only called in CueTimeline::removeCue, and in there it&#39;s
+only used to reset the m_notifyRegion flag in VTTCue temporarily while
+calling removeDisplayTree. Remove notifyRegionWhenRemovingDisplayTree
+in favor of passing a flag to removeDisplayTree.
+In order to achieve this though we need to hoist the submerged call
+to removeDisplayTree from TextTrackCue::setIsActive. This in turn makes
+it clear that removeDisplayTree was called twice in the relevant
+context.
+
+BUG=321654,322434
+
+Review URL: <a href="https://codereview.chromium.org/939193002">https://codereview.chromium.org/939193002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190547 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/486053c03b7715efaa5fe3d92f82f8ece8d5ed38"><time datetime="2015-02-20">2015-02-20</time></a>
         <tr>
           <td>fs
           <td class=message>
