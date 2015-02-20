@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 536,
+    <a href="#chromium">Chromium</a>: 537,
   
     <a href="#blink">Blink</a>: 2389,
   
@@ -44,6 +44,23 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>marcing
+          <td class=message>
+            <details>
+              <summary>Set unregistered handles to NULL in BatteryStatusObserver::Stop</summary>
+              <pre class=body>
+BatteryStatusObserver::Stop can be called twice from
+BatteryStatusService::Shutdown, so power_handle_ and batter_change_handle_
+should be set to NULL on the first call, otherwise the second call
+will pass invalid handles to UnregisterNotification.
+
+Review URL: <a href="https://codereview.chromium.org/924193006">https://codereview.chromium.org/924193006</a>
+
+Cr-Commit-Position: refs/heads/master@{#317321}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/5db108fb20e9159956cff0af45a505ca52bb80d6"><time datetime="2015-02-20">2015-02-20</time></a>
         <tr>
           <td>jiangj
           <td class=message>
