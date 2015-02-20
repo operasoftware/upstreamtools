@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 537,
+    <a href="#chromium">Chromium</a>: 538,
   
-    <a href="#blink">Blink</a>: 2390,
+    <a href="#blink">Blink</a>: 2392,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,24 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Add icui18n dependency to bookmarks</summary>
+              <pre class=body>
+bookmark_model.cc uses icu::Collator directly so it should have
+direct dependency to icui18n, otherwise there will be a linking
+issue on Linux for component builds and configuration_policy==0,
+policy_component won&#39;t link because of the missing icui8n dependency.
+It&#39;s a followup of CL 938003002.
+
+Review URL: <a href="https://codereview.chromium.org/947443004">https://codereview.chromium.org/947443004</a>
+
+Cr-Commit-Position: refs/heads/master@{#317426}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/7c3b3fbede3e3c3e71aa90cfd12d6e6b67eec054"><time datetime="2015-02-20">2015-02-20</time></a>
         <tr>
           <td>marcing
           <td class=message>
@@ -9809,6 +9827,38 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove dump-render-tree/PNG paged overflow tests from fast/overflow/</summary>
+              <pre class=body>
+There are already enough reftests for such things in fast/pagination/ to ensure
+coverage, with the exception of column-gap tests, but support for column-gap on
+paged containers should be removed anyway; see crbug.com/460106
+
+<a href="mailto:R=andersr@opera.com">R=andersr@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/938093002">https://codereview.chromium.org/938093002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190596 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/075649797c8a7fdafb6c91c6a7db59b330b00034"><time datetime="2015-02-20">2015-02-20</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add [TypeChecking=Interface] to the TextTrack interface</summary>
+              <pre class=body>
+Affects addCue and removeCue (no longer accepts any thing else as null.)
+
+Review URL: <a href="https://codereview.chromium.org/946583002">https://codereview.chromium.org/946583002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190585 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/aaf73e06b4955123f75085e31e318b7fbc00c912"><time datetime="2015-02-20">2015-02-20</time></a>
         <tr>
           <td>fs
           <td class=message>
