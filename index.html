@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 542,
   
-    <a href="#blink">Blink</a>: 2412,
+    <a href="#blink">Blink</a>: 2415,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9911,6 +9911,90 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Need to invalidate scrollbars in case they get repositioned.</summary>
+              <pre class=body>
+If the owning renderer gets resized, the scrollbar may be repositioned. Don&#39;t
+rely on other reasons for invalidation (background, borders, child content
+getting relaid out, etc.) to accidentally get the area covered by the
+scrollbars invalidated, since there may very well be no other reason.
+
+BUG=460434
+<a href="mailto:R=jchaffraix@chromium.org,leviw@chromium.org">R=jchaffraix@chromium.org,leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/942963002">https://codereview.chromium.org/942963002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190681 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1e3ab6949e55b2543e07c0e6662a00ed2a0f0d3c"><time datetime="2015-02-23">2015-02-23</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Avoid style invalidation for empty sets.</summary>
+              <pre class=body>
+Invalidation sets which are empty stems from selector features only found
+in the rightmost compound selector, and can only cause invalidation of
+elements for which they are scheduled. When adding these sets, just mark
+the element with a LocalStyleChange and do not schedule a style
+invalidation for them.
+
+Similarly, mark with a SubtreeStyleChange and clear all scheduled
+invalidation sets for an element which gets a wholeSubtreeInvalid set
+scheduled.
+
+This fixes two sub-optimal behaviors in the code.
+
+1. We avoid running style invalidation, hence traversing the DOM tree an
+   extra time, if we only have local/subtree changes scheduled.
+2. We avoid traversing subtrees checking against an empty invalidation set
+   that will never match.
+
+Note that we will still have to run the style invalidation step to clear
+style invalidation bits on elements if there were invalidation sets
+scheduled prior to a SubtreeStyleChange that nuked the entry in the
+m_pendingInvalidationMap.
+
+Added missing check for m_customPseudoInvalid in isEmpty and resetting it
+in setWholeSubtreeInvalid() was added.
+
+Since rules of type &#34;.x {}&#34; will not lead to a style invalidation pass
+anymore, &#34;.x .dummy {}&#34; type rules have been added to the inspector tests
+when testing style invalidation tracking.
+
+Review URL: <a href="https://codereview.chromium.org/946993002">https://codereview.chromium.org/946993002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190680 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/40815e76ffb0558bbe4a3a8fffd6f8a4e9acb2ac"><time datetime="2015-02-23">2015-02-23</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Updating gypi after moving FocusType.h.</summary>
+              <pre class=body>
+Source/core/page/FocusType was moved to
+public/WebFocusType.h in <a href="https://codereview.chromium.org/852083002">https://codereview.chromium.org/852083002</a>
+This updates the gypi file to reflect that change and to avoid
+a warning in the msvs-ninja gyp generator.
+
+Note: there is no gypi file that tracks the files in public/platform.
+
+<a href="mailto:R=fsamuel@chromium.org,jochen@chromium.org">R=fsamuel@chromium.org,jochen@chromium.org</a>
+
+BUG=448716,147644,459058
+
+Review URL: <a href="https://codereview.chromium.org/950833002">https://codereview.chromium.org/950833002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190679 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/01dd12c53cf158c038d4cb165587a9bc48c16d73"><time datetime="2015-02-23">2015-02-23</time></a>
         <tr>
           <td>bratell
           <td class=message>
