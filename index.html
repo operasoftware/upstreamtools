@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 540,
+    <a href="#chromium">Chromium</a>: 542,
   
     <a href="#blink">Blink</a>: 2412,
   
@@ -44,6 +44,52 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Update gyp files to reflect moved and removed header files in content/</summary>
+              <pre class=body>
+Fixes warnings in the msvs-gyp generator.
+
+This is a followup to
+<a href="https://codereview.chromium.org/615893003">https://codereview.chromium.org/615893003</a> (gesture_event_type_list.h,
+    popup_item_type_list.h, result_codes_list.h and
+    top_controls_state_list.h)
+<a href="https://codereview.chromium.org/861373002">https://codereview.chromium.org/861373002</a> (navigator_connect_service.h and
+    navigator_connect_servive_factory.h)
+<a href="https://codereview.chromium.org/865413002">https://codereview.chromium.org/865413002</a> (layer_tree_build_helper.h)
+<a href="https://codereview.chromium.org/774573003">https://codereview.chromium.org/774573003</a> (platform_notification_service.h)
+
+<a href="mailto:R=jam@chromium.org,avi@chromium.org,mek@chromium.org,dtrainor@chromium.org,changwan@chromium.org,peter@chromium.org">R=jam@chromium.org,avi@chromium.org,mek@chromium.org,dtrainor@chromium.org,changwan@chromium.org,peter@chromium.org</a>
+BUG=459058,405532,351558,426458,451313,439950
+
+Review URL: <a href="https://codereview.chromium.org/952443004">https://codereview.chromium.org/952443004</a>
+
+Cr-Commit-Position: refs/heads/master@{#317617}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/88db1a01502634619859cc428151bc571d6eebac"><time datetime="2015-02-23">2015-02-23</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>don&#39;t mix system and bundled ICU</summary>
+              <pre class=body>
+The ICU 54.1 upgrade added a call to uloc_getDefault() to
+base/test/test_suite.cc, but did not add a libicuuc dependency
+to the corresponding gyp/gn targets.  This makes it possible to
+mix system and bundled ICU headers (and will fail to build if
+they differ in version).
+
+BUG=428145
+
+Review URL: <a href="https://codereview.chromium.org/943233002">https://codereview.chromium.org/943233002</a>
+
+Cr-Commit-Position: refs/heads/master@{#317616}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/18f4375774ff56b72896a5b0b792b753ae4ef584"><time datetime="2015-02-23">2015-02-23</time></a>
         <tr>
           <td>bratell
           <td class=message>
