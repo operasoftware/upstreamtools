@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 538,
   
-    <a href="#blink">Blink</a>: 2401,
+    <a href="#blink">Blink</a>: 2403,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9827,6 +9827,42 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove unused MediaControlElementType enum values</summary>
+              <pre class=body>
+MediaStatusDisplay and MediaTextTrackDisplay, that is.
+
+BUG=448795
+
+Review URL: <a href="https://codereview.chromium.org/946243003">https://codereview.chromium.org/946243003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190644 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e2f8f9b70ba7a6b630d97d426781a95de67391c5"><time datetime="2015-02-23">2015-02-23</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Replace [TreatReturnedNullStringAs=Null] with nullable return type</summary>
+              <pre class=body>
+There are no changes to the generated code.
+
+One instance of TreatReturnedNullStringAs=Null remains for
+Node.textContent, where removing it does change the generated code
+because TreatUndefinedAs=NullString is also involved.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/950763002">https://codereview.chromium.org/950763002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190643 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c8a30a7c5d9acd8ad2585df614b767cf2e8b46c3"><time datetime="2015-02-23">2015-02-23</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
