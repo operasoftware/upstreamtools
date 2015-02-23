@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 539,
   
-    <a href="#blink">Blink</a>: 2405,
+    <a href="#blink">Blink</a>: 2409,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9843,6 +9843,94 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Push cue timeline management out of LoadableTextTrack</summary>
+              <pre class=body>
+When a LoadableTextTrack receives cues from the loader, it adds them to
+the cue list and notifies the CueTimeline. This is the only place where
+this kind of TextTrack state is directly handled by subclasses of
+TextTrack. Moving this to TextTrack we can &#34;lock down&#34; state - cue list
+and timeline - some more, and have updates due to list-mutations in a
+single place (there&#39;s currently still updates in HTMLMediaElement though.)
+This also makes LoadableTextTrack look more like a provider of cues.
+Transport of cues needs to be updated to use a wider type. Also make use
+of Vector::swap in VTTParser while changing the signatures.
+
+BUG=321654
+
+Review URL: <a href="https://codereview.chromium.org/941973005">https://codereview.chromium.org/941973005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190657 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7fd33f9881fe8c38addc643d06afa2edbd73a866"><time datetime="2015-02-23">2015-02-23</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Show a vertical scrollbar (when needed) for overflow:-webkit-paged-y.</summary>
+              <pre class=body>
+We were already showing a horizontal scrollbar for -webkit-paged-x. For
+-webkit-paged-y, on the other hand, it only worked when it was the viewport
+that was paginated, but not when specified on a regular block.
+
+The CSS parser currently deals with the overflow shorthand in such a way that
+it&#39;s the overflow-y property that gets the -webkit-paged-foo value (while
+overflow-x becomes auto). Digression: While one could say that&#39;s not quite
+right when it comes to horizontal writing modes, handling shorthands based on
+writing mode would be nasty...
+
+Skipping 2 of the new tests for the old / current multicol implementation,
+since they fail there. All tests pass in the new implementation.
+
+BUG=460024
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/940913002">https://codereview.chromium.org/940913002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190656 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b4f59ad5156178650a4c932ab6fd25548b039970"><time datetime="2015-02-23">2015-02-23</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Update a cue&#39;s insertion order when reinserting it with addCue()</summary>
+              <pre class=body>
+TextTrack.addCue is specified to always remove the cue from any list it
+currently resides in, but the implementation would only do that if it
+was currently in a different track&#39;s list.
+Also update spec. prose snippets and merge the two exception-conditions
+in the removeCue-implementation. The &#34;!m_cues || !m_cues-&gt;remove(cue)&#34;
+part should never be true unless state has been corrupted, and the spec.
+only says to throw NotFoundError in any case.
+
+BUG=460476
+
+Review URL: <a href="https://codereview.chromium.org/944823003">https://codereview.chromium.org/944823003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190655 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8d16e94db4e1635c9a959ecdfd95cdc488f5ac4b"><time datetime="2015-02-23">2015-02-23</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Remove ScriptStreamingMode.h from Source/bindings/core/v8/v8.gypi</summary>
+              <pre class=body>
+The file itself was removed in r189473.
+
+Review URL: <a href="https://codereview.chromium.org/946373002">https://codereview.chromium.org/946373002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190654 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4544a2d143d8918b3f2a598a6f3996bd6d327ec0"><time datetime="2015-02-23">2015-02-23</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
