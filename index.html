@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 539,
+    <a href="#chromium">Chromium</a>: 540,
   
-    <a href="#blink">Blink</a>: 2410,
+    <a href="#blink">Blink</a>: 2411,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,28 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Correct paths in gypi files in components.</summary>
+              <pre class=body>
+Followup to
+<a href="https://codereview.chromium.org/658383003">https://codereview.chromium.org/658383003</a> (constrained_window)
+<a href="https://codereview.chromium.org/808773005">https://codereview.chromium.org/808773005</a> (component_updater and
+    update_client)
+
+This fixes warnings in gyp&#39;s msvs-ninja generator.
+
+<a href="mailto:R=blundell@chromium.org,oshima@chromium.org,sorin@chromium.org">R=blundell@chromium.org,oshima@chromium.org,sorin@chromium.org</a>
+BUG=459058,410499
+
+Review URL: <a href="https://codereview.chromium.org/952543002">https://codereview.chromium.org/952543002</a>
+
+Cr-Commit-Position: refs/heads/master@{#317589}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/e5938a2d887bd71f1cf0df76d5d72e0a6318f888"><time datetime="2015-02-23">2015-02-23</time></a>
         <tr>
           <td>christiank
           <td class=message>
@@ -9843,6 +9865,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove HTMLMediaElement::textTrackKindChanged</summary>
+              <pre class=body>
+This method only operates on the TextTrack that it gets as an argument, so
+the code can be moved to the caller without changing behavior. The
+HTMLMediaElement will still be notified via the mode-change (if one takes
+place.)
+
+BUG=321654
+
+Review URL: <a href="https://codereview.chromium.org/924273004">https://codereview.chromium.org/924273004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190667 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/477bc416e447130c61cf7d4925deb905e88d1708"><time datetime="2015-02-23">2015-02-23</time></a>
         <tr>
           <td>bratell
           <td class=message>
