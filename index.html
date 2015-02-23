@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 538,
   
-    <a href="#blink">Blink</a>: 2399,
+    <a href="#blink">Blink</a>: 2400,
   
     <a href="#v8">V8</a>: 22.
   
@@ -9827,6 +9827,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Support [TypeChecking] on dependent/partial interfaces.</summary>
+              <pre class=body>
+Have the [TypeChecking] extended attribute on a partial interface
+distribute down to its methods and attributes. This avoids having the
+interface that it extends to declare the [TypeChecking] behavior that
+the partial interface methods&amp;attributes require.
+
+The attribute&#39;s value is appended to any [TypeChecking] attribute
+values already present on the partial interface members.
+
+R=haraken,jl@opera.com,bashi
+BUG=460550
+
+Review URL: <a href="https://codereview.chromium.org/938403007">https://codereview.chromium.org/938403007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190639 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/88c64122177fe96c40facceaaad2d93169ec8f10"><time datetime="2015-02-23">2015-02-23</time></a>
         <tr>
           <td>philipj
           <td class=message>
