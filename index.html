@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 538,
+    <a href="#chromium">Chromium</a>: 539,
   
-    <a href="#blink">Blink</a>: 2404,
+    <a href="#blink">Blink</a>: 2405,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,22 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>christiank
+          <td class=message>
+            <details>
+              <summary>Remove unused function WebContentsDelegate::DidNavigateToPendingEntry.</summary>
+              <pre class=body>
+DidNavigateToPendingEntry is no longer used and can be removed.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/936373002">https://codereview.chromium.org/936373002</a>
+
+Cr-Commit-Position: refs/heads/master@{#317574}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/bcaee2f8da9d374ebcc51cb997484befa0580920"><time datetime="2015-02-23">2015-02-23</time></a>
         <tr>
           <td>jiangj
           <td class=message>
@@ -9827,6 +9843,21 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Prevent GCs when constructing GC mixin objects.</summary>
+              <pre class=body>
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/946163003">https://codereview.chromium.org/946163003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190650 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c2815cdba301819b53bc14c70616f52a0749fbeb"><time datetime="2015-02-23">2015-02-23</time></a>
         <tr>
           <td>philipj
           <td class=message>
