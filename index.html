@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 542,
+    <a href="#chromium">Chromium</a>: 544,
   
-    <a href="#blink">Blink</a>: 2419,
+    <a href="#blink">Blink</a>: 2420,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,47 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Update gypi in extensions after move and removal of headers.</summary>
+              <pre class=body>
+Fixes warnings in the gyp msvs-ninja generator.
+
+Followup to
+<a href="https://codereview.chromium.org/892923002">https://codereview.chromium.org/892923002</a> (guest_view_messages.h)
+<a href="https://codereview.chromium.org/913393003">https://codereview.chromium.org/913393003</a> (extension_view.js)
+<a href="https://codereview.chromium.org/820513002">https://codereview.chromium.org/820513002</a> (surface_worker.js,
+    and surface_view.js)
+<a href="https://codereview.chromium.org/654043002">https://codereview.chromium.org/654043002</a> (web_view.js,
+    web_view_events.js and web_view_experimental.js)
+
+<a href="mailto:R=fsamuel@chromium.org,kalman@chromium.org,apacible@chromium.org,rockot@chromium.org">R=fsamuel@chromium.org,kalman@chromium.org,apacible@chromium.org,rockot@chromium.org</a>
+BUG=459058,444869,459680,434226
+
+Review URL: <a href="https://codereview.chromium.org/952513002">https://codereview.chromium.org/952513002</a>
+
+Cr-Commit-Position: refs/heads/master@{#317767}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/400e3ecf9e6456f00c8626b33188933c63696941"><time datetime="2015-02-24">2015-02-24</time></a>
+        <tr>
+          <td>christiank
+          <td class=message>
+            <details>
+              <summary>Add support for compressed GPU memory buffers.</summary>
+              <pre class=body>
+This CL adds support for compressed GPU buffer formats.
+
+BUG=434699
+
+Review URL: <a href="https://codereview.chromium.org/916083002">https://codereview.chromium.org/916083002</a>
+
+Cr-Commit-Position: refs/heads/master@{#317765}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/3113db1250a2687c030585f6045f2ef242b98db6"><time datetime="2015-02-24">2015-02-24</time></a>
         <tr>
           <td>bratell
           <td class=message>
@@ -9911,6 +9952,21 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove stale comment about Node::insertBefore and friends</summary>
+              <pre class=body>
+It was added in 2006 &lt;<a href="https://trac.webkit.org/changeset/12568">https://trac.webkit.org/changeset/12568</a>&gt; and was
+accurate at the time.
+
+Review URL: <a href="https://codereview.chromium.org/939303004">https://codereview.chromium.org/939303004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190721 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/15e4210c62109273047f91decd6a47c662b46d06"><time datetime="2015-02-24">2015-02-24</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
