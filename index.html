@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 548,
   
-    <a href="#blink">Blink</a>: 2427,
+    <a href="#blink">Blink</a>: 2428,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10026,6 +10026,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Rename AsyncCallChainMap.h in core.gypi.</summary>
+              <pre class=body>
+AsyncCallChainMap.h was renamed AsyncOperationMap in
+<a href="https://codereview.chromium.org/858173002">https://codereview.chromium.org/858173002</a> . This does that rename
+in the gypi file as well to avoid warnings from the msvs-ninja
+gyp generator.
+
+<a href="mailto:R=aandrey@chromium.org,yurys@chromium.org">R=aandrey@chromium.org,yurys@chromium.org</a>
+
+BUG=459058,439376
+
+Review URL: <a href="https://codereview.chromium.org/943363002">https://codereview.chromium.org/943363002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190826 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/81e7873934b505aff97492fc2714b86290efc6a6"><time datetime="2015-02-25">2015-02-25</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
