@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 546,
+    <a href="#chromium">Chromium</a>: 548,
   
     <a href="#blink">Blink</a>: 2425,
   
@@ -44,6 +44,43 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Update gyp/gn files after header moved from webkit to cc/blink.</summary>
+              <pre class=body>
+Followup to <a href="https://codereview.chromium.org/890873007">https://codereview.chromium.org/890873007</a> which moves
+webkit/common/gpu/context_provider_web_context.h to
+cc/blink/context_provider_web_context.h.
+
+<a href="mailto:R=tfarina@chromium.org,jamesr@chromium.org,piman@chromium.org">R=tfarina@chromium.org,jamesr@chromium.org,piman@chromium.org</a>
+BUG=459058,338338
+
+Review URL: <a href="https://codereview.chromium.org/954733002">https://codereview.chromium.org/954733002</a>
+
+Cr-Commit-Position: refs/heads/master@{#318017}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/af2fe9ec1f79c2530e0188a35b0cd1a7ed6d646f"><time datetime="2015-02-25">2015-02-25</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Remove header file that doesn&#39;t exist from build files.</summary>
+              <pre class=body>
+Followup to <a href="https://codereview.chromium.org/920963003">https://codereview.chromium.org/920963003</a> which removed
+media/base/scoped_histogram_timer.h.
+
+<a href="mailto:R=rkaplov@chromium.org,dalecurtis@chromium.org">R=rkaplov@chromium.org,dalecurtis@chromium.org</a>
+BUG=459058
+
+Review URL: <a href="https://codereview.chromium.org/948423002">https://codereview.chromium.org/948423002</a>
+
+Cr-Commit-Position: refs/heads/master@{#318016}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/1bb3da9a3671d0d09b934c7554c53610c2e2df1a"><time datetime="2015-02-25">2015-02-25</time></a>
         <tr>
           <td>christiank
           <td class=message>
