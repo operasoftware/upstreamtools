@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 548,
   
-    <a href="#blink">Blink</a>: 2429,
+    <a href="#blink">Blink</a>: 2431,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10026,6 +10026,52 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Add AnimationTimingProperties dictionary</summary>
+              <pre class=body>
+Use in various places:
+
+- As the base of the ComputedTimingProperties dictionary.
+
+- As one possible argument value to the Animation() constructor&#39;s third
+  parameter.
+
+- As one possible argument value to Element.animate()&#39;s second parameter.
+
+Also remove the custom bindings implementation of Element.animate().
+
+BUG=321462
+
+Review URL: <a href="https://codereview.chromium.org/947923002">https://codereview.chromium.org/947923002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190837 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/91414c8e47e18e361f4f9a15cedb75e84d6eb378"><time datetime="2015-02-25">2015-02-25</time></a>
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Move zoom handling for x and y properties to svg.</summary>
+              <pre class=body>
+Compensating for effectiveZoom in svg instead, so that 
+x and y are more like other length values in css.
+
+This fixes a bug where incorrect values would be returned
+from getComputedStyle, and with transitions on x and y in 
+combination with zoom.
+
+BUG=400725
+
+Review URL: <a href="https://codereview.chromium.org/947983002">https://codereview.chromium.org/947983002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190836 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a1ed6cd4a078910608e2769e7dbe26b1acb23a91"><time datetime="2015-02-25">2015-02-25</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
