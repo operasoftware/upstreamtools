@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 545,
+    <a href="#chromium">Chromium</a>: 546,
   
-    <a href="#blink">Blink</a>: 2424,
+    <a href="#blink">Blink</a>: 2425,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,25 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>christiank
+          <td class=message>
+            <details>
+              <summary>Add support for compressed GPU memory buffers.</summary>
+              <pre class=body>
+This CL adds support for compressed GPU buffer formats.
+
+BUG=434699
+
+Committed: <a href="https://crrev.com/3113db1250a2687c030585f6045f2ef242b98db6">https://crrev.com/3113db1250a2687c030585f6045f2ef242b98db6</a>
+Cr-Commit-Position: refs/heads/master@{#317765}
+
+Review URL: <a href="https://codereview.chromium.org/916083002">https://codereview.chromium.org/916083002</a>
+
+Cr-Commit-Position: refs/heads/master@{#318004}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/07b6d8b077f5a5e09b1106c7aa6d916e5d4f9e63"><time datetime="2015-02-25">2015-02-25</time></a>
         <tr>
           <td>bratell
           <td class=message>
@@ -9970,6 +9989,37 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Drop value conversion (V8 -&gt; C++) macros from generated code</summary>
+              <pre class=body>
+Instead of using an ever growing set of per-type-and-situation macros
+to perform the conversion from V8 value to C++ value (e.g. for method
+arguments and in attribute setters), just generate regular C++ code
+that does the same job. In many cases, this leads to roughly the same
+amount of code, and is arguable easier to read unless one is very
+familiar with all the different macros and their definitions.
+
+Technically, the v8_types.v8_value_to_local_cpp_value() function now
+returns a small template context dictionary instead of a &#34;single-
+expression&#34; string, and a new template macro is used to generate the
+multi-line conversion code using this context.
+
+All now unused macros in V8BindingMacros.h are removed. The remaining
+macros are used from custom bindings code, which will be rewritten to
+not use them too and thus better match the corresponding generated
+code. (There was already a fair amount of mismatch between the two.)
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/946973005">https://codereview.chromium.org/946973005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190816 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b36e957a148e4112a8296b661c7bc05ce43b9785"><time datetime="2015-02-25">2015-02-25</time></a>
         <tr>
           <td>philipj
           <td class=message>
