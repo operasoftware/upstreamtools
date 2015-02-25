@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 548,
   
-    <a href="#blink">Blink</a>: 2431,
+    <a href="#blink">Blink</a>: 2433,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10026,6 +10026,43 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Simplify HTMLMediaElement::textTrackModeChanged</summary>
+              <pre class=body>
+The if-&#34;cascade&#34; that dominates this method does two things:
+ * Schedules (adds) cues to the cue timeline
+ * Marks tracks originating from HTMLTrackElement as &#39;configured&#39;.
+
+If these two are separated, the former can be moved to the caller of
+textTrackModeChanged (TextTrack::setMode) - and simplified 
+significantly.
+With this HTMLMediaElement no longer calls CueTimeline::addCues itself.
+
+BUG=321654
+
+Review URL: <a href="https://codereview.chromium.org/952493002">https://codereview.chromium.org/952493002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190848 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/29d145899ec5a62a98acd5062684e5080f15a335"><time datetime="2015-02-25">2015-02-25</time></a>
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Add test for clip-rule and several path element children.</summary>
+              <pre class=body>
+BUG=425113
+
+Review URL: <a href="https://codereview.chromium.org/669703002">https://codereview.chromium.org/669703002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190845 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3f21dc63d159bad812f5a7419bfd9a9fed9a4f01"><time datetime="2015-02-25">2015-02-25</time></a>
         <tr>
           <td>jl
           <td class=message>
