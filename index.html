@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 548,
   
-    <a href="#blink">Blink</a>: 2440,
+    <a href="#blink">Blink</a>: 2443,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10026,6 +10026,69 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Eliminate calls to TextTrackCue::setIsActive outside of CueTimeline</summary>
+              <pre class=body>
+Hoisting the calls to setIsActive and removeDisplayTree out of
+TextTrackCueList::updateCueIndex into its single caller
+(TextTrack::cueDidChange), it becomes evident that at this point in the
+state update, the cue in question should already be both inactive and
+have had its &#34;display tree&#34; removed. Hence the pair of calls can be
+dropped.
+The same logic can also be applied in TextTrack::removeCue where we
+have the same operations being performed.
+Reorganize the code slightly to get timeline updates at the end of the
+cue{Will,Did}Change methods, and document the invariants.
+
+BUG=321654
+
+Review URL: <a href="https://codereview.chromium.org/960233002">https://codereview.chromium.org/960233002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190927 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/403c50d8c753ec3248567fabab6206f426342c36"><time datetime="2015-02-26">2015-02-26</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move activeCues ownership to TextTrack</summary>
+              <pre class=body>
+Instead of having a list that owns another list (that owns another
+list...), move the m_activeCues member from TextTrackCueList to TextTrack.
+This is structurally less strange, and makes TextTrackCueList slightly
+more self-contained. The code for building the activeCues list remains
+(for now.)
+
+BUG=321654
+
+Review URL: <a href="https://codereview.chromium.org/958903002">https://codereview.chromium.org/958903002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190923 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/801489942c3798e4a79bf760681634a9c4ccea8e"><time datetime="2015-02-26">2015-02-26</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Clean up DictionaryHelperForCore.cpp</summary>
+              <pre class=body>
+- Remove uses of TONATIVE_* and TOSTRING_* macros.
+
+- Remove various unneeded explicit template specializations/instantiations.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/960193002">https://codereview.chromium.org/960193002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190922 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f3e25bdfb432befdd35572b33549ba31313f3786"><time datetime="2015-02-26">2015-02-26</time></a>
         <tr>
           <td>fs
           <td class=message>
