@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 549,
   
-    <a href="#blink">Blink</a>: 2444,
+    <a href="#blink">Blink</a>: 2446,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10040,6 +10040,65 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the overflowchanged event with a runtime flag</summary>
+              <pre class=body>
+Intent to Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/NZ7RGtrPQsw/DRQmRzSkGNAJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/NZ7RGtrPQsw/DRQmRzSkGNAJ</a>
+
+A full removal touches many files, so keep it behind a flag in case this
+needs to be reverted.
+
+The tests are much less prone to conflicts, so in order to avoid
+creating a virtual testsuite, simply remove them. They can be restored
+if necessary later.
+
+All but one of the removed tests are explictly for some aspect of the
+overflowchanged event. The exception is
+layout-overflow-not-affected-by-visual-overflow.html which is from the
+fix of &#34;RenderBox layout overflow is not correctly computed&#34;:
+<a href="https://code.google.com/p/chromium/issues/detail?id=254002">https://code.google.com/p/chromium/issues/detail?id=254002</a>
+
+Unfortunately, it does not appear that the bug has any other observable
+effect that can be used. An old version of Chromium with the bug was
+tested; the rendered result is identical and overflow:scroll does not
+cause any scrollbars to appear. Therefore, the test is removed.
+
+BUG=460822
+
+Review URL: <a href="https://codereview.chromium.org/959643002">https://codereview.chromium.org/959643002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190938 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4b4ceeef391303fed3ef22ccfdf8757eadb51bd0"><time datetime="2015-02-26">2015-02-26</time></a>
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[svg2] Make &#39;rx&#39; and &#39;ry&#39; presentation attributes</summary>
+              <pre class=body>
+The following elements&#39; rx and ry attributes have been made
+into presentation attributes:
+
+* rect
+* ellipse
+
+Spec:
+  <a href="https://svgwg.org/svg2-draft/geometry.html#RXProperty">https://svgwg.org/svg2-draft/geometry.html#RXProperty</a>
+  <a href="https://svgwg.org/svg2-draft/geometry.html#RYProperty">https://svgwg.org/svg2-draft/geometry.html#RYProperty</a>
+
+BUG=400725
+
+Review URL: <a href="https://codereview.chromium.org/955033002">https://codereview.chromium.org/955033002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190937 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c1f4903e428ff43b9b291c70b16196d6f338fef7"><time datetime="2015-02-26">2015-02-26</time></a>
         <tr>
           <td>philipj
           <td class=message>
