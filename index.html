@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 548,
   
-    <a href="#blink">Blink</a>: 2439,
+    <a href="#blink">Blink</a>: 2440,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10026,6 +10026,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Replace open-coded binary search in TextTrackCueList::add with upper_bound</summary>
+              <pre class=body>
+TextTrackCueList::add is implemented as a recursive binary search. This
+add() method is used both for adding (new) cues to the list, and to update
+the position of a cue in the list after mutation of it.
+These two use-cases have slightly different requirement, but it still
+makes sense to reuse some parts of it.
+Split out the binary search into a method of its own - replacing it with
+std::upper_bound - and then call this from add() and updateCueIndex() while
+open-coding the actual Vector::insert() and index-cache invalidation.
+Add some notes about potential future improvements.
+
+BUG=321654
+
+Review URL: <a href="https://codereview.chromium.org/955443002">https://codereview.chromium.org/955443002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190908 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/dfe404b5050e88cca5687714e2b65b481db7e509"><time datetime="2015-02-26">2015-02-26</time></a>
         <tr>
           <td>fs
           <td class=message>
