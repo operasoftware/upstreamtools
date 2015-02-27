@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 550,
   
-    <a href="#blink">Blink</a>: 2453,
+    <a href="#blink">Blink</a>: 2456,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10055,6 +10055,79 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Add [TypeChecking=Unrestricted] on Device Orientation interfaces</summary>
+              <pre class=body>
+The only definitions that this actually affects are methods with custom
+implementations, so the IDL change is just for show.
+
+Also adjust the custom implementations of these methods to be closer to
+normal generated code in handling their float arguments, thereby actually
+making them restricted and thus honoring the [TypeChecking=Unrestricted]
+flag.
+
+BUG=354298
+
+Review URL: <a href="https://codereview.chromium.org/934203002">https://codereview.chromium.org/934203002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190994 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c91c07c020f11ad8cd5f3e88ca8b341db117f0e0"><time datetime="2015-02-27">2015-02-27</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Detach SpeechRecognitionController upon page detach.</summary>
+              <pre class=body>
+When a page is notified destroyed, it is no longer safe to access
+the page&#39;s SpeechRecognitionController as its lifetime is that of
+the page.
+
+R=haraken
+BUG=455857
+
+Review URL: <a href="https://codereview.chromium.org/960223002">https://codereview.chromium.org/960223002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190993 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fca7ddd6fc1a604256cf190dfa9aecdc33308e6d"><time datetime="2015-02-27">2015-02-27</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Stop explicit inheritance if LayoutStyle doesn&#39;t change.</summary>
+              <pre class=body>
+Propagation of explicitly inherited properties down the tree is not
+necessary when LayoutStyle does not change, so start comparing LayoutStyle
+before checking the explicitInheritance flag.
+
+The LayoutStyle comparison should not include the explicitInheritance flag
+as that typically results in a propagation diff caused by that flag being
+unset on new LayoutStyle instances before any children get their styles
+calculated.
+
+The assumption is that it is not relevant in other uses of
+LayoutStyle::operator==, either. In particular, also the comparison with
+baseRenderStyle in the ASSERT in ActiveAnimations::updateBaseLayoutStyle.
+
+The explicitInheritance flag is also skipped for copyNonInheritedFrom.
+The reason is that it&#39;s only used for sharing non-inherited properties
+between elements which don&#39;t have the same children, hence should not
+share that flag either.
+
+BUG=435450
+
+Review URL: <a href="https://codereview.chromium.org/921843004">https://codereview.chromium.org/921843004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@190990 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/57c0eb509ea7a5ed66a9fb8806a60cf1e406cb8d"><time datetime="2015-02-27">2015-02-27</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
