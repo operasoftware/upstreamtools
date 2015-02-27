@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 550,
   
-    <a href="#blink">Blink</a>: 2456,
+    <a href="#blink">Blink</a>: 2459,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10055,6 +10055,59 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Add [TypeChecking=Unrestricted] to InternalDictionary</summary>
+              <pre class=body>
+Also add an unrestricted double member to test both types of doubles.
+
+BUG=354298
+
+Review URL: <a href="https://codereview.chromium.org/966643002">https://codereview.chromium.org/966643002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191003 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e78d3e7aca31d4e6251dfe6e06715307db45575a"><time datetime="2015-02-27">2015-02-27</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Add [TypeChecking=Unrestricted] to {Transition,Wheel}EventInit</summary>
+              <pre class=body>
+This means non-finite values for double members throw TypeError exceptions.
+The new behavior matches Firefox.
+
+BUG=354298
+
+Review URL: <a href="https://codereview.chromium.org/964783003">https://codereview.chromium.org/964783003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191002 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/55b47f3bceaca8c0c045031511e02f3d81b0a7f8"><time datetime="2015-02-27">2015-02-27</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Inspector: Store array of small numbers in 16 bit instead of 64 bit.</summary>
+              <pre class=body>
+Save 1.5 KB by storing small numbers in 16 bit instead of 64 bit. Minor change 
+but should be smaller and faster.
+
+         +3: blink::InspectorBackendDispatcher::commandName(blink::InspectorBackendDispatcher::MethodNames) type=t, (was 21 bytes, now 24 bytes)
+      -1518: blink::InspectorBackendDispatcher::commandNamesIndex type=r, (was 2024 bytes, now 506 bytes)
+
+<a href="mailto:R=yurys@chromium.org">R=yurys@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/958893002">https://codereview.chromium.org/958893002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191000 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c2703a32c9756d32c4d90e5ac79eb52c3785bb05"><time datetime="2015-02-27">2015-02-27</time></a>
         <tr>
           <td>jl
           <td class=message>
