@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 550,
   
-    <a href="#blink">Blink</a>: 2474,
+    <a href="#blink">Blink</a>: 2476,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10055,6 +10055,53 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add the NonElementParentNode interface</summary>
+              <pre class=body>
+As a side effect, DocumentFragment.getElementById now also has per-world
+bindings. This makes the generated code bigger, and probably won&#39;t help.
+
+Use [LegacyTreatAsPartialInterface] like the other *Node interfaces.
+
+BUG=462916
+
+Review URL: <a href="https://codereview.chromium.org/967753003">https://codereview.chromium.org/967753003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191066 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cc9ca141f5f592bfe218c3aa901960e676672276"><time datetime="2015-03-01">2015-03-01</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: All interface types are implicitly nullable</summary>
+              <pre class=body>
+Previously, only the subset &#34;wrapper types&#34; were considered implicitly
+nullable. The wrapper types are all interface types except some that all
+are really also implicitly nullable.
+
+This affects nullable attributes and method arguments of the types
+
+  Dictionary
+  EventListener
+  EventHandler
+  NodeFilter
+  SerializedScriptValue
+
+but since there are none currently, there are no code generation changes.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/964163004">https://codereview.chromium.org/964163004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191065 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d22d5a15369c7b573d0e67e76b4dfa7ac9e14b21"><time datetime="2015-03-01">2015-03-01</time></a>
         <tr>
           <td>philipj
           <td class=message>
