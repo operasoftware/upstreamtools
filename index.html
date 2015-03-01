@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 550,
   
-    <a href="#blink">Blink</a>: 2467,
+    <a href="#blink">Blink</a>: 2469,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10055,6 +10055,46 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Rearrange the Element interface to match the many specs</summary>
+              <pre class=body>
+<a href="https://dom.spec.whatwg.org/#interface-element">https://dom.spec.whatwg.org/#interface-element</a>
+and many other specs with partial Document interfaces.
+
+To make reviewing easier, this commit only changes the order of lines
+and adds comments. Actual spec sync will be done separately.
+
+The order of the generated code changes, but there are no actual
+changes.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/970553002">https://codereview.chromium.org/970553002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191056 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/eb961991bf2c3e9e176c9f53ad91dbfee4a8a663"><time datetime="2015-03-01">2015-03-01</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync GlobalEventHandlers and WindowEventHandlers with the spec</summary>
+              <pre class=body>
+<a href="https://html.spec.whatwg.org/#event-handlers-on-elements,-document-objects,-and-window-objects">https://html.spec.whatwg.org/#event-handlers-on-elements,-document-objects,-and-window-objects</a>
+
+BUG=460722
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/972503003">https://codereview.chromium.org/972503003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191055 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/05c8ff07875f4b8a8b32d1f949bf0fe071e92b7b"><time datetime="2015-03-01">2015-03-01</time></a>
         <tr>
           <td>philipj
           <td class=message>
