@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 551,
   
-    <a href="#blink">Blink</a>: 2487,
+    <a href="#blink">Blink</a>: 2489,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10069,6 +10069,44 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Implement float/double correctly</summary>
+              <pre class=body>
+Specifically, do not require the [TypeChecking=Unrestricted] extended
+attribute for correct behavior.
+
+This renders the [TypeChecking=Unrestricted] extended attribute
+ineffective, meaning we can then drop it from actual IDL files without
+code generation changes.
+
+BUG=354298
+
+Review URL: <a href="https://codereview.chromium.org/970843002">https://codereview.chromium.org/970843002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191108 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f58dce9952fd67a27fc12723ece1e48d1d57e9dd"><time datetime="2015-03-02">2015-03-02</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove old &amp; unused BatteryManager::canSuspend() implementation.</summary>
+              <pre class=body>
+ActiveDOMObject::canSuspend() support was removed in r159535, follow up
+and remove BatteryManager&#39;s use of it.
+
+R=haraken
+
+Review URL: <a href="https://codereview.chromium.org/967303002">https://codereview.chromium.org/967303002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191106 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/db2ba6cbb95d3b111075f9c1748ebe13a23ee91d"><time datetime="2015-03-02">2015-03-02</time></a>
         <tr>
           <td>jl
           <td class=message>
