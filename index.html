@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 550,
   
-    <a href="#blink">Blink</a>: 2479,
+    <a href="#blink">Blink</a>: 2481,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10055,6 +10055,58 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync the Element interface with the many specs</summary>
+              <pre class=body>
+<a href="https://dom.spec.whatwg.org/#interface-element">https://dom.spec.whatwg.org/#interface-element</a>
+and many other specs with partial Element interfaces.
+
+Arguments named namespace were not renamed, as it is a C++ keyword.
+
+No FIXMEs were added where the spec says [TreatNullAs=EmptyString] but
+we use [TreatNullAs=NullString], as that&#39;s a general issue that can be
+found simply be searching for &#34;TreatNullAs=NullString&#34;.
+
+Likewise, [NewObject] and [SameObject] were not added:
+<a href="https://code.google.com/p/chromium/issues/detail?id=462913">https://code.google.com/p/chromium/issues/detail?id=462913</a>
+
+The only changes to the generated code are due to renamed arguments.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/970603002">https://codereview.chromium.org/970603002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191079 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d76c1c24ff6cec8d778d353b63cf76839c6ec84b"><time datetime="2015-03-02">2015-03-02</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Document the ClientRect* vs DOMRect* situation</summary>
+              <pre class=body>
+Add a UseCounter for the ClientRectList.item() method. Adding
+[MeasureAs=ClientRectListItem] to the existing single line actually
+only counts the named getter, but split them in the IDL for clarity.
+
+Remove the ClientRectList FIXMEs that have been there since the
+interface was added in 2009: <a href="https://trac.webkit.org/changeset/40837">https://trac.webkit.org/changeset/40837</a>
+
+DOMRectList or an array of ClientRect/DOMRect would not throw here, so
+there&#39;s no reason to ever implement the requirements of the old spec.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/964133002">https://codereview.chromium.org/964133002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191078 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/976567830bfdafef35d9da300ebdabc41786f4cf"><time datetime="2015-03-02">2015-03-02</time></a>
         <tr>
           <td>philipj
           <td class=message>
