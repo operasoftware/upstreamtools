@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 551,
   
-    <a href="#blink">Blink</a>: 2483,
+    <a href="#blink">Blink</a>: 2485,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10069,6 +10069,57 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Don&#39;t pass semi-detached renderers to the flow thread (or anyone else).</summary>
+              <pre class=body>
+Clean up RenderBlock::removeLeftoverAnonymousBlock(), and make sure that it
+doesn&#39;t pass weird semi-detached renderers to anyone.
+
+Promote the children of the leftover block (like before), then keep the
+leftover block right in front of them (this is new; although it actually used
+to be exactly there, it used to be semi-detached, confusing anyone who wanted
+to traverse the tree), then notify the flow thread (and the grid code, that
+doesn&#39;t seem to care either way), then manually detach the leftover block (like
+before, only that it&#39;s a one-liner now) and finally destroy it.
+
+The leftover block used to be partially detached in the sense that it had its
+nextSibling reset, but still had its parent and previousSibling left intact.
+Missing a nextSibling could make the flow thread code incorrectly believe that
+we were removing the last piece of multicol content, and thus trigger a
+deletion of a column set. This would in turn trigger an assertion failure when
+attempting to insert more content later on, because the flow thread wouldn&#39;t
+find any suitable column set.
+
+BUG=457461
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/922173002">https://codereview.chromium.org/922173002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191096 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/724429bbcd7f138e3ada7e7d584c9f2e23cd12cb"><time datetime="2015-03-02">2015-03-02</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: define shrink{Inline}VectorBackingInternal inline.</summary>
+              <pre class=body>
+Move the definition of these entry points to the their header
+file, increasing inlining opportunities.
+
+R=haraken,tkent
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/964363002">https://codereview.chromium.org/964363002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191095 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ae62e1feb407fd7451c6fdb4257b47d561eae880"><time datetime="2015-03-02">2015-03-02</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
