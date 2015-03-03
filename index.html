@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 552,
   
-    <a href="#blink">Blink</a>: 2493,
+    <a href="#blink">Blink</a>: 2494,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10086,6 +10086,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync the MessageChannel and MessagePort interfaces with the spec</summary>
+              <pre class=body>
+This exposes the MessagePort interface to workers.
+
+The MessageChannel constructor was exposed to workers in spec and
+implementation in 2009:
+<a href="https://html5.org/r/3325">https://html5.org/r/3325</a>
+<a href="https://trac.webkit.org/changeset/45381">https://trac.webkit.org/changeset/45381</a>
+
+The MessagePort interface wasn&#39;t made exposed in the spec until 2014:
+<a href="https://html5.org/r/8425">https://html5.org/r/8425</a>
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/969643002">https://codereview.chromium.org/969643002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191172 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b2c22892bd0d0489f9ad5d3bca9b394c31c11073"><time datetime="2015-03-03">2015-03-03</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
