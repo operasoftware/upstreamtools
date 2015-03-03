@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 553,
+    <a href="#chromium">Chromium</a>: 554,
   
     <a href="#blink">Blink</a>: 2501,
   
@@ -44,6 +44,26 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>joaoe
+          <td class=message>
+            <details>
+              <summary>ChromeContentRendererClient should not rely on Dispatcher::is_extension_process</summary>
+              <pre class=body>
+The extensions::Dispatcher::is_extension_process flag is set for both the
+standalone extensions renderer and single process mode. This caused
+ChromeContentRendererClient to act differently in single process mode, like
+returning true from ShouldFork for any navigation started by blink, which
+would cause a new WebView to be created for each navigation.
+
+BUG=462210
+
+Review URL: <a href="https://codereview.chromium.org/956313002">https://codereview.chromium.org/956313002</a>
+
+Cr-Commit-Position: refs/heads/master@{#318938}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/874b1b9796998d7d8bf4d27ed1369251bd868d13"><time datetime="2015-03-03">2015-03-03</time></a>
         <tr>
           <td>tmoniuszko
           <td class=message>
