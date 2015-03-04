@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 556,
   
-    <a href="#blink">Blink</a>: 2505,
+    <a href="#blink">Blink</a>: 2506,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10158,6 +10158,34 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Crash test for 400997.</summary>
+              <pre class=body>
+Scrollbars can be kept alive referenced from the EventHandler after they
+have been detached from their ScrollableAreas (through
+m_lastScrollbarUnderMouse and m_scrollbarHandlingScrollGesture).
+EventHandler may call setHoveredPart and setPressedPart on custom scroll-
+bars (LayoutScrollbar) on mouse moves after these bars have been detached
+from their scrollable areas. Those methods recalculate style for custom
+scrollbar pseudo elements. That caused a crash in SelectorChecker for
+the :corner-present pseudo class because it used the scrollableArea()
+from Scrollbar without null-checking it.
+
+The null-check was added as a speculative fix in r191244. This CL adds a
+test which causes that crasher.
+
+<a href="mailto:R=keishi@chromium.org,tkent@chromium.org">R=keishi@chromium.org,tkent@chromium.org</a>
+BUG=400997
+
+Review URL: <a href="https://codereview.chromium.org/978753002">https://codereview.chromium.org/978753002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191278 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2adc92c5edb587784584eee7a2c34e6981a58626"><time datetime="2015-03-04">2015-03-04</time></a>
         <tr>
           <td>fs
           <td class=message>
