@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 556,
+    <a href="#chromium">Chromium</a>: 557,
   
     <a href="#blink">Blink</a>: 2511,
   
@@ -44,6 +44,26 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Recognize GC_PLUGIN_IGNORE() on &#39;operator new&#39; declarations.</summary>
+              <pre class=body>
+For the select few times an overriding &#34;operator new&#34; is needed for a
+GC class, provide the GC_PLUGIN_IGNORE() escape hatch for these. The
+responsibility that the &#34;new&#34;&#39;s allocation will be on the Oilpan heap,
+rests with the implementor of the class.
+
+R=haraken
+BUG=443854
+
+Review URL: <a href="https://codereview.chromium.org/975393002">https://codereview.chromium.org/975393002</a>
+
+Cr-Commit-Position: refs/heads/master@{#319141}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/3077ee89020f929c9c9a4eda8154a028523e6274"><time datetime="2015-03-04">2015-03-04</time></a>
         <tr>
           <td>arjanl
           <td class=message>
