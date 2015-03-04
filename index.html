@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 556,
   
-    <a href="#blink">Blink</a>: 2504,
+    <a href="#blink">Blink</a>: 2505,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10158,6 +10158,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Make SVGLengthMode an enum class</summary>
+              <pre class=body>
+Mostly search and replace; A minor tweak in LinearGradientAttributes
+changing to &#39;Height&#39; for m_y1 and m_y2. Dropping the default value for
+&#34;detached&#34; SVGLength objects.
+
+BUG=461375
+
+Review URL: <a href="https://codereview.chromium.org/966923003">https://codereview.chromium.org/966923003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191274 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1e0c187f6f421b91854dafd6a0c01282018c6148"><time datetime="2015-03-04">2015-03-04</time></a>
         <tr>
           <td>ed
           <td class=message>
