@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 557,
+    <a href="#chromium">Chromium</a>: 558,
   
     <a href="#blink">Blink</a>: 2511,
   
@@ -44,6 +44,27 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>fix for builds with webrtc disabled</summary>
+              <pre class=body>
+PepperVideoCaptureHost::OnFrameReady makes use of kUnknownFrameRate
+which was previously only included in webrtc builds.  Let&#39;s move
+these constants to the header file instead, since it can be
+included in both webrtc and non-webrtc builds.
+
+Followup to <a href="https://codereview.chromium.org/955253002">https://codereview.chromium.org/955253002</a>.
+
+BUG=461116,463829
+
+Review URL: <a href="https://codereview.chromium.org/973373002">https://codereview.chromium.org/973373002</a>
+
+Cr-Commit-Position: refs/heads/master@{#319169}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/4ff9bc71c31a9abee29d161acec2872b27b528ad"><time datetime="2015-03-04">2015-03-04</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
