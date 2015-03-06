@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 560,
   
-    <a href="#blink">Blink</a>: 2516,
+    <a href="#blink">Blink</a>: 2517,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10233,6 +10233,47 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Match the Fullscreen spec&#39;s CSS as far as currently practical</summary>
+              <pre class=body>
+This change was prompted by the &#34;Fullscreen API bug fixes&#34; blink-dev
+thread started by Ali Alabbas at Microsoft:
+<a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/f-V2GWatXkA">https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/f-V2GWatXkA</a>
+
+This is very similar to, and borrows from, the in-progress review to
+move Fullscreen to the top layer system:
+<a href="https://codereview.chromium.org/788073004/">https://codereview.chromium.org/788073004/</a>
+
+With this change, any fullscreen element (except :root) will have
+style applied that makes match the screen size, where previously this
+was only done for iframe and video. This will cause a re-layout of
+those elements when entering and exiting fullscreen, with the side
+effect that the full-screen-render-inline.html test now works. While
+the bug does not reproduce now, the underlying cause has not been
+fixed, the move to top layer is probably the best cure.
+
+iframe:-webkit-full-screen { border: none; } was previously
+!important, but isn&#39;t in the spec. This is the cause of the changed
+test expectations for full-screen-iframe-zIndex.html.
+
+The flex:1 and display:block rules for audio and video originate from
+a Vimeo fullscreen bug: <a href="https://bugs.webkit.org/show_bug.cgi?id=58291">https://bugs.webkit.org/show_bug.cgi?id=58291</a>
+
+With the size and position of the fullscreen element forced to match
+the viewport by the UA style sheet, neither of these rules should have
+any observable effect, so they are removed.
+
+BUG=402378, 246077
+
+Review URL: <a href="https://codereview.chromium.org/974783002">https://codereview.chromium.org/974783002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191409 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a3c87abe8d6329aa3733efff80f3be71b0b22488"><time datetime="2015-03-06">2015-03-06</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
