@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 560,
   
-    <a href="#blink">Blink</a>: 2521,
+    <a href="#blink">Blink</a>: 2522,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10233,6 +10233,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Rearrange the Window interface to match the many specs</summary>
+              <pre class=body>
+<a href="https://html.spec.whatwg.org/#the-window-object">https://html.spec.whatwg.org/#the-window-object</a>
+and many other specs with partial Element interfaces.
+
+To make reviewing easier, this commit only changes the order of lines
+and adds comments. Actual spec sync will be done separately.
+
+The order of the generated code changes, but there are no actual
+changes.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/988683002">https://codereview.chromium.org/988683002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191435 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/04107ee9180896d9e28e2c4f0bb657db72ac7b39"><time datetime="2015-03-06">2015-03-06</time></a>
         <tr>
           <td>fs
           <td class=message>
