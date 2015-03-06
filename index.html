@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 560,
   
-    <a href="#blink">Blink</a>: 2523,
+    <a href="#blink">Blink</a>: 2526,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10233,6 +10233,83 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Reland: Add [TypeChecking=Interface] to Range interface</summary>
+              <pre class=body>
+All functions already threw exceptions for invalid argument values, but
+DOMException exceptions instead of TypeError exceptions.
+
+Throwing TypeError exceptions matches Firefox&#39;s behavior.
+
+Note that the null checks are kept in the implementation since many of
+the functions are called from C++ code that in some cases depend on the
+existing error handling of invalid input.
+
+BUG=462561
+
+Review URL: <a href="https://codereview.chromium.org/974823002">https://codereview.chromium.org/974823002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191442 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/efe97257128a48c290aec80437727daac2158ca1"><time datetime="2015-03-06">2015-03-06</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync the Touch-related interfaces with the two specs</summary>
+              <pre class=body>
+Unfortunately there does not appear to be a single well-maintained spec
+that deals with all of this, but these documents from the Touch Events
+Community Group seem to be the most recently updated:
+<a href="http://rawgit.com/w3c/touch-events/v1-errata/touchevents.html">http://rawgit.com/w3c/touch-events/v1-errata/touchevents.html</a>
+<a href="http://rawgit.com/w3c/touch-events/master/touchevents.html">http://rawgit.com/w3c/touch-events/master/touchevents.html</a>
+
+There are no changes to the generated code except for changes in order.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/982273002">https://codereview.chromium.org/982273002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191441 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/93bab18f19c6c9ac286384646b5d96c734c2f71e"><time datetime="2015-03-06">2015-03-06</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Add [TypeChecking=Interface] to Node interface</summary>
+              <pre class=body>
+This changes the behavior of the methods
+
+  compareDocumentPosition(Node)
+  contains(Node?)
+  isEqualNode(Node?)
+  isSameNode(Node?)
+
+that now throw TypeError exceptions instead of returning false when called
+with invalid arguments. The argument to isSameNode() is also made
+required instead of optional, meaning it will also throw TypeError when
+called without arguments.
+
+The new behavior matches Firefox, except in the case of isSameNode() which
+Firefox doesn&#39;t support. (The method has been removed from the spec.)
+
+The new behavior of compareDocumentPosition() and isEqualNode() also matches
+IE11.
+
+BUG=462561
+
+Review URL: <a href="https://codereview.chromium.org/978223002">https://codereview.chromium.org/978223002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191440 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/330a37b9b91d6bc627da8a23fd02c565bf7cdccb"><time datetime="2015-03-06">2015-03-06</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
