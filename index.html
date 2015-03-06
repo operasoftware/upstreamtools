@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 560,
   
-    <a href="#blink">Blink</a>: 2527,
+    <a href="#blink">Blink</a>: 2528,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10233,6 +10233,33 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync the Window interface with the many specs</summary>
+              <pre class=body>
+<a href="https://html.spec.whatwg.org/#the-window-object">https://html.spec.whatwg.org/#the-window-object</a>
+and many other specs with partial Window interfaces.
+
+Add UseCounters to the non-standard things that didn&#39;t already have
+them, and put MeasureAs/DeprecatedAs at the beginning of each line to
+make it more obvious that they are all counted.
+
+prompt()&#39;s second argument was left as |defaultValue|, as |default| is
+a C++ keyword.
+
+The only changes to the generated code are due to renamed arguments and
+added UseCounters.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/984943002">https://codereview.chromium.org/984943002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191461 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9725ec329c2bff09ec970f70a64d25d282c8faf0"><time datetime="2015-03-06">2015-03-06</time></a>
         <tr>
           <td>fs
           <td class=message>
