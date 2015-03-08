@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 560,
   
-    <a href="#blink">Blink</a>: 2528,
+    <a href="#blink">Blink</a>: 2530,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10233,6 +10233,46 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync the HTMLCollection interfaces with the specs</summary>
+              <pre class=body>
+<a href="https://dom.spec.whatwg.org/#interface-htmlcollection">https://dom.spec.whatwg.org/#interface-htmlcollection</a>
+<a href="https://html.spec.whatwg.org/#the-htmlallcollection-interface">https://html.spec.whatwg.org/#the-htmlallcollection-interface</a>
+<a href="https://html.spec.whatwg.org/#the-htmlformcontrolscollection-interface">https://html.spec.whatwg.org/#the-htmlformcontrolscollection-interface</a>
+<a href="https://html.spec.whatwg.org/#the-htmloptionscollection-interface">https://html.spec.whatwg.org/#the-htmloptionscollection-interface</a>
+
+There are no changes to the generated code other than the order.
+
+The console-format-collections.html test expectations depended on a
+specific order and were updated.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/990613002">https://codereview.chromium.org/990613002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191492 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2f134d2fc458f810fc3990a0a47e9d2738fa119d"><time datetime="2015-03-08">2015-03-08</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync the HTMLElement interface with the spec</summary>
+              <pre class=body>
+<a href="https://html.spec.whatwg.org/#htmlelement">https://html.spec.whatwg.org/#htmlelement</a>
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/983213002">https://codereview.chromium.org/983213002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191490 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/93a40c56cd30ee26175a94e547abfced092b2785"><time datetime="2015-03-08">2015-03-08</time></a>
         <tr>
           <td>philipj
           <td class=message>
