@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 560,
   
-    <a href="#blink">Blink</a>: 2538,
+    <a href="#blink">Blink</a>: 2542,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10233,6 +10233,89 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync HTML element interfaces C-D with the spec</summary>
+              <pre class=body>
+There are no changes to the generated code except ordering.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/988173002">https://codereview.chromium.org/988173002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191547 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fa7f01fa343fc465841dc3cfbddd2bd265634b6c"><time datetime="2015-03-09">2015-03-09</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Add [TypeChecking=Interface] to XPath interfaces</summary>
+              <pre class=body>
+Also make all arguments non-optional, make some nullable, change the type
+of XPathResult input arguments to &#34;object?&#34; and drop the custom bindings
+for DocumentXPathEvaluator.evaluate() (which did nothing special at all).
+
+All this matches Firefox&#39;s behavior, and the informal &#34;specification&#34; at
+<a href="https://wiki.whatwg.org/wiki/DOM_XPath">https://wiki.whatwg.org/wiki/DOM_XPath</a> as well as, to some degree, the
+older specification at <a href="http://www.w3.org/TR/DOM-Level-3-XPath">http://www.w3.org/TR/DOM-Level-3-XPath</a>.
+
+The changed type of XPathResult input arguments means that any object can
+be used for those arguments, but the value is not used at all in our
+implementation anyway, so strictly checking that an XPathResult is passed
+serves little purpose in practice.
+
+BUG=462561
+
+Review URL: <a href="https://codereview.chromium.org/983123003">https://codereview.chromium.org/983123003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191546 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ad5e8183dd42b23f96eaa134df69370627d369cb"><time datetime="2015-03-09">2015-03-09</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Use Length for the stroke-width property in SVGLayoutStyle</summary>
+              <pre class=body>
+Straight-forward if it hadn&#39;t been for the default value - &#34;1&#34; - which
+does not interact well with the zoom (is not affected by it). To deal
+with that, introduce a helper wrapper - UnzoomedLength - and use that
+instead of a plain Length.
+The animation framework is changed to use AnimatedLength and
+LengthStyleInterpolation. This leaves AnimatedSVGLength and
+SVGLengthStyleInterpolation unused, so they are removed.
+
+BUG=461375
+
+Review URL: <a href="https://codereview.chromium.org/983103003">https://codereview.chromium.org/983103003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191544 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/603069294ee89c2d6b8b85e37124830b75afbbd4"><time datetime="2015-03-09">2015-03-09</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: avoid disabling GC plugin checks over Node.</summary>
+              <pre class=body>
+With the GC plugin now recognizing GC_PLUGIN_IGNORE() on &#34;operator new&#34;
+overrides, move down Node&#39;s annotation.
+
+R=haraken
+BUG=443854
+
+Review URL: <a href="https://codereview.chromium.org/986113004">https://codereview.chromium.org/986113004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191543 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/34273d7afb399c0163ada25d781a6997fc96eed4"><time datetime="2015-03-09">2015-03-09</time></a>
         <tr>
           <td>fs
           <td class=message>
