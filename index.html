@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 560,
   
-    <a href="#blink">Blink</a>: 2530,
+    <a href="#blink">Blink</a>: 2531,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10233,6 +10233,36 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: disable conservative GCs during initial GC mixin construction.</summary>
+              <pre class=body>
+Another, more effective, attempt at disallowing conservative GCs from
+striking while constructing a GC mixin object and it is not in a
+well-formed state to allow a GC to strike.
+
+GC mixins now override &#39;operator new&#39;, which along with taking care of
+the allocation request, disables conservative GCs. GCs are kept disabled
+until the constructors of the mixin&#39;s inherited classes have run and
+the mixin itself is in a well-formed state to re-enable GCs.
+
+Arrange for that re-enabling by way of a private field to an empty type
+with a constructor that takes care of the underlying details. All of this
+is hidden from direct view to the Blink code, still only requiring that
+GC mixin instances declare themselves as such by using the
+USING_GARBAGE_COLLECTED_MIXIN(Type) macro.
+
+R=haraken
+BUG=456823
+
+Review URL: <a href="https://codereview.chromium.org/980653002">https://codereview.chromium.org/980653002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191501 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3b5c7b2924055c1f9937d67208b8178f5d7b4c81"><time datetime="2015-03-08">2015-03-08</time></a>
         <tr>
           <td>philipj
           <td class=message>
