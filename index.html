@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 560,
   
-    <a href="#blink">Blink</a>: 2536,
+    <a href="#blink">Blink</a>: 2538,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10233,6 +10233,51 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Start separating the text track container from the media controls</summary>
+              <pre class=body>
+Having the text track container as a part of the media controls makes it
+harder to show and hide the controls as a group, which would be useful.
+
+This CL prepares for this by moving and renaming code, with no observable
+difference. However, some small drive-by fixes are included:
+
+TextTrackContainer::m_videoDisplaySize is made into an IntSize, since
+the position part is never used. It&#39;s also renamed to just m_videoSize.
+
+(Based on <a href="https://codereview.chromium.org/949203002/">https://codereview.chromium.org/949203002/</a>)
+
+BUG=448795
+
+Review URL: <a href="https://codereview.chromium.org/988763002">https://codereview.chromium.org/988763002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191538 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/982471dfdc6ff641f42bd02f2069e9239fe39517"><time datetime="2015-03-09">2015-03-09</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove unnecessary add/removeObserver lifetime notifier indirections.</summary>
+              <pre class=body>
+With LifetimeNotifier&lt;T,O&gt;::{add,remove}Observer(O*) now being type
+accurate &amp; safe, we can simply expose these as public and avoid having
+to define&amp;declare forwarding versions. Unless the overriding is needed
+(e.g., ContextLifecycleNotifier::addObserver().)
+
+R=haraken
+BUG=462949
+
+Review URL: <a href="https://codereview.chromium.org/991763002">https://codereview.chromium.org/991763002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191537 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/abaf886681a000589135c645eacfd5138bf9c16b"><time datetime="2015-03-09">2015-03-09</time></a>
         <tr>
           <td>jl
           <td class=message>
