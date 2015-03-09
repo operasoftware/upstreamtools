@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 560,
   
-    <a href="#blink">Blink</a>: 2531,
+    <a href="#blink">Blink</a>: 2532,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10233,6 +10233,33 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync HTML element interfaces E-F with the spec</summary>
+              <pre class=body>
+Changing the HTMLFieldSetElement and HTMLFormElement.elements type from
+HTMLCollection to HTMLFormControlsCollection does not change behavior,
+since they already return a HTMLFormControlsCollection in C++ and that
+object is wrapped correctly. Only some includes change in the generated
+code.
+
+Other than that, there are no changes to the generated code other than
+the order.
+
+HTMLFormElement.action is reflected as a URL by us and other tested
+browsers, so a spec bug was filed to make the spec agree:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=28169">https://www.w3.org/Bugs/Public/show_bug.cgi?id=28169</a>
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/980703006">https://codereview.chromium.org/980703006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191507 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/514696c180531376abaf0e60f715b72cfca344fe"><time datetime="2015-03-09">2015-03-09</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
