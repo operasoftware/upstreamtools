@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 561,
   
-    <a href="#blink">Blink</a>: 2550,
+    <a href="#blink">Blink</a>: 2551,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10257,6 +10257,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Gracefully handle mixed content checking on detached resource fetches.</summary>
+              <pre class=body>
+Do not assume the presence of a frame() when performing the mixed content
+checks in ResourceFetcher::canRequest().
+
+<a href="mailto:R=mkwst@chromium.org">R=mkwst@chromium.org</a>
+BUG=461225
+
+Review URL: <a href="https://codereview.chromium.org/995783002">https://codereview.chromium.org/995783002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191636 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/70ac5f9d41d7d8ee3d631e7546696177135f5924"><time datetime="2015-03-10">2015-03-10</time></a>
         <tr>
           <td>jl
           <td class=message>
