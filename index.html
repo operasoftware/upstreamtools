@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 560,
+    <a href="#chromium">Chromium</a>: 561,
   
     <a href="#blink">Blink</a>: 2545,
   
@@ -44,6 +44,30 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rchlodnicki
+          <td class=message>
+            <details>
+              <summary>Fix crash on referencing deleted SignedInDevicesManager observer</summary>
+              <pre class=body>
+Each profile creates new instance of SignedInDevicesManager so, for example,
+opening incognito window and then closing it, destroyes an instance of
+SignedInDevicesManager created for this profile. The code has forgot to remove
+itself from the list of observers in EventRouter.
+That caused crash when that event was triggered later in a normal profile as
+EventRouter would reference stale pointer.
+
+In tests observer is not added and profile_ is null so null-checking it.
+
+<a href="mailto:R=rdevlin.cronin@chromium.org">R=rdevlin.cronin@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/980663002">https://codereview.chromium.org/980663002</a>
+
+Cr-Commit-Position: refs/heads/master@{#319755}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/d6dcf8725b262caae50f899ab7c47e8ff3980928"><time datetime="2015-03-09">2015-03-09</time></a>
         <tr>
           <td>wdzierzanowski
           <td class=message>
