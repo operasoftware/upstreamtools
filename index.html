@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 561,
   
-    <a href="#blink">Blink</a>: 2560,
+    <a href="#blink">Blink</a>: 2563,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10257,6 +10257,60 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Do really include the beacon Blob content type if valid.</summary>
+              <pre class=body>
+The setting of a Blob beacon&#39;s content type was plain wrong and
+uninteresting.
+
+R=haraken
+BUG=466038
+
+Review URL: <a href="https://codereview.chromium.org/996143002">https://codereview.chromium.org/996143002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191700 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/52cf3bbcc937c328ff2ffcaf46391cd4c7213de8"><time datetime="2015-03-11">2015-03-11</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Add an explicit dispose step for WebDevToolsAgentImpl.</summary>
+              <pre class=body>
+In order to provide an orderly shutdown of a WebViewImpl&#39;s
+WebDevToolsAgentImpl object, add a dispose() step before clearing out
+its reference. Delaying the dispose steps until WebDevToolsAgentImpl
+is finalized, is incompatible with Oilpan.
+
+R=haraken
+BUG=451004
+
+Review URL: <a href="https://codereview.chromium.org/996163002">https://codereview.chromium.org/996163002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191698 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4ea26639d4167ea138a8eff76e9a2fcaf8b73598"><time datetime="2015-03-11">2015-03-11</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t recurse in LengthStyleInterpolation helper constructCalcExpression</summary>
+              <pre class=body>
+The mixed for-loop and recursion made this helper function look more
+complicated than it needed to be. Make it iterate only using the
+for-loop.
+
+Review URL: <a href="https://codereview.chromium.org/995033002">https://codereview.chromium.org/995033002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191696 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d325d00a565565bbdf22e61b2db731f9d7320650"><time datetime="2015-03-11">2015-03-11</time></a>
         <tr>
           <td>philipj
           <td class=message>
