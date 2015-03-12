@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 561,
   
-    <a href="#blink">Blink</a>: 2568,
+    <a href="#blink">Blink</a>: 2569,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10257,6 +10257,40 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Move code from StyleResolver to ViewportStyleResolver.</summary>
+              <pre class=body>
+@viewport rule collection is moved to ViewportStyleResolver. This removes
+the last StyleResolver dependency from ScopedStyleResolver.
+
+Removed an unnecessary null check for m_document in ViewportStyleResolver
+which should always be non-null.
+
+Moved resetAuthorStyle() to skip the call when the ScopedStyleResolver is
+deleted immediately afterwards.
+
+Load the viewport UA style into CSSDefaultStyleSheets once instead
+of parsing it from InspectorPageAgent every time it is applied. Also
+apply the UA style from ViewportStyleResolver instead of the
+InspectorPageAgent to remove resolver dependencies from the inspector
+code. The application of the UA style is controlled by a setting instead
+of and OS(ANDROID) #if in Blink.
+
+The introduction of the setting is a two-sided patch with this CL and [1].
+[2] removes the OS(ANDROID) check completely.
+
+[1] <a href="https://codereview.chromium.org/989963002/">https://codereview.chromium.org/989963002/</a>
+[2] <a href="https://codereview.chromium.org/989973002/">https://codereview.chromium.org/989973002/</a>
+
+Review URL: <a href="https://codereview.chromium.org/979033003">https://codereview.chromium.org/979033003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191747 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/93c0d70347a81831f2b14842371903dda2d097b6"><time datetime="2015-03-12">2015-03-12</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
