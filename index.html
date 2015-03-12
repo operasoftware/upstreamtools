@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 561,
+    <a href="#chromium">Chromium</a>: 562,
   
-    <a href="#blink">Blink</a>: 2570,
+    <a href="#blink">Blink</a>: 2571,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,24 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Trigger use of viewportAndroid.css through new setting.</summary>
+              <pre class=body>
+A setting is used instead of an OS(ANDROID) ifdef in blink in [1]. This
+CL enables that setting for Android on the chromium side along with other
+Android specific settings.
+
+[1] <a href="https://codereview.chromium.org/979033003/">https://codereview.chromium.org/979033003/</a>
+
+Review URL: <a href="https://codereview.chromium.org/989963002">https://codereview.chromium.org/989963002</a>
+
+Cr-Commit-Position: refs/heads/master@{#320251}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/d1677fd03abc26d747174dafb7124a42d505ae2e"><time datetime="2015-03-12">2015-03-12</time></a>
         <tr>
           <td>rchlodnicki
           <td class=message>
@@ -10257,6 +10275,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Handle more &lt;length&gt; properties in css/web animation. </summary>
+              <pre class=body>
+This change adds the following properties to the LengthStyleInterpolation codepath:
+
+&#39;cx&#39;, &#39;cy&#39;, &#39;r&#39;, &#39;rx&#39;, &#39;ry&#39; and &#39;stroke-dashoffset&#39;
+
+BUG=400725
+
+Review URL: <a href="https://codereview.chromium.org/991533003">https://codereview.chromium.org/991533003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191762 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fd8523124e3f57725fbe0ef87153cae749def3ff"><time datetime="2015-03-12">2015-03-12</time></a>
         <tr>
           <td>fs
           <td class=message>
