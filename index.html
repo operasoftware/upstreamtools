@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 565,
   
-    <a href="#blink">Blink</a>: 2588,
+    <a href="#blink">Blink</a>: 2589,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10319,6 +10319,36 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Make positionForPoint() work.</summary>
+              <pre class=body>
+When we decide to look &#34;inside&#34; a column set for text content, convert
+the visual point to a flow thread point, and then redirect to the flow
+thread. The flow thread is where the actual content is; column sets
+are always childless. Also make sure that we don&#39;t enter flow threads
+directly, since they are not visual.
+
+This improves text selecting when hitting something outside the
+columns (in the area around the multicol container, or in gaps between
+columns).
+
+Re-enable some old tests that now pass because of this change.
+
+The old (current) multicol implementation deals with this in
+LayoutBlock::adjustPointToColumnContents().
+
+BUG=461352
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/978603003">https://codereview.chromium.org/978603003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191869 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fffa56dcbcb7ac3c86adab95b5df5da4f2cf04e2"><time datetime="2015-03-13">2015-03-13</time></a>
         <tr>
           <td>rune
           <td class=message>
