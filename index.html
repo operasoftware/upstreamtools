@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 565,
   
-    <a href="#blink">Blink</a>: 2586,
+    <a href="#blink">Blink</a>: 2588,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10319,6 +10319,56 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>WebKitCSSMatrix: Avoid crash resolving relative lengths.</summary>
+              <pre class=body>
+The initial styles created to resolve lengths did not properly construct
+a font which caused a crash trying to resolve &#39;ex&#39; and &#39;ch&#39; units. Call
+Font::update() to construct a dummy font.
+
+There is no document here to the deduce the initial font from. What to do
+with relative lengths and percentages has been discussed for the
+standardization of DOMMatrix, and the current draft says only absolute
+lengths should be allowed [1].
+
+I chose not to try to align with that as WebKitCSSMatrix is a proprietary
+api. FWIW, viewport relative units were already resolved against an emtpy
+viewport.
+
+[1] <a href="http://dev.w3.org/fxtf/geometry/#dommatrix-constructors">http://dev.w3.org/fxtf/geometry/#dommatrix-constructors</a>
+
+<a href="mailto:R=leviw@chromium.org">R=leviw@chromium.org</a>
+BUG=414145
+
+Review URL: <a href="https://codereview.chromium.org/1005523002">https://codereview.chromium.org/1005523002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191865 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/edec1ea49cd9746aa299c5b26bd95e4a0eaaa2c6"><time datetime="2015-03-13">2015-03-13</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add UseCounters for Element.offset*</summary>
+              <pre class=body>
+Add HTMLElement.offset* (which is per spec) to shadow Element.offset*,
+so that the new counters will only trigger for non-HTML elements.
+
+It seems likely that usage could be high without actually implying that
+removal would break anything, but wait to see the data...
+
+BUG=463116
+
+Review URL: <a href="https://codereview.chromium.org/1007683002">https://codereview.chromium.org/1007683002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191864 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9f8d0d82da32fe9a2a1c324a2a9b2605eeb479ad"><time datetime="2015-03-13">2015-03-13</time></a>
         <tr>
           <td>fs
           <td class=message>
