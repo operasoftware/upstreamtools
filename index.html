@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 563,
   
-    <a href="#blink">Blink</a>: 2575,
+    <a href="#blink">Blink</a>: 2576,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10291,6 +10291,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move loading machinery out of LoadableTextTrack</summary>
+              <pre class=body>
+Currently, the code to load a text track is spread between
+HTMLTrackElement, LoadableTextTrack and TextTrackLoader - where the former
+two create the loader and respond to events from it. It&#39;s not obvious what
+the responsibilities are for each of HTMLTrackElement and
+LoadableTextTrack.
+To clear this up a bit, move the shared loading responsibilities into
+HTMLTrackElement only. This makes the code-flow more clear and even reduces
+the amount of state involved.
+Also update the spec prose comments and attempt to simplify the code
+somewhat.
+
+BUG=466083
+
+Review URL: <a href="https://codereview.chromium.org/999773002">https://codereview.chromium.org/999773002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191812 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3d7c06d959a23258f6a492ef607d6bde96ec762d"><time datetime="2015-03-13">2015-03-13</time></a>
         <tr>
           <td>rune
           <td class=message>
