@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 565,
   
-    <a href="#blink">Blink</a>: 2598,
+    <a href="#blink">Blink</a>: 2599,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10319,6 +10319,23 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t allow &lt;stop&gt; as layout tree child of &lt;svg&gt; or &lt;g&gt;</summary>
+              <pre class=body>
+LayoutSVGGradientStop would be allowed as children of &lt;svg&gt;, &lt;g&gt; and
+other containers which could trigger asserts and wreck havoc.
+
+BUG=466937
+
+Review URL: <a href="https://codereview.chromium.org/1009923002">https://codereview.chromium.org/1009923002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191932 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/94602f202921dc48c1d7a344af72f3f5c06e589f"><time datetime="2015-03-16">2015-03-16</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
