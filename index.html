@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 567,
   
-    <a href="#blink">Blink</a>: 2606,
+    <a href="#blink">Blink</a>: 2608,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10347,6 +10347,40 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t handle out-of-range parameters for arcs in UnalteredParsing mode</summary>
+              <pre class=body>
+This means that pathSegList actually keeps/presents the out-of-range
+parameters. (This behavior matches Gecko.)
+
+BUG=467592
+
+Review URL: <a href="https://codereview.chromium.org/1015433003">https://codereview.chromium.org/1015433003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191990 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/68ecb73a77bfe0aab14f0208b077bd6d87b9fddb"><time datetime="2015-03-17">2015-03-17</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Drop SVGPathBuilder::m_current</summary>
+              <pre class=body>
+This path consumer can only handle normalized paths, which means only
+absolute commands.
+
+BUG=467592
+
+Review URL: <a href="https://codereview.chromium.org/1013753003">https://codereview.chromium.org/1013753003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@191989 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d8dbbeec56eacce244ae8127676b9c9dbffdbba8"><time datetime="2015-03-17">2015-03-17</time></a>
         <tr>
           <td>jl
           <td class=message>
