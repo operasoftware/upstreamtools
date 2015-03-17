@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 567,
   
-    <a href="#blink">Blink</a>: 2613,
+    <a href="#blink">Blink</a>: 2616,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10347,6 +10347,56 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Normalize targetPoint first in parseArcToSegment</summary>
+              <pre class=body>
+This simplifies the code a bit.
+
+BUG=467592
+
+Review URL: <a href="https://codereview.chromium.org/1017703002">https://codereview.chromium.org/1017703002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192028 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/352a844abf5b34df47b570b9eca3ad347eca6047"><time datetime="2015-03-17">2015-03-17</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Stop mutating inputs to decomposeArcToCubic</summary>
+              <pre class=body>
+There&#39;s not a lot of gain from doing so, and not doing it will provide
+more freedom to the caller (w/ handling of current point.)
+
+BUG=467592
+
+Review URL: <a href="https://codereview.chromium.org/1013183002">https://codereview.chromium.org/1013183002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192027 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/eab43b3c0cd63b32801d3de1bcee2d31f7595724"><time datetime="2015-03-17">2015-03-17</time></a>
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Remove custom implementation of History.state attribute getter</summary>
+              <pre class=body>
+Using [CachedAttribute=stateChanged] gives equivalent generated code, so
+there is no reason to have a custom implementation.
+
+BUG=345519
+
+Review URL: <a href="https://codereview.chromium.org/1013823005">https://codereview.chromium.org/1013823005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192026 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4853c12fc9559a5db09665f928cecb59c04c1295"><time datetime="2015-03-17">2015-03-17</time></a>
         <tr>
           <td>fs
           <td class=message>
