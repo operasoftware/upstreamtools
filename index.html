@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 567,
   
-    <a href="#blink">Blink</a>: 2608,
+    <a href="#blink">Blink</a>: 2612,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10347,6 +10347,84 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>List IDL compiler sources as inputs to GN&#39;s idl_impl action</summary>
+              <pre class=body>
+This simply copies the inputs of the similar idl_compiler action, and
+fixes a dependency issue where e.g. UnionTypes{Core,Modules}.* would not
+be regenerated properly when the compiler sources were modified.
+
+BUG=240176, 321462
+
+Review URL: <a href="https://codereview.chromium.org/1014793002">https://codereview.chromium.org/1014793002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192014 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d4bc5276acce71244faa53bd8180f124c5183354"><time datetime="2015-03-17">2015-03-17</time></a>
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>[svg2] Make &#39;width&#39; and &#39;height&#39; presentation attributes</summary>
+              <pre class=body>
+The following elements&#39; width and height attributes have been made
+into presentation attributes:
+
+* mask
+* rect
+* image
+* foreignObject
+
+BUG=400725
+
+Review URL: <a href="https://codereview.chromium.org/963733002">https://codereview.chromium.org/963733002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192013 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/244d1ffb6004a6c2dc566c5536d472f9fc3242b0"><time datetime="2015-03-17">2015-03-17</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: have LifetimeNotifier&lt;T&gt; track its observers weakly.</summary>
+              <pre class=body>
+Simplify the unregistration of lifetime observers upon finalization by
+having LifetimeNotifier&lt;&gt; keep a WeakMember&lt;&gt; reference to them. As a
+result the observers will no longer have to explicitly unregister
+themselves when going away. Observers can still explicitly unregister,
+should that be needed for other reasons.
+
+R=haraken
+BUG=462949, 467502
+
+Review URL: <a href="https://codereview.chromium.org/1006253002">https://codereview.chromium.org/1006253002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192011 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2f002c75b1d0c8fc69a828e80ae5e13c028f9710"><time datetime="2015-03-17">2015-03-17</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Drop SVGPathSegWithContext</summary>
+              <pre class=body>
+SVGPathSegWithContext no longer adds any functionality to the SVGPathSeg
+class hierarchy (SVGPathSeg now has a context.)
+
+BUG=467592
+
+Review URL: <a href="https://codereview.chromium.org/1011983003">https://codereview.chromium.org/1011983003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192010 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5a36959f3aaafa1378f2b18dac5ef9fdfb8531e4"><time datetime="2015-03-17">2015-03-17</time></a>
         <tr>
           <td>fs
           <td class=message>
