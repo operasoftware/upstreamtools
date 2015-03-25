@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 577,
   
-    <a href="#blink">Blink</a>: 2691,
+    <a href="#blink">Blink</a>: 2692,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10534,6 +10534,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: finalization of Permissions and SyncManager not needed.</summary>
+              <pre class=body>
+With ScriptWrappable being without a destructor with Oilpan, have these
+two classes derive from the non-finalizing GarbageCollected&lt;&gt;.
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/1033963002">https://codereview.chromium.org/1033963002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192536 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8ca491f23cba07d68a0cfd22ecc25553173913bc"><time datetime="2015-03-25">2015-03-25</time></a>
         <tr>
           <td>philipj
           <td class=message>
