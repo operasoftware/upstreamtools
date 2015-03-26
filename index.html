@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 582,
   
-    <a href="#blink">Blink</a>: 2700,
+    <a href="#blink">Blink</a>: 2701,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10604,6 +10604,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Get rid of SVGTextMetrics functions without an explicit TextDirection</summary>
+              <pre class=body>
+It&#39;s better to not use these at all. Open-code them at their current
+callsites with an intent of fixing the direction they specify.
+
+No functional changes.
+
+BUG=470326
+
+Review URL: <a href="https://codereview.chromium.org/1038843002">https://codereview.chromium.org/1038843002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192605 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5f05c57a5747cba71c52f59b642c2c296e3c3395"><time datetime="2015-03-26">2015-03-26</time></a>
         <tr>
           <td>jl
           <td class=message>
