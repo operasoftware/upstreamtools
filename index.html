@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 583,
   
-    <a href="#blink">Blink</a>: 2705,
+    <a href="#blink">Blink</a>: 2706,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10618,6 +10618,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Force Mac editing behavior for fast/multicol/hit-test-above-or-below.html</summary>
+              <pre class=body>
+This way we won&#39;t need platform specific expectations, since it should now just
+pass on all platforms. What to hit when you start selecting below the end of
+the last column (or simply below the block in non-multicol), is
+platform-specific. On Windows you hit the character that&#39;s directly above the
+cursor, while on Linux and Mac you hit the end of the text.
+
+This is another preparatory patch for enabling region based columns.
+
+<a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+BUG=334335
+
+Review URL: <a href="https://codereview.chromium.org/1016603006">https://codereview.chromium.org/1016603006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192632 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/45622a06fc5631427629d249424181e8df4935f4"><time datetime="2015-03-26">2015-03-26</time></a>
         <tr>
           <td>fs
           <td class=message>
