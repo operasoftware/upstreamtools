@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 582,
   
-    <a href="#blink">Blink</a>: 2702,
+    <a href="#blink">Blink</a>: 2703,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10604,6 +10604,37 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] mapAbsoluteToLocalPoint() needs to convert to flow thread coordinates.</summary>
+              <pre class=body>
+mapAbsoluteToLocalPoint() works on visual coordinates, so pretending that it&#39;s
+a flow thread coordinate (and then mapping it to a visual coordinate again, why
+not) on the way up the tree is just going to cause trouble.
+
+Instead we need to convert from visual to flow thread coordinates on our way
+back down the tree, when entering the flow thread on our way to the target
+element. Sadly, we also need to cancel out a flowthread-to-visual conversion
+done in LayoutBox::offsetFromContainer().
+
+This makes fast/events/document-elementFromPoint.html pass in the new multicol
+implementation.
+
+Added a couple of new tests as well (one which actually fails in the old /
+current implementation), since the aforementioned test isn&#39;t yet run with the
+new implementation.
+
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+BUG=334335
+
+Review URL: <a href="https://codereview.chromium.org/1024023002">https://codereview.chromium.org/1024023002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192616 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/62458b7f81f6ce478614a4ddd0a2b70fcd71f730"><time datetime="2015-03-26">2015-03-26</time></a>
         <tr>
           <td>philipj
           <td class=message>
