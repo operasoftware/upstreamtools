@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 582,
   
-    <a href="#blink">Blink</a>: 2701,
+    <a href="#blink">Blink</a>: 2702,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10604,6 +10604,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Move iframe border/padding to the standard Fullscreen UA style sheet</summary>
+              <pre class=body>
+This spec bug was resolved very quickly: (Thanks, Anne!)
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=28332">https://www.w3.org/Bugs/Public/show_bug.cgi?id=28332</a>
+
+The ua-style-iframe-border.html test is no longer needed, as it was
+written specifically to handle the fact that the border rule was not
+!important, which it now is.
+
+BUG=402378
+
+Review URL: <a href="https://codereview.chromium.org/1032253002">https://codereview.chromium.org/1032253002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192610 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8b0b1d12c484da080bc0a27607803c16bd834587"><time datetime="2015-03-26">2015-03-26</time></a>
         <tr>
           <td>fs
           <td class=message>
