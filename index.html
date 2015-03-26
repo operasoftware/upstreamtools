@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 581,
   
-    <a href="#blink">Blink</a>: 2694,
+    <a href="#blink">Blink</a>: 2695,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10590,6 +10590,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Turn ViewportAnchors into stack allocated objects.</summary>
+              <pre class=body>
+The viewport anchors have stack lifetimes, so rephrase their
+implementation and use slightly so as to be able to allocate
+them on the stack.
+
+The main benefit of doing so is that the references they
+contain to Oilpan heap objects will then be correctly traced
+should an Oilpan conservative GC be needed while resizing
+the view.
+
+R=bokan,haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/1003323004">https://codereview.chromium.org/1003323004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192586 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/67a4bf8dcbeb3c6d5e6e22bbce0997420b985c3a"><time datetime="2015-03-26">2015-03-26</time></a>
         <tr>
           <td>philipj
           <td class=message>
