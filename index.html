@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 582,
   
-    <a href="#blink">Blink</a>: 2704,
+    <a href="#blink">Blink</a>: 2705,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10604,6 +10604,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Factor out glyph position computations in SVGTextQuery</summary>
+              <pre class=body>
+In preparation for fixing RTL handling, move some common code for
+computing the position of a glyph into two helper functions.
+
+No functional changes.
+
+BUG=470326
+
+Review URL: <a href="https://codereview.chromium.org/1032603005">https://codereview.chromium.org/1032603005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192624 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/86261d714ee516d6d96163a3d6a0f17a72877b32"><time datetime="2015-03-26">2015-03-26</time></a>
         <tr>
           <td>jl
           <td class=message>
