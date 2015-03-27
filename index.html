@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 584,
   
-    <a href="#blink">Blink</a>: 2708,
+    <a href="#blink">Blink</a>: 2709,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10632,6 +10632,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>IDBRequestTest.AbortErrorAfterAbort: stop request on exit.</summary>
+              <pre class=body>
+To avoid test instability should a GC happen before a later test calls
+stopActiveDOMObjects(), have this test stop its request upon exit.
+Otherwise we risk finalizing the request object while it is in a
+pending state; something that the IDBRequest destructor checks for.
+
+R=
+
+Review URL: <a href="https://codereview.chromium.org/1035963002">https://codereview.chromium.org/1035963002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192640 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6d7092e29d55600a7c9f84289e6b2a897b014fb0"><time datetime="2015-03-27">2015-03-27</time></a>
         <tr>
           <td>mstensho
           <td class=message>
