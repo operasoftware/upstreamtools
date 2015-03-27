@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 584,
   
-    <a href="#blink">Blink</a>: 2712,
+    <a href="#blink">Blink</a>: 2714,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10632,6 +10632,80 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: avoid InjectedScriptManager::CallbackData-induced leaks.</summary>
+              <pre class=body>
+Move CallbackData to the Oilpan heap, so as to avoid it having to
+keep a Persistent&lt;&gt; reference to its InjectedScriptHost.
+
+If left as a persistent, it would leave the v8 wrapper object uncollected
+and prevent a clean shutdown.
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/1040703002">https://codereview.chromium.org/1040703002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192684 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5c3405c696d15dd71ffe39dddd9e124cabd866a5"><time datetime="2015-03-27">2015-03-27</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Enable new multicol for testing and experimental web platform features.</summary>
+              <pre class=body>
+There&#39;s already a RuntimeEnabledFeatures flag for region based
+(aka. &#34;new&#34;) multicol. So far it&#39;s only been used to toggle support
+for column-fill (only supported in the new implementation), but will
+from now on be used to determine whether to use the region based
+implementation or not.
+
+Remove internals.settings.setRegionBasedColumnsEnabled().
+
+We need to keep a method for region based multicol (that does nothing)
+in WebSettings for now, since it&#39;s still being called from the
+Chromium side. Will be cleaned up later, when the
+--enable-region-based-columns command line flag (which from now on has
+no effect) is gone. See crbug.com/350853
+
+Remove virtual/regionbasedcolumns tests, since region based multicol
+is what&#39;s tested by default from now on. At the same time, add
+virtual/stable/ tests, so that we still get test coverage for the old
+implementation, since that&#39;s still what&#39;s shipping. This move causes
+many changes in TestExpectations. All multicol test expectations that
+used to be foo/* will now be virtual/stable/foo/* , and everything
+that used to be virtual/regionbased/foo/* is now foo/* .
+
+A few test expectations also need to be updated:
+
+fast/dom/Element/getBoundingClientRect.html: Regenerated expectation
+file. New multicol has improved column balancing, resulting in 6px
+shorter columns.
+
+fast/borders/border-antialiasing.html: Schedule for
+rebaseline. Clipping improvements in new multicol.
+
+fast/repaint/multicol-as-paint-container.html: Schedule for
+rebaseline. Different individual rectangles, but same resulting
+rectangle.
+
+fast/repaint/multicol-repaint.html: Schedule for rebaseline. Clipping
+improvements in new multicol.
+
+BUG=334335,467468
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org,kbr@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org,kbr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1028383002">https://codereview.chromium.org/1028383002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192683 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ce8f5e700c7a586a65b7da08f480f232dcc6dbb9"><time datetime="2015-03-27">2015-03-27</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
