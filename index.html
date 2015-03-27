@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 584,
   
-    <a href="#blink">Blink</a>: 2711,
+    <a href="#blink">Blink</a>: 2712,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10632,6 +10632,37 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: dispose an HTMLImportsController on document detach/removal.</summary>
+              <pre class=body>
+When a Document becomes detached and removes its HTMLImportsController
+supplement, this will synchronously remove the controller and all
+its &#34;HTML imports&#34; owned objects, in a non-Oilpan setting. This cancels
+all ongoing loaders and more (cf. HTMLImportsController::removeFrom().)
+
+ResourceFetcher objects are moving to accurately detaching from their
+FrameFetchContexts when their frames become detached from a document
+(<a href="http://crbug.com/458222">http://crbug.com/458222</a>). This implies that we cannot have loader objects
+active, as that may cause FrameFetchContexts to be accessed, but once
+lacking a frame. The code is no longer that expecting that.
+
+For HTML imports loaders, this is avoided by synchronously cancelling &amp;
+finalizing the loaders, but that doesn&#39;t happen for Oilpan. It needs to,
+so an explicit dispose() step is introduced for HTMLImportsController
+and all its associated objects.
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/1032293002">https://codereview.chromium.org/1032293002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192677 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7da3722d5ae4f3a7aa5e7164f714556c285a0a63"><time datetime="2015-03-27">2015-03-27</time></a>
         <tr>
           <td>fs
           <td class=message>
