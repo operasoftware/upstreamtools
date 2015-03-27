@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 583,
+    <a href="#chromium">Chromium</a>: 584,
   
-    <a href="#blink">Blink</a>: 2706,
+    <a href="#blink">Blink</a>: 2708,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,20 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>favor DCHECK_CURRENTLY_ON for better logs in chromecast/</summary>
+              <pre class=body>
+BUG=466848
+
+Review URL: <a href="https://codereview.chromium.org/1038143002">https://codereview.chromium.org/1038143002</a>
+
+Cr-Commit-Position: refs/heads/master@{#322500}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/195191403247359aa711b5d74fecf97281182f3a"><time datetime="2015-03-26">2015-03-26</time></a>
         <tr>
           <td>mostynb
           <td class=message>
@@ -10618,6 +10632,54 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Turn css3/unicode-bidi-isolate-basic into a reftest.</summary>
+              <pre class=body>
+BUG=386567
+<a href="mailto:R=rune@opera.com">R=rune@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/1029343003">https://codereview.chromium.org/1029343003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192637 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/13b3ad8f74d7386767f7af8c7c5ca1c44e53ecc7"><time datetime="2015-03-26">2015-03-26</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Give up on stretching columns if they have already reached max height.</summary>
+              <pre class=body>
+This doesn&#39;t change any behavior (column heights were already clamped against
+max height), but it avoids an assertion failure that would occur if no space
+shortage is recorded during a layout pass. Unbreakable content (lines) that&#39;s
+taller than the column (max) height don&#39;t record space shortage, as columns
+cannot be stretched beyond the (max) height anyway.
+
+Note that layout might end up looking somewhat weird in situations like this,
+since content that&#39;s supposed to be unbreakable is split across multiple
+columns (instead of letting content overflow columns in the block direction).
+For paged overflow (or printing) this is the desired behavior, though, since
+overflow will be clipped. See also crbug.com/367651
+
+This also avoids the same assertion failure when
+fast/block/line-layout/line-break-removal-near-textarea-crash.html is run with
+the new multicol implementation on Mac, because -webkit-appearance:button
+imposes a min-height there. min-height is treated as height if height is auto.
+That&#39;s crbug.com/65731
+
+BUG=470527
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1017263004">https://codereview.chromium.org/1017263004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192636 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d718b0f20bc49a369817da9338ab81eab88eb9a8"><time datetime="2015-03-26">2015-03-26</time></a>
         <tr>
           <td>mstensho
           <td class=message>
