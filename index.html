@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 584,
   
-    <a href="#blink">Blink</a>: 2709,
+    <a href="#blink">Blink</a>: 2711,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10632,6 +10632,87 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fix handling of Arabic script in SVGTextContentElement.getSubStringLength</summary>
+              <pre class=body>
+Pass the direction of the line box instead of the layout object when
+measuring the sub string.
+
+BUG=470326
+
+Review URL: <a href="https://codereview.chromium.org/1032363002">https://codereview.chromium.org/1032363002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192670 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e3aaea1ffc409ee0a9a0d5334287fa8b76794b23"><time datetime="2015-03-27">2015-03-27</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Clear baseLayoutStyle when the font selector version has increased.</summary>
+              <pre class=body>
+FontFaceCache has a version() member which is increased when we add fonts
+to the cache. It is used to detect if new fonts have been added to the
+cache after a LayoutStyle was calculated. Different version() numbers will
+make Font comparison fail and trigger relayout with new font data.
+
+When the font added to the cache is new to the style system, it is
+accompanied by a full document recalc. If we add a stylesheet with an
+@font-face rule, the @font-face will cause an addition to the font cache,
+and a document style recalc. So, if we have a &#34;font-family:webfont,serif&#34;
+where &#34;webfont&#34; does not match anything, we lay out with the serif &#34;font&#34;.
+If we then add a stylesheet with an @font-face for &#34;webfont&#34;, we need to
+re-layout with that new font even if the computed style for font-family
+doesn&#39;t change. That is triggered by the version number incremented by the
+addition of &#34;webfont&#34;.
+
+This is all well until we add or remove a stylesheet which causes an
+analyzed stylesheet update where we get a Reconstruct. The StyleResolver
+will be recreated and font faces will be re-added, hence increasing the
+version number of the font cache. The analyzed stylesheet update is smart
+enough to avoid a full document recalc if it figures out that we did not
+really add or remove any @font-face rules, just re-adding the ones we had.
+
+We will then end up with a computed Font that was created for a different
+font cache version, but we figured out we didn&#39;t need to recompute the
+style or relayout since the font cache didn&#39;t really change with the
+increased version.
+
+If we are animating an element while such a reconstruct happen, we end up
+having a baseLayoutStyle for the animation which is based on an old font
+cache version. The LayoutStyle comparison ASSERT for baseLayoutStyle in
+ElementAnimations will trigger because the Font comparison will fail,
+since the version number for a newly created LayoutStyle Font will be
+different.
+
+To avoid that, we throw away the baseLayoutStyle after such a reconstruct
+happens, in which case the stored version in the FontFallbackList will not
+be in sync with the one stored in the FontFaceCache.
+
+The real bug here is that the version tagging/increment here is imprecise
+and not correlated with needsStyleRecalc. Removing an empty stylesheet
+like in the added test-case will cause any element to be re-layout the
+next time some other computed style change happen on that element as we
+detect that the version number is out of sync. I have reported
+crbug.com/471079 for that.
+
+There is a generation() in FontCache which is similar to version(), but
+increasing that will always trigger a full document recalc in
+StyleEngine::fontsNeedUpdate.
+
+<a href="mailto:R=esprehn@chromium.org,dstockwell@chromium.org,eae@chromium.org">R=esprehn@chromium.org,dstockwell@chromium.org,eae@chromium.org</a>
+BUG=470458
+
+Review URL: <a href="https://codereview.chromium.org/1038193002">https://codereview.chromium.org/1038193002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@192669 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/03a17ec5b7eae2441c02bf26768804852be40dd9"><time datetime="2015-03-27">2015-03-27</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
