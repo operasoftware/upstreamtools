@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 588,
   
-    <a href="#blink">Blink</a>: 2728,
+    <a href="#blink">Blink</a>: 2729,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10692,6 +10692,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Hide the SVGTextQuery implementation in the .cpp file</summary>
+              <pre class=body>
+Mostly renaming and &#34;re-namespacing&#34; in preparation for adding a
+different way to perform a query.
+Actual code-changes include storing the LayoutObject to query in the
+SVGTextQuery instance, and passing it on to executeQuery(). The Vector
+of textboxes is moved to the stack of executeQuery(), and the helper
+collectTextBoxesInFlowBox() gets a new argument to pass that Vector
+around.
+
+BUG=471205,470326
+
+Review URL: <a href="https://codereview.chromium.org/1057853002">https://codereview.chromium.org/1057853002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@193038 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a68fe026f68e425b087e9cb0c56da5204a7962af"><time datetime="2015-04-02">2015-04-02</time></a>
         <tr>
           <td>davve
           <td class=message>
