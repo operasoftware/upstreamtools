@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 587,
   
-    <a href="#blink">Blink</a>: 2725,
+    <a href="#blink">Blink</a>: 2726,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10674,6 +10674,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Eliminate use of and remove PathCoordinateMode</summary>
+              <pre class=body>
+No longer used by SVGPathConsumer. Used by SVGPathBlender to decide
+what the blending result will be.
+Replace with bools in SVGPathBlender.
+
+BUG=467592
+
+Review URL: <a href="https://codereview.chromium.org/1048913004">https://codereview.chromium.org/1048913004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@193009 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3ccd4c53785e698c155f9dba093ea821946b083e"><time datetime="2015-04-02">2015-04-02</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
