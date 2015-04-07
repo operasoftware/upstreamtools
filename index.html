@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 588,
   
-    <a href="#blink">Blink</a>: 2738,
+    <a href="#blink">Blink</a>: 2739,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10692,6 +10692,37 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Cache element indices for :nth-child and :nth-last-child selectors.</summary>
+              <pre class=body>
+In order to avoid n^2 for :nth-selectors, we introduce a cache where we
+store the index of every kth child of a parent node P the first time the
+nth-count is queried for one of its children. The number k is given by
+the &#34;spread&#34; constant.
+
+After the cache has been populated for the children of P, the nth-index
+for an element will be found by walking the siblings from the element
+queried for and leftwards until a cached element/index pair is found.
+So populating the cache for P is O(n). Subsequent lookups are best case
+O(1), worst case O(k).
+
+The cache is created on the stack when we do operations where we know we
+can benefit from having it. Currently, those are querySelector,
+querySelectorAll, and updateStyle. We are throwing away the cache after
+each operation to avoid holding on to potentially large caches in memory.
+
+<a href="mailto:R=esprehn@chromium.org">R=esprehn@chromium.org</a>
+BUG=461878
+
+Review URL: <a href="https://codereview.chromium.org/1023393002">https://codereview.chromium.org/1023393002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@193268 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b620a38279a414b2b1aa671e7ceb44a8c91b198c"><time datetime="2015-04-07">2015-04-07</time></a>
         <tr>
           <td>fs
           <td class=message>
