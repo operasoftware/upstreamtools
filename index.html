@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 588,
   
-    <a href="#blink">Blink</a>: 2745,
+    <a href="#blink">Blink</a>: 2746,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10692,6 +10692,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Add metrics for intrinsic and min-intrinsic CSS values</summary>
+              <pre class=body>
+Blink supports the unprefixed and nonstandard values |intrinsic| and
+|min-intrinsic| when passed as:
+
+ width: min-intrinsic | intrinsic
+
+If we want to remove them or add them to a specification, use counter
+data may be useful.
+
+BUG=475104
+
+Review URL: <a href="https://codereview.chromium.org/1051573003">https://codereview.chromium.org/1051573003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@193429 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/39d5cf11e60dc5360b24c5a6f15498fe23cad309"><time datetime="2015-04-09">2015-04-09</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
