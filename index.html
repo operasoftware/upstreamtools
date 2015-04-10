@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 589,
+    <a href="#chromium">Chromium</a>: 590,
   
-    <a href="#blink">Blink</a>: 2749,
+    <a href="#blink">Blink</a>: 2750,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,32 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>tsniatowski
+          <td class=message>
+            <details>
+              <summary>jinja2: make templates outside of // work again</summary>
+              <pre class=body>
+A recent CL -- <a href="http://crrev.com/1002313002">http://crrev.com/1002313002</a> -- made the jinja wrapper script
+barf on templates located outside CHROMIUM_SRC (the used Jinja2 loader
+disallows template paths with &#39;..&#39; components). While not actively used
+currently in the Chromium build, it is a somewhat useful feature of the
+wrapper that used to work.
+
+Fix by instatiating the jinja template loader with a configurable path as the
+search directory, rather than a hardcoded CHROMIUM_SRC. Usages with templates
+outside CHROMIUM_SRC now must pass an appropriate --loader-base-dir value
+to the wrapper script.
+
+R=cjhopman,jbudorick
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1077553002">https://codereview.chromium.org/1077553002</a>
+
+Cr-Commit-Position: refs/heads/master@{#324597}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/65b1b8d1d29b68df077dfaec40d3fd4e8961758e"><time datetime="2015-04-09">2015-04-09</time></a>
         <tr>
           <td>wdzierzanowski
           <td class=message>
@@ -10707,6 +10733,33 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Support non-function object values assigned to EventHandler attributes</summary>
+              <pre class=body>
+In HTML, the type EventHandler, used for event handler IDL attributes,
+is defined
+
+  [TreatNonObjectAsNull]
+  callback EventHandlerNonNull = any (Event event);
+
+  typedef EventHandlerNonNull? EventHandler;
+
+Aside from treating non-object values as null, the extended attribute
+means non-callable object values should be allowed by the attribute&#39;s
+setter (and returned by its getter) and should be treated as if they
+were no-op functions returning undefined.
+
+BUG=475428
+
+Review URL: <a href="https://codereview.chromium.org/1076783002">https://codereview.chromium.org/1076783002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@193516 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/52a03dce9b48b3356386bc180f49a04226e60977"><time datetime="2015-04-10">2015-04-10</time></a>
         <tr>
           <td>rune
           <td class=message>
