@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 590,
   
-    <a href="#blink">Blink</a>: 2753,
+    <a href="#blink">Blink</a>: 2755,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10733,6 +10733,49 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: adjust AnimationTimeline finalization.</summary>
+              <pre class=body>
+With Oilpan, explicitly disconnecting its animation players is not needed;
+the ExecutionContext&#39;s weak reference will be transparently take care of
+this instead.
+
+While here, merge the timeline finalization steps into a detach operation
+for AnimationPlayer.
+
+TBR=dstockwell,oilpan-reviews
+BUG=472307
+
+Review URL: <a href="https://codereview.chromium.org/1080523002">https://codereview.chromium.org/1080523002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@193552 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f9182d36955cd6de7cf80d2490e4712e98839ca6"><time datetime="2015-04-10">2015-04-10</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Cleanup resolving of &#39;em&#39; units in SVGLengthContext</summary>
+              <pre class=body>
+With the &#39;rem&#39; unit added, there&#39;s some duplication, since the only
+difference between &#39;em&#39; and &#39;rem&#39; is where the style comes from.
+By splitting the resolution of the style out of the methods that
+convert to/from &#39;em&#39; (and &#39;rem&#39;), the same two functions can be used
+to compute the results in both the &#39;em&#39; and &#39;rem&#39; case - just feeding
+them with different ComputedStyle objects.
+
+BUG=368598,470449
+
+Review URL: <a href="https://codereview.chromium.org/1065223003">https://codereview.chromium.org/1065223003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@193547 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1756dfafaa3a8b7dcf0781fd11f021b08b8e9804"><time datetime="2015-04-10">2015-04-10</time></a>
         <tr>
           <td>ed
           <td class=message>
