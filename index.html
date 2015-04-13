@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 590,
   
-    <a href="#blink">Blink</a>: 2756,
+    <a href="#blink">Blink</a>: 2757,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10733,6 +10733,32 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Don&#39;t clear FontFaceCache if no @font-face were removed.</summary>
+              <pre class=body>
+AnalyzedStyleUpdate will end up with a Reconstruct for the StyleResolver
+and a if we remove stylesheets which do not contain @font-face rules and
+don&#39;t contain any other rules that will cause dirtiesAllStyle() to be
+true. Skip clearing the font cache in those cases.
+
+As part of understanding how the AnalyzedStyleUpdate works, I wrote a few
+unit tests for compareStyleSheets. This method looks fragile and doesn&#39;t
+seem to work well when stylesheets are added and removed at the same time.
+I haven&#39;t found a way to trigger a real bug yet, as we don&#39;t seem to be
+using AnalyzedStyleUpdate for a case where the active stylesheet list
+changes in a way that triggers this bug.
+
+BUG=471079,475858
+
+Review URL: <a href="https://codereview.chromium.org/1076163002">https://codereview.chromium.org/1076163002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@193625 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e1595c2c35dede020e7efe911a09872c419aa502"><time datetime="2015-04-13">2015-04-13</time></a>
         <tr>
           <td>fs
           <td class=message>
