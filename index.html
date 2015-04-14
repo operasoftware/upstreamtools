@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 594,
+    <a href="#chromium">Chromium</a>: 595,
   
     <a href="#blink">Blink</a>: 2763,
   
@@ -44,6 +44,30 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Move an include guard to guard all code in base/move.h</summary>
+              <pre class=body>
+gcc -H warned about base/move.h missing an include guard and it was
+because the existing include guard didn&#39;t encompass all the code in the
+file.
+
+This fixes that warning and maybe makes compilations one nanosecond
+faster.
+
+The code outside the include guard was added Oct 2014 when fixing bug
+418297.
+
+BUG=418297
+
+Review URL: <a href="https://codereview.chromium.org/1082263002">https://codereview.chromium.org/1082263002</a>
+
+Cr-Commit-Position: refs/heads/master@{#325132}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/e67c6972f457f8d77d3b766f4dfb598e0a7be0e9"><time datetime="2015-04-14">2015-04-14</time></a>
         <tr>
           <td>jiangj
           <td class=message>
