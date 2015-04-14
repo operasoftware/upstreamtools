@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 592,
   
-    <a href="#blink">Blink</a>: 2761,
+    <a href="#blink">Blink</a>: 2762,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10761,6 +10761,22 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Removed unnecessary input selectors from html.css.</summary>
+              <pre class=body>
+The first input selector will always match the two following ones. The
+only reason for having the additional ones would be for specificity. By
+inspection, I couldn&#39;t find that was the case. Removing.
+
+Review URL: <a href="https://codereview.chromium.org/1055743005">https://codereview.chromium.org/1055743005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@193687 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a67b7f9c6a6e225ae633350df9bcda7ce31dbde4"><time datetime="2015-04-14">2015-04-14</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
