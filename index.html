@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 595,
   
-    <a href="#blink">Blink</a>: 2764,
+    <a href="#blink">Blink</a>: 2766,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10818,6 +10818,56 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Improve &#34;includes for type&#34; mechanism in various ways</summary>
+              <pre class=body>
+- Optionally pass extended attributes along with the type, so that the
+  includes generated can depend on it. (This is not needed now, but will
+  be in the future.)
+
+- Add includes for the types of method arguments, getters and setters.
+
+- Cleanup some (now) redundant calls to add_includes_for_type() in
+  v8_types.py that interfered with the next item.
+
+- Don&#39;t add includes relating to &#34;invisible&#34; methods. Invisible methods
+  are those that come from partial interfaces, and that won&#39;t actually
+  be implemented in the compilation unit being generated. Adding such
+  includes meant that files under bindings/core/ would sometimes include
+  headers from bindings/modules/ (without depending on the contents of
+  those headers).
+
+BUG=358074
+
+Review URL: <a href="https://codereview.chromium.org/1086113002">https://codereview.chromium.org/1086113002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@193787 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/44422a7816d85c9bcd1f1ef44f5c736906bb7372"><time datetime="2015-04-15">2015-04-15</time></a>
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Remove effective zoom from font metrics before SVG text layout.</summary>
+              <pre class=body>
+Since <a href="https://codereview.chromium.org/308123010">https://codereview.chromium.org/308123010</a> and
+<a href="https://codereview.chromium.org/323053002">https://codereview.chromium.org/323053002</a>, the effectiveZoom is
+included in the style&#39;s font. This patch adds missing code to
+SVGTextLayoutEngineBaseline to remove the effective zoom before
+computing baseline and advance.
+
+BUG=476344
+
+Review URL: <a href="https://codereview.chromium.org/1081813003">https://codereview.chromium.org/1081813003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@193786 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/68a97d45cd90bb85111bb0fd6d98c6d10745e3e4"><time datetime="2015-04-15">2015-04-15</time></a>
         <tr>
           <td>rune
           <td class=message>
