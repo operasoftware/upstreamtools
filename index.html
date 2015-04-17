@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 597,
   
-    <a href="#blink">Blink</a>: 2778,
+    <a href="#blink">Blink</a>: 2779,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10849,6 +10849,46 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add a &#34;logical query mode&#34; to SVGTextQuery</summary>
+              <pre class=body>
+This CL adds an additional query &#34;mode&#34; to use for some of the query
+functions. This new methods searches &#34;logically&#34; - using the layout
+objects rather than the line boxes to guide the search. The existing
+method is renamed to spatialQuery, leaving us with:
+
+  spatialQuery() - for point -&gt; something
+  logicalQuery() - for character (code unit) -&gt; something
+
+This new search-order is needed to handle bi-directionality correctly.
+Previously the direction of the text would influence the search, since
+the line boxes would be processed in their spatial-ordering and the
+search position would be adjusted based on that ordering. (As an
+example, this would mean that given:
+
+  &lt;text direction=&#34;rtl&#34;&gt;ltrRTL&lt;/text&gt;
+
+and a query range [2, 4], the third character of the RTL run and the
+first character of the ltr run would be included rather than the other
+way around. See also new test in bidi-getsubstringlength.html)
+
+The value returned by getCharNumAtPosition() is adjusted such that the
+layout object of the intersected glyph is used to determine the
+character index based on the query root (the element on which the
+method is called.) This means that the value returned is in the same
+query space as that handled by logicalQuery().
+
+BUG=471205,470326
+
+Review URL: <a href="https://codereview.chromium.org/1083073002">https://codereview.chromium.org/1083073002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@193944 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/99cc7b347fe92a8fe71f9d1c94038ffbeaf2c537"><time datetime="2015-04-17">2015-04-17</time></a>
         <tr>
           <td>ed
           <td class=message>
