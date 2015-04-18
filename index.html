@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 597,
+    <a href="#chromium">Chromium</a>: 598,
   
-    <a href="#blink">Blink</a>: 2782,
+    <a href="#blink">Blink</a>: 2783,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,30 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jiangj
+          <td class=message>
+            <details>
+              <summary>Reland: Fix errors found in Mac gn component builds</summary>
+              <pre class=body>
+This is relanding <a href="https://codereview.chromium.org/1087873003">https://codereview.chromium.org/1087873003</a> which was
+reverted in <a href="https://codereview.chromium.org/1089773003/">https://codereview.chromium.org/1089773003/</a>.
+
+Mac gn component build fail because of missing frameworks and missing some other
+dependencies, and occasionally file list out of sync with the gyp counterpart:
+<a href="http://build.chromium.org/p/tryserver.chromium.mac/builders/mac_chromium_gn_dbg/builds/321/steps/compile/logs/stdio">http://build.chromium.org/p/tryserver.chromium.mac/builders/mac_chromium_gn_dbg/builds/321/steps/compile/logs/stdio</a>
+
+For instance, the frameworks linked in the components that sync depends on is not
+automatically linked into sync, thus revealing the issue.
+
+BUG=477710
+
+Review URL: <a href="https://codereview.chromium.org/1098513002">https://codereview.chromium.org/1098513002</a>
+
+Cr-Commit-Position: refs/heads/master@{#325771}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/2bd42fdbfab81b645ac926bd115e2a0762426b64"><time datetime="2015-04-18">2015-04-18</time></a>
         <tr>
           <td>ed
           <td class=message>
@@ -10849,6 +10873,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>ScriptedAnimationController: factor out has-schedulable items predicate.</summary>
+              <pre class=body>
+Common up the logic controlling the servicing/scheduling of animation
+events &amp; actions. No change in functionality.
+
+R=
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1093803002">https://codereview.chromium.org/1093803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@193983 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/43efa50abff10f52b74afc508292ee5ac87a1a14"><time datetime="2015-04-18">2015-04-18</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
