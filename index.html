@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 598,
   
-    <a href="#blink">Blink</a>: 2789,
+    <a href="#blink">Blink</a>: 2790,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10873,6 +10873,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add UseCounters for CSS-related *List interfaces with item() methods</summary>
+              <pre class=body>
+By request from Simon Pieters (CSSOM editor) measure the usage of the
+item() method on the three interfaces that are currently marked as
+[ArrayClass]. This is to determine the feasibility of removing the usage
+of [ArrayClass] by using &#34;real&#34; arrays instead. That won&#39;t be possible
+in the case of MediaList, because that interface has other members, but
+measure it anyway in case some option emerges where removing
+MediaList.item() would in some way help.
+
+Also add a UseCounter for StyleSheetList&#39;s anonymous named getter, which
+is the only other thing blocking array conversion of that interface.
+
+Review URL: <a href="https://codereview.chromium.org/1072403008">https://codereview.chromium.org/1072403008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194040 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f13b8795b3ead2a96e666276a35afb0d8dd634e0"><time datetime="2015-04-20">2015-04-20</time></a>
         <tr>
           <td>davve
           <td class=message>
