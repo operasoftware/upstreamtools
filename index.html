@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 598,
   
-    <a href="#blink">Blink</a>: 2786,
+    <a href="#blink">Blink</a>: 2787,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10873,6 +10873,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Limit recent SVG baseline tests to a stable subset</summary>
+              <pre class=body>
+For currently unknown reasons, some baseline-shift and
+alignment-baseline values does not result in stable positions across
+zoom levels on the Windows bots.
+
+See win_blink_rel failures in
+<a href="https://codereview.chromium.org/1081813003/">https://codereview.chromium.org/1081813003/</a> for patch set 4 for
+details. The issue does not however reproduce in a Win7 VM.
+
+Leave these problematic values out and remove TestExpectations line.
+
+BUG=476344, 478703
+
+Review URL: <a href="https://codereview.chromium.org/1052373007">https://codereview.chromium.org/1052373007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194028 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f4a23987c07dfce5289a2a0594df703d1aac5d3f"><time datetime="2015-04-20">2015-04-20</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
