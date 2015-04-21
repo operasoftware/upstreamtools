@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 598,
+    <a href="#chromium">Chromium</a>: 599,
   
     <a href="#blink">Blink</a>: 2793,
   
@@ -44,6 +44,29 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mpawlowski
+          <td class=message>
+            <details>
+              <summary>Sync typed urls with typed_cont() == 0</summary>
+              <pre class=body>
+When the user types &#34;google.com&#34; into the address bar, the server will
+redirect him to &#34;www.google.com&#34; (or a regional equivalent). The redirected
+URL will have PAGE_TRANSITION_TYPED but typed_count() == 0. We still want
+to Sync such URL, otherwise the receiving client will only see &#34;google.com&#34;
+with PAGE_TRANSITION_CHAIN_START and without the matching _CHAIN_END.
+Additionally, the history view won&#39;t show that &#34;google.com&#34; URL because
+VisitDatabase::GetVisibleVisitsInRange filters out results that don&#39;t
+match PAGE_TRANSITION_CHAIN_END.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1087773002">https://codereview.chromium.org/1087773002</a>
+
+Cr-Commit-Position: refs/heads/master@{#325990}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/7f5588cf33aa5e6a793382387058935a579421b8"><time datetime="2015-04-21">2015-04-21</time></a>
         <tr>
           <td>jiangj
           <td class=message>
