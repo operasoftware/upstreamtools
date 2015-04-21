@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 599,
   
-    <a href="#blink">Blink</a>: 2793,
+    <a href="#blink">Blink</a>: 2794,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10896,6 +10896,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Add support for [Unscopeable] on attributes and methods</summary>
+              <pre class=body>
+Adding [Unscopeable] to an attribute or method means it won&#39;t be found
+during name lookup with an object that has the attribute or method in
+the scope (i.e. using the &#34;with&#34; statement.)
+
+The mechanism that makes this happen is that the interface prototype
+object has a property named @@unscopables that is an object with a
+property for every unscopeable member named as the member.
+
+BUG=462916
+
+Review URL: <a href="https://codereview.chromium.org/1085453003">https://codereview.chromium.org/1085453003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194091 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d035f0488c4a8e8aca99da3e1e75701821d86a58"><time datetime="2015-04-21">2015-04-21</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
