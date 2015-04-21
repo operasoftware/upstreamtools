@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 599,
   
-    <a href="#blink">Blink</a>: 2795,
+    <a href="#blink">Blink</a>: 2798,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10896,6 +10896,81 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Refactored compound selector parsing methods.</summary>
+              <pre class=body>
+Methods for adding simple selectors to compound selectors had names like
+rewriteSpecifiers. This CL tries to make more sense to it and adds
+documentation for the not-so-straightforward ways of adding simple
+selectors.
+
+Renamed tagIsForNamespaceRule to tagIsImplicit as that is what it means.
+The type selector is necessary as a placeholder for use during selector
+matching, but not necessary to add to the serialization.
+
+What complicates this code a lot, is the fact that we can have one or
+more implicit ShadowPseudo combinators within the same compound selector,
+as seen by the parser, which means it&#39;s really multiple compound
+selectors. Handling these implicit combinators as true combinators in the
+parser could simplify this code. See added TODO.
+
+<a href="mailto:R=timloh@chromium.org">R=timloh@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1094213002">https://codereview.chromium.org/1094213002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194107 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1cde70d34dd2531c06796564629619e98901d21a"><time datetime="2015-04-21">2015-04-21</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the allowfullscreen exemption for the video-specific fullscreen API</summary>
+              <pre class=body>
+Intent to Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/3NukIuOaU4c/Boab2WxzhBYJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/3NukIuOaU4c/Boab2WxzhBYJ</a>
+
+Prompted by a question from Ali Alabbas (Microsoft) on blink-dev:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/f-V2GWatXkA/nvdHJ3xihMkJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/f-V2GWatXkA/nvdHJ3xihMkJ</a>
+
+TEST=LayoutTests/media/video-controls-fullscreen-iframe.html
+
+This test ensures that the allowfullscreen attribute is still not
+required for &lt;video controls&gt;, even though it is for the API call.
+
+BUG=346236
+
+Review URL: <a href="https://codereview.chromium.org/1058783006">https://codereview.chromium.org/1058783006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194106 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/30515a4c199a00ba9e50ca5d9c035810d3c44a53"><time datetime="2015-04-21">2015-04-21</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: HeapVectorBacking should call destructors for its elements</summary>
+              <pre class=body>
+Currently HeapVectorBacking does not call destructors of its elements
+and is leaking the objects. We must call them.
+
+R=tkent
+BUG=475801
+TEST=HeapTest.VectorDestructors
+TEST=HeapTest.DequePartObjectsExpand
+TEST=HeapTest.HeapVectorPartObjects
+
+Review URL: <a href="https://codereview.chromium.org/1086413003">https://codereview.chromium.org/1086413003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194100 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/945be261d3bdcc735ce55ec42da09c5217324942"><time datetime="2015-04-21">2015-04-21</time></a>
         <tr>
           <td>philipj
           <td class=message>
