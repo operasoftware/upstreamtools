@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 600,
   
-    <a href="#blink">Blink</a>: 2805,
+    <a href="#blink">Blink</a>: 2806,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10910,6 +10910,52 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert &#34;Re-factor VisibleSelectionTest for adding tests for composed tree version&#34;</summary>
+              <pre class=body>
+This reverts commit 52847e6579f5703d41a96349992b79f1ae258b98.
+
+Reason for revert:
+Breaks Android Builder (dbg) compilation,
+
+<a href="http://build.chromium.org/p/chromium.webkit/builders/Android%20Builder%20(dbg)/builds/43678">http://build.chromium.org/p/chromium.webkit/builders/Android%20Builder%20(dbg)/builds/43678</a>
+
+(and Oilpan compilation.)
+
+Original issue&#39;s description:
+&gt; Re-factor VisibleSelectionTest for adding tests for composed tree version
+&gt;
+&gt; This patch changes |VisibleSelectionTest| for adding tests for composed tree
+&gt; version easier with introducing shadow tree related tests.
+&gt;
+&gt; This patch also introduces |Node| and |Position| for ease of writing and
+&gt; debugging gTest.
+&gt;
+&gt; This patch is result of collaboration work with <a href="mailto:hajimehoshi@chromium.org">hajimehoshi@chromium.org</a>
+&gt; for selection of web components. After this patch, we are going to implement
+&gt; another strategies for the composed tree. We&#39;ve already
+&gt; prepared that at <a href="http://crrev.com/1009603011">http://crrev.com/1009603011</a>.
+&gt;
+&gt; BUG=275851
+&gt; TEST=n/a; No behavior changes.
+&gt;
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=194195">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=194195</a>
+
+TBR=yosin,tkent
+NOPRESUBMIT=true
+NOTREECHECKS=true
+NOTRY=true
+BUG=275851
+
+Review URL: <a href="https://codereview.chromium.org/1055633004">https://codereview.chromium.org/1055633004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194197 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/70d7ba047a60cb87f86c215c419b9e561edb8566"><time datetime="2015-04-22">2015-04-22</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
