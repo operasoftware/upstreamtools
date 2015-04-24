@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 603,
   
-    <a href="#blink">Blink</a>: 2817,
+    <a href="#blink">Blink</a>: 2818,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10960,6 +10960,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Handle the [Unscopeable, RuntimeEnabled=X] combination better</summary>
+              <pre class=body>
+If a runtime enabled attribute or method is unscopeable, then add it to
+the @@unscopables object only if the feature is enabled. This is a
+marginal change, but it does ensure that features don&#39;t leave detectable
+artifacts when disabled.
+
+BUG=462916
+
+Review URL: <a href="https://codereview.chromium.org/1081853003">https://codereview.chromium.org/1081853003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194384 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a0bf5d6eaee23399293127ebd2db1754789bc913"><time datetime="2015-04-24">2015-04-24</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
