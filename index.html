@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 604,
   
-    <a href="#blink">Blink</a>: 2822,
+    <a href="#blink">Blink</a>: 2825,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10974,6 +10974,73 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Remove the pending container size requests list</summary>
+              <pre class=body>
+Trust ImageResource::setContainerSizeForLayoutObject to be called
+through ImageResource::notifyObservers when the image has loaded.
+Given that, we will already get notifications about the up-to-date
+containerSize and containerZoom and there is no need for keeping
+around a list of pending container sizes and zooms to send when the
+image is created.
+
+As to why we can trust ImageResource::notifyObservers to call back
+into ImageResource::setContainerSizeForLayoutObject,
+<a href="https://codereview.chromium.org/22482004">https://codereview.chromium.org/22482004</a> added a
+updateInnerContentRect() call taking care of calling
+ImageResource::setContainerSizeForLayoutObject when the image&#39;s paint
+has been invalidated.
+
+Review URL: <a href="https://codereview.chromium.org/1102803002">https://codereview.chromium.org/1102803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194439 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/12960e3b78053d654a83581bfeae05314c557fc1"><time datetime="2015-04-25">2015-04-25</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Do not invoke async method on a GC-unreachable object.</summary>
+              <pre class=body>
+For AsyncMethodRunner&lt;Target&gt; where Target is a garbage collected type,
+we cannot have the async method runner safely call a method on an object
+instance if that object has been determined as being unreachable by the
+GC marking phase, but it _or_ any of the objects that it refers to hasn&#39;t
+been swept yet.
+
+This aligns the treatment of AsyncMethodRunner&lt;&gt; over garbage collected
+objects with that of Timer&lt;&gt;.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1108663002">https://codereview.chromium.org/1108663002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194437 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/98284a1144d5533fae88c47b19e849ecaa240b51"><time datetime="2015-04-25">2015-04-25</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: have Console be on the heap by default.</summary>
+              <pre class=body>
+Enable Oilpan for Console and its supplement.
+
+R=haraken
+BUG=479467
+
+Review URL: <a href="https://codereview.chromium.org/1063513007">https://codereview.chromium.org/1063513007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194434 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/acde891e07b02ca044c23476bc2e9cef0d9db222"><time datetime="2015-04-25">2015-04-25</time></a>
         <tr>
           <td>fs
           <td class=message>
