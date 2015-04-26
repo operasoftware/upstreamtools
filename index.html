@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 604,
   
-    <a href="#blink">Blink</a>: 2826,
+    <a href="#blink">Blink</a>: 2827,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10974,6 +10974,23 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Make Resource::switchClientsToRevalidatedResource non-virtual</summary>
+              <pre class=body>
+In <a href="https://codereview.chromium.org/1102803002/">https://codereview.chromium.org/1102803002/</a> the
+ImageResource::switchClientsToRevalidatedResource override function
+was removed. Resource::switchClientsToRevalidatedResource can now be
+non-virtual and made private.
+
+Review URL: <a href="https://codereview.chromium.org/1109663002">https://codereview.chromium.org/1109663002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194447 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e591cc7afd810e288774afc49b4b062e1e1f87a9"><time datetime="2015-04-26">2015-04-26</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
