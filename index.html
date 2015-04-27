@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 604,
   
-    <a href="#blink">Blink</a>: 2836,
+    <a href="#blink">Blink</a>: 2838,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10974,6 +10974,49 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] flowThreadTranslationAtOffset() needs to be relative to the flow thread.</summary>
+              <pre class=body>
+When we want to translate from flow thread coordinates to visual coordinates,
+we need to return something relative to the top/left of the flow thread, not
+something relative to the top/left of the content box of the multicol
+container. This distinction matters in RTL mode, since the flow thread is then
+positioned at the top/right inside the multicol container.
+
+Added LayoutTests/fast/multicol/client-rects-rtl.html , which is an adaption
+for RTL of client-rects.html for RTL. This didn&#39;t pass prior to this fix. Also
+added an assertion failure test, which is what the original bug report was
+about.
+
+BUG=479155
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1102273004">https://codereview.chromium.org/1102273004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194517 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3eccc92cbf4e9bec023a93e3924a406bc3b23146"><time datetime="2015-04-27">2015-04-27</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Check the nullable Document::settings() before accessing.</summary>
+              <pre class=body>
+Add some missing null checks in LinkLoader.
+
+<a href="mailto:R=yoav@yoav.ws">R=yoav@yoav.ws</a>
+BUG=481511
+
+Review URL: <a href="https://codereview.chromium.org/1107003002">https://codereview.chromium.org/1107003002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194515 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/58d5143bb600030e1872f02217b618e047895430"><time datetime="2015-04-27">2015-04-27</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
