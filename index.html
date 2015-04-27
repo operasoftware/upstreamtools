@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 604,
   
-    <a href="#blink">Blink</a>: 2833,
+    <a href="#blink">Blink</a>: 2836,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10974,6 +10974,59 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: keep FormData on the heap by default.</summary>
+              <pre class=body>
+R=haraken
+BUG=479467
+
+Review URL: <a href="https://codereview.chromium.org/1102253002">https://codereview.chromium.org/1102253002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194507 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/25dc4a15b0aad88f4100c8454240b3e6ac1a4451"><time datetime="2015-04-27">2015-04-27</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Throw NoModificationAllowed in SVG*List.removeItem(...) if immutable</summary>
+              <pre class=body>
+BUG=477790
+
+Review URL: <a href="https://codereview.chromium.org/1061263005">https://codereview.chromium.org/1061263005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194506 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2544c1b83a2af85c3c6daf5e36d2ca66de41f7d3"><time datetime="2015-04-27">2015-04-27</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: have xml/ objects on the heap by default.</summary>
+              <pre class=body>
+Along with moving the XPath objects (and other objects handling
+XML processing) to the heap, we&#39;re able to retire the XPath
+parser&#39;s manual tracking of currently constructed XPath
+sub-expressions; done so as to be able to destruct those in the
+face of parse errors.
+
+With Oilpan, such unreferenced sub-expressions will be unreferenced
+and swept out whenever the next GC runs.
+
+R=haraken,tkent
+BUG=479467
+
+Review URL: <a href="https://codereview.chromium.org/1099613003">https://codereview.chromium.org/1099613003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194504 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6279871d318c63eefe4a5c26917c5de2d385fae7"><time datetime="2015-04-27">2015-04-27</time></a>
         <tr>
           <td>philipj
           <td class=message>
