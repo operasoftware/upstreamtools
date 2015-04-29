@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 604,
   
-    <a href="#blink">Blink</a>: 2849,
+    <a href="#blink">Blink</a>: 2850,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10974,6 +10974,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Treat a stopped AudioContext as closed.</summary>
+              <pre class=body>
+An AudioContext that ends up being detached&amp;stopped by its
+execution context is now treated on equal terms to one that
+has been explicitly close()d from script. AudioContext methods
+and operations over a context in such a state will now throw.
+
+This restriction applies to OfflineAudioContext as well as
+AudioContext.
+
+R=rtoy
+BUG=435867
+
+Review URL: <a href="https://codereview.chromium.org/1111213002">https://codereview.chromium.org/1111213002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194666 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c47912eba5b17db017c8b8954c403d0375bc67f8"><time datetime="2015-04-29">2015-04-29</time></a>
         <tr>
           <td>mstensho
           <td class=message>
