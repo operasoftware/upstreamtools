@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 604,
   
-    <a href="#blink">Blink</a>: 2858,
+    <a href="#blink">Blink</a>: 2861,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10974,6 +10974,75 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Null check collection handling dirty scopes.</summary>
+              <pre class=body>
+When a shadow subtree containing a style element with a loading @import is
+removed from the DOM, StyleEngine::removePendingSheet() will be called,
+which in turn calls markTreeScopeDirty(). The collection has already been
+removed from m_styleSheetCollectionMap in StyleEngine has already been for
+the shadow root, which will lead to the collection being null when the
+dirty tree scopes are being handled in
+StyleEngine::updateActiveStyleSheetsInShadow().
+
+Check that the node is in the Document before calling markTreeScopeDirty().
+
+<a href="mailto:R=tasak@chromium.org">R=tasak@chromium.org</a>
+BUG=482087,468267,463031
+
+Review URL: <a href="https://codereview.chromium.org/1106313003">https://codereview.chromium.org/1106313003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194733 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9ac6622c08185ba7e920c49e3276c684516d1500"><time datetime="2015-04-30">2015-04-30</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove unnecessary clearing of AX object cache in Document destructor.</summary>
+              <pre class=body>
+Only frame-attached Documents can have an AX object cache. All such
+Documents will be explicitly detached; detach() will clear the AX
+object cache. Thus clearing it again in the destructor ought to be
+redundant -- leave in an assert to verify that this assumption will hold.
+
+R=dmazzoni,haraken
+
+Review URL: <a href="https://codereview.chromium.org/1116773003">https://codereview.chromium.org/1116773003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194732 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6e2be4f02d92da7a9d40dbd8f441564dda2e2dce"><time datetime="2015-04-30">2015-04-30</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Cleanup color space resolution for ReferenceFilterBuilder</summary>
+              <pre class=body>
+There&#39;s some dodgy-looking code, used by ReferenceFilterBuilder::build
+to compute a ColorSpace for each filter primitive. Convert it to
+compute an EColorInterpolation instead, and then resolve the ColorSpace
+from that similarly to how LayoutSVGResourceFilter::buildPrimitives
+does it. Also try to make it &#34;cascade&#34; the value in a more proper way,
+rather than just selecting the value from the filter or the primitive.
+This moves the two code-paths a bit closer to each other.
+
+Also convert ReferenceFilterBuilder::build(...) to take references as
+arguments where it makes sense.
+
+BUG=109224
+
+Review URL: <a href="https://codereview.chromium.org/1106973004">https://codereview.chromium.org/1106973004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194729 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/96f92d879e56093ace16f51bbeb6d764c49a75a3"><time datetime="2015-04-30">2015-04-30</time></a>
         <tr>
           <td>rune
           <td class=message>
