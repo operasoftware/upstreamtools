@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 604,
   
-    <a href="#blink">Blink</a>: 2851,
+    <a href="#blink">Blink</a>: 2853,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10974,6 +10974,49 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Never composite flow threads.</summary>
+              <pre class=body>
+This will prevent flow threads from becoming paint invalidation containers.
+
+There&#39;s an assertion in LayoutFlowThread::mapRectToPaintInvalidationBacking()
+on the paint invalidation container not being the flow thread. The (very
+recent) fix for issue 481663 also tried to avoid this assertion, but obviously
+didn&#39;t manage to catch all cases.
+
+BUG=482420
+<a href="mailto:R=chrishtr@chromium.org,dsinclair@chromium.org,wangxianzhu@chromium.org">R=chrishtr@chromium.org,dsinclair@chromium.org,wangxianzhu@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1109383002">https://codereview.chromium.org/1109383002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194680 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0c763aee539da47e53c06b1c6a7904f4dc803dc0"><time datetime="2015-04-30">2015-04-30</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Gracefully handle unruly children detaching our frame and client.</summary>
+              <pre class=body>
+When committing the load of a new document to a frame, any current
+document is first detached, along with the child frames. Should these
+children trigger the detachment of the frame getting a new document,
+by updating the frame tree above us, simply abandon the frame loading
+operation.
+
+R=japhet,dcheng
+BUG=476837
+
+Review URL: <a href="https://codereview.chromium.org/1116763002">https://codereview.chromium.org/1116763002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194679 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/78e8fd417235275c6994c1a581bf7a6ff1901c61"><time datetime="2015-04-29">2015-04-29</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
