@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 604,
   
-    <a href="#blink">Blink</a>: 2855,
+    <a href="#blink">Blink</a>: 2858,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10974,6 +10974,73 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Don&#39;t cache nth-indices of pseudo elements.</summary>
+              <pre class=body>
+A pseudo element is not found in its parent&#39;s child list. That caused an
+assert while trying to cache the nth-index for a ::before element while
+matching style for the ::before element&#39;s scrollbar pseudo elements.
+Instead, skip the caching part and traverse siblings to fall back to the
+behavior we had before the NthIndexCache.
+
+Trying to get custom scrollbar style for pseudo elements with scrolling
+overflow will not work, but never did. It&#39;s not currently possible to
+match ::before::-webkit-scrollbar, and a universal ::-webkit-scrollbar
+will not match scrollbars in pseudo elements like ::before, either.
+
+<a href="mailto:R=esprehn@chromium.org">R=esprehn@chromium.org</a>
+BUG=481495
+
+Review URL: <a href="https://codereview.chromium.org/1108783002">https://codereview.chromium.org/1108783002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194728 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/604b9840f91450b884d211894bc5176e6e89be91"><time datetime="2015-04-30">2015-04-30</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Move StyleInvalidator to StyleEngine.</summary>
+              <pre class=body>
+This is part of componentizing style resolving. We want to get rid of as
+much as possible of global style data like RuleFeatureSet. We decouple the
+StyleInvalidator from RuleFeatureSet and keep a single StyleInvalidator
+in the StyleEngine. This removes a bunch of unused StyleInvalidators from
+other RuleFeatureSets than the global one.
+
+The plan ahead is to collect invalidation sets from rulesets in tree
+scopes instead of the global one.
+
+BUG=401359
+
+Review URL: <a href="https://codereview.chromium.org/1111643003">https://codereview.chromium.org/1111643003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194726 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a76f1eebd526b0e7f552a3cbf9f30f7ca25499ea"><time datetime="2015-04-30">2015-04-30</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Update baselines for some svg/custom/ tests</summary>
+              <pre class=body>
+The existing baselines are so old, that it&#39;s hard to tell if the tests
+are still flaky/broken.
+
+<a href="mailto:TBR=pdr@chromium.org">TBR=pdr@chromium.org</a>
+BUG=371651
+
+Review URL: <a href="https://codereview.chromium.org/1115723003">https://codereview.chromium.org/1115723003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194722 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/52041321665142954362eba26655faf175d8e33b"><time datetime="2015-04-30">2015-04-30</time></a>
         <tr>
           <td>fs
           <td class=message>
