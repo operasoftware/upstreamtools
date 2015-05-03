@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 604,
   
-    <a href="#blink">Blink</a>: 2866,
+    <a href="#blink">Blink</a>: 2867,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10974,6 +10974,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Sever HTMLImportChild client connection upon disposal.</summary>
+              <pre class=body>
+Move the notification of the HTMLImportChild going away to its dispose()
+method (instead of its destructor.) It is unsafe to access the
+HTMLImportChild after its loader has been cleared, which happens as
+part of disposal. Hence, clear the client connection at the same time.
+
+This is essential for Oilpan, where HTMLImportChild destruction will not
+happen synchronously with disposal.
+
+R=haraken
+BUG=458222
+
+Review URL: <a href="https://codereview.chromium.org/1119033003">https://codereview.chromium.org/1119033003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194847 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d67e6d4c9f5149f6d142ee755a5a13f96864cba1"><time datetime="2015-05-03">2015-05-03</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
