@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 605,
   
-    <a href="#blink">Blink</a>: 2871,
+    <a href="#blink">Blink</a>: 2873,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10991,6 +10991,47 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: use transition type for MemoryCache::resourcesForURL()&#39;s result.</summary>
+              <pre class=body>
+R=haraken
+BUG=479467
+
+Review URL: <a href="https://codereview.chromium.org/1125733002">https://codereview.chromium.org/1125733002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194874 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ebefb553d9ddac12332a9000d5e43e4e612a7ad7"><time datetime="2015-05-04">2015-05-04</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove some svg/custom/ repaint tests from TestExpectations</summary>
+              <pre class=body>
+After getting new baselines in <a href="https://codereview.chromium.org/1115723003/">https://codereview.chromium.org/1115723003/</a>
+these test now appear green and stable:
+
+  deep-dynamic-updates.svg
+  js-update-gradient.svg
+  js-update-pattern.svg
+  js-update-pattern-child.svg
+  js-update-stop.svg
+  js-update-stop-linked-gradient.svg
+  use-disappears-after-style-update.svg
+
+<a href="mailto:TBR=pdr@chromium.org">TBR=pdr@chromium.org</a>
+BUG=371651
+
+Review URL: <a href="https://codereview.chromium.org/1115213006">https://codereview.chromium.org/1115213006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194872 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/35d9a641021f59c266ed55b93c79682aae062ac1"><time datetime="2015-05-04">2015-05-04</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
