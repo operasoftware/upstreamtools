@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 605,
   
-    <a href="#blink">Blink</a>: 2867,
+    <a href="#blink">Blink</a>: 2868,
   
     <a href="#v8">V8</a>: 22.
   
@@ -10991,6 +10991,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>[New Multicolumn] Simplified layout also needs to mark spanner placeholders for layout.</summary>
+              <pre class=body>
+If the actual column-span:all object needs layout, so does the placeholder.
+There was code to ensure this for normal layout, but not for simplified layout
+(when we just want to drill into the tree and locate the containing block of
+some absolutely positioned object.
+
+BUG=483976
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1120313003">https://codereview.chromium.org/1120313003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194861 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1449635f9f93a5e80fcf81c48d3a730b6c65a745"><time datetime="2015-05-04">2015-05-04</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
