@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 604,
+    <a href="#chromium">Chromium</a>: 605,
   
     <a href="#blink">Blink</a>: 2867,
   
@@ -44,6 +44,23 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Shut down RenderViewTest&#39;s scheduler before Blink is.</summary>
+              <pre class=body>
+As the former may finalize tasks that are Blink allocated.
+
+R=skyostil,haraken,jochen
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1118383002">https://codereview.chromium.org/1118383002</a>
+
+Cr-Commit-Position: refs/heads/master@{#328107}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/8c57425ac0b275974b6e3477bad5a4736853ccd3"><time datetime="2015-05-04">2015-05-04</time></a>
         <tr>
           <td>mateuszs
           <td class=message>
