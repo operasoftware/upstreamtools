@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 606,
   
-    <a href="#blink">Blink</a>: 2877,
+    <a href="#blink">Blink</a>: 2879,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11005,6 +11005,42 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Cleanup: Only need one bit (not two) to express flow thread state.</summary>
+              <pre class=body>
+The InsideOutOfFlowThread / InsideInFlowThread distinction is a relic from the
+CSS Regions days. Just telling whether we&#39;re a descendant of a flow thread or
+not is enough.
+
+<a href="mailto:R=dsinclair@chromium.org">R=dsinclair@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1124993002">https://codereview.chromium.org/1124993002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194945 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/04adb194490328badeb68ed9a5b18c201c7e3bb0"><time datetime="2015-05-05">2015-05-05</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Harden changing font style over unknown elements.</summary>
+              <pre class=body>
+When adjusting the start node position of where to apply a font style
+command, check that we haven&#39;t stepped off the end.
+
+R=leviw
+BUG=484434
+
+Review URL: <a href="https://codereview.chromium.org/1124863003">https://codereview.chromium.org/1124863003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194944 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a176d4abd3c3df6bfff5d141cd710536cfdfe33f"><time datetime="2015-05-05">2015-05-05</time></a>
         <tr>
           <td>jl
           <td class=message>
