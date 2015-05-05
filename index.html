@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 606,
   
-    <a href="#blink">Blink</a>: 2876,
+    <a href="#blink">Blink</a>: 2877,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11005,6 +11005,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>Set correct class name for interfaces with disabled partials</summary>
+              <pre class=body>
+If an runtime enabled interface was disabled, we&#39;d initialize its
+v8::FunctionTemplate&#39;s class name to the empty string. We&#39;d also do this
+if a runtime enabled *partial* interface was disabled, even though the
+interface as a whole was enabled, which is clearly wrong.
+
+As a simple fix, simply always set the interface&#39;s real name. If the
+interface is disabled, it won&#39;t matter what it&#39;s set to anyway.
+
+BUG=475830
+
+Review URL: <a href="https://codereview.chromium.org/1126543010">https://codereview.chromium.org/1126543010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194937 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/745ae0f2efd463088abc557ceb5ddafd7900cee5"><time datetime="2015-05-05">2015-05-05</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
