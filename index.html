@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 608,
   
-    <a href="#blink">Blink</a>: 2886,
+    <a href="#blink">Blink</a>: 2888,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11040,6 +11040,41 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Make v8_utilities.py not depend on v8_types.py</summary>
+              <pre class=body>
+This is useful since v8_types.py depends on v8_utilities.py, indirectly.
+Thus, if v8_utilities.py imports v8_types like it currently does, it is
+not possible to import v8_utilities unless v8_types has been imported
+first.
+
+All v8_utilities.py actually used from v8_types.py was a helper function
+that returns a string with &#39;V8&#39; prepended. I think we can afford to
+duplicate this functionality.
+
+Review URL: <a href="https://codereview.chromium.org/1129803002">https://codereview.chromium.org/1129803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194981 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b4b6d634d501344f2efa3da6ce4bebeeb8a0e663"><time datetime="2015-05-06">2015-05-06</time></a>
+        <tr>
+          <td>ed
+          <td class=message>
+            <details>
+              <summary>Remove ed+blinkwatch@opera.com from watchlist.</summary>
+              <pre class=body>
+TBR=pdr
+
+Review URL: <a href="https://codereview.chromium.org/1123223002">https://codereview.chromium.org/1123223002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194979 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a98a0f875b915f051118b80454bb750a06459af2"><time datetime="2015-05-06">2015-05-06</time></a>
         <tr>
           <td>bratell
           <td class=message>
