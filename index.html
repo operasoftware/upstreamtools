@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 608,
   
-    <a href="#blink">Blink</a>: 2885,
+    <a href="#blink">Blink</a>: 2886,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11040,6 +11040,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Avoid extra copy of CSS data.</summary>
+              <pre class=body>
+operator+ will always create new string buffers and that is a bit
+unnecessary if one of the strings that are concatenated is empty.
+
+By switching from operator+ to String::append TextResource::decodedText()
+can avoid a copy almost always since the flush string will almost always
+be empty.
+
+BUG=484713
+<a href="mailto:R=mkwst@chromium.org">R=mkwst@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1122103005">https://codereview.chromium.org/1122103005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194975 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/176e768c7db0ce7cac793ff6df2059a4b14fbb28"><time datetime="2015-05-06">2015-05-06</time></a>
         <tr>
           <td>mstensho
           <td class=message>
