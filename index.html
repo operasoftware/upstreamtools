@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 607,
+    <a href="#chromium">Chromium</a>: 608,
   
     <a href="#blink">Blink</a>: 2882,
   
@@ -44,6 +44,22 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Adding missing profile.h include to extensions code.</summary>
+              <pre class=body>
+external_pref_loader.cc uses profile.h so it needs to include it and
+not rely on some other random code to include it. Fixes compilation
+problems in certain configurations.
+
+Review URL: <a href="https://codereview.chromium.org/1126543003">https://codereview.chromium.org/1126543003</a>
+
+Cr-Commit-Position: refs/heads/master@{#328511}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/9c086426f0e4f8f77706ea02abb927419c51d907"><time datetime="2015-05-06">2015-05-06</time></a>
         <tr>
           <td>bratell
           <td class=message>
