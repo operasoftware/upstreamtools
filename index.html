@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 606,
+    <a href="#chromium">Chromium</a>: 607,
   
     <a href="#blink">Blink</a>: 2882,
   
@@ -44,6 +44,25 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Add build dependency: ui/app_list uses ui/base/ime</summary>
+              <pre class=body>
+The code in ui/app_list/views/search_box_view.cc was importing
+ui/base/ime/text_input_flags.h, which was violating a dependency,
+resulting in a compile problem for a downstream project. Fixed by
+allowing this dependency.
+
+<a href="mailto:R=sadrul@chromium.org,mgiuca@chromium.org">R=sadrul@chromium.org,mgiuca@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1127603002">https://codereview.chromium.org/1127603002</a>
+
+Cr-Commit-Position: refs/heads/master@{#328506}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/d239049c3533c38961166a820fd5cc4762e33555"><time datetime="2015-05-06">2015-05-06</time></a>
         <tr>
           <td>tmoniuszko
           <td class=message>
