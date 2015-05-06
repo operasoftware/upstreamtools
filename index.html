@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 608,
   
-    <a href="#blink">Blink</a>: 2883,
+    <a href="#blink">Blink</a>: 2885,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11040,6 +11040,48 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Rename findSetLayoutObjects() to mapDescendantToColumnSet()</summary>
+              <pre class=body>
+It got renamed from findSetRendering() to findSetLayoutObjects() during the
+render -&gt; layout rename. findSetLayoutObjects() isn&#39;t a meaningful name. Then
+again, findSetRendering() wasn&#39;t a great name either (it meant &#34;find the column
+set that renders (paints, hit-tests, etc.) the specified layoutObject&#34;, but
+that probably wasn&#39;t too clear). So let&#39;s try with mapDescendantToColumnSet(),
+which more accurately describes what the method does.
+
+<a href="mailto:R=dsinclair@chromium.org">R=dsinclair@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1124133002">https://codereview.chromium.org/1124133002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194974 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a26a69fd79212ac39e5c69654b7c7bc097365078"><time datetime="2015-05-06">2015-05-06</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Gracefully handle backdoor cancellations of synchronous resource fetches.</summary>
+              <pre class=body>
+When fetching a resource synchronously (via XHR, say), messages can be
+handled &amp; dispatched while that fetch is ongoing. These may in the general
+case bring about the cancellation of the resource being synchronously
+fetched. Be prepared for that eventuality when the (failing) synchronous
+fetch returns.
+
+R=jochen
+BUG=484101
+
+Review URL: <a href="https://codereview.chromium.org/1129743002">https://codereview.chromium.org/1129743002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194973 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/410dac33b7ef90946085b41d46eeb7c4ad14c330"><time datetime="2015-05-06">2015-05-06</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
