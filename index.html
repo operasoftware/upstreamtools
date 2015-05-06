@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 606,
   
-    <a href="#blink">Blink</a>: 2879,
+    <a href="#blink">Blink</a>: 2880,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11005,6 +11005,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Invalidate ancestor resources in when relative lengths change</summary>
+              <pre class=body>
+If a LayoutObject within a resource had relative lengths, and the viewport
+changed, only the object itself would be invalidated - not any of the
+clients of the resource. This would fail to invalidate the cached display
+item with Slimming Paint.
+Modify SVGClipPathElement::selfHasRelativeLengths() to indicate if any
+of the children have relative lengths, to make sure the clients are
+invalidated in that case. (SVGClipPathElement will otherwise never indicate
+that it has relative lengths.)
+
+Fixes svg/custom/viewport-resource-inval.svg with Slimming Paint enabled.
+
+BUG=477743
+
+Review URL: <a href="https://codereview.chromium.org/1111223002">https://codereview.chromium.org/1111223002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194949 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5d9d99fd0673d550bc99371e6f4844f2978233eb"><time datetime="2015-05-06">2015-05-06</time></a>
         <tr>
           <td>mstensho
           <td class=message>
