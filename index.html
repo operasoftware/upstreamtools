@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 608,
   
-    <a href="#blink">Blink</a>: 2882,
+    <a href="#blink">Blink</a>: 2883,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11040,6 +11040,38 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: handle thread-local weak tracing slightly better.</summary>
+              <pre class=body>
+The implementation of marking is marking-thread centric, recording a
+thread stack limit that the tracing through the object graph cannot
+exceed. If it does, the implementation will use the explicit mark
+stack instead of trying to eagerly trace the object, if unmarked.
+
+Tracing will in the general case also happen on a per-thread basis,
+when handling the weak pointer callbacks after the initial marking
+phase has completed. Using the marking thread&#39;s stack limit to determine
+eagerness or not of a trace call when that weak tracing runs doesn&#39;t
+make much sense.
+
+To address, eager tracing is not enabled whilst processing the
+per-thread weak pointer callbacks. As the amount of tracing is rather
+moderate for this stage, there are no performance concerns with
+disabling this optimization.
+
+R=haraken
+BUG=420515
+TEST=HeapTest.ThreadedStrongification
+
+Review URL: <a href="https://codereview.chromium.org/1125613002">https://codereview.chromium.org/1125613002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@194970 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d43e0788b961496377dba62aae258eaffdf7e888"><time datetime="2015-05-06">2015-05-06</time></a>
         <tr>
           <td>mstensho
           <td class=message>
