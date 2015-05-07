@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 608,
   
-    <a href="#blink">Blink</a>: 2890,
+    <a href="#blink">Blink</a>: 2891,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11040,6 +11040,36 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Support type selector for camel-cased SVG elements in HTML.</summary>
+              <pre class=body>
+In HTML documents, type selectors are case-insensitive for HTML elements,
+but case sensitive for SVG elements [1]. We store the lower case version
+of the type selector. For SVG elements, the tag name is normalized to
+the camel-case version during parsing. That means we would never match
+SVG tag names containing upper-case letters in HTML documents.
+
+This CL matches SVG tag names case-insensitively in HTML documents. That
+is not correct according to spec, but at least makes it possible to use
+type selectors for SVG elements in HTML documents.
+
+Since the tag name for SVG elements are still stored camelCased, we need
+to lower the localName() before using it collecting tag rules from rule
+sets or collecting tag name hashes for the the bloom filter.
+
+[1] <a href="https://html.spec.whatwg.org/multipage/scripting.html#selectors">https://html.spec.whatwg.org/multipage/scripting.html#selectors</a>
+
+BUG=237435
+
+Review URL: <a href="https://codereview.chromium.org/1099963003">https://codereview.chromium.org/1099963003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195038 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5a9048049502743a036a05799410972b10607c9f"><time datetime="2015-05-07">2015-05-07</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
