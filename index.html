@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 608,
   
-    <a href="#blink">Blink</a>: 2903,
+    <a href="#blink">Blink</a>: 2904,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11040,6 +11040,36 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Make idl_type.is_wrapper_type false for callback interfaces</summary>
+              <pre class=body>
+Callback interface types (when used as method arguments) have special
+pre-conversion error handling, and special conversion code, and making
+idl_type.is_wrapper_type false disables the normal interface type
+error handling that is generated after the conversion (by checking for
+null) when [TypeChecking=Interface].
+
+Other effects of making idl_type.is_wrapper_type false for callback
+interfaces are:
+
+- Callback interface types can no longer be used as arguments to methods
+  implemented in private script. Reverting this effect would be trivial.
+
+- If a callback interface type argument is the distinguishing argument
+  for an overloaded method, we stop generating code that doesn&#39;t compile
+  and instead generate no code at all for that method overload.
+
+BUG=462561
+
+Review URL: <a href="https://codereview.chromium.org/1134073002">https://codereview.chromium.org/1134073002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195181 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a347adb39ea95d2fffa4bc6bbe85b4d858c7065c"><time datetime="2015-05-11">2015-05-11</time></a>
         <tr>
           <td>fs
           <td class=message>
