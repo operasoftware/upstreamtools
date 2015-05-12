@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 610,
   
-    <a href="#blink">Blink</a>: 2906,
+    <a href="#blink">Blink</a>: 2907,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11095,6 +11095,33 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>jl
+          <td class=message>
+            <details>
+              <summary>IDL: Determine maximum distinguishing argument index runtime, if needed</summary>
+              <pre class=body>
+If an overloaded method is partially runtime enabled such that its
+&#34;longest&#34; overload(s) might be disabled, we need to determine the
+maximum distinguishing argument index runtime, to avoid using an index
+for which all actual overloads are disabled, since that would typically
+cause us to incorrectly reject the call as not matching any overload.
+
+The implementation is largely a copy of the existing and very similar
+runtime determination of the correct Function.length value.
+
+While we&#39;re at it, drop the overloads[&#39;minarg&#39;] value, which was just a
+less accurate variant of overloads[&#39;length&#39;] used in a few places where
+it didn&#39;t really matter anyway.
+
+BUG=486249
+
+Review URL: <a href="https://codereview.chromium.org/1132243004">https://codereview.chromium.org/1132243004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195251 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6683c3897c94416dadb7429ece461b37d60594ab"><time datetime="2015-05-12">2015-05-12</time></a>
         <tr>
           <td>fs
           <td class=message>
