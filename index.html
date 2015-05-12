@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 608,
+    <a href="#chromium">Chromium</a>: 609,
   
     <a href="#blink">Blink</a>: 2905,
   
@@ -44,6 +44,36 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mpawlowski
+          <td class=message>
+            <details>
+              <summary>Don&#39;t create a sync node when updating an URL that wasn&#39;t typed.</summary>
+              <pre class=body>
+TypedUrlChangeProcessor is a HistoryService observer and gets notified
+about changes to all addresses, not just typed ones. This means that
+when HistoryService::SetPageTitle() is called for a non-typed URL,
+TypedUrlChangeProcessor::OnURLsModified() will be triggered and,
+consequently, TypedUrlChangeProcessor::CreateOrUpdateSyncNode().
+As the name suggests, if the modified node was not previously present
+(because it was filtered out by ShouldSyncVisit() in OnURLVisited()),
+it would be created.
+End effect was that *all* URLs that had their title updated (which means
+every page that has a &lt;title&gt; tag) were synced, even if they were not typed.
+
+The solution is to return early in CreateOrUpdateSyncNode() if we detect
+that the URL in question has no typed visits.
+
+(Caused by <a href="https://codereview.chromium.org/1087773002/">https://codereview.chromium.org/1087773002/</a>)
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1126633005">https://codereview.chromium.org/1126633005</a>
+
+Cr-Commit-Position: refs/heads/master@{#329370}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/3be1b71d63be98a42c0e98673ff35fcd4fc738ab"><time datetime="2015-05-12">2015-05-12</time></a>
         <tr>
           <td>bratell
           <td class=message>
