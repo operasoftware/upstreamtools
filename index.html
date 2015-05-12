@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 609,
+    <a href="#chromium">Chromium</a>: 610,
   
-    <a href="#blink">Blink</a>: 2905,
+    <a href="#blink">Blink</a>: 2906,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,31 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>A GL Query cache of 1024 items is enough (was 4096).</summary>
+              <pre class=body>
+Since each QuerySyncManager has its own cache, even a moderate
+cache size expands to several hundred KB of memory usage. This makes
+it slightly smaller to save some of that memory. It is believed
+to be unlikely that the cache has to be big anyway.
+
+In ad-hoc testing I&#39;ve only seen 20 queries in total (unclear how
+many of them were in parallel).
+
+(This is alt #1 in bug 485536)
+
+BUG=485536
+<a href="mailto:R=reveman@chromium.org">R=reveman@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1138463003">https://codereview.chromium.org/1138463003</a>
+
+Cr-Commit-Position: refs/heads/master@{#329383}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/a5989e1f8931cf00016b5e53a088df6ab6a1f3a1"><time datetime="2015-05-12">2015-05-12</time></a>
         <tr>
           <td>mpawlowski
           <td class=message>
@@ -11070,6 +11095,21 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Test for constrained background bleed</summary>
+              <pre class=body>
+<a href="mailto:TBR=fmalita@chromium.org">TBR=fmalita@chromium.org</a>
+BUG=445598
+
+Review URL: <a href="https://codereview.chromium.org/1134183002">https://codereview.chromium.org/1134183002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195233 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/08580415c60c39bb4931fcd77237b5a53ef90836"><time datetime="2015-05-12">2015-05-12</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
