@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 610,
   
-    <a href="#blink">Blink</a>: 2908,
+    <a href="#blink">Blink</a>: 2909,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11095,6 +11095,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Drop assert for degenerate cases in FloatRoundedRect::radiusCenterRect()</summary>
+              <pre class=body>
+This method is only used by BoxClipper, to provide a conservative
+estimate of a rectangle enclosed by the rounded (inner) rectangle.
+Since it&#39;s unproblematic to provide a conservative estimate for the
+&#34;degenerate&#34; cases [1], do that instead of asserting.
+Reformulate the implementation using FloatRectOutsets. The only
+functional change is that there no longer is an implicit conversion
+from float to int.
+
+[1] As defined by isRenderable().
+
+BUG=458505, 477826
+
+Review URL: <a href="https://codereview.chromium.org/1136083002">https://codereview.chromium.org/1136083002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195299 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/75d0e9b510672441e3a35b88f1e973eceee940ee"><time datetime="2015-05-13">2015-05-13</time></a>
         <tr>
           <td>fs
           <td class=message>
