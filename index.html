@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 611,
   
-    <a href="#blink">Blink</a>: 2912,
+    <a href="#blink">Blink</a>: 2913,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11113,6 +11113,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>MemoryCache::resourceForURL(): add argument validation.</summary>
+              <pre class=body>
+If querying the cache for the resource mapping of an empty or invalid
+URLs, return no resource, mirror the behavior of getEntryForResource().
+
+R=japhet
+BUG=431640
+
+Review URL: <a href="https://codereview.chromium.org/1142523002">https://codereview.chromium.org/1142523002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195366 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ab2a45cf25fc4b5eac72cfa31f41db1738bd9a20"><time datetime="2015-05-14">2015-05-14</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
