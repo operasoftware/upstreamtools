@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 610,
+    <a href="#chromium">Chromium</a>: 611,
   
     <a href="#blink">Blink</a>: 2911,
   
@@ -44,6 +44,24 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>landell
+          <td class=message>
+            <details>
+              <summary>Return EOS when selected_range_ is NULL in SourceBufferStream</summary>
+              <pre class=body>
+Fixes the issue where an OnSetDuration call truncates the selected_range_ and resets the
+next_buffer_position. kEndOfStream is now returned instead of kNeedBuffer from
+GetNextBufferInternal when selected_ranges_ is NULL.
+
+BUG=484992
+
+Review URL: <a href="https://codereview.chromium.org/1119163005">https://codereview.chromium.org/1119163005</a>
+
+Cr-Commit-Position: refs/heads/master@{#329753}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/0fcb1283c641e321545fa809b62bd3b285e8b7ca"><time datetime="2015-05-13">2015-05-13</time></a>
         <tr>
           <td>bratell
           <td class=message>
