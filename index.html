@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 611,
   
-    <a href="#blink">Blink</a>: 2911,
+    <a href="#blink">Blink</a>: 2912,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11113,6 +11113,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: move NavigationScheduler&#39;s redirect actions onto the heap.</summary>
+              <pre class=body>
+As NavigationScheduler is attached to a LocalFrame, arrange for its
+ScheduledNavigation actions to be on the Oilpan heap also, so that
+any of its traceable references are accurately accounted for.
+
+R=peria,haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/1133303007">https://codereview.chromium.org/1133303007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195342 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5f528ff59533ecd29293e267d140dadf388d520d"><time datetime="2015-05-14">2015-05-14</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
