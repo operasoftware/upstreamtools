@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 611,
+    <a href="#chromium">Chromium</a>: 612,
   
     <a href="#blink">Blink</a>: 2916,
   
@@ -44,6 +44,26 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>wdzierzanowski
+          <td class=message>
+            <details>
+              <summary>Don&#39;t initialize decryptor on CDM creation failure</summary>
+              <pre class=body>
+PpapiDecryptor::Create() must not proceed with decryptor initialization
+if the CDM wrapper could not be created.
+PpapiDecryptor::PpapiDecryptor() asserts the CDM wrapper is valid and
+InitializeCdm() uses it unconditionally.
+
+BUG=488363
+TEST=EME tests pass
+
+Review URL: <a href="https://codereview.chromium.org/1128693004">https://codereview.chromium.org/1128693004</a>
+
+Cr-Commit-Position: refs/heads/master@{#330150}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/4590f922ab1449f86e8d4ad43047de47d7790610"><time datetime="2015-05-15">2015-05-15</time></a>
         <tr>
           <td>landell
           <td class=message>
