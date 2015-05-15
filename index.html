@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 611,
   
-    <a href="#blink">Blink</a>: 2915,
+    <a href="#blink">Blink</a>: 2916,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11113,6 +11113,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Forced style invalidation when clearing resolver no longer needed.</summary>
+              <pre class=body>
+When the StyleInvalidator was stored on the RuleFeatureSet, we had to
+invalidate with pending invalidations before clearing the RuleFeatureSets
+as part of clearing the StyleResolver. After the StyleInvalidator was
+moved to StyleEngine, this is no longer necessary as invalidation sets
+are reference counted and can be used by the invalidator after their
+stylesheets are nuked.
+
+TEST=fast/css/invalidation/style-update-with-added-stylesheet.html
+
+<a href="mailto:R=chrishtr@chromium.org,esprehn@chromium.org">R=chrishtr@chromium.org,esprehn@chromium.org</a>
+BUG=401359
+
+Review URL: <a href="https://codereview.chromium.org/1131793008">https://codereview.chromium.org/1131793008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195407 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2e3aab255586e25206b06a725b365d8568511a67"><time datetime="2015-05-15">2015-05-15</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
