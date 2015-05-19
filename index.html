@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 2921,
+    <a href="#blink">Blink</a>: 2922,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,40 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove special handling of ::before and ::after on RUBY elements.</summary>
+              <pre class=body>
+Special handling of ::before and ::after in RUBY was introduced in
+<a href="https://bugs.webkit.org/show_bug.cgi?id=41040">https://bugs.webkit.org/show_bug.cgi?id=41040</a> , followed by some crash fixes,
+most notably <a href="https://bugs.webkit.org/show_bug.cgi?id=55930">https://bugs.webkit.org/show_bug.cgi?id=55930</a> (which is what
+caused this issue - crbug.com/484438 )
+
+No spec requires such special handling, and neither IE nor Firefox does it, and
+it just complicates the code.
+
+Just treat them as they were a first or last DOM child of the RUBY parent.
+That&#39;s how ::before and ::after normally works. This means that now ::before
+and ::after will be part of, or even establish, ruby runs.
+
+Added a test for the crasher.
+
+Also rewrote three tests as reftests, since the expectations started to fail
+anyway. One test was invalid (ruby-beforeafter.html), since it required special
+handling of ::before and ::after, while the two others just got different
+rendering due to this change.
+
+BUG=484438
+<a href="mailto:R=leviw@chromium.org,ojan@chromium.org">R=leviw@chromium.org,ojan@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1124313004">https://codereview.chromium.org/1124313004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195506 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/81eb8745dfd7d21fc9588220eed989d901cb7276"><time datetime="2015-05-19">2015-05-19</time></a>
         <tr>
           <td>fs
           <td class=message>
