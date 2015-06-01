@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3001,
+    <a href="#blink">Blink</a>: 3002,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,39 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync the XHR-related interfaces with the spec</summary>
+              <pre class=body>
+No observable changes are intended.
+
+The change to open() results in big changes to the generated code, but
+it should not be possible to observe the difference; the 2-argument form
+still treats async as true, and passing undefined for either username or
+password will still be converted to nullptr and then a null string.
+
+For both open() and send(), handing the default argument values in
+bindings allows the C++ code to be slightly simpler.
+
+Dropping [TreatReturnedNullStringAs=Undefined] for
+getAllResponseHeaders() makes no difference as
+XMLHttpRequest::getAllResponseHeaders() will never return a null string.
+Even when there are no headers, the untouched StringBuilder object will
+return an empty string from toString(), not a null string.
+
+The generated code now handles missing ProgressEventInit members, so the
+ProgressEvent constructor doesn&#39;t need to.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1167563002">https://codereview.chromium.org/1167563002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196221 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5f499324a09488765ef59bccb91e2f301a6f0e84"><time datetime="2015-06-01">2015-06-01</time></a>
         <tr>
           <td>philipj
           <td class=message>
