@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3004,
+    <a href="#blink">Blink</a>: 3005,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Out-of-flow objects inside multicol may not establish column sets.</summary>
+              <pre class=body>
+Do a better job at ignoring out-of-flow objects that are not contained by
+anything inside the multicol container. Previously we only made sure to skip
+such objects at one specific location in flowThreadDescendantWasInserted(), but
+this is really needed all over the place, so added utility functions for it.
+
+Added an assertion mapDescendantToColumnSet() to catch such situations earlier
+in the future.
+
+BUG=492897
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1163603002">https://codereview.chromium.org/1163603002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196234 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5e62a9e93cde27b57667b493adb34f623e3aced0"><time datetime="2015-06-01">2015-06-01</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
