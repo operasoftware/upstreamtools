@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 2923,
+    <a href="#blink">Blink</a>: 3001,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,1824 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync the Selection interface with the spec</summary>
+              <pre class=body>
+<a href="http://w3c.github.io/selection-api/#idl-def-Selection">http://w3c.github.io/selection-api/#idl-def-Selection</a>
+
+There are no changes to the generated code other than order and the
+allowPartial -&gt; allowPartialContainment renaming.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1159303003">https://codereview.chromium.org/1159303003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196219 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fc43d9a6d817c424cac4f6cc8149b7e7f3c450d7"><time datetime="2015-06-01">2015-06-01</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync the URL interfaces with the spec</summary>
+              <pre class=body>
+<a href="https://url.spec.whatwg.org/#api">https://url.spec.whatwg.org/#api</a>
+
+[NoInterfaceObject, Exposed=(Window,Worker)] is not a mistake in the
+spec: <a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=28538">https://www.w3.org/Bugs/Public/show_bug.cgi?id=28538</a>
+
+There are no changes to the generated code.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1162783003">https://codereview.chromium.org/1162783003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196217 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5aad9af2307d6a09eb5ec39d00616c367bc258cf"><time datetime="2015-06-01">2015-06-01</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync the CSS Font Loading interfaces with the spec</summary>
+              <pre class=body>
+<a href="http://dev.w3.org/csswg/css-font-loading/">http://dev.w3.org/csswg/css-font-loading/</a>
+
+There are no changes to the generated code, other than order.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1100873004">https://codereview.chromium.org/1100873004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196215 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5b0e7da66d3500b3045b938720624b8df158e8bd"><time datetime="2015-06-01">2015-06-01</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync some event interfaces with the HTML spec</summary>
+              <pre class=body>
+There are no changes to the generated code other than order and the use
+counter.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1167623002">https://codereview.chromium.org/1167623002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196213 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/84ed828c3194c8e4bdd3690022c24c80c648d807"><time datetime="2015-06-01">2015-06-01</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Document the proposal and spec bug for ApplicationCacheErrorEvent</summary>
+              <pre class=body>
+BUG=460722
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/1156173006">https://codereview.chromium.org/1156173006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196195 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3ccbe410201c2b16529ba4db54ab51e5d30e2051"><time datetime="2015-05-31">2015-05-31</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: simplify away StoppingOtherThreads pseudo GCState.</summary>
+              <pre class=body>
+ThreadState now keeps track of whether or not GCs are forbidden; use that
+to prevent nested GCs from kicking in rather than the temporary
+StoppingOtherThreads GCState previously used.
+
+R=haraken
+BUG=482838
+
+Review URL: <a href="https://codereview.chromium.org/1145423009">https://codereview.chromium.org/1145423009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196193 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2441476e160457713f53131d7ee624ab8f3c6360"><time datetime="2015-05-31">2015-05-31</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Mark WebGLRenderingContext as having lost context upon init failure.</summary>
+              <pre class=body>
+r196077 added a good test verifying the handling of attempted WebGL context
+creation when that fails to create an underlying drawing buffer. This
+exposed an Oilpan-specific lifetime issue for the WebGLRenderingContext
+object that fails to properly initialize. With Oilpan, that garbage
+collected &amp; partially initialized object will not be synchronously deleted,
+but be finalized instead when the next GC strikes.
+
+The WebGLRenderingContext object is an ActiveDOMObject attached to its
+execution context, so should it be stopped before that GC strikes, it
+will be forcibly removed from its (graphics system) context as part
+of stopping. The partially constructed object is not prepared for that,
+with failing consequences.
+
+To avoid, if the creation of a drawing buffer fails, we explicitly mark
+the object as having lost its context.
+
+R=bajones,kbr,haraken
+BUG=474665
+
+Review URL: <a href="https://codereview.chromium.org/1153233005">https://codereview.chromium.org/1153233005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196188 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/86ad08956db4f3129b516d8c560a60faea4d5e61"><time datetime="2015-05-30">2015-05-30</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the virtual ThemePainter::paintMediaCastButton()</summary>
+              <pre class=body>
+It appears to be an indirection without purpose.
+
+ThemePainterMac does not inherit from ThemePainterDefault, so on Mac the
+default implementation of painting nothing was used. If cast was made to
+work for Mac the button would fail to paint, so rebaseline the tests.
+
+BUG=493880
+
+Review URL: <a href="https://codereview.chromium.org/1158323004">https://codereview.chromium.org/1158323004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196174 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d9c6501725a39ff66c6e9ed22a80ec94ab30b20c"><time datetime="2015-05-29">2015-05-29</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>The span of a table-column or table-column-group should never be 0.</summary>
+              <pre class=body>
+We used to set span to 0 if the element type wasn&#39;t COL/COLGROUP and computed
+style had been set and display type was table-column-group. This seems to stem
+from a merge from some LABYRINTH_KDE_3_MERGE branch back in March 2002. Not
+sure if it made sense back then, but it certainly doesn&#39;t now.
+
+BUG=493352
+<a href="mailto:R=jchaffraix@chromium.org,leviw@chromium.org">R=jchaffraix@chromium.org,leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1146183005">https://codereview.chromium.org/1146183005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196166 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e957d27fcccdd4e2b2ab1be9cd0ac9f13cd94238"><time datetime="2015-05-29">2015-05-29</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Don&#39;t eat margins when column height isn&#39;t yet known.</summary>
+              <pre class=body>
+We ended up thinking that a margin would cross a column boundary, and this even
+before the column height was known. When margins cross column boundaries, we
+should indeed eat the part of it that doesn&#39;t fit in the first column. But when
+we don&#39;t even know the column height, eating the margin is just nonsense, and
+besides it confuses the column balancer. When we only have margins and borders,
+and no actual content, no space shortage is reported to the balancer, so we
+depend on getting it right in the first balancing pass.
+
+Introduce isPageLogicalHeightKnown(). Since blocks that contain spanners
+typically live in multiple column sets, columnSetAtBlockOffset() also needs to
+be able to search backwards for the right set for the given offset within the
+block. The set currently being worked on may be the one after the spanner,
+while we may be interested in the logical top of the block, which is in the
+column set before the spanner.
+
+General note: Using LayoutState::pageLogicalHeight() in multicol is bad, since
+the columns don&#39;t necessarily all have the same height. There&#39;s still more
+cleaning up to do here.
+
+BUG=493349
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1163583006">https://codereview.chromium.org/1163583006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196161 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/135502f6a2ff2dcef1ffbed20b0d40a36a6c5a47"><time datetime="2015-05-29">2015-05-29</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Track if textLength spacing is in effect while walking the line box tree</summary>
+              <pre class=body>
+Instead of calling parentDefinesTextLength() in
+layoutTextOnLineOrPath(), keep a flag updated as we traverse the line
+box tree. This eliminates the walk up the ancestor-chain, but more
+importantly it avoids checking this for each text box.
+To make this easier, layoutCharactersInTextBoxes() is moved from
+SVGRootInlineBox to SVGTextLayoutEngine. This allows simplifying
+SVGTextLayoutEngine::beginTextPathLayout a bit to make it more
+independent.
+Gives roughly a 1% speedup on separate-x.svg from the bug, when run
+through PerfTestRunner.measurePageLoadTime.
+
+BUG=486669
+
+Review URL: <a href="https://codereview.chromium.org/1158033006">https://codereview.chromium.org/1158033006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196158 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0c6c0eea2e932f9ba3d04445bce929ea60227d2d"><time datetime="2015-05-29">2015-05-29</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Shrinking CSSParserToken for lower CSS parsing memory usage.</summary>
+              <pre class=body>
+For 64-bit this shrinks CSSParserToken from 32 to 24 bytes. For 32-bit
+this shrinks CSSParserToken from 24 to 20 bytes.
+
+On typical sites (gmail, arstechnica) there are 300 KB stylesheets
+which makes us preallocate room for 100,000 CSSParserTokens.
+Allocation savings will then be 800 KB on 64-bit and 400 KB on
+32-bit.
+
+It does not cause any noticable performance change in any direction
+on a workstation. Memory starved devices *might* benefit.
+
+<a href="mailto:R=timloh@chromium.org">R=timloh@chromium.org</a>
+BUG=490185
+
+Review URL: <a href="https://codereview.chromium.org/1161963002">https://codereview.chromium.org/1161963002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196134 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/be014e080aca8e6725179c105bc39cc03e42e949"><time datetime="2015-05-29">2015-05-29</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove Attr child nodes (making Attr a Node, not a ContainerNode)</summary>
+              <pre class=body>
+Intent to Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/4Hg0l42QHH0/H59LyoiJlI4J">https://groups.google.com/a/chromium.org/d/msg/blink-dev/4Hg0l42QHH0/H59LyoiJlI4J</a>
+
+Rationale for some of the non-obvious test changes:
+
+LayoutTests/dom/html/level1/core/hc_attrsetvalue2.html:
+LayoutTests/dom/xhtml/level1/core/hc_attrsetvalue2.xhtml:
+
+  Removing the child node aspects makes these tests equivalent to
+  hc_attrsetvalue1, so they were removed.
+
+LayoutTests/dom/html/level1/core/hc_elementnormalize2.html:
+LayoutTests/dom/xhtml/level1/core/hc_elementnormalize2.xhtml:
+
+  These test that Element.normalize() also normalizes the Element&#39;s
+  Attr&#39;s children, so with no children there&#39;s nothing left to test.
+
+LayoutTests/fast/dom/Element/normalize-crash.html:
+
+  <a href="http://trac.webkit.org/changeset/59109">http://trac.webkit.org/changeset/59109</a>
+
+  The crash was in Element::normalizeAttributes(), which is removed.
+
+LayoutTests/fast/dom/Element/normalize-crash2.html:
+
+  <a href="https://code.google.com/p/chromium/issues/detail?id=394026">https://code.google.com/p/chromium/issues/detail?id=394026</a>
+
+  The crash was in Element::normalizeAttributes(), which is removed.
+
+LayoutTests/fast/dom/insertedIntoDocument-child.html:
+LayoutTests/fast/dom/insertedIntoDocument-sibling.html:
+
+  <a href="http://trac.webkit.org/changeset/81611">http://trac.webkit.org/changeset/81611</a>
+
+  Even before this change, the DOMNodeRemoved event listener was not
+  actually run in these tests.
+
+LayoutTests/fast/dom/normalize-attributes-mutation-event-crash.html:
+
+  <a href="http://trac.webkit.org/changeset/137341">http://trac.webkit.org/changeset/137341</a>
+
+  The crash was in Element::normalizeAttributes(), which is removed.
+
+LayoutTests/fast/storage/storage-detached-iframe.html:
+
+  Already damaged by the replaceWholeText() removal in r185541, nothing
+  useful of the subtest remains when removing the firstChild bits.
+
+BUG=305105
+
+Review URL: <a href="https://codereview.chromium.org/1158433004">https://codereview.chromium.org/1158433004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196128 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8a63e97e2e96ec4724485d0661e142ac8e4d66c3"><time datetime="2015-05-29">2015-05-29</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r196078.</summary>
+              <pre class=body>
+TBR=oilpan-reviews
+BUG=434450
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/1162033003">https://codereview.chromium.org/1162033003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196084 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/61eaf5a3969592bab20c35ade5c723569ef248a3"><time datetime="2015-05-28">2015-05-28</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Use begin/end istead of first/last for rule ranges.</summary>
+              <pre class=body>
+MatchResult used -1 for empty ranges of matched properties. Use begin/end
+instead where begin == end means we have an empty range.
+
+As requested in <a href="https://codereview.chromium.org/1155393002/">https://codereview.chromium.org/1155393002/</a>
+
+<a href="mailto:R=timloh@chromium.org">R=timloh@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1162583002">https://codereview.chromium.org/1162583002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196065 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/aa0fe895c3b1e8bb7ae62aea2975806a793f9016"><time datetime="2015-05-28">2015-05-28</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert of Oilpan: Implement a GC to take a heap snapshot (patchset #7 id:120001 of https://codereview.chromium.org/1159773004/)</summary>
+              <pre class=body>
+Reason for revert:
+ThreadedWeakness unit test is failing on various bots,
+
+ <a href="http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Linux%2032/builds/36384">http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Linux%2032/builds/36384</a>
+ <a href="http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Android%20%28Nexus4%29/builds/32383">http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Android%20%28Nexus4%29/builds/32383</a>
+
+Original issue&#39;s description:
+&gt; Oilpan: Implement a GC to take a heap snapshot
+&gt; 
+&gt; This CL implements Heap::collectGarbage(gcType = TakeSnapshot), which is intended
+&gt; to be used to take a heap snapshot when onMemoryDump is requested etc.
+&gt; 
+&gt; The GC is expected to be as side-effect-free as possible. Thus the GC behaves as follows:
+&gt; 
+&gt; 1) Run a marking task.
+&gt; 2) Take a heap snapshot (The actual implementation will come in a follow-up CL).
+&gt; 3) Clear all marks on marked objects. No sweeping task runs.
+&gt; 
+&gt; More contexts:
+&gt; <a href="https://codereview.chromium.org/1149673002/">https://codereview.chromium.org/1149673002/</a>
+&gt; <a href="https://groups.google.com/a/chromium.org/d/topic/oilpan-reviews/6LhByzmVt6Q/discussion">https://groups.google.com/a/chromium.org/d/topic/oilpan-reviews/6LhByzmVt6Q/discussion</a>
+&gt; 
+&gt; BUG=490087
+&gt; TEST=HeapTest.ThreadedWeakness
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=195982">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=195982</a>
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=196059">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=196059</a>
+
+<a href="mailto:TBR=oilpan-reviews@chromium.org,keishi@chromium.org,primiano@chromium.org,ssid@chromium.org,haraken@chromium.org">TBR=oilpan-reviews@chromium.org,keishi@chromium.org,primiano@chromium.org,ssid@chromium.org,haraken@chromium.org</a>
+NOPRESUBMIT=true
+NOTREECHECKS=true
+NOTRY=true
+BUG=490087
+
+Review URL: <a href="https://codereview.chromium.org/1143243006">https://codereview.chromium.org/1143243006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196063 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/95091d4974e241c00ce749e7aef01129b6874bd8"><time datetime="2015-05-28">2015-05-28</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Avoid resetting the metrics-list/character offset for each text box</summary>
+              <pre class=body>
+SVGTextLayoutEngine::layoutTextOnLineOrPath needs to keep track of the
+SVGTextMetrics corresponding to each glyph it layouts. To do this, the
+members m_visual{Character,MetricsList}Offset are used. However, this
+state is reset for each invocation, which means that finding the
+starting metrics entry can yield O(N^2) behavior. For text nodes with
+many (logically consecutive) text boxes, this can become noticeable.
+Introduce a helper SVGTextMetricsIterator - replacing the m_visual*
+members - and let it persist across calls to layoutTextOnLineOrPath.
+This speeds up the case of many logically consecutive text boxes.
+
+Using the PerfTestRunner.measurePageLoadTime harness with
+separate-x.svg from the bug give the following results locally:
+
+       Before:     After:
+avg    101.5 ms -&gt; 93.1 ms
+median 101.1 ms -&gt; 93.1 ms
+stdev    2.8 ms -&gt;  2.3 ms
+
+BUG=486669
+
+Review URL: <a href="https://codereview.chromium.org/1160623002">https://codereview.chromium.org/1160623002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196054 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7fb876a22af1f509306b3aa19c813ec5dc23ec4e"><time datetime="2015-05-28">2015-05-28</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Rearrange MediaControls members to match DOM structure</summary>
+              <pre class=body>
+This matches the order of MediaControls::initializeControls(), making it
+more obvious where to add members.
+
+BUG=448795
+
+Review URL: <a href="https://codereview.chromium.org/1153383002">https://codereview.chromium.org/1153383002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196053 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3c4108d1f587c82743c5f13d2334e2a39d496227"><time datetime="2015-05-28">2015-05-28</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Perform SVG text chunk processing on-the-fly</summary>
+              <pre class=body>
+Instead of building a vector of chunks, and then process that vector,
+process the chunks as they are formed. The chunks themselves are
+independent units, so this is reasonably straight-forward. The main
+change is that instead of creating and adding an SVGTextChunk to a
+vector, the data used to create the chunk is passed to a handler
+method. Because of how &lt;textPath&gt; is handled, this handler currently
+needs to be a virtual method. Because of that, a SVGTextChunkBuilder
+is subclassed to SVGTextPathChunkBuilder for the text-on-path
+processing.
+
+Using the PerfTestRunner.measurePageLoadTime harness with
+separate-x.svg from the bug give the following results locally:
+
+       Before:     After:
+avg    100.5 ms -&gt; 89.5 ms
+median 100.5 ms -&gt; 88.7 ms
+stdev    2.1 ms -&gt;  3.2 ms
+
+BUG=486669
+
+Review URL: <a href="https://codereview.chromium.org/1155293005">https://codereview.chromium.org/1155293005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196040 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e48920d435e8e7bccc8aba0e87985c226d968cf8"><time datetime="2015-05-28">2015-05-28</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Fix nested parking of threads while setting up a garbage collection.</summary>
+              <pre class=body>
+When a thread requests a GC, it first enters a safe point to indicate
+that it is prepared to garbage collect. After that it tries to interrupt/
+notify the other threads to also enter safe points and waits around for
+them to enter that state. While waiting, it will block other threads from
+attempting to similarly park threads.
+
+But, should another thread trigger a GC while the parking thread is
+waiting, it will first enter a safe point, but then proceed to try to
+park the other threads. Which it will be blocked from making progress on
+due to the above lock being taken by the initial thread requesting thread
+parking. By initially entering a safe point though, the first thread may
+indirectly reach the desired condition of all threads being parked. Which
+means it can safely proceed with the GC _along_ with releasing the lock
+for other threads to attempt to park thread. The second parking thread
+will then do so, but be blocked waiting for all the threads to park. The
+thread that has proceeded to initiate a GC will not do so, so after the
+max parking time has passed, the second thread will signal that it failed
+to park the other threads, and try to abort its attempted GC.
+
+As part of that abort/cancellation step, it will attempt to reset its
+GCState back to what it was when the GC attempt was initiated. That
+GCState may have changed behind the thread&#39;s back -- the initial thread
+has proceeded with a GC, and will as part of that change the GCState of
+each attached thread. Hence, GC cancellation needs to check that the
+GCState it is trying to reset from is the expected one. If it isn&#39;t,
+that is a sign that another thread has initiated a GC and it should
+just quietly return. Which means waiting for it to be allowed to leave
+its safe point..and at that point perform the thread-specific parts of
+the GC.
+
+R=haraken
+BUG=487952
+
+Review URL: <a href="https://codereview.chromium.org/1158243004">https://codereview.chromium.org/1158243004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196037 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fbe79754a3ebf044bf0dba1e01fd2b0bae119fcd"><time datetime="2015-05-28">2015-05-28</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Refactor matched rule ranges.</summary>
+              <pre class=body>
+For matched CSS rules we need to know where the UA rules end and the
+author rules begin. This CL simplifies this by having a single index for
+the last UA rule. -1 means there are no UA rules, otherwise it&#39;s the
+index of the last UA rule in the array. Convenience methods are added to
+return the first/last rule indices for UA and author rules.
+
+The rule ranges used to be updated for every added rule. Now, just update
+the last UA rule index when sorting and transferring UA rules. That means
+we don&#39;t have to pass the ranges as parameters anymore.
+
+<a href="mailto:R=timloh@chromium.org,esprehn@chromium.org">R=timloh@chromium.org,esprehn@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1155393002">https://codereview.chromium.org/1155393002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196036 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b81aeea38a4a2bb14cb438b3f11444abfdf58cfe"><time datetime="2015-05-28">2015-05-28</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove SVGTextLayoutEngine::m_pathLayoutBoxes</summary>
+              <pre class=body>
+Line boxes are added to this vector, and finalizeTransformMatrices()
+iterates through it. The latter will however never do anything for
+these line boxes, because layoutTextBoxes() is the only thing that adds
+boxes to the map that will cause finalizeTransformMatrices() to have an
+effect.
+
+BUG=486669
+
+Review URL: <a href="https://codereview.chromium.org/1157253002">https://codereview.chromium.org/1157253002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195997 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f6d75cc5fd0c11b4282601901d8c683cf8ec8e5c"><time datetime="2015-05-27">2015-05-27</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Add early-out in SVGTextChunkBuilder::finalizeTransformMatrices()</summary>
+              <pre class=body>
+This function will only do something when textLength is being applied.
+If that&#39;s not the case, there&#39;ll just a lot of iteration and hash-
+lookups for no good.
+Not huge win performance-wise (in the noise), but a fairly simple and
+obvious thing to do.
+
+BUG=486669
+
+Review URL: <a href="https://codereview.chromium.org/1161803002">https://codereview.chromium.org/1161803002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195983 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/94c4755cf0ceb720bd28977a4173eebb63e39268"><time datetime="2015-05-27">2015-05-27</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Rearrange the XHR interfaces to match the spec order</summary>
+              <pre class=body>
+<a href="https://xhr.spec.whatwg.org/#interface-xmlhttprequest">https://xhr.spec.whatwg.org/#interface-xmlhttprequest</a>
+
+To make reviewing easier, this commit only changes the order of lines
+and adds comments. Actual spec sync will be done separately.
+
+The order of the generated code changes, but there are no actual
+changes.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1155313002">https://codereview.chromium.org/1155313002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195976 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/78a513fd6c6e589b81d71d32d2fb9379b631eae4"><time datetime="2015-05-27">2015-05-27</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync SVG interfaces with the specs</summary>
+              <pre class=body>
+Add use counters for some things that are gone from the specs.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1153763008">https://codereview.chromium.org/1153763008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195970 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a468168db346c18719a7554c0d6927e839f40584"><time datetime="2015-05-27">2015-05-27</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move SVGTextChunkBuilder out of SVGTextLayoutEngine</summary>
+              <pre class=body>
+This member of SVGTextLayoutEngine has a very narrow scope in which it
+is used. The data produced into it is in practice consumed within the
+very same method. Hence move it out of class scope and into function
+scope.
+Also take the opportunity to move finalizeTransformMatrices() to
+SVGTextChunkBuilder as well, since it essentially applies data from
+the latter.
+
+Also drop the debug code within DUMP_TEXT_FRAGMENTS.
+
+BUG=486669
+
+Review URL: <a href="https://codereview.chromium.org/1156053002">https://codereview.chromium.org/1156053002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195969 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5505e95707db20dfcc538629cb49f05abcdc22d5"><time datetime="2015-05-27">2015-05-27</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove old multicol tests that were only run with the old implementation.</summary>
+              <pre class=body>
+These were DRT tests that were never converted to better kinds of tests,
+because they were either superfluous, invalid or depended on bugs in the old
+multicol implementation. There are (almost) no DRT test baselines for the new
+implementation, and I&#39;d like to keep it that way.
+
+BUG=408123
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1143153006">https://codereview.chromium.org/1143153006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195925 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/533852dc580e9f7bfdeda152e2e71924735d037c"><time datetime="2015-05-26">2015-05-26</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Make test proxy Platform objects provide currentThread().</summary>
+              <pre class=body>
+For the benefit of the Oilpan GC and it needing to post tasks, have
+these two test Platform objects provide a delegating currentThread()
+implementation.
+
+R=haraken,skyostil
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1052103004">https://codereview.chromium.org/1052103004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195923 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cb3e90f913422aa0f3766925cbfcd65a95e83e62"><time datetime="2015-05-26">2015-05-26</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Enable RegionBasedColumns runtime flag for stable.</summary>
+              <pre class=body>
+This ships the new multicol implementation.
+
+Removed the virtual/stable multicol testsuites, since the old multicol
+implementation is no longer testable (and will be removed from the code
+shortly).
+
+BUG=334335,408123
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1152423003">https://codereview.chromium.org/1152423003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195913 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/db89e3146bd1d19b5f178ecd576483e3f6fce966"><time datetime="2015-05-26">2015-05-26</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Drop unused argument from one of the SVGTextMetrics constructors</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/1155683005">https://codereview.chromium.org/1155683005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195911 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0a464ee38c0e816ccbf50e413a0474c6289341f8"><time datetime="2015-05-26">2015-05-26</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: rename EAGERLY_SWEEP() as EAGERLY_FINALIZED().</summary>
+              <pre class=body>
+Renamed to make its purpose clearer; classes are to be annotated as
+eagerly finalized when they either need to promptly release ownership of
+non-heap objects, or when their destructors have an unavoidable need to
+access other heap objects. Both kinds are considered very rare, but more
+accurate control of finalization timing is sometimes needed &amp; vital.
+
+Also introduce a transition time version of the macro,
+EAGERLY_FINALIZED_WILL_BE_REMOVED() for the places where eager finalization
+is needed non-Oilpan once lazy sweeping is enabled. That class annotation
+will be removed once the class is always on the heap.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1150863003">https://codereview.chromium.org/1150863003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195887 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cf94d8b98683574ff68a7c43fa669524b1e067a3"><time datetime="2015-05-26">2015-05-26</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Add a runtime flag for the column-fill property.</summary>
+              <pre class=body>
+Decouple column-fill support from the RegionBasedColumns flag.
+
+The new multicol implementation is about to ship. All other multicol
+properties are -webkit- prefixed, except for column-fill. Allowing
+such a mix would very likely confuse authors, so better hide
+column-fill away until we can unprefix all other multicol properties.
+
+If column-fill isn&#39;t supported, the layout engine will behave as if it
+were set to &#39;auto&#39;, which means that a multicol container with a
+specified height won&#39;t have its columns balanced.
+
+Discussed here:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/hhecvWUBJvg/nq4X3s8Jmk4J">https://groups.google.com/a/chromium.org/d/msg/blink-dev/hhecvWUBJvg/nq4X3s8Jmk4J</a>
+
+<a href="mailto:R=jchaffraix@chromium.org">R=jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1145093002">https://codereview.chromium.org/1145093002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195873 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/094d8ca14add0a11716cb47b46f2ca0217512d82"><time datetime="2015-05-25">2015-05-25</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync the BarProp interface with the spec</summary>
+              <pre class=body>
+<a href="https://html.spec.whatwg.org/#barprop">https://html.spec.whatwg.org/#barprop</a>
+
+BUG=460722
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/1157893002">https://codereview.chromium.org/1157893002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195871 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8d9eca59e98843fd0155a2ca3ebfb95f64d4bb81"><time datetime="2015-05-25">2015-05-25</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync the Screen interface with CSSOM View</summary>
+              <pre class=body>
+<a href="http://dev.w3.org/csswg/cssom-view/#the-screen-interface">http://dev.w3.org/csswg/cssom-view/#the-screen-interface</a>
+
+It seems unlikely that availLeft and availTop could be removed, but
+measure them to know for sure.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1145233006">https://codereview.chromium.org/1145233006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195868 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/da1bfbd3be17278b8de57730ab773a5bd5a6c4be"><time datetime="2015-05-25">2015-05-25</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Only notify the flowthread about style changes on actual descendants.</summary>
+              <pre class=body>
+Calling flowThreadContainingBlock() on the flow thread itself returns the flow
+thread, but the flow thread obviouly isn&#39;t a true descendant of itself, so
+let&#39;s avoid calling flowThreadDescendantStyleWillChange() and
+flowThreadDescendantStyleDidChange() then. There&#39;s currently no way any harm
+could be done if the flow tread were indeed treated as a descendant of itself
+here, but it&#39;s just wrong and bad.
+
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1155023002">https://codereview.chromium.org/1155023002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195863 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fad03c35668eb85df463ce884b725f5fd69ee7c7"><time datetime="2015-05-25">2015-05-25</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a counter for CSSKeyframesRule&#39;s anonymous indexed getter</summary>
+              <pre class=body>
+This getter makes no sense, as there&#39;s no length attribute.
+
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/1152993002">https://codereview.chromium.org/1152993002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195853 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2fc1d38aadf011313451f24e4970554981674794"><time datetime="2015-05-25">2015-05-25</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make CharacterData.substringData() and ProcessingInstruction.target not nullable</summary>
+              <pre class=body>
+This changes the generated code from v8SetReturnValueStringOrNull(...)
+to v8SetReturnValueString(...), but none of these can return a null
+string internally, so the difference should never be observable.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1151203002">https://codereview.chromium.org/1151203002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195802 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/63a7b4f104d07afe63cd1d3623098d5697ec9ce3"><time datetime="2015-05-22">2015-05-22</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Adjust FrameFetchContext clearing logic when clearing HTMLImportsController</summary>
+              <pre class=body>
+Have the clearing of a Document&#39;s HTMLImportsController only clear its
+FrameFetchContext if there&#39;s no DocumentLoader attached. If a loader is
+attached, it is possibly shared amongst multiple Documents and it is
+responsible for clearing the fetch context.
+
+This mirrors the condition used during detach().
+
+R=dcheng
+BUG=491051
+
+Review URL: <a href="https://codereview.chromium.org/1156663003">https://codereview.chromium.org/1156663003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195801 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0a7480cf3052a4308cf9e4e7c9ef766cb02a548b"><time datetime="2015-05-22">2015-05-22</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove CSSKeyframesRule.insertRule()</summary>
+              <pre class=body>
+Intent to Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/wW7w8Hro78s/JDULF2oM9iIJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/wW7w8Hro78s/JDULF2oM9iIJ</a>
+
+BUG=470400
+
+Review URL: <a href="https://codereview.chromium.org/1153493002">https://codereview.chromium.org/1153493002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195797 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/130c8d1fcff05a460e2227b2a84f65651a69dbad"><time datetime="2015-05-22">2015-05-22</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make Attr.value/nodeValue/textContent not nullable</summary>
+              <pre class=body>
+<a href="https://dom.spec.whatwg.org/#interface-attr">https://dom.spec.whatwg.org/#interface-attr</a>
+
+The [TreatNullAs=EmptyString] addition has been proposed:
+<a href="https://github.com/whatwg/dom/pull/36">https://github.com/whatwg/dom/pull/36</a>
+
+An ad-hoc test for the behavior of setting these to null:
+<a href="http://software.hixie.ch/utilities/js/live-dom-viewer/saved/3528">http://software.hixie.ch/utilities/js/live-dom-viewer/saved/3528</a>
+
+Firefox Nightly:
+attr.value=null =&gt; getAttribute()==&#34;null&#34;
+attr.nodeValue=null =&gt; getAttribute()==&#34;&#34;
+attr.textContent=null =&gt; getAttribute()==&#34;&#34;
+
+IE11 and Edge:
+attr.value=null =&gt; getAttribute()==&#34;null&#34;
+attr.nodeValue=null =&gt; getAttribute()==&#34;&#34;
+attr.textContent=null =&gt; getAttribute()==&#34;&#34;
+
+Safari 8:
+attr.value=null =&gt; getAttribute()==null
+attr.nodeValue=null =&gt; getAttribute()==null
+attr.textContent=null =&gt; getAttribute()==&#34;&#34;
+
+Blink before this change:
+attr.value=null =&gt; getAttribute()==null
+attr.nodeValue=null =&gt; getAttribute()==null
+attr.textContent=null =&gt; getAttribute()==null
+
+Blink after this change:
+attr.value=null =&gt; getAttribute()==&#34;null&#34;
+attr.nodeValue=null =&gt; getAttribute()==&#34;&#34;
+attr.textContent=null =&gt; getAttribute()==&#34;&#34;
+
+Note that in the getAttribute()==null cases in WebKit and Blink,
+hasAttribute() will still return true, which is very strange.
+
+This change brings Blink into alignment with Firefox and IE, so the
+risk of breakage ought to be very low.
+
+The update-attribute-node-null-value-no-crash.html test serves no
+purpose when Attr.value cannot be null, so it is removed.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1146393003">https://codereview.chromium.org/1146393003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195785 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a7c3bb9f22401c30e906a3ec53595247e707de83"><time datetime="2015-05-22">2015-05-22</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert of Oilpan: Unpoison orphaned large objects before zapping (patchset #3 id:40001 of https://codereview.chromium.org/1154733002/)</summary>
+              <pre class=body>
+Reason for revert:
+Broke ASAN compilation,
+
+ <a href="http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Linux%20ASAN/builds/18648">http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Linux%20ASAN/builds/18648</a>
+
+Original issue&#39;s description:
+&gt; Oilpan: Unpoison orphaned large objects before zapping
+&gt; 
+&gt; To zap orphaned large objects, we need to unpoison the area.
+&gt; Otherwise ASan detects the error, although it seems there has been
+&gt; no orphaned large objects so far (by accident).
+&gt; 
+&gt; We&#39;re already doing that for orphaned normal pages.
+&gt; 
+&gt; This CL also adds a couple of ASSERTs that would be helpful.
+&gt; 
+&gt; BUG=420515
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=195782">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=195782</a>
+
+<a href="mailto:TBR=oilpan-reviews@chromium.org,keishi@chromium.org,haraken@chromium.org">TBR=oilpan-reviews@chromium.org,keishi@chromium.org,haraken@chromium.org</a>
+NOPRESUBMIT=true
+NOTREECHECKS=true
+NOTRY=true
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1146393004">https://codereview.chromium.org/1146393004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195783 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a4bea8543fb9b268ed21486468ab8415ad09021d"><time datetime="2015-05-22">2015-05-22</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fix ordering of recorders in SVGPaintContext</summary>
+              <pre class=body>
+The compositing recorder should go out of scope (&#34;end&#34;) before the
+(float) clip recorder to match the order in which they should be applied.
+
+BUG=490363
+
+Review URL: <a href="https://codereview.chromium.org/1149043003">https://codereview.chromium.org/1149043003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195777 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e7d06b8b4527114cbe0497aa3315d5d50a14dfcd"><time datetime="2015-05-22">2015-05-22</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove dead code from CanvasStyle</summary>
+              <pre class=body>
+CanvasStyle::applyFill/StrokeColor are no longer used.
+
+BUG=453113
+
+Review URL: <a href="https://codereview.chromium.org/1152513003">https://codereview.chromium.org/1152513003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195774 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ab9b13d46c9da6ede146a8eeed43608e75206fde"><time datetime="2015-05-22">2015-05-22</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: insist on eager sweeping for some objects.</summary>
+              <pre class=body>
+To prepare for enabling lazy sweeping, non-Oilpan - add EAGERLY_SWEEP()
+annotations for LifecycleObserver and DOMWindowProperty.
+
+The former is a template, so extend range of EAGERLY_SWEEP() macros
+to handle that also, along with ways to handle ambiguity.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1146353002">https://codereview.chromium.org/1146353002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195772 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1aa43b6a746cc8bb56afe2c34e21f00a034e457f"><time datetime="2015-05-22">2015-05-22</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: complete current sweep before preparing for new GC.</summary>
+              <pre class=body>
+If collectGarbage() is called while sweeping is in progress, complete
+the sweeping before recording what GCState to revert back to should
+we fail to get the other threads to stop at a safe point.
+
+Otherwise we risk reverting back to a sweeping state that has been
+completed &amp; advanced past.
+
+R=haraken
+BUG=487952
+
+Review URL: <a href="https://codereview.chromium.org/1153533002">https://codereview.chromium.org/1153533002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195758 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/bb7a8d2d095bf44ae86589fbeb6df941c87e0f35"><time datetime="2015-05-22">2015-05-22</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Removed unused operator== for MatchRanges.</summary>
+              <pre class=body>
+Not in use after r195675.
+
+<a href="mailto:R=timloh@chromium.org">R=timloh@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1146013003">https://codereview.chromium.org/1146013003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195757 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ed5de369594ba22304ad69737c3fea4c3b953b18"><time datetime="2015-05-22">2015-05-22</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make Attr.localName/name and Element.localName/tagName not nullable</summary>
+              <pre class=body>
+This changes the generated code from v8SetReturnValueStringOrNull(...)
+to v8SetReturnValueString(...), but there is no way to create an element
+or attribute with an empty/null name, so the difference should never be
+observable.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1145233003">https://codereview.chromium.org/1145233003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195726 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/408cb4804ba1e442cc01708092f0cb34bde55df7"><time datetime="2015-05-21">2015-05-21</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Cleanup: Get rid of LayoutBlock::offsetFromLogicalTopOfFirstPage().</summary>
+              <pre class=body>
+Fold its contents into LayoutBox::offsetFromLogicalTopOfFirstPage() and make
+that one non-virtual. Some non-blocks (e.g. table rows and sections) do
+establish layout states, so we cannot just unconditionally jump to the
+containing block.
+
+Currently offsetFromLogicalTopOfFirstPage() is never called on non-blocks (in
+other words, the LayoutBox implementation of the method just sat there doing
+nothing but contribute to the binary size), which explains why we had no bugs
+because of this. I expect that non-blocks will call this method in the near
+future, though.
+
+<a href="mailto:R=jchaffraix@chromium.org,leviw@chromium.org">R=jchaffraix@chromium.org,leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1154493002">https://codereview.chromium.org/1154493002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195709 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/503b0b4ac1e19fa7141aabebbbee10937979b876"><time datetime="2015-05-21">2015-05-21</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Changing out-of-flow-ness on a multicol child may affect the need for column sets.</summary>
+              <pre class=body>
+If a sole out-of-flow child becomes in-flow, we have to insert a column set,
+since we suddenly have column content.
+
+Conversely, if a sole in-flow child becomes out-of-flow, we have to remove the
+column set, since there&#39;s no column content anymore.
+
+BUG=486993
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1148173003">https://codereview.chromium.org/1148173003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195693 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fd59c191720fd7ad3117e3a72885efdd54e0372c"><time datetime="2015-05-21">2015-05-21</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Cleanup includes after DOMImplementation::hasFeature neutering</summary>
+              <pre class=body>
+Unused after <a href="https://codereview.chromium.org/1108293002">https://codereview.chromium.org/1108293002</a>
+
+<a href="mailto:R=philipj@opera.com">R=philipj@opera.com</a>
+BUG=429536
+
+Review URL: <a href="https://codereview.chromium.org/1148633004">https://codereview.chromium.org/1148633004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195690 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/7500b3845869f9b41fa4dd1f66dc52164701b53d"><time datetime="2015-05-21">2015-05-21</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Make ensureDefaultStyleSheetForElement parameter const reference.</summary>
+              <pre class=body>
+<a href="mailto:R=mstensho@opera.com">R=mstensho@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/1150823004">https://codereview.chromium.org/1150823004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195689 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1bb6faec1ae5d7919c2ba5ba309c38be3ab602a7"><time datetime="2015-05-21">2015-05-21</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: ASan-exempt Heap::willObjectBeLazilySwept().</summary>
+              <pre class=body>
+It will return true if its argument is an object that will be swept, hence
+an exemption wrt ASan checks for poisoining is very much in order.
+
+Also include some Timer-related leftovers not caught by r195656.
+
+R=haraken
+BUG=482838
+
+Review URL: <a href="https://codereview.chromium.org/1150563005">https://codereview.chromium.org/1150563005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195679 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/db1f69dc9479775a06bc373babe76674f2e1de90"><time datetime="2015-05-21">2015-05-21</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Revamp asynchronous (load) event dispatching for SVG elements</summary>
+              <pre class=body>
+Refactor asynchronous event dispatching for SVG elements to use
+EventSender instead of the home-grown mechanism. This eliminates the
+need for one timer (96 bytes on 64-bit targets) per &lt;use&gt; and &lt;style&gt;
+element.
+
+In SVGStyleElement, align with HTMLStyleElement, by adding an
+implementation of Node::notifyLoadedSheetAndAllCriticalSubresources(),
+replacing SVGStyleElement::sendSVGErrorEventAsynchronously().
+
+The call in SVGUseElement::insertedInto is dropped, because it would
+never cause an event to be dispatched (an event will only be dispatched
+when the &lt;use&gt; is &#34;structurally external&#34;). There&#39;s a slight change in
+behavior for SVGUseElement, since the event is now always dispatched,
+regardless of existence of handlers.
+
+Drop sendSVGLoadEventIfPossibleAsynchronously(), svgLoadEventTimer()
+and svgLoadEventTimerFired() from SVGElement because they are now
+unused.
+
+Review URL: <a href="https://codereview.chromium.org/1150623003">https://codereview.chromium.org/1150623003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195678 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/05cee5c4b6e177f22bfd51ff828532fc5b34bcc4"><time datetime="2015-05-21">2015-05-21</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Move AddressSanitizer.h to wtf/</summary>
+              <pre class=body>
+ASan (no) annotation helper macros are useful outside of Oilpan, including
+WTF, hence move it to there.
+
+R=haraken,tkent
+
+Review URL: <a href="https://codereview.chromium.org/1145073002">https://codereview.chromium.org/1145073002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195676 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/270c35c052c720d02def357b849c89772ad5cc64"><time datetime="2015-05-21">2015-05-21</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>No need to store ranges in MatchedPropertiesCache.</summary>
+              <pre class=body>
+There was no need to store the UA/author rule ranges from the MatchResult
+as those will be equal if the arrays of matched properties are equal.
+
+<a href="mailto:R=esprehn@chromium.org,timloh@chromium.org,dstockwell@chromium.org">R=esprehn@chromium.org,timloh@chromium.org,dstockwell@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1148023002">https://codereview.chromium.org/1148023002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195675 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ddb085535805b234b5b2a2e937e344a9f305f3b1"><time datetime="2015-05-21">2015-05-21</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: more lazy sweep ASan exemptions.</summary>
+              <pre class=body>
+Annotate the Timer methods called upon by sharedTimerFiredInternal()
+as exempted by ASan checks also.
+
+TBR=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1148943003">https://codereview.chromium.org/1148943003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195656 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/73ef6572a4e79f51f4591d3f76b61a8d1ac75ba5"><time datetime="2015-05-21">2015-05-21</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Shrinking EventPath to improve memory usage and performance</summary>
+              <pre class=body>
+In bug 325460 EventPath was changed to have fewer allocations at the cost
+of higher memory usage to improve performance. This is a followup that
+adds one more allocation for lower memory usage and even higher (3-5%) 
+Event dispatching performance.
+
+The EventPath memory usage becomes an issue because even though there is,
+most of the time, only one active Event. Due to slowness or garbage collection
+delays there can actually be dozens or hundreds of Event objects in memory. In
+those cases spending 1-2 KB per EventPath ends up consuming 100-200 KB memory.
+
+The patch changes the EventPath builder to gather the path on the stack and
+then building a perfectly sized EventPath. It seems to save about 1200 bytes per
+event in my adhoc testing (typical event path depth is about 10-12) and
+performance tests report:
+
+Events/EventsDispatching  3.2% faster
+Events/EventsDispatchingInDeeplyNestedShadowTrees  3.2% faster
+Events/EventsDispatchingInShadowTrees  5.5% faster
+(Confirmed through multiple runs)
+
+Real world memory usage saving depends on the number of live Event objects. That
+will vary.
+
+<a href="mailto:R=hayato@chromium.org,sigbjornf@opera.com,rbyers@chromium.org,esprehn@chromium.org">R=hayato@chromium.org,sigbjornf@opera.com,rbyers@chromium.org,esprehn@chromium.org</a>
+
+BUG=487656,325460
+
+Review URL: <a href="https://codereview.chromium.org/1136953011">https://codereview.chromium.org/1136953011</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195651 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/07b5cd00e50c589213567a07b441de0bb4a5743b"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Move m_pageLogicalOffset from LayoutBlock to LayoutBoxRareData.</summary>
+              <pre class=body>
+This is about as rare as all the other pagination things, and, furthermore, in
+the future, we&#39;re going to need this piece of information in other LayoutBox
+derived classes than LayoutBlock, such as e.g. LayoutTableRow.
+
+<a href="mailto:R=jchaffraix@chromium.org,leviw@chromium.org">R=jchaffraix@chromium.org,leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1148833002">https://codereview.chromium.org/1148833002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195642 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e768e6cc2bd54bc3f33a01ef0b2e229b96517e65"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make Touch.radiusX/Y float and make Touch.webkit* aliases in the IDL</summary>
+              <pre class=body>
+BUG=460099
+
+Review URL: <a href="https://codereview.chromium.org/1149563003">https://codereview.chromium.org/1149563003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195637 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/660688e7af9d0f3269624b45585bdf3d50739b8a"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>[S.P.] Expand cull-rect for text boxes with selection bounds</summary>
+              <pre class=body>
+Highlights for selection/composition and document markers are painted
+together with actual text, so the cull rect needs to have the bounds
+from these included.
+
+TEST=editing/selection/extend-by-character-002.html
+BUG=486825
+
+Review URL: <a href="https://codereview.chromium.org/1141403003">https://codereview.chromium.org/1141403003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195632 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6bd0043278047ac74c3331248c70d771fc205584"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>[SP] Fix cull rect for fieldset painting</summary>
+              <pre class=body>
+|paintRect| is shifted down/left and shrunk, so the dimension would be
+too small.
+
+TEST=fast/forms/fieldset-align.html
+BUG=487281
+
+Review URL: <a href="https://codereview.chromium.org/1151573002">https://codereview.chromium.org/1151573002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195630 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c188891ee24f4545bdd609ffb6eef50166c5a6a7"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Allow timer heap updates on firing shared timer.</summary>
+              <pre class=body>
+Follow up the ASan exemptions from r195613 and allow timer heap updates
+while servicing the shared timer callback. The Timer implementation of
+fired() already checks that no access of near-dead objects is done.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1146903003">https://codereview.chromium.org/1146903003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195620 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3c40306b1e26297f8e35e533b747f94f0e3b1e5c"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: support eager finalization/sweeping.</summary>
+              <pre class=body>
+To accommodate objects that must be finalized promptly, add a designated
+heap for these. If lazy sweeping is enabled, that heap will be swept
+eagerly and not delayed until (say) an out-of-line allocation trigger
+the sweep. If lazy sweeping is disabled, the eagerly swept heap will be
+processed just like any other.
+
+Prompt finalization is needed for objects that can be accessed through
+&#34;off-heap&#34; references, like direct access from the embedder or through
+a timer, or some other non-Oilpan object in Blink(*). References that have
+been considered safe by carefully working through finalization order and
+other lifetime dependencies. If such &#39;safe&#39; lifetime dependencies rely on
+the finalization of other heap objects, they cannot be assumed to hold
+iff lazy sweeping is enabled. That&#39;s because all dead objects are then
+not finalized synchronously, as observed by the rest of Blink, leading
+to the possibility that &#39;off-heap&#39; access of a heap object might
+access an object that has yet to be finalized (but is known to be
+dead), or that some of the heap objects it refers to may have
+finalized by now. Regardless of exact state, an object that shouldn&#39;t
+be accessed in this near-dead state by another party. Hence the
+introduction of eagerly swept heaps -- all objects residing there
+that have been deemed unreachable by the marking phase are eagerly
+swept &amp; finalized before the GC returns. Class hierarchies
+are marked as eagerly swept by using the WILL_BE_EAGERLY_SWEPT(Class)
+macro.
+
+A very relevant follow-on question here is if we can reliably identify
+objects that must be eagerly swept.
+
+* - while the goal is to remove or otherwise bring all such off-heap
+references under control within Blink, they currently exist. But
+not profusely many, but more than we would like to while we&#39;re in
+in a transition state where Oilpan isn&#39;t always enabled.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1138663002">https://codereview.chromium.org/1138663002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195618 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4c6b473eeb03ffe3da79d216085b08f66ea8cfc6"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the Document.charset setter (making it readonly)</summary>
+              <pre class=body>
+Intent to Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/vr1RANmrniU/oWAoayNP74QJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/vr1RANmrniU/oWAoayNP74QJ</a>
+
+HTMLFormControlElementTest and HTMLSelectElementTest don&#39;t actually need
+to call Document::setCharset(), as they use APIs where the text has
+already been decoded from UTF-8.
+
+BUG=438392
+
+Review URL: <a href="https://codereview.chromium.org/1145773003">https://codereview.chromium.org/1145773003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195617 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2af8662ff5b746790571b777ee2e3cc73db3e085"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: disable VectorDestructorsWithVtable unit test with ASan.</summary>
+              <pre class=body>
+Testing behavior of inline capacity vectors when contiguous container
+support is enabled, is not worthwhile as they&#39;re disabled.
+(cf Vector.h:INLINE_CAPACITY.)
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1148793002">https://codereview.chromium.org/1148793002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195615 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/97dbdb6370bbb538331980ec88228de5b3408f79"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Various ASan exemptions to allow Oilpan pre-sweep poisoning of unmarkeds.</summary>
+              <pre class=body>
+Heap objects must not access other dead objects while finalizing.
+To help catch out those that do, the Oilpan GC can now poison 
+unmarked, to-be-swept objects. To be able to make use of that
+with ASan enabled, a couple of benign accesses that run afoul
+of that strict check are still needed &amp; must be allowed to
+make this feasible.
+
+Here provided together -- the ones related to Timer stopping &amp;
+removal from the timer heap aren&#39;t something we&#39;d typically want
+to impose one the Blink codebase in general, but beside the
+goal of better ASan coverage, the timer heap will soon be removed
+and the need for these should fall away.
+
+(Reland of r195609, non-Oilpan compilation issue addressed.)
+
+R=haraken,tkent,yutak
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1120943002">https://codereview.chromium.org/1120943002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195613 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e7390baa60ca9170909b5ebbab31a04a44acfed2"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert of Various ASan exemptions to allow Oilpan pre-sweep poisoning of unmarkeds. (patchset #6 id:100001 of https://codereview.chromium.org/1120943002/)</summary>
+              <pre class=body>
+Reason for revert:
+Broke non-Oilpan ASAN compilation,
+
+ <a href="http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Linux%20ASAN/builds/18615">http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Linux%20ASAN/builds/18615</a>
+
+Original issue&#39;s description:
+&gt; Various ASan exemptions to allow Oilpan pre-sweep poisoning of unmarkeds.
+&gt; 
+&gt; Heap objects must not access other dead objects while finalizing.
+&gt; To help catch out those that do, the Oilpan GC can now poison 
+&gt; unmarked, to-be-swept objects. To be able to make use of that
+&gt; with ASan enabled, a couple of benign accesses that run afoul
+&gt; of that strict check are still needed &amp; must be allowed to
+&gt; make this feasible.
+&gt; 
+&gt; Here provided together -- the ones related to Timer stopping &amp;
+&gt; removal from the timer heap aren&#39;t something we&#39;d typically want
+&gt; to impose one the Blink codebase in general, but beside the
+&gt; goal of better ASan coverage, the timer heap will soon be removed
+&gt; and the need for these should fall away.
+&gt; 
+&gt; R=haraken,tkent,yutak
+&gt; BUG=420515
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=195609">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=195609</a>
+
+<a href="mailto:TBR=haraken@chromium.org,yutak@chromium.org,tkent@chromium.org">TBR=haraken@chromium.org,yutak@chromium.org,tkent@chromium.org</a>
+NOPRESUBMIT=true
+NOTREECHECKS=true
+NOTRY=true
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1144933004">https://codereview.chromium.org/1144933004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195611 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a848705928edcf7b9ed60fe125aec177fbeef77d"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r195600.</summary>
+              <pre class=body>
+VisibleSelection finalization not needed with Oilpan.
+
+TBR=oilpan-reviews
+BUG=275851
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/1150603002">https://codereview.chromium.org/1150603002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195610 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/603012c9b28d6303e91ed9076c658aa71ac37184"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Various ASan exemptions to allow Oilpan pre-sweep poisoning of unmarkeds.</summary>
+              <pre class=body>
+Heap objects must not access other dead objects while finalizing.
+To help catch out those that do, the Oilpan GC can now poison 
+unmarked, to-be-swept objects. To be able to make use of that
+with ASan enabled, a couple of benign accesses that run afoul
+of that strict check are still needed &amp; must be allowed to
+make this feasible.
+
+Here provided together -- the ones related to Timer stopping &amp;
+removal from the timer heap aren&#39;t something we&#39;d typically want
+to impose one the Blink codebase in general, but beside the
+goal of better ASan coverage, the timer heap will soon be removed
+and the need for these should fall away.
+
+R=haraken,tkent,yutak
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1120943002">https://codereview.chromium.org/1120943002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195609 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a657cd5908804f684d6b79b6a16879bf20830643"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Make right-most compound check explicit.</summary>
+              <pre class=body>
+We set SelectorCheckingContext::elementStyle to null to indicate that we
+were not in the rightmost compound selector. Use a flag in the context
+instead to make it clearer what we mean.
+
+An alternative would be to have a method inRightmostCompound() on the
+context instead that checks the elementStyle for nullptr.
+
+<a href="mailto:R=esprehn@chromium.org,timloh@chromium.org">R=esprehn@chromium.org,timloh@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1133743004">https://codereview.chromium.org/1133743004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195606 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2598814f5a82a4b079921f255120a640ea9183ea"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t dispatch two &#39;load&#39; events for external SVGScriptElement loads</summary>
+              <pre class=body>
+If inserting an &lt;svg:script&gt; reference an external source via script,
+ScriptLoaded would dispatch &#39;load&#39; and then SVGScriptElement would
+do the same. Drop the latter one.
+Since this makes SVGScriptElement no longer use
+SVGElement::sendSVGLoadEventIfPossibleAsynchronously(), drop the
+svgLoadEventTimer() override and associated timer.
+
+Review URL: <a href="https://codereview.chromium.org/1141683003">https://codereview.chromium.org/1141683003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195604 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/909bffa7fc9ae438ca26f6d1a687b765c0438e1a"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a comment about counter availability in M44 branch</summary>
+              <pre class=body>
+<a href="mailto:R=jochen@chromium.org">R=jochen@chromium.org</a>
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/1127293006">https://codereview.chromium.org/1127293006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195603 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1d0cddfe72a88d38e5b41dc789264d3a17154cae"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the deprecation messages for hspace/vspace attributes on table</summary>
+              <pre class=body>
+The functionality itself was removed in time for M42:
+<a href="https://codereview.chromium.org/690993003">https://codereview.chromium.org/690993003</a>
+
+Three milestones (M42-M44) of warnings after removal is enough.
+
+BUG=277080
+
+Review URL: <a href="https://codereview.chromium.org/1146493003">https://codereview.chromium.org/1146493003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195601 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e7122eed408ba33af6eb7362eefdda0eae8f9a16"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Drop the document.charset part of fast/encoding/external-script-charset.xhtml</summary>
+              <pre class=body>
+Simplify to only test the inheritance, but use the koi8-r for the XHTML
+document to ensure that it&#39;s not just the default encoding being used to
+decode the script.
+
+The bots cannot apply this patch because of the encoding of
+LayoutTests/fast/encoding/external-script-charset-koi-8.js.
+
+BUG=438392
+<a href="mailto:R=pdr@chromium.org">R=pdr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1144913002">https://codereview.chromium.org/1144913002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195595 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/097be9a5fdfa1ad95a9bb20648e04193ea427e7f"><time datetime="2015-05-20">2015-05-20</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Inline SVGTextLayoutAttributes::emptyValue</summary>
+              <pre class=body>
+This function just returns a simple float - inlining it allows the
+compiler to generate more efficient code (and smaller - ~.5k) code
+since the relatively high overhead call can be eliminated.
+Take the opportunity to change the &#34;empty value&#34; into NaN (instead of
+&#34;max() - 1&#34;), with corresponding semantic changes required by that.
+
+BUG=486669
+
+Review URL: <a href="https://codereview.chromium.org/1129333004">https://codereview.chromium.org/1129333004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195555 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/86995a1ab642eea8672ffe05461e283e1dfebbec"><time datetime="2015-05-19">2015-05-19</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r195535.</summary>
+              <pre class=body>
+TBR=oilpan-reviews
+BUG=483108
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/1140343003">https://codereview.chromium.org/1140343003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195543 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/35faa967d453f0593d5ce453787967b32057101f"><time datetime="2015-05-19">2015-05-19</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Disable multicol when printing.</summary>
+              <pre class=body>
+Until crbug.com/99358 is fixed, we cannot really print multicol properly.
+
+The old multicol implementation has code (in C++) to prevent multicol when
+printing, but since the new implementation creates a different layout tree
+structure for multicol, it&#39;s going to be quite some work to remove multicol
+containers when switching the document to printing. So let&#39;s do it in CSS
+instead.
+
+<a href="mailto:R=rune@opera.com,dsinclair@chromium.org,jchaffraix@chromium.org">R=rune@opera.com,dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1141943002">https://codereview.chromium.org/1141943002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195531 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/55b88cad0092e5f4901844d9711dd3a3814f3c0a"><time datetime="2015-05-19">2015-05-19</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Setting -webkit-column-count to auto is the same as not setting it.</summary>
+              <pre class=body>
+In ComputedStyle, column-count is represented by two members, one integer
+specifying the count, and one bool specifying whether it&#39;s auto or not. If
+column-count is auto, the integer is ignored, but if the integer changes, it&#39;s
+still detected as a style change (even if auto is set to true), and we&#39;ll mark
+for layout for no good reason. Make sure that setting column-count to auto also
+resets the integer to its initial value, to avoid this problem.
+
+This bug was discovered while working on
+<a href="https://codereview.chromium.org/1141943002/">https://codereview.chromium.org/1141943002/</a> (disable multicol when printing).
+When changing from not specifying column-count to setting it to auto triggers
+relayout, some printing tests started to fail (but that&#39;s really just because
+the current expectation files rely on crbug.com/489615 ).
+
+<a href="mailto:R=rune@opera.com">R=rune@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/1145773002">https://codereview.chromium.org/1145773002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@195524 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/da85d1a90375fe50a92cf46f8a49571850618294"><time datetime="2015-05-19">2015-05-19</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
