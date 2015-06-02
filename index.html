@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3005,
+    <a href="#blink">Blink</a>: 3007,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,40 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Drop the MouseEventButtonsAttribute runtime flag</summary>
+              <pre class=body>
+It reached stable in M43 and is unlikely to be reverted now.
+
+BUG=276941
+
+Review URL: <a href="https://codereview.chromium.org/1161373002">https://codereview.chromium.org/1161373002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196271 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/602355fae1ea9a7a995e2117321455c96a167928"><time datetime="2015-06-02">2015-06-02</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Handle SVGLength resolving in an inactive document gracefully</summary>
+              <pre class=body>
+If the element associated with the SVGLength is in an inactive document,
+there&#39;ll be no layout, so computedStyleForLengthResolving() will be able
+to exit the loop without finding a ComputedStyle to return.
+
+BUG=493977
+
+Review URL: <a href="https://codereview.chromium.org/1166683003">https://codereview.chromium.org/1166683003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196269 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/94d2f35223d7508331049f3c47107ff3cd09e552"><time datetime="2015-06-02">2015-06-02</time></a>
         <tr>
           <td>mstensho
           <td class=message>
