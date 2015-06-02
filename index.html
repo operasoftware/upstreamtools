@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3008,
+    <a href="#blink">Blink</a>: 3011,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,63 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Move NinePieceImage painting to a separate class</summary>
+              <pre class=body>
+While doing as little changes as possible, move NinePieceImage
+painting code out of BoxPainter into a separate class. This is in
+preparation for the possibility of splitting the function into smaller
+parts. The function currently has roughly 36 local variables and is
+quite hard to understand and change.
+
+BUG=492485
+
+Review URL: <a href="https://codereview.chromium.org/1164573003">https://codereview.chromium.org/1164573003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196301 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1b94f3b09bde81db4c0ac46aa1eeb0e6e394a3c5"><time datetime="2015-06-02">2015-06-02</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>When cancelling an animation, add missing timeline-detach check.</summary>
+              <pre class=body>
+If the animation timeline becomes unreferenced and is destructed,
+it detaches from its associated animations. Check that timeline
+detach status should cancel() be called on an animation.
+
+R=loyso,dstockwell
+BUG=491847
+
+Review URL: <a href="https://codereview.chromium.org/1154423006">https://codereview.chromium.org/1154423006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196299 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d6f0dbcec98e87eeff559a5b4dd1dde2ab47ed95"><time datetime="2015-06-02">2015-06-02</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t auto-wrap &lt;svg:text&gt;</summary>
+              <pre class=body>
+Even if an explicit &#39;white-space&#39; property overrides the presentation
+attribute style (from &#39;xml:space&#39;), auto-wrap should still be disabled
+(until &#34;wrappable text&#34; a&#39;la SVG2 has been implemented.)
+
+BUG=492596
+
+Review URL: <a href="https://codereview.chromium.org/1159623007">https://codereview.chromium.org/1159623007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196298 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8c80a767d4efe78629259dc966d4478f05995b3b"><time datetime="2015-06-02">2015-06-02</time></a>
         <tr>
           <td>philipj
           <td class=message>
