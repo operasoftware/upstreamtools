@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3014,
+    <a href="#blink">Blink</a>: 3015,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,27 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: add assert to verify eager finalization.</summary>
+              <pre class=body>
+A class annotated with EAGERLY_FINALIZE() is dependent on having
+an &#39;operator new&#39; overload that takes eagerness correctly into
+account. The use of a EAGERLY_FINALIZE() declaration does not
+guarantee this, so add an assert to catch classes not correctly
+handled.
+
+R=haraken
+BUG=491488
+
+Review URL: <a href="https://codereview.chromium.org/1166793002">https://codereview.chromium.org/1166793002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196404 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ae841d297881e17e8fe46818a802a8d5d8b8ec81"><time datetime="2015-06-03">2015-06-03</time></a>
         <tr>
           <td>fs
           <td class=message>
