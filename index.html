@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3021,
+    <a href="#blink">Blink</a>: 3023,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,67 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: prefer eager finalization over prefinalizers.</summary>
+              <pre class=body>
+Eagerly finalized objects have the ability to access other
+heap objects in their destructors, provided they&#39;re not
+other eagerly finalized objects. With that partial
+ordering on finalization in place, we can recast our current
+uses of &#34;prefinalizer&#34; actions to use eager finalization
+instead.
+
+Performing that switch simplifies, avoiding the overhead of
+prefinalizers of having to separately provide a finalization
+method (separate from the destructor.)
+
+R=haraken
+BUG=491488
+
+Review URL: <a href="https://codereview.chromium.org/1148383012">https://codereview.chromium.org/1148383012</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196483 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ed7a2cdb49c7dbacf537dea9081630a16fb738b7"><time datetime="2015-06-04">2015-06-04</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Eagerly sweep MediaKeySession objects.</summary>
+              <pre class=body>
+MediaKeySession owns an instance of the WebContentDecryptionModuleSession
+bridge object, which allows for bidirectional access with the
+embedder-side object.
+
+With Oilpan GC&#39;s lazy sweeping in effect, we need to tear down that
+bridge as soon as the MediaKeySession object has been deemed to be garbage,
+and slated for sweeping. Otherwise the embedder may attempt to access the
+MediaKeySession&#39;s client interface methods while MediaKeySession is waiting
+to be lazily swept, and potentially touching other heap objects that
+MediaKeySession refers to which might have been independently swept
+and finalized.
+
+That is, the GC finalization order isn&#39;t fixed and deterministic. With
+lazy sweeping, that lack of order is observable not just to the objects
+that are on the heap, but also external, non-heap objects. Like the
+embedder side object in this case.
+
+Arrange for that eager finalization to happen by annotating MediaKeySession
+as eagerly swept.
+
+R=haraken
+BUG=491488
+
+Review URL: <a href="https://codereview.chromium.org/1159583002">https://codereview.chromium.org/1159583002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196480 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2c75d86f1bbbee042e1eb819b3638d6d2e03f195"><time datetime="2015-06-04">2015-06-04</time></a>
         <tr>
           <td>mstensho
           <td class=message>
