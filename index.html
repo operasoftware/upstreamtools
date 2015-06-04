@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3018,
+    <a href="#blink">Blink</a>: 3019,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,45 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Never cast Attr to ContainerNode based on nodeType ATTRIBUTE_NODE</summary>
+              <pre class=body>
+In <a href="https://codereview.chromium.org/1158433004">https://codereview.chromium.org/1158433004</a> Attr began inheriting from
+Node instead of ContainerNode, but there remained cases where
+toContainerNode() was called for Attr.
+
+All instances of toContainerNode() and other casts to ContainerNode were
+inspected and only these two were found to be problematic, although some
+instances in core/editing are non-obvious.
+
+Because textContent is an alias of value in Attr.idl, web content
+setting attr.textContent directly will not take the Node code path in
+question. However, it is possible with some effort:
+
+var attr = document.createAttribute(&#34;name&#34;);
+Object.getOwnPropertyDescriptor(Node.prototype, &#34;textContent&#34;).set.call(attr, &#34;value&#34;);
+
+This will now do nothing, and the equivalent code with the getter would
+already return null before this change. This is strange, but most
+closely resembles the spec, which doesn&#39;t handle Attr in the textContent
+setter because per spec it isn&#39;t a Node at all:
+<a href="https://dom.spec.whatwg.org/#dom-node-textcontent">https://dom.spec.whatwg.org/#dom-node-textcontent</a>
+
+No calls to Node::textContent() or Node::setTextContent() where the Node
+could be an Attr were found, other than V8Node.cp in generated bindings.
+
+BUG=305105, 494043
+TEST=Source/core/dom/AttrTest.cpp (also tests nodeValue)
+
+Review URL: <a href="https://codereview.chromium.org/1148003007">https://codereview.chromium.org/1148003007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196452 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6e463254dd7f86a30f6a06e32e950067958c46e2"><time datetime="2015-06-04">2015-06-04</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
