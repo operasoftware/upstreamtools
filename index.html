@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3019,
+    <a href="#blink">Blink</a>: 3020,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,45 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: eagerly sweep some mediasource and mediastream objects.</summary>
+              <pre class=body>
+The following objects provide a &#39;client&#39; notification interface to
+bridge objects that they themselves own or refer to:
+
+ - SourceBuffer (WebSourceBuffer, WebSourceBufferClient)
+ - MediaStream (MediaStreamDescriptor, MediaStreamDescriptorClient)
+ - MediaStreamTrack (MediaStreamSource, MediaStreamSource::Observer)
+ - RTCDTMFSender (WebRTCDTMFSenderHandler, WebRTCDTMFSenderHandlerClient)
+ - RTCDataChannel (WebRTCDataChannelHandler, WebRTCDataChannelHandlerClient)
+ - RTCPeerConnection (WebRTCPeerConnectionHandler,
+                      WebRTCPeerConnectionHandlerClient)
+
+The name of the bridge object and client given in parens. The bridge
+objects allow the embedder to notify the &#39;client&#39;.
+
+To make these safe wrt Oilpan lazy sweeping (see associated bug for details
+on why this is required), add annotations to the class declarations for
+the objects affected.
+
+While some of these objects are ActiveDOMObjects and will in most cases
+be explicitly stopped as part of detachment, where their overridden stop()
+methods will in some cases clear out the client (or bridge) object, this
+is a delicate dependency. Insisting on eager sweeping &amp; finalization
+makes their embedder detachment safe, regardless.
+
+R=haraken
+BUG=491488
+
+Review URL: <a href="https://codereview.chromium.org/1149293003">https://codereview.chromium.org/1149293003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196469 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/10d1064424800e7db4e56ae34a49a0f9a8b28534"><time datetime="2015-06-04">2015-06-04</time></a>
         <tr>
           <td>philipj
           <td class=message>
