@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3031,
+    <a href="#blink">Blink</a>: 3032,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,34 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Ignore style changes on text node flowthread descendants.</summary>
+              <pre class=body>
+Text nodes inherit every property from their parent, including non-inheritable
+ones! If the parent DOM node is the multicol container, and its &#39;position&#39; goes
+from &#39;static&#39; to &#39;absolute&#39;, so will any text node child, as far as
+ComputedStyle is concerned. If the multicol container only contains a text node
+child, we&#39;d incorrectly think that the multicol container started to only
+contain an out-of-flow child, so that the column set could be removed.
+
+Also don&#39;t notify the flowthread about descendant style changes if the
+descendant in question is the flow thread (Calling flowThreadContainingBlock()
+on the flow thread returns the flow thread). There&#39;s currently no way any harm
+could be done if the flow tread were indeed treated as a descendant of itself
+here, but it&#39;s just wrong and bad.
+
+BUG=491409
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1149333003">https://codereview.chromium.org/1149333003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196508 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0d71a94b6a37577b28317eedd3d5492f233ee99d"><time datetime="2015-06-04">2015-06-04</time></a>
         <tr>
           <td>mstensho
           <td class=message>
