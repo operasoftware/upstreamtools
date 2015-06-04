@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3025,
+    <a href="#blink">Blink</a>: 3026,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,32 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Handle border-image with fill and zero-width borders</summary>
+              <pre class=body>
+Before this patch we require at least one border dimension (top, left,
+bottom, right) to be non-zero to trigger the border painting.
+
+This misses the case when we have a zero width border all around but a
+border image and border-image-slice: &lt;numbers&gt; fill. The center part
+of the border-image should be painted, regardless of the
+border-widths.
+
+See <a href="https://bugs.webkit.org/show_bug.cgi?id=142650">https://bugs.webkit.org/show_bug.cgi?id=142650</a> and related commit.
+It&#39;s not an exact port but this patch is heavily inspired by
+​sabouhallawa&#39;s fix.
+
+BUG=493088
+
+Review URL: <a href="https://codereview.chromium.org/1159773005">https://codereview.chromium.org/1159773005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196489 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f4d557ef6bc9ca15178f54383803f8f7979807ce"><time datetime="2015-06-04">2015-06-04</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
