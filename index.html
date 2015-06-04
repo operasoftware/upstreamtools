@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3028,
+    <a href="#blink">Blink</a>: 3031,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,69 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Notify the counter code about layout object removals BEFORE removing.</summary>
+              <pre class=body>
+This makes it possible to mark relevant objects for layout. Cannot mark
+unrooted subtrees for layout.
+
+Additionally, only notify when told to do so by the caller. Renamed the method
+to layoutObjectSubtreeWillBeDetached(), inspired by its
+layoutObjectSubtreeAttached() counterpart.
+
+For the sake of consistency, also only call layoutObjectSubtreeAttached() when
+actually told to notify.
+
+BUG=492490
+<a href="mailto:R=dsinclair@chromium.org,eae@chromium.org">R=dsinclair@chromium.org,eae@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1143323011">https://codereview.chromium.org/1143323011</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196505 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/502ffc30ea6aa959db05d900e12e6170f61ad46e"><time datetime="2015-06-04">2015-06-04</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: safely finalize DOMTimers.</summary>
+              <pre class=body>
+DOMTimer objects need to be eagerly finalized so as to prevent timer events
+from firing at a DOMTimer that&#39;s about to be lazily swept. If allowed, that
+might result in accessing an already finalized m_action member.
+
+R=haraken
+BUG=491488
+
+Review URL: <a href="https://codereview.chromium.org/1160123004">https://codereview.chromium.org/1160123004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196504 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/8b83ad655544bd22ebcf891d59fd826a332c9599"><time datetime="2015-06-04">2015-06-04</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Rename LifecycleObserver&lt;T&gt;::dispose() as clearContext()</summary>
+              <pre class=body>
+Have the name of this helper match what it does; dispose() is too generic.
+Observer instances only need to clear out their context and rarely, so
+tighten up the visibility accordingly.
+
+R=haraken
+BUG=none
+
+Review URL: <a href="https://codereview.chromium.org/1160253006">https://codereview.chromium.org/1160253006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196502 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/88f1f086c89f81ed944791c333539e38333ccd5d"><time datetime="2015-06-04">2015-06-04</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
