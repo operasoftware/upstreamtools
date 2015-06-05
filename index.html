@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3039,
+    <a href="#blink">Blink</a>: 3040,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t create layout objects for pre-wrap text nodes in SVG</summary>
+              <pre class=body>
+SVGTextMetricsBuilder only knows how to handle &#39;white-space: pre&#39; with
+regards to whitespace preservation, meaning it will collapse the spaces
+in the node, and hence not generate any SVGTextMetrics for it.
+Filter this case out to avoid even creating the text layout object in
+the first place.
+
+Fix salvaged from <a href="https://codereview.chromium.org/755613002/">https://codereview.chromium.org/755613002/</a>, with prior
+work by Peter Molnar (<a href="mailto:pmolnar.u-szeged@partner.samsung.com">pmolnar.u-szeged@partner.samsung.com</a>) and
+Zoltan Herczeg (<a href="mailto:zherczeg.u-szeged@partner.samsung.com">zherczeg.u-szeged@partner.samsung.com</a>). Test simplified
+and extended to cover all white-space values.
+
+BUG=416833,495969
+
+Review URL: <a href="https://codereview.chromium.org/1166653005">https://codereview.chromium.org/1166653005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196558 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cfed17d1b14f9cff420321fca6eac89bca504492"><time datetime="2015-06-05">2015-06-05</time></a>
         <tr>
           <td>philipj
           <td class=message>
