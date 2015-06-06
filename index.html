@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3055,
+    <a href="#blink">Blink</a>: 3057,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,44 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the redundant HTMLDocument.compatMode</summary>
+              <pre class=body>
+Since Document.compatMode is defined identically and the implementation
+is in Document::compatMode(), the only consequence of this is that the
+compatMode attribute goes away from the HTMLDocument prototype.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1164533007">https://codereview.chromium.org/1164533007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196624 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/34bd5941121329024034913b53d7ba9e91d5a660"><time datetime="2015-06-06">2015-06-06</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync Document.readyState with the HTML spec</summary>
+              <pre class=body>
+<a href="https://html.spec.whatwg.org/#the-document-object">https://html.spec.whatwg.org/#the-document-object</a>
+
+The only change to the generated code is in the case
+Document::readyState() returns a null string, but that case is already
+guarded with an ASSERT_NOT_REACHED() in the implementation.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1163923006">https://codereview.chromium.org/1163923006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196622 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fa93f1609493113275c53a6d8963802cc3973b32"><time datetime="2015-06-06">2015-06-06</time></a>
         <tr>
           <td>philipj
           <td class=message>
