@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3057,
+    <a href="#blink">Blink</a>: 3058,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,46 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert of compositor-worker: Share a thread and an isolate for compositor workers. (patchset #13 id:300001 of https://codereview.chromium.org/1158443008/)</summary>
+              <pre class=body>
+Reason for revert:
+Fails to compile on &#34;WebKit Win x64 Builder&#34;,
+
+ <a href="http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Win%20x64%20Builder/builds/49353">http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Win%20x64%20Builder/builds/49353</a>
+
+Original issue&#39;s description:
+&gt; compositor-worker: Share a thread and an isolate for compositor workers.
+&gt; 
+&gt; Notable changes:
+&gt; 
+&gt; . WorkerThread: Move thread initialization/shutdown into virtual methods, so
+&gt;   that CompositorWorkerThread can override the behaviour to allow multiple
+&gt;   compositor workers to safely share the same thread.
+&gt; . CompositorWorkerManager: Responsible for managing the WebThreadSupportingGC
+&gt;   and v8::Isolate for the compositor workers. It essentially keeps a ref-count
+&gt;   for the thread and isolate and decides when to shutdown/initialize a thread
+&gt;   or isolate.
+&gt; 
+&gt; BUG=436932
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=196625">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=196625</a>
+
+<a href="mailto:TBR=kinuko@chromium.org,haraken@chromium.org,sadrul@chromium.org">TBR=kinuko@chromium.org,haraken@chromium.org,sadrul@chromium.org</a>
+NOPRESUBMIT=true
+NOTREECHECKS=true
+NOTRY=true
+BUG=436932
+
+Review URL: <a href="https://codereview.chromium.org/1166923003">https://codereview.chromium.org/1166923003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196626 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/fe9fedd60da75a47d7ff11b590ac75ab8185ea5f"><time datetime="2015-06-06">2015-06-06</time></a>
         <tr>
           <td>philipj
           <td class=message>
