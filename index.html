@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3060,
+    <a href="#blink">Blink</a>: 3061,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,45 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Revert of Remove the allowfullscreen exemption for the video-specific fullscreen API (patchset #4 id:60001 of https://codereview.chromium.org/1058783006/)</summary>
+              <pre class=body>
+Feedback from Vimeo on blink-dev asking for more time:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/3NukIuOaU4c/MPyuWoDaz8AJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/3NukIuOaU4c/MPyuWoDaz8AJ</a>
+
+New plan for removing the allowfullscreen exemption:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/3NukIuOaU4c/LWeJeKYvf1MJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/3NukIuOaU4c/LWeJeKYvf1MJ</a>
+
+Original issue&#39;s description:
+&gt; Remove the allowfullscreen exemption for the video-specific fullscreen API
+&gt; 
+&gt; Intent to Remove:
+&gt; <a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/3NukIuOaU4c/Boab2WxzhBYJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/3NukIuOaU4c/Boab2WxzhBYJ</a>
+&gt; 
+&gt; Prompted by a question from Ali Alabbas (Microsoft) on blink-dev:
+&gt; <a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/f-V2GWatXkA/nvdHJ3xihMkJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/f-V2GWatXkA/nvdHJ3xihMkJ</a>
+&gt; 
+&gt; TEST=LayoutTests/media/video-controls-fullscreen-iframe.html
+&gt; 
+&gt; This test ensures that the allowfullscreen attribute is still not
+&gt; required for &lt;video controls&gt;, even though it is for the API call.
+&gt; 
+&gt; BUG=346236
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=194106">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=194106</a>
+
+<a href="mailto:R=falken@chromium.org">R=falken@chromium.org</a>
+BUG=496637
+
+Review URL: <a href="https://codereview.chromium.org/1159593006">https://codereview.chromium.org/1159593006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196661 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/495077b9bc4d8086b87a80bacfad368841cad370"><time datetime="2015-06-08">2015-06-08</time></a>
         <tr>
           <td>philipj
           <td class=message>
