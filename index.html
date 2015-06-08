@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3068,
+    <a href="#blink">Blink</a>: 3069,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,21 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fix cull rect computation for SVG{Container,Image,Shape}Painter outlines</summary>
+              <pre class=body>
+TEST=svg/custom/transformed-outlines.svg (S.P. strict cull rect)
+BUG=495368
+
+Review URL: <a href="https://codereview.chromium.org/1160643004">https://codereview.chromium.org/1160643004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196704 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c64bee67f5708214ead525abe0949d80c9d0e3f3"><time datetime="2015-06-08">2015-06-08</time></a>
         <tr>
           <td>fs
           <td class=message>
