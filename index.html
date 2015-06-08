@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3066,
+    <a href="#blink">Blink</a>: 3067,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Be sure to skip objects inside out-of-flow subtrees.</summary>
+              <pre class=body>
+When walking the tree backwards, looking for something in-flow, we may end up
+in an out-flow-subtree, so we cannot just examine the positioning scheme on the
+object itself.
+
+BUG=497710
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1149923009">https://codereview.chromium.org/1149923009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196685 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1ad3dbc5a42351537eb1d1d50e3321eab8c064d1"><time datetime="2015-06-08">2015-06-08</time></a>
         <tr>
           <td>fs
           <td class=message>
