@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3069,
+    <a href="#blink">Blink</a>: 3070,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,36 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Don&#39;t let anonymous boxes impede percentage resolution on children.</summary>
+              <pre class=body>
+We already had code in place to do this for certain anonymous box types, most
+prominently multicol flow threads. But no type of anonymous box should really
+mess up percentage resolution on children. It&#39;s just wrong, and in this case it
+even caused assertion failures, because anonymous ruby run boxes could end up
+being marked as percentage height parents. Since what child belongs inside what
+ruby run may change depending on where the ruby texts are inserted, and we have
+no code to adjust the percentage height map when percentage height children get
+moved from one ruby run to another (and so far there&#39;s nothing that suggests
+that we really need it either), let&#39;s just avoid the whole problem by skipping
+ruby runs when resolving percentage heights - with the bonus effect that
+percentage-height children of ruby elements actually get rendered properly.
+
+Some cleanup was natural at the same time, since we now bail early for
+any type of anonymous box in skipContainingBlockForPercentHeightCalculation().
+
+BUG=490722
+<a href="mailto:R=leviw@chromium.org">R=leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1171703002">https://codereview.chromium.org/1171703002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196713 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/550f7513efe12c15870d009b340f12cfc75b799b"><time datetime="2015-06-08">2015-06-08</time></a>
         <tr>
           <td>fs
           <td class=message>
