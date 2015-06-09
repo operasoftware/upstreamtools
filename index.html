@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3070,
+    <a href="#blink">Blink</a>: 3072,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,43 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Improve outline bounds estimation in InlinePainter</summary>
+              <pre class=body>
+Use LayoutInline::linesVisualOverflowBoundingBox to get bounds that
+includes the outline of the inline.
+
+TEST=fast/css/focus-ring-outline-color.html (S.P. strict cull rect)
+BUG=495368
+
+Review URL: <a href="https://codereview.chromium.org/1163913002">https://codereview.chromium.org/1163913002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196722 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/80c274741c90a7f9eb0df6eac38c0e610e22d018"><time datetime="2015-06-09">2015-06-09</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: constrain run-time verification of eager finalization.</summary>
+              <pre class=body>
+Do not verify eager finalization of a class outside of ENABLE(OILPAN),
+as some of the classes marked as eagerly finalizing will not be on the
+Oilpan heap with !ENABLE(OILPAN).
+
+R=
+BUG=491488
+
+Review URL: <a href="https://codereview.chromium.org/1167263002">https://codereview.chromium.org/1167263002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196718 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ab3ed22103a24d53bc06e549034d191204395b23"><time datetime="2015-06-09">2015-06-09</time></a>
         <tr>
           <td>mstensho
           <td class=message>
