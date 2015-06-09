@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3073,
+    <a href="#blink">Blink</a>: 3074,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,39 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Use the container() chain when locating the containing flow thread.</summary>
+              <pre class=body>
+Using containingBlock() caused us to miss relatively positioned inlines (that
+serve as containing blocks for absolutely positioned descendants), and, more
+dangerously (this bug), we&#39;d miss absolutely positioned non-LayoutBlock
+ancestors, causing us to find the ancestral flow thread, even though we were
+not contained by it. This would in turn make us assume that the multicol
+container had column content, which in turn would make us just blindly assume
+that there was a column set object there.
+
+A video element establishes a shadow DOM, and if the video was absolutely
+positioned, the elements in there would erroneously find the flow thread,
+because we skipped the absolutely positioned ancestral video, because it is
+not a LayoutBlock.
+
+While bug 496421 is listed as one of the bugs fixed here, it should be pointed
+out that the fix is rather speculative in that regard, since since it&#39;s fixing
+different but rather related crash than the one in the original report. The
+crash was triggered by the same TC, though.
+
+BUG=496421,497524,497435
+<a href="mailto:R=dsinclair@chromium.org,esprehn@chromium.org">R=dsinclair@chromium.org,esprehn@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1156303012">https://codereview.chromium.org/1156303012</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196745 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1fe7b1fb178f74a7765046a1b0962dd8fcc15e22"><time datetime="2015-06-09">2015-06-09</time></a>
         <tr>
           <td>mathiash
           <td class=message>
