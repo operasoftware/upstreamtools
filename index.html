@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3080,
+    <a href="#blink">Blink</a>: 3081,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,33 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Mark column sets as invalid and kill the interval tree when column sets are removed.</summary>
+              <pre class=body>
+This makes the multicol code more fault-tolerant.
+
+If there are bugs somewhere in the engine that cause us to miss layout of
+objects marked for layout, the multicol code could return dead objects from the
+column set interval tree. Better just delete the interval tree right away when
+column sets are removed, instead of keeping dead objects around. The tree will
+be rebuilt during layout.
+
+To clarify: This CL doesn&#39;t really fix bug 498664, but at least we won&#39;t crash
+because of accessing dead objects anymore (only assert in
+LayoutObject::assertLaidOut() and other places, like before).
+
+BUG=498664
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1163423007">https://codereview.chromium.org/1163423007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196876 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e9d865d65a722fc7e73fe3304b85810b73fc99bb"><time datetime="2015-06-10">2015-06-10</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
