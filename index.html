@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3085,
+    <a href="#blink">Blink</a>: 3087,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,50 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r196924.</summary>
+              <pre class=body>
+Return type mismatch uncovered by that CL, not the cause.
+
+TBR=oilpan-reviews
+BUG=
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/1176993006">https://codereview.chromium.org/1176993006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196931 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/917c6d265bb4ad3d839de198c4d884a3365bacc3"><time datetime="2015-06-11">2015-06-11</time></a>
+        <tr>
+          <td>landell
+          <td class=message>
+            <details>
+              <summary>Window.postMessage() to self can cause document leaks</summary>
+              <pre class=body>
+When a script does Window.postMessage() a PostMessageTimer object is
+stored in the LocalDOMWindow until the message has been delivered, or
+until it is cleared in the destructor of LocalDOMWindow. When a
+LocalDOMWindow is reset the remaining messages will not be
+delivered. Any PostMessageTimer objects alive at that point will be
+kept until the LocalDOMWindow is destroyed. Unfortunately, the
+PostMessageTimer objects keeps a reference to the source window. If
+both the source and destination window of the message is the same, the
+PostMessageTimer can keep that LocalDOMWindow from getting destroyed.
+
+Removing the PostMessageTimers when stop() is invoked fixes the problem.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1148133005">https://codereview.chromium.org/1148133005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196930 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c5c096fd727a5156982c0ca8044a1d29637fe839"><time datetime="2015-06-11">2015-06-11</time></a>
         <tr>
           <td>philipj
           <td class=message>
