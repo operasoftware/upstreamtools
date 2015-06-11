@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3088,
+    <a href="#blink">Blink</a>: 3089,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync the IDL interfaces in core/frame/ with their many specs</summary>
+              <pre class=body>
+There are no changes to the generated code, other than order, naming and
+default argument handling in History.go(), which is unobservable.
+
+The location-stringify.html test depends on the order of the interface
+members, so update that to match.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1180653003">https://codereview.chromium.org/1180653003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196947 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/61a364ee4c7fa024b187631d362b978ca3f8a52c"><time datetime="2015-06-11">2015-06-11</time></a>
         <tr>
           <td>philipj
           <td class=message>
