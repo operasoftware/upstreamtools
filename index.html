@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3091,
+    <a href="#blink">Blink</a>: 3092,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,35 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>When looking for adjacent content inside multicols, don&#39;t consider inner multicols.</summary>
+              <pre class=body>
+When walking the tree backwards for a suitable object, we need to check that we
+didn&#39;t end up inside an inner multicol container. Walking forwards is more
+trivial (no changes there), but added an assertion that we haven&#39;t entered an
+inner multicol just in case anyway.
+
+Also added some assertions which will fail if
+nextInPreOrderAfterChildrenSkippingOutOfFlow() or
+previousInPreOrderSkippingOutOfFlow() misbehave.
+
+Need to check with shouldSkipInsertedOrRemovedChild() before calling those two
+functions now, since they are not meant to be called on children that are to be
+skipped (especially important for column sets and spanner placeholders, which
+should always be skipped).
+
+BUG=498431, 498630
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1180613005">https://codereview.chromium.org/1180613005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196957 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d686801a18611ff6fd60e092d3b7234a4f57d5c6"><time datetime="2015-06-11">2015-06-11</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
