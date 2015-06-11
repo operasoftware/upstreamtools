@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3087,
+    <a href="#blink">Blink</a>: 3088,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Make createAttributeNS&#39;s qualifiedName argument non-nullable</summary>
+              <pre class=body>
+Before this change, document.createAttributeNS(&#34;foo&#34;, null) would throw
+&#34;Failed to execute &#39;createAttributeNS&#39; on &#39;Document&#39;: The qualified name
+provided is empty.&#34; because the null string was treated as empty.
+
+After this change, document.createAttributeNS(&#34;foo&#34;, null) will create
+an Attr object with localName &#34;null&#34;, which matches Firefox and IE.
+
+Usage of this API is extremely low, making the risk equally so:
+<a href="https://www.chromestatus.com/metrics/feature/timeline/popularity/112">https://www.chromestatus.com/metrics/feature/timeline/popularity/112</a>
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1164123003">https://codereview.chromium.org/1164123003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196940 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4b7afbf56352e897d9a38a7a251bb7592ed735ee"><time datetime="2015-06-11">2015-06-11</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
