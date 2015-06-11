@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3089,
+    <a href="#blink">Blink</a>: 3091,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,61 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: adjust GC policy under memory pressure.</summary>
+              <pre class=body>
+When notified of a v8 major GC, check if we&#39;re under memory pressure and
+overdue an Oilpan GC &amp; urgently. If so, force a conservative GC right
+away.
+
+This addresses dom-modify.html OOM troubles on win32, in particular. It
+runs into the allocation pattern where the Oilpan allocator is able to
+handle a tight loop just allocating Text nodes by bump allocating each
+such node. Each Text node has a large external string allocation however,
+which leads to a steep ramp-upin overall allocation amounts to the point
+where it might OOM as no Oilpan GCs will run. v8 will however notice the
+increasing memory pressure and schedule major GCs of its own.
+
+Oilpan is notified after each v8 major GC, so use that opportunity to
+check for memory pressure &amp; force an Oilpan GC right away.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1174123002">https://codereview.chromium.org/1174123002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196953 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b12c0fd962e08b4e02da711ccda8b80180ed3c98"><time datetime="2015-06-11">2015-06-11</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Tidy up CompositorWorkerManager unit tests.</summary>
+              <pre class=body>
+Allow WorkerGlobalScopes to be created without a non-null WorkerClients;
+the creation context for the new worker may not offer any &#39;clients&#39;,
+hence supplying none (rather than an empty one) is simpler. It also
+avoids creating a cross-thread heap object with Oilpan enabled.
+
+To solidify the CompositorWorkerManagerTest&#39;s WorkerObjectProxy handling,
+provide a test implementation of WorkerObjectProxy which do not forward
+any of the notifications out of the worker context, but ignores. All
+that is needed for these tests.
+
+R=haraken,kinuko
+BUG=436932
+
+Review URL: <a href="https://codereview.chromium.org/1164753004">https://codereview.chromium.org/1164753004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@196949 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b906082338e6e5b8485933ffbd3a304db29cdfd1"><time datetime="2015-06-11">2015-06-11</time></a>
         <tr>
           <td>philipj
           <td class=message>
