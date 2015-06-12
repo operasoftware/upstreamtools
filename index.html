@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3098,
+    <a href="#blink">Blink</a>: 3100,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,46 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Document and measure the TextEvent interface and the textinput event</summary>
+              <pre class=body>
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1184493002">https://codereview.chromium.org/1184493002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197042 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9303de161e979e32171669569c827aaa8032b03b"><time datetime="2015-06-12">2015-06-12</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Correct fast/multicol/vertical-rl/image-inside-nested-blocks-with-border.html</summary>
+              <pre class=body>
+We have a float at the beginning of the second column. The test wanted the
+float to have its left edge flush with the left edge of the multicol container,
+but this is vertical-rl writing mode, so it will instead have its right edge
+flush with the right edge of the multicol container, since that&#39;s where columns
+start in the block progression direction. So the test &#34;failed&#34; and was stored
+as such in the expectation file. But both the layout engine and the behavior of
+getBoundingClientRect were correct all along.
+
+Corrected the test, and removed a bunch of boilerplate and turned it into
+something using js-test.js instead. In order to be consistent, I also cleaned
+up the vertical-lr and horiontal-tb (default) variants in the same way as well.
+
+<a href="mailto:R=dsinclair@chromium.org">R=dsinclair@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1173313003">https://codereview.chromium.org/1173313003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197040 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/401097be1eed3861c6373d9fab51f5fddc11f190"><time datetime="2015-06-12">2015-06-12</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
