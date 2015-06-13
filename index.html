@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3103,
+    <a href="#blink">Blink</a>: 3104,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add &lt;stdarg.h&gt; include required for va_start/va_end in GCC</summary>
+              <pre class=body>
+<a href="https://codereview.chromium.org/1181713004">https://codereview.chromium.org/1181713004</a> removed some base/port.h
+includes, which in turn includes &lt;stdarg.h&gt;. This include is needed
+to compile with GCC, at least on some systems.
+
+BUG=138542
+
+Review URL: <a href="https://codereview.chromium.org/1185683002">https://codereview.chromium.org/1185683002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197088 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/edfcf14af594c596f443eadfcbe8e55fd51ce275"><time datetime="2015-06-13">2015-06-13</time></a>
         <tr>
           <td>mstensho
           <td class=message>
