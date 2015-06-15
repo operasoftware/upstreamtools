@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3106,
+    <a href="#blink">Blink</a>: 3107,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,34 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Introduce (Heap)Vector trait covering zero&#39;ed memory for unused slots.</summary>
+              <pre class=body>
+When a slot/index in a heap vector&#39;s backing storage is marked as unused,
+its value must be cleared out. This so as to prevent later GC tracing or
+finalization of the backing storage from incorrectly interpreting those
+bits. The heap vector handles such unused slots by zero-ing out the block
+of memory it maps to; if that zero&#39;ed block of memory doesn&#39;t represent
+a valid instance of a class type, it cannot be used in heap vectors.
+
+Introduce a vector trait controlling if a memset()-zero&#39;ed slot represents
+a valid value for the Oilpan GC infrastructure to interpret when tracing
+and finalizing that value. It is needed for the class types where the
+default constructor maps to a representation that isn&#39;t all zero, but
+that zero&#39;ed representation is still valid for the Oilpan GC to interpret.
+
+R=haraken,tkent
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1180383002">https://codereview.chromium.org/1180383002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197100 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b15f7dfc119d566c89b9fc9cd37b0d007aac7aef"><time datetime="2015-06-15">2015-06-15</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
