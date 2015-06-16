@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3111,
+    <a href="#blink">Blink</a>: 3113,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,40 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Return ints from border{Before,After,Start,End}Width</summary>
+              <pre class=body>
+The users of these functions in LayoutBoxModelObject already returns
+ints and the functions they wrap also returns int.
+
+BUG=496033
+
+Review URL: <a href="https://codereview.chromium.org/1183163002">https://codereview.chromium.org/1183163002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197161 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/57b3c56b5b50237931d0058e15c3b0aa6754ab06"><time datetime="2015-06-16">2015-06-16</time></a>
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Return int from outlineWidth() and outlineSize()</summary>
+              <pre class=body>
+The underlying storage is an int and it&#39;s usually used together with
+plain ints.
+
+BUG=496033
+
+Review URL: <a href="https://codereview.chromium.org/1185753005">https://codereview.chromium.org/1185753005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197159 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/bb9b914cf039863ae7c7c24af701689d0471eb69"><time datetime="2015-06-16">2015-06-16</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
