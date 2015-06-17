@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3119,
+    <a href="#blink">Blink</a>: 3120,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,32 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>landell
+          <td class=message>
+            <details>
+              <summary>Reland: Window.postMessage() to self can cause document leaks</summary>
+              <pre class=body>
+When a script does Window.postMessage() a PostMessageTimer object is
+stored in the LocalDOMWindow until the message has been delivered, or
+until it is cleared in the destructor of LocalDOMWindow. When a
+LocalDOMWindow is reset the remaining messages will not be
+delivered. Any PostMessageTimer objects alive at that point will be kept
+until the LocalDOMWindow is destroyed. Unfortunately, the
+PostMessageTimer objects keeps a reference to the source window. If both
+the source and destination window of the message is the same, the
+PostMessageTimer can keep that LocalDOMWindow from getting destroyed.
+
+Removing the PostMessageTimers when stop() is invoked fixes the problem.
+
+BUG=500821,499692
+
+Review URL: <a href="https://codereview.chromium.org/1186093003">https://codereview.chromium.org/1186093003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197252 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2f03c34a516f7e3cd2425bc83a8b655e6adbba8a"><time datetime="2015-06-17">2015-06-17</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
