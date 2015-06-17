@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3115,
+    <a href="#blink">Blink</a>: 3116,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,41 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Avoid resetting rule features when removing style-less shadow.</summary>
+              <pre class=body>
+We reset the global rule features when removing a shadow root from the
+tree. There is no reason to do that if the scope does not contain style,
+so we&#39;ll skip the reset when there is no ScopedStyleResolver.
+
+In particular, this can be the case for UA shadow roots. For the case
+where the scope contains style, this will be fixed by componentized style
+resolving.
+
+What occurs in issue 499349 is:
+
+1. Remove a form child which is an input with a UA shadow root.
+2. Removing the root causes rule features to be reset globally.
+3. Removing an input child of a form requires a validity check.
+4. The validity check schedules an invalidation for :valid etc.
+5. Scheduling invalidation sets require an up-to-date rule feature set
+   which includes invalidation sets, so the rule features are collected.
+
+1-5 is repeated for each removed input. The global feature collection in
+step 5 is the expensive part here.
+
+<a href="mailto:R=tkent@chromium.org,esprehn@chromium.org">R=tkent@chromium.org,esprehn@chromium.org</a>
+BUG=499349
+
+Review URL: <a href="https://codereview.chromium.org/1185423004">https://codereview.chromium.org/1185423004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197204 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/82d3f4ab622a07434021aae20a65eb828204e57b"><time datetime="2015-06-16">2015-06-16</time></a>
         <tr>
           <td>mstensho
           <td class=message>
