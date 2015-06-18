@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3122,
+    <a href="#blink">Blink</a>: 3123,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,34 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Make mapLocalToContainer() work properly for content that follows a column spanner.</summary>
+              <pre class=body>
+mapLocalToContainer() uses offsetFromContainer(), which uses columnOffset()
+(which calls flowThreadTranslationAtOffset()), which didn&#39;t always return the
+correct translation relatively to the flow thread.
+
+This also improves the fix for bug 479155.
+MultiColumnFragmentainerGroup::flowThreadTranslationAtOffset() needs to return
+a translation relative to the flow thread, and the code we had basically just
+happened to work by accident (flipping a flow thread portion rectangle for
+writing mode around a column set is just bogus, since a column set isn&#39;t
+sized in the flow thread coordinate space). This solution would cause problems
+with the upcoming fix for bug 499706, because then the last column may be
+shorter than the others (because it&#39;s not completely filled).
+
+BUG=501772
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1190153002">https://codereview.chromium.org/1190153002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197373 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ef79803c42fbdb5f1ac1b3a176797b2732de34f5"><time datetime="2015-06-18">2015-06-18</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
