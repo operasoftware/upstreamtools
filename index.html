@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3125,
+    <a href="#blink">Blink</a>: 3126,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,32 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Have ScreenOrientationController use a timer for async event dispatch again</summary>
+              <pre class=body>
+Essentially revert r193927&#39;s switch to using a task to queue handling of
+change event dispatch for ScreenOrientationController. Queuing a task
+via the execution context / Document is unsafe for this controller object
+as its lifetime is that of its frame. Should the frame be detached and
+finalized while the Document remains alive, the queued task risks accessing
+a freed ScreenOrientationController upon running.
+
+Go back to using a one-shot timer; as these are now task based, the
+original motivation for r193927 has additionally fallen away (wean Blink
+off from using one-shot shared timers.)
+
+R=mlamouri
+BUG=501888
+
+Review URL: <a href="https://codereview.chromium.org/1190293002">https://codereview.chromium.org/1190293002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197466 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cb62eb8e3755841b939f83e800c8a9a3fe722dc4"><time datetime="2015-06-19">2015-06-19</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
