@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3126,
+    <a href="#blink">Blink</a>: 3128,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,42 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Remove unused FS callback partial specializations.</summary>
+              <pre class=body>
+Retire unused transition type specializations of scheduleCallback() and
+handleEventOrScheduleCallback().
+
+R=haraken
+BUG=340522
+
+Review URL: <a href="https://codereview.chromium.org/1194093002">https://codereview.chromium.org/1194093002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197530 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/965348615fe3a0c031fc652fba9ae0f1d3e0ab59"><time datetime="2015-06-20">2015-06-20</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: keep StashedPortCollection always on the heap.</summary>
+              <pre class=body>
+Have StashedPortCollection derive from RefCountedGarbageCollected, allowing
+this EventTarget to reside on the heap irrespective of ENABLE(OILPAN).
+
+R=haraken
+BUG=497595
+
+Review URL: <a href="https://codereview.chromium.org/1197763002">https://codereview.chromium.org/1197763002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197529 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6903e269305d0ba4f8d60973f16b3236e4b0ef8b"><time datetime="2015-06-20">2015-06-20</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
