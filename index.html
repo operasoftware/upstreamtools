@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3128,
+    <a href="#blink">Blink</a>: 3129,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,36 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Measure the impact of a propsed change to createAttribute()</summary>
+              <pre class=body>
+There is a proposal to lowercase name in HTML documents:
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1165851#c34">https://bugzilla.mozilla.org/show_bug.cgi?id=1165851#c34</a>
+
+The counter in Document::createAttribute will catch any case where the
+change would be observable, providing an upper limit to the risk.
+
+The counter in Element::setAttributeNode is a reasonable proxy for the
+case which is most likely problematic, namely trying to set a camelCase
+Attr created by an HTML document on a non-HTML element, likely SVG, as
+suggested by Boris Zbarsky:
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1175031#c5">https://bugzilla.mozilla.org/show_bug.cgi?id=1175031#c5</a>
+
+(The source of the Attr object need not be createAttribute, but extra
+bookkeeping to determine that would either increase sizeof(Attr) or
+require a new NodeFlags entry, so don&#39;t do that for now.)
+
+BUG=502301
+
+Review URL: <a href="https://codereview.chromium.org/1195583002">https://codereview.chromium.org/1195583002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197549 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/25fa846e85a01645480c38537e5df66364e74529"><time datetime="2015-06-22">2015-06-22</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
