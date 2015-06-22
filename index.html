@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3130,
+    <a href="#blink">Blink</a>: 3131,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: enable appcache + move DocumentLoader to the heap.</summary>
+              <pre class=body>
+DocumentLoader belongs on the heap. References to it
+are kept by an object that is on the heap (FrameLoader),
+and DocumentLoader itself has heap references.
+
+Along with moving DocumentLoader, have the two appcache
+objects (ApplicationCache and ApplicationCacheHost) be
+under Oilpan&#39;s control always.
+
+R=haraken
+BUG=340522,497595
+
+Review URL: <a href="https://codereview.chromium.org/1194003004">https://codereview.chromium.org/1194003004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197576 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f8c977e02b051dfb9c237b3970bf02d9fa603d7e"><time datetime="2015-06-22">2015-06-22</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
