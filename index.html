@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3141,
+    <a href="#blink">Blink</a>: 3142,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Prevent scientific notation in LayoutUnit gdb prettyprinter.</summary>
+              <pre class=body>
+Prevent this by increasing precision on the %g format specifier. Now we can see
+full values like 33554431.984375px, instead of having them crippled like
+3.35544e+07px.
+
+<a href="mailto:R=cbiesinger@chromium.org,dpranke@chromium.org">R=cbiesinger@chromium.org,dpranke@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1202773002">https://codereview.chromium.org/1202773002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197682 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/797451fa2a2730dbc81d7cc65855b87a1733fb4f"><time datetime="2015-06-23">2015-06-23</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
