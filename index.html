@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3160,
+    <a href="#blink">Blink</a>: 3162,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,46 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Have enclosingPositionedAncestor() detect whether it walked past a certain ancestor.</summary>
+              <pre class=body>
+This is similar to what LayoutObject::container() does.
+
+This simplifies the code in accumulateOffsetTowardsAncestor(), which previously
+had to duplicate what enclosingPositionedAncestor() did.
+
+Also cleaned up the other call site of enclosingPositionedAncestor(). No need
+to call the method twice there.
+
+No behavioral changes intended; this is just clean-up.
+
+<a href="mailto:R=chrishtr@chromium.org">R=chrishtr@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1199673003">https://codereview.chromium.org/1199673003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197846 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/40556896b2b41e8a6297d3225024c4ef060bc2ab"><time datetime="2015-06-25">2015-06-25</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r197830.</summary>
+              <pre class=body>
+TBR=oilpan-reviews
+BUG=501896
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/1207333002">https://codereview.chromium.org/1207333002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197844 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c7a8d8394019b4df3e49b896e9394f2838fb186d"><time datetime="2015-06-25">2015-06-25</time></a>
         <tr>
           <td>mstensho
           <td class=message>
