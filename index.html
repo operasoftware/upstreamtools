@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3170,
+    <a href="#blink">Blink</a>: 3171,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,40 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: support observer retirement during lifetime notifications.</summary>
+              <pre class=body>
+While transitioning Blink to Oilpan, there will be LifecycleNotifier&lt;&gt;s
+not on the Oilpan heap, but with some of their LifecycleObserver&lt;&gt;s being
+on the heap.
+
+Should a GC strike while such a notifier iterates over its observer set,
+dead observers may remove themselves (eagerly) while being finalized
+during that GC. This will mutate the notifier set, which isn&#39;t currently
+assumed nor supported.
+
+There&#39;s no need to support this when fully transitioned, Oilpan will
+handle GCs across such iterations gracefully, but in the meantime we will
+have to support this by snapshot&#39;ing the observer set and explicitly
+checking for liveness. Like already done over ContextLifecycleNotifier,
+where such dynamic unregistrations are supported.
+
+Notice that this issue isn&#39;t tied to lazy sweeping; indeed, lazy sweeping
+without eager finalization of lifecycle observers will potentially make this
+bug rarer.
+
+R=haraken
+BUG=480837
+
+Review URL: <a href="https://codereview.chromium.org/1214963002">https://codereview.chromium.org/1214963002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@197990 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c5fb8a0003b215dedb9d6a0a952a34e158daf851"><time datetime="2015-06-29">2015-06-29</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
