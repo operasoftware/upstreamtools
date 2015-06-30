@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3174,
+    <a href="#blink">Blink</a>: 3177,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,75 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Only check for on-heap Member&lt;T&gt;s iff T is in scope.</summary>
+              <pre class=body>
+As Member&lt;T&gt;::checkPointer() uses IsGarbageCollectedMixin&lt;T&gt;,
+T&#39;s definition must be in scope for it to be precise.
+
+Adjust condition accordingly.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1217083002">https://codereview.chromium.org/1217083002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198050 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f6f396c174883db774c615af861441eaaadc36cf"><time datetime="2015-06-30">2015-06-30</time></a>
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Add MediaSession runtime flag along with stub MediaSession object</summary>
+              <pre class=body>
+Implementation of the MediaSession specification will happen behind
+the runtime flag &#39;MediaSession&#39;.
+
+Add a virtual testsuite for running tests with MediaSession flag. This
+way we don&#39;t have to have the flag enabled when running LayoutTests in
+general, only when running MediaSession tests.
+
+Intent to implement:
+
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/dLWDxYgxzQ8/vXt0ntWFNBwJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/dLWDxYgxzQ8/vXt0ntWFNBwJ</a>
+
+BUG=497735
+
+Review URL: <a href="https://codereview.chromium.org/1206283002">https://codereview.chromium.org/1206283002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198049 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d630185a5dbdc5c85b6e9aaa455abe56de73e89a"><time datetime="2015-06-30">2015-06-30</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Need to update first-line when font finish loading.</summary>
+              <pre class=body>
+Another regression from baseLayoutStyle implementation where operator==
+is not affected by the loading/loaded state of web fonts. To get a re-
+layout and re-rendering when a web font loading state changes, we need to
+check for the loading state. In this case, there was a missing check for
+::first-line pseudo style.
+
+Also, moved the code which marks for re-layout with accompanying FIXME
+into LayoutObject.
+
+BUG=501564,504864
+TEST=fast/text/ellipsis-platform-font-change.html
+
+Review URL: <a href="https://codereview.chromium.org/1209253006">https://codereview.chromium.org/1209253006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198048 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/04afde9d385c6a365ea0ed0b15c4388d126223ad"><time datetime="2015-06-30">2015-06-30</time></a>
         <tr>
           <td>mstensho
           <td class=message>
