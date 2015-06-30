@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3178,
+    <a href="#blink">Blink</a>: 3180,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,67 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: improve ScrollableArea handling.</summary>
+              <pre class=body>
+Have all ScrollableArea objects reside on the Oilpan heap,
+making ScrollableArea be a GC mixin.
+
+Without it, some ScrollableAreas (FrameView) were on the heap
+whereas others (*Viewport) weren&#39;t, making for unpredictable
+and incorrect finalization as the lifetimes were skewed.
+
+Additionally, simplify Scrollbar&#39;s unregistration with its
+ScrollableArea (and its ScrollAnimator). The Oilpan-specific
+RefPtr&lt;ScrollAnimator&gt; that Scrollbar kept, no longer served
+a purpose, hence removed. As a result, ScrollAnimator can again
+be fully owned by ScrollableAreas &amp; no longer be RefCounted&lt;&gt;.
+
+R=haraken
+BUG=504655
+
+Review URL: <a href="https://codereview.chromium.org/1215973002">https://codereview.chromium.org/1215973002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198064 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4aca3394a9afdb8b59dd7b07786ca72f54e621d9"><time datetime="2015-06-30">2015-06-30</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Dissect and clean up instances of color parsing in CSSPropertyParser</summary>
+              <pre class=body>
+This moves all instances of color parsing (mostly &lt;color&gt; parsing
+even) into their separate methods. The new methods (except parseSVGColor)
+are formulated using parseColor(). parseColor() itself is combined with
+the &#34;most common&#34; color parsing case by folding the keyword case into it.
+The new methods are structured as first checking for keywords that they
+handle differently from the generic &lt;color&gt; case.
+The &lt;quirky-color&gt; determination is moved into a function of its own.
+The parsing of &lt;color&gt; for shadow is cleaned up.
+
+Behavioral changes:
+ * Accept &#39;-internal-*&#39; in all cases (for UA-sheets).
+ * Keep &#39;grey&#39; as a keyword in all cases.
+ * Accept &#39;-webkit-focus-ring-color&#39; in quirks mode and UA-sheets in all
+   cases.
+ * Keep keywords for fallback colors to &#39;fill&#39; and &#39;stroke.
+
+The intention of the change is to make the differences visible, and try
+to eliminate the remaining differences in follow-up CLs.
+
+BUG=505410
+
+Review URL: <a href="https://codereview.chromium.org/1219463003">https://codereview.chromium.org/1219463003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198062 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1241fb099112d34ae1235bed92d4565ccd8017e4"><time datetime="2015-06-30">2015-06-30</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
