@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3182,
+    <a href="#blink">Blink</a>: 3183,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,35 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Always enable lazy sweeping.</summary>
+              <pre class=body>
+This turns on lazy sweeping for enable_oilpan=0.
+
+Lazy/incremental sweeping reduces GC pause times by having the
+garbage collector perform its marking and processing of live
+objects together with a minimal amount of sweeping of finalizable
+objects before returning. The remaining heap regions to be swept
+up and finalized are then handled incrementally as part of
+heap allocation requests. Amortizing that sweeping cost rather
+than taking a longer GC &#34;stop the world&#34; pause in one go.
+
+Lazy sweeping is enabled with Oilpan always on (enable_oilpan=1);
+this extends it to also be for the Oilpan GCs that run on trunk
+(where enable_oilpan=0).
+
+R=haraken
+BUG=480837
+
+Review URL: <a href="https://codereview.chromium.org/1219613002">https://codereview.chromium.org/1219613002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198095 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/86805290f28fbd220e971eb3efcb6bbc8ec5a210"><time datetime="2015-06-30">2015-06-30</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
