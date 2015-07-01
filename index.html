@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3187,
+    <a href="#blink">Blink</a>: 3188,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: disconnected scrollbars must be externally observable as such.</summary>
+              <pre class=body>
+Followup the Scrollbar and ScrollableArea Oilpan changes in r198064, and
+have explicit disconnects of Scrollbars from their ScrollableAreas be
+observable via the Scrollbar afterwards.
+
+The assumption made in r198064 that no one wanted to observe Scrollbars
+in that detached/disconnected state, doesn&#39;t hold. SelectorChecker and
+AXScrollbar are two examples.
+
+R=haraken
+BUG=504655
+
+Review URL: <a href="https://codereview.chromium.org/1215063006">https://codereview.chromium.org/1215063006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198144 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/368043200492b595ce77034f316c124217e013d7"><time datetime="2015-07-01">2015-07-01</time></a>
         <tr>
           <td>fs
           <td class=message>
