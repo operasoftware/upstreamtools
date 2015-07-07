@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3209,
+    <a href="#blink">Blink</a>: 3210,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,52 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Behave more normally for content taller than the fragmentainer it&#39;s in.</summary>
+              <pre class=body>
+Refusing to break just because content happens to be taller than the multicol
+container is just weird, and it&#39;s getting in the way for fixing bug 439820.
+
+If we had behaved the same way for line layout, we&#39;d refuse to wrap to the next
+line if we encountered a word that was wider than the container (in addition to
+being too wide at the current inline position on the line). If the text to lay
+out is &#34;abc def ghijklmnopqr stu&#34; and the container has room for 10 characters,
+we&#39;d lay out like this:
+
++----------+
+|abc def ghijklmnopqr
+|stu       |
++----------+
+
+instead of this (the correct way):
+
++----------+
+|abc def   |
+|ghijklmnopqr
+|stu       |
++----------+
+
+The usefulness of the hasUniformPageLogicalHeight thing vanished into thin air
+in the process (calling pageLogicalHeightForOffset() isn&#39;t that expesive).
+Having one bit in LayoutFlowThread specifying if column heights are uniform was
+just bogus anyway, since column sets are typically separated by column
+spanners, and if the heights of the set preceding and following a spanner
+differ, why should adjustLinePositionForPagination() care? This was a relic
+from the CSS regions days, thought to also be useful for multicol. But it
+isn&#39;t.
+
+<a href="mailto:R=dsinclair@chromium.org">R=dsinclair@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1221803003">https://codereview.chromium.org/1221803003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198415 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3a26716b1b4fffe8a3e180c36111f9db207476e0"><time datetime="2015-07-07">2015-07-07</time></a>
         <tr>
           <td>philipj
           <td class=message>
