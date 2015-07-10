@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3219,
+    <a href="#blink">Blink</a>: 3220,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,44 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add counters for add/removeEventListener() called with one argument</summary>
+              <pre class=body>
+This was attempted previously but only worked for no arguments:
+<a href="https://codereview.chromium.org/815503002">https://codereview.chromium.org/815503002</a>
+<a href="https://codereview.chromium.org/928103002">https://codereview.chromium.org/928103002</a>
+
+The enum values are added in their original positions in UseCounter.h,
+as they were always unreachable and thus not polluted by anything else.
+
+The reason was that there is no generated impl-&gt; call with one
+argument, as EventListener has special handling in the bindings
+generator such that it&#39;s effectively treated as having a default null
+argument.
+
+Give all the arguments default values in the IDL so that there is only
+one impl-&gt; call in the generated code, with the prologue and epilogue
+immediately before and after it. This makes it more clear that the
+prologue will always be called, and makes this purely a bindings bug.
+
+The removed FIXMEs in EventTarget.cpp were wrong, it should be
+possible to pass null for the listener argument and per spec that
+should do nothing.
+
+Rather than extending support for [Conditional] here, remove it for
+[Custom=CallEpilogue] as it&#39;s actually never used there, nor tested.
+
+BUG=353484
+
+Review URL: <a href="https://codereview.chromium.org/1233483002">https://codereview.chromium.org/1233483002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198681 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cacdc6a40fa77b4c93a1edc602c843117017c5ce"><time datetime="2015-07-10">2015-07-10</time></a>
         <tr>
           <td>fs
           <td class=message>
