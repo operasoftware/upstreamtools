@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3218,
+    <a href="#blink">Blink</a>: 3219,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Fold CSSParser::colorFromRGBColorString into only user</summary>
+              <pre class=body>
+Said method is very special flower, used by the SMIL animation code to
+put color values into SVGColorProperty.
+Since it&#39;s essentially a one-off (and supporting a deprecated class part
+of a deprecated whole) fold it into it&#39;s only user and rid the CSSParser
+of this burden, ehm, flower.
+
+Review URL: <a href="https://codereview.chromium.org/1224223003">https://codereview.chromium.org/1224223003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198672 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/282f67a3300727922caadceefc163e81fbde01ec"><time datetime="2015-07-10">2015-07-10</time></a>
         <tr>
           <td>philipj
           <td class=message>
