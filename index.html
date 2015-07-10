@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3220,
+    <a href="#blink">Blink</a>: 3222,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,62 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Prevent overflowing content from affecting multicol layout.</summary>
+              <pre class=body>
+Don&#39;t let visual overflow (caused by outlines, text-shadow, text overflowing
+its line box, and other things) affect layout. Note that this CL does exchange
+one problem for another, but it should be better to have stable and predictable
+(and correct) layout, than hacking line positions and column heights to make
+the overflow fit in the same column as the line box.
+
+This fixes a problem with links in multicol lists on wikipedia jumping back and
+forth between columns.
+
+What we&#39;re really lacking (after this CL, more than ever) is to be able to
+paint column overflow correctly in the block direction. Fixing that would be
+the right thing to do long-term, but it&#39;s going to require substantial amounts
+of work (and probably a great deal of multicol awareness in the painting and
+hit-testing code).
+
+Removed the fast/multicol/split-in-top-margin.html test, since the behavior it
+tested is what we remove in this CL.
+
+calculateMinimumPageHeight() could be simplified because of this change,
+including removal of (now) redundant parameters.
+
+BUG=439820
+<a href="mailto:R=dsinclair@chromium.org">R=dsinclair@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1224973002">https://codereview.chromium.org/1224973002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198683 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/bd44f747096182914413243beb04832961564b68"><time datetime="2015-07-10">2015-07-10</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Sync core/timing/ interfaces with their specs, or lack thereof</summary>
+              <pre class=body>
+The only changes to the generated code are ordering and the added use
+counters.
+
+[Measure] does not mean that we should try to remove it, in cases where
+usage is high we can use that data to ask for spec changes.
+
+BUG=460722
+
+Review URL: <a href="https://codereview.chromium.org/1219673003">https://codereview.chromium.org/1219673003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198682 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5ec73f398adc7a2d585b8c6aa73fdf2a17610f5e"><time datetime="2015-07-10">2015-07-10</time></a>
         <tr>
           <td>philipj
           <td class=message>
