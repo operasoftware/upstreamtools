@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3222,
+    <a href="#blink">Blink</a>: 3223,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the (already disabled) OverflowChangedEvent runtime flag</summary>
+              <pre class=body>
+The functionality was disabled for M43:
+<a href="https://codereview.chromium.org/959643002">https://codereview.chromium.org/959643002</a>
+
+M43 reached the stable channel for Windows, Mac and Linux on May 19
+and for Android on May 27, and there have been no issues reported.
+
+BUG=460822
+
+Review URL: <a href="https://codereview.chromium.org/1230013003">https://codereview.chromium.org/1230013003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198689 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0558ee291d54bcc8c038576f6e825821014102af"><time datetime="2015-07-10">2015-07-10</time></a>
         <tr>
           <td>mstensho
           <td class=message>
