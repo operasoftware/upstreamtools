@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3229,
+    <a href="#blink">Blink</a>: 3231,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,53 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Only allow the -webkit-text color keyword in quirks/UA-sheet mode</summary>
+              <pre class=body>
+This color keyword is mainly used to implement the &#39;quirk-inherit&#39;
+special value for &#39;color&#39; on &lt;table&gt; in quirks mode [1].
+Currently this keyword is treated differently for different properties,
+but for the most common properties, the &#34;only in quirks mode&#34; rule is
+applied. It&#39;s also marked as &#34;QuirksOrUASheet&#34; in CSSValueKeywords.in.
+Extend the &#34;only in quirks mode&#34; rule to apply to all &lt;color&gt;
+properties.
+
+The test fast/css/webkit-text-display-none.html is converted to run in
+quirks mode. It worked previously because setting inline style would use
+the fast-path color parser which was inconsistent with the non-fast-path
+color parser in accepting &#39;-webkit-text&#39; in standards mode.
+
+[1] <a href="https://quirks.spec.whatwg.org/#the-tables-inherit-color-from-body-quirk">https://quirks.spec.whatwg.org/#the-tables-inherit-color-from-body-quirk</a>
+
+BUG=505410
+
+Review URL: <a href="https://codereview.chromium.org/1216523006">https://codereview.chromium.org/1216523006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198770 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/761b2d0c29fa004635347c38a616653c73978c41"><time datetime="2015-07-13">2015-07-13</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Return early in automaticTrackSelectionForUpdatedUserPreference()</summary>
+              <pre class=body>
+If there are no text tracks, nothing in the method does anything,
+except updateTextTrackDisplay() which will create the text track
+container which is not needed yet.
+
+BUG=457850
+
+Review URL: <a href="https://codereview.chromium.org/1228293003">https://codereview.chromium.org/1228293003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198767 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b53a4ef2bc246c23999aa6c4e60d1481ab3743a3"><time datetime="2015-07-13">2015-07-13</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
