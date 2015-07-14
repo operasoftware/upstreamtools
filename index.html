@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3236,
+    <a href="#blink">Blink</a>: 3237,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Allocate XMLHttpRequest on the eagerly finalized heap.</summary>
+              <pre class=body>
+With XMLHttpRequest now being on the heap with !ENABLE(OILPAN), we need
+to arrange for this ActiveDOMObject to be allocated as an eagerly
+finalized object.
+
+R=haraken
+BUG=509841
+
+Review URL: <a href="https://codereview.chromium.org/1237063002">https://codereview.chromium.org/1237063002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198853 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/eb6147bd8f4a8912a0bdf20d37f0d21da2fbb45b"><time datetime="2015-07-14">2015-07-14</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
