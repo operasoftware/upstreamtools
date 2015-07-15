@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3244,
+    <a href="#blink">Blink</a>: 3247,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,59 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Multicol performance tests for tall content (so that we get (very) many columns).</summary>
+              <pre class=body>
+This is currently horribly slow. Discovered while working on bug 502407
+(assertion failure). It seems impossible to write a test for that issue
+that doesn&#39;t run into the performance problems illustrated by these tests,
+so we have to land some performance improvements before fixing the actual
+assertion. 
+
+<a href="mailto:R=dsinclair@chromium.org">R=dsinclair@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1239783002">https://codereview.chromium.org/1239783002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198956 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/cf9691ade8c3fcee53f6f71ac9917cac01610a4d"><time datetime="2015-07-15">2015-07-15</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Measure usage of HTMLMediaElement preload states</summary>
+              <pre class=body>
+Refactoring into a preloadType() is necessary in order to count cases
+where the preload attribute is never set, i.e. the missing value default
+case. Also, it&#39;s nice to have less state in HTMLMediaElement.
+
+BUG=73609, 310450
+
+Review URL: <a href="https://codereview.chromium.org/1227403004">https://codereview.chromium.org/1227403004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198955 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/12eb35d72de4f9aebf936a78cce237601e00e81f"><time datetime="2015-07-15">2015-07-15</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add a comment about counter availability in M45 branch</summary>
+              <pre class=body>
+<a href="mailto:R=jochen@chromium.org">R=jochen@chromium.org</a>
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/1235963004">https://codereview.chromium.org/1235963004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@198954 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/be079d6f3abd4e826acd4606272b6d5ce8e954ca"><time datetime="2015-07-15">2015-07-15</time></a>
         <tr>
           <td>mstensho
           <td class=message>
