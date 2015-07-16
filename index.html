@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3250,
+    <a href="#blink">Blink</a>: 3253,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,83 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move parsing of &#34;keyword only&#34; SVG properties to CSSParserFastPaths</summary>
+              <pre class=body>
+Transfers responsibility for the following properties:
+
+  alignment-baseline
+  buffered-rendering
+  clip-rule
+  color-interpolation
+  color-interpolation-filters
+  color-rendering
+  dominant-baseline
+  fill-rule
+  mask-type
+  shape-rendering
+  stroke-linecap
+  stroke-linejoin
+  text-anchor
+  vector-effect
+  writing-mode
+
+from CSSPropertyParser::parseSVGValue to CSSParserFastPaths.
+
+Review URL: <a href="https://codereview.chromium.org/1213613013">https://codereview.chromium.org/1213613013</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199023 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ad5f8f45f9e284a6e95bed61fca18d4b21ae1b09"><time datetime="2015-07-16">2015-07-16</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Allow parsing SVG &lt;paint&gt; and &lt;color&gt; properties in the color fast-path</summary>
+              <pre class=body>
+The following properties:
+
+  fill
+  flood-color
+  lighting-color
+  stop-color
+  stroke
+
+Will all accept a single &lt;color&gt; as a valid value. This means they can
+be handled by the &lt;color&gt; parsing fast-path, which reduces the parsing
+cost for these properties which often appear as presentation attributes.
+
+Review URL: <a href="https://codereview.chromium.org/1221303013">https://codereview.chromium.org/1221303013</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199022 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1dea6004e19eddcb1cde64d7a1663cc091bce722"><time datetime="2015-07-16">2015-07-16</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Align color keyword handling in CSSParserFastPaths with CSSPropertyParser</summary>
+              <pre class=body>
+Previously there has been some discrepancies between
+CSSParserFastPaths::parseColor and CSSPropertyParser::parseColor with
+regards which color keywords they accept, and whether they do so in
+quirks mode or not. Use the same sequence of isColorKeyword and
+isValueAllowedInMode in both places to try to prevent that happening
+(again.)
+
+BUG=505410
+
+Review URL: <a href="https://codereview.chromium.org/1235943002">https://codereview.chromium.org/1235943002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199021 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e1d1467c8ccb933734cf06aa0d53b2d8e44efe1d"><time datetime="2015-07-16">2015-07-16</time></a>
         <tr>
           <td>philipj
           <td class=message>
