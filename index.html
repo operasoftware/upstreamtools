@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3257,
+    <a href="#blink">Blink</a>: 3258,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,37 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Intersect with the dirty rect before deciding which columns to examine for collection.</summary>
+              <pre class=body>
+When collecting layer fragments (to paint, hit-test, etc.) for multicol, we
+should limit the number of columns to examine. There may be very many columns
+(or pages), and processing them isn&#39;t for free. We already had code in place to
+narrow down the column interval by intersecting with the bounding box of the
+content, but in many cases we can narrow it down further (by a lot, in fact) by
+intersecting with the dirty rect as well. So let&#39;s do that.
+
+We used to intersect with the dirty rect as part of examining each column (i.e.
+inside the column loop). Now we do it up-front instead, to decide which columns
+are worth examining at all. So remove the dirty rect intersection check from
+the column loop. Also remove a bounding box intersection check from the loop,
+since we already do that up-front to set the column interval to examine. It
+just seemed useless to do it again inside the loop.
+
+This gives a major speed-up in the Layout/multicol/tall-content-short-columns*
+performance tests.
+
+<a href="mailto:R=dsinclair@chromium.org">R=dsinclair@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1237623010">https://codereview.chromium.org/1237623010</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199107 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/84a9a0448fee77ec204f8ea162d4cea4ff4a4442"><time datetime="2015-07-17">2015-07-17</time></a>
         <tr>
           <td>fs
           <td class=message>
