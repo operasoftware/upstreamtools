@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3263,
+    <a href="#blink">Blink</a>: 3264,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,42 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Precompile more in Blink in Windows for faster compilations</summary>
+              <pre class=body> 
+One reason Blink is slow to compile is that there is a lot of code
+included in every compilation unit since everything depends on either
+LayoutObject.h or Document.h and those in turn include huge portions
+of the rest of Blink.
+
+By precompiling LayoutObject.h and Document.h the compilation of core and
+modules in Blink can be 4 times faster (4 minutes instead of
+19 minutes on my computer).
+
+The downside is that it will introduce Document.h and LayoutObject.h
+also in compilation units that didn&#39;t expect it, for instance
+XPathGrammer.y that suddenly will have both blink::Path and
+blink::XPath::Path in scope (and blink::Filter / blink::XPath::Filter)
+
+Note that distributed compilation system disables precompiled headers
+globally so this will *not* make trybots faster.
+
+This is a new attempt at this change after bug 511945 scared us into
+reverting it. We still do not know the exact cause of 511945 but we
+are making another attempt with this.
+
+BUG=495697
+<a href="mailto:R=thakis@chromium.org,sigbjornf@chromium.org">R=thakis@chromium.org,sigbjornf@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1227953008">https://codereview.chromium.org/1227953008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199168 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f4a1af0f94226965d081dd1a2557c8204b231191"><time datetime="2015-07-20">2015-07-20</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
