@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3266,
+    <a href="#blink">Blink</a>: 3267,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,35 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove the allowfullscreen exemption for the video-specific fullscreen API (reland)</summary>
+              <pre class=body>
+Intent to Remove:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/3NukIuOaU4c/Boab2WxzhBYJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/3NukIuOaU4c/Boab2WxzhBYJ</a>
+
+Prompted by a question from Ali Alabbas (Microsoft) on blink-dev:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/f-V2GWatXkA/nvdHJ3xihMkJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/f-V2GWatXkA/nvdHJ3xihMkJ</a>
+
+Feedback from Vimeo on blink-dev asking for more time:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/3NukIuOaU4c/MPyuWoDaz8AJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/3NukIuOaU4c/MPyuWoDaz8AJ</a>
+
+New plan for removing the allowfullscreen exemption:
+<a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/3NukIuOaU4c/LWeJeKYvf1MJ">https://groups.google.com/a/chromium.org/d/msg/blink-dev/3NukIuOaU4c/LWeJeKYvf1MJ</a>
+
+The video.webkitSupportsFullscreen change will be made separately:
+<a href="https://codereview.chromium.org/1240573005">https://codereview.chromium.org/1240573005</a>
+
+BUG=496637
+
+Review URL: <a href="https://codereview.chromium.org/1237133002">https://codereview.chromium.org/1237133002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199225 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/83338d7875336bfb38494886be015c5d5ece9698"><time datetime="2015-07-21">2015-07-21</time></a>
         <tr>
           <td>philipj
           <td class=message>
