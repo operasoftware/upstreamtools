@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3264,
+    <a href="#blink">Blink</a>: 3266,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,75 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Stop calling configureTextTrackDisplay() in clearMediaPlayer()</summary>
+              <pre class=body>
+In the test case, the call chain is:
+HTMLMediaElement::didMoveToNewDocument() -&gt; userCancelledLoad() -&gt;
+clearMediaPlayer() -&gt; configureTextTrackDisplay() -&gt;
+updateTextTrackDisplay() -&gt; ensureTextTrackContainer()
+
+ensureTextTrackContainer() will create the text track container if it
+did not exist, triggering the assert in the EventDispatchForbiddenScope
+set up by ContainerNode::appendChild().
+
+In the test case, the order of setting TextTrack.mode and appending
+the HTMLTrackElement matters, which is at the root of the problem. If
+the text track container had been created, then there wouldn&#39;t have
+been any attempt to create it when moving to a new document.
+Unfortunately, the logic largely matches what the spec says:
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=28973">https://www.w3.org/Bugs/Public/show_bug.cgi?id=28973</a>
+
+Instead of fixing the assymetry, just remove the
+configureTextTrackDisplay() call and depend on the
+cueTimeline().updateActiveCues(0) call in userCancelledLoad() instead.
+This should suffice, because from the point of view of text track
+rendering, the current time is all that matters.
+
+The VisibilityChangeAssumption enum was introduced in order to avoid
+unnecessary work in configureTextTrackDisplay():
+<a href="https://codereview.chromium.org/22645014">https://codereview.chromium.org/22645014</a>
+
+This depends on a recent change to decouple VTTCue from VTTCueBox and
+LayoutVTTCue, without which the configureTextTrackDisplay() call was
+needed to avoid use-after-free of those VTTCue* pointers:
+<a href="https://codereview.chromium.org/1240433007">https://codereview.chromium.org/1240433007</a>
+
+BUG=489998
+
+Review URL: <a href="https://codereview.chromium.org/1233313008">https://codereview.chromium.org/1233313008</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199210 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f5b2c4937d7b1c2ef05ba8e2ce5be6030e8a197f"><time datetime="2015-07-21">2015-07-21</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t resolve extended color keywords during parsing</summary>
+              <pre class=body>
+Previously we were keeping the &#34;basic&#34; named colors (color keywords)
+unresolved (as identifiers), while resolving the &#34;extended&#34; named
+colors.
+This CL makes us keep the &#34;extended&#34; colors as well, and resolve them
+during style resolving instead (of during parsing.)
+Because we now no longer expect to resolve named colors in the
+fast-path, we can drop that part of CSSParserFastPaths::parseColor.
+
+The new behavior matches Gecko and IE.
+
+BUG=505410
+
+Review URL: <a href="https://codereview.chromium.org/1232593004">https://codereview.chromium.org/1232593004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199209 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/12af9fead4c851b029d052f006678e59dda82fdf"><time datetime="2015-07-21">2015-07-21</time></a>
         <tr>
           <td>bratell
           <td class=message>
