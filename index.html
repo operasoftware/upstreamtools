@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3274,
+    <a href="#blink">Blink</a>: 3276,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,77 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Revert of Precompile more in Blink in Windows for faster compilations (patchset #1 id:1 of https://codereview.chromium.org/1227953008/)</summary>
+              <pre class=body>
+Reason for revert:
+A chromium build bot broke with bad headers again. (see bug)
+
+The pch file does not seem to be recompiled when it should be.
+
+BUG=511945
+
+
+Original issue&#39;s description:
+&gt; Precompile more in Blink in Windows for faster compilations
+&gt;  
+&gt; One reason Blink is slow to compile is that there is a lot of code
+&gt; included in every compilation unit since everything depends on either
+&gt; LayoutObject.h or Document.h and those in turn include huge portions
+&gt; of the rest of Blink.
+&gt; 
+&gt; By precompiling LayoutObject.h and Document.h the compilation of core and
+&gt; modules in Blink can be 4 times faster (4 minutes instead of
+&gt; 19 minutes on my computer).
+&gt; 
+&gt; The downside is that it will introduce Document.h and LayoutObject.h
+&gt; also in compilation units that didn&#39;t expect it, for instance
+&gt; XPathGrammer.y that suddenly will have both blink::Path and
+&gt; blink::XPath::Path in scope (and blink::Filter / blink::XPath::Filter)
+&gt; 
+&gt; Note that distributed compilation system disables precompiled headers
+&gt; globally so this will *not* make trybots faster.
+&gt; 
+&gt; This is a new attempt at this change after bug 511945 scared us into
+&gt; reverting it. We still do not know the exact cause of 511945 but we
+&gt; are making another attempt with this.
+&gt; 
+&gt; BUG=495697
+&gt; <a href="mailto:R=thakis@chromium.org,sigbjornf@chromium.org">R=thakis@chromium.org,sigbjornf@chromium.org</a>
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=199168">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=199168</a>
+
+<a href="mailto:TBR=brucedawson@chromium.org,jam@chromium.org,scottmg@chromium.org,thakis@chromium.org,sigbjornf@opera.com,tasak@google.com,haraken@chromium.org,philipj@opera.com">TBR=brucedawson@chromium.org,jam@chromium.org,scottmg@chromium.org,thakis@chromium.org,sigbjornf@opera.com,tasak@google.com,haraken@chromium.org,philipj@opera.com</a>
+BUG=495697
+
+Review URL: <a href="https://codereview.chromium.org/1259563002">https://codereview.chromium.org/1259563002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199436 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/91a23379f6f8b7f1c06a304cd7fb4c2e110c5173"><time datetime="2015-07-24">2015-07-24</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Sync menulist-appearance-basic.html (Oilpan) expectations.</summary>
+              <pre class=body>
+fast/forms/select/menulist-appearance-basic.html is no longer too
+slow in Debug builds.
+
+TBR=oilpan-reviews
+BUG=397425
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/1257673002">https://codereview.chromium.org/1257673002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199435 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ea64c9423a1d832423d0c0c814095e08c1e338ea"><time datetime="2015-07-24">2015-07-24</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
