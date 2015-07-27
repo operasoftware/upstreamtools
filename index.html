@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3276,
+    <a href="#blink">Blink</a>: 3277,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Simplify ownership of a ThreadState&#39;s interruptors.</summary>
+              <pre class=body>
+Have ThreadState assume ownership of interruptors registered with
+addInterruptor(). That simplifies the handling on the caller side,
+allowing them to register-and-forget rather than each having to
+manually unregister &amp; destruct their interruptor before shutting down.
+(Not that this last step wasn&#39;t needed previously either, as ThreadState
+would have destructed the interruptors upon its destruction.)
+
+(ThreadState::removeInterruptor() is retained should it prove useful, but
+currently unused.)
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1257723002">https://codereview.chromium.org/1257723002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199487 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/96081166c14224e703e44bb286b02f20905b709e"><time datetime="2015-07-27">2015-07-27</time></a>
         <tr>
           <td>bratell
           <td class=message>
