@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3283,
+    <a href="#blink">Blink</a>: 3284,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Get rid of subtract-one-whole-pixel hack.</summary>
+              <pre class=body>
+Rectangles in Blink are endpoint-exclusive. There&#39;s a hack in the multicol code
+to work around this (when mapping from block positions to column indices), but
+it&#39;s not corner-case-proof. It both causes rendering errors and a recently
+added assertion to fail. Fixed this.
+
+<a href="mailto:R=dsinclair@chromium.org,jchaffraix@chromium.org,leviw@chromium.org">R=dsinclair@chromium.org,jchaffraix@chromium.org,leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1258883003">https://codereview.chromium.org/1258883003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199683 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b0bf11d2c22b4b0a6775322b9dd955cdfe9f8c19"><time datetime="2015-07-29">2015-07-29</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
