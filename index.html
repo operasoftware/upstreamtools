@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3285,
+    <a href="#blink">Blink</a>: 3286,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Eagerly finalize V8AbstractEventListeners.</summary>
+              <pre class=body>
+The listener&#39;s wrapper needs to be promptly cleared so as to prevent
+untidy accesses to a poisoned heap by v8&#39;s GC if the listener is instead
+lazily swept &amp; finalized.
+
+R=haraken
+BUG=491488
+
+Review URL: <a href="https://codereview.chromium.org/1263953002">https://codereview.chromium.org/1263953002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199721 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/54f3f4a314c696617276e0eccce117e26f1ebd08"><time datetime="2015-07-30">2015-07-30</time></a>
         <tr>
           <td>mstensho
           <td class=message>
