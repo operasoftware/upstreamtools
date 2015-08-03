@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3291,
+    <a href="#blink">Blink</a>: 3292,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Invalidate cross-thread persistents on heap termination.</summary>
+              <pre class=body>
+When a thread is detached from Oilpan and its ThreadState is
+finalized, arrange for any CrossThreadPersistent&lt;&gt;s pointing
+into one of its heaps to be cleared out. Not doing so risks
+dangling pointers to be followed upon GC or by anyone else
+still keeping these CrossThreadPersistent&lt;&gt;s alive.
+
+The only operation that other threads are allowed over
+CrossThreadPersistent&lt;&gt; (CTP) once the ThreadState has been
+destructed, is to destruct the CTP.
+
+R=haraken
+BUG=515432
+
+Review URL: <a href="https://codereview.chromium.org/1265103003">https://codereview.chromium.org/1265103003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199891 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/97212ce1837aa3a606f5a056f2a277cb91413ead"><time datetime="2015-08-03">2015-08-03</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
