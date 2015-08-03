@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3290,
+    <a href="#blink">Blink</a>: 3291,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,47 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Reliably cancel in-progress CryptoResult(Impl) upon shutdown.</summary>
+              <pre class=body>
+Move CryptoResult to the Oilpan heap and in order to support such
+Oilpan-hosted CryptoResults mainly, also separate out the signalling
+of crypto operation cancellation.
+
+CryptoResults are wrapped up (WebCryptoResult) and passed to the
+embedder&#39;s webcrypto layer upon initiating a crypto operation.
+Should the Blink thread that initiated that operation be shut
+down (before that crypto operation completes, possibly), it will
+go through its shutdown steps, including notifying CryptoResults
+that it is stopping. At which point the implementation has to
+effectively cancel the ongoing crypto operation.
+
+The Oilpan heaps belonging to the thread shutting down cannot be
+reliably used to communicate cancellation status, as they&#39;re about
+to be detached and destructed also. Hence, we keep a separate
+off-heap cancellation object that can live beyond the Blink thread
+that initiated it. And can be used by the webcrypto layer to 
+safely query for cancellation status after the Blink thread has
+been shut down entirely.
+
+As webcrypto operations are handled on separate threads, the
+cancellation object references can be safely accessed from any
+thread, including handling their eventual destruction. The same goes
+for the Oilpan-hosted CryptoResult -- external references (by way
+of WebPrivatePtr&lt;&gt;) can be held and destructed from any thread.
+
+R=haraken,eroman,tkent
+BUG=440450
+
+Review URL: <a href="https://codereview.chromium.org/1228373006">https://codereview.chromium.org/1228373006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199878 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a3254b5837d9b9ab6a547c2ad5ce72cf0583d57a"><time datetime="2015-08-03">2015-08-03</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
