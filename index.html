@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3293,
+    <a href="#blink">Blink</a>: 3294,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Need to check for positional rules on parent with style change.</summary>
+              <pre class=body>
+A local style change on the parent inhibited checks for positional rule
+changes on children with an early return. Removed that early return.
+
+<a href="mailto:R=dstockwell@chromium.org">R=dstockwell@chromium.org</a>
+BUG=510732
+
+Review URL: <a href="https://codereview.chromium.org/1264573004">https://codereview.chromium.org/1264573004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@199950 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c95bc2f72419bb215c0fa77948ceea81024d8180"><time datetime="2015-08-04">2015-08-04</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
