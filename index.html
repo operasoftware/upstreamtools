@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3298,
+    <a href="#blink">Blink</a>: 3300,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,48 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: lazily create SelfKeepAlive&lt;&gt;&#39;s persistent reference.</summary>
+              <pre class=body>
+To reduce overhead of having to register a Persistent&lt;&gt; that may
+only have a non-null reference for a shorter interval, instantiate
+the Persistent&lt;&gt; on assignment. And clear it out completely when
+the SelfKeepAlive&lt;&gt; is cleared.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1263313003">https://codereview.chromium.org/1263313003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200028 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/2dc59a501e49469e53a12720f89b59a4602d2888"><time datetime="2015-08-05">2015-08-05</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Gracefully handle XMLDocumentParser being detached by mutation events.</summary>
+              <pre class=body>
+Should a mutation event handler run while flushing out parser-buffered text,
+we could end up in a detached state, something the implementation wasn&#39;t
+prepared for.
+
+Firm up exitText() usage, and rename it as updateLeafTextNode(). Also attempt
+to make enterText() more descriptive as createLeafTextNodeIfNeeded().
+
+R=haraken,tkent,kouhei
+BUG=516290
+
+Review URL: <a href="https://codereview.chromium.org/1267283002">https://codereview.chromium.org/1267283002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200026 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4889e8e0b431aa174f162572b13fc8b4b6c24429"><time datetime="2015-08-05">2015-08-05</time></a>
         <tr>
           <td>philipj
           <td class=message>
