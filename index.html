@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3300,
+    <a href="#blink">Blink</a>: 3303,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,60 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: have WebLocalFrameImpl use SelfKeepAlive&lt;&gt;.</summary>
+              <pre class=body>
+Canonicalize WebLocalFrameImpl&#39;s self-referential persistent as
+a SelfKeepAlive&lt;&gt;.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1268103003">https://codereview.chromium.org/1268103003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200038 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4661447318c0025725c2eeb07690d24fbe51e810"><time datetime="2015-08-05">2015-08-05</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Switch SuspendableScriptExecutor over to using SelfKeepAlive&lt;&gt;.</summary>
+              <pre class=body>
+Have this Oilpan-hosted object keep itself alive using SelfKeepAlive&lt;&gt;,
+moving it onto the Oilpan heap by default in the process.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1258653003">https://codereview.chromium.org/1258653003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200036 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1fc0531fbc1f45546eedb2602accbffd6d7b4639"><time datetime="2015-08-05">2015-08-05</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Disallow relayout roots inside multicol.</summary>
+              <pre class=body>
+It&#39;s just too complicated to figure out if it&#39;s safe to let a descendant of a
+multicol container be a relayout root, so disallow it.
+
+BUG=515260
+<a href="mailto:R=jchaffraix@chromium.org,leviw@chromium.org">R=jchaffraix@chromium.org,leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1271513004">https://codereview.chromium.org/1271513004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200034 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4ec6287cece027206bbab51e3c67533c444604fb"><time datetime="2015-08-05">2015-08-05</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
