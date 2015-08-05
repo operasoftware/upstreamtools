@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3304,
+    <a href="#blink">Blink</a>: 3305,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,38 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Upon load failure, remove sync script from execution queue.</summary>
+              <pre class=body>
+If a script element is to be loaded synchronously and executed in order,
+it&#39;s queued for execution before loading. Should that load fail, the
+immediate execution of the script,
+
+  <a href="https://html.spec.whatwg.org/#execute-the-script-block">https://html.spec.whatwg.org/#execute-the-script-block</a>
+
+should only result in an error event being dispatched.
+
+Implementation-wise, along with signalling error, the failed script must also
+be removed from the internal in-order execution queue. We&#39;re done with
+(not) executing the script and failure to remove it will cause subsequent
+processing of the script execution queue to see the script as having failed
+to load and re-dispatch an error event.
+
+[This is a reland of r199656, which wrongly updated&amp;removed scripts from the
+in-order queue.]
+
+R=haraken
+BUG=503077
+
+Review URL: <a href="https://codereview.chromium.org/1263743002">https://codereview.chromium.org/1263743002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200045 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b327de6803ecbfefa0547466a0df03d634528c9d"><time datetime="2015-08-05">2015-08-05</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
