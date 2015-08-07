@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3313,
+    <a href="#blink">Blink</a>: 3316,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,66 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: have ResourceFetcher use a prefinalizer.</summary>
+              <pre class=body>
+The changes in r200133 unsafely allows access to other heap objects during
+the finalization of ResourceFetcher. Perform the clearing of preload
+resources using a prefinalizing action instead.
+
+R=haraken
+BUG=509911
+
+Review URL: <a href="https://codereview.chromium.org/1270343003">https://codereview.chromium.org/1270343003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200165 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/130c9050d2b205381908ec0ec8fc16583ce4e813"><time datetime="2015-08-07">2015-08-07</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: tidy StylePropertySerializer&#39;s handling of GCed objects.</summary>
+              <pre class=body>
+Add the required annotations + correctly represent and trace embedded
+StylePropertySet references.
+
+R=haraken
+BUG=509911
+
+Review URL: <a href="https://codereview.chromium.org/1278143002">https://codereview.chromium.org/1278143002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200164 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/bebffe7dbaae181b15620ac271c66b51a46ff727"><time datetime="2015-08-07">2015-08-07</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: catch some self-referential leaks (main thread.)</summary>
+              <pre class=body>
+Track the number of SelfKeepAlive&lt;&gt;s that are currently active on
+the main thread, so as to be able to detect if any remains on
+shutdown. A clear indication of a leak, if so.
+
+Also add some debugging support for detecting thread shutdown
+leaks due to Persistent&lt;&gt;s not being released; see
+PersistentRegion::dumpLivePersistents() and ThreadState::cleanup().
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1275863002">https://codereview.chromium.org/1275863002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200163 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/b15811f2791ca21b1a256edf9367829dcfb2c0bb"><time datetime="2015-08-07">2015-08-07</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
