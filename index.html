@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3316,
+    <a href="#blink">Blink</a>: 3319,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,54 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: turn EventHandlerRegistry::m_frameHost into a traced reference.</summary>
+              <pre class=body>
+R=haraken
+BUG=509911
+
+Review URL: <a href="https://codereview.chromium.org/1280043002">https://codereview.chromium.org/1280043002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200171 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/bbe35214ca8be5e532e35b15cb4493fc76c8aff1"><time datetime="2015-08-07">2015-08-07</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: convert DOMWindowIndexedDatabase::m_window to a Member&lt;&gt;.</summary>
+              <pre class=body>
+R=haraken
+BUG=509911
+
+Review URL: <a href="https://codereview.chromium.org/1277653006">https://codereview.chromium.org/1277653006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200170 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/c0e7b3f0184795a4734a761fcd69a8991df9dbdb"><time datetime="2015-08-07">2015-08-07</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: mark StylePropertySet::PropertyReference as stack allocated.</summary>
+              <pre class=body>
+Annotate this object as stack allocated + turn its StylePropertySet
+reference into a Member.
+
+R=haraken
+BUG=509911
+
+Review URL: <a href="https://codereview.chromium.org/1276243002">https://codereview.chromium.org/1276243002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200169 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/95320da15890afc79785925a87d64c58c7e9a299"><time datetime="2015-08-07">2015-08-07</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
