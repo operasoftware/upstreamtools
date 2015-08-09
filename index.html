@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3321,
+    <a href="#blink">Blink</a>: 3322,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,45 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert of Elements whose contents start with an astral Unicode symbol disappear when CSS `::first-letter` is … (patchset #9 id:160001 of https://codereview.chromium.org/1133853006/ )</summary>
+              <pre class=body>
+Reason for revert:
+ASan picking up a number of UAF failures due to this one,
+
+ <a href="http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Linux%20ASAN/builds/19782">http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Linux%20ASAN/builds/19782</a>
+
+Original issue&#39;s description:
+&gt; Elements whose contents start with an astral Unicode symbol disappear when CSS `::first-letter` is applied to them.
+&gt; 
+&gt; This CL is inspired by <a href="http://trac.webkit.org/changeset/172513">http://trac.webkit.org/changeset/172513</a>
+&gt; written by Myles C. Maxfield.
+&gt; The previous code assumed that all &#34;characters&#34; are exactly 1 16-bit code unit wide.
+&gt; Instead, use numCharactersInGraphemeClusters().
+&gt; 
+&gt; For blink, we add countCharactersAndGraphemesInCluster to bring a similar
+&gt; functionality to blink. This api is based on countGraphemesInCluster and improved
+&gt; to figure out the number of characters and grapheme at the same time in the given clusters.
+&gt; 
+&gt; BUG=401945
+&gt; 
+&gt; Committed: <a href="https://src.chromium.org/viewvc/blink?view=rev&amp;revision=200227">https://src.chromium.org/viewvc/blink?view=rev&amp;revision=200227</a>
+
+<a href="mailto:TBR=leviw@chromium.org,eae@chromium.org,esprehn@chromium.org,drott@chromium.org,shivamidow@gmail.com">TBR=leviw@chromium.org,eae@chromium.org,esprehn@chromium.org,drott@chromium.org,shivamidow@gmail.com</a>
+NOPRESUBMIT=true
+NOTREECHECKS=true
+NOTRY=true
+BUG=401945
+
+Review URL: <a href="https://codereview.chromium.org/1277803004">https://codereview.chromium.org/1277803004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200228 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3f691bb90607051009e33795970958fb551819e8"><time datetime="2015-08-09">2015-08-09</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
