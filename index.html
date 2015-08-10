@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3323,
+    <a href="#blink">Blink</a>: 3324,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,29 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Make LayoutFlowThread::fragmentsBoundingBox() faster.</summary>
+              <pre class=body>
+It used to let collectLayerFragments() handle the job, with an infinite dirty
+rectangle. This forced us to collect all columns, when we really only needed to
+know the bounding boxes of the first and the last columns in each fragmentainer
+group.
+
+This gives a major speed-up in the Layout/multicol/tall-content-short-columns-*
+tests. It will also make it possible to submit a fix for bug 502407 and write a
+test for it that doesn&#39;t time out.
+
+<a href="mailto:R=jchaffraix@chromium.org,leviw@chromium.org">R=jchaffraix@chromium.org,leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1265933002">https://codereview.chromium.org/1265933002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200264 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/05db7c33c0d6f47f8df2c4fb1489224963488be1"><time datetime="2015-08-10">2015-08-10</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
