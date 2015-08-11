@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3326,
+    <a href="#blink">Blink</a>: 3327,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Handle Performance object creation on loader-less Documents.</summary>
+              <pre class=body>
+Speculatively fix reported null crasher in Performance ctor,
+checking if Document has a DocumentLoader before accessing.
+Should this object be created while its frame is being detached
+(see bug stack trace), this can potentially happen.
+
+R=haraken,ksakamoto
+BUG=518775
+
+Review URL: <a href="https://codereview.chromium.org/1287513003">https://codereview.chromium.org/1287513003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200307 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/dfa94b74f6a963301775068e210e38e545196003"><time datetime="2015-08-11">2015-08-11</time></a>
         <tr>
           <td>mstensho
           <td class=message>
