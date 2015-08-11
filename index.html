@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3327,
+    <a href="#blink">Blink</a>: 3329,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,42 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Auto-height table cells must stop percentage resolution of child heights.</summary>
+              <pre class=body>
+This also needs to apply when a table cell is anonymous. The spec only mentions
+*blocks* when it comes to skipping anonymous objects for resolving percentages
+[1]. No mention of table cells anywhere.
+
+[1] <a href="http://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#anonymous-block-level">http://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#anonymous-block-level</a>
+
+BUG=518210
+<a href="mailto:R=leviw@chromium.org">R=leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1289463002">https://codereview.chromium.org/1289463002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200337 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0993b11f313fef23bc55e504c0bbe4c89b7f4dad"><time datetime="2015-08-11">2015-08-11</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Add toLayoutMultiColumnFlowThread().</summary>
+              <pre class=body>
+BUG=447718
+<a href="mailto:R=leviw@chromium.org">R=leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1282923004">https://codereview.chromium.org/1282923004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200336 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/11cd9ecac5d58110da80c6b06d040497118df9f0"><time datetime="2015-08-11">2015-08-11</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
