@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3330,
+    <a href="#blink">Blink</a>: 3331,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>davve
+          <td class=message>
+            <details>
+              <summary>Remove effective zoom from font metrics before length calculations</summary>
+              <pre class=body>
+Since <a href="https://codereview.chromium.org/308123010">https://codereview.chromium.org/308123010</a> and
+<a href="https://codereview.chromium.org/323053002">https://codereview.chromium.org/323053002</a>, the effectiveZoom is
+included in the style&#39;s font. This patch adds missing code to
+SVGLengthContext to remove the effective zoom before computing ex
+(x-height) and ch (zero-width) units.
+
+BUG=519133
+
+Review URL: <a href="https://codereview.chromium.org/1283463003">https://codereview.chromium.org/1283463003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200393 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/159df89213cd2a66a5060bd52c6a618e30bbc06d"><time datetime="2015-08-12">2015-08-12</time></a>
         <tr>
           <td>mstensho
           <td class=message>
