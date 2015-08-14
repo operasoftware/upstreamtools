@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3334,
+    <a href="#blink">Blink</a>: 3335,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,41 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t require a valid reference scope for a &lt;use&gt; shadow tree update</summary>
+              <pre class=body>
+When determining if a URL-string was pointing to an internal or external
+resource, the null-string was considered external because it does not
+start w/ &#39;#&#39; and Document::completeURL will explicitly return a null KURL
+in that case. The latter means that the comparison against the document
+URL will fail - i.e. the &#34;URL&#34; will be considered to be external.
+Due to this, no attempt to rebuild the shadow-tree will be made, leaving
+it in an inconsistent state.
+Fix by dropping the check for a valid referenceScope in
+scheduleShadowTreeRecreation
+(in favor of the check in buildPendingResource).
+This also fixes the case where a local reference is replaced by an
+invalid remote reference (like one lacking a fragment identifier). This
+would previously fail to update because it too had a null &#34;reference&#34;
+scope.
+Also convert callers of SVGURIReference::isExternalURIReference to call
+isStructurallyExternal instead. This lends a bit of consistency to the
+definition of &#34;local&#34; used in SVGUseElement. It also means that the null
+&#39;href&#39; case is considered to be a local reference (which has no practical
+consequence, but makes the handling of null be similar to the handling of
+the empty string - with the exception of base URL handling.)
+
+BUG=516051
+
+Review URL: <a href="https://codereview.chromium.org/1287243003">https://codereview.chromium.org/1287243003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200537 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e2f1087f32bb088160ab7d59a715a1403ef267c7"><time datetime="2015-08-14">2015-08-14</time></a>
         <tr>
           <td>fs
           <td class=message>
