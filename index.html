@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3342,
+    <a href="#blink">Blink</a>: 3344,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,78 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Prepare for multiple !important author ranges.</summary>
+              <pre class=body>
+This CL is split out from [1] where we support multiple author origins in
+terms of shadow dom scopes. The vector of MatchedProperties contains
+matched declarations from all origins in the order in which they should
+be applied. For !important declarations, they are applied in the same
+order within the same origin, but the order of the origins are different
+as the cascading order is:
+
+  - UA important
+  - Author important
+  - Author
+  - UA
+
+We used to have two ranges, one for UA and one for author to accomplish
+this. However, with the normal/!important cascading order for
+declarations from different shadow doms, we need multiple author ranges:
+
+  - UA important
+  - Author important scope n
+  ...
+  - Author important scope 1
+  - Author scope 1
+  ...
+  - Author scope n
+  - UA
+
+We introduce an ImportantAuthorRangeIterator to iterate through the
+author ranges and add iterator-style iteration for each range through the
+MatchedPropertiesRange class.
+
+As the applyMatchedProperties code is hot, I&#39;ve run the blink_perf.css
+tests locally. Some improved by 2-4%, some became worse by similar
+percentages.
+
+[1] <a href="https://codereview.chromium.org/1224673002/">https://codereview.chromium.org/1224673002/</a>
+
+BUG=487125
+TEST=fast/css
+
+Review URL: <a href="https://codereview.chromium.org/1282243002">https://codereview.chromium.org/1282243002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200697 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/d43c8ad6d25b9366f01d609770d40a10cdc2c33f"><time datetime="2015-08-18">2015-08-18</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>valueForLength() cannot do anything with min-intrinsic.</summary>
+              <pre class=body>
+Length::intrinsic() doesn&#39;t return true for min-intrinsic. isLegacyIntrinsic()
+does. But use isIntrinsicOrAuto() to catch both intrinsic, legacy-intrinsic and
+auto values, since that seems to be a rather popular way of doing things.
+Nobody seems to call isLegacyIntrinsic() directly. Regarding auto values here,
+it doesn&#39;t really matter whether we call valueForLength() or not, since they&#39;ll
+resolve to 0 anyway.
+
+BUG=521526
+<a href="mailto:R=leviw@chromium.org,robhogan@gmail.com">R=leviw@chromium.org,robhogan@gmail.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/1292163005">https://codereview.chromium.org/1292163005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200695 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/dd5b59615019f08da4e0aa41b97648cdbddb8862"><time datetime="2015-08-18">2015-08-18</time></a>
         <tr>
           <td>davve
           <td class=message>
