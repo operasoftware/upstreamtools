@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3351,
+    <a href="#blink">Blink</a>: 3352,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,45 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t register excessive pending SVG resources</summary>
+              <pre class=body>
+When an SVG resource was destroyed, it would notify the
+SVGResourcesCache, which would walk the entire cache, notify the layout
+object and add a &#34;pending&#34; entry for the id referring to the
+corresponding element.
+This would mean that every layout object which had any kind of resource
+would get a &#34;pending&#34; reference from every id to itself - regardless of
+if it ever referred to a resource with the given id. In the particular
+test, this resulted in a fairly large (ever-growing) &#34;pending&#34; element
+sets because there was persistent resource references in the document.
+
+Fix by only adding &#34;pending&#34; entries for the current clients of the
+resource that&#39;s being destroyed.
+SVGResourcesCache::resourceDestroyed is removed in favor of new method
+detachAllClients() in LayoutSVGResourceContainer. The part that
+unregistered the resource itself as a client is removed in favor of the
+pre-existing call to clientDestroyed() already existing in
+LayoutSVGModelObject::willBeDestroyed (delegated to from the resource.)
+SVGResources::resourceDestroyed is changed to not call
+removeAllClientsFromCache() on the resource being passed - this is
+instead done once after having cleared the references in all the
+clients.
+
+With this change, the &#34;cycle time&#34; of the test in the bug changes from
+linearly increasing to constant.
+
+BUG=521334
+
+Review URL: <a href="https://codereview.chromium.org/1302713003">https://codereview.chromium.org/1302713003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200840 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0e85dae9e55cf7bcb4ec823a712b8c31299a5763"><time datetime="2015-08-19">2015-08-19</time></a>
         <tr>
           <td>mstensho
           <td class=message>
