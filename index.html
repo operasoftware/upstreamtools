@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3348,
+    <a href="#blink">Blink</a>: 3349,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,32 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Handle LocalFrame being nestedly detached by subframe.</summary>
+              <pre class=body>
+As part of detaching a LocalFrame, its subframes are also detached. Should the
+detachment of those subframes trigger a nested detach of the LocalFrame that
+initiated their detachment, the LocalFrame being returned to after having
+detached the subframes could well be in a detached state. The detach steps that
+followed (FrameLoader operations) weren&#39;t prepared for being in a detached state
+(following r199143) and failed.
+
+And the FrameLoader shouldn&#39;t have to gracefully handle being used in a detached
+state, so add an is-detached check to the LocalFrame&#39;s detach steps before continuing.
+Leaving early if so.
+
+R=dcheng,japhet
+BUG=520014
+
+Review URL: <a href="https://codereview.chromium.org/1290053003">https://codereview.chromium.org/1290053003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200820 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f34dd3c4a1dc82e791092348a27189ef1934b65e"><time datetime="2015-08-19">2015-08-19</time></a>
         <tr>
           <td>rune
           <td class=message>
