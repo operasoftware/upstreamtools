@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3363,
+    <a href="#blink">Blink</a>: 3364,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,71 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Implement proposed shadow tree cascade order.</summary>
+              <pre class=body>
+This CL implements the shadow tree cascade order proposed in [1].
+
+Previously, in Blink, specificity would win over scope origin, even if the
+scopes had an inner/outer scope relationship, and the order-of-appearance
+was governed by the CascadeOrder type. Also, !important rules did not
+apply in the reverse scope order, as the current spec says for inner/outer
+scopes, and the proposal in [1] says apply between all shadow scopes.
+
+What has been done is:
+
+1. CascadeOrder is not used, as it represents order-of-appearance
+   (Removal of CascadeOrder is not done here to make the CL smaller. Will
+   be removed in a follow-up CL).
+
+2. When collecting rules, sort after each scope instead of just after UA
+   and Author since we had:
+
+   UA important
+   Author important
+   Author
+   UA
+
+   and now we have (with A(n) appearing before A(n+1) in the tree-of-trees
+   order):
+
+   UA important
+   Author scope A(n) important
+   ...
+   Author scope A(1) important
+   Author scope A(1)
+   ...
+   Author scope A(n)
+   UA
+
+   The applyProperties code is hot, and I have made performance runs for
+   the micro-benchmarks in Layout and CSS without consistent regressions.
+
+3. Since the cascading order between scopes are just the inner/outer
+   relationship in the composed tree (direction decided by !important),
+   which is the same as the tree-of-trees order of the shadow trees,
+   we can just traverse the DocumentOrderedList of scopes in the reverse
+   order instead of doing calculation tricks for CascadeOrder values.
+
+   Because of this, TreeBoundaryCrossingRules is now reduced to a
+   DocumentOrderedList of scoping nodes, so the TreeBoundaryCrossingRules
+   class is removed.
+
+[1] <a href="https://lists.w3.org/Archives/Public/www-style/2015Jun/0303.html">https://lists.w3.org/Archives/Public/www-style/2015Jun/0303.html</a>
+
+BUG=452542, 455148, 487125
+
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/1298173004">https://codereview.chromium.org/1298173004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@200994 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/bb5572c1de7405160a32b80c6224477b13eaac14"><time datetime="2015-08-21">2015-08-21</time></a>
         <tr>
           <td>fs
           <td class=message>
