@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3365,
+    <a href="#blink">Blink</a>: 3366,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Removed unused CascadeOrder.</summary>
+              <pre class=body>
+CascadeOrder is always ignoreCascadeOrder after [1] and can be removed.
+
+[1] <a href="https://codereview.chromium.org/1298173004">https://codereview.chromium.org/1298173004</a>
+
+BUG=487125
+
+Review URL: <a href="https://codereview.chromium.org/1291873005">https://codereview.chromium.org/1291873005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201019 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4da969a097e6e87f44b312585dbc7aac0d8174e6"><time datetime="2015-08-21">2015-08-21</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
