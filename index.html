@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3370,
+    <a href="#blink">Blink</a>: 3372,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,56 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: fix build after r201058.</summary>
+              <pre class=body>
+TBR=oilpan-reviews
+BUG=522860
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/1303953005">https://codereview.chromium.org/1303953005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201060 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6b63e207dd4d141ea6b04ef3145b09a95fc78563"><time datetime="2015-08-24">2015-08-24</time></a>
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Should not ASSERT what we know will fail.</summary>
+              <pre class=body>
+The input to the selector position and the rule position is known to
+possibly overflow 12 and 18 bits respectively since the input comes from
+unsigned positions into data structures known to keep more elements than
+that. The selector and rule positions will be wrong regardlessly, unless
+we make RuleData bigger.
+
+Truncating the position to a max value instead of just letting it
+overflow could be an option. It doesn&#39;t make sense for selector position
+as trying to match any of the other selectors won&#39;t make any difference.
+
+Truncating the rule position would make the cascading order correct when
+comparing rules in the representable range with a rule outside the range,
+while just letting it overflow starting from zero again will yield a
+correct cascading order between two rules both outside of the
+representable range.
+
+Given that, I conclude to just remove the ASSERTs and not do anything
+clever about values outside of the ranges.
+
+BUG=519315
+<a href="mailto:R=timloh@chromium.org">R=timloh@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1312703002">https://codereview.chromium.org/1312703002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201059 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4619053c0224f7f87a09eef1fda28b36b03de98b"><time datetime="2015-08-24">2015-08-24</time></a>
         <tr>
           <td>rune
           <td class=message>
