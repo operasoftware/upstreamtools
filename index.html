@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3369,
+    <a href="#blink">Blink</a>: 3370,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,36 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Fix crash when removing stylesheets from shadow tree.</summary>
+              <pre class=body>
+The added sheets passed into StyleSheetInvalidationAnalysis may either be
+added or removed. When they are removed style elements from a shadow tree,
+the style element may no longer have a containingShadowRoot if the element
+has already been removed. That caused a crash when the containingShadowRoot
+was accessed without a nullptr check.
+
+Instead of deducing the scope from the style element, pass the stylesheet
+collection TreeScope to the analysis object. The m_scopingNodes, which is
+probably a left-over from &lt;style scoped&gt; has been removed.
+
+Now, the shadow tree root node, or outermost shadow host if ::content
+rules makes that necessary, is always marked sub-tree dirty. The previous
+code-path could trigger id/class invalidation of separate elements when
+the stylesheet contents had multiple owner nodes, but that was most likely
+wrong if it could ever happen.
+
+BUG=522860
+
+Review URL: <a href="https://codereview.chromium.org/1313443003">https://codereview.chromium.org/1313443003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201058 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9301d6f09c69e90f78e1fbd22a4a94821d0ba996"><time datetime="2015-08-24">2015-08-24</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
