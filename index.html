@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3374,
+    <a href="#blink">Blink</a>: 3375,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Drop LayoutVTTCue::adjustForTopAndBottomMarginBorderAndPadding</summary>
+              <pre class=body>
+This method only serves to break the cue layout computed by
+SnapToLinesLayouter. If we want to factor in margin+border for cues (and
+padding for the cue container), then factor that into the cue layout
+algorithm instead.
+
+BUG=301580
+
+Review URL: <a href="https://codereview.chromium.org/1314613002">https://codereview.chromium.org/1314613002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201119 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/6aae3d01cdbaa0af55ab806f56bd3e6a8501d066"><time datetime="2015-08-25">2015-08-25</time></a>
         <tr>
           <td>philipj
           <td class=message>
