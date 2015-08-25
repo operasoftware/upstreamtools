@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3375,
+    <a href="#blink">Blink</a>: 3377,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,49 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>svg/custom/resource-client-removal.svg no longer flaky</summary>
+              <pre class=body>
+Stabilized after <a href="https://codereview.chromium.org/1286093008">https://codereview.chromium.org/1286093008</a>
+
+<a href="mailto:TBR=pdr@chromium.org">TBR=pdr@chromium.org</a>
+BUG=521856
+
+Review URL: <a href="https://codereview.chromium.org/1317543002">https://codereview.chromium.org/1317543002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201128 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/049340a8c2357a5ea1636e38babf0970f46d0925"><time datetime="2015-08-25">2015-08-25</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Don&#39;t change the media controls visibility in MediaControls::reset()</summary>
+              <pre class=body>
+reset() is called from a number of places with the expectation of
+putting the controls into the state they would be if created anew.
+
+One such place is via HTMLMediaElement::preDispatchEventHandler, where
+the controls are reset when entering or exiting fullscreen. This has a
+very strange side-effect, namely that dispatching a synthetic
+webkitfullscreenchange event on a video will cause the media controls to
+become visible.
+
+It would be rather messy to write a layout test for this, and it would
+be slow to run, so instead add unit tests to test this more directly.
+
+<a href="mailto:R=fs@opera.com">R=fs@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/1319433003">https://codereview.chromium.org/1319433003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201126 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9ac6592753dc8709c0bc9a23849bbe4bed8d82ac"><time datetime="2015-08-25">2015-08-25</time></a>
         <tr>
           <td>fs
           <td class=message>
