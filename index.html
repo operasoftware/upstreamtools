@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3384,
+    <a href="#blink">Blink</a>: 3385,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Applying the &#34;all&#34; property needs to check all properties against the whitelist.</summary>
+              <pre class=body>
+When applying any other property than &#34;all&#34;, we already perform this whitelist
+check, but applying &#34;all&#34; is a separate code path, and the checks were missing
+there.
+
+BUG=524682
+<a href="mailto:R=rune@opera.com">R=rune@opera.com</a>
+
+Review URL: <a href="https://codereview.chromium.org/1304123006">https://codereview.chromium.org/1304123006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201315 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ca883330fc60ecbfa41050a54f22ee8420e32c95"><time datetime="2015-08-27">2015-08-27</time></a>
         <tr>
           <td>rune
           <td class=message>
