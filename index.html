@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3380,
+    <a href="#blink">Blink</a>: 3381,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,24 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Remove applyStatefulResource interface from SVGClipPainter</summary>
+              <pre class=body>
+applyClippingToContext is equally &#34;stateful&#34;, so the two entrypoints
+does not seem warranted.
+Fold applyClippingToContext into applyStatefulResource and then rename
+it to prepareEffect (to match mask and filter). Similarly rename
+postApplyStatefulResource to finishEffect.
+
+Review URL: <a href="https://codereview.chromium.org/1308223003">https://codereview.chromium.org/1308223003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201262 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/446dd0bc547be55df9c00b03ffc47a11a1f64ad6"><time datetime="2015-08-26">2015-08-26</time></a>
         <tr>
           <td>fs
           <td class=message>
