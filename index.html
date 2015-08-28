@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3387,
+    <a href="#blink">Blink</a>: 3388,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,36 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Throw exceptions for charnum == getNumberOfChars in get{...}OfChar APIs</summary>
+              <pre class=body>
+According to the spec [1], IndexSizeError should be thrown if:
+
+&#34;...the charnum is negative or if charnum is greater than or equal to
+ the number of characters at this node.&#34;
+
+This is what&#39;s implemented by IE, Gecko and Presto.
+
+[1] <a href="http://www.w3.org/TR/SVG11/text.html#__svg__SVGTextContentElement__getStartPositionOfChar">http://www.w3.org/TR/SVG11/text.html#__svg__SVGTextContentElement__getStartPositionOfChar</a>
+    The current SVG2 draft has a different formulation:
+
+     (<a href="https://svgwg.org/svg2-draft/text.html#__svg__SVGTextContentElement__getStartPositionOfChar">https://svgwg.org/svg2-draft/text.html#__svg__SVGTextContentElement__getStartPositionOfChar</a>)
+     &#34;If cluster is null, then then throw a DOMException with code
+      INDEX_SIZE_ERR.&#34;
+
+    but will have the same result.
+
+BUG=391345
+
+Review URL: <a href="https://codereview.chromium.org/1321783002">https://codereview.chromium.org/1321783002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201411 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/130308a31769820b8217299ea82da93e725509c6"><time datetime="2015-08-28">2015-08-28</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
