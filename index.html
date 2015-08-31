@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3391,
+    <a href="#blink">Blink</a>: 3392,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,26 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>If javascript: returns no result, balance load progress notifications.</summary>
+              <pre class=body>
+Upon executing a javascript: URL in an empty document, we take care to
+notify that the load has started. Should the result of executing the
+script code be no result and navigation, balance the progress notifications
+by signalling completion also.
+
+R=haraken
+BUG=495495
+
+Review URL: <a href="https://codereview.chromium.org/1158973004">https://codereview.chromium.org/1158973004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201481 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/78c4095a84511c78e479214a3c66b250803d41ca"><time datetime="2015-08-31">2015-08-31</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
