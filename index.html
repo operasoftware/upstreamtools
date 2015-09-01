@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3395,
+    <a href="#blink">Blink</a>: 3396,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: update plugin handling to work over plugins persisted over reattach</summary>
+              <pre class=body>
+Following Blink r201401, a plugin element&#39;s persisted plugin will be
+cleared out upon the plugin element being removed from the tree or being
+re-attached and there being no layout object. With Oilpan, this may
+bring about disposal of the underlying plugin.
+
+A disposed persisted plugin is consequently observable if subsequently
+try to return the plugin wrapper object for the plugin element -- add
+the required check so as to handle this properly.
+
+R=haraken
+BUG=526999
+
+Review URL: <a href="https://codereview.chromium.org/1326603002">https://codereview.chromium.org/1326603002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201572 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/ac336c7b90918c739b078e80ed69e62571fcb4de"><time datetime="2015-09-01">2015-09-01</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
