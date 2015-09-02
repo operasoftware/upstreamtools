@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3397,
+    <a href="#blink">Blink</a>: 3398,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,43 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Add inline style in the element&#39;s scope.</summary>
+              <pre class=body>
+Style attribute declarations were added in a separate scope after all
+other author origins. Instead add style attribute declarations right after
+collecting matching rules from the element&#39;s scope. This means that we can
+override values set on the style attribute from outer scopes, like we can
+with values from inner scope&#39;s stylesheet.
+
+Without this fix, you would get green on orange below:
+
+&lt;style&gt;html /deep/ span { color: green; background-color: lime }&lt;/style&gt;
+&lt;host&gt;
+  &lt;host:root&gt;
+    &lt;style&gt;span { color:red }&lt;/style&gt;
+    &lt;span style=&#34;background:orange&#34;&gt;Green on orange?&lt;/span&gt;
+  &lt;/host:root&gt;
+&lt;/host&gt;
+
+With this change, we will get green on lime.
+
+The regression (issue 526634) was not relying on this, but it would be
+more complex code to fix the regression without fixing the style attribute
+cascading order.
+
+<a href="mailto:R=kochi@chromium.org,hayato@chromium.org">R=kochi@chromium.org,hayato@chromium.org</a>
+BUG=526634
+
+Review URL: <a href="https://codereview.chromium.org/1322753006">https://codereview.chromium.org/1322753006</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201620 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/bc283bd67f292ddd0da19ed1af4410a0fc50b5b3"><time datetime="2015-09-02">2015-09-02</time></a>
         <tr>
           <td>philipj
           <td class=message>
