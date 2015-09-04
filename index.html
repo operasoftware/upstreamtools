@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3411,
+    <a href="#blink">Blink</a>: 3412,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,37 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Improve CancellableTaskFactory handling and Oilpan usage.</summary>
+              <pre class=body>
+If a CancellableTaskFactory is used by an Oilpan heap object, the
+closure that the factory works with/over, cannot embed a reference
+back to that object by way of an off-heap Persistent&lt;&gt; (WTF::Closure
+is not on the heap.) If it does, such a reference will keep the heap
+object alive, without it ever being released. Memory leaks are very likely.
+
+This is too easy a slip-up to make with the current CancellableTaskFactory
+constructor, so rephrase the constructor so as to make leaks no longer (easily)
+possible. For Oilpan heap objects baked into the closure, the persistent reference
+now held will be weak.
+
+At the same time, take the opportunity to have this object no longer be a part object,
+but a separate (off-heap) allocation. This lets us drop the ad-hoc ASan unpoisoning
+support that was previously needed if CancellableTaskFactory was a part object
+of an Oilpan heap object. Less magic.
+
+R=haraken
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1312843009">https://codereview.chromium.org/1312843009</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201787 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/f7c2250a1a5ef783a1845005052881f039948a93"><time datetime="2015-09-04">2015-09-04</time></a>
         <tr>
           <td>fs
           <td class=message>
