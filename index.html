@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3412,
+    <a href="#blink">Blink</a>: 3413,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,25 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: tidy up NavigationScheduler.</summary>
+              <pre class=body>
+Allocate this object separately and not as a part of a LocalFrame. The
+main motivation for this is to play better with its use of a
+CancellableTaskFactory following r201780.
+
+R=haraken
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1330653003">https://codereview.chromium.org/1330653003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201794 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/382e76432be44982e8269cd8830f1bc383ff93ad"><time datetime="2015-09-04">2015-09-04</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
