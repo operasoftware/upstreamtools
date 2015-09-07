@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3413,
+    <a href="#blink">Blink</a>: 3414,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,40 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Avoid duplicated code in LayoutBlockChild::layoutBlockChild().</summary>
+              <pre class=body>
+Before laying out, we try to estimate and set the logical top of the child, but
+it may turn out after one layout pass that the estimate was wrong, due to
+margin collapsing, float clearance or pagination.
+
+So sometimes we need to reposition and relayout once or even twice inside
+layoutBlockChild(). This was done with slightly poorly duplicated code.
+Refactor into positionAndLayoutOnceIfNeeded() (and
+markDescendantsWithFloatsForLayoutIfNeeded()). One instance of this duplicated
+code used to sit in adjustBlockChildForPagination(). Moved it into
+layoutBlockChild(), to make it easier to understand what&#39;s going on (and to
+give adjustBlockChildForPagination() one less thing to worry about - one
+parameter removed). Renamed |result| to |newLogicalTop| in
+adjustBlockChildForPagination(), and |logicalTopAfterClear| to |newLogicalTop|
+in layoutBlockChild().
+
+No behavioral changes were actually intended, but when unifying
+almost-duplicated code, some changes are inevitable. Added some tests for
+something that now works, and used to fail. In the subsequent layout passes we
+forgot to check if the new position changed how we were affected by floats.
+
+<a href="mailto:R=jchaffraix@chromium.org,leviw@chromium.org">R=jchaffraix@chromium.org,leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1315353005">https://codereview.chromium.org/1315353005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201866 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/416491eae6a1698272b86360d612de3cb26ee570"><time datetime="2015-09-07">2015-09-07</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
