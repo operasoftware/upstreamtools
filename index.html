@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3421,
+    <a href="#blink">Blink</a>: 3422,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,30 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Schedule a BeginFrame when we stop deferring commits.</summary>
+              <pre class=body>
+We do not scheduleVisualUpdate for setNeedsStyleRecalc when we have
+pending stylesheets. If we setNeedsStyleRecalc while loading a stylesheet,
+we won&#39;t necessarily trigger a BeginFrame when the stylesheet finishes
+loading because subsequent setNeedsStyleRecalc call won&#39;t trigger those
+either if the ascendants are already marked with childNeedsStyleRecalc
+because we assume the visual update is already scheduled.
+
+Schedule a BeginFrame from resumeTreeViewCommits to make sure deferred
+visual updates are triggered.
+
+BUG=384934
+
+Review URL: <a href="https://codereview.chromium.org/1316403004">https://codereview.chromium.org/1316403004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201933 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/a71775441fd131c19f502d0a93a987e1ef68d6dc"><time datetime="2015-09-08">2015-09-08</time></a>
         <tr>
           <td>fs
           <td class=message>
