@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3423,
+    <a href="#blink">Blink</a>: 3424,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,55 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Update outer flow thread membership before changing multicolness.</summary>
+              <pre class=body>
+This change is about being more strict about applying style changes in tree
+order: first adjust the relationship to the ancestry, THEN adjust the children.
+
+This order is important if a multicol container has a child out-of-flow
+multicol container with a spanner, and this child is changed to become in-flow
+at the same time as it ceases to be a multicol container, and instead becomes a
+spanner. If we change it from multicol to spanner first (instead of making it
+part of the outer multicol container first), the outer multicol container is
+going to believe that it contains the inner spanner, and we&#39;d end up with a
+spanner inside another spanner, which isn&#39;t allowed.
+
+#a - multicol
+  #b - abspos multicol, changing it to static spanner
+    #c - spanner (but it should become a regular block once #b becomes a spanner)
+
+The effect of this fix is that we swap the ordering of notifying the flow thread
+about descendant style changes (flowThreadDescendantStyleWillChange(),
+flowThreadDescendantStyleDidChange()), compared to when handling style changes
+locally on the object (styleWillChange(), styleDidChange()) takes place. More
+specifically, we need to get to flowThreadDescendantStyleDidChange() first
+(which registers or unregisters descendants in the flow thread - i.e. updates
+the LayoutMultiColumnSet / LayoutMultiColumnSpanner placeholder structure), and
+THEN to evacuateAndDestroy() (via LayoutBlockFlow::styleDidChange() and 
+createOrDestroyMultiColumnFlowThreadIfNeeded()), instead of the other way around.
+This way we register #b (now a spanner) in #a first. That will prevent #a from
+seeing anything inside #b (spanners are rather opaque).
+
+Since we&#39;re now notifying the flow thread from LayoutBox instead of
+LayoutObject, we can change the style change notification methods to take
+LayoutBox instead of any kind of LayoutObject. The flow thread only cares about
+LayoutBox or better here anyway. This allows for some cleanup in the
+notification methods, since we no longer need to worry about computed style
+weirdness on text layout objects.
+
+BUG=516532
+<a href="mailto:R=eae@chromium.org,jchaffraix@chromium.org,leviw@chromium.org">R=eae@chromium.org,jchaffraix@chromium.org,leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1320843005">https://codereview.chromium.org/1320843005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@201993 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/5dc6c7ab3c1a03636bf1a117d6277e5b44e20e61"><time datetime="2015-09-09">2015-09-09</time></a>
         <tr>
           <td>fs
           <td class=message>
