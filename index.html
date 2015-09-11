@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3431,
+    <a href="#blink">Blink</a>: 3433,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,43 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Switch TextCheckingParagraph&amp;Helper over to EphemeralRanges.</summary>
+              <pre class=body>
+With the lighter EphemeralRange available, it is unnecessary to have
+the SpellChecker utilities TextCheckingHelper and TextCheckingParagraph
+continue to use Range objects. Switch over to EphemeralRange.
+
+R=yosin
+BUG=388681
+
+Review URL: <a href="https://codereview.chromium.org/1331893002">https://codereview.chromium.org/1331893002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@202121 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/517ad2fc694626e5cb1924558747be32be4e07fc"><time datetime="2015-09-11">2015-09-11</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Sync svg-d-interpolation.html expectations.</summary>
+              <pre class=body>
+Following Blink r202067, this test no longer leaks.
+
+R=haraken
+BUG=529370
+NOTRY=true
+
+Review URL: <a href="https://codereview.chromium.org/1334163002">https://codereview.chromium.org/1334163002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@202119 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/9ff6d11cbc6aa633319a9b6166a7284714196a6d"><time datetime="2015-09-11">2015-09-11</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
