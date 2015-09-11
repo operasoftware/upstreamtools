@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 612,
   
-    <a href="#blink">Blink</a>: 3437,
+    <a href="#blink">Blink</a>: 3439,
   
     <a href="#v8">V8</a>: 22.
   
@@ -11133,6 +11133,52 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Replace use Range::selectNodeContents() with EphemeralRange counterpart.</summary>
+              <pre class=body>
+Switch to EphemeralRange::rangeOfContents() and avoid a Range allocation
+in the process.
+
+R=haraken
+BUG=388681
+
+Review URL: <a href="https://codereview.chromium.org/1337923002">https://codereview.chromium.org/1337923002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@202139 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/0651df3043231d6397ecbd65759a9115241d5376"><time datetime="2015-09-11">2015-09-11</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Introduce Range::dispose() for prompt detachment from owner Document.</summary>
+              <pre class=body>
+With Oilpan, Range objects become detached from their Document once GC
+determines that the Range object is no longer referred to and can be
+swept out, along with clearing out the object from the Document&#39;s weak
+map. If GCs aren&#39;t otherwise being triggered regularly, this can in
+some cases lead to unnecessary buildup of weakly held, but effectively
+dead objects in that Document map. Something which slows down GC once
+it eventually strikes.
+
+To address, we introduce a dispose() method over Range so as to let code
+handle the cases where it is known that the Range object is no longer
+referenced &amp; used and can be promptly detached from its Document. Less
+GC overhead being the (desired) result.
+
+R=yosin,haraken
+BUG=388681
+
+Review URL: <a href="https://codereview.chromium.org/1335573004">https://codereview.chromium.org/1335573004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@202138 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/3d76e0f047f6a6b4b51cefaf2b2672fdbf583b64"><time datetime="2015-09-11">2015-09-11</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
