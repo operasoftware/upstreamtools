@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 697,
+    <a href="#chromium">Chromium</a>: 698,
   
-    <a href="#blink">Blink</a>: 3448,
+    <a href="#blink">Blink</a>: 3449,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,26 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>alexanderk
+          <td class=message>
+            <details>
+              <summary>Add module dir to sys.path in FindPythonDependencies</summary>
+              <pre class=body>
+while loading modules using imp.load_source()
+
+find_dependencies script was broken
+after modifications done in tools/perf/run_benchmark
+CL <a href="https://codereview.chromium.org/1280903003">https://codereview.chromium.org/1280903003</a>
+
+BUG=527836
+
+Review URL: <a href="https://codereview.chromium.org/1306953007">https://codereview.chromium.org/1306953007</a>
+
+Cr-Commit-Position: refs/heads/master@{#348653}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/0c3d43f5dcef4c7334c044d3ab363eb8bf883ee2"><time datetime="2015-09-14">2015-09-14</time></a>
         <tr>
           <td>fs
           <td class=message>
@@ -12629,6 +12649,33 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Floats&#39; margins do not collapse with page or column boundaries.</summary>
+              <pre class=body>
+When we push a float to the next page or column, push its top margin as well,
+and do so consistently. In some cases we lost the margin, in some other cases
+we got a double margin, and in yet some other cases we actually got it right.
+
+There was code that asserted (in a comment) that having a pagination strut and
+being unsplittable for pagination were mutually exclusive, but that&#39;s wrong. If
+the first child (block / line) of a float doesn&#39;t fit in the current page or
+column, we&#39;ll set a strut on the float. At the same time, the float may very
+well be unsplittable for pagination. So, first pushing to the next page or
+column because it&#39;s unsplittable, and THEN adding the strut will effectively
+result in adding the pagination strut twice. This would be a problem both with
+and without a top margin on the float.
+
+<a href="mailto:R=jchaffraix@chromium.org,leviw@chromium.org">R=jchaffraix@chromium.org,leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1303993007">https://codereview.chromium.org/1303993007</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@202212 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/4efd769377f7135b9e022a48304ff01e504cb1c0"><time datetime="2015-09-14">2015-09-14</time></a>
         <tr>
           <td>fs
           <td class=message>
