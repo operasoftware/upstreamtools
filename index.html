@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 696,
+    <a href="#chromium">Chromium</a>: 697,
   
     <a href="#blink">Blink</a>: 3443,
   
@@ -44,6 +44,22 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Explicitly include MacScrollTypes.h in view_messages.h</summary>
+              <pre class=body>
+This header is currently included via WebScrollbarTheme.h (which is
+needed for blink::ScrollerStyle). Explicitly including it makes the
+dependency clearer.
+
+Review URL: <a href="https://codereview.chromium.org/1339613002">https://codereview.chromium.org/1339613002</a>
+
+Cr-Commit-Position: refs/heads/master@{#348601}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/55ed6487742610a8a396e261749badf74e9fb1aa"><time datetime="2015-09-14">2015-09-14</time></a>
         <tr>
           <td>fs
           <td class=message>
