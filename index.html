@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 612,
+    <a href="#chromium">Chromium</a>: 696,
   
     <a href="#blink">Blink</a>: 3443,
   
@@ -44,6 +44,1486 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Move safe_browsing include into FULL_SAFE_BROWSING guard</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/1339663002">https://codereview.chromium.org/1339663002</a>
+
+Cr-Commit-Position: refs/heads/master@{#348586}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/27edc115449e6643947c99969ea3720a808f584f"><time datetime="2015-09-14">2015-09-14</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>unbreak no-webrtc builds</summary>
+              <pre class=body>
+<a href="https://codereview.chromium.org/1330873002">https://codereview.chromium.org/1330873002</a> broke builds with webrtc
+disabled.
+
+BUG=262211
+
+Review URL: <a href="https://codereview.chromium.org/1340483002">https://codereview.chromium.org/1340483002</a>
+
+Cr-Commit-Position: refs/heads/master@{#348435}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/0a64d1ebd0d922b2623244ea27e74bdc536833a8"><time datetime="2015-09-11">2015-09-11</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Avoid warnings in NetworkQualityEstimatorTest.TestCaching</summary>
+              <pre class=body>
+Gets rid of the following compilation errors:
+../../net/base/network_quality_estimator_unittest.cc:465:118: error: expression with side effects has no effect in an unevaluated context [-Werror,-Wunevaluated-expression]
+../../net/base/network_quality_estimator_unittest.cc:476:118: error: expression with side effects has no effect in an unevaluated context [-Werror,-Wunevaluated-expression]
+
+Review URL: <a href="https://codereview.chromium.org/1335943002">https://codereview.chromium.org/1335943002</a>
+
+Cr-Commit-Position: refs/heads/master@{#348384}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/906741c85d7e7a5abcef3bedc9b0e31091afd365"><time datetime="2015-09-11">2015-09-11</time></a>
+        <tr>
+          <td>ckulakowski
+          <td class=message>
+            <details>
+              <summary>Guard usage of kEnableMediaRouter with ENABLE_MEDIA_ROUTER</summary>
+              <pre class=body>
+Definition of kEnableMediaRouter is guarded with ENABLE_MEDIA_ROUTER.
+All usages also should be guarded with this switch.
+
+Review URL: <a href="https://codereview.chromium.org/1219063014">https://codereview.chromium.org/1219063014</a>
+
+Cr-Commit-Position: refs/heads/master@{#348365}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/089695d479511b8421b7119fbe8461933963d0b3"><time datetime="2015-09-11">2015-09-11</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Memory-infra: Change &#34;objects_count&#34; to &#34;object_count&#34; in category name.</summary>
+              <pre class=body>
+<a href="mailto:TBR=thakis@chromium.org">TBR=thakis@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1334673004">https://codereview.chromium.org/1334673004</a>
+
+Cr-Commit-Position: refs/heads/master@{#348166}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/10f2e3c531ebed7829742c1f6b0d70c6006eee60"><time datetime="2015-09-10">2015-09-10</time></a>
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Make gyp_flag_compare.py work on Windows</summary>
+              <pre class=body>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1319063004">https://codereview.chromium.org/1319063004</a>
+
+Cr-Commit-Position: refs/heads/master@{#348113}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/d9838e11893e2f80ae1d0d25dd9e8d6c41697f79"><time datetime="2015-09-10">2015-09-10</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>gn: fix documentation typo</summary>
+              <pre class=body>
+s/currebt/current/
+
+TBR=brettw
+
+Review URL: <a href="https://codereview.chromium.org/1318963007">https://codereview.chromium.org/1318963007</a>
+
+Cr-Commit-Position: refs/heads/master@{#347900}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/789ee894bc267131853e100eb256697badf5709a"><time datetime="2015-09-09">2015-09-09</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>move gconf config inside use_gconf block</summary>
+              <pre class=body>
+BUG=132847
+
+Review URL: <a href="https://codereview.chromium.org/1328883002">https://codereview.chromium.org/1328883002</a>
+
+Cr-Commit-Position: refs/heads/master@{#347440}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b30be3c8b06b05a79f8602fc93e0944bfb07e319"><time datetime="2015-09-04">2015-09-04</time></a>
+        <tr>
+          <td>alexanderk
+          <td class=message>
+            <details>
+              <summary>Try to reset quota database which is suspected to be corrupted</summary>
+              <pre class=body>
+If we are able to open quota database file but cannot create a table
+then we suspect it to be corrupted and trying to reset.
+
+BUG=508916
+
+Review URL: <a href="https://codereview.chromium.org/1236583002">https://codereview.chromium.org/1236583002</a>
+
+Cr-Commit-Position: refs/heads/master@{#345966}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/aba1d19017e23be931303a3274b035861da3e4ae"><time datetime="2015-08-27">2015-08-27</time></a>
+        <tr>
+          <td>tsniatowski
+          <td class=message>
+            <details>
+              <summary>Fix typo in gn ccache support for linux:x86</summary>
+              <pre class=body>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1308403004">https://codereview.chromium.org/1308403004</a>
+
+Cr-Commit-Position: refs/heads/master@{#345355}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/0127ddc1c60d51b1925eb8b2a3740147d5d34de5"><time datetime="2015-08-25">2015-08-25</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>make use of use_glib variable rather than is_linux when adding glib config</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/1306473003">https://codereview.chromium.org/1306473003</a>
+
+Cr-Commit-Position: refs/heads/master@{#344877}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/6c63a157f06de29c2c4cc1ea4b17ce16a6f22493"><time datetime="2015-08-21">2015-08-21</time></a>
+        <tr>
+          <td>joleksy
+          <td class=message>
+            <details>
+              <summary>Allow default font size changing on Linux.</summary>
+              <pre class=body>
+Currently base rendering font size on Linux is hardcoded to 16.0 with no possibility of changing it. This patch add such possibility in RendererPreferences.
+
+Webkit part: <a href="https://codereview.chromium.org/570243002/">https://codereview.chromium.org/570243002/</a>
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/549303004">https://codereview.chromium.org/549303004</a>
+
+Cr-Commit-Position: refs/heads/master@{#344746}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/f0bc1a926d8f0326ef38b8374e42bc8e244dd2ba"><time datetime="2015-08-21">2015-08-21</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>make use of media_use_ffmpeg in BUILD.gn</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/1297583004">https://codereview.chromium.org/1297583004</a>
+
+Cr-Commit-Position: refs/heads/master@{#344525}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/2196a4693837eee143be5f225236ed666bd31744"><time datetime="2015-08-20">2015-08-20</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>use more specific variables in net/BUILD.gn</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/1290383005">https://codereview.chromium.org/1290383005</a>
+
+Cr-Commit-Position: refs/heads/master@{#344492}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/1de43a2a3a24d42bebce517dac1a9a06746e9826"><time datetime="2015-08-20">2015-08-20</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>libgtk2ui should only add the cups config if use_cups is true</summary>
+              <pre class=body>
+The cups gn config is defined inside a use_cups block,
+therefore other targets should only try to add this config
+inside another use_cups block.
+
+Review URL: <a href="https://codereview.chromium.org/1296043003">https://codereview.chromium.org/1296043003</a>
+
+Cr-Commit-Position: refs/heads/master@{#344268}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/e8eb9894ccb9b48af52b533397212f158244df91"><time datetime="2015-08-19">2015-08-19</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>pkg-config.py should use --libs instead of --libs-only-l --libs-only-L</summary>
+              <pre class=body>
+When specifying both --libs-only-l and --libs-only-L to
+pkg-config, the results from the latter are not included.
+This feels like a bug in pkg-config, reported upstream:
+<a href="https://bugs.freedesktop.org/show_bug.cgi?id=91689">https://bugs.freedesktop.org/show_bug.cgi?id=91689</a>
+
+Our pkg-config.py wrapper can use --libs instead of the
+flags mentioned above- this includes flags from both but
+maybe also some additional flags (eg -rdynamic).
+
+BUG=522564
+
+Review URL: <a href="https://codereview.chromium.org/1291803008">https://codereview.chromium.org/1291803008</a>
+
+Cr-Commit-Position: refs/heads/master@{#344260}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/f5c7b1a39088d8b2f78132b5488319d986abd16a"><time datetime="2015-08-19">2015-08-19</time></a>
+        <tr>
+          <td>christiank
+          <td class=message>
+            <details>
+              <summary>Add glCompressedCopySubTextureCHROMIUM</summary>
+              <pre class=body>
+This CL adds a GPU command for copying sub regions of compressed textures.
+The implementation is based on glCopySubTextureCHROMIUM.
+
+BUG=434699
+
+Review URL: <a href="https://codereview.chromium.org/1272153004">https://codereview.chromium.org/1272153004</a>
+
+Cr-Commit-Position: refs/heads/master@{#344220}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/00b21807f5c050f8766685c20e1cfc2ed9db636e"><time datetime="2015-08-19">2015-08-19</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>gn build: check use_udev before depending on udev</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/1295303006">https://codereview.chromium.org/1295303006</a>
+
+Cr-Commit-Position: refs/heads/master@{#344047}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/ea51468614165ef8cdc3ec1317cb941e44335098"><time datetime="2015-08-18">2015-08-18</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>use_udev is more accurate than is_linux for udev gn deps</summary>
+              <pre class=body>
+TBR=keybuk
+
+Review URL: <a href="https://codereview.chromium.org/1295353002">https://codereview.chromium.org/1295353002</a>
+
+Cr-Commit-Position: refs/heads/master@{#344046}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/233247d24ad193cecc6b8fd79b7f6d9d5e265edd"><time datetime="2015-08-18">2015-08-18</time></a>
+        <tr>
+          <td>mmaliszkiewicz
+          <td class=message>
+            <details>
+              <summary>Allow enable_hangout_services_extension overriding in gn build</summary>
+              <pre class=body>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1299543005">https://codereview.chromium.org/1299543005</a>
+
+Cr-Commit-Position: refs/heads/master@{#343871}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/efefbb817804457c48c388db8e96241d528d20ff"><time datetime="2015-08-18">2015-08-18</time></a>
+        <tr>
+          <td>haavardm
+          <td class=message>
+            <details>
+              <summary>Add a info flag set when certs fails to conform to the CT policy.</summary>
+              <pre class=body>
+This is useful for clients that only wants to show CT
+info if the certificate is not CT compliant.
+
+BUG=None
+
+Review URL: <a href="https://codereview.chromium.org/1287023003">https://codereview.chromium.org/1287023003</a>
+
+Cr-Commit-Position: refs/heads/master@{#343170}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/533c27ba8a0b02ec7c38d574f3b1b744edf06abe"><time datetime="2015-08-13">2015-08-13</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Fix a few typos in the IPC message macros documentation</summary>
+              <pre class=body>
+BUG=none
+<a href="mailto:R=tsepez@chromium.org">R=tsepez@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1284593004">https://codereview.chromium.org/1284593004</a>
+
+Cr-Commit-Position: refs/heads/master@{#342990}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b3b3f8edfb23187e9eef8ed3e5e4d1c2b9b69dd3"><time datetime="2015-08-12">2015-08-12</time></a>
+        <tr>
+          <td>alexanderk
+          <td class=message>
+            <details>
+              <summary>Convert octane test score to float first</summary>
+              <pre class=body>to prevent fails on slow devices
+
+BUG=508907
+CQ_EXTRA_TRYBOTS=tryserver.chromium.perf:linux_perf_bisect;tryserver.chromium.perf:mac_perf_bisect;tryserver.chromium.perf:win_perf_bisect
+
+Review URL: <a href="https://codereview.chromium.org/1230063007">https://codereview.chromium.org/1230063007</a>
+
+Cr-Commit-Position: refs/heads/master@{#342772}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/3ac26e57adcdb0b08006a5f5f1e69e3615a28432"><time datetime="2015-08-10">2015-08-10</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>GC plugin: consider references equal to raw pointers.</summary>
+              <pre class=body>
+Unmanaged raw pointers to managed(GC) classes aren&#39;t safe across GCs,
+hence fields with raw pointer types to such GCed classes are identified
+and reported as errors or warnings.
+
+Extend that checking to also apply to reference pointer types.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1274403002">https://codereview.chromium.org/1274403002</a>
+
+Cr-Commit-Position: refs/heads/master@{#342615}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/1a33d92721acdfc37d71fd891eade8fbddd6c7dd"><time datetime="2015-08-10">2015-08-10</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>mention MPL tri-licensed code in our copy of zlib</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/1279843003">https://codereview.chromium.org/1279843003</a>
+
+Cr-Commit-Position: refs/heads/master@{#342346}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/7ea99fda67bf56e494f372c6b3a278f00bed364f"><time datetime="2015-08-07">2015-08-07</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>mention MPL tri-licensed code in our copy of libpng</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/1274513004">https://codereview.chromium.org/1274513004</a>
+
+Cr-Commit-Position: refs/heads/master@{#342345}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/0e48a8b13e33b745e68140367f40374206c875cb"><time datetime="2015-08-07">2015-08-07</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>GC plugin: consider references equal to raw pointers.</summary>
+              <pre class=body>
+Unmanaged raw pointers to managed(GC) classes aren&#39;t safe across GCs,
+hence fields with raw pointer types to such GCed classes are identified
+and reported as errors or warnings.
+
+Extend that checking to also apply to reference pointer types.
+
+R=haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1274403002">https://codereview.chromium.org/1274403002</a>
+
+Cr-Commit-Position: refs/heads/master@{#342320}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/70fe23896f81cd66ba1a205b0336f91c64e3fa4e"><time datetime="2015-08-07">2015-08-07</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>convince gcc that cpu_used et al are always initialized</summary>
+              <pre class=body>
+Without this, gcc thinks that min_quantizer, max_quantizer and cpu_used
+are used uninitialized and emits a warning which is promoted to an error.
+
+BUG=455409
+TBR=bbudge
+
+Review URL: <a href="https://codereview.chromium.org/1276633004">https://codereview.chromium.org/1276633004</a>
+
+Cr-Commit-Position: refs/heads/master@{#342214}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/2dc24b537c4fda93db4148c3f5d30bcaea5147d8"><time datetime="2015-08-06">2015-08-06</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>mention NPL/MPL source files in our libjpeg licences</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/1272633005">https://codereview.chromium.org/1272633005</a>
+
+Cr-Commit-Position: refs/heads/master@{#342151}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/c752efac1708fba78c0938523fee0c18cef882a2"><time datetime="2015-08-06">2015-08-06</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>fix typo in DelegatedFrameHost::SwapDelegatedFrame arg name</summary>
+              <pre class=body>
+BUG=503594
+TBR=wjmaclean
+
+Review URL: <a href="https://codereview.chromium.org/1263923003">https://codereview.chromium.org/1263923003</a>
+
+Cr-Commit-Position: refs/heads/master@{#341204}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b9ba63d3abc0b6dc5a173f1812ba12bd47c1dbd2"><time datetime="2015-07-30">2015-07-30</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>use_x11==1 is a better condition for xdisplaycheck dep</summary>
+              <pre class=body>
+The previous condition was incorrect when building for
+embedded linux without using the ozone porting layer.
+use_x11==1 is used everywhere else for the xdisplaycheck
+depdendency, let&#39;s do the same here.
+
+Review URL: <a href="https://codereview.chromium.org/1256793002">https://codereview.chromium.org/1256793002</a>
+
+Cr-Commit-Position: refs/heads/master@{#340376}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b25899d3a756307c8c320472b484e7fbb56295c3"><time datetime="2015-07-24">2015-07-24</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>stray c++11 ud suffix fixes for tcmalloc files</summary>
+              <pre class=body>
+Followup to <a href="https://codereview.chromium.org/21157004">https://codereview.chromium.org/21157004</a> - here are a few
+more warnings that we can silence.
+
+BUG=263960
+
+Review URL: <a href="https://codereview.chromium.org/1253873003">https://codereview.chromium.org/1253873003</a>
+
+Cr-Commit-Position: refs/heads/master@{#340357}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/5e17dd65b9bee51dc12bba6d3c5df99e14bf3f85"><time datetime="2015-07-24">2015-07-24</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>use_x11 is better than is_linux for xdisplaycheck dep in mandoline gn build</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/1255843002">https://codereview.chromium.org/1255843002</a>
+
+Cr-Commit-Position: refs/heads/master@{#340340}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/91c0df87e4b98d215ffad5f9ac9c66b9a1db31bf"><time datetime="2015-07-24">2015-07-24</time></a>
+        <tr>
+          <td>alexanderk
+          <td class=message>
+            <details>
+              <summary>Prevent URLRequestRedirectJob from doing async execution</summary>
+              <pre class=body>when request is already canceled and job is killed.
+
+BUG=508900,503306
+
+Review URL: <a href="https://codereview.chromium.org/1232113002">https://codereview.chromium.org/1232113002</a>
+
+Cr-Commit-Position: refs/heads/master@{#340298}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/cd904b5cd82adca2fb432e37da4302c67d2b4c5d"><time datetime="2015-07-24">2015-07-24</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Revert of Add ExecuteJavaScriptForTest and make all tests use it (patchset #15 id:270001 of https://codereview.chromium.org/1123783002/)</summary>
+              <pre class=body>
+Reason for revert:
+Speculatively reverting to address failures,
+
+ <a href="http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Linux/builds/51422">http://build.chromium.org/p/chromium.webkit/builders/WebKit%20Linux/builds/51422</a>
+
+Original issue&#39;s description:
+&gt; Add ExecuteJavaScriptForTest and make all tests use it
+&gt;
+&gt; Additionally, restrict the URLs that ExecuteJavaScript can be invoked on
+&gt; to chrome-controlled URLs.
+&gt;
+&gt; <a href="mailto:R=jam@chromium.org">R=jam@chromium.org</a>
+&gt; BUG=507809
+&gt;
+&gt; Committed: <a href="https://crrev.com/904f14ebdc3bdb8e893df0a3211d09de42d5619c">https://crrev.com/904f14ebdc3bdb8e893df0a3211d09de42d5619c</a>
+&gt; Cr-Commit-Position: refs/heads/master@{#340231}
+
+<a href="mailto:TBR=jam@chromium.org,mdjones@chromium.org,torne@chromium.org,jochen@chromium.org">TBR=jam@chromium.org,mdjones@chromium.org,torne@chromium.org,jochen@chromium.org</a>
+NOPRESUBMIT=true
+NOTREECHECKS=true
+NOTRY=true
+BUG=507809
+
+Review URL: <a href="https://codereview.chromium.org/1257603003">https://codereview.chromium.org/1257603003</a>
+
+Cr-Commit-Position: refs/heads/master@{#340241}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/f08040289fb0ed72c792863d2dab73fe4d1ca943"><time datetime="2015-07-24">2015-07-24</time></a>
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Make FileSystemDirURLRequestJobTest locale-invulnerable</summary>
+              <pre class=body>
+The format of the date in directory listing entry depends on the current
+locale. In some countries (for example Poland) DD.mm.YYYY format is used.
+base::Time::FromString() internally uses PR_ParseTimeString() from NSPR
+library which doesn&#39;t support this format (date with dots as separators).
+Use icu::DateFormat instead which is able to parse such kind of date
+format.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1246463002">https://codereview.chromium.org/1246463002</a>
+
+Cr-Commit-Position: refs/heads/master@{#340050}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/d20733a2d4a1ead1db7d9175fcaa789d33f93082"><time datetime="2015-07-23">2015-07-23</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>use sh instead of bash in ProcessUtilTest on linux</summary>
+              <pre class=body>
+These unit tests don&#39;t seem to really depend on bash, by using sh
+instead of bash we can run these on more embedded linux targets.
+
+Review URL: <a href="https://codereview.chromium.org/1249973002">https://codereview.chromium.org/1249973002</a>
+
+Cr-Commit-Position: refs/heads/master@{#339901}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/69ce035ff23d7712724772dc8eb0379951abb904"><time datetime="2015-07-22">2015-07-22</time></a>
+        <tr>
+          <td>mharanczyk
+          <td class=message>
+            <details>
+              <summary>Avoid creating PasswordsPrivateDelegate when shutting down.</summary>
+              <pre class=body>
+BUG=485227
+
+Review URL: <a href="https://codereview.chromium.org/1228813006">https://codereview.chromium.org/1228813006</a>
+
+Cr-Commit-Position: refs/heads/master@{#339855}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b57eeaf0c280ffe412f75972d1aa2cf89fd030ce"><time datetime="2015-07-22">2015-07-22</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Use gold when compiling 32 bit binaries on an x64 machine.</summary>
+              <pre class=body>
+gold can&#39;t normally be used on 32 bit machines because it uses too
+much memory, but if the 32-bit binary that is being created is being
+created on an x64 machine with sysroot, then it&#39;s possible.
+
+BUG=511201
+<a href="mailto:R=dpranke@chromium.org,thakis@chromium.org">R=dpranke@chromium.org,thakis@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1234943009">https://codereview.chromium.org/1234943009</a>
+
+Cr-Commit-Position: refs/heads/master@{#339514}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/f3f4e1b70c954cb30b7c689e4f130ab715fbb49a"><time datetime="2015-07-20">2015-07-20</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Work around unreliable metadata for HLS in WebMediaPlayerAndroid</summary>
+              <pre class=body>
+There are two bugs involved, both specific to HLS:
+ 1. MediaPlayer.getDuration() returning 0 as opposed to -1.
+ 2. The MediaPlayer.OnVideoSizeChangedListener callback being called
+    with width and height zero and later with a non-zero size.
+
+Logging statements were used to test for the bugs on
+<a href="http://www.aljazeera.com/watch_now/">http://www.aljazeera.com/watch_now/</a> with some different devices:
+ * Huawei P6-U06, Android 4.2.2: both bugs
+ * Samsung Galaxy S Duos 2, Android 4.2.2: duration bug
+ * HTC One, Android 4.3: both bugs
+ * Sony Xperia CP C5303, Android 4.3: both bugs
+ * Samsung Galaxy S III, Android 4.3: duration bug
+ * Samsung Galaxy S4, Android 4.4.2: duration bug
+ * Samsung Galaxy Young 2, Android 4.4.2: duration bug
+ * Samsung Galaxy Grand Prime, Android 4.4.4: duration bug
+ * Sony Xperia Z2, Android 5.0.2: duration bug
+ * Samsung Galaxy S4, CyanogenMod 12.1, Android 5.1.1: duration bug
+
+In summary, the duration bug affects every device tested, while the
+video size bug seems to affect some but not all devices running
+Android 4.3 and older.
+
+Avoid the need for a local duration variable in OnMediaMetadataChanged
+by passing its argument by value, which is already the case for all
+other OnMediaMetadataChanged methods in the code base.
+
+BUG=501213, 509972
+<a href="mailto:R=qinmin@chromium.org">R=qinmin@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1241923003">https://codereview.chromium.org/1241923003</a>
+
+Cr-Commit-Position: refs/heads/master@{#339019}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/e95e3c68fffcac8ca62cb4d0269c7a867bcd02ff"><time datetime="2015-07-16">2015-07-16</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Update histograms.xml</summary>
+              <pre class=body>
+Used tools/metrics/histograms/update_use_counter_feature_enum.py
+
+<a href="mailto:R=asvitkine@chromium.org">R=asvitkine@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1233493006">https://codereview.chromium.org/1233493006</a>
+
+Cr-Commit-Position: refs/heads/master@{#338291}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/bc0408c8dce538c3f10865cadfb6a31765af2a7b"><time datetime="2015-07-10">2015-07-10</time></a>
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Add missing base/memory/scoped_ptr.h include to base/prefs/writeable_pref_store.h</summary>
+              <pre class=body>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1227323002">https://codereview.chromium.org/1227323002</a>
+
+Cr-Commit-Position: refs/heads/master@{#338281}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/ae19e352c510ccaf6e9b9aa3c211f63d5fb51528"><time datetime="2015-07-10">2015-07-10</time></a>
+        <tr>
+          <td>ckulakowski
+          <td class=message>
+            <details>
+              <summary>Added missing include in media_capture_devices_dispatcher.cc</summary>
+              <pre class=body>
+Introduced by <a href="https://codereview.chromium.org/1095393004">https://codereview.chromium.org/1095393004</a>. Profile is still used in this file and missing include causes compilation error in our product.
+
+Review URL: <a href="https://codereview.chromium.org/1221283005">https://codereview.chromium.org/1221283005</a>
+
+Cr-Commit-Position: refs/heads/master@{#337992}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/c6eddee8b9c35b3e173a737c9ff43a0a7d5d951e"><time datetime="2015-07-09">2015-07-09</time></a>
+        <tr>
+          <td>ohrn
+          <td class=message>
+            <details>
+              <summary>Add -bootclasspath argument to javac.</summary>
+              <pre class=body>
+This silences the warning &#34;bootstrap class path not set in conjunction
+with -source 1.7&#34; when building with OpenJDK 1.8.
+
+The multiple_proguards test was removed as javac will now catch the use
+of host packages that do not exist on Android.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1213433007">https://codereview.chromium.org/1213433007</a>
+
+Cr-Commit-Position: refs/heads/master@{#337805}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/718538ef3a6e6f7104101ef37502052c88c5641c"><time datetime="2015-07-08">2015-07-08</time></a>
+        <tr>
+          <td>the_jk
+          <td class=message>
+            <details>
+              <summary>Make it possible to change libc++ library files used for android</summary>
+              <pre class=body>
+Useful for specifying specific or modified libc++ library files instead of
+always using the one in android_ndk_root.
+
+Review URL: <a href="https://codereview.chromium.org/1215713006">https://codereview.chromium.org/1215713006</a>
+
+Cr-Commit-Position: refs/heads/master@{#337797}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/0d15a85e73998a1de32384734f13c4e9b5f07e8f"><time datetime="2015-07-08">2015-07-08</time></a>
+        <tr>
+          <td>sigbjorn
+          <td class=message>
+            <details>
+              <summary>Don&#39;t autofill credit cards on non-secure pages</summary>
+              <pre class=body>
+Instead of checking for scheme only when suggesting credit card autofills,
+ensure that the page is secure.
+
+Also add missing tests for storing credit cards (even when submitted on
+http).
+
+Review URL: <a href="https://codereview.chromium.org/1136473006">https://codereview.chromium.org/1136473006</a>
+
+Cr-Commit-Position: refs/heads/master@{#337796}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/337de86ef89076ef6a442acfc6e2904a0827d389"><time datetime="2015-07-08">2015-07-08</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Fix typo in big object fix for Windows.</summary>
+              <pre class=body>
+There is no such thing as VCCompilerTool so gyp did nothing but warn
+a thousand times. VCCLCompilerTool on the other hand will actually
+do something.
+
+BUG=500674
+<a href="mailto:R=scottmg@chromium.org">R=scottmg@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1218803002">https://codereview.chromium.org/1218803002</a>
+
+Cr-Commit-Position: refs/heads/master@{#336579}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/203d1bc92f3c8a33ea282d9512c6c8c5d8ca4cfa"><time datetime="2015-06-29">2015-06-29</time></a>
+        <tr>
+          <td>haavardm
+          <td class=message>
+            <details>
+              <summary>Ignore certificate transparency by default.</summary>
+              <pre class=body>
+Current behavior is to remove the EV flag if the ct enforcer is not
+set by the embedder. This somewhat unexpectedly removes EV for all
+servers, if the embedder has not taken explicit actions to turn
+on CT.
+
+CT should either be ignored when policy enforcer is not present,
+or there should be asserts warning about the missing EV-white
+list. This patch chooses the first option as CT is not yet a
+security requirement, and I don&#39;t think it&#39;s correct to demand
+CT support quite yet.
+
+Note that this change has no effect on Chrome&#39;s default behavior.
+
+BUG=NONE
+
+Review URL: <a href="https://codereview.chromium.org/1211423002">https://codereview.chromium.org/1211423002</a>
+
+Cr-Commit-Position: refs/heads/master@{#336539}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/2553ff05b802a94ef281e647874d37941eefd154"><time datetime="2015-06-29">2015-06-29</time></a>
+        <tr>
+          <td>landell
+          <td class=message>
+            <details>
+              <summary>Use single and correct URL to flot library homepage</summary>
+              <pre class=body>
+BUG=501810
+
+Review URL: <a href="https://codereview.chromium.org/1191103002">https://codereview.chromium.org/1191103002</a>
+
+Cr-Commit-Position: refs/heads/master@{#335378}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/161448140680181c794aaac22f352172c9ac483b"><time datetime="2015-06-19">2015-06-19</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>ifdef out ProcessUtilTest.CloneFlags on linux with old kernel headers</summary>
+              <pre class=body>
+This allows the rest of base_unittests to build/run on such
+systems.
+
+BUG=312380
+
+Review URL: <a href="https://codereview.chromium.org/1189683004">https://codereview.chromium.org/1189683004</a>
+
+Cr-Commit-Position: refs/heads/master@{#335123}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/3cf743a247fbd50936c0eaf395c2b1345813661b"><time datetime="2015-06-18">2015-06-18</time></a>
+        <tr>
+          <td>jmanko
+          <td class=message>
+            <details>
+              <summary>Add missing null-check in OverscrollControllerAndroid::Animate()</summary>
+              <pre class=body>
+Without it, there&#39;s a crash when running with
+disable-overscroll-edge-effect switch.
+
+BUG=501472
+
+Review URL: <a href="https://codereview.chromium.org/1195453003">https://codereview.chromium.org/1195453003</a>
+
+Cr-Commit-Position: refs/heads/master@{#334897}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/e3de7fc7dbb642ed034afa1c1fed70a748a60f35"><time datetime="2015-06-17">2015-06-17</time></a>
+        <tr>
+          <td>christiank
+          <td class=message>
+            <details>
+              <summary>Add glCopyCompressedTextureCHROMIUM</summary>
+              <pre class=body>
+This CL adds a GPU command for copying compressed textures. It&#39;s
+based on glCopyTextureCHROMIUM, but modified for use on
+compressed textures. It only supports GLImage-based copying.
+
+BUG=434699
+
+Review URL: <a href="https://codereview.chromium.org/1119723003">https://codereview.chromium.org/1119723003</a>
+
+Cr-Commit-Position: refs/heads/master@{#334810}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/8312009fd0fe42534b7c9eccedf4c34297e37d21"><time datetime="2015-06-17">2015-06-17</time></a>
+        <tr>
+          <td>mharanczyk
+          <td class=message>
+            <details>
+              <summary>Change root bounds in RenderWidgetHostViewAuraTest.ParentMovementUpdatesScreenRect</summary>
+              <pre class=body>test to avoid initializing portrait mode static primary rotation and cause test
+failures on memory waterfall.
+
+It turns out that on normal run each test is run separately, but on
+memory waterfall they are run in such a way  (in one process in bulk?)
+that if previous test sets up some static values they are preserved
+for all consecutive tests, creating hidden dependency between them.
+In this case values of primary portrait and landscape angles that are in
+RenderWidgetHostViewBase::GetOrientationTypeForDesktop are preserved
+between tests and primary_portrait_angle was set up to unexpected value (0)
+by test I&#39;ve added, which broke RenderWidgetHostViewBaseTest.OrientationTypeForDesktop
+which expected to set those up by itself and test it.
+
+BUG=499914, 500011
+
+Review URL: <a href="https://codereview.chromium.org/1186843002">https://codereview.chromium.org/1186843002</a>
+
+Cr-Commit-Position: refs/heads/master@{#334792}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/a7f0ee1973ca033d3e5f4544cb3d3e6f5b582eec"><time datetime="2015-06-17">2015-06-17</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>replace VLOG with DVLOG in content/browser/loader/resource_loader.cc</summary>
+              <pre class=body>
+VLOG() has a high overhead due to pattern matching. One of the major culprits
+is in content/browser/loader/resource_loader.cc
+
+BUG=489818,489441
+R=sque,mmenke
+
+Review URL: <a href="https://codereview.chromium.org/1174173013">https://codereview.chromium.org/1174173013</a>
+
+Cr-Commit-Position: refs/heads/master@{#334388}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/0e79091bb90183eca25e998d2d9e134003313f71"><time datetime="2015-06-15">2015-06-15</time></a>
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Remove redundant enable_media_router assignment</summary>
+              <pre class=body>
+It&#39;s declared in declare_args() section already.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1186503002">https://codereview.chromium.org/1186503002</a>
+
+Cr-Commit-Position: refs/heads/master@{#334363}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/f0ef8b0b297e875e899f6402c224a40872936b5b"><time datetime="2015-06-15">2015-06-15</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Add &lt;stdarg.h&gt; include required for va_start/va_end in GCC</summary>
+              <pre class=body>
+<a href="https://codereview.chromium.org/1181713004">https://codereview.chromium.org/1181713004</a> removed some base/port.h
+includes, which in turn includes &lt;stdarg.h&gt;. This include is needed
+to compile with GCC, at least on some systems.
+
+BUG=138542
+NOPRESUBMIT=true
+
+Review URL: <a href="https://codereview.chromium.org/1177213003">https://codereview.chromium.org/1177213003</a>
+
+Cr-Commit-Position: refs/heads/master@{#334260}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/83cdb82ced342408cfb3fa3327c05e429f044ef7"><time datetime="2015-06-12">2015-06-12</time></a>
+        <tr>
+          <td>rogerj
+          <td class=message>
+            <details>
+              <summary>Fix leak of PlatformHandleDispatchers in Mojo IPC</summary>
+              <pre class=body>
+PassWrappedPlatformHandle does not close the MojoHandle.
+The destructor of ScopedHandleBase will however close it.
+The problem with this code was that it called release()
+on the ScopedHandle, preventing the destructor from being
+called, and thus also the MojoHandle from being closed.
+
+This leaves the PlatformHandleDispatcher associated with
+the MojoHandle alive in mojo::system::Core::handle_table_
+
+By calling reset() instead the MojoHandle is closed, and
+the leak is fixed.
+
+<a href="mailto:R=morrita@chromium.org">R=morrita@chromium.org</a>, <a href="mailto:viettrungluu@chromium.org">viettrungluu@chromium.org</a>, <a href="mailto:agl@chromium.org">agl@chromium.org</a>
+
+BUG=None
+
+Review URL: <a href="https://codereview.chromium.org/1174423002">https://codereview.chromium.org/1174423002</a>
+
+Cr-Commit-Position: refs/heads/master@{#334197}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b2134362e27459f1098a35effedad91e2d553192"><time datetime="2015-06-12">2015-06-12</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>GC plugin: enable plugin on anonymous namespaces.</summary>
+              <pre class=body>
+R=haraken
+BUG=499738
+
+Review URL: <a href="https://codereview.chromium.org/1173333003">https://codereview.chromium.org/1173333003</a>
+
+Cr-Commit-Position: refs/heads/master@{#334141}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b567a5775e63641d64dd10bf4ebe6f652b5e7743"><time datetime="2015-06-12">2015-06-12</time></a>
+        <tr>
+          <td>mharanczyk
+          <td class=message>
+            <details>
+              <summary>Correct ENABLE_MEDIA_ROUTER defines to fix compilation without it.</summary>
+              <pre class=body>
+Review URL: <a href="https://codereview.chromium.org/1177973005">https://codereview.chromium.org/1177973005</a>
+
+Cr-Commit-Position: refs/heads/master@{#334134}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/f6d0a228e210cbcd96b6ef494cadbf12c09b62ea"><time datetime="2015-06-12">2015-06-12</time></a>
+        <tr>
+          <td>philipj
+          <td class=message>
+            <details>
+              <summary>Remove unused code calling WebMediaPlayerClient::requestFullscreen()</summary>
+              <pre class=body>
+This was used for a while and then removed again:
+<a href="https://codereview.chromium.org/41123002">https://codereview.chromium.org/41123002</a>
+<a href="https://codereview.chromium.org/1021723003">https://codereview.chromium.org/1021723003</a>
+
+BUG=496627
+
+Review URL: <a href="https://codereview.chromium.org/1156273006">https://codereview.chromium.org/1156273006</a>
+
+Cr-Commit-Position: refs/heads/master@{#334132}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/8456c96c8ddcb13363cdbd3a7112d8aa9cf1967e"><time datetime="2015-06-12">2015-06-12</time></a>
+        <tr>
+          <td>wmaslowski
+          <td class=message>
+            <details>
+              <summary>Add possibility to define data callback to BitmapFetcher</summary>
+              <pre class=body>
+BUG=479715
+
+Review URL: <a href="https://codereview.chromium.org/1097383005">https://codereview.chromium.org/1097383005</a>
+
+Cr-Commit-Position: refs/heads/master@{#333962}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/58c4b6fc734361e9de25959c7f92690e8f5ba372"><time datetime="2015-06-11">2015-06-11</time></a>
+        <tr>
+          <td>haavardm
+          <td class=message>
+            <details>
+              <summary>Use net&#39;s response header parser for parsing multipart headers.</summary>
+              <pre class=body>
+BUG=493379
+
+Review URL: <a href="https://codereview.chromium.org/1166953002">https://codereview.chromium.org/1166953002</a>
+
+Cr-Commit-Position: refs/heads/master@{#333909}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/8e7ed88c4187c496961b87fdcd1a2c307c39fe1b"><time datetime="2015-06-11">2015-06-11</time></a>
+        <tr>
+          <td>mharanczyk
+          <td class=message>
+            <details>
+              <summary>Report new screen position to renderer when ancestor window moves.</summary>
+              <pre class=body>
+This change is related to <a href="https://codereview.chromium.org/1062273002/">https://codereview.chromium.org/1062273002/</a>.
+Without it renderer can draw controls (dropdowns, etc.) out of place,
+because it will have outdated screen coordinates.
+
+BUG=469857, 468669
+
+Review URL: <a href="https://codereview.chromium.org/1143323009">https://codereview.chromium.org/1143323009</a>
+
+Cr-Commit-Position: refs/heads/master@{#333749}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/647e2a749681a5f9e5bba3510524d898f9b4b910"><time datetime="2015-06-10">2015-06-10</time></a>
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Add //content:browser dependency on //ppapi:host</summary>
+              <pre class=body>
+content::BrowserPpapiHostImpl references ppapi::host::PpapiHost but dependency in missing in gn.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1173583002">https://codereview.chromium.org/1173583002</a>
+
+Cr-Commit-Position: refs/heads/master@{#333699}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/6cddaa991266cd12f37625fd390e0d36a93e49c3"><time datetime="2015-06-10">2015-06-10</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove unneeded xdisplaycheck dep in base_unittests_run</summary>
+              <pre class=body>
+This previous CL added an xdisplaycheck dep to base_unittests_run, but
+base_unittests does not appear to depend on any X libraries as far as I
+can tell:
+<a href="https://codereview.chromium.org/388843004">https://codereview.chromium.org/388843004</a>
+
+Let&#39;s see if we can remove this dependency.
+
+Review URL: <a href="https://codereview.chromium.org/1171073002">https://codereview.chromium.org/1171073002</a>
+
+Cr-Commit-Position: refs/heads/master@{#333566}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/1d34e9d4dbaad8558164d3b144c42d60c95b515b"><time datetime="2015-06-09">2015-06-09</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>increase crypto_unittest key sizes to satisfy NSS 3.19.1</summary>
+              <pre class=body>
+NSS version 3.19.1 added minimum key size constraints to avoid the Logjam attack:
+
+&gt; The minimum size of keys that NSS will generate has been raised:
+&gt;    The minimum modulus size for RSA keys is now 512 bits
+&gt;    The minimum modulus size for DSA keys is now 1023 bits
+&gt;    The minimum modulus size for Diffie-Hellman keys is now 1023 bits
+
+<a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/NSS_3.19.1_release_notes">https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/NSS_3.19.1_release_notes</a>
+
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1138554">https://bugzilla.mozilla.org/show_bug.cgi?id=1138554</a>
+
+BUG=490240
+
+Review URL: <a href="https://codereview.chromium.org/1148193006">https://codereview.chromium.org/1148193006</a>
+
+Cr-Commit-Position: refs/heads/master@{#333554}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/93937caf120fed43de182e475822805afdbe3001"><time datetime="2015-06-09">2015-06-09</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>remove crypto_unittests_run&#39;s uneeded xdisplaycheck dep</summary>
+              <pre class=body>
+The crypto_unittests_run target has an incomplete and
+unnecessary dependency on xdisplaycheck- let&#39;s remove
+this dependency.
+
+Review URL: <a href="https://codereview.chromium.org/1168393007">https://codereview.chromium.org/1168393007</a>
+
+Cr-Commit-Position: refs/heads/master@{#333546}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/360543640c8e73c0fb4952f6000b895dc69f1cc2"><time datetime="2015-06-09">2015-06-09</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>add missing zlib dep after CL 1148633007</summary>
+              <pre class=body>
+This previous CL included our patched version of zlib.h, but forgot to add
+the dependency in gyp/gn, making it possible to compile with the locally
+patched version and link with a system version (which will fail due to
+unresolved MOZ_Z_* symbols):
+<a href="https://codereview.chromium.org/1148633007">https://codereview.chromium.org/1148633007</a>
+
+BUG=466769
+
+Review URL: <a href="https://codereview.chromium.org/1174503002">https://codereview.chromium.org/1174503002</a>
+
+Cr-Commit-Position: refs/heads/master@{#333510}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/936c5dd07832efe4b2ef9753a9d7e99a4350d4ff"><time datetime="2015-06-09">2015-06-09</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>GC Plugin: test destructor access of part object.</summary>
+              <pre class=body>
+R=haraken
+BUG=496496
+
+Review URL: <a href="https://codereview.chromium.org/1160963003">https://codereview.chromium.org/1160963003</a>
+
+Cr-Commit-Position: refs/heads/master@{#333244}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/15fb740a49ab3660b8f8d496cfab2e4d37c7e6ca"><time datetime="2015-06-07">2015-06-07</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Check Member&lt;T&gt; validity for stack allocated objects.</summary>
+              <pre class=body>
+For Member&lt;T&gt; in a stack allocated object, make the Blink GC plugin
+verify that T is a GC allocated object.
+
+R=haraken
+BUG=495398
+
+Review URL: <a href="https://codereview.chromium.org/1167123002">https://codereview.chromium.org/1167123002</a>
+
+Cr-Commit-Position: refs/heads/master@{#333217}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b95bbfb9b48f40a15e0ba051a41b6250dfd33698"><time datetime="2015-06-06">2015-06-06</time></a>
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Add missing declaration to create_card_unmask_prompt_view.h</summary>
+              <pre class=body>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1155583009">https://codereview.chromium.org/1155583009</a>
+
+Cr-Commit-Position: refs/heads/master@{#332732}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/8a004c32881f48be88ee499531ea91d91189f0c3"><time datetime="2015-06-03">2015-06-03</time></a>
+        <tr>
+          <td>kolczyk
+          <td class=message>
+            <details>
+              <summary>Fix for DCHECK failure at startup of gin_shell.</summary>
+              <pre class=body>
+It was introduced by rewriting code to use SingeThreadTaskRunner
+instead of MessageLoopProxy.
+
+Reproduces with gin_unittests too.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1153473009">https://codereview.chromium.org/1153473009</a>
+
+Cr-Commit-Position: refs/heads/master@{#332597}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/65e946531a3de45739107ea1e2a58a314d245f9b"><time datetime="2015-06-03">2015-06-03</time></a>
+        <tr>
+          <td>tmoniuszko
+          <td class=message>
+            <details>
+              <summary>Add support for module-definition files to gn</summary>
+              <pre class=body>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1160773002">https://codereview.chromium.org/1160773002</a>
+
+Cr-Commit-Position: refs/heads/master@{#332355}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b73b2de6a23e3220c79c6bb9e9f3a7b4dd20d2dd"><time datetime="2015-06-02">2015-06-02</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>Make IPC::Channel buffers stack based and secure against growth</summary>
+              <pre class=body>
+Auxiliary IPC::Channel buffers have been permanently allocated
+even though their use is very temporary. This moves those to
+the stack instead to reflect their temporary nature and also
+adds an assert to catch accidental out-of-control growth of
+the buffer as happened recently.
+
+BUG=484154
+<a href="mailto:R=tsepez@chromium.org">R=tsepez@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1120343002">https://codereview.chromium.org/1120343002</a>
+
+Cr-Commit-Position: refs/heads/master@{#331956}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/5937d45677732c5fe9be1ea4d442e4e1ca61c23b"><time datetime="2015-05-29">2015-05-29</time></a>
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove --enable-region-based-columns command line flag.</summary>
+              <pre class=body>
+Region based columns (aka. the new multicol implementation) now gets enabled
+via an entry in RunTimeEnabledFeatures in Blink.
+
+BUG=350853
+<a href="mailto:R=jochen@chromium.org,mkwst@chromium.org">R=jochen@chromium.org,mkwst@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1150663003">https://codereview.chromium.org/1150663003</a>
+
+Cr-Commit-Position: refs/heads/master@{#331767}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/cf3c13e6562ee31f777944bae2461bac87d6ca9f"><time datetime="2015-05-28">2015-05-28</time></a>
+        <tr>
+          <td>wdzierzanowski
+          <td class=message>
+            <details>
+              <summary>Extract re-usable InitializeMediaFoundation()</summary>
+              <pre class=body>
+Allow media::InitializeMediaFoundation() to be used by any Media
+Foundation client code.  This benefits existing Chromium code as well as any
+Chromium-based browser that adds its own code calling out to Media Foundation.
+
+There are two side effects for DXVAVideoDecodeAccelerator:
+
+  - MFStartup() and MFShutdown() are now called once during the lifetime of the
+    GPU process rather than per each accelerator instance.
+
+  - MFStartup() is now called with the MFSTARTUP_LITE flag, which according to
+    MSDN doesn&#39;t initialize the sockets library.
+
+TEST=media_unittests
+
+Committed: <a href="https://crrev.com/c0ab75a86447bc23d45ff7086b2375e2cd83c205">https://crrev.com/c0ab75a86447bc23d45ff7086b2375e2cd83c205</a>
+Cr-Commit-Position: refs/heads/master@{#331446}
+
+Review URL: <a href="https://codereview.chromium.org/1149203002">https://codereview.chromium.org/1149203002</a>
+
+Cr-Commit-Position: refs/heads/master@{#331623}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/5105004066c9a728764a1e60ede6f60a44e3ede5"><time datetime="2015-05-27">2015-05-27</time></a>
+        <tr>
+          <td>mharanczyk
+          <td class=message>
+            <details>
+              <summary>Synthesize proper keyIdentifier for devtools protocol key events.</summary>
+              <pre class=body>
+When bug 472077 moved devtools protocol key handling to browser one part
+of code that sythesized keyIdentifier was lost (it was prevoiusly
+handled in InspectorInputClient::dispatchKeyEvent and removed in
+<a href="https://codereview.chromium.org/1063653002/patch/40001/50004">https://codereview.chromium.org/1063653002/patch/40001/50004</a>). Restore
+that functionality else sending some key events (like enter) is not
+handled correctly.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1148803002">https://codereview.chromium.org/1148803002</a>
+
+Cr-Commit-Position: refs/heads/master@{#331546}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/387858480cc7aec410fe8c776ccc15abfaf873ae"><time datetime="2015-05-27">2015-05-27</time></a>
+        <tr>
+          <td>wdzierzanowski
+          <td class=message>
+            <details>
+              <summary>Extract re-usable InitializeMediaFoundation()</summary>
+              <pre class=body>
+Allow media::InitializeMediaFoundation() to be used by any Media
+Foundation client code.  This benefits existing Chromium code as well as any
+Chromium-based browser that adds its own code calling out to Media Foundation.
+
+There are two side effects for DXVAVideoDecodeAccelerator:
+
+  - MFStartup() and MFShutdown() are now called once during the lifetime of the
+    GPU process rather than per each accelerator instance.
+
+  - MFStartup() is now called with the MFSTARTUP_LITE flag, which according to
+    MSDN doesn&#39;t initialize the sockets library.
+
+TEST=media_unittests
+
+Review URL: <a href="https://codereview.chromium.org/1149203002">https://codereview.chromium.org/1149203002</a>
+
+Cr-Commit-Position: refs/heads/master@{#331446}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/c0ab75a86447bc23d45ff7086b2375e2cd83c205"><time datetime="2015-05-26">2015-05-26</time></a>
+        <tr>
+          <td>ingemara
+          <td class=message>
+            <details>
+              <summary>qcms: Silence __force_align_arg_pointer__ warning on Armv8</summary>
+              <pre class=body>
+BUG=490016
+
+Review URL: <a href="https://codereview.chromium.org/1142203002">https://codereview.chromium.org/1142203002</a>
+
+Cr-Commit-Position: refs/heads/master@{#331349}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/3972bf0cd73430c02e3c11db06a49a3bd56a81a3"><time datetime="2015-05-26">2015-05-26</time></a>
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Extend destructor checks to account for eagerly finalized class types.</summary>
+              <pre class=body>
+Classes annotated as being eagerly finalized are allowed to touch other
+heap objects in their destructors, provided these are not also eagerly
+finalized. Extend the CheckFinalizerVisitor implementation to take that
+into account
+
+R=haraken
+BUG=491488
+
+Review URL: <a href="https://codereview.chromium.org/1158623002">https://codereview.chromium.org/1158623002</a>
+
+Cr-Commit-Position: refs/heads/master@{#331331}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/0cb71ff110ab4c8f7b06e70879c0b0e4a426c318"><time datetime="2015-05-26">2015-05-26</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>std::bitset solution for GL Query cache.</summary>
+              <pre class=body>
+This uses even less memory (a few hundred bytes) by sacrificing some
+worst case performance (in the order of a microsecond per query) and
+maintainability.
+
+Estimated memory savings will be 9-12 KB. (3 KB per QuerySyncManager).
+
+BUG=485536
+<a href="mailto:R=reveman@chromium.org,jbauman@chromium.org">R=reveman@chromium.org,jbauman@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1129253006">https://codereview.chromium.org/1129253006</a>
+
+Cr-Commit-Position: refs/heads/master@{#330933}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/f06df73a8298d34510531fb489be6a189ee71a13"><time datetime="2015-05-21">2015-05-21</time></a>
+        <tr>
+          <td>christiank
+          <td class=message>
+            <details>
+              <summary>Update GL_CHROMIUM_image with support for compressed formats.</summary>
+              <pre class=body>
+This CL enables creation of compressed images using the
+GL_CHROMIUM_image extension.
+
+BUG=434699
+
+Review URL: <a href="https://codereview.chromium.org/1128933006">https://codereview.chromium.org/1128933006</a>
+
+Cr-Commit-Position: refs/heads/master@{#330489}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/fa171d08b165734aa488adb2ba8314b9dd42d6a0"><time datetime="2015-05-19">2015-05-19</time></a>
+        <tr>
+          <td>christiank
+          <td class=message>
+            <details>
+              <summary>glBindTexImage2DCHROMIUM should retain pixel format.</summary>
+              <pre class=body>
+glBindTexImage2DCHROMIUM and glReleaseTexImage2DCHROMIUM will force the
+texture format in the level info to GL_RGBA regardless of the internal
+format used by the GLImage.
+
+This CL address this by adding a GetFormat function to GLImage that
+glBindTexImage2DCHROMIUM and glReleaseTexImage2DCHROMIUM will use when
+updating the level info.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1140683002">https://codereview.chromium.org/1140683002</a>
+
+Cr-Commit-Position: refs/heads/master@{#330336}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/55ddebb83836f9c4ef8b325050db65ead9807299"><time datetime="2015-05-18">2015-05-18</time></a>
+        <tr>
+          <td>bratell
+          <td class=message>
+            <details>
+              <summary>More compact representation of the GL Query cache.</summary>
+              <pre class=body>
+The only thing we need to know per QuerySync block is its
+index in the block sequence. Everything else can be
+calculated from that if we just store a few numbers in
+the Bucket objects.
+
+Total memory reduction is 92%.
+
+This is alt #2 in bug 485536.
+
+BUG=485536
+
+Review URL: <a href="https://codereview.chromium.org/1131913004">https://codereview.chromium.org/1131913004</a>
+
+Cr-Commit-Position: refs/heads/master@{#330334}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/e49ed7adac7c2100b340f8963fcafa48544dccdf"><time datetime="2015-05-18">2015-05-18</time></a>
         <tr>
           <td>wdzierzanowski
           <td class=message>
