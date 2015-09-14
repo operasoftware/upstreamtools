@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 697,
   
-    <a href="#blink">Blink</a>: 3447,
+    <a href="#blink">Blink</a>: 3448,
   
     <a href="#v8">V8</a>: 22.
   
@@ -12629,6 +12629,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Compute outline mid-line in way that works with negative start-values</summary>
+              <pre class=body>
+Since the expression (x1+x2)/2 will always &#34;round&#34; towards zero, if one
+of the points (usually x1) is negative, the wrong &#34;mid-line&#34; will be
+computed, and as a result part of the outline will shift right/down.
+Instead compute the mid-line as x1+(x2-x1)/2 (or x1+thickness/2) i.e
+perform the division on something that is known to be non-negative and
+then offset from the starting point. (Similar reasoning for the other
+dimension.)
+
+BUG=529010
+
+Review URL: <a href="https://codereview.chromium.org/1343773002">https://codereview.chromium.org/1343773002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@202205 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/712780c5826d80313a0969f70906bd7bbe49b6ad"><time datetime="2015-09-14">2015-09-14</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
