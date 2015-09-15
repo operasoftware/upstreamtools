@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 698,
+    <a href="#chromium">Chromium</a>: 701,
   
     <a href="#blink">Blink</a>: 3453,
   
@@ -44,6 +44,57 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>tsniatowski
+          <td class=message>
+            <details>
+              <summary>Fix //content/plugin ax_enums gn build flake</summary>
+              <pre class=body>
+Flake observerd with target_os=&#34;android&#34; and enable_plugins=true:
+//content/plugin/plugin_thread.cc ends up including the generated
+ax_enums header so make it depend on it.
+
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1343883003">https://codereview.chromium.org/1343883003</a>
+
+Cr-Commit-Position: refs/heads/master@{#348918}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/d050925ac8f0324186269b1f10c0a8a9d24fab40"><time datetime="2015-09-15">2015-09-15</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Don&#39;t import win32gui when it&#39;s not needed</summary>
+              <pre class=body>
+If --parent-window=... isn&#39;t passed, then parent_window will be None,
+and importing win32gui then is unnecessary.
+
+Review URL: <a href="https://codereview.chromium.org/1335993002">https://codereview.chromium.org/1335993002</a>
+
+Cr-Commit-Position: refs/heads/master@{#348914}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/2bf84ec90a3deb73607f561be67c531726254818"><time datetime="2015-09-15">2015-09-15</time></a>
+        <tr>
+          <td>the_jk
+          <td class=message>
+            <details>
+              <summary>Fix running gyp with configuration_policy=0</summary>
+              <pre class=body>
+Running gyp in chromium with configuration_policy set to 0 fails as
+multiple targets that are behind condition of configuration_policy==1
+are referenced without corresponding conditionals
+
+BUG=530579
+
+Review URL: <a href="https://codereview.chromium.org/1334253002">https://codereview.chromium.org/1334253002</a>
+
+Cr-Commit-Position: refs/heads/master@{#348903}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/a7b7b998391c399fdfbafb4df10645a0f2ce9c5b"><time datetime="2015-09-15">2015-09-15</time></a>
         <tr>
           <td>alexanderk
           <td class=message>
