@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 701,
+    <a href="#chromium">Chromium</a>: 702,
   
     <a href="#blink">Blink</a>: 3454,
   
@@ -44,6 +44,21 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>move zip template to a non-android-specific .gni file</summary>
+              <pre class=body>
+The zip template really isn&#39;t android-specific, let&#39;s move it to its
+own .gni file which doesn&#39;t assert(is_android).
+
+Review URL: <a href="https://codereview.chromium.org/1345733002">https://codereview.chromium.org/1345733002</a>
+
+Cr-Commit-Position: refs/heads/master@{#349016}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/3dba3175c9f137742ddb10dbe9a10a5417186402"><time datetime="2015-09-15">2015-09-15</time></a>
         <tr>
           <td>tsniatowski
           <td class=message>
