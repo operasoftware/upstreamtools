@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 701,
   
-    <a href="#blink">Blink</a>: 3453,
+    <a href="#blink">Blink</a>: 3454,
   
     <a href="#v8">V8</a>: 22.
   
@@ -12700,6 +12700,32 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Propagate resource-triggered repaints to text node children of &lt;text&gt;</summary>
+              <pre class=body>
+When a paint server is modified, it is marked for layout and its clients
+are marked for repaint. In the case of &lt;text&gt; (and &lt;tspan&gt; and other
+text content elements), the text nodes (for which the actual painting is
+performed) uses their parent (LayoutObject) to get the fill/stroke. This
+means that if a repaint is requested for all clients of a resource, the
+text nodes will not be notified.
+Add and use a new paint invalidation reason for this case:
+PaintInvalidationSVGResourceChange
+Handle this reason in LayoutSVGText and LayoutSVGInline.
+Generalize the ancestorHadPaintInvalidationForLocationChange
+functionality, renaming it to forcedSubtreeInvalidationWithinContainer.
+
+BUG=528159
+
+Review URL: <a href="https://codereview.chromium.org/1331053002">https://codereview.chromium.org/1331053002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@202280 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/42c1cb191765b1fae236b5178860de29135056a1"><time datetime="2015-09-15">2015-09-15</time></a>
         <tr>
           <td>fs
           <td class=message>
