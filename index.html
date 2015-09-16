@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 702,
+    <a href="#chromium">Chromium</a>: 704,
   
     <a href="#blink">Blink</a>: 3457,
   
@@ -44,6 +44,46 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>tsniatowski
+          <td class=message>
+            <details>
+              <summary>Fix //content/plugin ax_enums gn build flake (take 2)</summary>
+              <pre class=body>
+Flake observerd with target_os=&#34;android&#34; and enable_plugins=true,
+probably can happen on other platforms as well.
+//content/plugin/plugin_thread.cc ends up including the generated
+ax_enums header so needs a dependency.
+
+This is a retry of crrev.com/1343883003 with a direct ax_gen dep instead
+of going via //content/public/common to avoid a dependency cycle in
+component builds.
+
+<a href="mailto:R=ananta@chromium.org">R=ananta@chromium.org</a>, <a href="mailto:jam@chromium.org">jam@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1344883002">https://codereview.chromium.org/1344883002</a>
+
+Cr-Commit-Position: refs/heads/master@{#349228}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/d09fa1676fb063d617bde289f552108ac17d1cde"><time datetime="2015-09-16">2015-09-16</time></a>
+        <tr>
+          <td>mostynb
+          <td class=message>
+            <details>
+              <summary>gn help switches doc fixup</summary>
+              <pre class=body>
+GN docs refer to &#34;gn help&#34; for common command-line switches in a couple
+of places, but that only shows the top level help.  The reference
+should of course be &#34;gn help switches&#34;.
+
+Review URL: <a href="https://codereview.chromium.org/1348633002">https://codereview.chromium.org/1348633002</a>
+
+Cr-Commit-Position: refs/heads/master@{#349215}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/56807c6cb383140af0c03da8f6731d77785d7160"><time datetime="2015-09-16">2015-09-16</time></a>
         <tr>
           <td>mostynb
           <td class=message>
