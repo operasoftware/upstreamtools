@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 702,
   
-    <a href="#blink">Blink</a>: 3455,
+    <a href="#blink">Blink</a>: 3457,
   
     <a href="#v8">V8</a>: 22.
   
@@ -12715,6 +12715,46 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Remove special pagination code for floats and out-of-flow objects.</summary>
+              <pre class=body>
+This got added years ago, to make something work, either for CSS regions or for
+the old multicol implementation.
+
+I see no need for this code, and it was getting in my way.
+
+<a href="mailto:R=jchaffraix@chromium.org,leviw@chromium.org">R=jchaffraix@chromium.org,leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1343163005">https://codereview.chromium.org/1343163005</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@202351 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/840e60d0ae95d1124b8c658c8ba39c6cbeddd9c6"><time datetime="2015-09-16">2015-09-16</time></a>
+        <tr>
+          <td>fs
+          <td class=message>
+            <details>
+              <summary>Specify the source rect on the SourceGraphic</summary>
+              <pre class=body>
+Instead of carrying the source rectangle of the filter input (the
+&#39;SourceGraphic&#39;) in the Filter, specify it in the input FilterEffect
+(SourceGraphic).
+This allows for getting rid of the sourceImageRect() method on Filter
+and implementations (it&#39;s only actually non-empty for SVGFilter and
+related code-paths.)
+
+BUG=109224
+
+Review URL: <a href="https://codereview.chromium.org/1338753003">https://codereview.chromium.org/1338753003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@202346 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1939aaf4abc9a4ad49a77eee8019167ef0fe46a6"><time datetime="2015-09-16">2015-09-16</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
