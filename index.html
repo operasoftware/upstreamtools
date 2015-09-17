@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 704,
   
-    <a href="#blink">Blink</a>: 3457,
+    <a href="#blink">Blink</a>: 3458,
   
     <a href="#v8">V8</a>: 22.
   
@@ -12755,6 +12755,28 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>rune
+          <td class=message>
+            <details>
+              <summary>Increment style version for all style changes.</summary>
+              <pre class=body>
+markAncestorsWithChildNeedsStyleRecalc incremented styleVersion on
+Document, while markAncestorsWithChildNeedsStyleInvalidation did not.
+That made us detect style changes differently depending on the type of
+selectors which would be affected by a change - if we would schedule an
+invalidation set, or set SubtreeStyleChange directly.
+
+Instead increment style version on scheduleLayoutTreeUpdate.
+
+<a href="mailto:R=ericwilligers@chromium.org,esprehn@chromium.org">R=ericwilligers@chromium.org,esprehn@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1333193004">https://codereview.chromium.org/1333193004</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@202419 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/e127b9aef7a338f2f29cbc27525c7d3b8846f82e"><time datetime="2015-09-17">2015-09-17</time></a>
         <tr>
           <td>mstensho
           <td class=message>
