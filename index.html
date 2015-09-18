@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 704,
+    <a href="#chromium">Chromium</a>: 705,
   
     <a href="#blink">Blink</a>: 3461,
   
@@ -44,6 +44,25 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjorn
+          <td class=message>
+            <details>
+              <summary>Expose OpenSSL&#39;s key_exchange_info in the content API</summary>
+              <pre class=body>
+The key_exchange_info contains information about the strength of the SSL
+key exchange. This information is useful for statistics, user information,
+and making trust decisions for connections. This commit makes the information
+available in the API.
+
+BUG=525957
+
+Review URL: <a href="https://codereview.chromium.org/1313363003">https://codereview.chromium.org/1313363003</a>
+
+Cr-Commit-Position: refs/heads/master@{#349635}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/79cf372726c52fd12a9009db8735b5098270b6c5"><time datetime="2015-09-18">2015-09-18</time></a>
         <tr>
           <td>tsniatowski
           <td class=message>
