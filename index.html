@@ -27,9 +27,9 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 705,
+    <a href="#chromium">Chromium</a>: 706,
   
-    <a href="#blink">Blink</a>: 3461,
+    <a href="#blink">Blink</a>: 3462,
   
     <a href="#v8">V8</a>: 22.
   
@@ -44,6 +44,20 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjorn
+          <td class=message>
+            <details>
+              <summary>Add histogram for key exchange strength</summary>
+              <pre class=body>
+BUG=525957
+
+Review URL: <a href="https://codereview.chromium.org/1312363004">https://codereview.chromium.org/1312363004</a>
+
+Cr-Commit-Position: refs/heads/master@{#349644}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/66456a28179acfaaac34fa0e5c38d571ffe78145"><time datetime="2015-09-18">2015-09-18</time></a>
         <tr>
           <td>sigbjorn
           <td class=message>
@@ -12774,6 +12788,56 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>mstensho
+          <td class=message>
+            <details>
+              <summary>Avoid stack overflow triggered by out-of-band layout of flexbox child.</summary>
+              <pre class=body>
+Flexbox uses LayoutBlock::finishDelayUpdateScrollInfo(), which may jump to some
+arbitrary block in the subtree and lay it out directly. This is bad, at least
+for multicol, since it requires that a flow thread be entered have its children
+laid out without skipping any parents in the chain.
+
+LayoutMulticolFlowThread::skipColumnSpanner() was called on the wrong flow
+thread, which resulted in m_lastSetWorkedOn pointing to a column set that was
+part of an inner flow thread, and not the flow thread we called. That made
+columnSetAtBlockOffset() return a column set from an inner flow thread, causing
+an infinite recursion when walking upwards in the flow thread ancestry chain).
+
+So the spanner was in the inner flow thread, but it was the outer flow thread
+that got called. This happened because our LayoutState says that&#39;s the
+innermost flow thread being laid out at the moment, because
+finishDelayUpdateScrollInfo() just teleported and laid out a descendant of the
+inner flow thread.
+
+Luckily there&#39;s a safer way of obtaining the flow thread associated with a
+spanner, so do that instead.
+
+This is not a perfect fix. LayoutState still points to the wrong flow thread
+(we just avoid asking it). The root cause remains (out-of-band layout), and
+there may be other bugs caused by this. For multicol, we&#39;re still not in the
+clear. Since we have a skipColumnSpanner() call without laying out the flow
+thread, we&#39;ll get an assertion failure next time we lay out the flow thread,
+because it will assert that there be no m_lastSetWorkedOn (but
+skipColumnSpanner() has set that one while not laying out the flow thread).
+
+But at least we&#39;re getting rid of the infinite recursion.
+
+Since we now call skipColumnSpanner() on a LayoutMultiColumnFlowThread, instead
+of on a LayoutFlowThread, we need to make that method public (private overrides
+is just asking for trouble). And since this is the only caller, make it
+non-virtual while at it. LayoutFlowThread no longer needs this.
+
+BUG=526664
+<a href="mailto:R=jchaffraix@chromium.org,leviw@chromium.org">R=jchaffraix@chromium.org,leviw@chromium.org</a>
+
+Review URL: <a href="https://codereview.chromium.org/1328923002">https://codereview.chromium.org/1328923002</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@202519 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/48e5493c8513b357eeac855672855630b21d54bc"><time datetime="2015-09-18">2015-09-18</time></a>
         <tr>
           <td>fs
           <td class=message>
