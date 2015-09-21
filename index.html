@@ -29,7 +29,7 @@ h1 { margin-top: 0; text-align: center; }
   
     <a href="#chromium">Chromium</a>: 707,
   
-    <a href="#blink">Blink</a>: 3464,
+    <a href="#blink">Blink</a>: 3465,
   
     <a href="#v8">V8</a>: 22.
   
@@ -12802,6 +12802,31 @@ git-svn-id: svn://svn.chromium.org/chrome/trunk/src@183957 0039d316-1c4b-4281-b9
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>sigbjornf
+          <td class=message>
+            <details>
+              <summary>Oilpan: like Vector&lt;T&gt;, restrict Deque&lt;T&gt; to certain part objects.</summary>
+              <pre class=body>
+Impose the limitations put on Vector&lt;T&gt; on Deque&lt;T&gt; also. They&#39;re
+both backed by a vector buffer where unused slots are zero&#39;ed so as
+to be safe when (conservatively) tracing the buffer contents or when
+finalizing it.
+
+In order to use a designated zero for cleared elements, certain
+conditions have to be placed on the kinds of T we can allow when
+T is a part object annotated with ALLOW_ONLY_INLINE_ALLOCATION().
+Impose these statically by way of static_assert()s.
+
+R=tkent,haraken
+BUG=420515
+
+Review URL: <a href="https://codereview.chromium.org/1051853003">https://codereview.chromium.org/1051853003</a>
+
+git-svn-id: svn://svn.chromium.org/blink/trunk@202574 bbb929c8-8fbe-4397-9dbb-9b2b20218538
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/blink/+/1afac5b107b19aaf39b04706faaabcf16a404b69"><time datetime="2015-09-21">2015-09-21</time></a>
         <tr>
           <td>sigbjornf
           <td class=message>
