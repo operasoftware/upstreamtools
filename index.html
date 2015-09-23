@@ -27,7 +27,7 @@ h1 { margin-top: 0; text-align: center; }
   <h1>Opera Software upstreamed commits</h1>
   <p>Upstreamed commits in
   
-    <a href="#chromium">Chromium</a>: 708,
+    <a href="#chromium">Chromium</a>: 709,
   
     <a href="#blink">Blink</a>: 3474,
   
@@ -44,6 +44,26 @@ h1 { margin-top: 0; text-align: center; }
       <thead><tr><th>Author <th>Message <th>When
       <tbody>
       
+        <tr>
+          <td>tsniatowski
+          <td class=message>
+            <details>
+              <summary>Add ninja console pool support to GN</summary>
+              <pre class=body>
+Allow GN actions to specify &#34;console = true&#34;, which will translate into
+a &#34;pool = console&#34; setting in the generated ninja files. The console
+pool allows a ninja target to have unbuffered io, access to standard
+input, and is limited to one target at a time.
+
+<a href="mailto:R=brettw@chromium.org">R=brettw@chromium.org</a>
+BUG=
+
+Review URL: <a href="https://codereview.chromium.org/1358803002">https://codereview.chromium.org/1358803002</a>
+
+Cr-Commit-Position: refs/heads/master@{#350321}
+</pre>
+            </details>
+          <td><a href="https://chromium.googlesource.com/chromium/src/+/b52c507ecb15e3eaf6051cba0de0cbaf69fe200a"><time datetime="2015-09-22">2015-09-22</time></a>
         <tr>
           <td>davve
           <td class=message>
