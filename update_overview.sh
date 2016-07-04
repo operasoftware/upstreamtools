@@ -2,7 +2,7 @@
 
 #set -x  # Display commands as they are run
 
-for p in chromium.blink chromium.src v8; do
+for p in chromium.src v8; do
     git --git-dir=$p.git fetch -q
 done
 

@@ -20,7 +20,6 @@ Install the requirements (possibly inside a virtualenv):
 Get the required upstream repositories:
 
     git clone --mirror https://chromium.googlesource.com/chromium/src.git chromium.src.git
-    git clone --mirror https://chromium.googlesource.com/chromium/blink.git chromium.blink.git
     git clone --mirror https://github.com/v8/v8.git v8.git
 
 Generate the file:
@@ -43,7 +42,7 @@ Updating the overview manually
 
 Update the Git checkouts.
 
-    for p in chromium.blink chromium.src v8; do git --git-dir=$p.git fetch; done
+    for p in chromium.src v8; do git --git-dir=$p.git fetch; done
 
 Generate the file, switch branch and check in there.
 
