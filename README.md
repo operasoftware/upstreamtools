@@ -4,6 +4,7 @@ Opera upstreamtools
 A script to create [a web page](https://operasoftware.github.io/upstreamtools/) tracking
 upstreamed code to the Chromium project from Opera.
 
+
 Getting started
 ---------------
 
@@ -26,8 +27,19 @@ Generate the file:
 
     python generate_upstream_list.py > upstream.html
 
+
 Updating the overview
 ---------------------
+
+There's a simple script which should be able to do the work for you.  It will
+generate the list, switch to the `gh-pages` branch and commit it.  If you run
+it with the `push` argument it will even try to push it for you.
+
+    ./update_overview.sh [push]
+
+
+Updating the overview manually
+------------------------------
 
 Update the Git checkouts.
 
@@ -45,10 +57,11 @@ If you did not clone the upstreames like mirrors, the master branch won't
 always be poining at the newest point in history. You will have to do a `git
 pull` or similar in your working directory.
 
+
 License
 -------
 
-Copyright 2014 Opera Software
+Copyright 2014-2016 Opera Software
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
