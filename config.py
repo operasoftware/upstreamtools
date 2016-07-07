@@ -1,5 +1,5 @@
-EMAIL_GREP = '@opera.com'
-EMAIL_RE = r'(?P<full_email>(?P<name>[^@]+)@opera\.com)'
+AUTHOR_REGEX = r'(?P<name>[^@\s<]+)@opera\.com'
+BODY_REGEX = r'(Contributed|Patch) (from|by).*@opera\.com'
 
 # Must be the actual '.git'-folder, not a checkout.
 REPOS = [
