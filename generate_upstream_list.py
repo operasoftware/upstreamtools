@@ -9,27 +9,20 @@ from repository import Repo
 
 def get_commit_log(git_repo, viewvc_url, author_in_commit_body=False):
     repo = Repo(git_repo)
-    log = repo.commits(config.EMAIL_GREP, search_body=author_in_commit_body)
+    log = repo.commits(config.BODY_REGEX, search_body=author_in_commit_body)
+
     for commit in log[:]:
-        if author_in_commit_body:
-            name_match = re.search(
-                '(Contributed|Patch) (from|by) [^<]*<{name_re}>'.format(name_re=config.EMAIL_RE),
-                commit.body)
-            if not name_match:
-                review_match = re.search('R=.*{}'.format(config.EMAIL_RE), commit.body)
-                if review_match:
-                    # Skip stuff only reviewed
-                    log.remove(commit)
-                    continue
-                raise Exception("Didn't find {} in commit msg ({})".format(config.EMAIL_RE, commit.body))
-            commit.author = name_match.group('full_email')
-            commit.stripped_author = name_match.group('name')
+        author_match = re.search(config.AUTHOR_REGEX, commit.author)
+        if author_match:
+            commit.stripped_author = author_match.group('name')
         else:
-            name_match = re.match(config.EMAIL_RE, commit.author)
-            if name_match:
-                commit.stripped_author = name_match.group('name')
-            else:
-                commit.stripped_author = commit.author
+            body_match = re.search(config.AUTHOR_REGEX, commit.body)
+            if not body_match:
+                raise Exception(
+                    "Unable to determine original author of commit "
+                    + commit.sha)
+            guessed_author = body_match.group('name')
+            commit.stripped_author = guessed_author
 
         commit.viewvc = viewvc_url.format(rev=commit.sha)
     return log
@@ -38,6 +31,7 @@ project_logs = []
 for repo in config.REPOS:
     commit_log = get_commit_log(repo['gitdir'], repo['viewvc_url'],
                                 repo.get('author_in_commit_body', False))
+    commit_log.sort(key=lambda x: x.date, reverse=True) # FIXME: sort by time also
     project_logs.append({'name': repo['name'], 'log': commit_log})
 
 env = Environment(loader=FileSystemLoader('templates'))
