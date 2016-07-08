@@ -20,4 +20,9 @@ REPOS = [
       'viewvc_url': 'https://chromium.googlesource.com/skia.git/+/{rev}',
       'author_in_commit_body': True,
     },
+    {
+      'name': 'BoringSSL',
+      'gitdir': './boringssl.git',
+      'viewvc_url': 'https://boringssl.googlesource.com/boringssl.git/+/{rev}',
+    },
 ]

@@ -22,6 +22,7 @@ Get the required upstream repositories:
     git clone --mirror https://chromium.googlesource.com/chromium/src.git chromium.src.git
     git clone --mirror https://github.com/v8/v8.git v8.git
     git clone --mirror https://chromium.googlesource.com/skia.git skia.git
+    git clone --mirror https://boringssl.googlesource.com/boringssl.git boringssl.git
 
 Generate the file:
 
