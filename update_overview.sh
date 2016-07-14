@@ -20,11 +20,16 @@ git checkout -q gh-pages || {
     echo "Trouble checking out gh-pages. Quitting." 1>&2; exit 1; }
 mv upstream.html index.html
 
-git commit -m "Update upstream overview." index.html > /dev/null
+git add index.html
+git diff-index --quiet HEAD --
 ret=$?
-if [[ $ret == 0 ]]; then
+if [ "$ret" -eq 1 ]
+then
+    git commit -m "Update upstream overview." index.html > /dev/null
     if [[ $1 == 'push' ]]; then
         git push -q
+        git checkout -q master
+        ret=0
     else
         echo
         echo "Check it with 'git show', then push it:"
@@ -33,8 +38,7 @@ if [[ $ret == 0 ]]; then
         exit 0
     fi
 else
-    echo "No changes (or error)."
+    echo "No changes."
 fi
 
-git checkout -q master
 exit $ret
