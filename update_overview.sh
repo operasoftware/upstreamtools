@@ -39,6 +39,7 @@ then
     fi
 else
     echo "No changes."
+    git checkout -q master
 fi
 
 exit $ret
