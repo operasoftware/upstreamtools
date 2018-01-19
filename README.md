@@ -19,10 +19,10 @@ Install the requirements (possibly inside a virtualenv):
 
 Get the required upstream repositories:
 
-    git clone --mirror https://chromium.googlesource.com/chromium/src.git chromium.src.git
-    git clone --mirror https://github.com/v8/v8.git v8.git
-    git clone --mirror https://chromium.googlesource.com/skia.git skia.git
-    git clone --mirror https://boringssl.googlesource.com/boringssl.git boringssl.git
+    git clone --bare https://chromium.googlesource.com/chromium/src.git chromium.src.git
+    git clone --bare https://github.com/v8/v8.git v8.git
+    git clone --bare https://chromium.googlesource.com/skia.git skia.git
+    git clone --bare https://boringssl.googlesource.com/boringssl.git boringssl.git
 
 Generate the file:
 
@@ -62,7 +62,7 @@ pull` or similar in your working directory.
 License
 -------
 
-Copyright 2014-2016 Opera Software
+Copyright 2014-2018 Opera Software
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
