@@ -18,9 +18,11 @@ def get_commit_log(git_repo, viewvc_url, author_in_commit_body=False):
         else:
             body_match = re.search(config.AUTHOR_REGEX, commit.body)
             if not body_match:
-                raise Exception(
-                    "Unable to determine original author of commit "
-                    + commit.sha)
+                # Might be someone at Vewd calling themselves Opera by mistake
+                # in the code review system. The regexps differ in that one
+                # checks with <email> and the other do not so there is no
+                # guarantee that both hits.
+                continue
             guessed_author = body_match.group('name')
             commit.stripped_author = guessed_author
 
